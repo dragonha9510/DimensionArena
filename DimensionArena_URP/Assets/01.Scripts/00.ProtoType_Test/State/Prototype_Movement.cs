@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Prototype_Movement
 {
-    public void MoveDirection(Transform transform, Vector3 direction, float speed)
+    public void MoveDirection(Rigidbody rigid, Transform transform, Vector3 direction, float speed)
     {
         if (direction.sqrMagnitude > 0.01f)
         {
@@ -13,6 +13,9 @@ public class Prototype_Movement
             transform.LookAt(transform.position + forward);
         }
 
-        transform.position = transform.position + direction * speed * Time.deltaTime;
+        direction.y = 0;
+
+        rigid.velocity = direction * speed * Time.deltaTime;
+        //transform. = transform.position + direction * speed * Time.deltaTime;
     }
 }

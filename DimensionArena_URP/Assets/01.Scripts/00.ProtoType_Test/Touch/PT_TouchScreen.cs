@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class PT_TouchScreen : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
+public class PT_AtkTouchScreen : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
-    [SerializeField] private PT_JoyStick joyStick;
+    [SerializeField] private PT_AtkJoyStick joyStick;
     [SerializeField] private RectTransform moveJoyStick;
     private Vector2 oriPosition;
 

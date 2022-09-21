@@ -9,8 +9,6 @@ public class Prototype_Player_Test : MonoBehaviour
 
     [HideInInspector] public Vector3 direction;
 
-    private Ray AtkRangeRay;
-    
     private Prototype_Movement movement;
     private GameObject avatar;
     private Rigidbody rigid;
@@ -39,6 +37,10 @@ public class Prototype_Player_Test : MonoBehaviour
             directionLocation.gameObject.SetActive(true);
             directionLocation.position = transform.position + (direction * 1.25f);
         }
-        movement.MoveDirection(transform, direction, speed);
+    }
+
+    private void LateUpdate()
+    {
+        movement.MoveDirection(rigid, transform, direction, speed);
     }
 }
