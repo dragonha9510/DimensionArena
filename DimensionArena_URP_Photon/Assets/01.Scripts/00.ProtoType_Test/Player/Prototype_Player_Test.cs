@@ -18,6 +18,8 @@ public class Prototype_Player_Test : MonoBehaviourPun
         if (photonView.IsMine)
         {
             GameObject.Find("MoveJoyStick").GetComponent<PT_JoyStick>().player = this;
+            GameObject.Find("Target Camera").GetComponent<Prototype_TargetCamera>().target = this.transform;
+
         }
         movement = new Prototype_Movement();
 

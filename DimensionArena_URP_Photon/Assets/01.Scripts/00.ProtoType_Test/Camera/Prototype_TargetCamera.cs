@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Prototype_TargetCamera : MonoBehaviour
 {
-    [SerializeField] private Transform target;
+    [SerializeField] public Transform target;
     private Vector3 interval;
 
     private void Start()
