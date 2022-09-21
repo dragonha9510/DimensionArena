@@ -1,2 +1,5 @@
-# DimensionArena
-Unity_TeamProject(#3931.co)
+# ReadMe (DA_UnityTeam)
+
+📝 인하대학교 미래인재개발원 ( 개발 & 기획 협업 )
+
+- 팀원 : 강주한 김용하 조수빈
