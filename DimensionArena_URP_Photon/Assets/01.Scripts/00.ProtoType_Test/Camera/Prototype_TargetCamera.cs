@@ -22,7 +22,14 @@ public class Prototype_TargetCamera : MonoBehaviour
 
     private void LateUpdate()
     {
-        transform.LookAt(target);
-        transform.position = target.position + interval;
+        //transform.LookAt(target);
+        Vector3 location = target.position + interval;
+
+        Vector3 direction = location - transform.position;
+        float speed = direction.magnitude;
+        direction.Normalize();
+
+        transform.Translate(direction * speed * Time.deltaTime);
+
     }
 }

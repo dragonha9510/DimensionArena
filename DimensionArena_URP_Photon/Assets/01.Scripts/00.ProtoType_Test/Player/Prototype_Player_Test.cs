@@ -9,8 +9,6 @@ public class Prototype_Player_Test : MonoBehaviourPun
 
     [HideInInspector] public Vector3 direction;
 
-    private Ray AtkRangeRay;
-    
     private Prototype_Movement movement;
     private GameObject avatar;
     private Rigidbody rigid;
@@ -20,12 +18,9 @@ public class Prototype_Player_Test : MonoBehaviourPun
         if (photonView.IsMine)
         {
             GameObject.Find("MoveJoyStick").GetComponent<PT_JoyStick>().player = this;
-            GameObject.Find("AtkJoyStick").GetComponent<PT_JoyStick>().player = this;
         }
-
-
         movement = new Prototype_Movement();
-        
+
         if (transform.childCount != 0)
             avatar = transform.GetChild(0).gameObject;
 
@@ -37,9 +32,7 @@ public class Prototype_Player_Test : MonoBehaviourPun
 
     private void Update()
     {
-        if (!photonView.IsMine)
-            return;
-        if(direction.Equals(Vector3.zero))
+        if (direction.Equals(Vector3.zero))
         {
             directionLocation.gameObject.SetActive(false);
         }
@@ -48,6 +41,10 @@ public class Prototype_Player_Test : MonoBehaviourPun
             directionLocation.gameObject.SetActive(true);
             directionLocation.position = transform.position + (direction * 1.25f);
         }
-        movement.MoveDirection(transform, direction, speed);
+    }
+
+    private void LateUpdate()
+    {
+        movement.MoveDirection(rigid, transform, direction, speed);
     }
 }

@@ -2,18 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using Photon.Pun;
-public class PT_JoyStick : MonoBehaviourPun, IBeginDragHandler, IDragHandler, IEndDragHandler
+
+public class PT_AtkJoyStick : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
-    // public 전환 , 생성과 동시에 설정 해줘야 한다.
-    [SerializeField] public Prototype_Player_Test player;
+    [SerializeField] public PT_Player_Atk player;
 
     [SerializeField] private RectTransform lever;
     private RectTransform rectTransform;
 
     [SerializeField, Range(10f, 150f)] private float leverRange;
 
-   
     private void Awake()
     {
         rectTransform = GetComponent<RectTransform>();
@@ -21,7 +19,9 @@ public class PT_JoyStick : MonoBehaviourPun, IBeginDragHandler, IDragHandler, IE
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        var inputDir = eventData.position - rectTransform.anchoredPosition;
+        var realpos = new Vector2(Screen.width - rectTransform.anchoredPosition.x, rectTransform.anchoredPosition.y);
+
+        var inputDir = eventData.position - new Vector2(rectTransform.position.x, rectTransform.position.y);
 
         var clampedDir = inputDir.magnitude < leverRange ?
             inputDir : inputDir.normalized * leverRange;
@@ -32,7 +32,9 @@ public class PT_JoyStick : MonoBehaviourPun, IBeginDragHandler, IDragHandler, IE
 
     public void OnDrag(PointerEventData eventData)
     {
-        var inputDir = eventData.position - rectTransform.anchoredPosition;
+        var realpos = new Vector2(Screen.width - rectTransform.anchoredPosition.x, rectTransform.anchoredPosition.y);
+
+        var inputDir = eventData.position - new Vector2(rectTransform.position.x, rectTransform.position.y);
         var clampedDir = inputDir.magnitude < leverRange ? inputDir : inputDir.normalized * leverRange;
 
         lever.anchoredPosition = clampedDir;
@@ -47,6 +49,6 @@ public class PT_JoyStick : MonoBehaviourPun, IBeginDragHandler, IDragHandler, IE
 
     public void SetDirection()
     {
-        player.direction = new Vector3( (lever.position.x - rectTransform.position.x) * 0.01f, 0, (lever.position.y - rectTransform.position.y) * 0.01f);
+        player.direction = new Vector3((lever.position.x - rectTransform.position.x) * 0.01f, 0, (lever.position.y - rectTransform.position.y) * 0.01f);
     }
 }
