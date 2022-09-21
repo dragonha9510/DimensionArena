@@ -15,7 +15,7 @@ public class Prototype_Movement
 
         direction.y = 0;
 
-        rigid.velocity = direction * speed * Time.deltaTime;
+        rigid.velocity = direction * speed;
         //transform. = transform.position + direction * speed * Time.deltaTime;
     }
 }
