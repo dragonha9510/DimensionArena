@@ -29,6 +29,7 @@ public class MagneticField : MonoBehaviour
     [SerializeField] private float scaleSpeed = 1f;
 
     private SafeZone safeZone = new SafeZone();
+    public SafeZone GetSafe => safeZone;
 
     private float leftCorrection;
     private float rightCorrection;
