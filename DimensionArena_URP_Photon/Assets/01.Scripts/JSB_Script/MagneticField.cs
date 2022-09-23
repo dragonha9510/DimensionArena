@@ -2,13 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public struct SafeZone 
+{ 
+    public float left; 
+    public float right; 
+    public float top; 
+    public float bottom; 
+    public float height { get { return top - bottom; } }
+    public float width { get { return right - left; } }
+
+}
+
 public class MagneticField : MonoBehaviour
 {
     [SerializeField] float decreaseTime = 10.0f;
 
     [SerializeField] Vector2 magneticfieldScale;
-
-
+    
     [SerializeField] Transform leftTopGround;
     [SerializeField] Transform leftBottomGround;
     [SerializeField] Transform rightTopGround;
@@ -18,7 +28,8 @@ public class MagneticField : MonoBehaviour
 
     [SerializeField] private float scaleSpeed = 1f;
 
-    
+    private SafeZone safeZone = new SafeZone();
+
     private float leftCorrection;
     private float rightCorrection;
     private float topCorrection;
@@ -113,8 +124,6 @@ public class MagneticField : MonoBehaviour
                                                                 , magneticfieldObj[0].transform.localScale.z);
         //왼쪽 자기장면 보정
         correctionValue = expanstionValue / 2;
-        Debug.Log("보정치 : " + correctionValue);
-        Debug.Log(magneticfieldObj[0].transform.localPosition);
         magneticfieldObj[0].transform.localPosition = new Vector3(magneticfieldObj[0].transform.position.x + correctionValue
                                                                 , magneticfieldObj[0].transform.position.y
                                                                 , magneticfieldObj[0].transform.position.z);
@@ -162,6 +171,18 @@ public class MagneticField : MonoBehaviour
                                                                 , magneticfieldObj[3].transform.position.z + correctionValue);
 
         decreaseTime -= Time.deltaTime;
+        Bounds bounds;
+        bounds = magneticfieldObj[0].GetComponent<Collider>().bounds;
+        safeZone.left = magneticfieldObj[0].transform.position.x + bounds.size.x / 2;
+        
+        bounds = magneticfieldObj[1].GetComponent<Collider>().bounds;
+        safeZone.right = magneticfieldObj[1].transform.position.x - bounds.size.x / 2;
+        
+        bounds = magneticfieldObj[2].GetComponent<Collider>().bounds;
+        safeZone.top = magneticfieldObj[2].transform.position.z - bounds.size.z / 2;
+
+        bounds = magneticfieldObj[3].GetComponent<Collider>().bounds;
+        safeZone.bottom = magneticfieldObj[3].transform.position.z + bounds.size.z / 2;
     }
 
     void Start()
@@ -187,13 +208,5 @@ public class MagneticField : MonoBehaviour
     {
         if (0f <= decreaseTime)
             expansionMangeticField();
-        else
-        {
-            foreach(GameObject obj in magneticfieldObj)
-            {
-                Destroy(obj);
-            }
-            Destroy(this);
-        }
     }
 }
