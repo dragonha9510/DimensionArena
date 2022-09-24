@@ -26,7 +26,6 @@ public class MagneticField : MonoBehaviour
 
     [SerializeField] GameObject magneticRect;
 
-    [SerializeField] private float scaleSpeed = 1f;
 
     private SafeZone safeZone = new SafeZone();
     public SafeZone GetSafe => safeZone;
@@ -188,19 +187,30 @@ public class MagneticField : MonoBehaviour
 
     void Start()
     {
+        GameObject cloud;
         // 왼쪽 면
         SetEachOther(leftTopGround, leftBottomGround);
-        magneticfieldObj.Add(Instantiate(magneticRect));
+        cloud = Instantiate(magneticRect);
+        cloud.GetComponent<MagneticCloudEffectCreator>().cloudType = MagneticCloudPos.MagneticCloudPos_Left;
+        magneticfieldObj.Add(cloud);
+        
         // 오른쪽 면
         SetEachOther(rightTopGround, rightBottomGround);
-        magneticfieldObj.Add(Instantiate(magneticRect));
-
+        cloud = Instantiate(magneticRect);
+        cloud.GetComponent<MagneticCloudEffectCreator>().cloudType = MagneticCloudPos.MagneticCloudPos_Right;
+        magneticfieldObj.Add(cloud);
+        
         // 상단 면
         SetEachOther(rightTopGround, leftTopGround);
-        magneticfieldObj.Add(Instantiate(magneticRect));
+        cloud = Instantiate(magneticRect);
+        cloud.GetComponent<MagneticCloudEffectCreator>().cloudType = MagneticCloudPos.MagneticCloudPos_Top;
+        magneticfieldObj.Add(cloud);
+        
         // 하단 면
         SetEachOther(rightBottomGround, leftBottomGround);
-        magneticfieldObj.Add(Instantiate(magneticRect));
+        cloud = Instantiate(magneticRect);
+        cloud.GetComponent<MagneticCloudEffectCreator>().cloudType = MagneticCloudPos.MagneticCloudPos_Bottom;
+        magneticfieldObj.Add(cloud);
 
         SettingRandomPosition();
     }
