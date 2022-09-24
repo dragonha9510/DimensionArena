@@ -10,7 +10,8 @@ public class CloudeEffect : MonoBehaviour
     private float maxScale = 1.0f;
     [SerializeField]
     private float correctionValue = 0.01f;
-    private float time = 0.0f;
+    [SerializeField]
+    private float alliveTime = 5.0f;
 
 
     WaitForSeconds waitforSeconds = new WaitForSeconds(0.01f);
@@ -18,6 +19,8 @@ public class CloudeEffect : MonoBehaviour
 
     private void Start()
     {
+        float randScale = Random.Range(minScale, maxScale);
+        this.transform.localScale = new Vector3(randScale, randScale, 1);
         StartCoroutine("ScaleUpdate");
     }
     private void SizeUp()
@@ -43,5 +46,11 @@ public class CloudeEffect : MonoBehaviour
                 SizeDown();
             yield return waitforSeconds;
         }
+    }
+    private void FixedUpdate()
+    {
+        alliveTime -= Time.deltaTime;
+        if (0 > alliveTime)
+            Destroy(this.gameObject);
     }
 }
