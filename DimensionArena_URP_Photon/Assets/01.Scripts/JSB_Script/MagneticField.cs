@@ -15,6 +15,13 @@ public struct SafeZone
 
 public class MagneticField : MonoBehaviour
 {
+    private enum CLOUDTYPE
+    {
+        CLOUDTYPE_LEFT,
+        CLOUDTYPE_RIGHT,
+        CLOUDTYPE_TOP,
+        CLOUDTYPE_BOTOTM
+    }
     [SerializeField] float decreaseTime = 10.0f;
 
     [SerializeField] Vector2 magneticfieldScale;
@@ -116,73 +123,73 @@ public class MagneticField : MonoBehaviour
     {
         // 확대가 될 양
         float expanstionValue = leftCorrection * Time.deltaTime;
-        float correctionValue = magneticfieldObj[0].transform.localScale.x;
+        float correctionValue = magneticfieldObj[(int)CLOUDTYPE.CLOUDTYPE_LEFT].transform.localScale.x;
 
         //왼쪽 자기장면 확대
-        magneticfieldObj[0].transform.localScale = new Vector3(magneticfieldObj[0].transform.localScale.x + expanstionValue
-                                                                , magneticfieldObj[0].transform.localScale.y
-                                                                , magneticfieldObj[0].transform.localScale.z);
+        magneticfieldObj[(int)CLOUDTYPE.CLOUDTYPE_LEFT].transform.localScale = new Vector3(magneticfieldObj[(int)CLOUDTYPE.CLOUDTYPE_LEFT].transform.localScale.x + expanstionValue
+                                                                , magneticfieldObj[(int)CLOUDTYPE.CLOUDTYPE_LEFT].transform.localScale.y
+                                                                , magneticfieldObj[(int)CLOUDTYPE.CLOUDTYPE_LEFT].transform.localScale.z);
         //왼쪽 자기장면 보정
         correctionValue = expanstionValue / 2;
-        magneticfieldObj[0].transform.localPosition = new Vector3(magneticfieldObj[0].transform.position.x + correctionValue
-                                                                , magneticfieldObj[0].transform.position.y
-                                                                , magneticfieldObj[0].transform.position.z);
+        magneticfieldObj[(int)CLOUDTYPE.CLOUDTYPE_LEFT].transform.localPosition = new Vector3(magneticfieldObj[(int)CLOUDTYPE.CLOUDTYPE_LEFT].transform.position.x + correctionValue
+                                                                , magneticfieldObj[(int)CLOUDTYPE.CLOUDTYPE_LEFT].transform.position.y
+                                                                , magneticfieldObj[(int)CLOUDTYPE.CLOUDTYPE_LEFT].transform.position.z);
 
         //오른쪽 자기장면 확대
         expanstionValue = rightCorrection * Time.deltaTime;
-        correctionValue = magneticfieldObj[1].transform.localScale.x;
-        magneticfieldObj[1].transform.localScale = new Vector3(magneticfieldObj[1].transform.localScale.x + expanstionValue
-                                                                , magneticfieldObj[1].transform.localScale.y
-                                                                , magneticfieldObj[1].transform.localScale.z);
+        correctionValue = magneticfieldObj[(int)CLOUDTYPE.CLOUDTYPE_RIGHT].transform.localScale.x;
+        magneticfieldObj[(int)CLOUDTYPE.CLOUDTYPE_RIGHT].transform.localScale = new Vector3(magneticfieldObj[(int)CLOUDTYPE.CLOUDTYPE_RIGHT].transform.localScale.x + expanstionValue
+                                                                , magneticfieldObj[(int)CLOUDTYPE.CLOUDTYPE_RIGHT].transform.localScale.y
+                                                                , magneticfieldObj[(int)CLOUDTYPE.CLOUDTYPE_RIGHT].transform.localScale.z);
 
         //오른쪽 자기장면 보정
         correctionValue = expanstionValue / 2;
-        magneticfieldObj[1].transform.localPosition = new Vector3(magneticfieldObj[1].transform.position.x - correctionValue
-                                                                , magneticfieldObj[1].transform.position.y
-                                                                , magneticfieldObj[1].transform.position.z);
+        magneticfieldObj[(int)CLOUDTYPE.CLOUDTYPE_RIGHT].transform.localPosition = new Vector3(magneticfieldObj[(int)CLOUDTYPE.CLOUDTYPE_RIGHT].transform.position.x - correctionValue
+                                                                , magneticfieldObj[(int)CLOUDTYPE.CLOUDTYPE_RIGHT].transform.position.y
+                                                                , magneticfieldObj[(int)CLOUDTYPE.CLOUDTYPE_RIGHT].transform.position.z);
 
 
         //상단 자기장면 확대
         expanstionValue = topCorrection * Time.deltaTime;
 
-        correctionValue = magneticfieldObj[2].transform.localScale.z;
-        magneticfieldObj[2].transform.localScale = new Vector3(magneticfieldObj[2].transform.localScale.x
-                                                                , magneticfieldObj[2].transform.localScale.y
-                                                                , magneticfieldObj[2].transform.localScale.z + expanstionValue);
+        correctionValue = magneticfieldObj[(int)CLOUDTYPE.CLOUDTYPE_TOP].transform.localScale.z;
+        magneticfieldObj[(int)CLOUDTYPE.CLOUDTYPE_TOP].transform.localScale = new Vector3(magneticfieldObj[(int)CLOUDTYPE.CLOUDTYPE_TOP].transform.localScale.x
+                                                                , magneticfieldObj[(int)CLOUDTYPE.CLOUDTYPE_TOP].transform.localScale.y
+                                                                , magneticfieldObj[(int)CLOUDTYPE.CLOUDTYPE_TOP].transform.localScale.z + expanstionValue);
         //상단 자기장면 보정
         correctionValue = expanstionValue / 2;
-        magneticfieldObj[2].transform.localPosition = new Vector3(magneticfieldObj[2].transform.position.x 
-                                                                , magneticfieldObj[2].transform.position.y
-                                                                , magneticfieldObj[2].transform.position.z - correctionValue);
+        magneticfieldObj[(int)CLOUDTYPE.CLOUDTYPE_TOP].transform.localPosition = new Vector3(magneticfieldObj[(int)CLOUDTYPE.CLOUDTYPE_TOP].transform.position.x 
+                                                                , magneticfieldObj[(int)CLOUDTYPE.CLOUDTYPE_TOP].transform.position.y
+                                                                , magneticfieldObj[(int)CLOUDTYPE.CLOUDTYPE_TOP].transform.position.z - correctionValue);
 
 
 
         //하단 자기장면 확대
         expanstionValue = bottomCorrection   * Time.deltaTime;
 
-        correctionValue = magneticfieldObj[3].transform.localScale.z;
-        magneticfieldObj[3].transform.localScale = new Vector3(magneticfieldObj[3].transform.localScale.x
-                                                                , magneticfieldObj[3].transform.localScale.y
-                                                                , magneticfieldObj[3].transform.localScale.z + expanstionValue);
+        correctionValue = magneticfieldObj[(int)CLOUDTYPE.CLOUDTYPE_BOTOTM].transform.localScale.z;
+        magneticfieldObj[(int)CLOUDTYPE.CLOUDTYPE_BOTOTM].transform.localScale = new Vector3(magneticfieldObj[(int)CLOUDTYPE.CLOUDTYPE_BOTOTM].transform.localScale.x
+                                                                , magneticfieldObj[(int)CLOUDTYPE.CLOUDTYPE_BOTOTM].transform.localScale.y
+                                                                , magneticfieldObj[(int)CLOUDTYPE.CLOUDTYPE_BOTOTM].transform.localScale.z + expanstionValue);
         //하단 자기장면 보정
         correctionValue = expanstionValue / 2;
-        magneticfieldObj[3].transform.localPosition = new Vector3(magneticfieldObj[3].transform.position.x
-                                                                , magneticfieldObj[3].transform.position.y
-                                                                , magneticfieldObj[3].transform.position.z + correctionValue);
+        magneticfieldObj[(int)CLOUDTYPE.CLOUDTYPE_BOTOTM].transform.localPosition = new Vector3(magneticfieldObj[(int)CLOUDTYPE.CLOUDTYPE_BOTOTM].transform.position.x
+                                                                , magneticfieldObj[(int)CLOUDTYPE.CLOUDTYPE_BOTOTM].transform.position.y
+                                                                , magneticfieldObj[(int)CLOUDTYPE.CLOUDTYPE_BOTOTM].transform.position.z + correctionValue);
 
         decreaseTime -= Time.deltaTime;
         Bounds bounds;
-        bounds = magneticfieldObj[0].GetComponent<Collider>().bounds;
-        safeZone.left = magneticfieldObj[0].transform.position.x + bounds.size.x / 2;
+        bounds = magneticfieldObj[(int)CLOUDTYPE.CLOUDTYPE_LEFT].GetComponent<Collider>().bounds;
+        safeZone.left = magneticfieldObj[(int)CLOUDTYPE.CLOUDTYPE_LEFT].transform.position.x + bounds.size.x / 2;
         
-        bounds = magneticfieldObj[1].GetComponent<Collider>().bounds;
-        safeZone.right = magneticfieldObj[1].transform.position.x - bounds.size.x / 2;
+        bounds = magneticfieldObj[(int)CLOUDTYPE.CLOUDTYPE_RIGHT].GetComponent<Collider>().bounds;
+        safeZone.right = magneticfieldObj[(int)CLOUDTYPE.CLOUDTYPE_RIGHT].transform.position.x - bounds.size.x / 2;
         
-        bounds = magneticfieldObj[2].GetComponent<Collider>().bounds;
-        safeZone.top = magneticfieldObj[2].transform.position.z - bounds.size.z / 2;
+        bounds = magneticfieldObj[(int)CLOUDTYPE.CLOUDTYPE_TOP].GetComponent<Collider>().bounds;
+        safeZone.top = magneticfieldObj[(int)CLOUDTYPE.CLOUDTYPE_TOP].transform.position.z - bounds.size.z / 2;
 
-        bounds = magneticfieldObj[3].GetComponent<Collider>().bounds;
-        safeZone.bottom = magneticfieldObj[3].transform.position.z + bounds.size.z / 2;
+        bounds = magneticfieldObj[(int)CLOUDTYPE.CLOUDTYPE_BOTOTM].GetComponent<Collider>().bounds;
+        safeZone.bottom = magneticfieldObj[(int)CLOUDTYPE.CLOUDTYPE_BOTOTM].transform.position.z + bounds.size.z / 2;
     }
 
     void Start()
@@ -205,12 +212,17 @@ public class MagneticField : MonoBehaviour
         cloud = Instantiate(magneticRect);
         cloud.GetComponent<MagneticCloudEffectCreator>().cloudType = MagneticCloudPos.MagneticCloudPos_Top;
         magneticfieldObj.Add(cloud);
-        
+
         // 하단 면
         SetEachOther(rightBottomGround, leftBottomGround);
         cloud = Instantiate(magneticRect);
         cloud.GetComponent<MagneticCloudEffectCreator>().cloudType = MagneticCloudPos.MagneticCloudPos_Bottom;
         magneticfieldObj.Add(cloud);
+
+        magneticfieldObj[(int)CLOUDTYPE.CLOUDTYPE_LEFT].GetComponent<MagneticCloudEffectCreator>().PartnerCloud = magneticfieldObj[(int)CLOUDTYPE.CLOUDTYPE_TOP];
+        magneticfieldObj[(int)CLOUDTYPE.CLOUDTYPE_TOP].GetComponent<MagneticCloudEffectCreator>().PartnerCloud = magneticfieldObj[(int)CLOUDTYPE.CLOUDTYPE_RIGHT];
+        magneticfieldObj[(int)CLOUDTYPE.CLOUDTYPE_RIGHT].GetComponent<MagneticCloudEffectCreator>().PartnerCloud = magneticfieldObj[(int)CLOUDTYPE.CLOUDTYPE_BOTOTM];
+        magneticfieldObj[(int)CLOUDTYPE.CLOUDTYPE_BOTOTM].GetComponent<MagneticCloudEffectCreator>().PartnerCloud = magneticfieldObj[(int)CLOUDTYPE.CLOUDTYPE_LEFT];
 
         SettingRandomPosition();
     }

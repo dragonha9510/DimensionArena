@@ -16,20 +16,28 @@ public class MagneticCloudEffectCreator : MonoBehaviour
     private int createCloudCount = 3;
     // 구름 생성 간격 입니다 . ( 가에 구름만 )
     [SerializeField]
-    private float cloudSpacing;
+    private float cloudSpacing; 
 
 
     [SerializeField]
     private float randomSpacingTime;
     [SerializeField]
     private float spacingTime;
-    
+
     private WaitForSeconds cloudRandomSpacingTime = new WaitForSeconds(0);
     private WaitForSeconds cloudSpacingTime = new WaitForSeconds(0);
-    
-    
+
     [SerializeField]
     private GameObject magneticCloud;
+
+    private GameObject partnerCloud = null;
+    public GameObject PartnerCloud
+    {
+        set
+        {
+            partnerCloud = value;
+        }
+    }
 
 
     private Bounds colliderBounds;
@@ -50,6 +58,7 @@ public class MagneticCloudEffectCreator : MonoBehaviour
     {
         BoxCollider collider = GetComponent<BoxCollider>();
         colliderBounds = collider.bounds;
+ 
 
         cloudRandomSpacingTime = new WaitForSeconds(randomSpacingTime);
         cloudSpacingTime = new WaitForSeconds(spacingTime);
@@ -81,6 +90,34 @@ public class MagneticCloudEffectCreator : MonoBehaviour
     {
         while(true)
         {
+            if (null != partnerCloud)
+            {
+                switch (cloudType)
+                {
+                    // 왼쪽 오른쪽은 z 축 기준으로 위에서 밑으로 구름들을 생성해야 한다.
+                    case MagneticCloudPos.MagneticCloudPos_Left:
+                        outLineCloudRange.x = this.transform.position.z + colliderBounds.size.z / 2;
+                        outLineCloudRange.y = this.transform.position.z - colliderBounds.size.z / 2;
+                        outLineCloudRange.x -= partnerCloud.transform.localScale.z;
+                        break;
+                    case MagneticCloudPos.MagneticCloudPos_Right:
+                        outLineCloudRange.x = this.transform.position.z + colliderBounds.size.z / 2;
+                        outLineCloudRange.y = this.transform.position.z - colliderBounds.size.z / 2;
+                        outLineCloudRange.y -= partnerCloud.transform.localScale.z;
+                        break;
+                    // 위쪽 아래쪽은 x 축 기준으로 위에서 왼쪽에서 오른쪽으로 구름들을 생성해야 한다.
+                    case MagneticCloudPos.MagneticCloudPos_Top:
+                        outLineCloudRange.x = this.transform.position.x - colliderBounds.size.x / 2;
+                        outLineCloudRange.y = this.transform.position.x + colliderBounds.size.x / 2;
+                        outLineCloudRange.y -= partnerCloud.transform.localScale.x;
+                        break;
+                    case MagneticCloudPos.MagneticCloudPos_Bottom:
+                        outLineCloudRange.x = this.transform.position.x - colliderBounds.size.x / 2;
+                        outLineCloudRange.y = this.transform.position.x + colliderBounds.size.x / 2;
+                        outLineCloudRange.x += partnerCloud.transform.localScale.x;
+                        break;
+                }
+            }
             switch (cloudType)
                 {
                     // 왼쪽은 z 축 기준으로 위에서 밑으로 구름들을 생성해야 한다.
@@ -126,12 +163,4 @@ public class MagneticCloudEffectCreator : MonoBehaviour
             yield return cloudRandomSpacingTime;
         }
     }
-
-
-    // Update is called once per frame
-    void Update()
-    {
-    }
-
-
 }
