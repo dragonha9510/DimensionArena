@@ -50,7 +50,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4288263909949789151}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -110,10 +110,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f87cef5fcdd35ce4f88b58c710f832ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  createCloudCount: 0
+  createCloudCount: 10
   cloudSpacing: 1
   randomSpacingTime: 0.0001
   spacingTime: 0.5
   magneticCloud: {fileID: 8351352648077576910, guid: 8dfbd86ac8290ed43b9763b68359e1dd,
     type: 3}
+  originalScale: 0
+  partnerCloud:
+  - {fileID: 0}
+  - {fileID: 0}
   cloudType: 0

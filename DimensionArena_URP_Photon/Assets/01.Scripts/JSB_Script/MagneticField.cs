@@ -195,34 +195,57 @@ public class MagneticField : MonoBehaviour
     void Start()
     {
         GameObject cloud;
+        float originalScale;
         // 왼쪽 면
         SetEachOther(leftTopGround, leftBottomGround);
         cloud = Instantiate(magneticRect);
         cloud.GetComponent<MagneticCloudEffectCreator>().cloudType = MagneticCloudPos.MagneticCloudPos_Left;
+        originalScale = ((rightTopGround.position.x - leftTopGround.position.x) / 2) * (leftTopGround.position.z - leftBottomGround.position.z);
+        cloud.GetComponent<MagneticCloudEffectCreator>().originalScale = originalScale; 
         magneticfieldObj.Add(cloud);
         
         // 오른쪽 면
         SetEachOther(rightTopGround, rightBottomGround);
         cloud = Instantiate(magneticRect);
         cloud.GetComponent<MagneticCloudEffectCreator>().cloudType = MagneticCloudPos.MagneticCloudPos_Right;
+        cloud.GetComponent<MagneticCloudEffectCreator>().originalScale = originalScale;
         magneticfieldObj.Add(cloud);
         
         // 상단 면
         SetEachOther(rightTopGround, leftTopGround);
         cloud = Instantiate(magneticRect);
         cloud.GetComponent<MagneticCloudEffectCreator>().cloudType = MagneticCloudPos.MagneticCloudPos_Top;
+        originalScale = ((rightTopGround.position.z - rightBottomGround.position.z) / 2) * (rightTopGround.position.x - leftTopGround.position.x);
+        cloud.GetComponent<MagneticCloudEffectCreator>().originalScale = originalScale;
+
+
         magneticfieldObj.Add(cloud);
 
         // 하단 면
         SetEachOther(rightBottomGround, leftBottomGround);
         cloud = Instantiate(magneticRect);
         cloud.GetComponent<MagneticCloudEffectCreator>().cloudType = MagneticCloudPos.MagneticCloudPos_Bottom;
+        cloud.GetComponent<MagneticCloudEffectCreator>().originalScale = originalScale;
+
         magneticfieldObj.Add(cloud);
 
-        magneticfieldObj[(int)CLOUDTYPE.CLOUDTYPE_LEFT].GetComponent<MagneticCloudEffectCreator>().PartnerCloud = magneticfieldObj[(int)CLOUDTYPE.CLOUDTYPE_TOP];
-        magneticfieldObj[(int)CLOUDTYPE.CLOUDTYPE_TOP].GetComponent<MagneticCloudEffectCreator>().PartnerCloud = magneticfieldObj[(int)CLOUDTYPE.CLOUDTYPE_RIGHT];
-        magneticfieldObj[(int)CLOUDTYPE.CLOUDTYPE_RIGHT].GetComponent<MagneticCloudEffectCreator>().PartnerCloud = magneticfieldObj[(int)CLOUDTYPE.CLOUDTYPE_BOTOTM];
-        magneticfieldObj[(int)CLOUDTYPE.CLOUDTYPE_BOTOTM].GetComponent<MagneticCloudEffectCreator>().PartnerCloud = magneticfieldObj[(int)CLOUDTYPE.CLOUDTYPE_LEFT];
+
+
+        {// 쓰레기코드
+            magneticfieldObj[(int)CLOUDTYPE.CLOUDTYPE_LEFT].GetComponent<MagneticCloudEffectCreator>().partnerCloud[0] = magneticfieldObj[(int)CLOUDTYPE.CLOUDTYPE_TOP];
+            magneticfieldObj[(int)CLOUDTYPE.CLOUDTYPE_LEFT].GetComponent<MagneticCloudEffectCreator>().partnerCloud[1] = magneticfieldObj[(int)CLOUDTYPE.CLOUDTYPE_BOTOTM];
+
+            magneticfieldObj[(int)CLOUDTYPE.CLOUDTYPE_RIGHT].GetComponent<MagneticCloudEffectCreator>().partnerCloud[0] = magneticfieldObj[(int)CLOUDTYPE.CLOUDTYPE_TOP];
+            magneticfieldObj[(int)CLOUDTYPE.CLOUDTYPE_RIGHT].GetComponent<MagneticCloudEffectCreator>().partnerCloud[1] = magneticfieldObj[(int)CLOUDTYPE.CLOUDTYPE_BOTOTM];
+
+            magneticfieldObj[(int)CLOUDTYPE.CLOUDTYPE_TOP].GetComponent<MagneticCloudEffectCreator>().partnerCloud[0] = magneticfieldObj[(int)CLOUDTYPE.CLOUDTYPE_LEFT];
+            magneticfieldObj[(int)CLOUDTYPE.CLOUDTYPE_TOP].GetComponent<MagneticCloudEffectCreator>().partnerCloud[1] = magneticfieldObj[(int)CLOUDTYPE.CLOUDTYPE_RIGHT];
+
+            magneticfieldObj[(int)CLOUDTYPE.CLOUDTYPE_BOTOTM].GetComponent<MagneticCloudEffectCreator>().partnerCloud[0] = magneticfieldObj[(int)CLOUDTYPE.CLOUDTYPE_LEFT];
+            magneticfieldObj[(int)CLOUDTYPE.CLOUDTYPE_BOTOTM].GetComponent<MagneticCloudEffectCreator>().partnerCloud[1] = magneticfieldObj[(int)CLOUDTYPE.CLOUDTYPE_RIGHT];
+
+         }
+
 
         SettingRandomPosition();
     }
