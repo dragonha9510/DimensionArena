@@ -101,6 +101,7 @@ public class MagneticCloudEffectCreator : MonoBehaviour
                         for (float z = outLineCloudRange.x; z > outLineCloudRange.y; z -= cloudSpacing)
                         {
                             Debug.Log("¿§Áö »ý¼º");
+                        
                             GameObject cloud = Instantiate(magneticCloud);
                             cloud.transform.position = new Vector3(this.transform.position.x + (Mathf.Abs(this.transform.localScale.x) / 2) * (cloudType == MagneticCloudPos.MagneticCloudPos_Right ? -1 : 1 )
                                                                     , this.transform.position.y
