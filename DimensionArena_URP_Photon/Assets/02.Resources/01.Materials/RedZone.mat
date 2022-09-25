@@ -21,7 +21,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: RedZone
-  m_Shader: {fileID: -6465566751694194690, guid: b48d3065af13ec44fa6297ca1ad012e2,
+  m_Shader: {fileID: -6465566751694194690, guid: 100db3f604bffe345a7c1571c15ac696,
     type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []

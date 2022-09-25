@@ -21,7 +21,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Decal_Test
-  m_Shader: {fileID: -6465566751694194690, guid: ea3f7563be5b0a644b6439db6e270bed,
+  m_Shader: {fileID: -6465566751694194690, guid: 0958d93e583b95740b85f10e77909e5e,
     type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []
@@ -65,5 +65,5 @@ Material:
     - _QueueOffset: 0
     m_Colors:
     - _Base_Color: {r: 1, g: 0, b: 0, a: 0.15686275}
-    - _EmissionColor: {r: 0.25, g: 0, b: 0, a: 0}
+    - _EmissionColor: {r: 1, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []
