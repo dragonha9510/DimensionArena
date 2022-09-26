@@ -22,7 +22,7 @@ public class PT_Player_Atk : MonoBehaviourPun
     }
 
     // Update is called once per frame
-    void Update()
+    void LateUpdate()
     {
         Vector3 forLength = Vector3.zero;
         float distance = range;
@@ -34,10 +34,8 @@ public class PT_Player_Atk : MonoBehaviourPun
             distance = forLength.magnitude;
         }
 
-        atkRangeMesh.transform.LookAt(transform.position);
+        atkRangeMesh.transform.forward = (transform.position - atkRangeMesh.transform.position).normalized;
         atkRangeMesh.transform.localScale = new Vector3(0.5f, 1, distance);
         atkRangeMesh.transform.position = transform.position + direction.normalized * ((distance * 0.5f) + 1f) + new Vector3(0, 0.001f, 0);
-
-        //Debug.DrawRay(position, direction.normalized * distance);
     }
 }
