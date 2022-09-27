@@ -36,13 +36,11 @@ public class MagneticField : MonoBehaviourPun
     private float decreaseOneCircleActiveTime;
 
     [SerializeField] Vector2 magneticfieldScale;
-    
+
     [SerializeField] Transform leftTopGround;
     [SerializeField] Transform leftBottomGround;
     [SerializeField] Transform rightTopGround;
     [SerializeField] Transform rightBottomGround;
-
-    [SerializeField] GameObject magneticRect;
 
 
     private SafeZone safeZone = new SafeZone();
@@ -58,63 +56,92 @@ public class MagneticField : MonoBehaviourPun
 
     void Start()
     {
+        if (!photonView.IsMine)
+            return;
         // 확장 주기 시간 설정
         decreaseOneCircleActiveTime = decreaseTime / (float)damageZoneTimeDivideCount;
 
         GameObject cloud;
-        float originalScale;
+        float[] originalScale = new float[2];
         // 왼쪽 면
-        SetEachOther(leftTopGround, leftBottomGround);
-        cloud = Instantiate(magneticRect);
+        cloud = PhotonNetwork.Instantiate("MagneticLeftRounge", this.transform.position, this.transform.rotation);
+
+
+        // 포톤에 의해 변경이 된 부분
+        SetEachOther(cloud, leftTopGround, leftBottomGround);
         cloud.GetComponent<MagneticCloudEffectCreator>().cloudType = MagneticCloudPos.MagneticCloudPos_Left;
-        originalScale = ((rightTopGround.position.x - leftTopGround.position.x) / 2) * (leftTopGround.position.z - leftBottomGround.position.z);
-        cloud.GetComponent<MagneticCloudEffectCreator>().originalScale = originalScale;
+        originalScale[0] = ((rightTopGround.position.x - leftTopGround.position.x) / 2) * (leftTopGround.position.z - leftBottomGround.position.z);
+        //cloud.GetComponent<MagneticCloudEffectCreator>().originalScale = originalScale[0];
         magneticfieldObj.Add(cloud);
 
         // 오른쪽 면
-        SetEachOther(rightTopGround, rightBottomGround);
-        cloud = Instantiate(magneticRect);
-        cloud.GetComponent<MagneticCloudEffectCreator>().cloudType = MagneticCloudPos.MagneticCloudPos_Right;
-        cloud.GetComponent<MagneticCloudEffectCreator>().originalScale = originalScale;
+        cloud = PhotonNetwork.Instantiate("MagneticRightRounge", this.transform.position, this.transform.rotation);
+        SetEachOther(cloud, rightTopGround, rightBottomGround);
+        //cloud.GetComponent<MagneticCloudEffectCreator>().cloudType = MagneticCloudPos.MagneticCloudPos_Right;
+        //cloud.GetComponent<MagneticCloudEffectCreator>().originalScale = originalScale[0];
         magneticfieldObj.Add(cloud);
 
         // 상단 면
-        SetEachOther(rightTopGround, leftTopGround);
-        cloud = Instantiate(magneticRect);
-        cloud.GetComponent<MagneticCloudEffectCreator>().cloudType = MagneticCloudPos.MagneticCloudPos_Top;
-        originalScale = ((rightTopGround.position.z - rightBottomGround.position.z) / 2) * (rightTopGround.position.x - leftTopGround.position.x);
-        cloud.GetComponent<MagneticCloudEffectCreator>().originalScale = originalScale;
+        cloud = PhotonNetwork.Instantiate("MagneticTopRounge", this.transform.position, this.transform.rotation);
+        SetEachOther(cloud, rightTopGround, leftTopGround);
+        //cloud.GetComponent<MagneticCloudEffectCreator>().cloudType = MagneticCloudPos.MagneticCloudPos_Top;
+        originalScale[1] = ((rightTopGround.position.z - rightBottomGround.position.z) / 2) * (rightTopGround.position.x - leftTopGround.position.x);
+        cloud.GetComponent<MagneticCloudEffectCreator>().originalScale = originalScale[1];
 
 
         magneticfieldObj.Add(cloud);
 
         // 하단 면
-        SetEachOther(rightBottomGround, leftBottomGround);
-        cloud = Instantiate(magneticRect);
-        cloud.GetComponent<MagneticCloudEffectCreator>().cloudType = MagneticCloudPos.MagneticCloudPos_Bottom;
-        cloud.GetComponent<MagneticCloudEffectCreator>().originalScale = originalScale;
+        cloud = PhotonNetwork.Instantiate("MagneticBottomRounge", this.transform.position, this.transform.rotation);
+        SetEachOther(cloud, rightBottomGround, leftBottomGround);
+
+        cloud.GetComponent<MagneticCloudEffectCreator>().originalScale = originalScale[1];
+ 
 
         magneticfieldObj.Add(cloud);
-
-
-
-        {// 쓰레기코드
-            magneticfieldObj[(int)CLOUDTYPE.CLOUDTYPE_LEFT].GetComponent<MagneticCloudEffectCreator>().partnerCloud[0] = magneticfieldObj[(int)CLOUDTYPE.CLOUDTYPE_TOP];
-            magneticfieldObj[(int)CLOUDTYPE.CLOUDTYPE_LEFT].GetComponent<MagneticCloudEffectCreator>().partnerCloud[1] = magneticfieldObj[(int)CLOUDTYPE.CLOUDTYPE_BOTOTM];
-
-            magneticfieldObj[(int)CLOUDTYPE.CLOUDTYPE_RIGHT].GetComponent<MagneticCloudEffectCreator>().partnerCloud[0] = magneticfieldObj[(int)CLOUDTYPE.CLOUDTYPE_TOP];
-            magneticfieldObj[(int)CLOUDTYPE.CLOUDTYPE_RIGHT].GetComponent<MagneticCloudEffectCreator>().partnerCloud[1] = magneticfieldObj[(int)CLOUDTYPE.CLOUDTYPE_BOTOTM];
-
-            magneticfieldObj[(int)CLOUDTYPE.CLOUDTYPE_TOP].GetComponent<MagneticCloudEffectCreator>().partnerCloud[0] = magneticfieldObj[(int)CLOUDTYPE.CLOUDTYPE_LEFT];
-            magneticfieldObj[(int)CLOUDTYPE.CLOUDTYPE_TOP].GetComponent<MagneticCloudEffectCreator>().partnerCloud[1] = magneticfieldObj[(int)CLOUDTYPE.CLOUDTYPE_RIGHT];
-
-            magneticfieldObj[(int)CLOUDTYPE.CLOUDTYPE_BOTOTM].GetComponent<MagneticCloudEffectCreator>().partnerCloud[0] = magneticfieldObj[(int)CLOUDTYPE.CLOUDTYPE_LEFT];
-            magneticfieldObj[(int)CLOUDTYPE.CLOUDTYPE_BOTOTM].GetComponent<MagneticCloudEffectCreator>().partnerCloud[1] = magneticfieldObj[(int)CLOUDTYPE.CLOUDTYPE_RIGHT];
-
+        if(PhotonNetwork.IsMasterClient)
+        {
+            photonView.RPC("SettingCloudType", RpcTarget.All);
+            photonView.RPC("SettingOriginalScale", RpcTarget.All, originalScale[0], originalScale[1]);
+            photonView.RPC("SettingPartnerCloud", RpcTarget.All);
         }
-
+       
 
         SettingRandomPosition();
+    }
+    [PunRPC]
+    void SettingCloudType()
+    {
+        GameObject.Find("MagneticLeftRounge(Clone)").GetComponent<MagneticCloudEffectCreator>().cloudType = MagneticCloudPos.MagneticCloudPos_Left;
+        GameObject.Find("MagneticRightRounge(Clone)").GetComponent<MagneticCloudEffectCreator>().cloudType = MagneticCloudPos.MagneticCloudPos_Right;
+        GameObject.Find("MagneticTopRounge(Clone)").GetComponent<MagneticCloudEffectCreator>().cloudType = MagneticCloudPos.MagneticCloudPos_Top;
+        GameObject.Find("MagneticBottomRounge(Clone)").GetComponent<MagneticCloudEffectCreator>().cloudType = MagneticCloudPos.MagneticCloudPos_Bottom;
+    }
+    [PunRPC]
+    void SettingOriginalScale(float LR_Original,float TB_Original)
+    {
+        GameObject.Find("MagneticLeftRounge(Clone)").GetComponent<MagneticCloudEffectCreator>().originalScale = LR_Original;
+        GameObject.Find("MagneticRightRounge(Clone)").GetComponent<MagneticCloudEffectCreator>().originalScale = LR_Original;
+        GameObject.Find("MagneticTopRounge(Clone)").GetComponent<MagneticCloudEffectCreator>().originalScale = TB_Original;
+        GameObject.Find("MagneticBottomRounge(Clone)").GetComponent<MagneticCloudEffectCreator>().originalScale = TB_Original;
+    }
+    [PunRPC]
+    void SettingPartnerCloud()
+    {
+        {// 쓰레기코드
+            GameObject.Find("MagneticLeftRounge(Clone)").GetComponent<MagneticCloudEffectCreator>().partnerCloud[0] = GameObject.Find("MagneticTopRounge(Clone)");
+            GameObject.Find("MagneticLeftRounge(Clone)").GetComponent<MagneticCloudEffectCreator>().partnerCloud[1] = GameObject.Find("MagneticBottomRounge(Clone)");
+                                                                                                                                                           
+            GameObject.Find("MagneticRightRounge(Clone)").GetComponent<MagneticCloudEffectCreator>().partnerCloud[0] = GameObject.Find("MagneticTopRounge(Clone)");
+            GameObject.Find("MagneticRightRounge(Clone)").GetComponent<MagneticCloudEffectCreator>().partnerCloud[1] = GameObject.Find("MagneticBottomRounge(Clone)");
+
+            GameObject.Find("MagneticTopRounge(Clone)").GetComponent<MagneticCloudEffectCreator>().partnerCloud[0] = GameObject.Find("MagneticLeftRounge(Clone)");
+            GameObject.Find("MagneticTopRounge(Clone)").GetComponent<MagneticCloudEffectCreator>().partnerCloud[1] = GameObject.Find("MagneticRightRounge(Clone)");
+
+            GameObject.Find("MagneticBottomRounge(Clone)").GetComponent<MagneticCloudEffectCreator>().partnerCloud[0] = GameObject.Find("MagneticLeftRounge(Clone)");
+            GameObject.Find("MagneticBottomRounge(Clone)").GetComponent<MagneticCloudEffectCreator>().partnerCloud[1] = GameObject.Find("MagneticRightRounge(Clone)");
+
+        }
     }
 
     private void SettingRandomPosition()
@@ -156,7 +183,7 @@ public class MagneticField : MonoBehaviourPun
         bottomCorrection = bottomCorrection / decreaseTime;
     }
 
-    void SetEachOther(Transform start, Transform end)
+    void SetEachOther(GameObject newMagneticField ,Transform start, Transform end)
     {
         Vector3 pos;
         Vector3 scale;
@@ -172,8 +199,8 @@ public class MagneticField : MonoBehaviourPun
             scale.z = 1 * (end.position.z - start.position.z);
             scale.x = 0.1f;
 
-            magneticRect.transform.localPosition = pos;
-            magneticRect.transform.localScale = scale;
+            newMagneticField.transform.localPosition = pos;
+            newMagneticField.transform.localScale = scale;
         }
         else
         {
@@ -185,8 +212,8 @@ public class MagneticField : MonoBehaviourPun
             scale.z = 0.1f;
             scale.x = 1 * (end.position.x - start.position.x);
 
-            magneticRect.transform.localPosition = pos;
-            magneticRect.transform.localScale = scale;
+            newMagneticField.transform.localPosition = pos;
+            newMagneticField.transform.localScale = scale;
         }
         
     }
@@ -271,7 +298,7 @@ public class MagneticField : MonoBehaviourPun
     {
         if (!photonView.IsMine)
             return;
-        if(decreaseOneCircleActiveTime <= divideTime)
+        if (decreaseOneCircleActiveTime <= divideTime)
         {
             inDivideAccumTime += Time.deltaTime;
             if (divideStayTime <= inDivideAccumTime)

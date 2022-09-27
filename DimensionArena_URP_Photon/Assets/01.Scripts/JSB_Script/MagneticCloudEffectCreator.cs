@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-
 using UnityEngine;
 public enum MagneticCloudPos
 {
@@ -57,13 +56,14 @@ public class MagneticCloudEffectCreator : MonoBehaviour
         StartCoroutine("CreateEdgeCloud");
         StartCoroutine("CreateRandomCloud");
     }
-
     IEnumerator CreateEdgeCloud()
     {
+        
         while(true)
         {
             if (null != partnerCloud) 
             {
+                
                  switch (cloudType)
                 {
                     // 왼쪽 오른쪽은 z 축 기준으로 위에서 밑으로 구름들을 생성해야 한다.
@@ -100,9 +100,8 @@ public class MagneticCloudEffectCreator : MonoBehaviour
                     case MagneticCloudPos.MagneticCloudPos_Right:
                         for (float z = outLineCloudRange.x; z > outLineCloudRange.y; z -= cloudSpacing)
                         {
-                            Debug.Log("엣지 생성");
-                        
-                            GameObject cloud = Instantiate(magneticCloud);
+                            Debug.Log("엣지생성");
+                            GameObject cloud = Instantiate(magneticCloud, this.transform.position, this.transform.rotation);
                             cloud.transform.position = new Vector3(this.transform.position.x + (Mathf.Abs(this.transform.localScale.x) / 2) * (cloudType == MagneticCloudPos.MagneticCloudPos_Right ? -1 : 1 )
                                                                     , this.transform.position.y
                                                                     , z);
@@ -112,9 +111,8 @@ public class MagneticCloudEffectCreator : MonoBehaviour
                     case MagneticCloudPos.MagneticCloudPos_Bottom:
                         for (float x = outLineCloudRange.x; x < outLineCloudRange.y; x += cloudSpacing)
                         {
-                            Debug.Log("엣지 생성");
-
-                            GameObject cloud = Instantiate(magneticCloud);
+                        Debug.Log("엣지생성");
+                        GameObject cloud = Instantiate(magneticCloud, this.transform.position, this.transform.rotation);
                             cloud.transform.position = new Vector3(x
                                                                    , this.transform.position.y
                                                                    , this.transform.position.z + (Mathf.Abs(this.transform.localScale.z) / 2) * (cloudType == MagneticCloudPos.MagneticCloudPos_Top ? -1 : 1));
@@ -136,10 +134,12 @@ public class MagneticCloudEffectCreator : MonoBehaviour
             float nowScale = Mathf.Abs(this.transform.localScale.x) * Mathf.Abs(this.transform.localScale.z);
 
             int realCreateCount = Mathf.RoundToInt((float)createCloudCount * (nowScale / originalScale));
+            Debug.Log(realCreateCount);
+
             for(int i = 0; i < realCreateCount; ++i)
             {
                 Vector3 randomPosition = new Vector3(Random.Range(randomXRange.x, randomXRange.y), this.transform.position.y, Random.Range(randomZRange.x, randomZRange.y));
-                GameObject cloud = Instantiate(magneticCloud);
+                GameObject cloud = Instantiate(magneticCloud, this.transform.position, this.transform.rotation);
                 cloud.transform.position = randomPosition;
             }
             yield return cloudRandomSpacingTime;

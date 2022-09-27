@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 6652987684155116592}
   - component: {fileID: 9161433202925274422}
   m_Layer: 0
-  m_Name: MangeticRounge
+  m_Name: MagneticBottomRounge
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -160,5 +160,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_SynchronizePosition: 1
   m_SynchronizeRotation: 1
-  m_SynchronizeScale: 0
+  m_SynchronizeScale: 1
   m_UseLocal: 1
