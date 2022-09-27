@@ -43,13 +43,18 @@ public class MagneticField : MonoBehaviourPun
     [SerializeField] Transform rightBottomGround;
 
 
-    private SafeZone safeZone = new SafeZone();
-    public SafeZone GetSafe => safeZone;
+    private SafeZone realTimesafeZone = new SafeZone();
+    public SafeZone GetSafe => realTimesafeZone;
 
-    private float leftCorrection;
-    private float rightCorrection;
-    private float topCorrection;
-    private float bottomCorrection;
+    private SafeZone[] calculatedSafeZones;
+
+    private float leftFrameCorrection;
+    private float rightFrameCorrection;
+    private float topFrameCorrection;
+    private float bottomFrameCorrection;
+
+    
+
 
     private List<GameObject> magneticfieldObj = new List<GameObject>();
     private Vector2 magneticfieldpos;
@@ -58,6 +63,8 @@ public class MagneticField : MonoBehaviourPun
     {
         if (!photonView.IsMine)
             return;
+
+        
         // 확장 주기 시간 설정
         decreaseOneCircleActiveTime = decreaseTime / (float)damageZoneTimeDivideCount;
 
@@ -108,6 +115,10 @@ public class MagneticField : MonoBehaviourPun
        
 
         SettingRandomPosition();
+
+        // 세이프존 연산
+        calculatedSafeZones = new SafeZone[damageZoneTimeDivideCount];
+
     }
     [PunRPC]
     void SettingCloudType()
@@ -169,18 +180,34 @@ public class MagneticField : MonoBehaviourPun
         magneticfieldpos.y = Random.Range(minLeftBottom.y, maxRightTop.y);
 
 
+        // 최종 줄어들어야 할 크기
+        float leftCorrection;
+        float rightCorrection;
+        float topCorrection;
+        float bottomCorrection;
+
+
         // 자기장이 줄어들 시간에 맞춰서 비례해서 확장되야 함으로 1초에 확장될 양은 확장량 / 줄어들 초
         leftCorrection = (magneticfieldpos.x - magneticfieldScale.x / 2) - leftTopGround.position.x;
-        leftCorrection = leftCorrection / decreaseTime;
+        leftFrameCorrection = leftFrameCorrection / decreaseTime;
         
         rightCorrection = rightBottomGround.position.x - (magneticfieldpos.x + magneticfieldScale.x / 2);
-        rightCorrection = rightCorrection / decreaseTime;
+        rightFrameCorrection = rightFrameCorrection / decreaseTime;
         
         topCorrection = leftTopGround.position.z - (magneticfieldpos.y + magneticfieldScale.y / 2);
-        topCorrection = topCorrection / decreaseTime;
+        topFrameCorrection = topFrameCorrection / decreaseTime;
         
         bottomCorrection = (magneticfieldpos.y - magneticfieldScale.y / 2) - leftBottomGround.position.z;
-        bottomCorrection = bottomCorrection / decreaseTime;
+        bottomFrameCorrection = bottomFrameCorrection / decreaseTime;
+
+        for(int i = damageZoneTimeDivideCount ; 0 < i ; --i)
+        {
+            calculatedSafeZones[i].left = leftTopGround.position.x + leftCorrection * (i / damageZoneTimeDivideCount);
+            calculatedSafeZones[i].right = leftTopGround.position.x + rightCorrection * (i / damageZoneTimeDivideCount);
+            calculatedSafeZones[i].top = leftTopGround.position.x + topCorrection * (i / damageZoneTimeDivideCount);
+            calculatedSafeZones[i].bottom = leftTopGround.position.x + bottomCorrection * (i / damageZoneTimeDivideCount);
+        }
+
     }
 
     void SetEachOther(GameObject newMagneticField ,Transform start, Transform end)
@@ -221,7 +248,7 @@ public class MagneticField : MonoBehaviourPun
     void expansionMangeticField()
     {
         // 확대가 될 양
-        float expanstionValue = leftCorrection * Time.deltaTime;
+        float expanstionValue = leftFrameCorrection * Time.deltaTime;
         float correctionValue = magneticfieldObj[(int)CLOUDTYPE.CLOUDTYPE_LEFT].transform.localScale.x;
 
 
@@ -236,7 +263,7 @@ public class MagneticField : MonoBehaviourPun
                                                                                                 , magneticfieldObj[(int)CLOUDTYPE.CLOUDTYPE_LEFT].transform.position.z);
 
         //오른쪽 자기장면 확대
-        expanstionValue = rightCorrection * Time.deltaTime;
+        expanstionValue = rightFrameCorrection * Time.deltaTime;
         correctionValue = magneticfieldObj[(int)CLOUDTYPE.CLOUDTYPE_RIGHT].transform.localScale.x;
         magneticfieldObj[(int)CLOUDTYPE.CLOUDTYPE_RIGHT].transform.localScale = new Vector3(Mathf.Abs(magneticfieldObj[(int)CLOUDTYPE.CLOUDTYPE_RIGHT].transform.localScale.x + expanstionValue)
                                                                 , magneticfieldObj[(int)CLOUDTYPE.CLOUDTYPE_RIGHT].transform.localScale.y
@@ -250,7 +277,7 @@ public class MagneticField : MonoBehaviourPun
 
 
         //상단 자기장면 확대
-        expanstionValue = topCorrection * Time.deltaTime;
+        expanstionValue = topFrameCorrection * Time.deltaTime;
 
         correctionValue = magneticfieldObj[(int)CLOUDTYPE.CLOUDTYPE_TOP].transform.localScale.z;
         magneticfieldObj[(int)CLOUDTYPE.CLOUDTYPE_TOP].transform.localScale = new Vector3(Mathf.Abs(magneticfieldObj[(int)CLOUDTYPE.CLOUDTYPE_TOP].transform.localScale.x)
@@ -265,7 +292,7 @@ public class MagneticField : MonoBehaviourPun
 
 
         //하단 자기장면 확대
-        expanstionValue = bottomCorrection   * Time.deltaTime;
+        expanstionValue = bottomFrameCorrection   * Time.deltaTime;
 
         correctionValue = magneticfieldObj[(int)CLOUDTYPE.CLOUDTYPE_BOTOTM].transform.localScale.z;
         magneticfieldObj[(int)CLOUDTYPE.CLOUDTYPE_BOTOTM].transform.localScale = new Vector3(Mathf.Abs(magneticfieldObj[(int)CLOUDTYPE.CLOUDTYPE_BOTOTM].transform.localScale.x)
@@ -278,20 +305,25 @@ public class MagneticField : MonoBehaviourPun
                                                                 , magneticfieldObj[(int)CLOUDTYPE.CLOUDTYPE_BOTOTM].transform.position.z + correctionValue);
 
 
-        safeZone.left = magneticfieldObj[(int)CLOUDTYPE.CLOUDTYPE_LEFT].transform.position.x + this.transform.localScale.x / 2;
-        
-        safeZone.right = magneticfieldObj[(int)CLOUDTYPE.CLOUDTYPE_RIGHT].transform.position.x - this.transform.localScale.x / 2;
-        
-        safeZone.top = magneticfieldObj[(int)CLOUDTYPE.CLOUDTYPE_TOP].transform.position.z - this.transform.localScale.z / 2;
-
-        safeZone.bottom = magneticfieldObj[(int)CLOUDTYPE.CLOUDTYPE_BOTOTM].transform.position.z + this.transform.localScale.z / 2;
 
 
-
+        RealTimeSafeZoneRenewal();
 
         // Time 관련된 코드들
         decreaseTime -= Time.deltaTime;
         divideTime += Time.deltaTime;
+    }
+
+    void RealTimeSafeZoneRenewal()
+    {
+
+        realTimesafeZone.left = magneticfieldObj[(int)CLOUDTYPE.CLOUDTYPE_LEFT].transform.position.x + this.transform.localScale.x / 2;
+
+        realTimesafeZone.right = magneticfieldObj[(int)CLOUDTYPE.CLOUDTYPE_RIGHT].transform.position.x - this.transform.localScale.x / 2;
+
+        realTimesafeZone.top = magneticfieldObj[(int)CLOUDTYPE.CLOUDTYPE_TOP].transform.position.z - this.transform.localScale.z / 2;
+
+        realTimesafeZone.bottom = magneticfieldObj[(int)CLOUDTYPE.CLOUDTYPE_BOTOTM].transform.position.z + this.transform.localScale.z / 2;
     }
 
     void FixedUpdate()
