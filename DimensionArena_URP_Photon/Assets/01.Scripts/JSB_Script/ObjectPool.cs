@@ -25,6 +25,7 @@ using UnityEngine;
         private void Awake()
         {
             Instance.Init(1000);
+            DontDestroyOnLoad(this.gameObject);
         }
         public GameObject makeCloud()
         {
