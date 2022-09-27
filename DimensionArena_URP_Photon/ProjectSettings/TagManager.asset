@@ -8,6 +8,9 @@ TagManager:
   - Player_Ditection
   - Bush
   - HideBush
+  - MapTool
+  - ParentObstacle
+  - ParentGround
   layers:
   - Default
   - TransparentFX
@@ -17,7 +20,7 @@ TagManager:
   - UI
   - GroundObject_Brick
   - GroundObject_Bush
-  - 
+  - Obstacle
   - 
   - 
   - 
