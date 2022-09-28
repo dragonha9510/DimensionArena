@@ -3,7 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering.Universal; // For Decal
 
-public class RedZone : MonoBehaviour
+
+using Photon.Pun;
+
+
+public class RedZone : MonoBehaviourPun
 {
     [SerializeField] private Transform innerBorder;
     [SerializeField] private MagneticField magneticField;

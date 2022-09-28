@@ -1,0 +1,9 @@
+item_num,name,item_id,item_model,achieve_range,Max_ duration,attack_nesting_or_not,attack_increment,speed_amount,recovery_amount,shield_amount,gauge_recovery_amount
+string,,string,string,float,float,bool,float,float,float,float,float
+item000,파워킷,power_kit,model_power_kit,1,,TRUE,0.1,,,,
+item001,버서커킷,berserker_kit,model_berderker_kit,1,10,FALSE,3,,,,
+item100,메딕킷,medic_kit,model_medic_kit,1,,FALSE,,,100,,
+item150,실드킷,shield_kit,model_shield_kit,1,10,FALSE,,,,100,
+item200,스피드킷,speed_kit,model_speed_kit,1,10,FALSE,,0.1,,,
+item300,에너지킷,energy_kit,model_energy_kit,1,,FALSE,,,,,100
+item400,디멘션킷,dimension_kit,model_dimension_kit,1,10,TRUE,0.1,0.1,100,,100

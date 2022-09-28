@@ -8,6 +8,9 @@ using ExitGames.Client.Photon;
 
 public class GameManager : MonoBehaviourPunCallbacks, IPunObservable
 {
+    [SerializeField]
+    public GameObject playerPrefab;
+
     private static GameManager m_instance;
     public static GameManager instance
     {
@@ -20,9 +23,7 @@ public class GameManager : MonoBehaviourPunCallbacks, IPunObservable
             return m_instance;
         }
     }
-    [SerializeField]
-    public GameObject playerPrefab;
-
+   
     private void Awake()
     {
         if (instance != this)
