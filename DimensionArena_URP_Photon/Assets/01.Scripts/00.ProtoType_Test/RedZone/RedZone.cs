@@ -1,11 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Rendering.Universal;
+using UnityEngine.Rendering.Universal; // For Decal
 
 public class RedZone : MonoBehaviour
 {
-    [SerializeField] private DecalProjector proj;
+    [SerializeField] private Transform innerBorder;
     [SerializeField] private MagneticField magneticField;
     private SafeZone safezone;
 
@@ -21,6 +21,7 @@ public class RedZone : MonoBehaviour
     [SerializeField] private GameObject Missile;
     [SerializeField] private float shotDelay;
     [SerializeField] private Vector2Int MinMaxmissileCntValue = new Vector2Int(0, 35);
+    [SerializeField] private int lastMissileCnt = 10;
     private int missileCnt;
     private GameObject lastMissile;
     private int curMissileCnt = 0;
@@ -34,7 +35,7 @@ public class RedZone : MonoBehaviour
     void Start()
     {
         delayPositioning.DelayStart(startDelay);
-        proj.size = new Vector3(0, 0, proj.size.z);
+        innerBorder.localScale = new Vector3(0, 2, 0);
         Redzone.gameObject.SetActive(false);
         missileCnt = Random.Range(MinMaxmissileCntValue.x, MinMaxmissileCntValue.y);
     }
@@ -54,20 +55,29 @@ public class RedZone : MonoBehaviour
 
         if(delayShot.IsReady())
         {
-            Vector3 pos = transform.position + (Random.insideUnitSphere * 5f);
-            pos.y = 10;
+            Vector3 pos = transform.position + (Random.insideUnitSphere * transform.localScale.x * 0.5f);
+            pos.y = Missile.transform.position.y;
             lastMissile = Instantiate(Missile, pos, Quaternion.identity);
             delayShot.DelayReset();
             ++curMissileCnt;
 
-            if(curMissileCnt >= missileCnt)
-                delayShot.DelayEnd();
+            if (curMissileCnt >= missileCnt)
+            {
+                for (int i = 0; i < lastMissileCnt; ++i)
+                {
+                    pos = transform.position + (Random.insideUnitSphere * transform.localScale.x * 0.5f);
+                    pos.y = Missile.transform.position.y;
+                    lastMissile = Instantiate(Missile, pos, Quaternion.identity);
+                }
+
+                delayShot.DelayEnd(); 
+            }
         }
 
         if(lastMissile == null && curMissileCnt >= missileCnt)
         {
             delayPositioning.DelayStart(positionDelay);
-            proj.size = new Vector3(0, 0, proj.size.z);
+            innerBorder.localScale = new Vector3(0, 2, 0);
             Redzone.gameObject.SetActive(false);
             curMissileCnt = 0;
             missileCnt = Random.Range(MinMaxmissileCntValue.x, MinMaxmissileCntValue.y);
@@ -81,13 +91,17 @@ public class RedZone : MonoBehaviour
 
         if (delayPositioning.IsReady())
         {
-            safezone = magneticField.GetSafe;
+            if (magneticField != null)
+                safezone = magneticField.GetSafe;
+            else
+                safezone = new SafeZone();
+
             transform.position = new Vector3(Random.Range(safezone.left, safezone.right), 0, Random.Range(safezone.top, safezone.bottom));
 
             Redzone.gameObject.SetActive(true);
             delayPositioning.DelayEnd();
             isPreparing = true;
-            prepareSpeed = new Vector3(transform.localScale.x / prepareDelay, transform.localScale.z / prepareDelay, 0);
+            prepareSpeed = new Vector3(1 / prepareDelay, 0, 1 / prepareDelay);
         }
     }
     
@@ -96,14 +110,14 @@ public class RedZone : MonoBehaviour
         if (!isPreparing)
             return;
 
-        proj.size += prepareSpeed * Time.deltaTime;
+        innerBorder.localScale += prepareSpeed * Time.deltaTime;
 
-        if (proj.size.x >= transform.localScale.x)
+        if (innerBorder.localScale.x >= 1)
         {
             isReady = true;
             isPreparing = false;
             delayShot.DelayStart(shotDelay);
-            proj.size = new Vector3(transform.localScale.x, transform.localScale.z, 2.5f);
+            innerBorder.localScale = new Vector3(1, 2f, 1);
         }
     }
 }
