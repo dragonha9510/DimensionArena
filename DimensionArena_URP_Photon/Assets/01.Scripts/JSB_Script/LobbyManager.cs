@@ -4,6 +4,7 @@ using UnityEngine;
 using Photon.Pun;
 using Photon.Realtime;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class LobbyManager : MonoBehaviourPunCallbacks
 {
@@ -61,6 +62,11 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         }
     }
 
+
+    public void LoadSingleTestMode()
+    {
+        SceneManager.LoadScene("SingleTestScene");
+    }
     [PunRPC]
     private void LoadingInGame()
     {
