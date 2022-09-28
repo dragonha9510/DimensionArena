@@ -1,8 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 using System.IO;
+using UnityEngine;
 using UnityEditor;
+
+#if UNITY_EDITOR
 
 namespace GRITTY
 {
@@ -51,7 +53,7 @@ namespace GRITTY
         {
             boardStyle = new GUIStyle();
 
-            if(brown)
+            if (brown)
             {
                 basicGroundTexture = TextureManager.brown;
             }
@@ -69,7 +71,7 @@ namespace GRITTY
             boardStyle = new GUIStyle();
 
             //Prefab이존재하지 않는 버그를 고치자..
-            if(_node.prefab)
+            if (_node.prefab)
                 prefab = _node.prefab;
 
             type = _node.type;
@@ -77,7 +79,7 @@ namespace GRITTY
             isbrown = brown;
 
             gridNormalTexture = Resources.Load<Texture2D>(PATH.THUMBNAILE_PATH + objectName);
-            basicGroundTexture = new Texture2D(128,128);
+            basicGroundTexture = new Texture2D(128, 128);
 
             if (brown)
             {
@@ -129,8 +131,6 @@ namespace GRITTY
                 CreatePngAndSetUp();
             }
         }
-
-
         void SetupStyles()
         {
             // =======================
@@ -165,7 +165,7 @@ namespace GRITTY
             gridSelctedTexture = TextureManager.MakeSelectedTexture2D(gridNormalTexture);
         }
 
-   
+
         public void CreatePngAndSetUp()
         {
 
@@ -230,7 +230,6 @@ namespace GRITTY
         }
 
 
-
         public static void MakeBrownTexture()
         {
             brown = new Texture2D(128, 128);
@@ -249,7 +248,7 @@ namespace GRITTY
         {
             darkbrown = new Texture2D(128, 128);
             Color32 darkbrownColor = new Color32(236, 157, 111, 255);
-            
+
             for (int i = 0; i < darkbrown.width; ++i)
             {
                 for (int j = 0; j < darkbrown.height; ++j)
@@ -263,7 +262,4 @@ namespace GRITTY
 
 }
 
-
-
-
-
+#endif
