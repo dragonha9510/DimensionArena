@@ -38,6 +38,8 @@ public class RedZone : MonoBehaviourPun
     // Start is called before the first frame update
     void Start()
     {
+        if (!PhotonNetwork.IsMasterClient)
+            return;
         delayPositioning.DelayStart(startDelay);
         innerBorder.localScale = new Vector3(0, 2, 0);
         Redzone.gameObject.SetActive(false);
@@ -47,6 +49,8 @@ public class RedZone : MonoBehaviourPun
     // Update is called once per frame
     void Update()
     {
+        if (!PhotonNetwork.IsMasterClient)
+            return;
         Positioning();
         Prepare();
         Shot();
