@@ -31,6 +31,13 @@ public class RedZone_Missile : MonoBehaviour
     {
         float sizeScale = (posY - transform.position.y) / posY;
         proj.size = new Vector3(sizeScale, sizeScale, 2.5f);
+
+        if(transform.position.y < 0)
+        {
+            Destroy(this.gameObject);
+            Destroy(boundary);
+            Destroy(outterBoundary);
+        }
     }
 
     private void OnCollisionEnter(Collision collision)

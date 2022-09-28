@@ -49,7 +49,9 @@ public class MagneticField : MonoBehaviourPun
     private SafeZone willDecreaseSafeZone = new SafeZone();
     public SafeZone GetSafe => willDecreaseSafeZone;
 
-    private SafeZone[] calculatedSafeZones;
+    private SafeZone[] calculatedSafeZones = null;
+
+    private int nowPhaseIndex = 0;
 
     private float leftFrameCorrection;
     private float rightFrameCorrection;
@@ -61,6 +63,14 @@ public class MagneticField : MonoBehaviourPun
 
     private List<GameObject> magneticfieldObj = new List<GameObject>();
     private Vector2 magneticfieldpos;
+
+    private void Update()
+    {
+        if (calculatedSafeZones == null)
+            return;
+        else
+            willDecreaseSafeZone = calculatedSafeZones[nowPhaseIndex];
+    }
 
     void Start()
     {
@@ -330,6 +340,7 @@ public class MagneticField : MonoBehaviourPun
             inDivideAccumTime += Time.deltaTime;
             if (divideStayTime <= inDivideAccumTime)
             {
+                ++nowPhaseIndex;
                 inDivideAccumTime = 0.0f;
                 divideTime = 0.0f;
             }

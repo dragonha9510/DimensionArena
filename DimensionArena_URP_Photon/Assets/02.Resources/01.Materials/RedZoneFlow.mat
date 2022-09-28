@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: RedZone
+  m_Name: RedZoneFlow
   m_Shader: {fileID: -6465566751694194690, guid: 896de0945b9789842976d96a11b6abcb,
     type: 3}
   m_ValidKeywords: []
@@ -57,14 +57,14 @@ Material:
     m_Ints: []
     m_Floats:
     - _Fill: -0.02
-    - _Fresnel_Power: 10
+    - _Fresnel_Power: 9.1
     - _Multy: 1
-    - _Offset: 0.41
+    - _Offset: 0.45
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _Scroll_Speed: 0.1
+    - _Scroll_Speed: 0.05
     m_Colors:
     - _BaseColor: {r: 1, g: 0, b: 0, a: 0}
-    - _Emission: {r: 5.992157, g: 0, b: 0, a: 1}
+    - _Emission: {r: 16, g: 0, b: 0, a: 1}
     - _Test: {r: 0, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []
