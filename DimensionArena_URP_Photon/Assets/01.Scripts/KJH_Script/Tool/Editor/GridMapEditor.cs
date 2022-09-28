@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
+#if UNITY_EDITOR
+
 namespace GRITTY
 {
     public class GridMapEditor : EditorWindow
@@ -11,7 +13,7 @@ namespace GRITTY
         ///            STATIC REGION
         /// ==================================
 
-        #region STATIC Variable, Methods
+#region STATIC Variable, Methods
         public static GridMapEditor window;
         static GameObject parentGround;
         static GameObject parentBlock;
@@ -96,7 +98,7 @@ namespace GRITTY
             TextureManager.MakeDarkBrownTexture();
 
         }
-        #endregion
+#endregion
 
         /// ==================================
 
@@ -110,14 +112,14 @@ namespace GRITTY
         ///            Local Variable
         /// ==================================
         
-        #region Local Variable
+#region Local Variable
         int size = 20;
         Vector2 boxSize = new Vector2(20, 20);
 
         List<List<Node>> list_Node;
         Vector2 offset;
         Vector2 drag;
-        #endregion
+#endregion
 
         /// ==================================
 
@@ -148,7 +150,7 @@ namespace GRITTY
         ///           UNITY Methods
         /// ==================================
         
-        #region UNITY Methods
+#region UNITY Methods
         private void OnEnable()
         {
             IsPrefabUnpack();
@@ -176,7 +178,7 @@ namespace GRITTY
                 Repaint();
             }
         }
-        #endregion
+#endregion
 
         /// ==================================
 
@@ -189,7 +191,7 @@ namespace GRITTY
         ///        Node Parsing Methods
         /// ==================================
         
-        #region Node Add, Parsing Methods
+#region Node Add, Parsing Methods
         void RestoreGridMap()
         {          
             if (parentBlock)
@@ -247,7 +249,7 @@ namespace GRITTY
             }
 
         }
-        #endregion
+#endregion
 
         /// ==================================
 
@@ -257,7 +259,7 @@ namespace GRITTY
         ///            Grid Methods
         /// ==================================
         
-        #region Grid Method
+#region Grid Method
         void DrawGrid()
         {
 
@@ -301,7 +303,7 @@ namespace GRITTY
                     break;
             }
         }
-        #endregion
+#endregion
 
         /// ==================================
 
@@ -313,7 +315,7 @@ namespace GRITTY
         ///           Block Methods
         /// ==================================
        
-        #region Block(Node) Methods
+#region Block(Node) Methods
         void DrawNodes()
         {
             foreach (var n in list_Node)
@@ -386,7 +388,7 @@ namespace GRITTY
             list_Node[colmn][row].EraseBrick();
             GUI.changed = true;
         }
-        #endregion
+#endregion
 
         /// ==================================
 
@@ -400,7 +402,7 @@ namespace GRITTY
         ///            Event Methods
         /// ==================================
 
-        #region EVENT Methods
+#region EVENT Methods
         void MouseDrag(Vector2 delta)
         {
             drag = delta;
@@ -413,9 +415,10 @@ namespace GRITTY
             }
             GUI.changed = true;
         }
-        #endregion
+#endregion
 
         /// ==================================
 
     }
 }
+#endif

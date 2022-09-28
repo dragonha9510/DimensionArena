@@ -4,6 +4,8 @@ using UnityEditor;
 using UnityEngine;
 using System.IO;
 
+#if UNITY_EDITOR
+
 namespace GRITTY
 {
     public enum SELECTOR_MODE
@@ -462,3 +464,4 @@ namespace GRITTY
 
 }
 
+#endif

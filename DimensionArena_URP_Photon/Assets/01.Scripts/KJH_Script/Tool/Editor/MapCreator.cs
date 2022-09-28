@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
+#if UNITY_EDITOR
 
 namespace GRITTY
 {
@@ -70,3 +71,4 @@ namespace GRITTY
         }
     }
 }
+#endif
