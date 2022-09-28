@@ -100,7 +100,6 @@ public class MagneticCloudEffectCreator : MonoBehaviour
                     case MagneticCloudPos.MagneticCloudPos_Right:
                         for (float z = outLineCloudRange.x; z > outLineCloudRange.y; z -= cloudSpacing)
                         {
-                            Debug.Log("色走持失");
                             GameObject cloud = Instantiate(magneticCloud, this.transform.position, this.transform.rotation);
                             cloud.transform.position = new Vector3(this.transform.position.x + (Mathf.Abs(this.transform.localScale.x) / 2) * (cloudType == MagneticCloudPos.MagneticCloudPos_Right ? -1 : 1 )
                                                                     , this.transform.position.y
@@ -111,7 +110,6 @@ public class MagneticCloudEffectCreator : MonoBehaviour
                     case MagneticCloudPos.MagneticCloudPos_Bottom:
                         for (float x = outLineCloudRange.x; x < outLineCloudRange.y; x += cloudSpacing)
                         {
-                        Debug.Log("色走持失");
                         GameObject cloud = Instantiate(magneticCloud, this.transform.position, this.transform.rotation);
                             cloud.transform.position = new Vector3(x
                                                                    , this.transform.position.y
@@ -134,7 +132,6 @@ public class MagneticCloudEffectCreator : MonoBehaviour
             float nowScale = Mathf.Abs(this.transform.localScale.x) * Mathf.Abs(this.transform.localScale.z);
 
             int realCreateCount = Mathf.RoundToInt((float)createCloudCount * (nowScale / originalScale));
-            Debug.Log(realCreateCount);
 
             for(int i = 0; i < realCreateCount; ++i)
             {
