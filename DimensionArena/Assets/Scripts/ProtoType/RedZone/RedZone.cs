@@ -75,7 +75,9 @@ public class RedZone : MonoBehaviourPun
         {
             Vector3 pos = transform.position + (Random.insideUnitSphere * transform.localScale.x * 0.5f);
             pos.y = Missile.transform.position.y;
-            lastMissile = Instantiate(Missile, pos, Quaternion.identity);
+
+            //lastMissile = Instantiate(Missile, pos, Quaternion.identity);
+            lastMissile = PhotonNetwork.Instantiate("Missile", pos, Quaternion.identity);
             delayShot.DelayReset();
             ++curMissileCnt;
 
@@ -85,7 +87,9 @@ public class RedZone : MonoBehaviourPun
                 {
                     pos = transform.position + (Random.insideUnitSphere * transform.localScale.x * 0.5f);
                     pos.y = Missile.transform.position.y;
-                    lastMissile = Instantiate(Missile, pos, Quaternion.identity);
+                    //lastMissile = Instantiate(Missile, pos, Quaternion.identity);
+                    lastMissile = PhotonNetwork.Instantiate("Missile", pos, Quaternion.identity);
+
                 }
 
                 delayShot.DelayEnd(); 
@@ -96,7 +100,7 @@ public class RedZone : MonoBehaviourPun
         {
             delayPositioning.DelayStart(positionDelay);
             innerBorder.localScale = new Vector3(0, 2, 0);
-            Redzone.gameObject.SetActive(false);
+            photonView.RPC("RedzoneActiveSetting", RpcTarget.All, false);
             curMissileCnt = 0;
             missileCnt = Random.Range(MinMaxmissileCntValue.x, MinMaxmissileCntValue.y);
         }
