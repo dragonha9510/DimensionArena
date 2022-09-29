@@ -445,6 +445,120 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!1001 &285483424
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1342166286767500842, guid: 61f728aa8d033c04f9c8194141f009e5,
+        type: 3}
+      propertyPath: magneticField
+      value: 
+      objectReference: {fileID: 8669601970273911732}
+    - target: {fileID: 2628270988558472989, guid: 61f728aa8d033c04f9c8194141f009e5,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 2628270988558472989, guid: 61f728aa8d033c04f9c8194141f009e5,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 2.07
+      objectReference: {fileID: 0}
+    - target: {fileID: 2628270988558472989, guid: 61f728aa8d033c04f9c8194141f009e5,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.001
+      objectReference: {fileID: 0}
+    - target: {fileID: 2628270988558472989, guid: 61f728aa8d033c04f9c8194141f009e5,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -3.42
+      objectReference: {fileID: 0}
+    - target: {fileID: 2628270988558472989, guid: 61f728aa8d033c04f9c8194141f009e5,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2628270988558472989, guid: 61f728aa8d033c04f9c8194141f009e5,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2628270988558472989, guid: 61f728aa8d033c04f9c8194141f009e5,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2628270988558472989, guid: 61f728aa8d033c04f9c8194141f009e5,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2628270988558472989, guid: 61f728aa8d033c04f9c8194141f009e5,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2628270988558472989, guid: 61f728aa8d033c04f9c8194141f009e5,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2628270988558472989, guid: 61f728aa8d033c04f9c8194141f009e5,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2628270988558472990, guid: 61f728aa8d033c04f9c8194141f009e5,
+        type: 3}
+      propertyPath: m_Name
+      value: RedZoneController
+      objectReference: {fileID: 0}
+    - target: {fileID: 9064641368279697923, guid: 61f728aa8d033c04f9c8194141f009e5,
+        type: 3}
+      propertyPath: sceneViewId
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 9064641368279697923, guid: 61f728aa8d033c04f9c8194141f009e5,
+        type: 3}
+      propertyPath: Synchronization
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9064641368552582151, guid: 61f728aa8d033c04f9c8194141f009e5,
+        type: 3}
+      propertyPath: sceneViewId
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9064641368552582151, guid: 61f728aa8d033c04f9c8194141f009e5,
+        type: 3}
+      propertyPath: Synchronization
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9064641369055107941, guid: 61f728aa8d033c04f9c8194141f009e5,
+        type: 3}
+      propertyPath: sceneViewId
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 9064641369055107941, guid: 61f728aa8d033c04f9c8194141f009e5,
+        type: 3}
+      propertyPath: Synchronization
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9064641369055107943, guid: 61f728aa8d033c04f9c8194141f009e5,
+        type: 3}
+      propertyPath: sceneViewId
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 9064641369055107943, guid: 61f728aa8d033c04f9c8194141f009e5,
+        type: 3}
+      propertyPath: Synchronization
+      value: 2
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 61f728aa8d033c04f9c8194141f009e5, type: 3}
 --- !u!1001 &368487395
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2831,3 +2945,15 @@ MonoBehaviour:
   m_SynchronizeRotation: 1
   m_SynchronizeScale: 0
   m_UseLocal: 1
+--- !u!114 &8669601970273911732 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8669601969195298653, guid: ba5c292d70fd27d43a65a2561bb4b717,
+    type: 3}
+  m_PrefabInstance: {fileID: 8669601970273911728}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8669601970273911729}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd555d557e8d34b4d997e6cfe7da4826, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

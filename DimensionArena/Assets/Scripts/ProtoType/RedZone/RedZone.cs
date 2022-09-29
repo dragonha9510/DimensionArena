@@ -42,10 +42,20 @@ public class RedZone : MonoBehaviourPun
             return;
         delayPositioning.DelayStart(startDelay);
         innerBorder.localScale = new Vector3(0, 2, 0);
-        Redzone.gameObject.SetActive(false);
+        //Redzone.gameObject.SetActive(false);
+        photonView.RPC("RedzoneActiveSetting", RpcTarget.All , false);
         missileCnt = Random.Range(MinMaxmissileCntValue.x, MinMaxmissileCntValue.y);
     }
-
+    [PunRPC]
+    private void RedzoneActiveSetting(bool state)
+    {
+        Debug.Log("세팅 호출 상태값 : " + state);
+        GameObject obj = this.transform.Find("RedZone").gameObject;
+        obj.SetActive(state);
+        //this.transform.Find("RedZone").gameObject.SetActive(state);
+        //GameObject obj = GameObject.Find("RedZone");
+        //Redzone.gameObject.SetActive(state);
+    }
     // Update is called once per frame
     void Update()
     {
@@ -106,7 +116,7 @@ public class RedZone : MonoBehaviourPun
 
             transform.position = new Vector3(Random.Range(safezone.left, safezone.right), 0, Random.Range(safezone.top, safezone.bottom));
 
-            Redzone.gameObject.SetActive(true);
+            photonView.RPC("RedzoneActiveSetting", RpcTarget.All, true);
             delayPositioning.DelayEnd();
             isPreparing = true;
             prepareSpeed = new Vector3(1 / prepareDelay, 0, 1 / prepareDelay);
