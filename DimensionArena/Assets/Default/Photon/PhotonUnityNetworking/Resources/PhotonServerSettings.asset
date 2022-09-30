@@ -45,6 +45,9 @@ MonoBehaviour:
   - SettingOriginalScale
   - SettingCloudType
   - RedzoneActiveSetting
+  - RedZonePositioningOnServer
+  - Prepare
+  - InBorderScaleSetting
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1

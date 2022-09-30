@@ -61,6 +61,7 @@ public class RedZone : MonoBehaviourPun
     {
         if (!PhotonNetwork.IsMasterClient)
             return;
+
         Positioning();
         Prepare();
         Shot();
@@ -99,13 +100,20 @@ public class RedZone : MonoBehaviourPun
         if(lastMissile == null && curMissileCnt >= missileCnt)
         {
             delayPositioning.DelayStart(positionDelay);
-            innerBorder.localScale = new Vector3(0, 2, 0);
+            //innerBorder.localScale = new Vector3(0, 2, 0);
+            photonView.RPC("InBorderScaleSetting", RpcTarget.All, new Vector3(0,2,0));
             photonView.RPC("RedzoneActiveSetting", RpcTarget.All, false);
             curMissileCnt = 0;
             missileCnt = Random.Range(MinMaxmissileCntValue.x, MinMaxmissileCntValue.y);
         }
     }
-
+    [PunRPC]
+    private void InBorderScaleSetting(Vector3 scale)
+    {
+        innerBorder.transform.position = new Vector3(transform.position.x, 0.5f, transform.position.z);
+       
+        innerBorder.localScale = scale;
+    }
     void Positioning()
     {
         if (isPreparing)
@@ -118,8 +126,9 @@ public class RedZone : MonoBehaviourPun
             else
                 safezone = new SafeZone();
 
-            transform.position = new Vector3(Random.Range(safezone.left, safezone.right), 0, Random.Range(safezone.top, safezone.bottom));
-
+            //transform.position = new Vector3(Random.Range(safezone.left, safezone.right), 0, Random.Range(safezone.top, safezone.bottom));
+            Vector3 newPos = new Vector3(Random.Range(safezone.left, safezone.right), 0, Random.Range(safezone.top, safezone.bottom));
+            photonView.RPC("RedZonePositioningOnServer", RpcTarget.All, newPos);
             photonView.RPC("RedzoneActiveSetting", RpcTarget.All, true);
             delayPositioning.DelayEnd();
             isPreparing = true;
@@ -127,19 +136,28 @@ public class RedZone : MonoBehaviourPun
         }
     }
     
+    [PunRPC]
+    void RedZonePositioningOnServer(Vector3 pos)
+    {
+        Debug.Log("RedZonePositioningOnServer");
+        this.transform.position = pos;
+        //this.transform.position = new Vector3(0, 0, 0);
+    }
     void Prepare()
     {
         if (!isPreparing)
             return;
 
-        innerBorder.localScale += prepareSpeed * Time.deltaTime;
+        Vector3 scale = innerBorder.localScale + prepareSpeed * Time.deltaTime;
+        photonView.RPC("InBorderScaleSetting", RpcTarget.All, scale);
 
         if (innerBorder.localScale.x >= 1)
         {
             isReady = true;
             isPreparing = false;
             delayShot.DelayStart(shotDelay);
-            innerBorder.localScale = new Vector3(1, 2f, 1);
+            //innerBorder.localScale = new Vector3(1, 2f, 1);
+            photonView.RPC("InBorderScaleSetting", RpcTarget.All, new Vector3(1, 2f, 1));
         }
     }
 }
