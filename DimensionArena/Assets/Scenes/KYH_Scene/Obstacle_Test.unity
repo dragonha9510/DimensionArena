@@ -334,6 +334,25 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 27
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &276841636 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1942131591, guid: 9d15aa6fd1bf5cf4999b3322b9a95d24,
+    type: 3}
+  m_PrefabInstance: {fileID: 913746750}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &276841638
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 276841636}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43922b984d98d784a9d345316c46090e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ditectionRange: {x: 1, y: 2}
 --- !u!1 &298188019
 GameObject:
   m_ObjectHideFlags: 0
@@ -1175,9 +1194,13 @@ PrefabInstance:
       propertyPath: sceneViewId
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 913746758, guid: 9d15aa6fd1bf5cf4999b3322b9a95d24, type: 3}
+      propertyPath: ditection
+      value: 
+      objectReference: {fileID: 276841638}
     - target: {fileID: 1942131593, guid: 9d15aa6fd1bf5cf4999b3322b9a95d24, type: 3}
       propertyPath: m_Radius
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2737819322045720800, guid: 9d15aa6fd1bf5cf4999b3322b9a95d24,
         type: 3}
