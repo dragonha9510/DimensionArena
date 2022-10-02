@@ -7,8 +7,10 @@ public class isHideOnBush : MonoBehaviourPun
 {
     [SerializeField] private Renderer[] AvartarRender;
     [SerializeField] private GameObject Additional;
+    [SerializeField] private DitectionRange ditection;
 
     private int exitCnt;
+    private int sizeCnt;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -19,19 +21,18 @@ public class isHideOnBush : MonoBehaviourPun
         {
             ++exitCnt;
 
-            //if(other.gameObject.GetComponent<MeshRenderer>().material.color.a < 1)
-            //{
-            //    for (int i = 0; i < AvartarRender.Length; ++i)
-            //        AvartarRender[i].enabled = true;
-
-            //    Additional.SetActive(true);
-            //    return;
-            //}
-
             for (int i = 0; i < AvartarRender.Length; ++i)
                 AvartarRender[i].enabled = false;
 
             Additional.SetActive(false);
+        }
+        else if (photonView.IsMine && other.CompareTag("Bush"))
+        {
+            if (ditection == null)
+                return;
+
+            ++sizeCnt;
+            ditection.SetRangeMax(); 
         }
     }
 
@@ -51,6 +52,18 @@ public class isHideOnBush : MonoBehaviourPun
                 AvartarRender[i].enabled = true;
 
             Additional.SetActive(true);
+        }
+        else if (photonView.IsMine && other.CompareTag("Bush"))
+        {
+            if (ditection == null)
+                return;
+
+            --sizeCnt;
+
+            if (sizeCnt > 0)
+                return;
+
+            ditection.SetRangeMin(); 
         }
     }
 }

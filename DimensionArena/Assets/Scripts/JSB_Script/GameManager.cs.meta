@@ -4,7 +4,11 @@ MonoImporter:
   externalObjects: {}
   serializedVersion: 2
   defaultReferences:
+<<<<<<< HEAD
   - playerPrefab: {fileID: 100004, guid: f3cb3c8f5cd4b514ebf9fbfda32cb36d, type: 3}
+=======
+  - playerPrefab: {instanceID: 0}
+>>>>>>> 5de1d84ab3262269cedcbed306eba823dfdcf6c0
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
