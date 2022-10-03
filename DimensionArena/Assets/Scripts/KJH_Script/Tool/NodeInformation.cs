@@ -1,3 +1,4 @@
+using System.Threading;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -8,7 +9,7 @@ using UnityEditor;
 
 namespace GRITTY
 {
-    public static class PATH
+    public struct PATH
     {
         public static string GROUND_PREFAB_PATH = "Tool/Ground/Prefabs/";
         public static string BRICK_PREFAB_PATH = "Tool/Brick/Prefabs/";
@@ -16,11 +17,12 @@ namespace GRITTY
         public static string GROUND_BOARD_PATH = "Tool/Ground/Board/";
         public static string BRICK_BOARD_PATH = "Tool/Brick/Board/";
 
-        public static string THUMBNAIL_SAVE_PATH = Application.dataPath + "/Resources/Tool/Thumbnail/";
-        public static string THUMBNAILE_PATH = "Tool/Thumbnail/";
+        public static string THUMBNAIL_SAVE_GROUND_PATH = Application.dataPath + "/Resources/Tool/Thumbnail/Ground/";
+        public static string THUMBNAIL_SAVE_BRICK_PATH = Application.dataPath + "/Resources/Tool/Thumbnail/Brick/";
+        public static string THUMBNAIL_GROUND_PATH = "Tool/Thumbnail/Ground/";
+        public static string THUMBNAIL_BRICK_PATH = "Tool/Thumbnail/Brick/";
 
         public static string MAP_SAVE_PATH = Application.dataPath + "/Resources/Tool/map/";
-
     }
 
     public enum PREFAB_TYPE
@@ -39,7 +41,7 @@ namespace GRITTY
 
         public string objectName;
         public bool isbrown;
-        public GameObject prefab; // 저장되지않는문제
+        public GameObject prefab;
         public GameObject hireachyObject;
         public GUIStyle gridStyle;
         public GUIStyle boardStyle;
@@ -78,7 +80,15 @@ namespace GRITTY
             objectName = _node.objectName;
             isbrown = brown;
 
-            gridNormalTexture = Resources.Load<Texture2D>(PATH.THUMBNAILE_PATH + objectName);
+            if(type == PREFAB_TYPE.GROUND)
+            {
+                gridNormalTexture = Resources.Load<Texture2D>(PATH.THUMBNAIL_GROUND_PATH + objectName);
+            }
+            else
+            {
+                gridNormalTexture = Resources.Load<Texture2D>(PATH.THUMBNAIL_BRICK_PATH + objectName);
+            }
+
             basicGroundTexture = new Texture2D(128, 128);
 
             if (brown)
@@ -110,7 +120,15 @@ namespace GRITTY
             isbrown = brown;
             objectName = name;
 
-            gridNormalTexture = Resources.Load<Texture2D>(PATH.THUMBNAILE_PATH + objectName);
+            if (type == PREFAB_TYPE.GROUND)
+            {
+                gridNormalTexture = Resources.Load<Texture2D>(PATH.THUMBNAIL_GROUND_PATH + objectName);
+            }
+            else
+            {
+                gridNormalTexture = Resources.Load<Texture2D>(PATH.THUMBNAIL_BRICK_PATH + objectName);
+            }
+ 
 
             if (brown)
             {
@@ -137,17 +155,9 @@ namespace GRITTY
             //  SETUP PALLETE TEXTURE
             // =======================
 
-            Texture2D board;
-
-            if (type == PREFAB_TYPE.GROUND)
-            {
-                board = Resources.Load<Texture2D>(PATH.GROUND_BOARD_PATH + objectName);
-            }
-            else
-            {
-                board = Resources.Load<Texture2D>(PATH.BRICK_BOARD_PATH + objectName);
-            }
-
+            Texture2D board;     
+            board = gridNormalTexture;
+           
             boardStyle.normal.background = board;
 
             // =======================
@@ -168,19 +178,49 @@ namespace GRITTY
 
         public void CreatePngAndSetUp()
         {
-
-            gridNormalTexture = AssetPreview.GetAssetPreview(prefab);
-
-            //then Save To Disk as PNG
-            byte[] bytes = gridNormalTexture.EncodeToPNG();
-
-            if (!Directory.Exists(PATH.THUMBNAIL_SAVE_PATH))
+            if(type == PREFAB_TYPE.GROUND)
             {
-                Directory.CreateDirectory(PATH.THUMBNAIL_SAVE_PATH);
+                if (!Directory.Exists(PATH.THUMBNAIL_SAVE_GROUND_PATH))
+                {
+                    Directory.CreateDirectory(PATH.THUMBNAIL_SAVE_GROUND_PATH);
+                }
+
+                while (!gridNormalTexture)
+                {
+                    gridNormalTexture = AssetPreview.GetAssetPreview(prefab);
+                    Thread.Sleep(80);
+                }
+
+                if (gridNormalTexture)
+                {
+                    gridNormalTexture.mipMapBias = -1.5f;
+                    gridNormalTexture.Apply();
+                    byte[] bytes = gridNormalTexture.EncodeToPNG();
+                    File.WriteAllBytes(PATH.THUMBNAIL_SAVE_GROUND_PATH + objectName + ".png", bytes);
+                }
             }
+            else
+            {
+                if (!Directory.Exists(PATH.THUMBNAIL_SAVE_BRICK_PATH))
+                {
+                    Directory.CreateDirectory(PATH.THUMBNAIL_SAVE_BRICK_PATH);
+                }
 
-            File.WriteAllBytes(PATH.THUMBNAIL_SAVE_PATH + objectName + ".png", bytes);
+                while (!gridNormalTexture)
+                {
+                    gridNormalTexture = AssetPreview.GetAssetPreview(prefab);
+                    Thread.Sleep(80);
+                }
 
+                if (gridNormalTexture)
+                {
+                    gridNormalTexture.mipMapBias = -1.5f;
+                    gridNormalTexture.Apply();
+                    byte[] bytes = gridNormalTexture.EncodeToPNG();
+                    File.WriteAllBytes(PATH.THUMBNAIL_SAVE_BRICK_PATH + objectName + ".png", bytes);
+                }
+            }
+            
 
             SetupStyles();
         }

@@ -331,7 +331,7 @@ namespace GRITTY
 
             for (int i = 0; i < bricks.Length; ++i)
             {
-               brick_Prefabs.Add(new NodeInformation(grounds[i].name, grounds[i], PREFAB_TYPE.BRICK, (i % 2 == 0)));
+               brick_Prefabs.Add(new NodeInformation(bricks[i].name, bricks[i], PREFAB_TYPE.BRICK, (i % 2 == 0)));
             }
         }
 

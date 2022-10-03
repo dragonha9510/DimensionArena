@@ -17,7 +17,7 @@ public class PT_Player_Atk : MonoBehaviourPun
             Instantiate(atkRangeMesh, transform);
         if (photonView.IsMine)
         {
-            GameObject.Find("AtkJoyStick").GetComponent<PT_AtkJoyStick>().player = this;
+          // GameObject.Find("AtkJoyStick").GetComponent<PT_AtkJoyStick>().player = this;
         }
     }
 

@@ -5,7 +5,7 @@ using UnityEngine.EventSystems;
 
 public class PT_AtkJoyStick : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
-    [SerializeField] public PT_Player_Atk player;
+    [SerializeField] public Player_Atk player;
 
     [SerializeField] private RectTransform lever;
     private RectTransform rectTransform;
@@ -45,6 +45,7 @@ public class PT_AtkJoyStick : MonoBehaviour, IBeginDragHandler, IDragHandler, IE
     {
         lever.anchoredPosition = Vector2.zero;
         SetDirection();
+        player.Attack();
     }
 
     public void SetDirection()
