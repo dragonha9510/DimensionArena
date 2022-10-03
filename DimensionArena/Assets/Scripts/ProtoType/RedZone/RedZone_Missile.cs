@@ -12,7 +12,9 @@ public class RedZone_Missile : MonoBehaviour
     private DecalProjector proj;
     private float posY;
 
-    private void Start()
+    private GameObject destroyEffect;
+
+    protected virtual void Start()
     {
         posY = transform.position.y;
 
@@ -27,7 +29,7 @@ public class RedZone_Missile : MonoBehaviour
         proj.size = new Vector3(0, 0, 2.5f);
     }
 
-    private void Update()
+    protected virtual void Update()
     {
         float sizeScale = (posY - transform.position.y) / posY;
         proj.size = new Vector3(sizeScale, sizeScale, 2.5f);
@@ -50,7 +52,7 @@ public class RedZone_Missile : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+    protected virtual void OnTriggerEnter(Collider other)
     {
         if (other.name != gameObject.name)
         {

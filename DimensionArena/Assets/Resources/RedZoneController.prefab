@@ -54,6 +54,8 @@ MonoBehaviour:
   positionDelay: 1
   prepareDelay: 2
   Missile: {fileID: 5806869448693917664, guid: 24fd46158665a6647b9155d309f28200, type: 3}
+  ItemMissile: {fileID: 5806869448693917664, guid: dceeacd7654e69c4dbae29a4490100b0,
+    type: 3}
   shotDelay: 0.2
   MinMaxmissileCntValue: {x: 20, y: 35}
   lastMissileCnt: 10

@@ -23,6 +23,7 @@ public class RedZone : MonoBehaviourPun
     private bool isReady;
 
     [SerializeField] private GameObject Missile;
+    [SerializeField] private GameObject ItemMissile;
     [SerializeField] private float shotDelay;
     [SerializeField] private Vector2Int MinMaxmissileCntValue = new Vector2Int(0, 35);
     [SerializeField] private int lastMissileCnt = 10;
@@ -89,7 +90,7 @@ public class RedZone : MonoBehaviourPun
                     pos = transform.position + (Random.insideUnitSphere * transform.localScale.x * 0.5f);
                     pos.y = Missile.transform.position.y;
                     //lastMissile = Instantiate(Missile, pos, Quaternion.identity);
-                    lastMissile = PhotonNetwork.Instantiate("Missile", pos, Quaternion.identity);
+                    lastMissile = PhotonNetwork.Instantiate("Item_Missile", pos, Quaternion.identity);
 
                 }
 

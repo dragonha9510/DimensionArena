@@ -27,7 +27,7 @@ public class LoadingScene : MonoBehaviour
         // ex ) 파일  크기  =   1000 .. 위와 동일
         // gaugeUnit = ( maxWidth / 총 크기 );
 
-        StartCoroutine("loadData");
+        StartCoroutine(loadData(SceneChanger_Loading.Instance.LoadData));
     }
 
     private void Update()
@@ -35,7 +35,7 @@ public class LoadingScene : MonoBehaviour
         curGauge.rectTransform.sizeDelta = new Vector2(curWidth, curGauge.rectTransform.sizeDelta.y);
     }
 
-    IEnumerator loadData()
+    IEnumerator loadData(string dataPath)
     {
         // 로드된 단위에 맞추어 curWidth = gaugeUnit * 로드된 양;
 
@@ -59,6 +59,7 @@ public class LoadingScene : MonoBehaviour
         if (Mathf.Abs(curGauge.rectTransform.sizeDelta.x - maxGauge.rectTransform.sizeDelta.x) <= float.Epsilon)
         {
             // 씬 전환
+            SceneChanger_Loading.Instance.ChangeScene("LoadingTest1");
         }
     }
 }

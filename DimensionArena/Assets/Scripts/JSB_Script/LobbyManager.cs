@@ -71,6 +71,5 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     private void LoadingInGame()
     {
         PhotonNetwork.LoadLevel("ProtoType");
-
     }
 }

@@ -95,6 +95,7 @@ GameObject:
   - component: {fileID: -1117876998137183496}
   - component: {fileID: -8167294185767879211}
   - component: {fileID: -2585290685312339796}
+  - component: {fileID: 6387615248525257143}
   m_Layer: 0
   m_Name: Item_Missile
   m_TagString: Untagged
@@ -175,6 +176,28 @@ MonoBehaviour:
   - {fileID: 2291838589078517510, guid: 9c1a107bac6b2ec4b9c247c6cedce0fd, type: 3}
   - {fileID: 4539924223859144747, guid: 8c9aa38b2f320d24f8b0e72fbbe4e795, type: 3}
   - {fileID: 7933219724033476510, guid: 781df1b6c367c5646a091f4405a7fff0, type: 3}
+--- !u!114 &6387615248525257143
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5806869448693917664}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents: []
+  sceneViewId: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1 &6731869027971370076
 GameObject:
   m_ObjectHideFlags: 0
