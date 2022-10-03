@@ -331,6 +331,7 @@ MonoBehaviour:
   - {fileID: 2737819320087209563}
   - {fileID: 2737819320914456880}
   Additional: {fileID: 6012048157382810618}
+  ditection: {fileID: 0}
 --- !u!1 &2737819320364242461
 GameObject:
   m_ObjectHideFlags: 0
