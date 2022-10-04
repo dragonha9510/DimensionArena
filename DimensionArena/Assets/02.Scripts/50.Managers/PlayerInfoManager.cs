@@ -16,11 +16,14 @@ public class PlayerInfoManager : MonoBehaviourPun
     public static PlayerInfoManager Instance
     {
         get 
-        {  
-            if (!instance)
+        {
+            instance = GameObject.Find("PlayerInfoManager").GetComponent<PlayerInfoManager>();
+
+            if (null == instance)
             {
                 GameObject infoMgr = new GameObject("PlayerInfoManager");
                 instance = infoMgr.AddComponent<PlayerInfoManager>();            
+                infoMgr.AddComponent<PhotonView>();
             }
             return instance;
         }
@@ -104,16 +107,12 @@ public class PlayerInfoManager : MonoBehaviourPun
     [PunRPC]
     public void AddPlayers()
     {
-        //Insert Player Object, Information On Start
-        if (NullCheck.IsNullOrEmpty(playerObjectArr))
-        {
-            playerObjectArr = GameObject.FindGameObjectsWithTag("Player");
-            playerInfoArr = new PlayerInfo[playerObjectArr.Length];
-            for (int i = 0; i < playerObjectArr.Length; ++i)
-            {
-                playerInfoArr[i] = playerObjectArr[i].GetComponent<Player>().Info;
-            }
-        }
+         playerObjectArr = GameObject.FindGameObjectsWithTag("Player");
+         playerInfoArr = new PlayerInfo[playerObjectArr.Length];
+         for (int i = 0; i < playerObjectArr.Length; ++i)
+         {
+             playerInfoArr[i] = playerObjectArr[i].GetComponent<Player>().Info;
+         }
     }
 
 
