@@ -5,11 +5,7 @@ using UnityEngine;
 public class Detector : MonoBehaviour
 {
     [SerializeField]
-    float decreaseRotation = 0.9f;
-    [SerializeField]
     float followSpeed = 1.0f;
-    Vector3 randBoing;
-    private int ColliderCount = 0;
 
     private bool follow;
     private Vector3 followTarget;
