@@ -84,17 +84,7 @@ public class PlayerInfoManager : MonoBehaviourPun
 
     void Start()
     {
-        //Insert Player Object, Information On Start
-        if (NullCheck.IsNullOrEmpty(playerObjectArr))
-        {
-            playerObjectArr = GameObject.FindGameObjectsWithTag("Player");
-            playerInfoArr = new PlayerInfo[playerObjectArr.Length];
-            for (int i = 0; i < playerObjectArr.Length; ++i)
-            {
-                playerInfoArr[i] = playerObjectArr[i].GetComponent<Player>().Info;
-            }
-
-        }
+        
     }
     #endregion
 
@@ -105,7 +95,28 @@ public class PlayerInfoManager : MonoBehaviourPun
     /// ===========================
     /// CurHp Region
     /// >>>>>>>>>>>>>>>>>>>>>>>>>>
-    
+
+    public void AddPlayer()
+    {
+        photonView.RPC("AddPlayers", RpcTarget.All);
+    }
+
+    [PunRPC]
+    public void AddPlayers()
+    {
+        //Insert Player Object, Information On Start
+        if (NullCheck.IsNullOrEmpty(playerObjectArr))
+        {
+            playerObjectArr = GameObject.FindGameObjectsWithTag("Player");
+            playerInfoArr = new PlayerInfo[playerObjectArr.Length];
+            for (int i = 0; i < playerObjectArr.Length; ++i)
+            {
+                playerInfoArr[i] = playerObjectArr[i].GetComponent<Player>().Info;
+            }
+        }
+    }
+
+
     #region CurHp Method
 
     [PunRPC]

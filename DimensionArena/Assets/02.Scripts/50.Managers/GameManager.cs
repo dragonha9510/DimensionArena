@@ -33,6 +33,13 @@ public class GameManager : MonoBehaviourPunCallbacks, IPunObservable
 
         PhotonNetwork.Instantiate(PHOTONPATH.PHOTONPATH_PREFAPBFOLDER 
             + playerPrefab.name, spawnPoint, Quaternion.identity);
+
+        PlayerInfoManager.Instance.AddPlayer();
+    }
+
+    private void InitPlayer()
+    { 
+
     }
 
 
