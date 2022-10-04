@@ -79,7 +79,7 @@ public class RedZone : MonoBehaviourPun
             pos.y = Missile.transform.position.y;
 
             //lastMissile = Instantiate(Missile, pos, Quaternion.identity);
-            lastMissile = PhotonNetwork.Instantiate("Missile", pos, Quaternion.identity);
+            lastMissile = PhotonNetwork.Instantiate(PHOTONPATH.PHOTONPATH_PREFAPBFOLDER + "Missile", pos, Quaternion.identity);
             delayShot.DelayReset();
             ++curMissileCnt;
 
@@ -90,7 +90,7 @@ public class RedZone : MonoBehaviourPun
                     pos = transform.position + (Random.insideUnitSphere * transform.localScale.x * 0.5f);
                     pos.y = Missile.transform.position.y;
                     //lastMissile = Instantiate(Missile, pos, Quaternion.identity);
-                    lastMissile = PhotonNetwork.Instantiate("Item_Missile", pos, Quaternion.identity);
+                    lastMissile = PhotonNetwork.Instantiate(PHOTONPATH.PHOTONPATH_PREFAPBFOLDER + "Item_Missile", pos, Quaternion.identity);
 
                 }
 

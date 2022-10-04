@@ -74,7 +74,7 @@ public class MagneticField : MonoBehaviourPun
 
     void Start()
     {
-        if (!photonView.IsMine)
+        if (!PhotonNetwork.IsMasterClient)
             return;
 
         
@@ -84,7 +84,7 @@ public class MagneticField : MonoBehaviourPun
         GameObject cloud;
         float[] originalScale = new float[2];
         // 왼쪽 면
-        cloud = PhotonNetwork.Instantiate("MagneticLeftRounge", this.transform.position, this.transform.rotation);
+        cloud = PhotonNetwork.Instantiate(PHOTONPATH.PHOTONPATH_PREFAPBFOLDER + "MagneticLeftRounge", this.transform.position, this.transform.rotation);
 
 
         // 포톤에 의해 변경이 된 부분
@@ -95,14 +95,14 @@ public class MagneticField : MonoBehaviourPun
         magneticfieldObj.Add(cloud);
 
         // 오른쪽 면
-        cloud = PhotonNetwork.Instantiate("MagneticRightRounge", this.transform.position, this.transform.rotation);
+        cloud = PhotonNetwork.Instantiate(PHOTONPATH.PHOTONPATH_PREFAPBFOLDER + "MagneticRightRounge", this.transform.position, this.transform.rotation);
         SetEachOther(cloud, rightTopGround, rightBottomGround);
         //cloud.GetComponent<MagneticCloudEffectCreator>().cloudType = MagneticCloudPos.MagneticCloudPos_Right;
         //cloud.GetComponent<MagneticCloudEffectCreator>().originalScale = originalScale[0];
         magneticfieldObj.Add(cloud);
 
         // 상단 면
-        cloud = PhotonNetwork.Instantiate("MagneticTopRounge", this.transform.position, this.transform.rotation);
+        cloud = PhotonNetwork.Instantiate(PHOTONPATH.PHOTONPATH_PREFAPBFOLDER + "MagneticTopRounge", this.transform.position, this.transform.rotation);
         SetEachOther(cloud, rightTopGround, leftTopGround);
         //cloud.GetComponent<MagneticCloudEffectCreator>().cloudType = MagneticCloudPos.MagneticCloudPos_Top;
         originalScale[1] = ((rightTopGround.position.z - rightBottomGround.position.z) / 2) * (rightTopGround.position.x - leftTopGround.position.x);
@@ -112,7 +112,7 @@ public class MagneticField : MonoBehaviourPun
         magneticfieldObj.Add(cloud);
 
         // 하단 면
-        cloud = PhotonNetwork.Instantiate("MagneticBottomRounge", this.transform.position, this.transform.rotation);
+        cloud = PhotonNetwork.Instantiate(PHOTONPATH.PHOTONPATH_PREFAPBFOLDER + "MagneticBottomRounge", this.transform.position, this.transform.rotation);
         SetEachOther(cloud, rightBottomGround, leftBottomGround);
 
         cloud.GetComponent<MagneticCloudEffectCreator>().originalScale = originalScale[1];
