@@ -7,7 +7,7 @@ using Photon.Pun;
 public class JoyStick : MonoBehaviourPun, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
     // public 전환 , 생성과 동시에 설정 해줘야 한다.
-    [SerializeField] public Prototype_Player_Test player;
+    [SerializeField] public Player player;
 
     [SerializeField] private RectTransform lever;
     private RectTransform rectTransform;

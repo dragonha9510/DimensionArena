@@ -451,6 +451,7 @@ namespace GRITTY
                     EditorUtility.DisplayDialog("저장 완료!", "저장 완료! 프리팹화된 맵이 Resource 폴더에 저장됨.", "OK");
                 }
             }
+
             else
             {
                 EditorUtility.DisplayDialog("WARNING!", "Please Create Map!!", "OK");

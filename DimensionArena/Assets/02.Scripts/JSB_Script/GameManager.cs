@@ -28,6 +28,11 @@ public class GameManager : MonoBehaviourPunCallbacks, IPunObservable
     {
         if (instance != this)
             Destroy(gameObject);
+
+        Vector3 spawnPoint = new Vector3(0, 1, 0);
+
+        PhotonNetwork.Instantiate(PHOTONPATH.PHOTONPATH_PREFAPBFOLDER 
+            + playerPrefab.name, spawnPoint, Quaternion.identity);
     }
 
 
@@ -48,9 +53,6 @@ public class GameManager : MonoBehaviourPunCallbacks, IPunObservable
 
     private void Start()
     {
-        Vector3 spawnPoint = new Vector3(0, 1, 0);
-
-        PhotonNetwork.Instantiate(PHOTONPATH.PHOTONPATH_PREFAPBFOLDER + playerPrefab.name, spawnPoint, Quaternion.identity);
     }
 
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)

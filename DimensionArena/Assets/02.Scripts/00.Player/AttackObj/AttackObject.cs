@@ -4,11 +4,23 @@ using Photon.Pun;
 using System.Collections;
 using System.Collections.Generic;
 
-public class AttackObject : MonoBehaviour
+public class AttackObject : MonoBehaviourPun
 {
     public GameObject owner;
     [SerializeField] private int ultimatePoint;
     [SerializeField] private int damage;
+
+    private void OnDamaged(GameObject obj)
+    {
+        Destroy(this.gameObject);
+
+        //Target damage
+        PlayerInfoManager.Instance.
+            CurHpDecrease(obj, damage);
+        //Point Get
+        PlayerInfoManager.Instance.
+            CurSkillPtIncrease(owner, ultimatePoint);
+    }
 
     private void OnTriggerEnter(Collider collision)
     {
@@ -19,15 +31,12 @@ public class AttackObject : MonoBehaviour
                 {
                     Destroy(this.gameObject);
 
-                    if(collision.GetComponentInParent<Player>().gameObject != owner)
-                    {
-                        collision.GetComponentInParent<Player>().Damaged(damage);
-
-                        if (!owner.GetComponentInParent<PhotonView>().IsMine)
-                            return;
-
-                        owner.GetComponent<Player>().GetSkillPoint(ultimatePoint);
-                    }
+                    //Target damage
+                    PlayerInfoManager.Instance.
+                        CurHpDecrease(collision.gameObject, damage);
+                    //Point Get
+                    PlayerInfoManager.Instance.
+                        CurSkillPtIncrease(owner, ultimatePoint);
                 }
                 break;
                 //Damaged된 Obstacle 공격체 방향으로 살짝 흔들리는 모션

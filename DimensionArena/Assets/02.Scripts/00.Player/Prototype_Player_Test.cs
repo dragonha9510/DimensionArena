@@ -4,6 +4,7 @@ using UnityEngine;
 using Photon.Pun;
 public class Prototype_Player_Test : MonoBehaviourPun
 {
+    /*
     [SerializeField] private float speed = 3.0f;
     [SerializeField] private Transform directionLocation;
 
@@ -20,6 +21,8 @@ public class Prototype_Player_Test : MonoBehaviourPun
             GameObject.Find("MoveJoyStick").GetComponent<JoyStick>().player = this;
             GameObject.Find("Target Camera").GetComponent<Prototype_TargetCamera>().target = this.transform;
         }
+
+
         movement = new Prototype_Movement();
 
         if (transform.childCount != 0)
@@ -48,4 +51,5 @@ public class Prototype_Player_Test : MonoBehaviourPun
     {
         movement.MoveDirection(rigid, transform, direction, speed);
     }
+    */
 }

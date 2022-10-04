@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 1134839205801618655}
   - component: {fileID: 2286018880159179529}
   m_Layer: 0
-  m_Name: Text (TMP)
+  m_Name: NickName
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -654,14 +654,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2737819322045720800}
+  - component: {fileID: 1866439616}
+  - component: {fileID: 1876143292272218706}
   - component: {fileID: 2737819322045720801}
-  - component: {fileID: 2737819322045720803}
   - component: {fileID: 2737819322045720806}
   - component: {fileID: -1550659867611885123}
   - component: {fileID: 3709939841409349273}
   - component: {fileID: 7925714259975075949}
-  - component: {fileID: 1876143292272218706}
-  - component: {fileID: 1866439616}
   m_Layer: 0
   m_Name: Test_Player_KJH
   m_TagString: Player
@@ -687,6 +686,48 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1866439616
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2737819322045720829}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c58062bac9dde74bbbf6e0e2c298dcd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  directionLocation: {fileID: 1942131592}
+  direction: {x: 0, y: 0, z: 0}
+  info:
+    owner: {fileID: 0}
+    maxHP: 100
+    curHP: 100
+    curSkillPoint: 0
+    maxSkillPoint: 100
+    speed: 3
+    maxSpeed: 6
+    curShield: 0
+    maxShield: 100
+--- !u!114 &1876143292272218706
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2737819322045720829}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc204522c9500054083d02fc8f0c6d93, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  range: 6
+  atkRangeMesh: {fileID: 516184251707268580}
+  direction: {x: 0, y: 0, z: 0}
+  attackDirection: {x: 0, y: 0, z: 0}
+  prefab_Projectile: {fileID: 430190150177029230, guid: afdcc392609d1e14d8bf5f9754ff8314,
+    type: 3}
 --- !u!54 &2737819322045720801
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -703,21 +744,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
---- !u!114 &2737819322045720803
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2737819322045720829}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bedd59c96397bb947abaf9fe251e59b8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 3
-  directionLocation: {fileID: 2737819320364242460}
-  direction: {x: 0, y: 0, z: 0}
 --- !u!136 &2737819322045720806
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -788,40 +814,6 @@ MonoBehaviour:
   m_SynchronizeAngularVelocity: 0
   m_TeleportEnabled: 0
   m_TeleportIfDistanceGreaterThan: 3
---- !u!114 &1876143292272218706
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2737819322045720829}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bc204522c9500054083d02fc8f0c6d93, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  range: 6
-  atkRangeMesh: {fileID: 516184251707268580}
-  direction: {x: 0, y: 0, z: 0}
-  attackDirection: {x: 0, y: 0, z: 0}
-  prefab_Projectile: {fileID: 430190150177029230, guid: afdcc392609d1e14d8bf5f9754ff8314,
-    type: 3}
---- !u!114 &1866439616
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2737819322045720829}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0c58062bac9dde74bbbf6e0e2c298dcd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHP: 100
-  hp: 100
-  curSkillPoint: 0
-  maxSkillPoint: 100
 --- !u!1 &3456910804436840978
 GameObject:
   m_ObjectHideFlags: 0
@@ -909,7 +901,7 @@ GameObject:
   - component: {fileID: 3626155423473413453}
   - component: {fileID: 4586236821575833792}
   m_Layer: 0
-  m_Name: Slider
+  m_Name: HpBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1114,7 +1106,7 @@ GameObject:
   - component: {fileID: 8870261335253071263}
   - component: {fileID: 3657808801917838797}
   m_Layer: 0
-  m_Name: Canvas
+  m_Name: PlayerInfoCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

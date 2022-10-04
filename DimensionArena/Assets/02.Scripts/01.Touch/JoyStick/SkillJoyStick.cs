@@ -35,7 +35,7 @@ public class SkillJoyStick : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
             }
         }
 
-        target.skillAmountChanged += SkillSetFillAmount;
+        target.Info.EskillAmountChanged += SkillSetFillAmount;
     }
 
     public void OnBeginDrag(PointerEventData eventData)

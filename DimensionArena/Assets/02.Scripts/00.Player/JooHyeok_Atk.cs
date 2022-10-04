@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 
-public class Jijoohyuk_Atk : Player_Atk
+public class JooHyeok_Atk: Player_Atk
 {
     [SerializeField] GameObject prefab_Projectile;
 
@@ -43,9 +43,9 @@ public class Jijoohyuk_Atk : Player_Atk
                 projectile = Instantiate(prefab_Projectile, transform.position + attackDirection, Quaternion.identity);
                 projectile.GetComponent<Projectile>().AttackToDirection(attackDirection, range, projectileSpeed);
                 projectile.GetComponent<Projectile>().owner = this.gameObject;
-                yield return new WaitForSeconds(0.1f);
+                yield return new WaitForSeconds(burst_delay);
             }
-            yield return new WaitForSeconds(0.25f);
+            yield return new WaitForSeconds(attack_delay);
         }
 
         isAttack = false;
