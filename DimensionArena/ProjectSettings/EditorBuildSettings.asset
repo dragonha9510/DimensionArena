@@ -6,15 +6,15 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/ProtoType/Lobby.unity
+    path: Assets/01.Scenes/ProtoType/Lobby.unity
     guid: 834fbe6448730de499fa26a327b80d42
   - enabled: 1
-    path: Assets/Scenes/ProtoType/ProtoType.unity
+    path: Assets/01.Scenes/ProtoType/ProtoType.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
   - enabled: 1
-    path: Assets/Scenes/KYH_Scene/LoadingScene.unity
+    path: Assets/01.Scenes/KYH_Scene/LoadingScene.unity
     guid: e54a7145500e86140b57ec0000c2b9ff
   - enabled: 1
-    path: Assets/Scenes/KYH_Scene/LoadingTest1.unity
+    path: Assets/01.Scenes/KYH_Scene/LoadingTest1.unity
     guid: 7c387ee3618a3194980fdc7317933b6e
   m_configObjects: {}
