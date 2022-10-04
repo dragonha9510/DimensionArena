@@ -24,14 +24,14 @@ public class Player : MonoBehaviourPun
     public  PlayerInfo Info { get { return info; } }
     private Prototype_Movement movement;
     private Rigidbody rigid;
-
-    PhotonView pc;
+    private int photon_id;
 
     /// =============================
     private void Awake()
     {
-        pc = photonView;
-        info = new PlayerInfo();
+        photon_id = photonView.ViewID;
+        gameObject.name = photon_id.ToString();
+        info = new PlayerInfo(gameObject.name);
     }
 
     private void Start()

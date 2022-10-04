@@ -42,7 +42,7 @@ public class JooHyeok_Atk: Player_Atk
             {
                 projectile = PhotonNetwork.Instantiate("projectile", transform.position + attackDirection, Quaternion.identity);
                 projectile.GetComponent<Projectile>().AttackToDirection(attackDirection, range, projectileSpeed);
-                projectile.GetComponent<Projectile>().owner = this.gameObject;
+                projectile.GetComponent<Projectile>().ownerID = this.gameObject.name;
                 yield return new WaitForSeconds(burst_delay);
             }
             yield return new WaitForSeconds(attack_delay);

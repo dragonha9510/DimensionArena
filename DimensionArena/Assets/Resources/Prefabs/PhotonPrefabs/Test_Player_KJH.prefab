@@ -701,6 +701,7 @@ MonoBehaviour:
   directionLocation: {fileID: 1942131592}
   direction: {x: 0, y: 0, z: 0}
   info:
+    id: 
     maxHP: 100
     curHP: 100
     curSkillPoint: 0

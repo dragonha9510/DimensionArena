@@ -8,8 +8,9 @@ using Photon.Pun;
 [Serializable]
 public class PlayerInfo 
 {  
-    public PlayerInfo()
+    public PlayerInfo(string ID)
     {
+        id = ID;
         maxHP = 100.0f;
         curHP = 100.0f;
         maxSkillPoint = 100.0f;
@@ -30,6 +31,8 @@ public class PlayerInfo
     /// Player Information Region
     /// =============================
     #region Player Information
+
+    [SerializeField] private string id;
     [SerializeField] private float maxHP;
     [SerializeField] private float curHP;
     [SerializeField] private float curSkillPoint;
@@ -48,16 +51,16 @@ public class PlayerInfo
     public float MaxSpeed { get { return maxSpeed; } }
     public float CurShield { get { return curShield; } }
     public float MaxShield { get { return maxShield; } }
+    public string ID { get { return id; } }
     #endregion
 
 
 
     #region PlayerInfo Related Method
-    
+
     [PunRPC]
     public void LoseSkillPoint(float point)
-    {
-        
+    {        
         if (curSkillPoint != maxSkillPoint)
         {
             curSkillPoint -= point;

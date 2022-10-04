@@ -102,18 +102,21 @@ public class PlayerInfoManager : MonoBehaviourPun
 
     public void AddPlayer()
     {
-        photonView.RPC("AddPlayers", RpcTarget.All);
+        photonView.RPC("AddPlayers", RpcTarget.MasterClient);
     }
 
     [PunRPC]
     public void AddPlayers()
     {
-         playerObjectArr = GameObject.FindGameObjectsWithTag("Player");
-         playerInfoArr = new PlayerInfo[playerObjectArr.Length];
-         for (int i = 0; i < playerObjectArr.Length; ++i)
-         {
-             playerInfoArr[i] = playerObjectArr[i].GetComponent<Player>().Info;
-         }
+        if(NullCheck.IsNullOrEmpty(playerObjectArr))
+        {
+            playerObjectArr = GameObject.FindGameObjectsWithTag("Player");
+            playerInfoArr = new PlayerInfo[playerObjectArr.Length];
+            for (int i = 0; i < playerObjectArr.Length; ++i)
+            {
+                playerInfoArr[i] = playerObjectArr[i].GetComponent<Player>().Info;
+            }
+        }
     }
 
 
@@ -146,6 +149,7 @@ public class PlayerInfoManager : MonoBehaviourPun
         }
     }
 
+    [PunRPC]
     public void CurHpDecrease(GameObject owner, GameObject target, float damage)
     {
 
@@ -162,13 +166,19 @@ public class PlayerInfoManager : MonoBehaviourPun
 
 
     [PunRPC]
-    public void CurHpDecrease(GameObject target, float damage)
+    public void CurHpDecrease(string targetId, float damage)
     {
         for (int i = 0; i < PlayerObjectArr.Length; ++i)
         {
-            if (PlayerObjectArr[i] == target)
+            if (playerInfoArr[i].ID == targetId)
             {            
                 playerInfoArr[i].Damaged(damage);
+
+                //Just Test
+                playerObjectArr[i].transform.localScale = new Vector3(
+                    playerObjectArr[i].transform.localScale.x + 0.1f,
+                    playerObjectArr[i].transform.localScale.y + 0.1f,
+                    playerObjectArr[i].transform.localScale.z + 0.1f);
             }
         }
     }
@@ -234,24 +244,27 @@ public class PlayerInfoManager : MonoBehaviourPun
     /// >>>>>>>>>>>>>>>>>>>>>>>>>>
 
     #region CurSkillPt Method
-    public void CurSkillPtIncrease(GameObject owner, float amount)
+
+    [PunRPC]
+    public void CurSkillPtIncrease(string targetId, float amount)
     {
         for (int i = 0; i < PlayerObjectArr.Length; ++i)
         {
-            if (PlayerObjectArr[i] == owner)
+            if (playerInfoArr[i].ID == targetId)
             {
                 playerInfoArr[i].GetSkillPoint(amount);
             }
         }
     }
 
-    public void CurSkillPtDecrease(GameObject owner, float amount)
+    [PunRPC]
+    public void CurSkillPtDecrease(string targetId, float amount)
     {
         for (int i = 0; i < PlayerObjectArr.Length; ++i)
         {
-            if (PlayerObjectArr[i] == owner)
+            if (playerInfoArr[i].ID == targetId)
             {
-                //playerInfoArr[i].owner.RPC("GetSkillPoint", RpcTarget.All, amount);
+                playerInfoArr[i].GetSkillPoint(amount);
             }
         }
     }
