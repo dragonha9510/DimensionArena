@@ -42,6 +42,7 @@ public class PlayerInfoManager : MonoBehaviourPun
     [SerializeField] GameObject[] playerObjectArr;
     [SerializeField] PlayerInfo[] playerInfoArr;
     
+
     public GameObject[] PlayerObjectArr
     {
         get 
@@ -126,7 +127,7 @@ public class PlayerInfoManager : MonoBehaviourPun
         {
             if(PlayerObjectArr[i] == target)
             {
-                //playerInfoArr[i].RPC("Heal", RpcTarget.MasterClient, amount);
+                //playerInfoArr[i].("Heal", RpcTarget.MasterClient, amount);
             }
         }
 
@@ -166,8 +167,8 @@ public class PlayerInfoManager : MonoBehaviourPun
         for (int i = 0; i < PlayerObjectArr.Length; ++i)
         {
             if (PlayerObjectArr[i] == target)
-            {
-                //playerInfoArr[i].owner.RPC("Damaged", RpcTarget.All, damage);
+            {            
+                playerInfoArr[i].Damaged(damage);
             }
         }
     }
@@ -239,7 +240,7 @@ public class PlayerInfoManager : MonoBehaviourPun
         {
             if (PlayerObjectArr[i] == owner)
             {
-                //playerInfoArr[i].owner.RPC("GetSkillPoint", RpcTarget.All, amount);
+                playerInfoArr[i].GetSkillPoint(amount);
             }
         }
     }

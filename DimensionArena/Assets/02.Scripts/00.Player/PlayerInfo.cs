@@ -91,8 +91,6 @@ public class PlayerInfo
         curHP = Mathf.Max(curHP, MaxHP);
     }
 
-
-
     [PunRPC]
     public void GetShield(float amount)
     {

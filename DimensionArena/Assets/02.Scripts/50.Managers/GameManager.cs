@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviourPunCallbacks, IPunObservable
     [SerializeField]
     public GameObject playerPrefab;
 
-    private float startTime;
+    private float startTime = 1.0f;
 
     private static GameManager m_instance;
     public static GameManager instance
@@ -70,13 +70,11 @@ public class GameManager : MonoBehaviourPunCallbacks, IPunObservable
         if (!PhotonNetwork.IsMasterClient)
             return;
 
-        if(0 < startTime)
-        {
             startTime -= Time.deltaTime;
 
             if (0 > startTime)
                 PlayerInfoManager.Instance.AddPlayer();
-        }
+        
     }
 
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)

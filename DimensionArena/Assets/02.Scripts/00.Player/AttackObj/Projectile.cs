@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 public class Projectile : AttackObject
 {
@@ -19,7 +20,7 @@ public class Projectile : AttackObject
     {
         if(range < (this.transform.position - originPos).magnitude)
         {
-            Destroy(this.gameObject);
+            PhotonNetwork.Destroy(this.gameObject);
         }
     }
 
