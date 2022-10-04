@@ -11,6 +11,7 @@ TagManager:
   - MapTool
   - ParentObstacle
   - ParentGround
+  - Player_Body
   layers:
   - Default
   - TransparentFX
