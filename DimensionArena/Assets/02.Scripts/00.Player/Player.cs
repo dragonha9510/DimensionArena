@@ -5,6 +5,7 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     public event Action<float> skillAmountChanged;
+
     [SerializeField]int maxHP;
     [SerializeField]int hp;
     [SerializeField]int curSkillPoint;
@@ -18,9 +19,12 @@ public class Player : MonoBehaviour
 
     public void GetSkillPoint(int point)
     {
-        curSkillPoint += point;
-        Mathf.Clamp(curSkillPoint, 0, maxSkillPoint);
-        skillAmountChanged((float)curSkillPoint / (float)maxSkillPoint);
+        if(curSkillPoint != maxSkillPoint)
+        {
+            curSkillPoint += point;
+            Mathf.Clamp(curSkillPoint, 0, maxSkillPoint);
+            skillAmountChanged((float)curSkillPoint / (float)maxSkillPoint);
+        }
     }
 
     public void Damaged(int damage)

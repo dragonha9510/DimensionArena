@@ -546,7 +546,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 66.000015, y: -73.2}
+  m_AnchoredPosition: {x: 66.000015, y: -74}
   m_SizeDelta: {x: 132, y: 147}
   m_Pivot: {x: 1, y: 0}
 --- !u!222 &122259820524665086
@@ -570,7 +570,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0.97445774, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 0
@@ -857,7 +857,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55ee7fda7d98ff441aee2687e1b34b85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  joyStick: {fileID: 0}
+  joyStick: {fileID: 606334978004562877}
   moveJoyStick: {fileID: 122259821564497987}
 --- !u!1 &122259821564497986
 GameObject:

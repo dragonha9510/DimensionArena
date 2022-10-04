@@ -320,14 +320,14 @@ namespace GRITTY
             ground_Prefabs = new List<NodeInformation>();
             brick_Prefabs = new List<NodeInformation>();
 
-            GameObject[] grounds = Resources.LoadAll<GameObject>(PATH.GROUND_PREFAB_PATH);
+            GameObject[] grounds = Resources.LoadAll<GameObject>(TOOL_PATH.GROUND_PREFAB_PATH);
 
             for (int i = 0; i < grounds.Length; ++i)
             {
                 ground_Prefabs.Add(new NodeInformation(grounds[i].name, grounds[i], PREFAB_TYPE.GROUND, (i % 2 == 0)));
             }
 
-            GameObject[] bricks = Resources.LoadAll<GameObject>(PATH.BRICK_PREFAB_PATH);
+            GameObject[] bricks = Resources.LoadAll<GameObject>(TOOL_PATH.BRICK_PREFAB_PATH);
 
             for (int i = 0; i < bricks.Length; ++i)
             {
@@ -435,7 +435,7 @@ namespace GRITTY
                 {
                     if(EditorUtility.DisplayDialog("WARNING!", "같은 맵이 존재합니다! 덮어쓰겠습니까?", "OK", "Cancle"))
                     {
-                        PrefabUtility.SaveAsPrefabAsset(map, PATH.MAP_SAVE_PATH + map.name + ".prefab");
+                        PrefabUtility.SaveAsPrefabAsset(map, TOOL_PATH.MAP_SAVE_PATH + map.name + ".prefab");
                         state = SELECTOR_MODE.CREATE;
  
                     }
@@ -446,7 +446,7 @@ namespace GRITTY
                 }
                 else
                 {
-                    PrefabUtility.SaveAsPrefabAsset(map,PATH.MAP_SAVE_PATH + map.name + ".prefab");
+                    PrefabUtility.SaveAsPrefabAsset(map, TOOL_PATH.MAP_SAVE_PATH + map.name + ".prefab");
                     state = SELECTOR_MODE.CREATE;
                     EditorUtility.DisplayDialog("저장 완료!", "저장 완료! 프리팹화된 맵이 Resource 폴더에 저장됨.", "OK");
                 }
@@ -456,8 +456,7 @@ namespace GRITTY
                 EditorUtility.DisplayDialog("WARNING!", "Please Create Map!!", "OK");
             }
         }
-                   
-        
+                         
         #endregion
 
     }

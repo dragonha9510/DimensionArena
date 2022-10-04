@@ -24,8 +24,10 @@ public class SkillJoyStick : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     private void Start()
     {
         GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+
         foreach(GameObject player in players)
         {
+            //자신의 오브젝트인지 확인
             if(player.GetComponent<PhotonView>().IsMine)
             {
                 target = player.GetComponent<Player>();
@@ -38,7 +40,7 @@ public class SkillJoyStick : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        if(skillImg.fillAmount.Equals(1))
+        if(skillImg.fillAmount.Equals(1.0f))
         {
             var realpos = new Vector2(Screen.width - rectTransform.anchoredPosition.x, rectTransform.anchoredPosition.y);
 
@@ -55,7 +57,7 @@ public class SkillJoyStick : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 
     public void OnDrag(PointerEventData eventData)
     {
-        if (skillImg.fillAmount.Equals(1))
+        if (skillImg.fillAmount.Equals(1.0f))
         {
             var realpos = new Vector2(Screen.width - rectTransform.anchoredPosition.x, rectTransform.anchoredPosition.y);
 
@@ -69,7 +71,7 @@ public class SkillJoyStick : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        if (skillImg.fillAmount.Equals(1))
+        if (skillImg.fillAmount.Equals(1.0f))
         {
             lever.anchoredPosition = Vector2.zero;
             SetDirection();
@@ -89,9 +91,26 @@ public class SkillJoyStick : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
         }
     }
 
+    public void MaxSkillPoint()
+    {
+        alphaImage[0].color = new Color(1, 0.1367925f, 0.1367925f, 1);
+
+        for (int i = 1; i < 3; ++i)
+        {
+            alphaImage[i].color = 
+                new Color(alphaImage[i].color.r, alphaImage[i].color.g, alphaImage[i].color.b, 180 / 255f);
+        }
+
+    }
+
     public void SkillSetFillAmount(float value)
     {
         skillImg.fillAmount = value;
+
+        if(value.AlmostEquals(1.0f,float.Epsilon))
+        {
+            MaxSkillPoint();
+        }
     }
 }
 

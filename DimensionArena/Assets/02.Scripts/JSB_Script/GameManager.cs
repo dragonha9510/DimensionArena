@@ -43,6 +43,9 @@ public class GameManager : MonoBehaviourPunCallbacks, IPunObservable
         }
     }
 
+   
+  
+
     private void Start()
     {
         Vector3 spawnPoint = new Vector3(0, 1, 0);
