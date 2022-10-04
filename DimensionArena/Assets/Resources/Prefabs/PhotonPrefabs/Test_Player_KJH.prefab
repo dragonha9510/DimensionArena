@@ -804,7 +804,7 @@ MonoBehaviour:
   atkRangeMesh: {fileID: 516184251707268580}
   direction: {x: 0, y: 0, z: 0}
   attackDirection: {x: 0, y: 0, z: 0}
-  prefab_Projectile: {fileID: 430190150177029230, guid: 980affbced58a7b4d99445b6332a12a7,
+  prefab_Projectile: {fileID: 430190150177029230, guid: afdcc392609d1e14d8bf5f9754ff8314,
     type: 3}
 --- !u!114 &1866439616
 MonoBehaviour:
