@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 public class Player : MonoBehaviour
 {
-    public static event Action<float> skillAmountChanged;
+    public event Action<float> skillAmountChanged;
     [SerializeField]int maxHP;
     [SerializeField]int hp;
     [SerializeField]int curSkillPoint;

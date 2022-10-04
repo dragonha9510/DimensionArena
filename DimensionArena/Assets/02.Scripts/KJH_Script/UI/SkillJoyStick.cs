@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using Photon.Pun;
 
 public class SkillJoyStick : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
     [SerializeField] private RectTransform lever;
     private RectTransform rectTransform;
 
+    Player target;
     [SerializeField, Range(10f, 150f)] private float leverRange;
     [SerializeField] Image[] alphaImage = new Image[3];
     [SerializeField] Image skillImg;
@@ -21,7 +23,17 @@ public class SkillJoyStick : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 
     private void Start()
     {
-        Player.skillAmountChanged += SkillSetFillAmount;
+        GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+        foreach(GameObject player in players)
+        {
+            if(player.GetComponent<PhotonView>().IsMine)
+            {
+                target = player.GetComponent<Player>();
+                break;
+            }
+        }
+
+        target.skillAmountChanged += SkillSetFillAmount;
     }
 
     public void OnBeginDrag(PointerEventData eventData)
