@@ -69,10 +69,6 @@ namespace GRITTY
 
         #endregion
 
-        #region Content
-
-        #endregion
-
         #region Mode variable
 
         Rect modeRect;

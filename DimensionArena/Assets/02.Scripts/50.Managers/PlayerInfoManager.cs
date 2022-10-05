@@ -16,15 +16,21 @@ public class PlayerInfoManager : MonoBehaviourPun
     public static PlayerInfoManager Instance
     {
         get 
-        {
-            instance = GameObject.Find("PlayerInfoManager").GetComponent<PlayerInfoManager>();
-
+        {      
             if (null == instance)
             {
-                GameObject infoMgr = new GameObject("PlayerInfoManager");
-                instance = infoMgr.AddComponent<PlayerInfoManager>();            
-                infoMgr.AddComponent<PhotonView>();
+                GameObject infoMgr = GameObject.Find("PlayerInfoManager");//new GameObject("PlayerInfoManager");
+
+                if(!infoMgr)
+                {
+                    infoMgr = new GameObject("PlayerInfoManager");
+                    infoMgr.AddComponent<PlayerInfoManager>();
+                    infoMgr.AddComponent<PhotonView>();
+                }    
+                
+                instance = infoMgr.GetComponent<PlayerInfoManager>();
             }
+
             return instance;
         }
     }

@@ -15,17 +15,19 @@ namespace GRITTY
         GameObject Gridprefab;
         public static MapCreator Window { get; private set; }
 
-        private void OnEnable()
-        {
-            Gridprefab  = Resources.Load("Tool/GridSystem") as GameObject;
-        }
-
         [MenuItem("Tool/MapCreator")]
         public static void Open()
         {
             Window = DisplayWizard<MapCreator>("MapCreator");
             Window.maxSize = Window.minSize = new Vector2(300, 250);
         }
+
+
+        private void OnEnable()
+        {
+            Gridprefab  = Resources.Load("Tool/GridSystem") as GameObject;
+        }
+
 
         [MenuItem("Tool/MapCreator", isValidateFunction: true)]
         static bool validate_CreateMap()
