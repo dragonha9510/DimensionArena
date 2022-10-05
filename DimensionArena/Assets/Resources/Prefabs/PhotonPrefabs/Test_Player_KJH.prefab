@@ -1245,6 +1245,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerName: {fileID: 2286018880159179529}
   hpBarSlider: {fileID: 4586236821575833792}
+  arrow: {fileID: 7795392208730009320}
+  arrowTime: 3
 --- !u!1 &6988114353441052177
 GameObject:
   m_ObjectHideFlags: 0
@@ -1295,7 +1297,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1529531740471431002
 RectTransform:
   m_ObjectHideFlags: 0
