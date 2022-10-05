@@ -100,24 +100,22 @@ public class MagneticCloudEffectCreator : MonoBehaviour
                     case MagneticCloudPos.MagneticCloudPos_Right:
                         for (float z = outLineCloudRange.x; z > outLineCloudRange.y; z -= cloudSpacing)
                         {
-                            GameObject cloud = Instantiate(magneticCloud, this.transform.position, this.transform.rotation);
+                            GameObject cloud = ObjectPool.Instance.GetObjectInPool(CLIENTOBJ.CLIENTOBJ_CLOUDEFFECT);
                             cloud.transform.position = new Vector3(this.transform.position.x + (Mathf.Abs(this.transform.localScale.x) / 2) * (cloudType == MagneticCloudPos.MagneticCloudPos_Right ? -1 : 1 )
                                                                     , this.transform.position.y
                                                                     , z);
-                            cloud.transform.parent = this.gameObject.transform;
 
                         }
                     break;
                     case MagneticCloudPos.MagneticCloudPos_Top:
                     case MagneticCloudPos.MagneticCloudPos_Bottom:
                         for (float x = outLineCloudRange.x; x < outLineCloudRange.y; x += cloudSpacing)
-                        { 
-                            GameObject cloud = Instantiate(magneticCloud, this.transform.position, this.transform.rotation);
+                        {
+                            //GameObject cloud = Instantiate(magneticCloud, this.transform.position, this.transform.rotation);
+                            GameObject cloud = ObjectPool.Instance.GetObjectInPool(CLIENTOBJ.CLIENTOBJ_CLOUDEFFECT);
                             cloud.transform.position = new Vector3(x
                                                                    , this.transform.position.y
                                                                    , this.transform.position.z + (Mathf.Abs(this.transform.localScale.z) / 2) * (cloudType == MagneticCloudPos.MagneticCloudPos_Top ? -1 : 1));
-
-                            cloud.transform.parent = this.gameObject.transform;
                         }
                         break;
                 }

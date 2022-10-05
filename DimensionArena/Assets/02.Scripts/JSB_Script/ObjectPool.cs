@@ -44,10 +44,6 @@ public class ObjectPool : MonoBehaviourPun
     }
     #endregion
 
-    private void Start()
-    {
-        Debug.Log(clientPrefabs.Length);
-    }
 
     #region <<MakeObjectFunction>>
     private GameObject CreateObjectInResources(GameObject prefab)
@@ -75,22 +71,20 @@ public class ObjectPool : MonoBehaviourPun
         cliobjectPool.Add(objType, new Queue<GameObject>());
         for (int i = 0; i < makeCount; ++i)
         {
-            GameObject newObj = new GameObject();
             switch (objType)
             {
                 case CLIENTOBJ.CLIENTOBJ_CLOUDEFFECT:
-                    newObj = CreateObjectInResources(clientPrefabs[(int)CLIENTOBJ.CLIENTOBJ_CLOUDEFFECT]);
+                    cliobjectPool[objType].Enqueue(CreateObjectInResources(clientPrefabs[(int)CLIENTOBJ.CLIENTOBJ_CLOUDEFFECT]));
                     break;
             }
-            cliobjectPool[objType].Enqueue(newObj);
         }
     }
 
-    public void MakePool(SERVEROBJ objType,int makeCount)
+   /* public void MakePool(SERVEROBJ objType,int makeCount)
     {        
-        /*// Eready setting this pool
+        *//*// Eready setting this pool
         /*if (serverobjectPool[objType] != null)
-            return;*/
+            return;*//*
         serverobjectPool.Add(objType, new Queue<GameObject>());
         for (int i = 0; i < makeCount; ++i)
         {
@@ -104,9 +98,9 @@ public class ObjectPool : MonoBehaviourPun
                     newObj = CreateObjectInResources("Missile");
                     break;
             }
-            serverobjectPool[objType].Enqueue(new GameObject());
+            serverobjectPool[objType].Enqueue();
         }
-    }
+    }*/
    
 
 
