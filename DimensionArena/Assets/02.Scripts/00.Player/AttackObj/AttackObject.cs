@@ -23,6 +23,9 @@ public class AttackObject : MonoBehaviourPun
         PlayerInfoManager.Instance.
                        CurHpDecrease(id, damage);
 
+        if (!photonView.IsMine)
+            return;
+
         PhotonNetwork.Destroy(this.gameObject);
     }
 
