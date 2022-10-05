@@ -104,16 +104,20 @@ public class MagneticCloudEffectCreator : MonoBehaviour
                             cloud.transform.position = new Vector3(this.transform.position.x + (Mathf.Abs(this.transform.localScale.x) / 2) * (cloudType == MagneticCloudPos.MagneticCloudPos_Right ? -1 : 1 )
                                                                     , this.transform.position.y
                                                                     , z);
+                            cloud.transform.parent = this.gameObject.transform;
+
                         }
-                        break;
+                    break;
                     case MagneticCloudPos.MagneticCloudPos_Top:
                     case MagneticCloudPos.MagneticCloudPos_Bottom:
                         for (float x = outLineCloudRange.x; x < outLineCloudRange.y; x += cloudSpacing)
-                        {
-                        GameObject cloud = Instantiate(magneticCloud, this.transform.position, this.transform.rotation);
+                        { 
+                            GameObject cloud = Instantiate(magneticCloud, this.transform.position, this.transform.rotation);
                             cloud.transform.position = new Vector3(x
                                                                    , this.transform.position.y
                                                                    , this.transform.position.z + (Mathf.Abs(this.transform.localScale.z) / 2) * (cloudType == MagneticCloudPos.MagneticCloudPos_Top ? -1 : 1));
+
+                            cloud.transform.parent = this.gameObject.transform;
                         }
                         break;
                 }
@@ -138,6 +142,7 @@ public class MagneticCloudEffectCreator : MonoBehaviour
                 Vector3 randomPosition = new Vector3(Random.Range(randomXRange.x, randomXRange.y), this.transform.position.y, Random.Range(randomZRange.x, randomZRange.y));
                 GameObject cloud = Instantiate(magneticCloud, this.transform.position, this.transform.rotation);
                 cloud.transform.position = randomPosition;
+                cloud.transform.parent = this.gameObject.transform;
             }
             yield return cloudRandomSpacingTime;
         }

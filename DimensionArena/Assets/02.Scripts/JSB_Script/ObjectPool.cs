@@ -6,6 +6,8 @@ using UnityEngine;
     public class ObjectPool : MonoBehaviour
     {
         public static ObjectPool instance = null;
+        
+
         Queue<GameObject> queObjectPool = null;
         [SerializeField]
         private GameObject cloudEffectObj;

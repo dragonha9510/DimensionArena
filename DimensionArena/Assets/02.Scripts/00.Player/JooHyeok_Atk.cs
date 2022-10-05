@@ -22,7 +22,6 @@ public class JooHyeok_Atk: Player_Atk
         base.Start();
         // JSB
         audioSource = GetComponent<AudioSource>();
-
         //
     }
 
@@ -36,14 +35,7 @@ public class JooHyeok_Atk: Player_Atk
         if(!isAttack)
             StartCoroutine(AttackCoroutine());
     }
-    //JSB
-    [PunRPC]
-    private void EffectSoundPlay()
-    {
-        audioSource.clip = SoundManager.Instance.GetClip("JiJooEffect");
-        audioSource.Play();
-    }
-    //
+    
     IEnumerator AttackCoroutine()
     {
         isAttack = true;
@@ -54,9 +46,6 @@ public class JooHyeok_Atk: Player_Atk
         {
             for(int j = 0; j < projectileCount; ++j)
             {
-                //JSB
-                base.photonView.RPC("EffectSoundPlay", RpcTarget.All);
-                //
                 projectile = PhotonNetwork.Instantiate("projectile", transform.position + attackDirection, Quaternion.identity);
                 projectile.GetComponent<Projectile>().AttackToDirection(attackDirection, range, projectileSpeed);
                 projectile.GetComponent<Projectile>().ownerID = this.gameObject.name;

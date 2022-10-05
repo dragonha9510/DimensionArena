@@ -661,7 +661,7 @@ GameObject:
   - component: {fileID: -1550659867611885123}
   - component: {fileID: 3709939841409349273}
   - component: {fileID: 7925714259975075949}
-  - component: {fileID: -4154754027023601698}
+  - component: {fileID: -2325157879293303451}
   m_Layer: 0
   m_Name: Test_Player_KJH
   m_TagString: Player
@@ -815,7 +815,7 @@ MonoBehaviour:
   m_SynchronizeAngularVelocity: 0
   m_TeleportEnabled: 0
   m_TeleportIfDistanceGreaterThan: 3
---- !u!82 &-4154754027023601698
+--- !u!82 &-2325157879293303451
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

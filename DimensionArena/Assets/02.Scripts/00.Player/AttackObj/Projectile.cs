@@ -30,11 +30,14 @@ public class Projectile : AttackObject
         rigid.velocity = dir * speed;
     }
 
-
+    
 
     [PunRPC]
     private void ToDirection(Vector3 dir, float range, float speed)
     {
+        //JSB
+        EffectSoundPlay("JiJooNormalEffect");
+        //
         this.range = range;
         rigid.velocity = dir * speed;
     }

@@ -9,6 +9,9 @@ public class AttackObject : MonoBehaviourPun
 
     //AttackObject¿« ¡÷¿Œ
     public string ownerID;
+    //JSB
+    protected AudioSource audioSource;
+    //
     [SerializeField] private int ultimatePoint;
     [SerializeField] private int damage;
 
@@ -28,6 +31,15 @@ public class AttackObject : MonoBehaviourPun
 
         PhotonNetwork.Destroy(this.gameObject);
     }
+
+    //JSB
+    [PunRPC]
+    protected void EffectSoundPlay(string clipName)
+    {
+        audioSource.clip = SoundManager.Instance.GetClip("clipName");
+        audioSource.Play();
+    }
+    //
 
     private void OnTriggerEnter(Collider collision)
     {
