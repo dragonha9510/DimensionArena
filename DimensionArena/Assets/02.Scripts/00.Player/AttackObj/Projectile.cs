@@ -26,11 +26,10 @@ public class Projectile : AttackObject
 
     public void AttackToDirection(Vector3 dir, float range, float speed)
     {
+  
         this.range = range;
         rigid.velocity = dir * speed;
     }
-
-
 
     [PunRPC]
     private void ToDirection(Vector3 dir, float range, float speed)

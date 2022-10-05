@@ -6,14 +6,13 @@ using System.Collections.Generic;
 
 public class AttackObject : MonoBehaviourPun
 {
-
     //AttackObject¿« ¡÷¿Œ
     public string ownerID;
+
     [SerializeField] private int ultimatePoint;
     [SerializeField] private int damage;
 
-  
-
+ 
     [PunRPC]
     protected void OnCollisionToPlayer(string id)
     {
