@@ -974,9 +974,9 @@ MonoBehaviour:
   m_HandleRect: {fileID: 0}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 100
+  m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 100
+  m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -1244,7 +1244,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerName: {fileID: 2286018880159179529}
-  hpBarImage: {fileID: 6013166623587837136}
+  hpBarSlider: {fileID: 4586236821575833792}
 --- !u!1 &6988114353441052177
 GameObject:
   m_ObjectHideFlags: 0

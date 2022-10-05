@@ -173,12 +173,6 @@ public class PlayerInfoManager : MonoBehaviourPun
             if (playerInfoArr[i].ID == targetId)
             {            
                 playerInfoArr[i].Damaged(damage);
-
-                //Just Test
-                playerObjectArr[i].transform.localScale = new Vector3(
-                    playerObjectArr[i].transform.localScale.x + 0.1f,
-                    playerObjectArr[i].transform.localScale.y + 0.1f,
-                    playerObjectArr[i].transform.localScale.z + 0.1f);
             }
         }
     }

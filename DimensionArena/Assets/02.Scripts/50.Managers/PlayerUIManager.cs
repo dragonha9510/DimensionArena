@@ -7,7 +7,7 @@ public class PlayerUIManager : MonoBehaviour
 {
     Player target;
     [SerializeField] TextMeshProUGUI playerName;
-    [SerializeField] Image hpBarImage;
+    [SerializeField] Slider hpBarSlider;
 
     void Start()
     {
@@ -30,7 +30,7 @@ public class PlayerUIManager : MonoBehaviour
 
     void HpBarChange(float amount)
     {
-        hpBarImage.fillAmount = amount;
+        hpBarSlider.value = amount;
     }
 
 
