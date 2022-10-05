@@ -6,8 +6,16 @@ using UnityEngine;
 
 using ExitGames.Client.Photon;
 
+public enum GAMEMODE
+{
+    Survival,
+    FreeForAll
+}
+
+
 public class GameManager : MonoBehaviourPunCallbacks, IPunObservable
 {
+
     [SerializeField]
     public GameObject playerPrefab;
 
@@ -59,12 +67,12 @@ public class GameManager : MonoBehaviourPunCallbacks, IPunObservable
     }
 
    
-  
-
+ 
     private void Start()
     {
         SoundManager.Instance.PlayMusic("BattleMusic");
     }
+
     private void FixedUpdate()
     {
 
@@ -77,6 +85,7 @@ public class GameManager : MonoBehaviourPunCallbacks, IPunObservable
                 PlayerInfoManager.Instance.AddPlayer();
         
     }
+
 
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {

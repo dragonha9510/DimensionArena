@@ -20,7 +20,6 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     [SerializeField]
     TextMeshProUGUI connectText;
 
-
     int roomCount = 0;
     string defaultRoomName = "Room";
 
@@ -72,6 +71,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     {
         SceneManager.LoadScene("SingleTestScene");
     }
+
     [PunRPC]
     private void LoadingInGame()
     {

@@ -6,7 +6,6 @@ using System.Collections.Generic;
 
 public class AttackObject : MonoBehaviourPun
 {
-
     //AttackObject¿« ¡÷¿Œ
     public string ownerID;
     //JSB
@@ -15,8 +14,7 @@ public class AttackObject : MonoBehaviourPun
     [SerializeField] private int ultimatePoint;
     [SerializeField] private int damage;
 
-  
-
+ 
     [PunRPC]
     protected void OnCollisionToPlayer(string id)
     {
