@@ -1,8 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public class SoundManager : MonoBehaviour
+using Photon.Pun;
+public class SoundManager : MonoBehaviourPun
 {
     public enum PLAYMODE
     {
@@ -24,18 +24,22 @@ public class SoundManager : MonoBehaviour
         if (null == Instance)
         {
             Instance = this;
+            audioSource = GetComponent<AudioSource>();
             DontDestroyOnLoad(Instance);
         }
         else
             Destroy(gameObject);
     }
-
-    public void Start()
+    private void Start()
+    {
+       
+    }
+    public void LoadMusics()
     {
         foreach (string str in sceneNames)
         {
-            var audios = Resources.LoadAll<AudioClip>("Sounds/"+str);
-            foreach(AudioClip audio in audios)
+            var audios = Resources.LoadAll<AudioClip>("Sounds/" + str);
+            foreach (AudioClip audio in audios)
             {
                 if (false == AudioClips.ContainsKey(audio.name))
                 {
@@ -43,13 +47,19 @@ public class SoundManager : MonoBehaviour
                 }
             }
         }
-        
+        AudioClip clip = AudioClips["LobbyMusic"];
+        audioSource.clip = AudioClips["LobbyMusic"];
+        audioSource.Play();
+        audioSource.loop = true;
     }
-    private void ChangeBGM(string clipName)
+    
+    
+
+    public void PlayMusic(string clipName)
     {
-    }
-    private void PlayMusic()
-    {
+        audioSource.clip = AudioClips[clipName];
+        audioSource.Play();
+        audioSource.loop = true;
     }
     public AudioClip GetClip(string clipName)
     {

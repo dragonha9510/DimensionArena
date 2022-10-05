@@ -28,6 +28,11 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     private void Awake()
     {
         //Screen.SetResolution(1920, 1080, false);
+        
+    }
+    private void Start()
+    {
+        SoundManager.Instance.LoadMusics();
     }
     public void Connect()
     {

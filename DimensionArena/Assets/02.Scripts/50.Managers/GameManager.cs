@@ -63,6 +63,7 @@ public class GameManager : MonoBehaviourPunCallbacks, IPunObservable
 
     private void Start()
     {
+        SoundManager.Instance.PlayMusic("BattleMusic");
     }
     private void FixedUpdate()
     {
