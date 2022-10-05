@@ -1105,6 +1105,7 @@ GameObject:
   - component: {fileID: 806317274452519012}
   - component: {fileID: 8870261335253071263}
   - component: {fileID: 3657808801917838797}
+  - component: {fileID: 7957077136299214316}
   m_Layer: 0
   m_Name: PlayerInfoCanvas
   m_TagString: Untagged
@@ -1230,6 +1231,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d907ff353ce8c5f4fad80b0646d33706, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &7957077136299214316
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6357117442990280050}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80d1ea1ef1a99c54d9aecf03d03bc05d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerName: {fileID: 2286018880159179529}
+  hpBarImage: {fileID: 6013166623587837136}
 --- !u!1 &6988114353441052177
 GameObject:
   m_ObjectHideFlags: 0

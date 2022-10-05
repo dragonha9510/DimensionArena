@@ -10,8 +10,8 @@ public class Player : MonoBehaviourPun
     /// =============================
     /// Direction Region
     /// =============================
-    [SerializeField] private Transform directionLocation;
-    [HideInInspector] public Vector3 direction;
+    [SerializeField]  private Transform directionLocation;
+    [HideInInspector] public  Vector3 direction;
     
     /// ============================= 
 

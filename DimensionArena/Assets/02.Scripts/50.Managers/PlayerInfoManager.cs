@@ -212,11 +212,11 @@ public class PlayerInfoManager : MonoBehaviourPun
 
 
     [PunRPC]
-    public void ShieldIncrease(GameObject owner, GameObject target, float amount)
+    public void ShieldIncrease(string owner, string target, float amount)
     {
         for (int i = 0; i < PlayerObjectArr.Length; ++i)
         {
-            if (PlayerObjectArr[i] == target)
+            if (PlayerObjectArr[i].name == target)
             {
                 //playerInfoArr[i].owner.RPC("GetShield", RpcTarget.All, amount);
             }
@@ -278,42 +278,42 @@ public class PlayerInfoManager : MonoBehaviourPun
     /// >>>>>>>>>>>>>>>>>>>>>>>>>>
   
     #region Speed Method
-    public void SpeedIncrease(GameObject owner, GameObject target, float amount)
+    public void SpeedIncrease(string owner, string target, float amount)
     {
         for (int i = 0; i < PlayerObjectArr.Length; ++i)
         {
-            if (PlayerObjectArr[i] == target)
+            if (PlayerObjectArr[i].name == target)
             {
                 //playerInfoArr[i].owner.RPC("SpeedUp", RpcTarget.All, amount);
             }
         }
     }
-    public void SpeedIncrease(GameObject target, float amount)
+    public void SpeedIncrease(string target, float amount)
     {
         for (int i = 0; i < PlayerObjectArr.Length; ++i)
         {
-            if (PlayerObjectArr[i] == target)
+            if (PlayerObjectArr[i].name == target)
             {
                 //playerInfoArr[i].owner.RPC("SpeedUp", RpcTarget.All, amount);
             }
         }
     }
 
-    public void SpeedDecrease(GameObject owner, GameObject target, float amount)
+    public void SpeedDecrease(string owner, string target, float amount)
     {
         for (int i = 0; i < PlayerObjectArr.Length; ++i)
         {
-            if (PlayerObjectArr[i] == target)
+            if (PlayerObjectArr[i].name == target)
             {
                 //playerInfoArr[i].owner.RPC("SpeedDown", RpcTarget.All, amount);
             }
         }
     }
-    public void SpeedDecrease(GameObject target, float amount)
+    public void SpeedDecrease(string target, float amount)
     {
         for (int i = 0; i < PlayerObjectArr.Length; ++i)
         {
-            if (PlayerObjectArr[i] == target)
+            if (PlayerObjectArr[i].name == target)
             {
                 //playerInfoArr[i].owner.RPC("SpeedDown", RpcTarget.All, amount);
             }
@@ -325,20 +325,20 @@ public class PlayerInfoManager : MonoBehaviourPun
 
     /// 향후, 필요시 추가 구역
 
-    public void MaxSkiilPtIncrease(GameObject owner, GameObject target, float damage)
+    public void MaxSkiilPtIncrease(string owner, string target, float damage)
     {
 
     }
-    public void MaxSkiilPtIncrease(GameObject target, float damage)
+    public void MaxSkiilPtIncrease(string target, float damage)
     {
 
     }
 
-    public void MaxSkiilPtDecrease(GameObject owner, GameObject target, float damage)
+    public void MaxSkiilPtDecrease(string owner, string target, float damage)
     {
 
     }
-    public void MaxSkiilPtDecrease(GameObject target, float damage)
+    public void MaxSkiilPtDecrease(string target, float damage)
     {
 
     }

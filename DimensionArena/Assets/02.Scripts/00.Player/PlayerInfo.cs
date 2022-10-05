@@ -25,6 +25,7 @@ public class PlayerInfo
     /// Action Region
     /// =============================
     public event Action<float> EskillAmountChanged;
+    public event Action<float> EcurHPChanged;
 
 
     /// =============================
@@ -85,6 +86,7 @@ public class PlayerInfo
     {
         curHP -= damage;
         curHP = Mathf.Max(curHP, 0);
+        EcurHPChanged(curHP / maxHP);
     }
 
     [PunRPC]
@@ -92,6 +94,7 @@ public class PlayerInfo
     {
         curHP += amount;
         curHP = Mathf.Max(curHP, MaxHP);
+        EcurHPChanged(curHP/maxHP);
     }
 
     [PunRPC]
