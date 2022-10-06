@@ -14,6 +14,8 @@ public class ItemMove : MonoBehaviour
     [SerializeField]
     float decreaseRotation = 0.9f;
     [SerializeField]
+    float followSpeed = 1.0f;
+    [SerializeField]
     GameObject particle;
 
     Vector3 randBoing;
