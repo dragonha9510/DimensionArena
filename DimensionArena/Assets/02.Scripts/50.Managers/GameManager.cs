@@ -18,7 +18,7 @@ public class GameManager : MonoBehaviourPunCallbacks, IPunObservable
 
     [SerializeField]
     public GameObject playerPrefab;
-
+    public GAMEMODE GameMode { get; private set; }
     private float startTime = 1.0f;
 
     private static GameManager m_instance;
@@ -38,6 +38,10 @@ public class GameManager : MonoBehaviourPunCallbacks, IPunObservable
     {
         if (instance != this)
             Destroy(gameObject);
+
+        //Test Code
+        GameMode = GAMEMODE.Survival;
+
 
         Vector3 spawnPoint = new Vector3(0, 1, 0);
 
