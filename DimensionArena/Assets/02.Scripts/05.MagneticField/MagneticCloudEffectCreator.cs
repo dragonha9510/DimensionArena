@@ -138,9 +138,8 @@ public class MagneticCloudEffectCreator : MonoBehaviour
             for(int i = 0; i < realCreateCount; ++i)
             {
                 Vector3 randomPosition = new Vector3(Random.Range(randomXRange.x, randomXRange.y), this.transform.position.y, Random.Range(randomZRange.x, randomZRange.y));
-                GameObject cloud = Instantiate(magneticCloud, this.transform.position, this.transform.rotation);
+                GameObject cloud = ObjectPool.Instance.GetObjectInPool(CLIENTOBJ.CLIENTOBJ_CLOUDEFFECT);
                 cloud.transform.position = randomPosition;
-                cloud.transform.parent = this.gameObject.transform;
             }
             yield return cloudRandomSpacingTime;
         }

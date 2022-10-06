@@ -75,7 +75,7 @@ public class MagneticField : MonoBehaviourPun
     void Start()
     {
         // ObjectPool
-        ObjectPool.Instance.MakePool(CLIENTOBJ.CLIENTOBJ_CLOUDEFFECT, 50000);
+        ObjectPool.Instance.MakePool(CLIENTOBJ.CLIENTOBJ_CLOUDEFFECT, 10000);
         //
         if (!PhotonNetwork.IsMasterClient)
             return;

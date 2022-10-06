@@ -23,6 +23,9 @@ public class ObjectPool : MonoBehaviourPun
     [SerializeField]
     GameObject[] clientPrefabs;
 
+    [SerializeField]
+    int addPoolCount = 100;
+    
 
     public static ObjectPool Instance = null;
 
@@ -60,6 +63,7 @@ public class ObjectPool : MonoBehaviourPun
         obj.transform.parent = this.transform;
         return obj;
     }
+
     #endregion
 
 
@@ -79,6 +83,7 @@ public class ObjectPool : MonoBehaviourPun
             }
         }
     }
+
 
    /* public void MakePool(SERVEROBJ objType,int makeCount)
     {        
@@ -103,9 +108,15 @@ public class ObjectPool : MonoBehaviourPun
     }*/
    
 
+    
 
     public GameObject GetObjectInPool(CLIENTOBJ type)
     {
+        if(cliobjectPool[type].Count <= 0)
+        {
+            for(int i = 0; i < addPoolCount; ++i)
+                cliobjectPool[type].Enqueue(CreateObjectInResources(clientPrefabs[(int)type]));
+        }
         GameObject obj = cliobjectPool[type].Dequeue();
         obj.SetActive(true);
         return obj;        
