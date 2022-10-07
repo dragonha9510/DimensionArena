@@ -51,8 +51,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
 
 
     private bool NameOverLapCheck(string name)
-    {
-        PhotonNetwork.ConnectUsingSettings();
+    {        
         // 플레이어 이름 목록들을 받아온다.
         players = PhotonNetwork.PlayerList;
         foreach(Photon.Realtime.Player p in players)
@@ -69,10 +68,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
 
     public void Connect()
     {
-        if(!NameOverLapCheck(nameText.text))
-        {
-            PhotonNetwork.LocalPlayer.NickName = nameText.text;
-        }
+        PhotonNetwork.ConnectUsingSettings();
     }
     public override void OnConnectedToMaster()
     {
@@ -93,7 +89,11 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         
         Debug.Log("OnJoinedRoom");
 
+        if (!NameOverLapCheck(nameText.name))
+            return;
+
         LoadMatchMakingScene();
+
         if (startPlayerCount == PhotonNetwork.CurrentRoom.PlayerCount)
             photonView.RPC("LoadingInGame", RpcTarget.All);
         //if (PhotonNetwork.IsConnected)
