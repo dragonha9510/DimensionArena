@@ -57,11 +57,9 @@ public class LobbyManager : MonoBehaviourPunCallbacks
 
     public void Connect()
     {
-        Debug.Log("Connect");
         if(!NameOverLapCheck(nameText.text))
         {
             PhotonNetwork.LocalPlayer.NickName = nameText.text;
-            
             PhotonNetwork.ConnectUsingSettings();
         }
     }
@@ -81,18 +79,24 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     }
     public override void OnJoinedRoom()
     {
+        
         Debug.Log("OnJoinedRoom");
 
-
+        LoadMatchMakingScene();
         if (startPlayerCount == PhotonNetwork.CurrentRoom.PlayerCount)
             GetComponent<PhotonView>().RPC("LoadingInGame", RpcTarget.All);
-        else if (PhotonNetwork.IsConnected)
-        {
-            connectCount = PhotonNetwork.CurrentRoom.PlayerCount;
-            connectText.GetComponent<ConnectCountText>().RefreshServerText(connectCount);
-        }
+        //if (PhotonNetwork.IsConnected)
+        //{
+        //    connectCount = PhotonNetwork.CurrentRoom.PlayerCount;
+        //    connectText.GetComponent<ConnectCountText>().RefreshServerText(connectCount);
+        //}
     }
 
+
+    private void LoadMatchMakingScene()
+    {
+        PhotonNetwork.LoadLevel("MathMaking");
+    }
 
     public void LoadSingleTestMode()
     {
