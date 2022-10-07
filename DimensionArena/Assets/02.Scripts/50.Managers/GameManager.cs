@@ -74,7 +74,7 @@ public class GameManager : MonoBehaviourPunCallbacks, IPunObservable
  
     private void Start()
     {
-        SoundManager.Instance.PlayMusic("BattleMusic");
+        SoundManager.Instance.PlayBGM("BattleMusic");
     }
 
     private void FixedUpdate()

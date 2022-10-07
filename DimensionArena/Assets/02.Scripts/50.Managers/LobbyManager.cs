@@ -23,7 +23,10 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     int roomCount = 0;
     string defaultRoomName = "Room";
 
-
+    //
+    Photon.Realtime.Player[] players;
+   
+    
     private void Awake()
     {
         //Screen.SetResolution(1920, 1080, false);
@@ -31,13 +34,32 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     }
     private void Start()
     {
+        players = new Photon.Realtime.Player[startPlayerCount];
+
         SoundManager.Instance.LoadMusics();
     }
+
+
+    private bool NameOverLapCheck(string name)
+    {
+        // 플레이어 이름 목록들을 받아온다.
+        players = PhotonNetwork.PlayerList;
+        foreach(Photon.Realtime.Player p in players)
+        {
+            if (p.NickName == name)
+                return true;
+        }
+        return false;
+    }
+
     public void Connect()
     {
         Debug.Log("Connect");
-        PhotonNetwork.LocalPlayer.NickName = nameText.text;
-        PhotonNetwork.ConnectUsingSettings();
+        if(!NameOverLapCheck(nameText.text))
+        {
+            PhotonNetwork.LocalPlayer.NickName = nameText.text;
+            PhotonNetwork.ConnectUsingSettings();
+        }
     }
     public override void OnConnectedToMaster()
     {
@@ -56,7 +78,8 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     public override void OnJoinedRoom()
     {
         Debug.Log("OnJoinedRoom");
-        
+
+
         if (startPlayerCount == PhotonNetwork.CurrentRoom.PlayerCount)
             GetComponent<PhotonView>().RPC("LoadingInGame", RpcTarget.All);
         else if (PhotonNetwork.IsConnected)

@@ -28,7 +28,7 @@ public class CloudeEffect : MonoBehaviour
         liveTime = alliveTime;
         float randScale = Random.Range(minScale, maxScale);
         this.transform.localScale = new Vector3(randScale, randScale, 1);
-        StartCoroutine("ScaleUpdate");
+        StartCoroutine(ScaleUpdate());
     }
 
     private void SizeUp()
@@ -52,6 +52,7 @@ public class CloudeEffect : MonoBehaviour
                 SizeUp();
             else
                 SizeDown();
+
             yield return waitforSeconds;
         }
     }
@@ -60,6 +61,9 @@ public class CloudeEffect : MonoBehaviour
         if (!startUpdate)
             return;
         liveTime -= Time.deltaTime;
+        
+        //this.transform.position = new Vector3(this.transform.position.x + Random.Range(-0.01f,0.01f), this.transform.position.y, this.transform.position.z + Random.Range(-0.01f, 0.01f));
+
         if (0 > liveTime && false == UnDead)
         {
             startUpdate = false;

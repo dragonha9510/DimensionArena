@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
+
 public class SoundManager : MonoBehaviourPun
 {
     public enum PLAYMODE
@@ -14,25 +15,24 @@ public class SoundManager : MonoBehaviourPun
 
     public static SoundManager Instance;
 
-    private AudioSource audioSource;
+    private AudioSource bgmPlayer;
+    private AudioSource sfxPlayer;
+
     private Dictionary<string, AudioClip> AudioClips = new Dictionary<string, AudioClip>();
 
-
-
+    
     private void Awake()
     {
         if (null == Instance)
         {
             Instance = this;
-            audioSource = GetComponent<AudioSource>();
+            bgmPlayer = GetComponent<AudioSource>();
+            sfxPlayer = GetComponent<AudioSource>();
+
             DontDestroyOnLoad(Instance);
         }
         else
             Destroy(gameObject);
-    }
-    private void Start()
-    {
-       
     }
     public void LoadMusics()
     {
@@ -48,18 +48,34 @@ public class SoundManager : MonoBehaviourPun
             }
         }
         AudioClip clip = AudioClips["LobbyMusic"];
-        audioSource.clip = AudioClips["LobbyMusic"];
-        audioSource.Play();
-        audioSource.loop = true;
+        bgmPlayer.clip = AudioClips["LobbyMusic"];
+        bgmPlayer.Play();
+        bgmPlayer.loop = true;
     }
     
-    
-
-    public void PlayMusic(string clipName)
+    public void PlaySFXOneShot(string audioClipName)
     {
-        audioSource.clip = AudioClips[clipName];
-        audioSource.Play();
-        audioSource.loop = true;
+        if (null == AudioClips[audioClipName])
+            return;
+        else
+            sfxPlayer.clip = AudioClips[audioClipName];
+        sfxPlayer.Play();
+    }
+
+    public void PlaySFXAllClient(string audioClipName)
+    {
+        for(int i = 0; i < PlayerInfoManager.Instance.PlayerObjectArr.Length; ++i)
+        {
+            //PlayerInfoManager.Instance.PlayerObjectArr[i].name == photonView.ViewID
+        }
+        //PlayerInfoManager.Instance.PlayerObjectArr[]
+    }
+
+    public void PlayBGM(string clipName)
+    {
+        bgmPlayer.clip = AudioClips[clipName];
+        bgmPlayer.Play();
+        bgmPlayer.loop = true;
     }
     public AudioClip GetClip(string clipName)
     {
