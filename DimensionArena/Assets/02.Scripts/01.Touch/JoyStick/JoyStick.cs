@@ -48,6 +48,7 @@ public class JoyStick : MonoBehaviourPun, IBeginDragHandler, IDragHandler, IEndD
 
     public void SetDirection()
     {
-        player.direction = new Vector3( (lever.position.x - rectTransform.position.x) * 0.01f, 0, (lever.position.y - rectTransform.position.y) * 0.01f);
+        player.direction 
+            = new Vector3( (lever.position.x - rectTransform.position.x) * 0.01f, 0, (lever.position.y - rectTransform.position.y) * 0.01f);
     }
 }

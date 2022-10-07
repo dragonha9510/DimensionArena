@@ -22,7 +22,6 @@ public class JooHyeok_Atk: Player_Atk
         base.Start();
         // JSB
         audioSource = GetComponent<AudioSource>();
-        //
     }
 
     protected override void LateUpdate()
@@ -39,7 +38,8 @@ public class JooHyeok_Atk: Player_Atk
     IEnumerator AttackCoroutine()
     {
         isAttack = true;
-            
+        owner.CanDirectionChange = false;
+
         GameObject projectile;
 
         for (int i = 0; i < 2; ++i)
@@ -55,6 +55,7 @@ public class JooHyeok_Atk: Player_Atk
         }
 
         isAttack = false;
+        owner.CanDirectionChange = true;
     }
 
     public override void Skill1()
