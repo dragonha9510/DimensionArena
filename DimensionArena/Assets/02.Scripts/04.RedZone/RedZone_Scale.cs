@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Rendering.Universal;
 
 [ExecuteInEditMode]
-public class RedZone_Scail : MonoBehaviour
+public class RedZone_Scale : MonoBehaviour
 {
     [Tooltip("RectangleBoundary ( innerCircle )")]
     [SerializeField] private Vector2 size = new Vector2(8, 8);

@@ -66,8 +66,6 @@ public class MagneticCloudEffectCreator : MonoBehaviour
     {
         while (true)
         {
-            if (prevScale != this.transform.localScale)
-            {
                 if (null != partnerCloud)
                 {
 
@@ -133,7 +131,6 @@ public class MagneticCloudEffectCreator : MonoBehaviour
                             break;
                         }
                 }
-            }
             yield return cloudSpacingTime;
         }
     }

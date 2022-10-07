@@ -36,15 +36,27 @@ public class RedZone : MonoBehaviourPun
 
     private DelayMachine delayPositioning = new DelayMachine();
 
+    [SerializeField, Tooltip("TRUE means use Time, if Check false which will use repeatCnt")]
+    private bool isDestroyWithTime;
+
+    [SerializeField] private int repeatCnt = 1;
+    private int curRepeatCnt = 0;
+    [SerializeField] private float destroyTime = 120;
+    private float curDestroyTime = 0;
+
     // Start is called before the first frame update
     void Start()
     {
-        if (!PhotonNetwork.IsMasterClient)
+        if (PhotonNetwork.IsConnected && !PhotonNetwork.IsMasterClient)
             return;
         delayPositioning.DelayStart(startDelay);
         innerBorder.localScale = new Vector3(0, 2, 0);
-        //Redzone.gameObject.SetActive(false);
-        photonView.RPC("RedzoneActiveSetting", RpcTarget.All , false);
+
+        if(!PhotonNetwork.IsConnected)
+            Redzone.gameObject.SetActive(false);
+        else
+            photonView.RPC("RedzoneActiveSetting", RpcTarget.All , false);
+
         missileCnt = Random.Range(MinMaxmissileCntValue.x, MinMaxmissileCntValue.y);
     }
     [PunRPC]
@@ -60,8 +72,13 @@ public class RedZone : MonoBehaviourPun
     // Update is called once per frame
     void Update()
     {
-        if (!PhotonNetwork.IsMasterClient)
-            return;
+        if(PhotonNetwork.IsConnected)
+        { 
+            if (!PhotonNetwork.IsMasterClient)
+                return;
+        }
+
+        curDestroyTime += Time.deltaTime;
 
         Positioning();
         Prepare();
@@ -78,8 +95,10 @@ public class RedZone : MonoBehaviourPun
             Vector3 pos = transform.position + (Random.insideUnitSphere * transform.localScale.x * 0.5f);
             pos.y = Missile.transform.position.y;
 
-            //lastMissile = Instantiate(Missile, pos, Quaternion.identity);
-            lastMissile = PhotonNetwork.Instantiate(PHOTONPATH.PHOTONPATH_PREFAPBFOLDER + "Missile", pos, Quaternion.identity);
+            if (!PhotonNetwork.IsConnected)
+                lastMissile = Instantiate(Missile, pos, Quaternion.identity);
+            else
+                lastMissile = PhotonNetwork.Instantiate(PHOTONPATH.PHOTONPATH_PREFAPBFOLDER + "Missile", pos, Quaternion.identity);
             delayShot.DelayReset();
             ++curMissileCnt;
 
@@ -89,25 +108,43 @@ public class RedZone : MonoBehaviourPun
                 {
                     pos = transform.position + (Random.insideUnitSphere * transform.localScale.x * 0.5f);
                     pos.y = Missile.transform.position.y;
-                    //lastMissile = Instantiate(Missile, pos, Quaternion.identity);
-                    lastMissile = PhotonNetwork.Instantiate(PHOTONPATH.PHOTONPATH_PREFAPBFOLDER + "Item_Missile", pos, Quaternion.identity);
-
+                    if (!PhotonNetwork.IsConnected)
+                        lastMissile = Instantiate(Missile, pos, Quaternion.identity);
+                    else    
+                        lastMissile = PhotonNetwork.Instantiate(PHOTONPATH.PHOTONPATH_PREFAPBFOLDER + "Item_Missile", pos, Quaternion.identity);
                 }
 
                 delayShot.DelayEnd(); 
             }
         }
 
-        if(lastMissile == null && curMissileCnt >= missileCnt)
+        if (lastMissile == null && curMissileCnt >= missileCnt)
         {
+            ++curRepeatCnt;
             delayPositioning.DelayStart(positionDelay);
-            //innerBorder.localScale = new Vector3(0, 2, 0);
-            photonView.RPC("InBorderScaleSetting", RpcTarget.All, new Vector3(0,2,0));
-            photonView.RPC("RedzoneActiveSetting", RpcTarget.All, false);
+
+            if (!PhotonNetwork.IsConnected)
+            {
+                innerBorder.transform.position = new Vector3(transform.position.x, 0.5f, transform.position.z);
+                innerBorder.localScale = new Vector3(0, 2, 0);
+                Redzone.gameObject.SetActive(false);
+            }
+            else
+            {
+                photonView.RPC("InBorderScaleSetting", RpcTarget.All, new Vector3(0, 2, 0));
+                photonView.RPC("RedzoneActiveSetting", RpcTarget.All, false);
+            }
             curMissileCnt = 0;
             missileCnt = Random.Range(MinMaxmissileCntValue.x, MinMaxmissileCntValue.y);
+
+
+            if (!isDestroyWithTime && curRepeatCnt >= repeatCnt)
+                Destroy(this.gameObject);
+            else if (isDestroyWithTime && curDestroyTime >= destroyTime)
+                Destroy(this.gameObject);
         }
     }
+
     [PunRPC]
     private void InBorderScaleSetting(Vector3 scale)
     {
@@ -127,10 +164,17 @@ public class RedZone : MonoBehaviourPun
             else
                 safezone = new SafeZone();
 
-            //transform.position = new Vector3(Random.Range(safezone.left, safezone.right), 0, Random.Range(safezone.top, safezone.bottom));
-            Vector3 newPos = new Vector3(Random.Range(safezone.left, safezone.right), 0, Random.Range(safezone.top, safezone.bottom));
-            photonView.RPC("RedZonePositioningOnServer", RpcTarget.All, newPos);
-            photonView.RPC("RedzoneActiveSetting", RpcTarget.All, true);
+            if (!PhotonNetwork.IsConnected)
+            {
+                transform.position = new Vector3(Random.Range(safezone.left, safezone.right), 0, Random.Range(safezone.top, safezone.bottom));
+                Redzone.gameObject.SetActive(true);
+            }
+            else
+            {
+                Vector3 newPos = new Vector3(Random.Range(safezone.left, safezone.right), 0, Random.Range(safezone.top, safezone.bottom));
+                photonView.RPC("RedZonePositioningOnServer", RpcTarget.All, newPos);
+                photonView.RPC("RedzoneActiveSetting", RpcTarget.All, true);
+            }
             delayPositioning.DelayEnd();
             isPreparing = true;
             prepareSpeed = new Vector3(1 / prepareDelay, 0, 1 / prepareDelay);
@@ -150,15 +194,20 @@ public class RedZone : MonoBehaviourPun
             return;
 
         Vector3 scale = innerBorder.localScale + prepareSpeed * Time.deltaTime;
-        photonView.RPC("InBorderScaleSetting", RpcTarget.All, scale);
+        if(!PhotonNetwork.IsConnected)
+            innerBorder.localScale = scale;
+        else
+            photonView.RPC("InBorderScaleSetting", RpcTarget.All, scale);
 
         if (innerBorder.localScale.x >= 1)
         {
             isReady = true;
             isPreparing = false;
             delayShot.DelayStart(shotDelay);
-            //innerBorder.localScale = new Vector3(1, 2f, 1);
-            photonView.RPC("InBorderScaleSetting", RpcTarget.All, new Vector3(1, 2f, 1));
+            if(!PhotonNetwork.IsConnected)
+                innerBorder.localScale = new Vector3(1, 2f, 1);
+            else
+                photonView.RPC("InBorderScaleSetting", RpcTarget.All, new Vector3(1, 2f, 1));
         }
     }
 }

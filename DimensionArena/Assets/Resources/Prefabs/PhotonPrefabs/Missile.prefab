@@ -168,6 +168,11 @@ MonoBehaviour:
     type: 3}
   outterboundaryPrefab: {fileID: 262183071036304738, guid: 496fe31225d4dbe45b95a2605987d679,
     type: 3}
+  boundaryProj: {fileID: 262183071036304729, guid: 4591839d41c400d43bf6eb8c50d1f39e,
+    type: 3}
+  outterboundaryProj: {fileID: 262183071036304729, guid: 496fe31225d4dbe45b95a2605987d679,
+    type: 3}
+  missileScale: {x: 2, y: 2}
 --- !u!114 &190571489047571183
 MonoBehaviour:
   m_ObjectHideFlags: 0

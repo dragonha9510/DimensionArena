@@ -24,12 +24,12 @@ public class Prototype_TargetCamera : MonoBehaviour
     {
         //transform.LookAt(target);
         Vector3 location = target.position + interval;
-
+        location.y = transform.position.y;
         Vector3 direction = location - transform.position;
-        float speed = direction.magnitude;
+
+        float speed = direction.magnitude * 2;
         direction.Normalize();
 
-        transform.Translate(direction * speed * Time.deltaTime);
-
+        transform.position = transform.position + (direction * speed * Time.deltaTime);
     }
 }
