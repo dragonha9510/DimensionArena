@@ -47,9 +47,9 @@ public class InGameUIManager : MonoBehaviour
         switch (mode)
         {
             case GAMEMODE.Survival:
-                for(int i = 0; i < PlayerInfoManager.Instance.PlayerObjectArr.Length; ++i)
+                for(int i = 0; i < PlayerInfoManager.Instance.PlayerInfoArr.Length; ++i)
                 {
-                    //PlayerInfoManager.Instance.PlayerInfoAr 
+                    //PlayerInfoManager.Instance.PlayerInfoArr[i].EDeadPlayer += PlayerDead();
                 }
                 break;
             case GAMEMODE.FreeForAll:
@@ -66,7 +66,7 @@ public class InGameUIManager : MonoBehaviour
         }
     }
 
-    public void PlayerDead(PlayerInfo owner, PlayerInfo target)
+    public void PlayerDead()
     {
         //ui¶Ù¿ì±â
 

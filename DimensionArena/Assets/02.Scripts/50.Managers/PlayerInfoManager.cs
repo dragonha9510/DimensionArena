@@ -194,7 +194,8 @@ public class PlayerInfoManager : MonoBehaviourPun
             if (playerInfoArr[i].ID == targetId)
             {
                 playerInfoArr[i].Damaged(damage);
-                //playerInfoArr[i].IsAlive = playerInfoArr[i].CurHP == 0 ? true : false;
+                if (PlayerInfoArr[i].CurHP == 0)
+                    //playerInfoArr[i].PlayerDie(owner);
                 break;
             }
         }
