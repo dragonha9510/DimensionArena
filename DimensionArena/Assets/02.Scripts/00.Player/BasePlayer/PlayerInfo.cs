@@ -26,7 +26,7 @@ public class PlayerInfo
     /// =============================
     public event Action<float> EskillAmountChanged = (param) => { };
     public event Action<float> EcurHPChanged = (param) => { };
-    public event Action<Sprite> EDeadPlayer = (param) => { };
+    public event Action EDeadPlayer = () => { };
     public event Action<Sprite> EKillTarget = (param) => { };
 
 
@@ -48,7 +48,8 @@ public class PlayerInfo
     [SerializeField] private float curShield;
     [SerializeField] private float maxShield;
 
-    [SerializeField] private Sprite thumbnail_Player; 
+    [SerializeField] private Sprite thumbnail; 
+
     public float MaxHP { get { return maxHP; }  }
     public float CurHP { get { return CurHP; } }
     public float CurSkillPoint { get { return curSkillPoint; } }
@@ -59,6 +60,8 @@ public class PlayerInfo
     public float MaxShield { get { return maxShield; } }
     public string ID { get { return id; } }
     public bool IsAlive { get { return isAlive; }  }
+
+    public Sprite ThumbNail { get { return thumbnail; } }
     #endregion
 
 
@@ -132,10 +135,10 @@ public class PlayerInfo
     }
 
     [PunRPC]
-    public void PlayerDie(PlayerInfo target)
+    public void PlayerDie()
     {
         isAlive = false;
-        EDeadPlayer(target.thumbnail_Player);
+        EDeadPlayer();
     }
     #endregion
 

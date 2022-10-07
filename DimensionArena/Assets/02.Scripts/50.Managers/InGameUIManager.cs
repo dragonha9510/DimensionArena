@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -21,8 +22,9 @@ public class InGameUIManager : MonoBehaviour
     private Dictionary<string, RectTransform>  DicInfoTransform;
 
     [SerializeField] private TextMeshProUGUI dynamicText;
-    private object dynamicContent;
-    public object DynamicContent { get { return dynamicText; } set { DynamicContent = value; } }
+
+    private float dynamicContent;
+    public float DynamicContent { get { return dynamicContent; } set { DynamicContent = value; } }
 
     [Header("EndUI")]
     [SerializeField] private GameObject GameEndGroup;
@@ -49,7 +51,8 @@ public class InGameUIManager : MonoBehaviour
             case GAMEMODE.Survival:
                 for(int i = 0; i < PlayerInfoManager.Instance.PlayerInfoArr.Length; ++i)
                 {
-                    //PlayerInfoManager.Instance.PlayerInfoArr[i].EDeadPlayer += PlayerDead();
+                    PlayerInfoManager.Instance.PlayerInfoArr[i].EDeadPlayer += 
+                        DeadPlayer; 
                 }
                 break;
             case GAMEMODE.FreeForAll:
@@ -66,10 +69,10 @@ public class InGameUIManager : MonoBehaviour
         }
     }
 
-    public void PlayerDead()
+    private void DeadPlayer()
     {
-        //ui¶Ù¿ì±â
-
+        dynamicContent -= 1;
+        dynamicText.text = ((int)dynamicContent).ToString();
     }
 
 
