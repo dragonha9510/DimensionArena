@@ -45,7 +45,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     private void Start()
     {
         players = new Photon.Realtime.Player[startPlayerCount];
-
+        
         SoundManager.Instance.LoadMusics();
     }
 
@@ -89,7 +89,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         
         Debug.Log("OnJoinedRoom");
 
-        if (NameOverLapCheck(nameText.name))
+        if (NameOverLapCheck(nameText.text))
             return;
 
         LoadMatchMakingScene();
@@ -106,6 +106,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
 
     private void LoadMatchMakingScene()
     {
+        PhotonNetwork.NickName = nameText.text;
         PhotonNetwork.LoadLevel("MathMaking");
     }
 
