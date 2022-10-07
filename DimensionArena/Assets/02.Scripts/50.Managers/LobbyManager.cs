@@ -8,6 +8,11 @@ using UnityEngine.SceneManagement;
 
 public class LobbyManager : MonoBehaviourPunCallbacks
 {
+
+    private static LobbyManager Instance;
+
+
+
     // 시작 플레이어 제한 수 입니다
     [SerializeField]
     int startPlayerCount = 4;
@@ -29,8 +34,13 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     
     private void Awake()
     {
-        //Screen.SetResolution(1920, 1080, false);
-        
+        if (null == Instance)
+        {
+            Instance = this;
+            DontDestroyOnLoad(Instance);
+        }
+        else
+            Destroy(this.gameObject);
     }
     private void Start()
     {
@@ -42,6 +52,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
 
     private bool NameOverLapCheck(string name)
     {
+        PhotonNetwork.ConnectUsingSettings();
         // 플레이어 이름 목록들을 받아온다.
         players = PhotonNetwork.PlayerList;
         foreach(Photon.Realtime.Player p in players)
@@ -49,6 +60,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
             if (p.NickName == name)
             {
                 Debug.Log("NickName OverLap!!");
+                PhotonNetwork.Disconnect();
                 return true;
             }
         }
@@ -60,7 +72,6 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         if(!NameOverLapCheck(nameText.text))
         {
             PhotonNetwork.LocalPlayer.NickName = nameText.text;
-            PhotonNetwork.ConnectUsingSettings();
         }
     }
     public override void OnConnectedToMaster()
@@ -84,7 +95,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
 
         LoadMatchMakingScene();
         if (startPlayerCount == PhotonNetwork.CurrentRoom.PlayerCount)
-            GetComponent<PhotonView>().RPC("LoadingInGame", RpcTarget.All);
+            photonView.RPC("LoadingInGame", RpcTarget.All);
         //if (PhotonNetwork.IsConnected)
         //{
         //    connectCount = PhotonNetwork.CurrentRoom.PlayerCount;

@@ -708,6 +708,7 @@ MonoBehaviour:
     maxSkillPoint: 100
     speed: 3
     maxSpeed: 6
+    isAlive: 0
     curShield: 0
     maxShield: 100
   attack: {fileID: 0}
