@@ -100,4 +100,4 @@ MonoBehaviour:
   minScale: 0.1
   maxScale: 1
   correctionValue: 0.01
-  alliveTime: 0
+  alliveTime: 3

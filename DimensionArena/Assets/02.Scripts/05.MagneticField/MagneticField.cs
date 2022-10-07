@@ -2,15 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
-public struct SafeZone 
+public struct SafeZone
 {
 
     public int phaseIndex;
 
-    public float left; 
-    public float right; 
-    public float top; 
-    public float bottom; 
+    public float left;
+    public float right;
+    public float top;
+    public float bottom;
     public float height { get { return top - bottom; } }
     public float width { get { return right - left; } }
 
@@ -58,7 +58,7 @@ public class MagneticField : MonoBehaviourPun
     private float topFrameCorrection;
     private float bottomFrameCorrection;
 
-    
+
 
 
     private List<GameObject> magneticfieldObj = new List<GameObject>();
@@ -75,12 +75,12 @@ public class MagneticField : MonoBehaviourPun
     void Start()
     {
         // ObjectPool
-        ObjectPool.Instance.MakePool(CLIENTOBJ.CLIENTOBJ_CLOUDEFFECT, 50000);
+        ObjectPool.Instance.MakePool(CLIENTOBJ.CLIENTOBJ_CLOUDEFFECT, 5000);
         //
         if (!PhotonNetwork.IsMasterClient)
             return;
 
-        
+
         // 확장 주기 시간 설정
         decreaseOneCircleActiveTime = decreaseTime / (float)damageZoneTimeDivideCount;
 
@@ -119,16 +119,16 @@ public class MagneticField : MonoBehaviourPun
         SetEachOther(cloud, rightBottomGround, leftBottomGround);
 
         cloud.GetComponent<MagneticCloudEffectCreator>().originalScale = originalScale[1];
- 
+
 
         magneticfieldObj.Add(cloud);
-        if(PhotonNetwork.IsMasterClient)
+        if (PhotonNetwork.IsMasterClient)
         {
             photonView.RPC("SettingCloudType", RpcTarget.All);
             photonView.RPC("SettingOriginalScale", RpcTarget.All, originalScale[0], originalScale[1]);
             photonView.RPC("SettingPartnerCloud", RpcTarget.All);
         }
-       
+
         calculatedSafeZones = new SafeZone[damageZoneTimeDivideCount + 1];
 
         SettingRandomPosition();
@@ -144,7 +144,7 @@ public class MagneticField : MonoBehaviourPun
         GameObject.Find("MagneticBottomRounge(Clone)").GetComponent<MagneticCloudEffectCreator>().cloudType = MagneticCloudPos.MagneticCloudPos_Bottom;
     }
     [PunRPC]
-    void SettingOriginalScale(float LR_Original,float TB_Original)
+    void SettingOriginalScale(float LR_Original, float TB_Original)
     {
         GameObject.Find("MagneticLeftRounge(Clone)").GetComponent<MagneticCloudEffectCreator>().originalScale = LR_Original;
         GameObject.Find("MagneticRightRounge(Clone)").GetComponent<MagneticCloudEffectCreator>().originalScale = LR_Original;
@@ -157,7 +157,7 @@ public class MagneticField : MonoBehaviourPun
         {// 쓰레기코드
             GameObject.Find("MagneticLeftRounge(Clone)").GetComponent<MagneticCloudEffectCreator>().partnerCloud[0] = GameObject.Find("MagneticTopRounge(Clone)");
             GameObject.Find("MagneticLeftRounge(Clone)").GetComponent<MagneticCloudEffectCreator>().partnerCloud[1] = GameObject.Find("MagneticBottomRounge(Clone)");
-                                                                                                                                                           
+
             GameObject.Find("MagneticRightRounge(Clone)").GetComponent<MagneticCloudEffectCreator>().partnerCloud[0] = GameObject.Find("MagneticTopRounge(Clone)");
             GameObject.Find("MagneticRightRounge(Clone)").GetComponent<MagneticCloudEffectCreator>().partnerCloud[1] = GameObject.Find("MagneticBottomRounge(Clone)");
 
@@ -205,13 +205,13 @@ public class MagneticField : MonoBehaviourPun
         // 자기장이 줄어들 시간에 맞춰서 비례해서 확장되야 함으로 1초에 확장될 양은 확장량 / 줄어들 초
         leftCorrection = (magneticfieldpos.x - magneticfieldScale.x / 2) - leftTopGround.position.x;
         leftFrameCorrection = leftCorrection / decreaseTime;
-        
+
         rightCorrection = rightBottomGround.position.x - (magneticfieldpos.x + magneticfieldScale.x / 2);
         rightFrameCorrection = rightCorrection / decreaseTime;
-        
+
         topCorrection = leftTopGround.position.z - (magneticfieldpos.y + magneticfieldScale.y / 2);
         topFrameCorrection = topCorrection / decreaseTime;
-        
+
         bottomCorrection = (magneticfieldpos.y - magneticfieldScale.y / 2) - leftBottomGround.position.z;
         bottomFrameCorrection = bottomCorrection / decreaseTime;
 
@@ -231,7 +231,7 @@ public class MagneticField : MonoBehaviourPun
 
     }
 
-    void SetEachOther(GameObject newMagneticField ,Transform start, Transform end)
+    void SetEachOther(GameObject newMagneticField, Transform start, Transform end)
     {
         Vector3 pos;
         Vector3 scale;
@@ -263,7 +263,7 @@ public class MagneticField : MonoBehaviourPun
             newMagneticField.transform.localPosition = pos;
             newMagneticField.transform.localScale = scale;
         }
-        
+
     }
 
     void expansionMangeticField()
@@ -271,8 +271,6 @@ public class MagneticField : MonoBehaviourPun
         // 확대가 될 양
         float expanstionValue = leftFrameCorrection * Time.deltaTime;
         float correctionValue = magneticfieldObj[(int)CLOUDTYPE.CLOUDTYPE_LEFT].transform.localScale.x;
-
-        Debug.Log(expanstionValue);
 
         //왼쪽 자기장면 확대
         magneticfieldObj[(int)CLOUDTYPE.CLOUDTYPE_LEFT].transform.localScale = new Vector3(Mathf.Abs(magneticfieldObj[(int)CLOUDTYPE.CLOUDTYPE_LEFT].transform.localScale.x + expanstionValue)
@@ -307,14 +305,14 @@ public class MagneticField : MonoBehaviourPun
                                                                 , Mathf.Abs(magneticfieldObj[(int)CLOUDTYPE.CLOUDTYPE_TOP].transform.localScale.z + expanstionValue));
         //상단 자기장면 보정
         correctionValue = expanstionValue / 2;
-        magneticfieldObj[(int)CLOUDTYPE.CLOUDTYPE_TOP].transform.localPosition = new Vector3(magneticfieldObj[(int)CLOUDTYPE.CLOUDTYPE_TOP].transform.position.x 
+        magneticfieldObj[(int)CLOUDTYPE.CLOUDTYPE_TOP].transform.localPosition = new Vector3(magneticfieldObj[(int)CLOUDTYPE.CLOUDTYPE_TOP].transform.position.x
                                                                 , magneticfieldObj[(int)CLOUDTYPE.CLOUDTYPE_TOP].transform.position.y
                                                                 , magneticfieldObj[(int)CLOUDTYPE.CLOUDTYPE_TOP].transform.position.z - correctionValue);
 
 
 
         //하단 자기장면 확대
-        expanstionValue = bottomFrameCorrection   * Time.deltaTime;
+        expanstionValue = bottomFrameCorrection * Time.deltaTime;
 
         correctionValue = magneticfieldObj[(int)CLOUDTYPE.CLOUDTYPE_BOTOTM].transform.localScale.z;
         magneticfieldObj[(int)CLOUDTYPE.CLOUDTYPE_BOTOTM].transform.localScale = new Vector3(Mathf.Abs(magneticfieldObj[(int)CLOUDTYPE.CLOUDTYPE_BOTOTM].transform.localScale.x)
@@ -336,7 +334,7 @@ public class MagneticField : MonoBehaviourPun
 
     void FixedUpdate()
     {
-        if (!photonView.IsMine)
+        if (!PhotonNetwork.IsMasterClient)
             return;
         if (decreaseOneCircleActiveTime <= divideTime)
         {

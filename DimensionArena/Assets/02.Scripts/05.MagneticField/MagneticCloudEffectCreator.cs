@@ -15,7 +15,7 @@ public class MagneticCloudEffectCreator : MonoBehaviour
     private int createCloudCount = 3;
     // 구름 생성 간격 입니다 . ( 가에 구름만 )
     [SerializeField]
-    private float cloudSpacing; 
+    private float cloudSpacing;
 
 
     [SerializeField]
@@ -34,7 +34,7 @@ public class MagneticCloudEffectCreator : MonoBehaviour
 
     public GameObject[] partnerCloud = new GameObject[2];
 
-    
+
 
     private Vector2 outLineCloudRange;
 
@@ -48,8 +48,14 @@ public class MagneticCloudEffectCreator : MonoBehaviour
     Vector2 randomZRange;
 
 
+    Vector3 prevScale;
+
+
+
     void Start()
     {
+        prevScale = this.transform.localScale;
+
         cloudRandomSpacingTime = new WaitForSeconds(randomSpacingTime);
         cloudSpacingTime = new WaitForSeconds(spacingTime);
 
@@ -58,88 +64,123 @@ public class MagneticCloudEffectCreator : MonoBehaviour
     }
     IEnumerator CreateEdgeCloud()
     {
-        
-        while(true)
+        while (true)
         {
-            if (null != partnerCloud) 
+            if (prevScale != this.transform.localScale)
             {
-                
-                 switch (cloudType)
+                if (null != partnerCloud)
                 {
-                    // 왼쪽 오른쪽은 z 축 기준으로 위에서 밑으로 구름들을 생성해야 한다.
-                    case MagneticCloudPos.MagneticCloudPos_Left:
-                    case MagneticCloudPos.MagneticCloudPos_Right:
-                        outLineCloudRange.x = this.transform.position.z + Mathf.Abs(this.transform.localScale.z) / 2;
-                        outLineCloudRange.y = this.transform.position.z - Mathf.Abs(this.transform.localScale.z) / 2;
-                        {// 중복코드
-                            // 왼쪽 상단 줄이기
-                            outLineCloudRange.x -= partnerCloud[0].transform.localScale.z;
-                            // 왼쪽 하단 줄이기
-                            outLineCloudRange.y += partnerCloud[1].transform.localScale.z;
-                        }
-                        break;
-                    // 위쪽 아래쪽은 x 축 기준으로 위에서 왼쪽에서 오른쪽으로 구름들을 생성해야 한다.
-                    case MagneticCloudPos.MagneticCloudPos_Top:
-                    case MagneticCloudPos.MagneticCloudPos_Bottom:
-                        outLineCloudRange.x = this.transform.position.x - Mathf.Abs(this.transform.localScale.x) / 2;
-                        outLineCloudRange.y = this.transform.position.x + Mathf.Abs(this.transform.localScale.x) / 2;
-                        {// 중복코드
-                         // 상단 왼쪽 줄이기
-                            outLineCloudRange.x += partnerCloud[0].transform.localScale.x;
-                            // 상단 오른쪽 줄이기
-                            outLineCloudRange.y -= partnerCloud[1].transform.localScale.x;
-                        }
-                        break;
+
+                    switch (cloudType)
+                    {
+                        // 왼쪽 오른쪽은 z 축 기준으로 위에서 밑으로 구름들을 생성해야 한다.
+                        case MagneticCloudPos.MagneticCloudPos_Left:
+                        case MagneticCloudPos.MagneticCloudPos_Right:
+                            outLineCloudRange.x = this.transform.position.z + Mathf.Abs(this.transform.localScale.z) / 2;
+                            outLineCloudRange.y = this.transform.position.z - Mathf.Abs(this.transform.localScale.z) / 2;
+                            {// 중복코드
+                             // 왼쪽 상단 줄이기
+                                outLineCloudRange.x -= partnerCloud[0].transform.localScale.z;
+                                // 왼쪽 하단 줄이기
+                                outLineCloudRange.y += partnerCloud[1].transform.localScale.z;
+                            }
+                            break;
+                        // 위쪽 아래쪽은 x 축 기준으로 위에서 왼쪽에서 오른쪽으로 구름들을 생성해야 한다.
+                        case MagneticCloudPos.MagneticCloudPos_Top:
+                        case MagneticCloudPos.MagneticCloudPos_Bottom:
+                            outLineCloudRange.x = this.transform.position.x - Mathf.Abs(this.transform.localScale.x) / 2;
+                            outLineCloudRange.y = this.transform.position.x + Mathf.Abs(this.transform.localScale.x) / 2;
+                            {// 중복코드
+                             // 상단 왼쪽 줄이기
+                                outLineCloudRange.x += partnerCloud[0].transform.localScale.x;
+                                // 상단 오른쪽 줄이기
+                                outLineCloudRange.y -= partnerCloud[1].transform.localScale.x;
+                            }
+                            break;
+                    }
+                    prevScale = this.transform.localScale;
+
                 }
-            }
-            switch (cloudType)
+                switch (cloudType)
                 {
                     // 왼쪽은 z 축 기준으로 위에서 밑으로 구름들을 생성해야 한다.
                     // 그렇다면 고정된 값은 x 축이 고정되어 있을 것 이다.
                     case MagneticCloudPos.MagneticCloudPos_Left:
                     case MagneticCloudPos.MagneticCloudPos_Right:
-                        for (float z = outLineCloudRange.x; z > outLineCloudRange.y; z -= cloudSpacing)
                         {
-                            GameObject cloud = ObjectPool.Instance.GetObjectInPool(CLIENTOBJ.CLIENTOBJ_CLOUDEFFECT);
-                            cloud.transform.position = new Vector3(this.transform.position.x + (Mathf.Abs(this.transform.localScale.x) / 2) * (cloudType == MagneticCloudPos.MagneticCloudPos_Right ? -1 : 1 )
-                                                                    , this.transform.position.y
-                                                                    , z);
-
-                        }
-                    break;
-                    case MagneticCloudPos.MagneticCloudPos_Top:
-                    case MagneticCloudPos.MagneticCloudPos_Bottom:
-                        for (float x = outLineCloudRange.x; x < outLineCloudRange.y; x += cloudSpacing)
-                        {
-                            //GameObject cloud = Instantiate(magneticCloud, this.transform.position, this.transform.rotation);
-                            GameObject cloud = ObjectPool.Instance.GetObjectInPool(CLIENTOBJ.CLIENTOBJ_CLOUDEFFECT);
-                            cloud.transform.position = new Vector3(x
-                                                                   , this.transform.position.y
-                                                                   , this.transform.position.z + (Mathf.Abs(this.transform.localScale.z) / 2) * (cloudType == MagneticCloudPos.MagneticCloudPos_Top ? -1 : 1));
+                            float spacingValue = Random.Range(-cloudSpacing, cloudSpacing);
+                            for (float z = outLineCloudRange.x; z > outLineCloudRange.y; z -= cloudSpacing)
+                            {
+                                GameObject cloud = ObjectPool.Instance.GetObjectInPool(CLIENTOBJ.CLIENTOBJ_CLOUDEFFECT, null
+                                                                        , new Vector3(this.transform.position.x + (Mathf.Abs(this.transform.localScale.x) / 2) * (cloudType == MagneticCloudPos.MagneticCloudPos_Right ? -1 : 1)
+                                                                        , this.transform.position.y + 0.5f
+                                                                        , z + spacingValue));
+                                cloud.GetComponent<CloudeEffect>().StartEffect();
+                            }
                         }
                         break;
+                    case MagneticCloudPos.MagneticCloudPos_Top:
+                    case MagneticCloudPos.MagneticCloudPos_Bottom:
+                        {
+                            float spacingValue = Random.Range(-cloudSpacing, cloudSpacing);
+                            for (float x = outLineCloudRange.x; x < outLineCloudRange.y; x += cloudSpacing)
+                            {
+                                //GameObject cloud = Instantiate(magneticCloud, this.transform.position, this.transform.rotation);
+                                GameObject cloud = ObjectPool.Instance.GetObjectInPool(CLIENTOBJ.CLIENTOBJ_CLOUDEFFECT, null
+                                                                       , new Vector3(x + spacingValue, this.transform.position.y + 0.5f, this.transform.position.z + (Mathf.Abs(this.transform.localScale.z) / 2) * (cloudType == MagneticCloudPos.MagneticCloudPos_Top ? -1 : 1)));
+                                cloud.GetComponent<CloudeEffect>().StartEffect();
+                            }
+                            break;
+                        }
                 }
-                yield return cloudSpacingTime;
+            }
+            yield return cloudSpacingTime;
         }
     }
+
+    private void SetCloudRange()
+    {
+        
+        randomXRange.x = this.transform.position.x - Mathf.Abs(this.transform.localScale.x) / 2;
+        randomXRange.y = this.transform.position.x + Mathf.Abs(this.transform.localScale.x) / 2;
+        randomZRange.x = this.transform.position.z - Mathf.Abs(this.transform.localScale.z) / 2;
+        randomZRange.y = this.transform.position.z + Mathf.Abs(this.transform.localScale.z) / 2;
+
+        switch (cloudType)
+        {
+            case MagneticCloudPos.MagneticCloudPos_Left:
+                randomZRange.y -= partnerCloud[0].transform.localScale.z;
+                break;
+            case MagneticCloudPos.MagneticCloudPos_Right:
+                randomZRange.x += partnerCloud[1].transform.localScale.z;
+                break;
+            case MagneticCloudPos.MagneticCloudPos_Bottom:
+                randomXRange.x += partnerCloud[0].transform.localScale.x;
+                break;
+            case MagneticCloudPos.MagneticCloudPos_Top:
+                randomXRange.y -= partnerCloud[1].transform.localScale.x;
+                break;
+        }
+
+    }
+
+
+
     IEnumerator CreateRandomCloud()
     {
         while (true)
         {
-            randomXRange.x = this.transform.position.x - Mathf.Abs(this.transform.localScale.x) / 2;
-            randomXRange.y = this.transform.position.x + Mathf.Abs(this.transform.localScale.x) / 2;
-            randomZRange.x = this.transform.position.z - Mathf.Abs(this.transform.localScale.z) / 2;
-            randomZRange.y = this.transform.position.z + Mathf.Abs(this.transform.localScale.z) / 2;
+            SetCloudRange();
             // 스케일에 따른 비율 조절
-            float nowScale = Mathf.Abs(this.transform.localScale.x) * Mathf.Abs(this.transform.localScale.z);
+            float nowScale = Mathf.Abs(randomXRange.y - randomXRange.x) * Mathf.Abs(randomZRange.y - randomZRange.x);
 
             int realCreateCount = Mathf.RoundToInt((float)createCloudCount * (nowScale / originalScale));
 
-            for(int i = 0; i < realCreateCount; ++i)
+            for (int i = 0; i < realCreateCount; ++i)
             {
-                Vector3 randomPosition = new Vector3(Random.Range(randomXRange.x, randomXRange.y), this.transform.position.y, Random.Range(randomZRange.x, randomZRange.y));
-                GameObject cloud = Instantiate(magneticCloud, this.transform.position, this.transform.rotation);
-                cloud.transform.position = randomPosition;
+                Vector3 randomPosition = new Vector3(Random.Range(randomXRange.x, randomXRange.y), this.transform.position.y + 0.5f, Random.Range(randomZRange.x, randomZRange.y));
+                GameObject cloud = ObjectPool.Instance.GetObjectInPool(CLIENTOBJ.CLIENTOBJ_CLOUDEFFECT, null, randomPosition);
+                cloud.GetComponent<CloudeEffect>().StartEffect();
             }
             yield return cloudRandomSpacingTime;
         }

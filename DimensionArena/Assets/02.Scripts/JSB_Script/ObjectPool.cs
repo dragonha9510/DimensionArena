@@ -12,7 +12,7 @@ public enum CLIENTOBJ
 public enum SERVEROBJ
 {
     // 서버와 관련되지 않은 것
-    
+
     SERVEROBJ_MISSILE,
     SERVEROBJ_ITEMMISSILE,
 }
@@ -22,6 +22,9 @@ public class ObjectPool : MonoBehaviourPun
 
     [SerializeField]
     GameObject[] clientPrefabs;
+
+    [SerializeField]
+    int addPoolCount = 100;
 
 
     public static ObjectPool Instance = null;
@@ -60,6 +63,7 @@ public class ObjectPool : MonoBehaviourPun
         obj.transform.parent = this.transform;
         return obj;
     }
+
     #endregion
 
 
@@ -80,35 +84,57 @@ public class ObjectPool : MonoBehaviourPun
         }
     }
 
-   /* public void MakePool(SERVEROBJ objType,int makeCount)
-    {        
-        *//*// Eready setting this pool
-        /*if (serverobjectPool[objType] != null)
-            return;*//*
-        serverobjectPool.Add(objType, new Queue<GameObject>());
-        for (int i = 0; i < makeCount; ++i)
-        {
-            GameObject newObj;
-            switch(objType)
-            {
-                case SERVEROBJ.SERVEROBJ_MISSILE:
-                    newObj = CreateObjectInResources("Projectile");
-                    break;
-                case SERVEROBJ.SERVEROBJ_ITEMMISSILE:
-                    newObj = CreateObjectInResources("Missile");
-                    break;
-            }
-            serverobjectPool[objType].Enqueue();
-        }
-    }*/
-   
+
+    /* public void MakePool(SERVEROBJ objType,int makeCount)
+     {        
+         *//*// Eready setting this pool
+         /*if (serverobjectPool[objType] != null)
+             return;*//*
+         serverobjectPool.Add(objType, new Queue<GameObject>());
+         for (int i = 0; i < makeCount; ++i)
+         {
+             GameObject newObj;
+             switch(objType)
+             {
+                 case SERVEROBJ.SERVEROBJ_MISSILE:
+                     newObj = CreateObjectInResources("Projectile");
+                     break;
+                 case SERVEROBJ.SERVEROBJ_ITEMMISSILE:
+                     newObj = CreateObjectInResources("Missile");
+                     break;
+             }
+             serverobjectPool[objType].Enqueue();
+         }
+     }*/
 
 
-    public GameObject GetObjectInPool(CLIENTOBJ type)
+
+
+    public GameObject GetObjectInPool(CLIENTOBJ type, Transform parent, Vector3 pos)
     {
+        if (cliobjectPool[type].Count <= 0)
+        {
+            for (int i = 0; i < addPoolCount; ++i)
+            {
+                Debug.Log("PooAdd");
+                cliobjectPool[type].Enqueue(CreateObjectInResources(clientPrefabs[(int)type]));
+            }
+        }
         GameObject obj = cliobjectPool[type].Dequeue();
+        if (null == parent)
+        {
+            obj.transform.parent = this.transform;
+        }
+        obj.transform.position = pos;
         obj.SetActive(true);
-        return obj;        
+        return obj;
+    }
+
+
+    public void ReturnObjectToPool(CLIENTOBJ type, GameObject obj)
+    {
+        obj.SetActive(false);
+        cliobjectPool[type].Enqueue(obj);
     }
 
     /*[System.Obsolete]
