@@ -5,40 +5,46 @@ using UnityEngine.Rendering.Universal;
 
 public class RedZone_Missile : MonoBehaviour
 {
-    [SerializeField] private GameObject boundaryPrefab;
-    [SerializeField] private GameObject outterboundaryPrefab;
-    private GameObject boundary;
-    private GameObject outterBoundary;
-    private DecalProjector proj;
+    //[SerializeField] private GameObject boundaryPrefab;
+    //[SerializeField] private GameObject outterboundaryPrefab;
+    //private GameObject boundary;
+    //private GameObject outterBoundary;
+    //private DecalProjector proj;
     private float posY;
 
-    private GameObject destroyEffect;
+
+    [SerializeField] private GameObject destroyEffect;
+    [SerializeField] private Vector2 missileScale;
 
     protected virtual void Start()
     {
-        posY = transform.position.y;
+        //posY = transform.position.y;
 
-        boundary = Instantiate(boundaryPrefab);
-        boundary.transform.position = new Vector3(transform.position.x, boundaryPrefab.transform.position.y, transform.position.z);
+        //boundary = Instantiate(boundaryPrefab);
+        //boundary.transform.position = new Vector3(transform.position.x, boundaryPrefab.transform.position.y, transform.position.z);
+        //boundary.GetComponent<DecalProjector>().size = new Vector3(missileScale.x, missileScale.y, 2.5f);
 
-        outterBoundary = Instantiate(outterboundaryPrefab);
-        outterBoundary.transform.position = new Vector3(transform.position.x, outterboundaryPrefab.transform.position.y, transform.position.z);
+        //outterBoundary = Instantiate(outterboundaryPrefab);
+        //outterBoundary.transform.position = new Vector3(transform.position.x, outterboundaryPrefab.transform.position.y, transform.position.z);
+        //boundary.GetComponent<DecalProjector>().size = new Vector3(missileScale.x, missileScale.y, 2.5f);
 
-        proj = boundary.GetComponent<DecalProjector>();
 
-        proj.size = new Vector3(0, 0, 2.5f);
+        //proj = boundary.GetComponent<DecalProjector>();
+
+        //proj.size = new Vector3(0, 0, 2.5f);
     }
 
     protected virtual void Update()
     {
-        float sizeScale = (posY - transform.position.y) / posY;
-        proj.size = new Vector3(sizeScale, sizeScale, 2.5f);
+        //float sizeScale = ((posY - transform.position.y) / posY) * missileScale.x;
+        //proj.size = new Vector3(sizeScale, sizeScale, 2.5f);
 
         if(transform.position.y < 0)
         {
             Destroy(this.gameObject);
-            Destroy(boundary);
-            Destroy(outterBoundary);
+            Instantiate(destroyEffect, new Vector3(transform.position.x, 0, transform.position.z), destroyEffect.transform.rotation);
+            //Destroy(boundary);
+            //Destroy(outterBoundary);
         }
     }
 
@@ -47,8 +53,9 @@ public class RedZone_Missile : MonoBehaviour
         if (collision.gameObject.name != gameObject.name)
         { 
             Destroy(this.gameObject);
-            Destroy(boundary);
-            Destroy(outterBoundary);
+            Instantiate(destroyEffect, new Vector3(transform.position.x, 0, transform.position.z), destroyEffect.transform.rotation);
+            //Destroy(boundary);
+            //Destroy(outterBoundary);
         }
     }
 
@@ -57,8 +64,10 @@ public class RedZone_Missile : MonoBehaviour
         if (other.name != gameObject.name)
         {
             Destroy(this.gameObject);
-            Destroy(boundary);
-            Destroy(outterBoundary);
+            Instantiate(destroyEffect, new Vector3(transform.position.x, 0, transform.position.z), destroyEffect.transform.rotation);
+
+            //Destroy(boundary);
+            //Destroy(outterBoundary);
         }
     }
 }
