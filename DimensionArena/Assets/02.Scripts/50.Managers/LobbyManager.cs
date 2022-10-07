@@ -89,7 +89,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         
         Debug.Log("OnJoinedRoom");
 
-        if (!NameOverLapCheck(nameText.name))
+        if (NameOverLapCheck(nameText.name))
             return;
 
         LoadMatchMakingScene();

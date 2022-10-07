@@ -99,10 +99,6 @@ public class PlayerInfoManager : MonoBehaviourPun
         }
     }
 
-    void Start()
-    {
-        
-    }
     #endregion
 
     /// <<<<<<<<<<<<<<<<<<<<<<<<<<<

@@ -51,13 +51,6 @@ public class GameManager : MonoBehaviourPunCallbacks, IPunObservable
     }
 
 
-
-    private void InitPlayer()
-    { 
-
-    }
-
-
     public void OnEvent(EventData photonEvent)
     {
         if (0 == photonEvent.Code)
@@ -71,24 +64,15 @@ public class GameManager : MonoBehaviourPunCallbacks, IPunObservable
     }
 
    
- 
     private void Start()
     {
         SoundManager.Instance.PlayBGM("BattleMusic");
-    }
-
-    private void FixedUpdate()
-    {
 
         if (!PhotonNetwork.IsMasterClient)
-            return;
-
-            startTime -= Time.deltaTime;
-
-            if (0 > startTime)
-                PlayerInfoManager.Instance.AddPlayer();
-        
+            PlayerInfoManager.Instance.AddPlayer();
     }
+
+   
 
 
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
