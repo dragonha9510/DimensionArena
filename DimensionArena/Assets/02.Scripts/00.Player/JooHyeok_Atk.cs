@@ -29,12 +29,18 @@ public class JooHyeok_Atk: Player_Atk
         base.LateUpdate();
     }
 
+
     public override void Attack()
     {
         if(!isAttack)
             StartCoroutine(AttackCoroutine());
     }
     
+    public override void Skill()
+    {
+        
+    }
+
     IEnumerator AttackCoroutine()
     {
         isAttack = true;
@@ -58,10 +64,6 @@ public class JooHyeok_Atk: Player_Atk
         owner.CanDirectionChange = true;
     }
 
-    public override void Skill1()
-    {
-        
-    }
 
 }
 

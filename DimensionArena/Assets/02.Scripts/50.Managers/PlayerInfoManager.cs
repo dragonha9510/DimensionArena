@@ -165,8 +165,10 @@ public class PlayerInfoManager : MonoBehaviourPun
             {
                 damage = CheckShieldExist(playerInfoArr[i], damage);
                 playerInfoArr[i].Damaged(damage);
+                break;
             }
         }
+
         //Do Something wiht Owner relation..
     }
 
@@ -179,9 +181,26 @@ public class PlayerInfoManager : MonoBehaviourPun
             if (playerInfoArr[i].ID == targetId)
             {            
                 playerInfoArr[i].Damaged(damage);
+                break;
             }
         }
     }
+
+    [PunRPC]
+    public void CurHpDecrease(GameObject owner, string targetId, float damage)
+    {
+        for (int i = 0; i < PlayerObjectArr.Length; ++i)
+        {
+            if (playerInfoArr[i].ID == targetId)
+            {
+                playerInfoArr[i].Damaged(damage);
+                //playerInfoArr[i].IsAlive = playerInfoArr[i].CurHP == 0 ? true : false;
+                break;
+            }
+        }
+
+    }
+
     #endregion
 
     /// <<<<<<<<<<<<<<<<<<<<<<<<<<

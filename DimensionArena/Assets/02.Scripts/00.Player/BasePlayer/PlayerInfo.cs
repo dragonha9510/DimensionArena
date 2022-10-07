@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 
-
 [Serializable]
 public class PlayerInfo 
 {  
@@ -19,13 +18,15 @@ public class PlayerInfo
         maxSpeed = 6.0f;
         curShield = 0.0f;
         maxShield = 100.0f;
+        isAlive = true;
     }
 
     /// =============================
     /// Action Region
     /// =============================
-    public event Action<float> EskillAmountChanged;
-    public event Action<float> EcurHPChanged;
+    public event Action<float> EskillAmountChanged = (param) => { };
+    public event Action<float> EcurHPChanged = (param) => { };
+    public event Action<bool> EDeadPlayer = (param) => { };
 
 
     /// =============================
@@ -40,6 +41,7 @@ public class PlayerInfo
     [SerializeField] private float maxSkillPoint;
     [SerializeField] private float speed = 3.0f;
     [SerializeField] private float maxSpeed = 6.0f;
+    [SerializeField] private bool  isAlive;
 
     [SerializeField] private float curShield;
     [SerializeField] private float maxShield;
@@ -53,6 +55,7 @@ public class PlayerInfo
     public float CurShield { get { return curShield; } }
     public float MaxShield { get { return maxShield; } }
     public string ID { get { return id; } }
+    public bool IsAlive { get { return isAlive; } private set { isAlive = value; EDeadPlayer(isAlive); }  }
     #endregion
 
 

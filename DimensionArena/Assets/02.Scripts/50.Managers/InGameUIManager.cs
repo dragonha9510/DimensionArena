@@ -39,16 +39,22 @@ public class InGameUIManager : MonoBehaviour
         StartCoroutine(StartUICoroutine());
     }
 
-    private void Update()
-    {
-        
-    }
-
 
     private void Initialize()
-    {
-       
+    {    
         mode = GameManager.instance == null ? GAMEMODE.Survival : GameManager.instance.GameMode;
+
+        switch (mode)
+        {
+            case GAMEMODE.Survival:
+                for(int i = 0; i < PlayerInfoManager.Instance.PlayerObjectArr.Length; ++i)
+                {
+                    //PlayerInfoManager.Instance.PlayerInfoAr 
+                }
+                break;
+            case GAMEMODE.FreeForAll:
+                break;
+        }
 
 
         DicInfoTransform = new Dictionary<string, RectTransform>();
@@ -60,6 +66,11 @@ public class InGameUIManager : MonoBehaviour
         }
     }
 
+    public void PlayerDead(PlayerInfo owner, PlayerInfo target)
+    {
+        //ui¶Ù¿ì±â
+
+    }
 
 
     private IEnumerator StartUICoroutine()
@@ -73,12 +84,13 @@ public class InGameUIManager : MonoBehaviour
         SetGameStart();
         yield return new WaitForSeconds(announceTime);
 
+        WaitForSeconds oneSeconds = new WaitForSeconds(1.0f);
         //Text Count Animation
         for(int i = countTime; i > 0 ; --i)
         {
             objectiveText.text = i.ToString();
             //Add Animation
-            yield return new WaitForSeconds(1.0f);
+            yield return oneSeconds;
         }
 
         GameStartGroup.SetActive(false);

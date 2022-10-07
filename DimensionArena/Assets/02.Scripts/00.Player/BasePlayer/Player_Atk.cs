@@ -50,7 +50,7 @@ public abstract class Player_Atk : MonoBehaviourPun
         atkRangeMesh.transform.forward = (transform.position - atkRangeMesh.transform.position).normalized;
     }
 
-    public void SetAttackDirection()
+    public void StartAttack()
     {
         attackDirection = direction;
         attackDirection.Normalize();
@@ -63,7 +63,7 @@ public abstract class Player_Atk : MonoBehaviourPun
 
 
     public abstract void Attack();
-    public abstract void Skill1();
+    public abstract void Skill();
 
     IEnumerator LookAttackDirection()
     {

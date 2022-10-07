@@ -50,7 +50,6 @@ public class SkillJoyStick : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
                 inputDir : inputDir.normalized * leverRange;
 
             lever.anchoredPosition = clampedDir;
-            SetDirection();
         }
 
     }
@@ -65,7 +64,6 @@ public class SkillJoyStick : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
             var clampedDir = inputDir.magnitude < leverRange ? inputDir : inputDir.normalized * leverRange;
 
             lever.anchoredPosition = clampedDir;
-            SetDirection();
         }
     }
 

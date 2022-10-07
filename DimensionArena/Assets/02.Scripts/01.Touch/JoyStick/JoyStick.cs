@@ -2,9 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using Photon.Pun;
 
-public class JoyStick : MonoBehaviourPun, IBeginDragHandler, IDragHandler, IEndDragHandler
+
+
+public class JoyStick : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
     // public 전환 , 생성과 동시에 설정 해줘야 한다.
     [SerializeField] public Player player;
@@ -20,7 +21,7 @@ public class JoyStick : MonoBehaviourPun, IBeginDragHandler, IDragHandler, IEndD
         rectTransform = GetComponent<RectTransform>();
     }
 
-    public void OnBeginDrag(PointerEventData eventData)
+    public virtual void OnBeginDrag(PointerEventData eventData)
     {
         var inputDir = eventData.position - rectTransform.anchoredPosition;
 
@@ -31,7 +32,7 @@ public class JoyStick : MonoBehaviourPun, IBeginDragHandler, IDragHandler, IEndD
         SetDirection();
     }
 
-    public void OnDrag(PointerEventData eventData)
+    public virtual void OnDrag(PointerEventData eventData)
     {
         var inputDir = eventData.position - rectTransform.anchoredPosition;
         var clampedDir = inputDir.magnitude < leverRange ? inputDir : inputDir.normalized * leverRange;
@@ -40,13 +41,13 @@ public class JoyStick : MonoBehaviourPun, IBeginDragHandler, IDragHandler, IEndD
         SetDirection();
     }
 
-    public void OnEndDrag(PointerEventData eventData)
+    public virtual void OnEndDrag(PointerEventData eventData)
     {
         lever.anchoredPosition = Vector2.zero;
         SetDirection();
     }
 
-    public void SetDirection()
+    public virtual void SetDirection()
     {
         player.direction 
             = new Vector3( (lever.position.x - rectTransform.position.x) * 0.01f, 0, (lever.position.y - rectTransform.position.y) * 0.01f);

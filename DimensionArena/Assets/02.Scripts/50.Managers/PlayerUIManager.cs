@@ -36,9 +36,7 @@ public class PlayerUIManager : MonoBehaviour
     }
 
     IEnumerator ArrowMoveCoroutine()
-    {
-       
-
+    {    
         //5¹ø Èçµé¸²
         for(int i = 0; i < 5; ++i)
         {

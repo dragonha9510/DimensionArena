@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 using Photon.Pun;
 
 public class Player : MonoBehaviourPun
@@ -20,6 +21,8 @@ public class Player : MonoBehaviourPun
     /// =============================
 
     [SerializeField] private PlayerInfo info;
+
+    
     public  PlayerInfo  Info { get { return info; } }
     public  Player_Atk  attack;
     private Player_Movement movement;

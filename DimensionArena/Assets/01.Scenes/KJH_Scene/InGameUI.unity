@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.3069224, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1062,16 +1062,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: TouchCanvas
       objectReference: {fileID: 0}
-    - target: {fileID: 122259820722831728, guid: 0a57c1f790ba32044afdc1228e203f1f,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 122259820722831731, guid: 0a57c1f790ba32044afdc1228e203f1f,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 122259820722831732, guid: 0a57c1f790ba32044afdc1228e203f1f,
         type: 3}
       propertyPath: m_Pivot.x
@@ -1179,24 +1169,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0a57c1f790ba32044afdc1228e203f1f, type: 3}
---- !u!1 &1647391836 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 122259820722831728, guid: 0a57c1f790ba32044afdc1228e203f1f,
+--- !u!225 &1647391841 stripped
+CanvasGroup:
+  m_CorrespondingSourceObject: {fileID: 1647391841, guid: 0a57c1f790ba32044afdc1228e203f1f,
     type: 3}
   m_PrefabInstance: {fileID: 1337158396}
   m_PrefabAsset: {fileID: 0}
---- !u!225 &1647391841
-CanvasGroup:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1647391836}
-  m_Enabled: 1
-  m_Alpha: 0
-  m_Interactable: 0
-  m_BlocksRaycasts: 1
-  m_IgnoreParentGroups: 0
 --- !u!1 &1685472072
 GameObject:
   m_ObjectHideFlags: 0

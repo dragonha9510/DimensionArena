@@ -46,7 +46,7 @@ public class AtkJoyStick : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
     public void OnEndDrag(PointerEventData eventData)
     {
         lever.anchoredPosition = Vector2.zero;
-        player.SetAttackDirection();
+        player.StartAttack();
         SetDirection();
     }
 
