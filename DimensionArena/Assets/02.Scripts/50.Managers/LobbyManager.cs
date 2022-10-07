@@ -47,7 +47,10 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         foreach(Photon.Realtime.Player p in players)
         {
             if (p.NickName == name)
+            {
+                Debug.Log("NickName OverLap!!");
                 return true;
+            }
         }
         return false;
     }
@@ -58,6 +61,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         if(!NameOverLapCheck(nameText.text))
         {
             PhotonNetwork.LocalPlayer.NickName = nameText.text;
+            
             PhotonNetwork.ConnectUsingSettings();
         }
     }
