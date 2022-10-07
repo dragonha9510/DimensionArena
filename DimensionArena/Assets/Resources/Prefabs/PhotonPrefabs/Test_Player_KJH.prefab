@@ -711,6 +711,7 @@ MonoBehaviour:
     isAlive: 0
     curShield: 0
     maxShield: 100
+    thumbnail: {fileID: 0}
   attack: {fileID: 0}
 --- !u!114 &1876143292272218706
 MonoBehaviour:

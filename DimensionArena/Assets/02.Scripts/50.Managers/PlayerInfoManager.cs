@@ -205,11 +205,7 @@ public class PlayerInfoManager : MonoBehaviourPun
             PlayerInfo owner;
             playerInfoDic.TryGetValue(ownerId, out owner);
             target.PlayerDie();
-            
-
         }
-        
-     
     }
 
     #endregion
