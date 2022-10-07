@@ -47,7 +47,9 @@ public class PlayerInfoManager : MonoBehaviourPun
     #region Add Player to Memory Region With Property
     [SerializeField] GameObject[] playerObjectArr;
     [SerializeField] PlayerInfo[] playerInfoArr;
-    
+
+    //추후 바꿀 예정
+    Dictionary<string, PlayerInfo> playerInfoDic;
 
     public GameObject[] PlayerObjectArr
     {
@@ -61,10 +63,12 @@ public class PlayerInfoManager : MonoBehaviourPun
                 {
                     GameObject[] players = PlayerObjectArr;
                     playerInfoArr = new PlayerInfo[players.Length];
-                    
+                    playerInfoDic = new Dictionary<string, PlayerInfo>();
+
                     for (int i = 0; i < players.Length; ++i)
                     {
                         playerInfoArr[i] = players[i].GetComponent<Player>().Info;
+                        playerInfoDic.Add(players[i].name, playerInfoArr[i]);
                     }
                 }
             }
@@ -81,10 +85,13 @@ public class PlayerInfoManager : MonoBehaviourPun
             {
                 GameObject[] players = PlayerObjectArr;
                 playerInfoArr = new PlayerInfo[players.Length];
+                playerInfoDic = new Dictionary<string, PlayerInfo>();
 
                 for (int i = 0; i < players.Length;++i)
                 {
                     playerInfoArr[i] = players[i].GetComponent<Player>().Info;
+                    playerInfoDic.Add(players[i].name, playerInfoArr[i]);
+
                 }
             }
 
@@ -187,18 +194,22 @@ public class PlayerInfoManager : MonoBehaviourPun
     }
 
     [PunRPC]
-    public void CurHpDecrease(GameObject owner, string targetId, float damage)
+    public void CurHpDecrease(string ownerId, string targetId, float damage)
     {
-        for (int i = 0; i < PlayerObjectArr.Length; ++i)
-        {
-            if (playerInfoArr[i].ID == targetId)
-            {
-                playerInfoArr[i].Damaged(damage);
-                //playerInfoArr[i].IsAlive = playerInfoArr[i].CurHP == 0 ? true : false;
-                break;
-            }
-        }
+        PlayerInfo target;
+        playerInfoDic.TryGetValue(targetId,out target);
+        target.Damaged(damage);
 
+        if(target.CurHP.AlmostEquals(0.0f,float.Epsilon))
+        {
+            PlayerInfo owner;
+            playerInfoDic.TryGetValue(ownerId, out owner);
+            target.PlayerDie();
+            
+
+        }
+        
+     
     }
 
     #endregion
