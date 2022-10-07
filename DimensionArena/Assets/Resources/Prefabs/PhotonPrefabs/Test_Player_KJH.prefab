@@ -711,6 +711,7 @@ MonoBehaviour:
     maxSpeed: 6
     curShield: 0
     maxShield: 100
+  attack: {fileID: 0}
 --- !u!114 &1876143292272218706
 MonoBehaviour:
   m_ObjectHideFlags: 0

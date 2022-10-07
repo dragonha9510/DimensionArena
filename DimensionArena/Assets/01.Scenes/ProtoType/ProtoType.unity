@@ -53850,6 +53850,7 @@ MonoBehaviour:
   clientPrefabs:
   - {fileID: 8486874475666850393, guid: a99e7a4e73f73054c87af2927487ce14, type: 3}
   - {fileID: 0}
+  addPoolCount: 100
 --- !u!1 &1593389042
 GameObject:
   m_ObjectHideFlags: 0

@@ -6,7 +6,6 @@ using Photon.Pun;
 
 public class Player : MonoBehaviourPun
 {
-
     /// =============================
     /// Direction Region
     /// =============================
@@ -21,12 +20,17 @@ public class Player : MonoBehaviourPun
     /// =============================
 
     [SerializeField] private PlayerInfo info;
-    public  PlayerInfo Info { get { return info; } }
-    private Prototype_Movement movement;
+    public  PlayerInfo  Info { get { return info; } }
+    public  Player_Atk  attack;
+    private Player_Movement movement;
     private Rigidbody rigid;
-    private int photon_id;
 
+
+    private int photon_id;
+    public bool CanDirectionChange { get; set; }
+    
     /// =============================
+    
     private void Awake()
     {
         photon_id = photonView.ViewID;
@@ -36,13 +40,15 @@ public class Player : MonoBehaviourPun
 
     private void Start()
     {
+        CanDirectionChange = true;
+
         if (photonView.IsMine)
         {
             GameObject.Find("MoveJoyStick").GetComponent<JoyStick>().player = this;
             GameObject.Find("Target Camera").GetComponent<Prototype_TargetCamera>().target = this.transform;
         }
 
-        movement = new Prototype_Movement();
+        movement = new Player_Movement(this);
 
         TryGetComponent<Rigidbody>(out rigid);
 

@@ -5,12 +5,13 @@ using Photon.Pun;
 
 public abstract class Player_Atk : MonoBehaviourPun
 {
+    protected Player owner;
+
     [SerializeField]  protected float range;
     [SerializeField]  private GameObject atkRangeMesh;
 
     [HideInInspector] public Vector3 direction;
     [HideInInspector] public Vector3 attackDirection;
-
 
     private float rotationSpeed = 1080.0f;
     private RaycastHit atkRangeRay;
@@ -27,6 +28,7 @@ public abstract class Player_Atk : MonoBehaviourPun
         if (photonView.IsMine)
         {
             GameObject.Find("AtkJoyStick").GetComponent<AtkJoyStick>().player = this;
+            owner = gameObject.GetComponent<Player>();
         }
     }
 
