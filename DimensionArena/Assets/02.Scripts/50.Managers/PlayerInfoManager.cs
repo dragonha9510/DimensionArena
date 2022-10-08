@@ -67,12 +67,13 @@ public class PlayerInfoManager : MonoBehaviourPun
 
                     for (int i = 0; i < players.Length; ++i)
                     {
+                        //리스트 등록, 딕셔너리 등록
                         playerInfoArr[i] = players[i].GetComponent<Player>().Info;
                         playerInfoDic.Add(players[i].name, playerInfoArr[i]);
                     }
                 }
             }
-            
+            Debug.Log("Dictionary Size" + playerInfoDic.Count);
             return playerObjectArr;
         }
     }
@@ -81,18 +82,10 @@ public class PlayerInfoManager : MonoBehaviourPun
     {
         get
         {
-            if (NullCheck.IsNullOrEmpty(playerInfoArr))
+            if (NullCheck.IsNullOrEmpty(playerObjectArr))
             {
                 GameObject[] players = PlayerObjectArr;
-                playerInfoArr = new PlayerInfo[players.Length];
-                playerInfoDic = new Dictionary<string, PlayerInfo>();
-
-                for (int i = 0; i < players.Length;++i)
-                {
-                    playerInfoArr[i] = players[i].GetComponent<Player>().Info;
-                    playerInfoDic.Add(players[i].name, playerInfoArr[i]);
-
-                }
+                //생성 위임
             }
 
             return playerInfoArr;
@@ -109,13 +102,15 @@ public class PlayerInfoManager : MonoBehaviourPun
     /// CurHp Region
     /// >>>>>>>>>>>>>>>>>>>>>>>>>>
 
-    public void AddPlayer()
+
+    
+    public void RegisterPlayer()
     {
-        photonView.RPC("AddPlayers", RpcTarget.MasterClient);
+        photonView.RPC("AddPlayers", RpcTarget.All);
     }
 
     [PunRPC]
-    public void AddPlayers()
+    public void RegisterforMasterClient()
     {
         if(NullCheck.IsNullOrEmpty(playerObjectArr))
         {

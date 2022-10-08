@@ -54,8 +54,7 @@ public class AttackObject : MonoBehaviourPun
                         photonView.RPC("OnCollisionToPlayer",
                         RpcTarget.All,
                         collision.gameObject.name);
-                    }
-                    
+                    }                 
                 }
                 break;
                 //Damaged된 Obstacle 공격체 방향으로 살짝 흔들리는 모션

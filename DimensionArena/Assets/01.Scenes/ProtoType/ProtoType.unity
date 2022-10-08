@@ -53997,7 +53997,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 25
+  m_RootOrder: 26
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1589278406
 MonoBehaviour:
@@ -68437,6 +68437,11 @@ PrefabInstance:
       objectReference: {fileID: 1546303739}
     - target: {fileID: 8098681847806499654, guid: 1605d89d179961545b0f58b9c819e3fd,
         type: 3}
+      propertyPath: infoMoveSmoothNess
+      value: 0.00113
+      objectReference: {fileID: 0}
+    - target: {fileID: 8098681847806499654, guid: 1605d89d179961545b0f58b9c819e3fd,
+        type: 3}
       propertyPath: infoTransform.Array.data[0]
       value: 
       objectReference: {fileID: 1546303737}
@@ -68448,7 +68453,7 @@ PrefabInstance:
     - target: {fileID: 8098681848206302126, guid: 1605d89d179961545b0f58b9c819e3fd,
         type: 3}
       propertyPath: m_RootOrder
-      value: 26
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 8098681848206302126, guid: 1605d89d179961545b0f58b9c819e3fd,
         type: 3}

@@ -19,7 +19,6 @@ public class GameManager : MonoBehaviourPunCallbacks, IPunObservable
     [SerializeField]
     public GameObject playerPrefab;
     public GAMEMODE GameMode { get; private set; }
-    private float startTime = 1.0f;
 
     private static GameManager m_instance;
     public static GameManager instance
@@ -69,7 +68,9 @@ public class GameManager : MonoBehaviourPunCallbacks, IPunObservable
         SoundManager.Instance.PlayBGM("BattleMusic");
 
         if (!PhotonNetwork.IsMasterClient)
-            PlayerInfoManager.Instance.AddPlayer();
+            return;
+
+        PlayerInfoManager.Instance.RegisterPlayer();
     }
 
    

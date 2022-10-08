@@ -29,15 +29,15 @@ public class Player : MonoBehaviourPun
     private Rigidbody rigid;
 
 
-    private int photon_id;
+    private string nickName;
     public bool CanDirectionChange { get; set; }
     
     /// =============================
     
     private void Awake()
     {
-        photon_id = photonView.ViewID;
-        gameObject.name = photon_id.ToString();
+        nickName = PhotonNetwork.NickName;
+        gameObject.name = nickName;
         info = new PlayerInfo(gameObject.name);
     }
 
@@ -47,8 +47,10 @@ public class Player : MonoBehaviourPun
 
         if (photonView.IsMine)
         {
-            GameObject.Find("MoveJoyStick").GetComponent<JoyStick>().player = this;
-            GameObject.Find("Target Camera").GetComponent<Prototype_TargetCamera>().target = this.transform;
+            GameObject.Find("MoveJoyStick").
+                GetComponent<JoyStick>().player = this;
+            GameObject.Find("Target Camera").
+                GetComponent<Prototype_TargetCamera>().target = this.transform;
         }
 
         movement = new Player_Movement(this);

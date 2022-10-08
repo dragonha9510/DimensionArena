@@ -51,7 +51,7 @@ public class PlayerInfo
     [SerializeField] private Sprite thumbnail; 
 
     public float MaxHP { get { return maxHP; }  }
-    public float CurHP { get { return CurHP; } }
+    public float CurHP { get { return curHP; } }
     public float CurSkillPoint { get { return curSkillPoint; } }
     public float MaxSkillPoint { get { return maxSkillPoint; } }
     public float Speed { get { return speed; } }
