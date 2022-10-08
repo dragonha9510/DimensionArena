@@ -48,9 +48,6 @@ public class PlayerInfoManager : MonoBehaviourPun
     [SerializeField] GameObject[] playerObjectArr;
     [SerializeField] PlayerInfo[] playerInfoArr;
 
-    //추후 바꿀 예정
-    Dictionary<string, PlayerInfo> playerInfoDic;
-
     public GameObject[] PlayerObjectArr
     {
         get 
@@ -63,17 +60,16 @@ public class PlayerInfoManager : MonoBehaviourPun
                 {
                     GameObject[] players = PlayerObjectArr;
                     playerInfoArr = new PlayerInfo[players.Length];
-                    playerInfoDic = new Dictionary<string, PlayerInfo>();
 
                     for (int i = 0; i < players.Length; ++i)
                     {
                         //리스트 등록, 딕셔너리 등록
                         playerInfoArr[i] = players[i].GetComponent<Player>().Info;
-                        playerInfoDic.Add(players[i].name, playerInfoArr[i]);
+
                     }
                 }
             }
-            Debug.Log("Dictionary Size" + playerInfoDic.Count);
+
             return playerObjectArr;
         }
     }
@@ -106,7 +102,7 @@ public class PlayerInfoManager : MonoBehaviourPun
     
     public void RegisterPlayer()
     {
-        photonView.RPC("AddPlayers", RpcTarget.All);
+        photonView.RPC("RegisterforMasterClient", RpcTarget.All);
     }
 
     [PunRPC]
@@ -174,11 +170,17 @@ public class PlayerInfoManager : MonoBehaviourPun
     [PunRPC]
     public void CurHpDecrease(string targetId, float damage)
     {
-        for (int i = 0; i < PlayerObjectArr.Length; ++i)
+        for (int i = 0; i < playerInfoArr.Length; ++i)
         {
             if (playerInfoArr[i].ID == targetId)
-            {            
+            {
                 playerInfoArr[i].Damaged(damage);
+
+                if (playerInfoArr[i].CurHP.
+                    AlmostEquals(0.0f, float.Epsilon))
+                {
+                    playerInfoArr[i].PlayerDie();
+                }
                 break;
             }
         }
@@ -187,16 +189,22 @@ public class PlayerInfoManager : MonoBehaviourPun
     [PunRPC]
     public void CurHpDecrease(string ownerId, string targetId, float damage)
     {
-        PlayerInfo target;
-        playerInfoDic.TryGetValue(targetId,out target);
-        target.Damaged(damage);
 
-        if(target.CurHP.AlmostEquals(0.0f,float.Epsilon))
+        for(int i = 0; i < playerInfoArr.Length; ++i)
         {
-            PlayerInfo owner;
-            playerInfoDic.TryGetValue(ownerId, out owner);
-            target.PlayerDie();
+            if(playerInfoArr[i].ID == targetId)
+            {
+                playerInfoArr[i].Damaged(damage);
+                
+                if (playerInfoArr[i].CurHP.
+                    AlmostEquals(0.0f,float.Epsilon))
+                {
+                    playerInfoArr[i].PlayerDie();
+                }            
+                break;
+            }
         }
+    
     }
 
     #endregion

@@ -35,10 +35,10 @@ public class Player : MonoBehaviourPun
     /// =============================
     
     private void Awake()
-    {
+    {   
         nickName = PhotonNetwork.NickName;
         gameObject.name = nickName;
-        info = new PlayerInfo(gameObject.name);
+        info = new PlayerInfo(gameObject.name); 
     }
 
     private void Start()
