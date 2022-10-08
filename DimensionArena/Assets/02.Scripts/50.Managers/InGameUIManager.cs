@@ -33,6 +33,10 @@ public class InGameUIManager : MonoBehaviour
     [Header("Canvas")]
     [SerializeField] private CanvasGroup touchCanvas;
 
+
+    [Header("Sprite Resources")]
+    Sprite[] CharacterThumbnail;
+
     private GAMEMODE mode;
 
     private void Start()
@@ -71,6 +75,7 @@ public class InGameUIManager : MonoBehaviour
 
     private void DeadPlayer()
     {
+
         dynamicContent -= 1;
         dynamicText.text = ((int)dynamicContent).ToString();
     }

@@ -90,16 +90,12 @@ public class PlayerInfoManager : MonoBehaviourPun
 
     #endregion
 
-    /// <<<<<<<<<<<<<<<<<<<<<<<<<<<
-   
 
 
     /// ===========================
-    /// CurHp Region
+    /// Register Player
     /// >>>>>>>>>>>>>>>>>>>>>>>>>>
-
-
-    
+    /// 
     public void RegisterPlayer()
     {
         photonView.RPC("RegisterforMasterClient", RpcTarget.All);
@@ -119,8 +115,13 @@ public class PlayerInfoManager : MonoBehaviourPun
         }
     }
 
+    /// <<<<<<<<<<<<<<<<<<<<<<<<<<<
 
-    #region CurHp Method
+
+
+    /// ===========================
+    /// CurHp Region
+    /// >>>>>>>>>>>>>>>>>>>>>>>>>>
 
     [PunRPC]
     public void CurHpIncrease(GameObject owner, GameObject target, float amount)
@@ -207,18 +208,12 @@ public class PlayerInfoManager : MonoBehaviourPun
     
     }
 
-    #endregion
-
     /// <<<<<<<<<<<<<<<<<<<<<<<<<<
 
 
     /// ===========================
     /// Shield Region
     /// >>>>>>>>>>>>>>>>>>>>>>>>>>
-
-    #region Shield Method
-
-
 
     [PunRPC]
     private float CheckShieldExist(PlayerInfo target, float damage)
@@ -260,15 +255,13 @@ public class PlayerInfoManager : MonoBehaviourPun
         }
     }
 
-    #endregion
-
     /// <<<<<<<<<<<<<<<<<<<<<<<<<<
+
+
 
     /// ===========================
     /// CurSkillPt Region
     /// >>>>>>>>>>>>>>>>>>>>>>>>>>
-
-    #region CurSkillPt Method
 
     [PunRPC]
     public void CurSkillPtIncrease(string targetId, float amount)
@@ -294,15 +287,12 @@ public class PlayerInfoManager : MonoBehaviourPun
         }
     }
 
-    #endregion
-
     /// <<<<<<<<<<<<<<<<<<<<<<<<<<
 
     /// ===========================
     /// Speed Region
     /// >>>>>>>>>>>>>>>>>>>>>>>>>>
   
-    #region Speed Method
     public void SpeedIncrease(string owner, string target, float amount)
     {
         for (int i = 0; i < PlayerObjectArr.Length; ++i)
@@ -344,9 +334,13 @@ public class PlayerInfoManager : MonoBehaviourPun
             }
         }
     }
-    #endregion
 
     /// <<<<<<<<<<<<<<<<<<<<<<<<<<
+
+
+
+
+
 
     /// 향후, 필요시 추가 구역
 

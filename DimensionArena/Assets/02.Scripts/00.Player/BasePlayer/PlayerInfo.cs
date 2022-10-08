@@ -60,8 +60,6 @@ public class PlayerInfo
     public float MaxShield { get { return maxShield; } }
     public string ID { get { return id; } }
     public bool IsAlive { get { return isAlive; }  }
-
-    public Sprite ThumbNail { get { return thumbnail; } }
     #endregion
 
 
