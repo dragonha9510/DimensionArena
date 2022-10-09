@@ -18,10 +18,10 @@ public class Projectile : AttackObject
 
     private void LateUpdate()
     {
+        if (!PhotonNetwork.IsMasterClient)
+            return;
         if(range < (this.transform.position - originPos).magnitude)
         {
-            if (!PhotonNetwork.IsMasterClient)
-                return;
             PhotonNetwork.Destroy(this.gameObject);
         }
     }

@@ -3,8 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
-
-public class AtkJoyStick : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
+using Photon.Pun;
+public class AtkJoyStick : MonoBehaviourPun , IBeginDragHandler, IDragHandler, IEndDragHandler
 {
 
     [SerializeField] public Player_Atk player;
@@ -46,10 +46,19 @@ public class AtkJoyStick : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
     public void OnEndDrag(PointerEventData eventData)
     {
         lever.anchoredPosition = Vector2.zero;
+        
         player.StartAttack();
+
+        //photonView.RPC("PlayerAttackRPC", RpcTarget.All);
+        PlayerAttackRPC();
         SetDirection();
     }
 
+    private void PlayerAttackRPC()
+    {
+        player.StartAttack();
+
+    }
     public void SetDirection()
     {
         player.direction =

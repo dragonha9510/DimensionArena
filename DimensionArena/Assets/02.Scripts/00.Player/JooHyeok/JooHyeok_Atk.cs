@@ -27,19 +27,50 @@ public class JooHyeok_Atk: Player_Atk
         base.LateUpdate();
     }
 
-
     public override void Attack()
     {
-        if(!isAttack && photonView.IsMine)
-            StartCoroutine(AttackCoroutine());
+        if (!isAttack)
+            photonView.RPC("StartAttackCoroutine", RpcTarget.MasterClient, transform.position + attackDirection
+                                            , attackDirection
+                                            , range, projectileSpeed
+                                            , this.gameObject.name);
     }
     
     public override void Skill()
     {
         //Skill구현
     }
+                                                                                                                                                                               
+    public IEnumerator AttackCoroutine(Player player , Vector3 Pos , Vector3 dir, float range, float speed, string ownerName)
+    {
 
-    IEnumerator AttackCoroutine()
+        isAttack = true;
+        player.CanDirectionChange = false;
+
+        GameObject projectile;
+
+        for (int i = 0; i < 2; ++i)
+        {
+            for (int j = 0; j < projectileCount; ++j)
+            {
+
+                Debug.Log("총알생성");
+
+                projectile = PhotonNetwork.Instantiate("projectile", Pos, Quaternion.identity);
+                projectile.GetComponent<Projectile>().AttackToDirection(dir, range, speed);
+                projectile.GetComponent<Projectile>().ownerID = ownerName;
+                yield return new WaitForSeconds(burst_delay);
+            }
+
+            yield return new WaitForSeconds(attack_delay);
+        }
+
+        isAttack = false;
+        owner.CanDirectionChange = true;
+    }
+
+
+    /*IEnumerator AttackCoroutine()
     {
 
         isAttack = true;
@@ -62,7 +93,7 @@ public class JooHyeok_Atk: Player_Atk
 
         isAttack = false;
         owner.CanDirectionChange = true;
-    }
+    }*/
 }
 
 

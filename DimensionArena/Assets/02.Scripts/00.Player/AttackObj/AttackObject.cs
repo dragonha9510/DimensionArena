@@ -26,6 +26,7 @@ public class AttackObject : MonoBehaviourPun
 
         if (!PhotonNetwork.IsMasterClient)
             return;
+        PhotonNetwork.Destroy(this.gameObject);
     }
 
     //JSB

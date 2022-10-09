@@ -65,10 +65,8 @@ public abstract class Player_Atk : MonoBehaviourPun
         attackDirection.Normalize();
         StartCoroutine(LookAttackDirection());
 
-        //attack
         Attack();
     }
-
 
 
     public abstract void Attack();
