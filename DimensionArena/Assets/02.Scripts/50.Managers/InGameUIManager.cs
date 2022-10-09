@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using DG.Tweening;
 public class InGameUIManager : MonoBehaviour
 {
     [Header("Setting Parameter")]
@@ -30,7 +31,23 @@ public class InGameUIManager : MonoBehaviour
     [SerializeField] private GameObject GameEndGroup;
     [SerializeField] private TextMeshProUGUI winLoseText;
 
-    [Header("Canvas")]
+
+    [Header("Inform UI")]
+    [SerializeField] private CanvasGroup        informCanvas;
+    [SerializeField] private Image              killerImage;
+    [SerializeField] private Image              victimImage;
+    [SerializeField] private TextMeshProUGUI    killerNickName;
+    [SerializeField] private TextMeshProUGUI    victimNickName;
+
+    [Header("Inform UI Setting")]
+
+    [Range(0.5f,1.5f)]
+    [SerializeField] private float fadeTime;
+    [SerializeField] private float InformTime;
+
+
+
+    [Header("Extern Canvas")]
     [SerializeField] private CanvasGroup touchCanvas;
 
 
@@ -39,13 +56,15 @@ public class InGameUIManager : MonoBehaviour
 
     private GAMEMODE mode;
 
+    /// ===========================
+    /// Start Method Region
+    /// >>>>>>>>>>>>>>>>>>>>>>>>>>
+
     private void Start()
     {
         Initialize();
         StartCoroutine(StartUICoroutine());
     }
-
-
     private void Initialize()
     {    
         mode = GameManager.instance == null ? GAMEMODE.Survival : GameManager.instance.GameMode;
@@ -55,7 +74,7 @@ public class InGameUIManager : MonoBehaviour
             case GAMEMODE.Survival:
                 for(int i = 0; i < PlayerInfoManager.Instance.PlayerInfoArr.Length; ++i)
                 {
-                    PlayerInfoManager.Instance.PlayerInfoArr[i].EDeadPlayer += DeadPlayer;
+                    PlayerInfoManager.Instance.PlayerInfoArr[i].EDeadPlayer += InformDeadPlayer;
                 }
                 break;
             case GAMEMODE.FreeForAll:
@@ -71,27 +90,21 @@ public class InGameUIManager : MonoBehaviour
             DicInfoTransform.Add(infoTransform[i].gameObject.name, infoTransform[i]);
         }
     }
-
-    private void DeadPlayer(CharacterType KillerType, string KillerId, CharacterType victimType, string victimId)
+    private void SetGameStart()
     {
-        dynamicContent -= 1;
-        dynamicText.text = ((int)dynamicContent).ToString();
+        GAMEMODE mode;
+        mode = GameManager.instance == null ? GAMEMODE.Survival : GameManager.instance.GameMode;
 
-        switch (KillerType)
+        switch (mode)
         {
-            case CharacterType.Aura:
+            case GAMEMODE.Survival:
+                objectiveText.text = "마지막까지\n살아남으세요!";
                 break;
-            case CharacterType.Raebijibel:
-                break;
-            case CharacterType.Joohyeok:
-                break;
-            case CharacterType.Sesillia:
+            case GAMEMODE.FreeForAll:
+                objectiveText.text = "가장 많은\n점수를얻으세요!";
                 break;
         }
-
     }
-
-
     private IEnumerator StartUICoroutine()
     {
         //touch Canvas Setting
@@ -118,23 +131,6 @@ public class InGameUIManager : MonoBehaviour
         StartCoroutine(InfoUICoroutine());
 
     }
-    private void SetGameStart()
-    {
-        GAMEMODE mode;
-        mode = GameManager.instance == null ? GAMEMODE.Survival : GameManager.instance.GameMode;
-
-        switch (mode)
-        {
-            case GAMEMODE.Survival:
-                objectiveText.text = "마지막까지\n살아남으세요!";
-                break;
-            case GAMEMODE.FreeForAll:
-                objectiveText.text = "가장 많은\n점수를얻으세요!";
-                break;
-        }
-    }
-
-
     private IEnumerator InfoUICoroutine()
     {
         switch(mode)
@@ -147,8 +143,6 @@ public class InGameUIManager : MonoBehaviour
                 //개발 예정
                 break;
         }
-
-
         for (int i = 0; i < 100; ++i)
         {
             DicInfoTransform["UpImage"].anchoredPosition += Vector2.down;
@@ -159,9 +153,61 @@ public class InGameUIManager : MonoBehaviour
 
         touchCanvas.alpha = 1;
         touchCanvas.interactable = true;
-
     }
 
+    /// ===========================
+
+
+    /// ===========================
+    /// Eveent method Region
+    /// >>>>>>>>>>>>>>>>>>>>>>>>>>
+
+
+    private void InformDeadPlayer(CharacterType killerType, string killerId, CharacterType victimType, string victimId)
+    {      
+        //Inform Dead alpha
+        StartCoroutine(InformDeadCoroutine(killerType,killerId, victimType,victimId));
+    }
+
+
+    IEnumerator InformDeadCoroutine(CharacterType killerType, string killerId, CharacterType victimType, string victimId)
+    {
+        dynamicContent -= 1;
+        dynamicText.text = ((int)dynamicContent).ToString();
+
+        //SetThumbnail
+        SelectThumbnail(killerImage, killerType);
+        SelectThumbnail(victimImage, victimType);
+
+        //SetNickName
+        killerNickName.text = killerId;
+        victimNickName.text = victimId;
+
+        informCanvas.gameObject.SetActive(true);
+        informCanvas.DOFade(1.0f, fadeTime);
+        yield return new WaitForSeconds(InformTime);
+                
+    }
+
+
+    void SelectThumbnail(Image image, CharacterType type)
+    {
+        switch(type)
+        {
+            case CharacterType.Aura:
+                image.sprite = CharacterThumbnail[(int)CharacterType.Aura];
+                break;
+            case CharacterType.Raebijibel:
+                image.sprite = CharacterThumbnail[(int)CharacterType.Raebijibel];
+                break;
+            case CharacterType.Joohyeok:
+                image.sprite = CharacterThumbnail[(int)CharacterType.Joohyeok];
+                break;
+            case CharacterType.Sesillia:
+                image.sprite = CharacterThumbnail[(int)CharacterType.Sesillia];
+                break;
+        }
+    }
 
 
 }

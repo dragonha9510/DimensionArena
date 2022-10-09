@@ -70,7 +70,6 @@ public class PlayerInfo
     [SerializeField] private float speed = 3.0f;
     [SerializeField] private float curShield;
 
-
     /// <summary>
     /// If etc variable related with Score So many, then add a new class under the name PlayerScore 
     /// </summary>

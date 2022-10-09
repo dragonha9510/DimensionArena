@@ -9,7 +9,8 @@ public class JooHyeok : Player
         base.Awake();
         
         //Player State µî·Ï
-        info = new PlayerInfo(NickName, CharacterType.Joohyeok, 
+        info = new PlayerInfo(NickName, 
+                              CharacterType.Joohyeok, 
                               100.0f, 100.0f, 3.0f);
 
 

@@ -710,6 +710,8 @@ MonoBehaviour:
     maxSkillPoint: 0
     speed: 0
     curShield: 0
+    killScore: 0
+    dmgScore: 0
 --- !u!114 &1876143292272218706
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -723,11 +725,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   range: 6
+  maxMagazine: 0
+  curMagazine: 0
   atkRangeMesh: {fileID: 516184251707268580}
   direction: {x: 0, y: 0, z: 0}
   attackDirection: {x: 0, y: 0, z: 0}
+  projectileCount: 3
+  projectileSpeed: 8
+  burst_delay: 0.1
+  attack_delay: 0.25
   prefab_Projectile: {fileID: 430190150177029230, guid: afdcc392609d1e14d8bf5f9754ff8314,
     type: 3}
+  audioSource: {fileID: 0}
 --- !u!54 &2737819322045720801
 Rigidbody:
   m_ObjectHideFlags: 0

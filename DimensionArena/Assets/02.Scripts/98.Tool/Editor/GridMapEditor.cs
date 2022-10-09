@@ -139,7 +139,6 @@ namespace GRITTY
                 PrefabUtility.UnpackPrefabInstance(mapTool, PrefabUnpackMode.Completely,
                     InteractionMode.AutomatedAction);
             }
-
         }
 
 

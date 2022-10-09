@@ -1505,11 +1505,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2193972282184173458, guid: 4afd7a521ffd6cb4d987a16651087756,
-        type: 3}
-      propertyPath: m_Color.a
-      value: 0.8039216
-      objectReference: {fileID: 0}
     - target: {fileID: 2193972282907261763, guid: 4afd7a521ffd6cb4d987a16651087756,
         type: 3}
       propertyPath: m_Name
@@ -1520,6 +1515,35 @@ PrefabInstance:
       propertyPath: touchCanvas
       value: 
       objectReference: {fileID: 1647391841}
+    - target: {fileID: 2193972282907261772, guid: 4afd7a521ffd6cb4d987a16651087756,
+        type: 3}
+      propertyPath: CharacterThumbnail.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2193972282907261772, guid: 4afd7a521ffd6cb4d987a16651087756,
+        type: 3}
+      propertyPath: CharacterThumbnail.Array.data[0]
+      value: 
+      objectReference: {fileID: 21300000, guid: 1ebe9d3ac5ce74f3589c006da297bdc7,
+        type: 3}
+    - target: {fileID: 2193972282907261772, guid: 4afd7a521ffd6cb4d987a16651087756,
+        type: 3}
+      propertyPath: CharacterThumbnail.Array.data[1]
+      value: 
+      objectReference: {fileID: 21300000, guid: d6e84deb03dd24e2da5dd58908ee11b2,
+        type: 3}
+    - target: {fileID: 2193972282907261772, guid: 4afd7a521ffd6cb4d987a16651087756,
+        type: 3}
+      propertyPath: CharacterThumbnail.Array.data[2]
+      value: 
+      objectReference: {fileID: 21300000, guid: d6e84deb03dd24e2da5dd58908ee11b2,
+        type: 3}
+    - target: {fileID: 2193972282907261772, guid: 4afd7a521ffd6cb4d987a16651087756,
+        type: 3}
+      propertyPath: CharacterThumbnail.Array.data[3]
+      value: 
+      objectReference: {fileID: 21300000, guid: d6e84deb03dd24e2da5dd58908ee11b2,
+        type: 3}
     - target: {fileID: 2193972282907261775, guid: 4afd7a521ffd6cb4d987a16651087756,
         type: 3}
       propertyPath: m_Pivot.x
@@ -1625,10 +1649,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2193972282996079599, guid: 4afd7a521ffd6cb4d987a16651087756,
+    - target: {fileID: 5224170550540777651, guid: 4afd7a521ffd6cb4d987a16651087756,
         type: 3}
-      propertyPath: m_Color.a
-      value: 0.8039216
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4afd7a521ffd6cb4d987a16651087756, type: 3}
