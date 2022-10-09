@@ -172,6 +172,8 @@ public class InGameUIManager : MonoBehaviour
 
     IEnumerator InformDeadCoroutine(CharacterType killerType, string killerId, CharacterType victimType, string victimId)
     {
+        informCanvas.alpha = 0.0f;
+
         dynamicContent -= 1;
         dynamicText.text = ((int)dynamicContent).ToString();
 
@@ -186,7 +188,8 @@ public class InGameUIManager : MonoBehaviour
         informCanvas.gameObject.SetActive(true);
         informCanvas.DOFade(1.0f, fadeTime);
         yield return new WaitForSeconds(InformTime);
-                
+        informCanvas.DOFade(0.0f, fadeTime);
+
     }
 
 

@@ -38,7 +38,7 @@ public abstract class Player : MonoBehaviourPun
     
     protected virtual void Awake()
     {   
-        nickName = PhotonNetwork.NickName;
+        nickName = photonView.Owner.NickName;
         gameObject.name = nickName;
     }
 
@@ -86,7 +86,9 @@ public abstract class Player : MonoBehaviourPun
 
     private void Destroy()
     {
-        PhotonNetwork.Destroy(photonView);
+        if (!photonView.IsMine)
+            return;
+        PhotonNetwork.Destroy(this.gameObject);
     }
 
 

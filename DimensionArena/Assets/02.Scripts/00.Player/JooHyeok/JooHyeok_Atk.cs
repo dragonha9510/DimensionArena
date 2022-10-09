@@ -30,7 +30,7 @@ public class JooHyeok_Atk: Player_Atk
 
     public override void Attack()
     {
-        if(!isAttack)
+        if(!isAttack && photonView.IsMine)
             StartCoroutine(AttackCoroutine());
     }
     
@@ -41,6 +41,7 @@ public class JooHyeok_Atk: Player_Atk
 
     IEnumerator AttackCoroutine()
     {
+
         isAttack = true;
         owner.CanDirectionChange = false;
 
