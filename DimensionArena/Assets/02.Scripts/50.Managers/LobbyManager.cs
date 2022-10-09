@@ -11,8 +11,6 @@ public class LobbyManager : MonoBehaviourPunCallbacks
 
     private static LobbyManager Instance;
 
-
-
     // 시작 플레이어 제한 수 입니다
     [SerializeField]
     int startPlayerCount = 4;

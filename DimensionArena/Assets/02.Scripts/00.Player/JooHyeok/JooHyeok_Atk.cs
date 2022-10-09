@@ -30,22 +30,32 @@ public class JooHyeok_Atk: Player_Atk
     public override void Attack()
     {
         if (!isAttack)
-            photonView.RPC("StartAttackCoroutine", RpcTarget.MasterClient, transform.position + attackDirection
-                                            , attackDirection
-                                            , range, projectileSpeed
-                                            , this.gameObject.name);
+            StartAttackCoroutine();
     }
     
+    private void StartAttackCoroutine()
+    {
+        photonView.RPC("AttackCoroutine", RpcTarget.MasterClient 
+                                            , transform.position + attackDirection
+                                            , attackDirection
+                                            , range
+                                            , projectileSpeed
+                                            , this.gameObject.name);
+    }
+
     public override void Skill()
     {
         //Skill구현
     }
-                                                                                                                                                                               
-    public IEnumerator AttackCoroutine(Player player , Vector3 Pos , Vector3 dir, float range, float speed, string ownerName)
+                         
+
+    // Direction Change 삭제
+    [PunRPC]
+    private IEnumerator AttackCoroutine(Vector3 Pos , Vector3 dir, float range, float speed, string ownerName)
     {
 
         isAttack = true;
-        player.CanDirectionChange = false;
+        //player.CanDirectionChange = false;
 
         GameObject projectile;
 
@@ -66,7 +76,7 @@ public class JooHyeok_Atk: Player_Atk
         }
 
         isAttack = false;
-        owner.CanDirectionChange = true;
+        //owner.CanDirectionChange = true;
     }
 
 
