@@ -76,6 +76,7 @@ MonoBehaviour:
   - StartAttack
   - AttackCoroutine
   - StartAttackCoroutine
+  - DeadCheck
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1

@@ -206,15 +206,36 @@ public class PlayerInfoManager : MonoBehaviourPun
         }
 
         //When Die
-        if (target.CurHP.AlmostEquals(0.0f, float.Epsilon))
+        //if (target.CurHP.AlmostEquals(0.0f, float.Epsilon))
+        //{
+        //    PlayerInfo owner;
+        //    if (DicPlayerInfo.TryGetValue(ownerId, out owner))
+        //    {
+        //
+        //        if(photonView.IsMine)
+        //            target.PlayerDie(owner.Type, ownerId);
+        //    }
+        //}
+    }
+    // JSB
+
+    public void DeadCheckCallServer(string ownerId)
+    {
+        photonView.RPC("DeadCheck", RpcTarget.All,ownerId);
+    }
+
+    [PunRPC]
+    private void DeadCheck(string ownerId)
+    {
+        foreach(PlayerInfo info in playerInfoArr)
         {
-            PlayerInfo owner;
-            if (DicPlayerInfo.TryGetValue(ownerId, out owner))
+            if(info.CurHP <= 0)
             {
-                target.PlayerDie(owner.Type, ownerId);
+                info.PlayerDie(info.Type, ownerId);
             }
         }
     }
+    //
 
     /// <<<<<<<<<<<<<<<<<<<<<<<<<<
 

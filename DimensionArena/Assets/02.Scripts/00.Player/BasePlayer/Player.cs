@@ -86,10 +86,9 @@ public abstract class Player : MonoBehaviourPunCallbacks
         movement.MoveDirection(rigid, transform, direction, info.Speed);
     }
 
+    
     private void Destroy()
     {
-        if (!photonView.IsMine)
-            return;
         PhotonNetwork.Destroy(this.gameObject);
     }
 

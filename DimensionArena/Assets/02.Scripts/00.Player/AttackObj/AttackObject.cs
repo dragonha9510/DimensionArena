@@ -23,10 +23,14 @@ public class AttackObject : MonoBehaviourPun
         //Damaged
         PlayerInfoManager.Instance.
                        CurHpDecrease(ownerID, targetId, damage);
+        // 이미 이 함수를 들어온 이상 마스터클라이언트 임으로 밑의 if 문 삭제
 
-        if (!PhotonNetwork.IsMasterClient)
+        // 아니 마스터에서만 지워야함 이거 있어야함
+        /*if (!PhotonNetwork.IsMasterClient)
             return;
-        PhotonNetwork.Destroy(this.gameObject);
+        PhotonNetwork.Destroy(this.gameObject);*/
+
+        PlayerInfoManager.Instance.DeadCheckCallServer(ownerID);
     }
 
     //JSB
@@ -53,7 +57,10 @@ public class AttackObject : MonoBehaviourPun
                         photonView.RPC("OnCollisionToPlayer",
                         RpcTarget.All,
                         collision.gameObject.name);
-                    }                 
+
+                        // 걍이거 위애 ToPlayer 에서 뺐음
+                        PhotonNetwork.Destroy(this.gameObject);
+                    }
                 }
                 break;
                 //Damaged된 Obstacle 공격체 방향으로 살짝 흔들리는 모션
