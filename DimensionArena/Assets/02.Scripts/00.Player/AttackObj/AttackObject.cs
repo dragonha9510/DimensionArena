@@ -16,13 +16,13 @@ public class AttackObject : MonoBehaviourPun
 
  
     [PunRPC]
-    protected void OnCollisionToPlayer(string id)
+    protected void OnCollisionToPlayer(string targetId)
     {
         PlayerInfoManager.Instance.
                         CurSkillPtIncrease(ownerID,ultimatePoint);
         //Damaged
         PlayerInfoManager.Instance.
-                       CurHpDecrease(id, damage);
+                       CurHpDecrease(ownerID, targetId, damage);
 
         if (!photonView.IsMine)
             return;

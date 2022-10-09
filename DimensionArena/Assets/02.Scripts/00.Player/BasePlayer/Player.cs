@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEditor;
 using Photon.Pun;
 
-public class Player : MonoBehaviourPun
+public abstract class Player : MonoBehaviourPun
 {
     /// =============================
     /// Direction Region
@@ -20,28 +20,29 @@ public class Player : MonoBehaviourPun
     /// Component Type Region
     /// =============================
 
-    [SerializeField] private PlayerInfo info;
-
-    
+    [SerializeField] protected PlayerInfo info;
     public  PlayerInfo  Info { get { return info; } }
-    public  Player_Atk  attack;
+
+
+    protected  Player_Atk   attack;
     private Player_Movement movement;
     private Rigidbody rigid;
 
 
     private string nickName;
+    public string NickName => nickName;
+
     public bool CanDirectionChange { get; set; }
     
     /// =============================
     
-    private void Awake()
+    protected virtual void Awake()
     {   
         nickName = PhotonNetwork.NickName;
         gameObject.name = nickName;
-        info = new PlayerInfo(gameObject.name); 
     }
 
-    private void Start()
+    protected virtual void Start()
     {
         CanDirectionChange = true;
 
@@ -59,6 +60,8 @@ public class Player : MonoBehaviourPun
 
         if (rigid == null)
             Destroy(this.gameObject);
+
+        Info.EDestroyPlayer += Destroy;
     }
 
 
@@ -80,6 +83,14 @@ public class Player : MonoBehaviourPun
     {
         movement.MoveDirection(rigid, transform, direction, info.Speed);
     }
+
+    private void Destroy()
+    {
+        PhotonNetwork.Destroy(photonView);
+    }
+
+
+
 
 
 }

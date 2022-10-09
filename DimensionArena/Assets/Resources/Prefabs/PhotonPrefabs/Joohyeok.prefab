@@ -654,7 +654,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2737819322045720800}
-  - component: {fileID: 1866439616}
+  - component: {fileID: 4128129350105722265}
   - component: {fileID: 1876143292272218706}
   - component: {fileID: 2737819322045720801}
   - component: {fileID: 2737819322045720806}
@@ -662,7 +662,7 @@ GameObject:
   - component: {fileID: 3709939841409349273}
   - component: {fileID: 7925714259975075949}
   m_Layer: 0
-  m_Name: Test_Player_KJH
+  m_Name: Joohyeok
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -686,7 +686,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1866439616
+--- !u!114 &4128129350105722265
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -695,24 +695,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 2737819322045720829}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0c58062bac9dde74bbbf6e0e2c298dcd, type: 3}
+  m_Script: {fileID: 11500000, guid: a14f7ed852fe7d949b06f971a8847c3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  directionLocation: {fileID: 1942131592}
+  directionLocation: {fileID: 2737819320364242460}
   direction: {x: 0, y: 0, z: 0}
   info:
     id: 
-    maxHP: 100
-    curHP: 100
-    curSkillPoint: 0
-    maxSkillPoint: 100
-    speed: 3
-    maxSpeed: 6
+    type: 0
     isAlive: 0
+    maxHP: 0
+    curHP: 0
+    curSkillPoint: 0
+    maxSkillPoint: 0
+    speed: 0
     curShield: 0
-    maxShield: 100
-    thumbnail: {fileID: 0}
-  attack: {fileID: 0}
 --- !u!114 &1876143292272218706
 MonoBehaviour:
   m_ObjectHideFlags: 0

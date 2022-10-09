@@ -35,7 +35,7 @@ public class InGameUIManager : MonoBehaviour
 
 
     [Header("Sprite Resources")]
-    Sprite[] CharacterThumbnail;
+    [SerializeField] Sprite[] CharacterThumbnail;
 
     private GAMEMODE mode;
 
@@ -55,8 +55,7 @@ public class InGameUIManager : MonoBehaviour
             case GAMEMODE.Survival:
                 for(int i = 0; i < PlayerInfoManager.Instance.PlayerInfoArr.Length; ++i)
                 {
-                    PlayerInfoManager.Instance.PlayerInfoArr[i].EDeadPlayer += 
-                        DeadPlayer; 
+                    PlayerInfoManager.Instance.PlayerInfoArr[i].EDeadPlayer += DeadPlayer;
                 }
                 break;
             case GAMEMODE.FreeForAll:
@@ -73,11 +72,23 @@ public class InGameUIManager : MonoBehaviour
         }
     }
 
-    private void DeadPlayer()
+    private void DeadPlayer(CharacterType KillerType, string KillerId, CharacterType victimType, string victimId)
     {
-
         dynamicContent -= 1;
         dynamicText.text = ((int)dynamicContent).ToString();
+
+        switch (KillerType)
+        {
+            case CharacterType.Aura:
+                break;
+            case CharacterType.Raebijibel:
+                break;
+            case CharacterType.Joohyeok:
+                break;
+            case CharacterType.Sesillia:
+                break;
+        }
+
     }
 
 

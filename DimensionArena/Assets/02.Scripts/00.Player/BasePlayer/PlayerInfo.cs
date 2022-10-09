@@ -4,9 +4,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 
+
+
+public enum CharacterType
+{
+    Aura,
+    Raebijibel,
+    Joohyeok,
+    Sesillia,
+}
+
 [Serializable]
-public class PlayerInfo 
-{  
+public class PlayerInfo
+{
     public PlayerInfo(string ID)
     {
         id = ID;
@@ -15,10 +25,21 @@ public class PlayerInfo
         maxSkillPoint = 100.0f;
         curSkillPoint = 0.0f;
         speed = 3.0f;
-        maxSpeed = 6.0f;
         curShield = 0.0f;
-        maxShield = 100.0f;
         isAlive = true;
+    }
+
+    public PlayerInfo(string ID, CharacterType type, 
+                      float maxHP, float maxSkillpt, 
+                      float speed)
+    {
+        id = ID;
+        this.type = type;
+        this.maxHP = maxHP;
+        curHP = maxHP;
+        maxSkillPoint = maxSkillpt;
+        curSkillPoint = 0;
+        this.speed = speed;       
     }
 
     /// =============================
@@ -26,8 +47,9 @@ public class PlayerInfo
     /// =============================
     public event Action<float> EskillAmountChanged = (param) => { };
     public event Action<float> EcurHPChanged = (param) => { };
-    public event Action EDeadPlayer = () => { };
-    public event Action<Sprite> EKillTarget = (param) => { };
+    public event Action<CharacterType, string, 
+                        CharacterType, string> EDeadPlayer = (param, param2, param3, param4) => { };
+    public event Action EDestroyPlayer;
 
 
     /// =============================
@@ -35,31 +57,42 @@ public class PlayerInfo
     /// =============================
     #region Player Information
 
+    [Header("Player State")]
     [SerializeField] private string id;
+    [SerializeField] private CharacterType type;
+    [SerializeField] private bool isAlive;
+
+    [Header("Player Stat")]
     [SerializeField] private float maxHP;
     [SerializeField] private float curHP;
     [SerializeField] private float curSkillPoint;
     [SerializeField] private float maxSkillPoint;
     [SerializeField] private float speed = 3.0f;
-    [SerializeField] private float maxSpeed = 6.0f;
-
-    [SerializeField] private bool  isAlive;
-
     [SerializeField] private float curShield;
-    [SerializeField] private float maxShield;
 
-    [SerializeField] private Sprite thumbnail; 
 
-    public float MaxHP { get { return maxHP; }  }
+    /// <summary>
+    /// If etc variable related with Score So many, then add a new class under the name PlayerScore 
+    /// </summary>
+
+    [Header("Player Score")]
+    [SerializeField] private int   killScore;
+    [SerializeField] private int   dmgScore;
+    /// <summary>
+    /// Etc variable and method Add when Product Design Confirmed...
+    /// </summary>
+
+    public float MaxHP { get { return maxHP; } }
     public float CurHP { get { return curHP; } }
     public float CurSkillPoint { get { return curSkillPoint; } }
     public float MaxSkillPoint { get { return maxSkillPoint; } }
     public float Speed { get { return speed; } }
-    public float MaxSpeed { get { return maxSpeed; } }
     public float CurShield { get { return curShield; } }
-    public float MaxShield { get { return maxShield; } }
     public string ID { get { return id; } }
-    public bool IsAlive { get { return isAlive; }  }
+    public bool IsAlive { get { return isAlive; } }
+    public int KillScore { get { return killScore; } }
+    public int DmgScore { get { return killScore; } }
+    public CharacterType Type { get { return type; } }
     #endregion
 
 
@@ -68,7 +101,7 @@ public class PlayerInfo
 
     [PunRPC]
     public void LoseSkillPoint(float point)
-    {        
+    {
         if (curSkillPoint != maxSkillPoint)
         {
             curSkillPoint -= point;
@@ -101,14 +134,13 @@ public class PlayerInfo
     {
         curHP += amount;
         curHP = Mathf.Max(curHP, MaxHP);
-        EcurHPChanged(curHP/maxHP);
+        EcurHPChanged(curHP / maxHP);
     }
 
     [PunRPC]
     public void GetShield(float amount)
     {
         curShield += amount;
-        curShield = Mathf.Min(curShield, maxShield);
     }
 
     [PunRPC]
@@ -119,24 +151,23 @@ public class PlayerInfo
     }
 
     [PunRPC]
-    public void SpeedUp(float amount)
+    public void SpeedUp(float ratio)
     {
-        speed += amount;
-        speed = Mathf.Min(speed, maxSpeed);
+        speed += speed * ratio;
     }
 
     [PunRPC]
-    public void SpeedDown(float amount)
+    public void SpeedDown(float ratio)
     {
-        speed -= amount;
-        speed = Mathf.Max(speed, 1);
+        speed -= speed * ratio;
     }
 
     [PunRPC]
-    public void PlayerDie()
+    public void PlayerDie(CharacterType target_type, string target_id)
     {
         isAlive = false;
-        EDeadPlayer();
+        EDeadPlayer(target_type, target_id, type, id);
+        EDestroyPlayer();
     }
     #endregion
 

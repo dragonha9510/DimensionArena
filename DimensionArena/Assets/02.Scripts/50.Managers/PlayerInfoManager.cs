@@ -45,8 +45,9 @@ public class PlayerInfoManager : MonoBehaviourPun
     /// >>>>>>>>>>>>>>>>>>>>>>>>>>
 
     #region Add Player to Memory Region With Property
-    [SerializeField] GameObject[] playerObjectArr;
-    [SerializeField] PlayerInfo[] playerInfoArr;
+    [SerializeField] private GameObject[] playerObjectArr;
+    [SerializeField] private PlayerInfo[] playerInfoArr;
+    private Dictionary<string, PlayerInfo> DicPlayerInfo;
 
     public GameObject[] PlayerObjectArr
     {
@@ -60,12 +61,13 @@ public class PlayerInfoManager : MonoBehaviourPun
                 {
                     GameObject[] players = PlayerObjectArr;
                     playerInfoArr = new PlayerInfo[players.Length];
+                    DicPlayerInfo = new Dictionary<string, PlayerInfo>();
 
                     for (int i = 0; i < players.Length; ++i)
                     {
                         //리스트 등록, 딕셔너리 등록
                         playerInfoArr[i] = players[i].GetComponent<Player>().Info;
-
+                        DicPlayerInfo.Add(players[i].name, playerInfoArr[i]);
                     }
                 }
             }
@@ -104,13 +106,22 @@ public class PlayerInfoManager : MonoBehaviourPun
     [PunRPC]
     public void RegisterforMasterClient()
     {
-        if(NullCheck.IsNullOrEmpty(playerObjectArr))
+        if (NullCheck.IsNullOrEmpty(playerObjectArr))
         {
             playerObjectArr = GameObject.FindGameObjectsWithTag("Player");
-            playerInfoArr = new PlayerInfo[playerObjectArr.Length];
-            for (int i = 0; i < playerObjectArr.Length; ++i)
+
+            if (NullCheck.IsNullOrEmpty(playerInfoArr))
             {
-                playerInfoArr[i] = playerObjectArr[i].GetComponent<Player>().Info;
+                GameObject[] players = PlayerObjectArr;
+                playerInfoArr = new PlayerInfo[players.Length];
+                DicPlayerInfo = new Dictionary<string, PlayerInfo>();
+
+                for (int i = 0; i < players.Length; ++i)
+                {
+                    //리스트 등록, 딕셔너리 등록
+                    playerInfoArr[i] = players[i].GetComponent<Player>().Info;
+                    DicPlayerInfo.Add(players[i].name, playerInfoArr[i]);
+                }
             }
         }
     }
@@ -153,7 +164,9 @@ public class PlayerInfoManager : MonoBehaviourPun
     [PunRPC]
     public void CurHpDecrease(GameObject owner, GameObject target, float damage)
     {
+       
 
+        /*
         for (int i = 0; i < PlayerObjectArr.Length; ++i)
         {
             if (PlayerObjectArr[i] == target)
@@ -163,11 +176,11 @@ public class PlayerInfoManager : MonoBehaviourPun
                 break;
             }
         }
-
-        //Do Something wiht Owner relation..
+        */
     }
 
 
+    /*
     [PunRPC]
     public void CurHpDecrease(string targetId, float damage)
     {
@@ -186,26 +199,29 @@ public class PlayerInfoManager : MonoBehaviourPun
             }
         }
     }
+    */
 
     [PunRPC]
     public void CurHpDecrease(string ownerId, string targetId, float damage)
     {
+        PlayerInfo target;
 
-        for(int i = 0; i < playerInfoArr.Length; ++i)
+        //Damage
+        if (DicPlayerInfo.TryGetValue(targetId, out target))
         {
-            if(playerInfoArr[i].ID == targetId)
+            damage = CheckShieldExist(target, damage);
+            target.Damaged(damage);
+        }
+
+        //When Die
+        if (target.CurHP.AlmostEquals(0.0f, float.Epsilon))
+        {
+            PlayerInfo owner;
+            if (DicPlayerInfo.TryGetValue(ownerId, out owner))
             {
-                playerInfoArr[i].Damaged(damage);
-                
-                if (playerInfoArr[i].CurHP.
-                    AlmostEquals(0.0f,float.Epsilon))
-                {
-                    playerInfoArr[i].PlayerDie();
-                }            
-                break;
+                owner.PlayerDie(owner.Type, ownerId);
             }
         }
-    
     }
 
     /// <<<<<<<<<<<<<<<<<<<<<<<<<<
