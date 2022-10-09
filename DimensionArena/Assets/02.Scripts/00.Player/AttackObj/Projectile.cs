@@ -20,6 +20,8 @@ public class Projectile : AttackObject
     {
         if(range < (this.transform.position - originPos).magnitude)
         {
+            if (!PhotonNetwork.IsMasterClient)
+                return;
             PhotonNetwork.Destroy(this.gameObject);
         }
     }
