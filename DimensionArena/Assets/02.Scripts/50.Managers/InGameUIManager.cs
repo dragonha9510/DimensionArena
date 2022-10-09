@@ -173,10 +173,8 @@ public class InGameUIManager : MonoBehaviour
     IEnumerator InformDeadCoroutine(CharacterType killerType, string killerId, CharacterType victimType, string victimId)
     {
         informCanvas.alpha = 0.0f;
-
         dynamicContent -= 1;
         dynamicText.text = ((int)dynamicContent).ToString();
-
         //SetThumbnail
         SelectThumbnail(killerImage, killerType);
         SelectThumbnail(victimImage, victimType);

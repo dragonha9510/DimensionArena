@@ -4,9 +4,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 using Photon.Pun;
-
-public abstract class Player : MonoBehaviourPun
+using Photon;
+public abstract class Player : MonoBehaviourPunCallbacks
 {
+   
     /// =============================
     /// Direction Region
     /// =============================
@@ -22,8 +23,7 @@ public abstract class Player : MonoBehaviourPun
 
     [SerializeField] protected PlayerInfo info;
     public  PlayerInfo  Info { get { return info; } }
-
-
+ 
     protected  Player_Atk   attack;
     private Player_Movement movement;
     private Rigidbody rigid;
@@ -76,6 +76,8 @@ public abstract class Player : MonoBehaviourPun
             directionLocation.gameObject.SetActive(true);
             directionLocation.position = transform.position + (direction * 1.25f);
         }
+
+        Debug.Log(photonView.Owner.NickName + "의 각도는 : " + direction);
     }
 
 
@@ -91,8 +93,5 @@ public abstract class Player : MonoBehaviourPun
         PhotonNetwork.Destroy(this.gameObject);
     }
 
-
-
-
-
+    
 }

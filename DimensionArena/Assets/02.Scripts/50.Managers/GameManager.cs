@@ -45,22 +45,25 @@ public class GameManager : MonoBehaviourPunCallbacks, IPunObservable
         Vector3 spawnPoint = new Vector3(0, 1, 0);
 
         //   추 후 이거 유동적으로 바꿔야함. 게임매니저 문제점 기록하기
+        
+        GameObject testObject = PhotonNetwork.Instantiate(PHOTONPATH.PHOTONPATH_PREFAPBFOLDER
+            + playerPrefab.name, spawnPoint, Quaternion.identity);
+
         //PhotonNetwork.Instantiate(PHOTONPATH.PHOTONPATH_PREFAPBFOLDER 
         //    + playerPrefab.name, spawnPoint, Quaternion.identity);
-        PhotonNetwork.Instantiate(PHOTONPATH.PHOTONPATH_PREFAPBFOLDER
-            + playerPrefab.name, spawnPoint, Quaternion.identity);
-        //photonView.RPC("CreatePlayer",RpcTarget.All , PHOTONPATH.PHOTONPATH_PREFAPBFOLDER + playerPrefab.name, spawnPoint, Quaternion.identity);
+
+        //photonView.RPC("CreatePlayer", RpcTarget.All, PHOTONPATH.PHOTONPATH_PREFAPBFOLDER + playerPrefab.name, spawnPoint, Quaternion.identity);
+        
     }
 
     [PunRPC]
-    void CreatePlayer(string playerName,Vector3 spawnPoint ,Quaternion quaternion)
+    void CreatePlayer(string playerName, Vector3 spawnPoint, Quaternion quaternion)
     {
         if (!PhotonNetwork.IsMasterClient)
             return;
 
         PhotonNetwork.Instantiate(playerName, spawnPoint, quaternion);
     }
-
 
 
     public void OnEvent(EventData photonEvent)

@@ -39,6 +39,7 @@ public class PlayerInfoManager : MonoBehaviourPun
     /// <<<<<<<<<<<<<<<<<<<<<<<<<<<
 
 
+
     /// ===========================
     /// Add Player to Memory Region
     /// >>>>>>>>>>>>>>>>>>>>>>>>>>
@@ -102,14 +103,10 @@ public class PlayerInfoManager : MonoBehaviourPun
         photonView.RPC("RegisterforMasterClient", RpcTarget.All);
     }
 
-
-
-
     [PunRPC]
     public void RegisterforMasterClient()
     {
-        playerObjectArr = GameObject.FindGameObjectsWithTag("Player");
-        GameObject[] players = PlayerObjectArr;
+        GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
         playerInfoArr = new PlayerInfo[players.Length];
         DicPlayerInfo = new Dictionary<string, PlayerInfo>();
 
@@ -118,7 +115,7 @@ public class PlayerInfoManager : MonoBehaviourPun
             //리스트 등록, 딕셔너리 등록
             playerInfoArr[i] = players[i].GetComponent<Player>().Info;
             DicPlayerInfo.Add(players[i].name, playerInfoArr[i]);
-        }
+        }               
     }
 
     /// <<<<<<<<<<<<<<<<<<<<<<<<<<<
