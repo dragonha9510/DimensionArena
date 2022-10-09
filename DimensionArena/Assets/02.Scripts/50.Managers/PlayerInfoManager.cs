@@ -106,24 +106,16 @@ public class PlayerInfoManager : MonoBehaviourPun
     [PunRPC]
     public void RegisterforMasterClient()
     {
-        if (NullCheck.IsNullOrEmpty(playerObjectArr))
+        GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+        playerInfoArr = new PlayerInfo[players.Length];
+        DicPlayerInfo = new Dictionary<string, PlayerInfo>();
+
+        for (int i = 0; i < players.Length; ++i)
         {
-            playerObjectArr = GameObject.FindGameObjectsWithTag("Player");
-
-            if (NullCheck.IsNullOrEmpty(playerInfoArr))
-            {
-                GameObject[] players = PlayerObjectArr;
-                playerInfoArr = new PlayerInfo[players.Length];
-                DicPlayerInfo = new Dictionary<string, PlayerInfo>();
-
-                for (int i = 0; i < players.Length; ++i)
-                {
-                    //리스트 등록, 딕셔너리 등록
-                    playerInfoArr[i] = players[i].GetComponent<Player>().Info;
-                    DicPlayerInfo.Add(players[i].name, playerInfoArr[i]);
-                }
-            }
-        }
+            //리스트 등록, 딕셔너리 등록
+            playerInfoArr[i] = players[i].GetComponent<Player>().Info;
+            DicPlayerInfo.Add(players[i].name, playerInfoArr[i]);
+        }               
     }
 
     /// <<<<<<<<<<<<<<<<<<<<<<<<<<<
@@ -219,7 +211,7 @@ public class PlayerInfoManager : MonoBehaviourPun
             PlayerInfo owner;
             if (DicPlayerInfo.TryGetValue(ownerId, out owner))
             {
-                owner.PlayerDie(owner.Type, ownerId);
+                target.PlayerDie(owner.Type, ownerId);
             }
         }
     }
