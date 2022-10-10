@@ -89,14 +89,10 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         if (NameOverLapCheck(nameText.text))
             return;
 
-
-
         if (startPlayerCount == PhotonNetwork.CurrentRoom.PlayerCount)
             photonView.RPC("LoadingInGame", RpcTarget.All);
         else
             LoadMatchMakingScene();
-
-       
 
         //if (PhotonNetwork.IsConnected)
         //{
