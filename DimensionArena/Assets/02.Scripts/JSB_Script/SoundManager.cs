@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
+using UnityEngine.UI;
 
 public class SoundManager : MonoBehaviourPun
 {
@@ -15,7 +16,9 @@ public class SoundManager : MonoBehaviourPun
 
     public static SoundManager Instance;
 
+    [SerializeField]
     private AudioSource bgmPlayer;
+    [SerializeField]
     private AudioSource sfxPlayer;
 
     private Dictionary<string, AudioClip> AudioClips = new Dictionary<string, AudioClip>();
@@ -26,15 +29,14 @@ public class SoundManager : MonoBehaviourPun
         if (null == Instance)
         {
             Instance = this;
-            bgmPlayer = GetComponent<AudioSource>();
-            sfxPlayer = GetComponent<AudioSource>();
+            LoadMusics();
 
             DontDestroyOnLoad(Instance);
         }
         else
             Destroy(gameObject);
     }
-    public void LoadMusics()
+    private void LoadMusics()
     {
         foreach (string str in sceneNames)
         {
@@ -52,8 +54,10 @@ public class SoundManager : MonoBehaviourPun
         bgmPlayer.Play();
         bgmPlayer.loop = true;
     }
-    
-    public void PlaySFXOneShot(string audioClipName)
+
+
+    [PunRPC]
+    private void PlaySFXOneShot(string audioClipName)
     {
         if (null == AudioClips[audioClipName])
             return;
@@ -62,14 +66,23 @@ public class SoundManager : MonoBehaviourPun
         sfxPlayer.Play();
     }
 
+    public void SettingSFXVolume(float value)
+    {
+        sfxPlayer.volume = value;
+        Debug.Log(sfxPlayer.volume);
+    }
+    public void SettingMusicVolume(float value)
+    {
+        bgmPlayer.volume = value;
+    }
+
+
     public void PlaySFXAllClient(string audioClipName)
     {
-        for(int i = 0; i < PlayerInfoManager.Instance.PlayerObjectArr.Length; ++i)
-        {
-            //PlayerInfoManager.Instance.PlayerObjectArr[i].name == photonView.ViewID
-        }
-        //PlayerInfoManager.Instance.PlayerObjectArr[]
+        photonView.RPC("PlaySFXOneShot", RpcTarget.All, audioClipName);
     }
+
+
 
     public void PlayBGM(string clipName)
     {
@@ -77,6 +90,8 @@ public class SoundManager : MonoBehaviourPun
         bgmPlayer.Play();
         bgmPlayer.loop = true;
     }
+
+
     public AudioClip GetClip(string clipName)
     {
         if (AudioClips.ContainsKey(clipName))

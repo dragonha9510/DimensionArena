@@ -42,6 +42,22 @@ public class PlayerInfoManager : MonoBehaviourPun
     /// <<<<<<<<<<<<<<<<<<<<<<<<<<<
 
 
+    /// ===========================
+    /// JSM Written GetTransformFunction With name
+    /// >>>>>>>>>>>>>>>>>>>>>>>>>>
+    
+    public Transform getPlayerTransform(string name)
+    {
+        foreach(GameObject obj in playerObjectArr)
+        {
+            if (obj.name == name)
+                return obj.transform;
+        }
+        return null;
+    }    
+
+    /// <<<<<<<<<<<<<<<<<<<<<<<<<<<
+
 
     /// ===========================
     /// Add Player to Memory Region
@@ -209,7 +225,10 @@ public class PlayerInfoManager : MonoBehaviourPun
         //Damage
         if (DicPlayerInfo.TryGetValue(targetId, out target))
         {
-            damage = CheckShieldExist(target, damage);         
+            damage = CheckShieldExist(target, damage);
+            
+            Debug.Log(damage);
+
             target.Damaged(damage);
         }
 
@@ -237,15 +256,15 @@ public class PlayerInfoManager : MonoBehaviourPun
     {        
         for (int i = 0; i < playerInfoArr.Length; ++i)
         { 
-            if(playerInfoArr[i].CurHP <= 0 && playerInfoArr[i].IsAlive)
+            if(playerInfoArr[i].CurHP <= 0 && playerObjectArr[i].activeInHierarchy)
             {
-                //Player disactive and DisActive 
-                playerObjectArr[i].SetActive(false);
                 //Ingame UI Inform Kill
                 PlayerInfo killerInfo;
                 DicPlayerInfo.TryGetValue(killerId, out killerInfo);
                 playerInfoArr[i].PlayerDie(killerInfo.Type, killerId);
+                playerObjectArr[i].SetActive(false);
 
+                //Player disactive and DisActive 
             }
         } 
     }

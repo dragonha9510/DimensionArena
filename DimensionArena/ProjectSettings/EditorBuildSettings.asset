@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/01.Scenes/ProtoType/ProtoType.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
+  - enabled: 1
+    path: Assets/01.Scenes/JSB_Scene/Option.unity
+    guid: da84f4a482456d54590a0792de5f3aa5
   m_configObjects: {}

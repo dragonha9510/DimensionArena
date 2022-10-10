@@ -40,18 +40,17 @@ public class PlayerInfo
         maxSkillPoint = maxSkillpt;
         curSkillPoint = 0;
         this.speed = speed;
-        isAlive = true;
     }
 
     /// =============================
     /// Action Region
     /// =============================
-    
     public event Action<float> EskillAmountChanged = (param) => { };
     public event Action<float> EcurHPChanged = (param) => { };
     public event Action<CharacterType, string,
                         CharacterType, string> EDeadPlayer = (param, param2, param3, param4) => { };
     public event Action EDisActivePlayer = () => { };
+
 
     /// =============================
     /// Player Information Region

@@ -35,8 +35,9 @@ public class JooHyeok_Atk: Player_Atk
     
     private void StartAttackCoroutine()
     {
-        photonView.RPC("AttackCoroutine", RpcTarget.MasterClient 
-                                            , transform.position + attackDirection
+        owner.CanDirectionChange = false;
+        photonView.RPC("AttackCoroutine", RpcTarget.MasterClient
+                                            , PhotonNetwork.NickName
                                             , attackDirection
                                             , range
                                             , projectileSpeed
@@ -47,26 +48,23 @@ public class JooHyeok_Atk: Player_Atk
     {
         //Skill备泅
     }
-                         
 
-    // Direction Change 昏力
     [PunRPC]
-    private IEnumerator AttackCoroutine(Vector3 Pos , Vector3 dir, float range, float speed, string ownerName)
+    private IEnumerator AttackCoroutine(string shooter,Vector3 shooterAttackDir, float range, float speed, string ownerName)
     {
 
         isAttack = true;
-        //player.CanDirectionChange = false;
 
         GameObject projectile;
+
+        Transform shooterPosition = PlayerInfoManager.Instance.getPlayerTransform(shooter);
 
         for (int i = 0; i < 2; ++i)
         {
             for (int j = 0; j < projectileCount; ++j)
             {
-                Debug.Log("醚舅积己");
-
-                projectile = PhotonNetwork.Instantiate("projectile", Pos, Quaternion.identity);
-                projectile.GetComponent<Projectile>().AttackToDirection(dir, range, speed);
+                projectile = PhotonNetwork.Instantiate("projectile", shooterPosition.position + shooterAttackDir, Quaternion.identity);
+                projectile.GetComponent<Projectile>().AttackToDirection(shooterAttackDir, range, speed);
                 projectile.GetComponent<Projectile>().ownerID = ownerName;
                 yield return new WaitForSeconds(burst_delay);
             }
@@ -74,8 +72,33 @@ public class JooHyeok_Atk: Player_Atk
         }
 
         isAttack = false;
-        //owner.CanDirectionChange = true;
+        owner.CanDirectionChange = true;
+
     }
+    // Direction Change 昏力
+    /*[PunRPC]
+    private IEnumerator AttackCoroutine(Transform shooterTrans , Vector3 shooterCorrection , float range, float speed, string ownerName)
+    {
+
+        isAttack = true;
+        //player.CanDirectionChange = false;
+        GameObject projectile;
+
+        for (int i = 0; i < 2; ++i)
+        {
+            for (int j = 0; j < projectileCount; ++j)
+            {
+                projectile = PhotonNetwork.Instantiate("projectile", shooterTrans.position + shooterCorrection , Quaternion.identity);
+                projectile.GetComponent<Projectile>().AttackToDirection(shooterCorrection, range, speed);
+                projectile.GetComponent<Projectile>().ownerID = ownerName;
+                yield return new WaitForSeconds(burst_delay);
+            }
+            yield return new WaitForSeconds(attack_delay);
+        }
+
+        isAttack = false;
+        
+    }*/
 
 
     /*IEnumerator AttackCoroutine()

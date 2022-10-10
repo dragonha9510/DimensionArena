@@ -14,6 +14,7 @@ public class Projectile : AttackObject
     private void Awake()
     {
         originPos = transform.position;
+        SoundManager.Instance.PlaySFXAllClient("JiJooNormalEffect");
     }
 
     private void LateUpdate()
@@ -35,7 +36,7 @@ public class Projectile : AttackObject
 
     
 
-    [PunRPC]
+    /*[PunRPC]
     private void ToDirection(Vector3 dir, float range, float speed)
     {
         //JSB
@@ -43,6 +44,6 @@ public class Projectile : AttackObject
         //
         this.range = range;
         rigid.velocity = dir * speed;
-    }
+    }*/
     
 }

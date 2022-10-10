@@ -19,7 +19,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     // 이름 InputField Text 입니다
     [SerializeField]
     TextMeshProUGUI nameText;
-    
+
     [SerializeField]
     TextMeshProUGUI connectText;
 
@@ -28,8 +28,8 @@ public class LobbyManager : MonoBehaviourPunCallbacks
 
     //
     Photon.Realtime.Player[] players;
-   
-    
+
+
     private void Awake()
     {
         if (null == Instance)
@@ -43,16 +43,15 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     private void Start()
     {
         players = new Photon.Realtime.Player[startPlayerCount];
-        
-        SoundManager.Instance.LoadMusics();
+
     }
 
 
     private bool NameOverLapCheck(string name)
-    {        
+    {
         // 플레이어 이름 목록들을 받아온다.
         players = PhotonNetwork.PlayerList;
-        foreach(Photon.Realtime.Player p in players)
+        foreach (Photon.Realtime.Player p in players)
         {
             if (p.NickName == name)
             {
@@ -71,8 +70,8 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     public override void OnConnectedToMaster()
     {
         Debug.Log("OnConnectedToMaster");
-        
-        PhotonNetwork.JoinOrCreateRoom(defaultRoomName + roomCount.ToString(), new RoomOptions { MaxPlayers = (byte)startPlayerCount },null);
+
+        PhotonNetwork.JoinOrCreateRoom(defaultRoomName + roomCount.ToString(), new RoomOptions { MaxPlayers = (byte)startPlayerCount }, null);
     }
 
     public override void OnJoinRoomFailed(short returnCode, string message)
@@ -80,21 +79,21 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         Debug.Log("접속 실패");
         ++roomCount;
         PhotonNetwork.JoinOrCreateRoom(defaultRoomName + roomCount.ToString(), new RoomOptions { MaxPlayers = (byte)startPlayerCount }, null);
-      
+
     }
     public override void OnJoinedRoom()
-    {   
+    {
         Debug.Log("OnJoinedRoom");
 
         if (NameOverLapCheck(nameText.text))
             return;
 
-        
+
         if (startPlayerCount == PhotonNetwork.CurrentRoom.PlayerCount)
             photonView.RPC("LoadingInGame", RpcTarget.All);
         else
             LoadMatchMakingScene();
-        
+
         //if (PhotonNetwork.IsConnected)
         //{
         //    connectCount = PhotonNetwork.CurrentRoom.PlayerCount;
@@ -107,7 +106,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     {
         PhotonNetwork.NickName = nameText.text;
         PhotonNetwork.LoadLevel("MathMaking");
-    }        
+    }
 
     public void LoadSingleTestMode()
     {
@@ -120,4 +119,15 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         PhotonNetwork.NickName = nameText.text;
         PhotonNetwork.LoadLevel("ProtoType");
     }
+
+    public void LoadLobbyScene()
+    {
+        SceneManager.LoadScene("Lobby");
+    }
+
+    public void LoadOptionScene()
+    {
+        SceneManager.LoadScene("Option");
+    }
+
 }

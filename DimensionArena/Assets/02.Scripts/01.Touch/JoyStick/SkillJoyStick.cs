@@ -95,5 +95,9 @@ public class SkillJoyStick : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
         }
     }
 
+    public void DisActiveJoyStick()
+    {
+        gameObject.SetActive(false);
+    }
 }
 
