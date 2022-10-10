@@ -221,7 +221,7 @@ public class PlayerInfoManager : MonoBehaviourPun
 
     public void DeadCheckCallServer(string ownerId)
     {
-        photonView.RPC("DeadCheck", RpcTarget.All,ownerId);
+        photonView.RPC("DeadCheck", RpcTarget.All ,ownerId);
     }
 
     [PunRPC]
@@ -229,7 +229,7 @@ public class PlayerInfoManager : MonoBehaviourPun
     {
         foreach(PlayerInfo info in playerInfoArr)
         {
-            if(info.CurHP <= 0)
+            if(info.ID == PhotonNetwork.NickName && info.CurHP <= 0)
             {
                 info.PlayerDie(info.Type, ownerId);
             }
