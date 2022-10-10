@@ -161,11 +161,14 @@ public class PlayerInfo
         speed -= speed * ratio;
     }
 
-    [PunRPC]
     public void PlayerDie(CharacterType target_type, string target_id)
     {
         isAlive = false;
-        EDeadPlayer(target_type, target_id, type, id);
+        EDeadPlayer(target_type, target_id, type, id);        
+    }
+
+    public void PlayerDestroy()
+    {
         EDestroyPlayer();
     }
     #endregion

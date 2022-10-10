@@ -30,7 +30,7 @@ public class AttackObject : MonoBehaviourPun
             return;
         PhotonNetwork.Destroy(this.gameObject);*/
 
-        PlayerInfoManager.Instance.DeadCheckCallServer(ownerID);
+        PlayerInfoManager.Instance.DeadCheckCallServer(targetId);
     }
 
     //JSB

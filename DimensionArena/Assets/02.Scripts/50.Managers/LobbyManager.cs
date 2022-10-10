@@ -89,11 +89,12 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         if (NameOverLapCheck(nameText.text))
             return;
 
+        
         if (startPlayerCount == PhotonNetwork.CurrentRoom.PlayerCount)
             photonView.RPC("LoadingInGame", RpcTarget.All);
         else
             LoadMatchMakingScene();
-
+        
         //if (PhotonNetwork.IsConnected)
         //{
         //    connectCount = PhotonNetwork.CurrentRoom.PlayerCount;
@@ -105,9 +106,8 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     private void LoadMatchMakingScene()
     {
         PhotonNetwork.NickName = nameText.text;
-        //PhotonNetwork.LoadLevel("MathMaking");
-        SceneManager.LoadScene("MathMaking");
-    }
+        PhotonNetwork.LoadLevel("MathMaking");
+    }        
 
     public void LoadSingleTestMode()
     {
@@ -117,6 +117,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     [PunRPC]
     private void LoadingInGame()
     {
+        PhotonNetwork.NickName = nameText.text;
         PhotonNetwork.LoadLevel("ProtoType");
     }
 }

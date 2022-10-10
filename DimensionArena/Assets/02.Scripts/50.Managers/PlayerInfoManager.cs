@@ -235,14 +235,20 @@ public class PlayerInfoManager : MonoBehaviourPun
     }
 
     [PunRPC]
-    private void DeadCheck(string ownerId)
+    private void DeadCheck(string targetId)
     {
         foreach(PlayerInfo info in playerInfoArr)
         {
-            if(info.ID == PhotonNetwork.NickName && info.CurHP <= 0)
+            if(info.CurHP <= 0)
             {
-                info.PlayerDie(info.Type, ownerId);
+                info.PlayerDie(info.Type, targetId);
+
+                if (info.ID == PhotonNetwork.NickName)
+                {
+                    info.PlayerDestroy();
+                }
             }
+ 
         }
     }
   
