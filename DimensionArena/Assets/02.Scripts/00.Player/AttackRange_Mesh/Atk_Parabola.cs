@@ -5,7 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(MeshFilter))]
 public class Atk_Parabola : MonoBehaviour
 {
-    Mesh mesh;
+    private Mesh mesh;
     [SerializeField] private float meshWidth;
 
     [SerializeField] private float velocity;
@@ -17,25 +17,25 @@ public class Atk_Parabola : MonoBehaviour
 
     private void Awake()
     {
-        lineRenderer = GetComponent<LineRenderer>();
+        mesh = GetComponent<MeshFilter>().mesh;
         gravity = Mathf.Abs(Physics.gravity.y);
     }
 
     private void OnValidate()
     {
-        if (lineRenderer != null && Application.isPlaying)
-            RenderArc();
+        if (mesh != null && Application.isPlaying)
+            MakeArcMesh(CalculateArcArray());
     }
 
     private void Start()
     {
-        RenderArc();
+        MakeArcMesh(CalculateArcArray());
     }
 
-    void RenderArc()
+    void MakeArcMesh(Vector3[] arcVerts)
     {
-        lineRenderer.positionCount = (resolution + 1);
-        lineRenderer.SetPositions(CalculateArcArray());
+        mesh.Clear();
+
     }
 
     Vector3[] CalculateArcArray()
