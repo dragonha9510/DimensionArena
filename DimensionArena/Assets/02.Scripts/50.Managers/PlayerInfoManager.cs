@@ -211,6 +211,9 @@ public class PlayerInfoManager : MonoBehaviourPun
         if (DicPlayerInfo.TryGetValue(targetId, out target))
         {
             damage = CheckShieldExist(target, damage);
+            
+            Debug.Log(damage);
+
             target.Damaged(damage);
         }
 
