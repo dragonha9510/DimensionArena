@@ -89,7 +89,7 @@ public abstract class Player : MonoBehaviourPunCallbacks
     
     private void Destroy()
     {
-       PhotonNetwork.Destroy(this.gameObject);
+        PhotonNetwork.Destroy(this.gameObject);
     }
 
     
