@@ -62,8 +62,5 @@ public class AtkJoyStick : MonoBehaviourPun , IBeginDragHandler, IDragHandler, I
         player.Attack.direction =
             new Vector3((lever.position.x - rectTransform.position.x) * 0.01f, 0, (lever.position.y - rectTransform.position.y) * 0.01f);
     }
-    public void DisActiveJoyStick()
-    {
-        gameObject.SetActive(false);
-    }
+
 }

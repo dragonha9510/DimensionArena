@@ -7,7 +7,11 @@ using Photon.Pun;
 using Photon;
 public abstract class Player : MonoBehaviourPunCallbacks
 {
-   
+    /*
+    static Player ownerPlayer;
+    public static Player OwnerPlayer => ownerPlayer;
+    */
+
     /// =============================
     /// Direction Region
     /// =============================
@@ -24,7 +28,7 @@ public abstract class Player : MonoBehaviourPunCallbacks
     [SerializeField] protected PlayerInfo info;
     public  PlayerInfo  Info { get { return info; } }
  
-    protected  Player_Atk   attack;
+    protected  Player_Atk attack;
     public Player_Atk Attack => attack;
     private Player_Movement movement;
     private Rigidbody rigid;
@@ -53,6 +57,7 @@ public abstract class Player : MonoBehaviourPunCallbacks
         if (photonView.IsMine)
         {
             InitializeForOwner();
+            //ownerPlayer = this;
         }
 
         movement = new Player_Movement(this);
@@ -90,10 +95,14 @@ public abstract class Player : MonoBehaviourPunCallbacks
 
     private void InitializeForOwner()
     {
+        TouchCanvas touchCanvas = GameObject.Find("TouchCanvas").
+            GetComponent<TouchCanvas>();
+
+        touchCanvas.player = this;
+
         JoyStick joyStick = GameObject.Find("MoveJoyStick").
                 GetComponent<JoyStick>();
         joyStick.player = this;
-
 
         SkillJoyStick skilljoyStick = GameObject.Find("SkillJoyStick").
             GetComponent<SkillJoyStick>();
@@ -104,9 +113,6 @@ public abstract class Player : MonoBehaviourPunCallbacks
             GetComponent<AtkJoyStick>();
         atkjoyStick.player = this;
 
-        info.EDisActivePlayer += joyStick.DisActiveJoyStick;
-        info.EDisActivePlayer += skilljoyStick.DisActiveJoyStick;
-        info.EDisActivePlayer += atkjoyStick.DisActiveJoyStick;
 
         GameObject.Find("Target Camera").
             GetComponent<Prototype_TargetCamera>().target = this.transform;

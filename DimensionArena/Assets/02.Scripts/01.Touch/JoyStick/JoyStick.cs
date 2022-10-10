@@ -54,8 +54,4 @@ public class JoyStick : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
     }
 
 
-    public void DisActiveJoyStick() 
-    {
-        gameObject.SetActive(false);
-    }
 }

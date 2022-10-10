@@ -7,6 +7,29 @@ using TMPro;
 using DG.Tweening;
 public class InGameUIManager : MonoBehaviour
 {
+    private struct DeadEvent
+    {
+        public DeadEvent(string killerName, CharacterType killerType, 
+                         string victimName, CharacterType victimType)
+        {
+            this.victimName = victimName;
+            this.killerName = killerName;
+            this.victimType = victimType;
+            this.killerType = killerType;
+        }
+
+        string victimName;
+        string killerName;
+        CharacterType victimType;
+        CharacterType killerType;
+
+        public string VictimName => victimName;
+        public string KillerName => killerName;
+        public CharacterType VictimType => victimType;
+        public CharacterType KillerType => killerType;
+
+    }
+
     [Header("Setting Parameter")]
     [SerializeField] private float announceTime;
     [SerializeField] private int   countTime;
@@ -53,6 +76,9 @@ public class InGameUIManager : MonoBehaviour
 
     [Header("Sprite Resources")]
     [SerializeField] Sprite[] CharacterThumbnail;
+
+
+    List<DeadEvent> ListDeadEv = new List<DeadEvent>();
 
     private GAMEMODE mode;
 
@@ -165,30 +191,41 @@ public class InGameUIManager : MonoBehaviour
 
 
     private void InformDeadPlayer(CharacterType killerType, string killerId, CharacterType victimType, string victimId)
-    {      
+    {
+
+        ListDeadEv.Add(new DeadEvent(killerId, killerType, victimId, victimType));
+
         //Inform Dead alpha
-        StartCoroutine(InformDeadCoroutine(killerType,killerId, victimType,victimId));
+
+        //Test => Add -> New Coroutine Start But, Animation Doing then wait.. and Animation Was End You can do New Start Coroutine 
+        StartCoroutine(InformDeadCoroutine());
     }
 
 
-    IEnumerator InformDeadCoroutine(CharacterType killerType, string killerId, CharacterType victimType, string victimId)
+    IEnumerator InformDeadCoroutine()
     {
-        informCanvas.alpha = 0.0f;
-        dynamicContent -= 1;
-        dynamicText.text = ((int)dynamicContent).ToString();
-        //SetThumbnail
-        SelectThumbnail(killerImage, killerType);
-        SelectThumbnail(victimImage, victimType);
 
-        //SetNickName
-        killerNickName.text = killerId;
-        victimNickName.text = victimId;
+        //만약, while문에서 접근할려고하는 count
+        while(ListDeadEv.Count > 0)
+        {
+            informCanvas.alpha = 0.0f;
+            dynamicContent -= 1;
+            dynamicText.text = ((int)dynamicContent).ToString();
+            //SetThumbnail
+            SelectThumbnail(killerImage, ListDeadEv[0].KillerType);
+            SelectThumbnail(victimImage, ListDeadEv[0].VictimType);
 
-        informCanvas.gameObject.SetActive(true);
-        informCanvas.DOFade(1.0f, fadeTime);
-        yield return new WaitForSeconds(InformTime);
-        informCanvas.DOFade(0.0f, fadeTime);
+            //SetNickName
+            killerNickName.text = ListDeadEv[0].KillerName;
+            victimNickName.text = ListDeadEv[0].VictimName;
 
+            informCanvas.gameObject.SetActive(true);
+            informCanvas.DOFade(1.0f, fadeTime);
+            yield return new WaitForSeconds(InformTime);
+            informCanvas.DOFade(0.0f, fadeTime);
+            ListDeadEv.Remove(ListDeadEv[0]);
+        }
+        ListDeadEv.Clear();
     }
 
 
