@@ -6,6 +6,7 @@ using Photon.Pun;
 public abstract class Player_Atk : MonoBehaviourPun
 {
     protected Player owner;
+    public Player Owner => owner;
 
     [Header("PlayerAttackInfo")]
     [SerializeField] protected float range;
@@ -29,12 +30,6 @@ public abstract class Player_Atk : MonoBehaviourPun
     {
         if (atkRangeMesh == null)
             Instantiate(atkRangeMesh, transform);
-
-        if (photonView.IsMine)
-        {
-            GameObject.Find("AtkJoyStick").GetComponent<AtkJoyStick>().player = this;
-            owner = gameObject.GetComponent<Player>();
-        }
     }
 
     protected virtual void LateUpdate()

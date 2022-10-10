@@ -133,6 +133,7 @@ public class InGameUIManager : MonoBehaviour
     }
     private IEnumerator InfoUICoroutine()
     {
+
         switch(mode)
         {
             case GAMEMODE.Survival:

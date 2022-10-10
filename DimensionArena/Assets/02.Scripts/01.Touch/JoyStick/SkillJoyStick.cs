@@ -10,7 +10,7 @@ public class SkillJoyStick : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     [SerializeField] private RectTransform lever;
     private RectTransform rectTransform;
 
-    Player target;
+    public Player player;
     [SerializeField, Range(10f, 150f)] private float leverRange;
     [SerializeField] Image[] alphaImage = new Image[3];
     [SerializeField] Image skillImg;
@@ -21,22 +21,6 @@ public class SkillJoyStick : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
         AlphaJoyStick();
     }
 
-    private void Start()
-    {
-        GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
-
-        foreach(GameObject player in players)
-        {
-            //자신의 오브젝트인지 확인
-            if(player.GetComponent<PhotonView>().IsMine)
-            {
-                target = player.GetComponent<Player>();
-                break;
-            }
-        }
-
-        target.Info.EskillAmountChanged += SkillSetFillAmount;
-    }
 
     public void OnBeginDrag(PointerEventData eventData)
     {
@@ -109,6 +93,11 @@ public class SkillJoyStick : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
         {
             MaxSkillPoint();
         }
+    }
+
+    public void DisActiveJoyStick()
+    {
+        gameObject.SetActive(false);
     }
 }
 

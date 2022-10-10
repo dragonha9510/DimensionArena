@@ -7,7 +7,7 @@ using Photon.Pun;
 public class AtkJoyStick : MonoBehaviourPun , IBeginDragHandler, IDragHandler, IEndDragHandler
 {
 
-    [SerializeField] public Player_Atk player;
+    [SerializeField] public Player player;
 
     [SerializeField] private RectTransform lever;
     private RectTransform rectTransform;
@@ -54,12 +54,16 @@ public class AtkJoyStick : MonoBehaviourPun , IBeginDragHandler, IDragHandler, I
 
     private void PlayerAttackRPC()
     {
-        player.StartAttack();
+        player.Attack.StartAttack();
     }
 
     public void SetDirection()
     {
-        player.direction =
+        player.Attack.direction =
             new Vector3((lever.position.x - rectTransform.position.x) * 0.01f, 0, (lever.position.y - rectTransform.position.y) * 0.01f);
+    }
+    public void DisActiveJoyStick()
+    {
+        gameObject.SetActive(false);
     }
 }

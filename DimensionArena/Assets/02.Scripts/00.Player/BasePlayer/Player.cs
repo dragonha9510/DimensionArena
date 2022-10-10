@@ -25,6 +25,7 @@ public abstract class Player : MonoBehaviourPunCallbacks
     public  PlayerInfo  Info { get { return info; } }
  
     protected  Player_Atk   attack;
+    public Player_Atk Attack => attack;
     private Player_Movement movement;
     private Rigidbody rigid;
 
@@ -51,10 +52,7 @@ public abstract class Player : MonoBehaviourPunCallbacks
 
         if (photonView.IsMine)
         {
-            GameObject.Find("MoveJoyStick").
-                GetComponent<JoyStick>().player = this;
-            GameObject.Find("Target Camera").
-                GetComponent<Prototype_TargetCamera>().target = this.transform;
+            InitializeForOwner();
         }
 
         movement = new Player_Movement(this);
@@ -64,9 +62,8 @@ public abstract class Player : MonoBehaviourPunCallbacks
         if (rigid == null)
             Destroy(this.gameObject);
 
-        Info.EDestroyPlayer += Destroy;
+        //Info.EDestroyPlayer += Destroy;
     }
-
 
     private void Update()
     {
@@ -81,17 +78,38 @@ public abstract class Player : MonoBehaviourPunCallbacks
         }
     }
 
-
     private void LateUpdate()
     {
         movement.MoveDirection(rigid, transform, direction, info.Speed);
     }
-
-    
+   
     private void Destroy()
     {
         PhotonNetwork.Destroy(this.gameObject);
     }
 
+    private void InitializeForOwner()
+    {
+        JoyStick joyStick = GameObject.Find("MoveJoyStick").
+                GetComponent<JoyStick>();
+        joyStick.player = this;
+
+
+        SkillJoyStick skilljoyStick = GameObject.Find("SkillJoyStick").
+            GetComponent<SkillJoyStick>();
+        info.EskillAmountChanged += skilljoyStick.SkillSetFillAmount;
+        skilljoyStick.player = this;
+
+        AtkJoyStick atkjoyStick = GameObject.Find("AtkJoyStick").
+            GetComponent<AtkJoyStick>();
+        atkjoyStick.player = this;
+
+        info.EDisActivePlayer += joyStick.DisActiveJoyStick;
+        info.EDisActivePlayer += skilljoyStick.DisActiveJoyStick;
+        info.EDisActivePlayer += atkjoyStick.DisActiveJoyStick;
+
+        GameObject.Find("Target Camera").
+            GetComponent<Prototype_TargetCamera>().target = this.transform;
+    }
     
 }

@@ -29,8 +29,8 @@ public class PlayerInfo
         isAlive = true;
     }
 
-    public PlayerInfo(string ID, CharacterType type, 
-                      float maxHP, float maxSkillpt, 
+    public PlayerInfo(string ID, CharacterType type,
+                      float maxHP, float maxSkillpt,
                       float speed)
     {
         id = ID;
@@ -39,7 +39,7 @@ public class PlayerInfo
         curHP = maxHP;
         maxSkillPoint = maxSkillpt;
         curSkillPoint = 0;
-        this.speed = speed;       
+        this.speed = speed;
     }
 
     /// =============================
@@ -47,9 +47,9 @@ public class PlayerInfo
     /// =============================
     public event Action<float> EskillAmountChanged = (param) => { };
     public event Action<float> EcurHPChanged = (param) => { };
-    public event Action<CharacterType, string, 
+    public event Action<CharacterType, string,
                         CharacterType, string> EDeadPlayer = (param, param2, param3, param4) => { };
-    public event Action EDestroyPlayer;
+    public event Action EDisActivePlayer = () => { };
 
 
     /// =============================
@@ -164,13 +164,17 @@ public class PlayerInfo
     public void PlayerDie(CharacterType killer_type, string killer_id)
     {
         isAlive = false;
-        EDeadPlayer(killer_type, killer_id, type, id);        
+        EDeadPlayer(killer_type, killer_id, type, id);
+        EDisActivePlayer();
     }
 
-    public void PlayerDestroy()
-    {
-        EDestroyPlayer();
-    }
+
+    //Player Destroy Method
+
+    //public void PlayerDestroy()
+    //{
+    //    EDestroyPlayer();
+    //}
     #endregion
 
 }

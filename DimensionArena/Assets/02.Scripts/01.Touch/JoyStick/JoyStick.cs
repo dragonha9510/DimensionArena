@@ -20,6 +20,7 @@ public class JoyStick : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
         rectTransform = GetComponent<RectTransform>();
     }
 
+
     public virtual void OnBeginDrag(PointerEventData eventData)
     {
         var inputDir = eventData.position - rectTransform.anchoredPosition;
@@ -50,5 +51,11 @@ public class JoyStick : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
     {
         player.direction 
             = new Vector3( (lever.position.x - rectTransform.position.x) * 0.01f, 0, (lever.position.y - rectTransform.position.y) * 0.01f);
+    }
+
+
+    public void DisActiveJoyStick() 
+    {
+        gameObject.SetActive(false);
     }
 }
