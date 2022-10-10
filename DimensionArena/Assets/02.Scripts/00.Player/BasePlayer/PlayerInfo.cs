@@ -161,10 +161,10 @@ public class PlayerInfo
         speed -= speed * ratio;
     }
 
-    public void PlayerDie(CharacterType target_type, string target_id)
+    public void PlayerDie(CharacterType killer_type, string killer_id)
     {
         isAlive = false;
-        EDeadPlayer(target_type, target_id, type, id);        
+        EDeadPlayer(killer_type, killer_id, type, id);        
     }
 
     public void PlayerDestroy()

@@ -229,26 +229,26 @@ public class PlayerInfoManager : MonoBehaviourPun
     }
     // JSB
 
-    public void DeadCheckCallServer(string ownerId)
+    public void DeadCheckCallServer(string killerId)
     {
-        photonView.RPC("DeadCheck", RpcTarget.All ,ownerId);
+        photonView.RPC("DeadCheck", RpcTarget.All , killerId);
     }
 
     [PunRPC]
-    private void DeadCheck(string targetId)
-    {
+    private void DeadCheck(string killerId)
+    {      
         foreach(PlayerInfo info in playerInfoArr)
         {
             if(info.CurHP <= 0)
             {
-                info.PlayerDie(info.Type, targetId);
+                PlayerInfo killerInfo;
+                DicPlayerInfo.TryGetValue(killerId, out killerInfo);
+
+                info.PlayerDie(killerInfo.Type, killerId);
 
                 if (info.ID == PhotonNetwork.NickName)
-                {
                     info.PlayerDestroy();
-                }
             }
- 
         }
     }
   
