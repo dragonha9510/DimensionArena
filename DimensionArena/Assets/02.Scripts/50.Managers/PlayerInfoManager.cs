@@ -81,7 +81,6 @@ public class PlayerInfoManager : MonoBehaviourPun
 
 
 
-
     public PlayerInfo[] PlayerInfoArr
     {
         get
@@ -239,17 +238,17 @@ public class PlayerInfoManager : MonoBehaviourPun
 
     [PunRPC]
     private void HealthCheck(string killerId)
-    {
+    {        
         for (int i = 0; i < playerInfoArr.Length; ++i)
         { 
-            if(playerInfoArr[i].CurHP <= 0)
+            if(playerInfoArr[i].CurHP <= 0 && playerObjectArr[i].activeInHierarchy)
             {
                 //Ingame UI Inform Kill
                 PlayerInfo killerInfo;
                 DicPlayerInfo.TryGetValue(killerId, out killerInfo);
                 playerInfoArr[i].PlayerDie(killerInfo.Type, killerId);
 
-                //Player disactive
+                //Player disactive and DisActive 
                 playerObjectArr[i].SetActive(false);
             }
         } 
