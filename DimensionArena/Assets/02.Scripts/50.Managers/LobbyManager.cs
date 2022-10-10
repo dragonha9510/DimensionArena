@@ -13,7 +13,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
 
     // 시작 플레이어 제한 수 입니다
     [SerializeField]
-    int startPlayerCount = 4;
+    int startPlayerCount;
     // 현 접속한 플레이어의 카운트 입니다
     public int connectCount = 0;
     // 이름 InputField Text 입니다
@@ -83,17 +83,20 @@ public class LobbyManager : MonoBehaviourPunCallbacks
       
     }
     public override void OnJoinedRoom()
-    {
-        
+    {   
         Debug.Log("OnJoinedRoom");
 
         if (NameOverLapCheck(nameText.text))
             return;
 
-        LoadMatchMakingScene();
 
         if (startPlayerCount == PhotonNetwork.CurrentRoom.PlayerCount)
             photonView.RPC("LoadingInGame", RpcTarget.All);
+        else
+            LoadMatchMakingScene();
+
+       
+
         //if (PhotonNetwork.IsConnected)
         //{
         //    connectCount = PhotonNetwork.CurrentRoom.PlayerCount;
@@ -105,7 +108,8 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     private void LoadMatchMakingScene()
     {
         PhotonNetwork.NickName = nameText.text;
-        PhotonNetwork.LoadLevel("MathMaking");
+        //PhotonNetwork.LoadLevel("MathMaking");
+        SceneManager.LoadScene("MathMaking");
     }
 
     public void LoadSingleTestMode()
