@@ -46,8 +46,6 @@ public class AtkJoyStick : MonoBehaviourPun , IBeginDragHandler, IDragHandler, I
     public void OnEndDrag(PointerEventData eventData)
     {
         lever.anchoredPosition = Vector2.zero;
-        
-        player.StartAttack();
 
         //photonView.RPC("PlayerAttackRPC", RpcTarget.All);
         PlayerAttackRPC();
@@ -57,8 +55,8 @@ public class AtkJoyStick : MonoBehaviourPun , IBeginDragHandler, IDragHandler, I
     private void PlayerAttackRPC()
     {
         player.StartAttack();
-
     }
+
     public void SetDirection()
     {
         player.direction =
