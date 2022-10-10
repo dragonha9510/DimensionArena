@@ -139,7 +139,6 @@ public class PlayerInfoManager : MonoBehaviourPun
     /// CurHp Region
     /// >>>>>>>>>>>>>>>>>>>>>>>>>>
 
-    [PunRPC]
     public void CurHpIncrease(GameObject owner, GameObject target, float amount)
     {
 
@@ -154,7 +153,6 @@ public class PlayerInfoManager : MonoBehaviourPun
         //Do Something wiht Owner relation..
     }
 
-    [PunRPC]
     public void CurHpIncrease(GameObject target, float amount)
     {
         for (int i = 0; i < PlayerObjectArr.Length; ++i)
@@ -166,7 +164,6 @@ public class PlayerInfoManager : MonoBehaviourPun
         }
     }
 
-    [PunRPC]
     public void CurHpDecrease(GameObject owner, GameObject target, float damage)
     {
        
@@ -206,7 +203,6 @@ public class PlayerInfoManager : MonoBehaviourPun
     }
     */
 
-    [PunRPC]
     public void CurHpDecrease(string ownerId, string targetId, float damage)
     {
         PlayerInfo target;
