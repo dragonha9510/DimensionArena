@@ -79,6 +79,9 @@ public class PlayerInfoManager : MonoBehaviourPun
         }
     }
 
+
+
+
     public PlayerInfo[] PlayerInfoArr
     {
         get
@@ -231,24 +234,18 @@ public class PlayerInfoManager : MonoBehaviourPun
 
     public void DeadCheckCallServer(string ownerId)
     {
-        photonView.RPC("DeadCheck", RpcTarget.All ,ownerId);
+        photonView.RPC("HealthCheck", RpcTarget.All ,ownerId);
     }
 
     [PunRPC]
-    private void DeadCheck(string targetId)
+    private void HealthCheck(string targetId)
     {
-        foreach(PlayerInfo info in playerInfoArr)
+        for(int i = 0; i < playerInfoArr.Length; ++i)
         {
-            if(info.CurHP <= 0)
+            if(playerInfoArr[i].CurHP <= 0)
             {
-                info.PlayerDie(info.Type, targetId);
-
-                if (info.ID == PhotonNetwork.NickName)
-                {
-                    info.PlayerDestroy();
-                }
+                playerObjectArr[i].SetActive(false);
             }
- 
         }
     }
   
