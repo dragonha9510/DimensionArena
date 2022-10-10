@@ -37,9 +37,12 @@ public abstract class Player : MonoBehaviourPunCallbacks
     /// =============================
     
     protected virtual void Awake()
-    {   
-        nickName = photonView.Owner.NickName;
-        gameObject.name = nickName;
+    {
+        if (photonView.Owner != null)
+        {
+            nickName = photonView.Owner.NickName;
+            gameObject.name = nickName;
+        }
     }
 
     protected virtual void Start()
@@ -76,8 +79,6 @@ public abstract class Player : MonoBehaviourPunCallbacks
             directionLocation.gameObject.SetActive(true);
             directionLocation.position = transform.position + (direction * 1.25f);
         }
-
-        Debug.Log(photonView.Owner.NickName + "의 각도는 : " + direction);
     }
 
 

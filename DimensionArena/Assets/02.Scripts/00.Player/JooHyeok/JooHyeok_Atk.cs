@@ -63,7 +63,6 @@ public class JooHyeok_Atk: Player_Atk
         {
             for (int j = 0; j < projectileCount; ++j)
             {
-
                 Debug.Log("ÃÑ¾Ë»ý¼º");
 
                 projectile = PhotonNetwork.Instantiate("projectile", Pos, Quaternion.identity);
@@ -71,7 +70,6 @@ public class JooHyeok_Atk: Player_Atk
                 projectile.GetComponent<Projectile>().ownerID = ownerName;
                 yield return new WaitForSeconds(burst_delay);
             }
-
             yield return new WaitForSeconds(attack_delay);
         }
 
