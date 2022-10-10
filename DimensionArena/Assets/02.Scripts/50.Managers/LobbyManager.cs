@@ -72,14 +72,14 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     {
         Debug.Log("OnConnectedToMaster");
         
-        PhotonNetwork.JoinOrCreateRoom(defaultRoomName + roomCount.ToString(), new RoomOptions { MaxPlayers = 2 },null);
+        PhotonNetwork.JoinOrCreateRoom(defaultRoomName + roomCount.ToString(), new RoomOptions { MaxPlayers = (byte)startPlayerCount },null);
     }
 
     public override void OnJoinRoomFailed(short returnCode, string message)
     {
         Debug.Log("접속 실패");
         ++roomCount;
-        PhotonNetwork.JoinOrCreateRoom(defaultRoomName + roomCount.ToString(), new RoomOptions { MaxPlayers = 2 }, null);
+        PhotonNetwork.JoinOrCreateRoom(defaultRoomName + roomCount.ToString(), new RoomOptions { MaxPlayers = (byte)startPlayerCount }, null);
       
     }
     public override void OnJoinedRoom()
@@ -88,6 +88,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
 
         if (NameOverLapCheck(nameText.text))
             return;
+
 
 
         if (startPlayerCount == PhotonNetwork.CurrentRoom.PlayerCount)
