@@ -92,7 +92,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   announceTime: 3
   countTime: 3
-  infoMoveSmoothNess: 0.001
+  infoMoveSmoothNess: 0.00113
   GameStartGroup: {fileID: 0}
   objectiveText: {fileID: 0}
   infoTransform:
@@ -101,7 +101,15 @@ MonoBehaviour:
   dynamicText: {fileID: 0}
   GameEndGroup: {fileID: 0}
   winLoseText: {fileID: 0}
+  informCanvas: {fileID: 0}
+  killerImage: {fileID: 0}
+  victimImage: {fileID: 0}
+  killerNickName: {fileID: 0}
+  victimNickName: {fileID: 0}
+  fadeTime: 0
+  InformTime: 0
   touchCanvas: {fileID: 0}
+  CharacterThumbnail: []
 --- !u!1 &8098681848206302127
 GameObject:
   m_ObjectHideFlags: 0

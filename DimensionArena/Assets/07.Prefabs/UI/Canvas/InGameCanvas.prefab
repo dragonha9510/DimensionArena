@@ -975,7 +975,6 @@ GameObject:
   - component: {fileID: 2193972282907261774}
   - component: {fileID: 2193972282907261761}
   - component: {fileID: 2193972282907261760}
-  - component: {fileID: 2193972282907261772}
   m_Layer: 5
   m_Name: InGameCanvas
   m_TagString: Untagged
@@ -1068,36 +1067,6 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 0
---- !u!114 &2193972282907261772
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2193972282907261763}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2a33d65a7f4228842a59a5b7ba619a4e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  announceTime: 3
-  countTime: 3
-  infoMoveSmoothNess: 0.001
-  GameStartGroup: {fileID: 2193972282118499085}
-  objectiveText: {fileID: 2193972283233552396}
-  infoTransform:
-  - {fileID: 2193972282996079598}
-  - {fileID: 2193972282184173461}
-  dynamicText: {fileID: 2193972282242580717}
-  GameEndGroup: {fileID: 2193972283535653498}
-  winLoseText: {fileID: 2193972283243659685}
-  InformCanvas: {fileID: 8742556723437816761}
-  KillerImage: {fileID: 7242045494457497402}
-  VictimImage: {fileID: 8993695772815718717}
-  KillerNickName: {fileID: 4910363190290661117}
-  VictimNickName: {fileID: 2190399711733821435}
-  touchCanvas: {fileID: 0}
-  CharacterThumbnail: []
 --- !u!1 &2193972282996079585
 GameObject:
   m_ObjectHideFlags: 0
@@ -2088,7 +2057,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &678529175821672182
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2153,7 +2122,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
+  m_PresetInfoIsWorld: 1
 --- !u!114 &8985318213534502890
 MonoBehaviour:
   m_ObjectHideFlags: 0

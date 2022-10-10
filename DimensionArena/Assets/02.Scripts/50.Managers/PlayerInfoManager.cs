@@ -6,6 +6,9 @@ using Photon.Pun;
 
 public class PlayerInfoManager : MonoBehaviourPun
 {
+
+    [SerializeField] GameObject ingameUIManager;
+
     /// ===========================
     /// Singleton Region
     /// >>>>>>>>>>>>>>>>>>>>>>>>>>
@@ -115,7 +118,14 @@ public class PlayerInfoManager : MonoBehaviourPun
             //리스트 등록, 딕셔너리 등록
             playerInfoArr[i] = players[i].GetComponent<Player>().Info;
             DicPlayerInfo.Add(players[i].name, playerInfoArr[i]);
-        }               
+        }     
+
+
+        if(PhotonNetwork.CurrentRoom.PlayerCount 
+            == players.Length)
+        {
+            ingameUIManager.SetActive(true);
+        }
     }
 
     /// <<<<<<<<<<<<<<<<<<<<<<<<<<<
@@ -221,7 +231,7 @@ public class PlayerInfoManager : MonoBehaviourPun
 
     public void DeadCheckCallServer(string ownerId)
     {
-        photonView.RPC("DeadCheck", RpcTarget.All,ownerId);
+        photonView.RPC("DeadCheck", RpcTarget.All, ownerId);
     }
 
     [PunRPC]
@@ -235,8 +245,7 @@ public class PlayerInfoManager : MonoBehaviourPun
             }
         }
     }
-    //
-
+  
     /// <<<<<<<<<<<<<<<<<<<<<<<<<<
 
 
