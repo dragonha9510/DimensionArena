@@ -119,7 +119,6 @@ public class LobbyManager : MonoBehaviourPunCallbacks
 
 
 
-        SoundManager.Instance.AddPhotonView();
         
         
         

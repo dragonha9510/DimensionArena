@@ -42,7 +42,8 @@ public class RedZone_Missile : MonoBehaviour
         if(transform.position.y < 0)
         {
             Destroy(this.gameObject);
-            Instantiate(destroyEffect, new Vector3(transform.position.x, 0, transform.position.z), destroyEffect.transform.rotation);
+            if (destroyEffect)
+                Instantiate(destroyEffect, new Vector3(transform.position.x, 0, transform.position.z), destroyEffect.transform.rotation);
             //Destroy(boundary);
             //Destroy(outterBoundary);
         }
@@ -53,7 +54,8 @@ public class RedZone_Missile : MonoBehaviour
         if (collision.gameObject.name != gameObject.name)
         { 
             Destroy(this.gameObject);
-            Instantiate(destroyEffect, new Vector3(transform.position.x, 0, transform.position.z), destroyEffect.transform.rotation);
+            if (destroyEffect)
+                Instantiate(destroyEffect, new Vector3(transform.position.x, 0, transform.position.z), destroyEffect.transform.rotation);
             //Destroy(boundary);
             //Destroy(outterBoundary);
         }
@@ -63,8 +65,12 @@ public class RedZone_Missile : MonoBehaviour
     {
         if (other.name != gameObject.name)
         {
+            
             Destroy(this.gameObject);
-            Instantiate(destroyEffect, new Vector3(transform.position.x, 0, transform.position.z), destroyEffect.transform.rotation);
+
+            if (destroyEffect)
+                Instantiate(destroyEffect, new Vector3(transform.position.x, 0, transform.position.z), destroyEffect.transform.rotation);
+
 
             //Destroy(boundary);
             //Destroy(outterBoundary);

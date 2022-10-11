@@ -60,6 +60,9 @@ MonoBehaviour:
   MinMaxmissileCntValue: {x: 20, y: 35}
   lastMissileCnt: 10
   Redzone: {fileID: 3647029665995143044}
+  isDestroyWithTime: 1
+  repeatCnt: 1
+  destroyTime: 120
 --- !u!114 &9064641367732405542
 MonoBehaviour:
   m_ObjectHideFlags: 0

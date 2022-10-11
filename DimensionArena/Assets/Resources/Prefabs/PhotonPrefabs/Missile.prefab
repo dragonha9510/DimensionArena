@@ -164,14 +164,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc281ddb8122c4148a2f0467a19171b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  boundaryPrefab: {fileID: 262183071036304738, guid: 4591839d41c400d43bf6eb8c50d1f39e,
-    type: 3}
-  outterboundaryPrefab: {fileID: 262183071036304738, guid: 496fe31225d4dbe45b95a2605987d679,
-    type: 3}
-  boundaryProj: {fileID: 262183071036304729, guid: 4591839d41c400d43bf6eb8c50d1f39e,
-    type: 3}
-  outterboundaryProj: {fileID: 262183071036304729, guid: 496fe31225d4dbe45b95a2605987d679,
-    type: 3}
+  destroyEffect: {fileID: 0}
   missileScale: {x: 2, y: 2}
 --- !u!114 &190571489047571183
 MonoBehaviour:
