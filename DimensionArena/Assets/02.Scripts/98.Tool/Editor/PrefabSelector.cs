@@ -19,9 +19,10 @@ namespace GRITTY
 
     public class PrefabSelector : EditorWindow
     {
-       
+
         #region Static Field
-        public static PrefabSelector window;
+        private static PrefabSelector window;
+        public static PrefabSelector Window => window;
         public static SELECTOR_MODE state = SELECTOR_MODE.CREATE;
         static Vector2 windowSize = new Vector2(500, 800);
         #endregion
@@ -31,7 +32,6 @@ namespace GRITTY
         List<NodeInformation> brick_Prefabs;
         NodeInformation curNodeInfo;
 
-        PREFAB_TYPE type;
 
         int prefabCount;
         int idx_Prefab;
@@ -50,6 +50,7 @@ namespace GRITTY
 
         Rect menuRect;
         PREFAB_TYPE prefabType = 0;
+        public PREFAB_TYPE Type => prefabType;
         float menuYpadding = 30;
         int tab;
 
@@ -131,8 +132,10 @@ namespace GRITTY
 
         private void IconTextureAllocate()
         {
+            //Type Select
+            prefabType = PREFAB_TYPE.GROUND;
+
             //Icon Style Create
-            
             //CREATE
             createIcon = Resources.Load<Texture2D>("Tool/Icon/Create");
             createSelIcon = TextureManager.MakeSelectedTexture2D(createIcon);

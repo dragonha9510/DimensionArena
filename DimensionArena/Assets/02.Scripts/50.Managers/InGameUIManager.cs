@@ -82,8 +82,6 @@ public class InGameUIManager : MonoBehaviour
 
     private List<DeadEvent> ListDeadEv;
     bool isInfromEnd;
-    bool isNewEventInsert;
-
 
     /// ===========================
     /// Start Method Region
@@ -98,6 +96,7 @@ public class InGameUIManager : MonoBehaviour
     {    
         mode = GameManager.instance == null ? GAMEMODE.Survival : GameManager.instance.GameMode;
         ListDeadEv = new List<DeadEvent>();
+        isInfromEnd = true;
 
         switch (mode)
         {
@@ -197,10 +196,12 @@ public class InGameUIManager : MonoBehaviour
     private void InformDeadPlayer(CharacterType killerType, string killerId, CharacterType victimType, string victimId)
     {
         //Insert To DeadEvList
-        isNewEventInsert = true;
         ListDeadEv.Add(new DeadEvent(killerType, killerId, victimType, victimId));
 
-        if (isInfromEnd)
+
+        //만약, 실행하는 코루틴이 이번의 dead event도 처리했다면 새 코루틴 시작이 들어가지않는다.
+        if (isInfromEnd 
+            && ListDeadEv.Count > 0)
         {
             StopCoroutine(InformDeadCoroutine(killerType, killerId, victimType, victimId));
             StartCoroutine(InformDeadCoroutine(killerType,killerId, victimType,victimId));
@@ -213,9 +214,8 @@ public class InGameUIManager : MonoBehaviour
         isInfromEnd = false;
 
         //새로운 이벤트가 들어온 것을 확인 했을때
-        while (ListDeadEv.Count > 0 && !isNewEventInsert)
+        while (ListDeadEv.Count > 0)
         {
-            isNewEventInsert = false;
             informCanvas.alpha = 0.0f;
             dynamicContent -= 1;
             dynamicText.text = ((int)dynamicContent).ToString();
@@ -234,7 +234,6 @@ public class InGameUIManager : MonoBehaviour
             yield return new WaitForSeconds(fadeTime * 0.5f);
             ListDeadEv.RemoveAt(0);             
         }
-
         isInfromEnd = true;          
       
     }

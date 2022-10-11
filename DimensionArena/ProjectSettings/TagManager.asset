@@ -12,6 +12,7 @@ TagManager:
   - ParentObstacle
   - ParentGround
   - Player_Body
+  - ParentFloor
   layers:
   - Default
   - TransparentFX
