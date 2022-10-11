@@ -638,6 +638,7 @@ namespace Photon.Pun
                     {
                         // found no method that matches
                         Debug.LogErrorFormat(context, "RPC method '{0}({2})' not found on object with PhotonView {1}. Implement as non-static. Apply [PunRPC]. Components on children are not found. " +
+
                             "Return type must be void or IEnumerator (if you enable RunRpcCoroutines). RPCs are a one-way message.", inMethodName, netViewID, argsString);
                     }
                     else
