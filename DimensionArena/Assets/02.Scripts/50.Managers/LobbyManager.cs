@@ -43,7 +43,6 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     private void Start()
     {
         players = new Photon.Realtime.Player[startPlayerCount];
-
     }
 
 
@@ -88,11 +87,11 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         if (NameOverLapCheck(nameText.text))
             return;
 
+        LoadMatchMakingScene();
 
         if (startPlayerCount == PhotonNetwork.CurrentRoom.PlayerCount)
             photonView.RPC("LoadingInGame", RpcTarget.All);
-        else
-            LoadMatchMakingScene();
+        
 
         //if (PhotonNetwork.IsConnected)
         //{

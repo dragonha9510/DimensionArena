@@ -37,7 +37,7 @@ public class SoundManager : MonoBehaviourPun
                     soundMgr = new GameObject("SoundManager");
                     soundMgr.AddComponent<SoundManager>();
                     //infoMgr.AddComponent<PhotonView>();
-                    
+
                 }
 
                 instance = soundMgr.GetComponent<SoundManager>();
@@ -49,6 +49,7 @@ public class SoundManager : MonoBehaviourPun
     }
     private void Awake()
     {
+        LoadMusics();
         DontDestroyOnLoad(this.gameObject);
     }
 

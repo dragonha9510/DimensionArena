@@ -518,7 +518,7 @@ MonoBehaviour:
   direction: {x: 0, y: 0, z: 0}
   info:
     id: 
-    type: 0
+    type: 2
     isAlive: 0
     maxHP: 0
     curHP: 0

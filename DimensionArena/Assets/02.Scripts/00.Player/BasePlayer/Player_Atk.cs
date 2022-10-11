@@ -20,8 +20,6 @@ public abstract class Player_Atk : MonoBehaviourPun
     private float rotationSpeed = 1080.0f;
     private RaycastHit atkRangeRay;
 
-    
-
     //Attack중인지 확인
     protected bool isAttack;
     public bool IsAttack { get { return isAttack; } }
@@ -30,6 +28,8 @@ public abstract class Player_Atk : MonoBehaviourPun
     {
         if (atkRangeMesh == null)
             Instantiate(atkRangeMesh, transform);
+
+        owner = GetComponent<Player>();
     }
 
     protected virtual void LateUpdate()

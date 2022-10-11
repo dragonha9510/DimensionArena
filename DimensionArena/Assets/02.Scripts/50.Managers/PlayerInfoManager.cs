@@ -64,6 +64,7 @@ public class PlayerInfoManager : MonoBehaviourPun
     /// >>>>>>>>>>>>>>>>>>>>>>>>>>
 
     #region Add Player to Memory Region With Property
+
     [SerializeField] private GameObject[] playerObjectArr;
     [SerializeField] private PlayerInfo[] playerInfoArr;
     private Dictionary<string, PlayerInfo> DicPlayerInfo;
