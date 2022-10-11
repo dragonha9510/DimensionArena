@@ -116,17 +116,19 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     private void LoadingInGame()
     {
         PhotonNetwork.NickName = nameText.text;
+
+
+
+        SoundManager.Instance.AddPhotonView();
+        
+        
+        
         PhotonNetwork.LoadLevel("ProtoType");
     }
 
     public void LoadLobbyScene()
     {
         SceneManager.LoadScene("Lobby");
-    }
-
-    public void LoadOptionScene()
-    {
-        SceneManager.LoadScene("Option");
     }
 
 }
