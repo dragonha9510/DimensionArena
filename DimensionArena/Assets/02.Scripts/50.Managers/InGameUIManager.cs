@@ -7,6 +7,32 @@ using TMPro;
 using DG.Tweening;
 public class InGameUIManager : MonoBehaviour
 {
+    private struct DeadEvent
+    {
+        public DeadEvent(CharacterType killerType, string killerName, 
+            CharacterType victimType, string victimName)
+        {
+            this.killerName = killerName;
+            this.victimName = victimName;
+            this.killerType = killerType;
+            this.victimType = victimType;
+        }
+
+        private string killerName;
+        private string victimName;
+        private CharacterType killerType;
+        private CharacterType victimType;
+
+        public string KillerName => killerName;
+        public string VictimName => victimName;
+        public CharacterType KillerType => killerType;
+        public CharacterType VictimType => victimType;
+
+
+    }
+
+
+
     [Header("Setting Parameter")]
     [SerializeField] private float announceTime;
     [SerializeField] private int   countTime;
@@ -45,8 +71,6 @@ public class InGameUIManager : MonoBehaviour
     [SerializeField] private float fadeTime;
     [SerializeField] private float InformTime;
 
-
-
     [Header("Extern Canvas")]
     [SerializeField] private CanvasGroup touchCanvas;
 
@@ -55,6 +79,11 @@ public class InGameUIManager : MonoBehaviour
     [SerializeField] Sprite[] CharacterThumbnail;
 
     private GAMEMODE mode;
+
+    private List<DeadEvent> ListDeadEv;
+    bool isInfromEnd;
+    bool isNewEventInsert;
+
 
     /// ===========================
     /// Start Method Region
@@ -68,6 +97,7 @@ public class InGameUIManager : MonoBehaviour
     private void Initialize()
     {    
         mode = GameManager.instance == null ? GAMEMODE.Survival : GameManager.instance.GameMode;
+        ListDeadEv = new List<DeadEvent>();
 
         switch (mode)
         {
@@ -165,30 +195,48 @@ public class InGameUIManager : MonoBehaviour
 
 
     private void InformDeadPlayer(CharacterType killerType, string killerId, CharacterType victimType, string victimId)
-    {      
-        //Inform Dead alpha
-        StartCoroutine(InformDeadCoroutine(killerType,killerId, victimType,victimId));
+    {
+        //Insert To DeadEvList
+        isNewEventInsert = true;
+        ListDeadEv.Add(new DeadEvent(killerType, killerId, victimType, victimId));
+
+        if (isInfromEnd)
+        {
+            StopCoroutine(InformDeadCoroutine(killerType, killerId, victimType, victimId));
+            StartCoroutine(InformDeadCoroutine(killerType,killerId, victimType,victimId));
+        }
     }
 
 
     IEnumerator InformDeadCoroutine(CharacterType killerType, string killerId, CharacterType victimType, string victimId)
     {
-        informCanvas.alpha = 0.0f;
-        dynamicContent -= 1;
-        dynamicText.text = ((int)dynamicContent).ToString();
-        //SetThumbnail
-        SelectThumbnail(killerImage, killerType);
-        SelectThumbnail(victimImage, victimType);
+        isInfromEnd = false;
 
-        //SetNickName
-        killerNickName.text = killerId;
-        victimNickName.text = victimId;
+        //새로운 이벤트가 들어온 것을 확인 했을때
+        while (ListDeadEv.Count > 0 && !isNewEventInsert)
+        {
+            isNewEventInsert = false;
+            informCanvas.alpha = 0.0f;
+            dynamicContent -= 1;
+            dynamicText.text = ((int)dynamicContent).ToString();
+            //SetThumbnail
+            SelectThumbnail(killerImage, killerType);
+            SelectThumbnail(victimImage, victimType);
 
-        informCanvas.gameObject.SetActive(true);
-        informCanvas.DOFade(1.0f, fadeTime);
-        yield return new WaitForSeconds(InformTime);
-        informCanvas.DOFade(0.0f, fadeTime);
+            //SetNickName
+            killerNickName.text = killerId;
+            victimNickName.text = victimId;
 
+            informCanvas.gameObject.SetActive(true);
+            informCanvas.DOFade(1.0f, fadeTime);
+            yield return new WaitForSeconds(InformTime);
+            informCanvas.DOFade(0.0f, fadeTime * 0.5f);
+            yield return new WaitForSeconds(fadeTime * 0.5f);
+            ListDeadEv.RemoveAt(0);             
+        }
+
+        isInfromEnd = true;          
+      
     }
 
 
