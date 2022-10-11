@@ -17,8 +17,6 @@ namespace GRITTY
             rect = new Rect(position.x, position.y, width, height);
             nodeInfo = _nodeInfo;
         }
-
-
         public void CreateBrick(int row, int colmn, NodeInformation _nodeInfo)
         {
             nodeInfo.boardStyle.normal.background = _nodeInfo.boardStyle.normal.background;
@@ -32,10 +30,23 @@ namespace GRITTY
             int originRow = GridMapEditor.mapSize.x / 2 == 0 ? (GridMapEditor.mapSize.x / 2) - 1 : (GridMapEditor.mapSize.x / 2);
             int originColmn = GridMapEditor.mapSize.y / 2 == 0 ? (GridMapEditor.mapSize.y / 2) - 1 : (GridMapEditor.mapSize.y / 2);
 
-            block = MonoBehaviour.Instantiate(_nodeInfo.prefab);
-            block.transform.position = new Vector3((row - originRow) + 0.5f, 0.5f, -(colmn - originColmn) - 0.5f);
-            block.transform.parent = GameObject.Find("Obstacles").transform;
-            block.name = _nodeInfo.objectName;
+
+            if(_nodeInfo.type == PREFAB_TYPE.GROUND)
+            {
+                block = MonoBehaviour.Instantiate(_nodeInfo.prefab);
+                block.transform.position = new Vector3((row - originRow) + 0.5f, 0.5f, - (colmn - originColmn) - 0.5f);
+                block.transform.parent = GameObject.Find("Floors").transform;
+                block.name = _nodeInfo.objectName;
+            }
+            else
+            {
+                block = MonoBehaviour.Instantiate(_nodeInfo.prefab);
+                block.transform.position = new Vector3((row - originRow) + 0.5f, 1.5f, - (colmn - originColmn) - 0.5f);
+                block.transform.parent = GameObject.Find("Obstacles").transform;
+                block.name = _nodeInfo.objectName;
+            }
+
+          
 
 
 
@@ -47,7 +58,6 @@ namespace GRITTY
             parsingNode.nodeInfo = _nodeInfo;
 
         }
-
         public void EraseBrick()
         {
             if (block)
@@ -57,12 +67,10 @@ namespace GRITTY
 
             nodeInfo.boardStyle.normal.background = nodeInfo.basicGroundTexture;
         }
- 
         public void Draw()
         {
             GUI.Box(rect, "", nodeInfo.boardStyle);
         }
-
         public void Drag(Vector2 delta)
         {
             rect.position += delta;

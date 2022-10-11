@@ -61148,11 +61148,6 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 3647029665995143044, guid: f2bd411598e07ef4f851dc5d4af6827b,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 6183517314484576770, guid: f2bd411598e07ef4f851dc5d4af6827b,
         type: 3}
       propertyPath: m_RootOrder
@@ -68156,6 +68151,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 480469602389915558, guid: 472cf58ce3dcc014f83a351bb53fe090,
+        type: 3}
+      propertyPath: InformTime
+      value: 5.5
       objectReference: {fileID: 0}
     - target: {fileID: 480469602389915558, guid: 472cf58ce3dcc014f83a351bb53fe090,
         type: 3}
