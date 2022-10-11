@@ -15,7 +15,7 @@ public class Projectile : AttackObject
     {
         originPos = transform.position;
         //수정 예정
-        //SoundManager.Instance.PlaySFXAllClient("JiJooNormalEffect");
+        SoundManager.Instance.PlaySFXOneShot("JiJooNormalEffect");
     }
 
     private void LateUpdate()

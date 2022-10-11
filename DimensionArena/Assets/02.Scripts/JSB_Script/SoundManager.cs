@@ -37,11 +37,9 @@ public class SoundManager : MonoBehaviourPun
                     soundMgr = new GameObject("SoundManager");
                     soundMgr.AddComponent<SoundManager>();
                     //infoMgr.AddComponent<PhotonView>();
-
                 }
 
                 instance = soundMgr.GetComponent<SoundManager>();
-                instance.LoadMusics();
             }
 
             return instance;
@@ -79,7 +77,7 @@ public class SoundManager : MonoBehaviourPun
 
 
     [PunRPC]
-    private void PlaySFXOneShot(string audioClipName)
+    public void PlaySFXOneShot(string audioClipName)
     {
         if (null == AudioClips[audioClipName])
             return;
@@ -99,12 +97,10 @@ public class SoundManager : MonoBehaviourPun
     }
 
 
-    public void PlaySFXAllClient(string audioClipName)
+    public void PlaySFXAllClient(PhotonView PV , string audioClipName)
     {
-        photonView.RPC("PlaySFXOneShot", RpcTarget.All, audioClipName);
+        PV.RPC("PlaySFXOneShot", RpcTarget.All, audioClipName);
     }
-
-
 
     public void PlayBGM(string clipName)
     {
