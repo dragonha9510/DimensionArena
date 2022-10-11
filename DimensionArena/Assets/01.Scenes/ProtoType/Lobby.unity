@@ -967,7 +967,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c63d6053cce732f45853e3d84d1624a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startPlayerCount: 2
+  startPlayerCount: 1
   connectCount: 0
   nameText: {fileID: 553206385}
   connectText: {fileID: 1508280259}

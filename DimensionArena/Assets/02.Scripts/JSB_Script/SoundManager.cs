@@ -23,33 +23,39 @@ public class SoundManager : MonoBehaviourPun
 
     private Dictionary<string, AudioClip> AudioClips = new Dictionary<string, AudioClip>();
 
-    
+
     public static SoundManager Instance
     {
         get
         {
             if (null == instance)
             {
-                GameObject infoMgr = GameObject.Find("SoundManager");
+                GameObject soundMgr = GameObject.Find("SoundManager");//new GameObject("PlayerInfoManager");
 
-                if (!infoMgr)
+                if (!soundMgr)
                 {
-                    infoMgr = new GameObject("SoundManager");
-                    infoMgr.AddComponent<SoundManager>();
-                    infoMgr.AddComponent<PhotonView>();
+                    soundMgr = new GameObject("SoundManager");
+                    soundMgr.AddComponent<SoundManager>();
+                    //infoMgr.AddComponent<PhotonView>();
+
                 }
 
-                instance = infoMgr.GetComponent<SoundManager>();
-
+                instance = soundMgr.GetComponent<SoundManager>();
                 instance.LoadMusics();
             }
-            return instance;
-        }    
-    }
 
+            return instance;
+        }
+    }
     private void Awake()
     {
+        LoadMusics();
         DontDestroyOnLoad(this.gameObject);
+    }
+
+    public void AddPhotonView()
+    {
+        this.gameObject.AddComponent<PhotonView>();
     }
 
     private void LoadMusics()
@@ -70,8 +76,6 @@ public class SoundManager : MonoBehaviourPun
         bgmPlayer.Play();
         bgmPlayer.loop = true;
     }
-
-
 
 
     [PunRPC]
