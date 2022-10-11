@@ -14,7 +14,7 @@ public class SoundManager : MonoBehaviourPun
 
     [SerializeField] private List<string> sceneNames;
 
-    public static SoundManager Instance;
+    private static SoundManager instance;
 
     [SerializeField]
     private AudioSource bgmPlayer;
@@ -23,19 +23,40 @@ public class SoundManager : MonoBehaviourPun
 
     private Dictionary<string, AudioClip> AudioClips = new Dictionary<string, AudioClip>();
 
-    
+
+    public static SoundManager Instance
+    {
+        get
+        {
+            if (null == instance)
+            {
+                GameObject soundMgr = GameObject.Find("SoundManager");//new GameObject("PlayerInfoManager");
+
+                if (!soundMgr)
+                {
+                    soundMgr = new GameObject("SoundManager");
+                    soundMgr.AddComponent<SoundManager>();
+                    //infoMgr.AddComponent<PhotonView>();
+                    
+                }
+
+                instance = soundMgr.GetComponent<SoundManager>();
+                instance.LoadMusics();
+            }
+
+            return instance;
+        }
+    }
     private void Awake()
     {
-        if (null == Instance)
-        {
-            Instance = this;
-            LoadMusics();
-
-            DontDestroyOnLoad(Instance);
-        }
-        else
-            Destroy(gameObject);
+        DontDestroyOnLoad(this.gameObject);
     }
+
+    public void AddPhotonView()
+    {
+        this.gameObject.AddComponent<PhotonView>();
+    }
+
     private void LoadMusics()
     {
         foreach (string str in sceneNames)
