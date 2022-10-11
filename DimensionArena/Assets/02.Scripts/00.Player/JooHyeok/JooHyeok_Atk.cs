@@ -50,7 +50,7 @@ public class JooHyeok_Atk: Player_Atk
     }
 
     [PunRPC]
-    private IEnumerator AttackCoroutine(string shooter,Vector3 shooterAttackDir, float range, float speed, string ownerName)
+    private IEnumerator AttackCoroutine(string shooter, Vector3 shooterAttackDir, float range, float speed, string ownerName)
     {
 
         isAttack = true;
