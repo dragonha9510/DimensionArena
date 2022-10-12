@@ -29,19 +29,27 @@ public class JooHyeok_Atk: Player_Atk
 
     public override void Attack()
     {
-        if (!isAttack)
+        if (!isAttack && curMagazine >= 1)
             StartAttackCoroutine();
     }
     
     private void StartAttackCoroutine()
     {
         owner.CanDirectionChange = false;
+
+        /*
         photonView.RPC("AttackCoroutine", RpcTarget.MasterClient
                                             , PhotonNetwork.NickName
                                             , attackDirection
                                             , range
                                             , projectileSpeed
                                             , this.gameObject.name);
+        */
+        StartCoroutine(AttackCoroutine(     null
+                                            , attackDirection
+                                            , range
+                                            , projectileSpeed
+                                            , this.gameObject.name));
     }
 
     public override void Skill()
@@ -50,22 +58,28 @@ public class JooHyeok_Atk: Player_Atk
     }
 
     [PunRPC]
-    private IEnumerator AttackCoroutine(string shooter, Vector3 shooterAttackDir, float range, float speed, string ownerName)
+    private IEnumerator AttackCoroutine(string shooter, Vector3 shooterAttackDir, 
+        float range, float speed, string ownerName)
     {
-
         isAttack = true;
+        //탄창 하나 없애기
+        curMagazine -= 1;
+        curMagazine = Mathf.Max(curMagazine, 0);
+
 
         GameObject projectile;
+       // Transform shooterPosition = PlayerInfoManager.Instance.getPlayerTransform(shooter);
 
-        Transform shooterPosition = PlayerInfoManager.Instance.getPlayerTransform(shooter);
 
         for (int i = 0; i < 2; ++i)
         {
             for (int j = 0; j < projectileCount; ++j)
             {
+                /*
                 projectile = PhotonNetwork.Instantiate("projectile", shooterPosition.position + shooterAttackDir, Quaternion.identity);
                 projectile.GetComponent<Projectile>().AttackToDirection(shooterAttackDir, range, speed);
                 projectile.GetComponent<Projectile>().ownerID = ownerName;
+                */
                 yield return new WaitForSeconds(burst_delay);
             }
             yield return new WaitForSeconds(attack_delay);

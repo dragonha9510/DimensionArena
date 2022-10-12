@@ -13,7 +13,6 @@ public class JooHyeok : Player
                               CharacterType.Joohyeok, 
                               100.0f, 100.0f, 3.0f);
 
-
         //Attack µî·Ï
         attack = GetComponent<JooHyeok_Atk>();
 

@@ -6,12 +6,7 @@ public class TouchCanvas : MonoBehaviour
 {
     public Player player;
 
-    private void Start()
-    {
-        player.Info.EDisActivePlayer += DisActiveTouch;
-    }
-
-    private void DisActiveTouch()
+    public void DisActiveTouch()
     {
         gameObject.SetActive(false);
     }
