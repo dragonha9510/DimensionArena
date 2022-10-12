@@ -20,6 +20,9 @@ public class GameManager : MonoBehaviourPunCallbacks, IPunObservable
     public GameObject playerPrefab;
     public GAMEMODE GameMode { get; private set; }
 
+    int startLeastNum = 1;
+    public int StartLeastNum { get { return startLeastNum; } }
+
     private static GameManager m_instance;
     public static GameManager instance
     {

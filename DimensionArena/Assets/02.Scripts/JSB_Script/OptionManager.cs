@@ -4,23 +4,16 @@ using UnityEngine;
 
 public class OptionManager : MonoBehaviour
 {
-    static public OptionManager Instance;
 
     [SerializeField]
     GameObject optionCanvas;
 
 
-    private void Awake()
-    {
-        if (null == Instance)
-        {
-            Instance = new OptionManager();
-            DontDestroyOnLoad(this.gameObject);
-        }
-        else
-            Destroy(this.gameObject);
-    }
 
+    public void CanvasOff()
+    {
+        optionCanvas.SetActive(false);
+    }
 
     public void OptionCanvasOn()
     {

@@ -116,11 +116,6 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     private void LoadingInGame()
     {
         PhotonNetwork.NickName = nameText.text;
-
-
-
-        
-        
         
         PhotonNetwork.LoadLevel("ProtoType");
     }

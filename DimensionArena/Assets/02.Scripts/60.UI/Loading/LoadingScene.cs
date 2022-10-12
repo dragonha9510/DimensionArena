@@ -59,7 +59,8 @@ public class LoadingScene : MonoBehaviour
         if (Mathf.Abs(curGauge.rectTransform.sizeDelta.x - maxGauge.rectTransform.sizeDelta.x) <= float.Epsilon)
         {
             // ¾À ÀüÈ¯
-            SceneChanger_Loading.Instance.ChangeScene("LoadingTest1");
+            SceneChanger_Loading
+                .Instance.ChangeScene("LoadingTest1");
         }
     }
 }

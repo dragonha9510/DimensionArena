@@ -6,10 +6,13 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/01.Scenes/ProtoType/Lobby.unity
-    guid: 834fbe6448730de499fa26a327b80d42
+    path: Assets/01.Scenes/ProtoType/LoadScene.unity
+    guid: fdf9238cc42e8d849872a348f115075d
   - enabled: 1
-    path: Assets/01.Scenes/JSB_Scene/MathMaking.unity
+    path: Assets/01.Scenes/ProtoType/LoadingTest1.unity
+    guid: 4e61be949e3937f4c80dc99d9206c097
+  - enabled: 1
+    path: Assets/01.Scenes/ProtoType/MatchMaking.unity
     guid: fdf7512c860606347bde7dee7d602a8a
   - enabled: 1
     path: Assets/01.Scenes/ProtoType/ProtoType.unity
