@@ -9,8 +9,11 @@ EditorBuildSettings:
     path: Assets/01.Scenes/ProtoType/LoadScene.unity
     guid: fdf9238cc42e8d849872a348f115075d
   - enabled: 1
-    path: Assets/01.Scenes/ProtoType/LoadingTest1.unity
-    guid: 4e61be949e3937f4c80dc99d9206c097
+    path: Assets/01.Scenes/ProtoType/Lobby_Main.unity
+    guid: 41001ca4d2cddb04fb68bb34fb719225
+  - enabled: 1
+    path: Assets/01.Scenes/ProtoType/CharacterSelect.unity
+    guid: 85f4c69f7c6dbf2439207d6937e8b3cc
   - enabled: 1
     path: Assets/01.Scenes/ProtoType/MatchMaking.unity
     guid: fdf7512c860606347bde7dee7d602a8a
