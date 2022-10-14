@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 
 public class LobbyCharacter_TouchScreen : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IPointerDownHandler, IPointerUpHandler
 {
@@ -29,7 +30,9 @@ public class LobbyCharacter_TouchScreen : MonoBehaviour, IBeginDragHandler, IDra
         {
             isTouch = false;
             // Scene 실행
-            Debug.Log("Scene 전환!");
+
+            if(SceneManager.GetActiveScene().name != "CharacterSelect")
+                SceneManager.LoadScene("CharacterSelect");
         }
     }
 
