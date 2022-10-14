@@ -6,8 +6,6 @@ using System.IO;
 
 public class CharacterSelList : MonoBehaviour
 {
-    private List<GameObject> listCharacterSlot = new List<GameObject>();
-
     // Start is called before the first frame update
     void Start()
     {
@@ -36,6 +34,8 @@ public class CharacterSelList : MonoBehaviour
             Image image = imageTemp.AddComponent<Image>();
 
             image.sprite = Resources.Load<Sprite>("CharacterIillustration/" + strTemp);
+            imageTemp.AddComponent<SetSelectedName>().mySprite = image.sprite;
+
             image.rectTransform.pivot = new Vector2(0.5f, 1);
             image.rectTransform.anchorMin = new Vector2(0.5f, 1);
             image.rectTransform.anchorMax = new Vector2(0.5f, 1);
@@ -43,9 +43,6 @@ public class CharacterSelList : MonoBehaviour
             image.rectTransform.localPosition = Vector3.zero;
             imageTemp.transform.localPosition = Vector3.zero;
             image.rectTransform.anchoredPosition = Vector3.zero;
-            
-            listCharacterSlot.Add(temp);
-
             ++idx;
         }
     }
