@@ -12,15 +12,15 @@ public abstract class Player_Atk : MonoBehaviourPun
     [Header("PlayerAttackInfo")]
     [SerializeField] protected float range;
     [SerializeField] protected int maxMagazine;
-    [SerializeField] protected int curMagazine;
     [SerializeField] private float reloadTime;
-
+    protected float curCost;
+    protected float shotCost;
+    protected float reverseReloadTime;
+    
     public int MaxMagazine => maxMagazine;
-    public event Action<int, float> eReloading = (param, param2) => { };
-    public event Action<int> eShotMagazine = (param) => { };
 
-    private float curTime = 0.0f;
-
+    public event Action<float> eChangeMagazineCost = (param) => { };
+    public event Action eCantAttack = () => { };
 
     [Header("Programmer Region")]
     [SerializeField]  private GameObject atkRangeMesh;
@@ -34,17 +34,25 @@ public abstract class Player_Atk : MonoBehaviourPun
     protected bool isAttack;
     public bool IsAttack { get { return isAttack; } }
 
-
-
     protected virtual void Start()
     {
         if (atkRangeMesh == null)
             Instantiate(atkRangeMesh, transform);
 
-        owner = GetComponent<Player>();
-
+        if(owner)
+        {
+            owner = GetComponent<Player>();
+            if (owner.photonView.IsMine)
+            {
+                SetMagaazineInverseVaraible();
+                StartCoroutine(MagazineReloadCoroutine());
+            }
+        }
+#if UNITY_EDITOR
+            SetMagaazineInverseVaraible();
+            StartCoroutine(MagazineReloadCoroutine());
+#endif
     }
-
     protected virtual void LateUpdate()
     {
         float distance = range;
@@ -67,6 +75,12 @@ public abstract class Player_Atk : MonoBehaviourPun
                 (transform.position - atkRangeMesh.transform.position).normalized;
     }
 
+    protected void WaitAttack()
+    {
+        eCantAttack();
+    }
+    public abstract void Attack();
+    public abstract void Skill();
     public void StartAttack()
     {
         attackDirection = direction;
@@ -74,15 +88,6 @@ public abstract class Player_Atk : MonoBehaviourPun
         StartCoroutine(LookAttackDirection());
         Attack();
     }
-
-
-    protected void UseMagazine(int cnt)
-    {
-        eShotMagazine(cnt);
-    }
-
-    public abstract void Attack();
-    public abstract void Skill();
 
     IEnumerator LookAttackDirection()
     {
@@ -99,33 +104,24 @@ public abstract class Player_Atk : MonoBehaviourPun
         }
     }
 
-    IEnumerator AutoReloadMagazine(int curIdx)
-    {  
-        for(int i = maxMagazine - 1; i >= curIdx; --i)
-        {
-            eShotMagazine(i);
-        }
-
-        while(true)
-        {   
-             if (reloadTime <= curTime)
-             {
-                 eReloading(curMagazine, 1.0f);
-                 curTime = 0.0f;
-                 curMagazine += 1;
-                 curMagazine = Mathf.Min(curMagazine, maxMagazine);
-                 continue;
-             }
-
-             curTime += Time.deltaTime;
-             eReloading(curMagazine, curTime / reloadTime);
-
-             yield return null;
-        }
+    void SetMagaazineInverseVaraible()
+    {
+        shotCost = (float)(1.0f / maxMagazine);
+        reverseReloadTime = 1 / (reloadTime * maxMagazine);
     }
 
 
 
+    IEnumerator MagazineReloadCoroutine()
+    {      
+        while(true)
+        {         
+            curCost += Time.deltaTime * reverseReloadTime;
+            curCost = Mathf.Min(curCost, 1.0f);
+            eChangeMagazineCost(curCost);
+            yield return null;
+        }
+    }  
 }
 
 

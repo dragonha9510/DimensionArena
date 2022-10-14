@@ -29,27 +29,33 @@ public class JooHyeok_Atk: Player_Atk
 
     public override void Attack()
     {
-        if (!isAttack && curMagazine >= 1)
+        if (!isAttack && curCost >= shotCost)
             StartAttackCoroutine();
+        else if(curCost < shotCost)
+            WaitAttack();
     }
     
     private void StartAttackCoroutine()
     {
         owner.CanDirectionChange = false;
 
-        /*
-        photonView.RPC("AttackCoroutine", RpcTarget.MasterClient
-                                            , PhotonNetwork.NickName
-                                            , attackDirection
-                                            , range
-                                            , projectileSpeed
-                                            , this.gameObject.name);
-        */
-        StartCoroutine(AttackCoroutine(     null
-                                            , attackDirection
-                                            , range
-                                            , projectileSpeed
-                                            , this.gameObject.name));
+        if(PhotonNetwork.IsConnected)
+        {
+            photonView.RPC("AttackCoroutine", RpcTarget.MasterClient
+                                                , PhotonNetwork.NickName
+                                                , attackDirection
+                                                , range
+                                                , projectileSpeed
+                                                , gameObject.name);
+
+        }
+        else
+            StartCoroutine(AttackCoroutineSingle(null
+                                                ,attackDirection
+                                                ,range
+                                                ,projectileSpeed
+                                                ,gameObject.name));
+
     }
 
     public override void Skill()
@@ -62,24 +68,22 @@ public class JooHyeok_Atk: Player_Atk
         float range, float speed, string ownerName)
     {
         isAttack = true;
-        //ÅºÃ¢ ÇÏ³ª ¾ø¾Ö±â
-        curMagazine -= 1;
-        curMagazine = Mathf.Max(curMagazine, 0);
 
-
+        //ÇÑ¹ß ½ò¶§¸¶´Ù ShotCost°¡ »©Áü
+        curCost -= shotCost;
+       
         GameObject projectile;
-       // Transform shooterPosition = PlayerInfoManager.Instance.getPlayerTransform(shooter);
+        Transform shooterPosition = PlayerInfoManager.Instance.getPlayerTransform(shooter);
 
 
         for (int i = 0; i < 2; ++i)
         {
             for (int j = 0; j < projectileCount; ++j)
             {
-                /*
+
                 projectile = PhotonNetwork.Instantiate("projectile", shooterPosition.position + shooterAttackDir, Quaternion.identity);
                 projectile.GetComponent<Projectile>().AttackToDirection(shooterAttackDir, range, speed);
                 projectile.GetComponent<Projectile>().ownerID = ownerName;
-                */
                 yield return new WaitForSeconds(burst_delay);
             }
             yield return new WaitForSeconds(attack_delay);
@@ -89,56 +93,28 @@ public class JooHyeok_Atk: Player_Atk
         owner.CanDirectionChange = true;
 
     }
-    // Direction Change »èÁ¦
-    /*[PunRPC]
-    private IEnumerator AttackCoroutine(Transform shooterTrans , Vector3 shooterCorrection , float range, float speed, string ownerName)
-    {
 
+    private IEnumerator AttackCoroutineSingle(string shooter, Vector3 shooterAttackDir,
+        float range, float speed, string ownerName)
+    {
         isAttack = true;
-        //player.CanDirectionChange = false;
-        GameObject projectile;
+
+        //ÇÑ¹ß ½ò¶§¸¶´Ù ShotCost°¡ »©Áü
+        curCost -= shotCost;
 
         for (int i = 0; i < 2; ++i)
         {
             for (int j = 0; j < projectileCount; ++j)
             {
-                projectile = PhotonNetwork.Instantiate("projectile", shooterTrans.position + shooterCorrection , Quaternion.identity);
-                projectile.GetComponent<Projectile>().AttackToDirection(shooterCorrection, range, speed);
-                projectile.GetComponent<Projectile>().ownerID = ownerName;
                 yield return new WaitForSeconds(burst_delay);
             }
-            yield return new WaitForSeconds(attack_delay);
-        }
-
-        isAttack = false;
-        
-    }*/
-
-
-    /*IEnumerator AttackCoroutine()
-    {
-
-        isAttack = true;
-        owner.CanDirectionChange = false;
-
-        GameObject projectile;
-
-        for (int i = 0; i < 2; ++i)
-        {
-            for(int j = 0; j < projectileCount; ++j)
-            {
-                projectile = PhotonNetwork.Instantiate("projectile", transform.position + attackDirection, Quaternion.identity);
-                projectile.GetComponent<Projectile>().AttackToDirection(attackDirection, range, projectileSpeed);
-                projectile.GetComponent<Projectile>().ownerID = this.gameObject.name;
-                yield return new WaitForSeconds(burst_delay);
-            }
-
             yield return new WaitForSeconds(attack_delay);
         }
 
         isAttack = false;
         owner.CanDirectionChange = true;
-    }*/
+    }
+
 }
 
 
