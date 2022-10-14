@@ -104,7 +104,7 @@ public class LobbyManagerRenewal : MonoBehaviourPunCallbacks
         loadText.text = "중복 체크 완료";
         PhotonNetwork.NickName = name;
         isConnect = true;
-        LoadingSceneController.Instance.LoadScene("LoadingTest1");
+        LoadingSceneController.Instance.LoadScene("Lobby_Main");
         return false;
     }
 
