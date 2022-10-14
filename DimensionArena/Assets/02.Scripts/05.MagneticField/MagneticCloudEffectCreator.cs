@@ -12,7 +12,7 @@ public class MagneticCloudEffectCreator : MonoBehaviour
 {
 
     [SerializeField]
-    private int createCloudCount = 3;
+    private int createCloudCount = 10;
     // 구름 생성 간격 입니다 . ( 가에 구름만 )
     [SerializeField]
     private float cloudSpacing;
