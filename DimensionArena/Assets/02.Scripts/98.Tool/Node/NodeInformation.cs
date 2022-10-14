@@ -26,10 +26,9 @@ namespace GRITTY
         public string objectName;
         public bool isbrown;
         public GameObject prefab;
-        public GameObject hireachyObject;
+        public PREFAB_TYPE type;
         public GUIStyle gridStyle;
         public GUIStyle boardStyle;
-        public PREFAB_TYPE type;
 
         public Texture2D gridNormalTexture;
         public Texture2D gridSelctedTexture;

@@ -45,27 +45,24 @@ public abstract class Player : MonoBehaviourPunCallbacks
             gameObject.name = nickName;
         }
     }
+
     protected virtual void Start()
     {
-        CanDirectionChange = true;
-        if (photonView.IsMine)
-        {
-            InitializeForOwner();
-            //ownerPlayer = this;
-        }
-
         movement = new Player_Movement(this);
+        CanDirectionChange = true;
         TryGetComponent<Rigidbody>(out rigid);
+
         if (rigid == null)
             Destroy(this.gameObject);
-        //Info.EDestroyPlayer += Destroy;
+
+        if (photonView.IsMine)
+            SetToOwnerPlayer();
     }
+
     private void Update()
     {
         if (direction.Equals(Vector3.zero))
-        {
             directionLocation.gameObject.SetActive(false);
-        }
         else
         {
             directionLocation.gameObject.SetActive(true);
@@ -82,12 +79,13 @@ public abstract class Player : MonoBehaviourPunCallbacks
         PhotonNetwork.Destroy(this.gameObject);
     }
 
-    private void InitializeForOwner()
+    private void SetToOwnerPlayer()
     {
         TouchCanvas touchCanvas = GameObject.Find("TouchCanvas").
             GetComponent<TouchCanvas>();
-
         touchCanvas.player = this;
+        info.EDisActivePlayer += touchCanvas.DisActiveTouch;
+        
 
         JoyStick joyStick = GameObject.Find("MoveJoyStick").
                 GetComponent<JoyStick>();
@@ -103,9 +101,6 @@ public abstract class Player : MonoBehaviourPunCallbacks
             GetComponent<AtkJoyStick>();
         atkjoyStick.player = this;
 
-        info.EDisActivePlayer += joyStick.DisActiveJoyStick;
-        info.EDisActivePlayer += skilljoyStick.DisActiveJoyStick;
-        info.EDisActivePlayer += atkjoyStick.DisActiveJoyStick;
 
         GameObject.Find("Target Camera").
             GetComponent<Prototype_TargetCamera>().target = this.transform;

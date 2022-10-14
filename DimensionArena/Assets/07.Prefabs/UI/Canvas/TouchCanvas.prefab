@@ -505,6 +505,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lever: {fileID: 122259820220016791}
+  player: {fileID: 0}
   leverRange: 61
   alphaImage:
   - {fileID: 122259820444099787}
@@ -676,6 +677,7 @@ GameObject:
   - component: {fileID: 122259820722831730}
   - component: {fileID: 122259820722831729}
   - component: {fileID: 1647391841}
+  - component: {fileID: 2003578404}
   m_Layer: 5
   m_Name: TouchCanvas
   m_TagString: Untagged
@@ -781,6 +783,19 @@ CanvasGroup:
   m_Interactable: 0
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!114 &2003578404
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 122259820722831728}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79d14fa8a4a1d194588cb9030b4c6993, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
 --- !u!1 &122259821111599308
 GameObject:
   m_ObjectHideFlags: 0

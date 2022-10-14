@@ -225,19 +225,16 @@ namespace GRITTY
                 if (parentFloor.transform.childCount > 0)
                 {
                     ParsingToNode parsingData;
-                    NodeInformation nodeinfo;
                     for (int i = 0; i < parentFloor.transform.childCount; ++i)
                     {
                         parsingData =  parentFloor.transform.GetChild(i).GetComponent<ParsingToNode>();
                         if (parsingData)
                         {
-                            nodeinfo = new NodeInformation(parsingData.nodeInfo, parsingData.brown);
-
                             list_Ground_Node[parsingData.idx.y][parsingData.idx.x].block =
                                 parentFloor.transform.GetChild(i).gameObject;
 
                             list_Ground_Node[parsingData.idx.y][parsingData.idx.x].nodeInfo =
-                                nodeinfo;
+                                parsingData.nodeInfo;
                         }
                     }
                 }
@@ -249,20 +246,17 @@ namespace GRITTY
                 if (parentBlock.transform.childCount > 0)
                 {
                     ParsingToNode parsingData;
-                    NodeInformation nodeinfo;
                     for (int i = 0; i < parentBlock.transform.childCount; ++i)
                     {
                         parsingData = parentBlock.transform.GetChild(i).GetComponent<ParsingToNode>();
 
                         if (parsingData)
                         {
-                            nodeinfo = new NodeInformation(parsingData.nodeInfo, parsingData.brown);
-
                             list_Brick_Node[parsingData.idx.y][parsingData.idx.x].block =
                                 parentBlock.transform.GetChild(i).gameObject;
 
                             list_Brick_Node[parsingData.idx.y][parsingData.idx.x].nodeInfo =
-                                nodeinfo;
+                                parsingData.nodeInfo;
                         }
                     }
                 }
@@ -272,6 +266,7 @@ namespace GRITTY
         {          
             list_Brick_Node = new List<List<Node>>();
             list_Ground_Node = new List<List<Node>>();
+
             for (int i = 0; i < mapSize.y; ++i)
             {
                 list_Brick_Node.Add(new List<Node>());
