@@ -740,6 +740,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   loadText: {fileID: 463588543}
+  leastStartPlayer: 2
 --- !u!222 &1135553669215320097
 CanvasRenderer:
   m_ObjectHideFlags: 0

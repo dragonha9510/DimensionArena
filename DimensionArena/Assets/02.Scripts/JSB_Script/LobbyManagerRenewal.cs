@@ -9,7 +9,11 @@ using TMPro;
 
 public enum MODE
 {
-    MODE_SURVIVAL
+    MODE_SURVIVAL,
+    MODE_FREEFALLALL,
+    MODE_TEAMDEATHMATCH,
+    MODE_SUPERSTAR,
+    MODE_END
 }
 
 public class LobbyManagerRenewal : MonoBehaviourPunCallbacks
@@ -24,11 +28,16 @@ public class LobbyManagerRenewal : MonoBehaviourPunCallbacks
     public bool IsConnect { get { return isConnect; } }
 
     // Survival , FreeforAll , TeamDeathMatch , SuperStar
-    private string[] modeRoomNames = { "SV", "FFA", "TDM", "SS" };
+    private string[] modeRoomNames = { "SV", "FF", "TD", "SS" };
 
-    List<List<RoomInfo>> rooms = new List<List<RoomInfo>>();
-    private int roomCount = 0;
+    private List<List<RoomInfo>> rooms = new List<List<RoomInfo>>();
+    
+    private MODE playMode;
 
+    [SerializeField] private int leastStartPlayer = 4;
+    public int LeastStartPlayer { get { return leastStartPlayer; } }
+    [SerializeField] private int maxStartPlayer = 8;
+    public int MaxStartPlayer { get { return maxStartPlayer; } }
 
     private void Awake()
     {
@@ -44,7 +53,10 @@ public class LobbyManagerRenewal : MonoBehaviourPunCallbacks
     // Start is called before the first frame update
     void Start()
     {
-        rooms.Add(new List<RoomInfo>());
+        for (int i = (int)MODE.MODE_SURVIVAL; i < (int)MODE.MODE_END; ++i)
+        {
+            rooms.Add(new List<RoomInfo>());
+        }
 
         loadText.text = "서버 접속 시도중...";
         // 서버에 접속 시도
@@ -96,12 +108,47 @@ public class LobbyManagerRenewal : MonoBehaviourPunCallbacks
         return false;
     }
 
+    // 해당 함수는 로비에 돌아갔을 시 자동적으로 호출되는 함수이며 , 로비 내부에서는 갱신을 할 수 없다.
+    // -> 그럼 이거 로비에 둘 다 있을 때 방을 만들면 호출이 되는건가..;;
+    public override void OnRoomListUpdate(List<RoomInfo> roomList)
+    {
+        base.OnRoomListUpdate(roomList);
+        SetUpRoomList(roomList);
+        //rooms[(int)playMode] = roomList;
+    }
+
+    // 룸은 2글자로 밖에 관리를 못한다 즉 룸 앞의 이름이 절대 겹쳐서는 안된다
+    private void SetUpRoomList(List<RoomInfo> roomList)
+    {
+        string roomName = "";
+        foreach(RoomInfo info in roomList)
+        {
+            roomName += info.Name[0].ToString() + info.Name[1].ToString();
+            switch(roomName)
+            {
+                case "SV":
+                    rooms[(int)MODE.MODE_SURVIVAL].Add(info);
+                    break;
+                case "FF":
+                    rooms[(int)MODE.MODE_FREEFALLALL].Add(info);
+                    break;
+                case "TD":
+                    rooms[(int)MODE.MODE_TEAMDEATHMATCH].Add(info);
+                    break;
+                case "SS":
+                    rooms[(int)MODE.MODE_SUPERSTAR].Add(info);
+                    break;
+            }
+        }
+    }
+
     // 남은 룸이 있는지 확인하는 함수이다.
     private string CheckingRoom(MODE gameMode)
     {
-        if (0 == roomCount)
+        OnRoomListUpdate(new List<RoomInfo>());
+        if (0 == rooms.Count)
             return "empty";
-        foreach (Room room in rooms[(int)gameMode])
+        foreach (RoomInfo room in rooms[(int)gameMode])
         {
             if (room.IsOpen)
                 return room.Name;
@@ -109,41 +156,89 @@ public class LobbyManagerRenewal : MonoBehaviourPunCallbacks
         return "empty";
     }
 
+    private string GetNewRoomName()
+    {
+        int roomCount = 0;
+        int playerCount = 0;
+        for(int i = (int)MODE.MODE_SURVIVAL; i < (int)MODE.MODE_END; ++i)
+        {
+            roomCount += rooms[i].Count;
+            for(int j = 0; j < rooms[i].Count;++j)
+                playerCount += rooms[i][j].PlayerCount;
+        }
+
+
+        // 최소한의 방이 시작되는 조건이 4명 임으로
+        if(15 < playerCount && 4 < roomCount)
+            return "error";
+
+        switch (playMode)
+        {
+            case MODE.MODE_SURVIVAL:
+                return modeRoomNames[(int)MODE.MODE_SURVIVAL] + (rooms[(int)MODE.MODE_SURVIVAL].Count + 1).ToString();
+            case MODE.MODE_FREEFALLALL:
+                return modeRoomNames[(int)MODE.MODE_FREEFALLALL] + (rooms[(int)MODE.MODE_FREEFALLALL].Count + 1).ToString();
+            case MODE.MODE_TEAMDEATHMATCH:
+                return modeRoomNames[(int)MODE.MODE_TEAMDEATHMATCH] + (rooms[(int)MODE.MODE_TEAMDEATHMATCH].Count + 1).ToString();
+            case MODE.MODE_SUPERSTAR:
+                return modeRoomNames[(int)MODE.MODE_SUPERSTAR] + (rooms[(int)MODE.MODE_SUPERSTAR].Count + 1).ToString();
+            default:
+                return "error";
+        }
+    }
 
     public void JoinOrCreateRoom(MODE gameMode)
     {
-
+        playMode = gameMode;
         string roomName = CheckingRoom(gameMode);
         if (roomName == "empty")
         {
             // 임시로 방 생성은 일정한 이름으로 만들어 놨음
-            bool roomMake = PhotonNetwork.CreateRoom("씨발", new RoomOptions { MaxPlayers = 8 }, null);
-            if (roomMake)
+            bool roomMake = PhotonNetwork.CreateRoom(GetNewRoomName(), new RoomOptions { MaxPlayers = 8 }, null);
+            if(!roomMake)
             {
-                roomName = modeRoomNames[(int)gameMode];
+                // 방 생성 실패
+
             }
         }
-        if (PhotonNetwork.JoinRoom("씨발"))
-        {
-            Debug.Log("접속 성공");
-        }
+        else
+            PhotonNetwork.JoinRoom(roomName);
     }
 
     public override void OnJoinRoomFailed(short returnCode, string message)
     {
         Debug.Log("접속실패");
-        PhotonNetwork.JoinRoom("씨발");
+        PhotonNetwork.JoinRoom("room");
     }
     public override void OnJoinedRoom()
     {
-        //PhotonNetwork.LoadLevel("MatchMaking");
-        if (2 <= PhotonNetwork.CountOfPlayersInRooms)
+        //  아 방이 만들어졌는데 또 들어가는 오류인건가...
+        //  JoinRandomRoom failed. Client is on GameServer (must be Master Server for matchmaking) and ready
+        
+        
+        int playerCount = PhotonNetwork.CurrentRoom.PlayerCount;
+        GameObject obj = GameObject.Find("MatchState");
+
+        obj.GetComponent<MatchStateText>().RefreshTextAllClient(playerCount, maxStartPlayer);
+
+        if (leastStartPlayer <= PhotonNetwork.CurrentRoom.PlayerCount)
         {
-          PhotonNetwork.LoadLevel("Prototype");
+            photonView.RPC("PlayStart", RpcTarget.All);
+            // 게임이 시작했으면 방을 닫는다.
+            PhotonNetwork.CurrentRoom.IsOpen = false;
         }
     }
-    private void Update()
+
+    [PunRPC]
+    private void PlayStart()
     {
-        Debug.Log(PhotonNetwork.CountOfPlayersInRooms);
+        switch(playMode)
+        {
+            case MODE.MODE_SURVIVAL:
+                PhotonNetwork.LoadLevel("Prototype");
+                break;
+
+        }
     }
+
 }
