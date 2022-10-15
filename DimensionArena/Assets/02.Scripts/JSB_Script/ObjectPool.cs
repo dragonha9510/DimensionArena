@@ -69,9 +69,10 @@ public class ObjectPool : MonoBehaviourPun
 
     public void MakePool(CLIENTOBJ objType, int makeCount)
     {
-        /*// Eready setting this pool
-        if (cliobjectPool[objType] != null)
-            return;*/
+        // already setting this pool
+        if (cliobjectPool.ContainsKey(objType))
+            return;
+
         cliobjectPool.Add(objType, new Queue<GameObject>());
         for (int i = 0; i < makeCount; ++i)
         {
