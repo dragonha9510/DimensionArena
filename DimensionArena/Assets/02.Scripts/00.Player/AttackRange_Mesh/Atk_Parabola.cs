@@ -10,9 +10,11 @@ public class Atk_Parabola : MonoBehaviour
 
     [SerializeField] private float meshWidth;
 
-    [SerializeField] private float velocity;
+    private float velocity;
+    [SerializeField] private float distance = 3;
     [SerializeField] private float angle;
     [SerializeField] private int resolution = 10;
+
 
     private float gravity; // force of gravity on the y axis
     private float radianAngle;
@@ -72,20 +74,21 @@ public class Atk_Parabola : MonoBehaviour
         Vector3[] arcArray = new Vector3[resolution + 1];
 
         radianAngle = Mathf.Deg2Rad * angle;
-        float maxDistance = (velocity * velocity * Mathf.Sin(2 * radianAngle)) / gravity;
+        //float maxDistance = (velocity * velocity * Mathf.Sin(2 * radianAngle)) / gravity;
+        velocity = Mathf.Sqrt((distance * gravity) / Mathf.Sin(2 * radianAngle));
 
         for (int i = 0; i <= resolution; ++i)
         {
             float t = (float)i / (float)resolution;
-            arcArray[i] = CalculateArcPoint(t, maxDistance);
+            arcArray[i] = CalculateArcPoint(t, distance);
         }
 
         return arcArray;
     }
 
-    Vector3 CalculateArcPoint(float t, float distance)
+    Vector3 CalculateArcPoint(float t, float dist)
     {
-        float x = t * distance;
+        float x = t * dist;
         float y = x * Mathf.Tan(radianAngle) - ((gravity * x * x) / (2 * velocity * velocity * Mathf.Cos(radianAngle) * Mathf.Cos(radianAngle)));
 
         return new Vector3(x, y);

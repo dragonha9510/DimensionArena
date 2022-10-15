@@ -147,7 +147,7 @@ Material:
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _FoamColor: {r: 1, g: 1, b: 1, a: 0}
     - _FoamSpeed: {r: 0, g: -0.2, b: 0, a: 0}
-    - _MainColor: {r: 0, g: 0.17484277, b: 0.3207547, a: 0}
+    - _MainColor: {r: 0.1682983, g: 0.21599916, b: 0.5849056, a: 0}
     - _ShoreColor: {r: 0, g: 0.5399372, b: 0.8018868, a: 0}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
   m_BuildTextureStacks: []
