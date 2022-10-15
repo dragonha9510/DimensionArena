@@ -5446,7 +5446,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: ba310d4dce001924795c784ff0d923c8, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 0aa116d173f09ae4bad122e0b5ee09e9, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -5576,8 +5576,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 100, y: -66}
-  m_SizeDelta: {x: 200, y: 132}
+  m_AnchoredPosition: {x: 100, y: -100}
+  m_SizeDelta: {x: 200, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2523329175904473162
 CanvasRenderer:
@@ -5607,7 +5607,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 89bfafeec14b047a4ac5510b8751485d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 4e7793ebdfa2d1f42889c79bc5ab7b3c, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -5630,7 +5630,7 @@ GameObject:
   - component: {fileID: 2523329175904473163}
   - component: {fileID: 2523329175904473160}
   m_Layer: 5
-  m_Name: Btn_OtherButton_SideButton01_Left
+  m_Name: BackBtn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5710,8 +5710,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 100, y: -66}
-  m_SizeDelta: {x: 200, y: 132}
+  m_AnchoredPosition: {x: 100, y: -100}
+  m_SizeDelta: {x: 200, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2523329176309233578
 CanvasRenderer:
@@ -5741,7 +5741,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 89bfafeec14b047a4ac5510b8751485d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 4e7793ebdfa2d1f42889c79bc5ab7b3c, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -5764,7 +5764,7 @@ GameObject:
   - component: {fileID: 2523329176309233579}
   - component: {fileID: 2523329176309233576}
   m_Layer: 5
-  m_Name: Btn_OtherButton_SideButton01_Left
+  m_Name: BackBtn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5790,7 +5790,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: ba310d4dce001924795c784ff0d923c8, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 0aa116d173f09ae4bad122e0b5ee09e9, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -7090,7 +7090,7 @@ Transform:
   m_GameObject: {fileID: 6753666540437502336}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 140, z: -500}
-  m_LocalScale: {x: 134.03564, y: 134.03564, z: 1}
+  m_LocalScale: {x: 118.21033, y: 118.21033, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6499660263956449929}

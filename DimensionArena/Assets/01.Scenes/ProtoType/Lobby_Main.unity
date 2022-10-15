@@ -7567,7 +7567,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 960, y: -133.5}
+  m_AnchoredPosition: {x: 358.5, y: -70}
   m_SizeDelta: {x: 0, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &547491681
@@ -7924,7 +7924,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 960, y: -934.5}
+  m_AnchoredPosition: {x: 358.5, y: -490}
   m_SizeDelta: {x: 600, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &632963816
@@ -8046,7 +8046,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 960, y: -667.5}
+  m_AnchoredPosition: {x: 358.5, y: -350}
   m_SizeDelta: {x: 600, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &664464072
@@ -15319,7 +15319,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 960, y: -400.5}
+  m_AnchoredPosition: {x: 358.5, y: -210}
   m_SizeDelta: {x: 0, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2031962749
@@ -16227,12 +16227,12 @@ PrefabInstance:
     - target: {fileID: 5527182556833254777, guid: 6116ef1203ac84c4b9d804ff62a7a788,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.040765706
+      value: 0.0152234435
       objectReference: {fileID: 0}
     - target: {fileID: 5527182556833254777, guid: 6116ef1203ac84c4b9d804ff62a7a788,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.040765706
+      value: 0.0152234435
       objectReference: {fileID: 0}
     - target: {fileID: 5527182556833254777, guid: 6116ef1203ac84c4b9d804ff62a7a788,
         type: 3}
@@ -26155,7 +26155,7 @@ GameObject:
   - component: {fileID: 6248446735313506114}
   - component: {fileID: 6248446735313506117}
   m_Layer: 5
-  m_Name: Btn_OtherButton_SideButton02_Right
+  m_Name: OptionBtn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -27760,7 +27760,7 @@ GameObject:
   - component: {fileID: 8714195417826579709}
   - component: {fileID: 8714195417826579712}
   m_Layer: 5
-  m_Name: Btn_OtherButton_SideButton01_Left
+  m_Name: BackBtn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -27785,7 +27785,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 100, y: -66}
-  m_SizeDelta: {x: 200, y: 132}
+  m_SizeDelta: {x: 200, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &8714195417826579709
 MonoBehaviour:
