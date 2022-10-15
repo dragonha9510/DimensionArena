@@ -19103,6 +19103,26 @@ PrefabInstance:
       propertyPath: sceneViewId
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 1876143292272218706, guid: a14dcf423470d6f48b983a3345b4ec9a,
+        type: 3}
+      propertyPath: atkInfo.range
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1876143292272218706, guid: a14dcf423470d6f48b983a3345b4ec9a,
+        type: 3}
+      propertyPath: atkInfo.curCost
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1876143292272218706, guid: a14dcf423470d6f48b983a3345b4ec9a,
+        type: 3}
+      propertyPath: atkInfo.reloadTime
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1876143292272218706, guid: a14dcf423470d6f48b983a3345b4ec9a,
+        type: 3}
+      propertyPath: atkInfo.maxMagazine
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 2737819322045720800, guid: a14dcf423470d6f48b983a3345b4ec9a,
         type: 3}
       propertyPath: m_RootOrder

@@ -13,6 +13,7 @@ public class SelectedCharacter : MonoBehaviour
 
     public Sprite characterSprite;
     public Sprite nextCharacterSprite;
+    
 
     void Awake()
     {

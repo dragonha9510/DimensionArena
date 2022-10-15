@@ -2,28 +2,39 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
-public class JooHyeok : Player
+
+
+namespace PlayerSpace
 {
-    protected override void Awake()
+    public class JooHyeok : Player
     {
-        base.Awake();
-        
-        //Player State 등록
-        info = new PlayerInfo(NickName, 
-                              CharacterType.Joohyeok, 
-                              100.0f, 100.0f, 3.0f);
+        protected override void Awake()
+        {
+            base.Awake();
 
-        //Attack 등록
-        attack = GetComponent<JooHyeok_Atk>();
+            //Player State 등록
+            info = new PlayerInfo(NickName,
+                                  CharacterType.Joohyeok,
+                                  100.0f, 100.0f, 3.0f);
 
-        if (!attack)
-            attack = gameObject.AddComponent<JooHyeok_Atk>();
+            //Attack 등록
+            attack = GetComponent<JooHyeok_Atk>();
+
+            if (!attack)
+                attack = gameObject.AddComponent<JooHyeok_Atk>();
+
+        }
+
+        protected override void Start()
+        {
+            base.Start();
+        }
 
     }
 
-    protected override void Start()
-    {
-        base.Start();
-    }
+
 
 }
+
+
+

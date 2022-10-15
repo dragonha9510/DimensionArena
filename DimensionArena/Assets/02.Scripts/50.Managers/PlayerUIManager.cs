@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using PlayerSpace;
+
+
 public class PlayerUIManager : MonoBehaviour
 {
     Player target;

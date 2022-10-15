@@ -23,4 +23,10 @@ public class Lobby_BtnFunction : MonoBehaviour
     {
         SceneManager.LoadScene("CharacterSelect");
     }
+
+    public void ToModeChanage()
+    {
+        SceneManager.LoadScene("SelectMap");
+
+    }
 }

@@ -13,6 +13,7 @@ public enum MODE
     MODE_FREEFALLALL,
     MODE_TEAMDEATHMATCH,
     MODE_SUPERSTAR,
+    MODE_TRAINING,
     MODE_END
 }
 
@@ -32,7 +33,7 @@ public class LobbyManagerRenewal : MonoBehaviourPunCallbacks
 
     private List<List<RoomInfo>> rooms = new List<List<RoomInfo>>();
     
-    private MODE playMode;
+    public MODE playMode;
 
     [SerializeField] private int leastStartPlayer = 4;
     public int LeastStartPlayer { get { return leastStartPlayer; } }

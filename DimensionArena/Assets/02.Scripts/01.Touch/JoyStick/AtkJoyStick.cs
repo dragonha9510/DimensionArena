@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using Photon.Pun;
+using PlayerSpace;
+
 public class AtkJoyStick : MonoBehaviourPun , IBeginDragHandler, IDragHandler, IEndDragHandler
 {
 
