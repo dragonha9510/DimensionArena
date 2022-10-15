@@ -67,10 +67,12 @@ public class MagneticField_Offline : MonoBehaviour
         {
             Destroy(obj);
         }
+        magneticfieldObj.Clear();
     }
    
     private void OnEnable()
     {
+        nowPhaseIndex = 0;
         // ObjectPool
         ObjectPool.Instance.MakePool(CLIENTOBJ.CLIENTOBJ_CLOUDEFFECT, 5000);
 
