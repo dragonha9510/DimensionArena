@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class MapSelect : MonoBehaviour
 {
-   
-
     // Start is called before the first frame update
     void Start()
     {

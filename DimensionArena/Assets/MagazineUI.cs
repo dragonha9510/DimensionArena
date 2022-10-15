@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
+using PlayerSpace;
 
 public class MagazineUI : MonoBehaviour
 {
@@ -23,8 +24,7 @@ public class MagazineUI : MonoBehaviour
             }
         }
 
-
-        InsertMagazineUI(ownerAtk.MaxMagazine);
+        InsertMagazineUI(ownerAtk.AtkInfo.MaxMagazine);
         ownerAtk.eChangeMagazineCost += SetMagazineUI;
         ownerAtk.eCantAttack += OscillateMagazineBar;
 
@@ -66,11 +66,9 @@ public class MagazineUI : MonoBehaviour
         int childIdx = transform.childCount;
         float maskArea = (float)(1.0f / childIdx);
 
-        for(int i = 0; i < childIdx; ++i)
-        {
-            bool isActive = (fillAmount) >= (maskArea * (i + 1));
-            transform.GetChild(i).gameObject.SetActive(isActive);
-        }
+        for (int i = 0; i < childIdx; ++i)
+            transform.GetChild(i).gameObject.SetActive((magazineBar.fillAmount) >= (maskArea * (i + 1)));
+
        
     }
 
