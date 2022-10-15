@@ -42,10 +42,18 @@ namespace PlayerSpace
 
         protected virtual void Awake()
         {
-            if (photonView.Owner != null)
+            if(PhotonNetwork.InRoom)
             {
-                nickName = photonView.Owner.NickName;
-                gameObject.name = nickName;
+                if (photonView.Owner != null)
+                {
+                    nickName = photonView.Owner.NickName;
+                    gameObject.name = nickName;
+                }
+            }
+            else
+            {
+                nickName = "Player";
+                gameObject.name = "Player";
             }
         }
 
@@ -57,8 +65,12 @@ namespace PlayerSpace
 
             if (rigid == null)
                 Destroy(this.gameObject);
-
-            if (photonView.IsMine)
+            if(PhotonNetwork.InRoom)
+            {
+                if (photonView.IsMine)
+                    SetToOwnerPlayer();
+            }
+            else
                 SetToOwnerPlayer();
         }
 

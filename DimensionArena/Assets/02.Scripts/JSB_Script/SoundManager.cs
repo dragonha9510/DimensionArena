@@ -36,7 +36,6 @@ public class SoundManager : MonoBehaviourPun
                 {
                     soundMgr = new GameObject("SoundManager");
                     soundMgr.AddComponent<SoundManager>();
-                    //infoMgr.AddComponent<PhotonView>();
                 }
 
                 instance = soundMgr.GetComponent<SoundManager>();

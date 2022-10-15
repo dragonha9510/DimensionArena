@@ -4,6 +4,7 @@ using Photon.Pun;
 using Photon.Realtime;
 using UnityEngine.UI;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using TMPro;
 
 
@@ -188,6 +189,15 @@ public class LobbyManagerRenewal : MonoBehaviourPunCallbacks
         }
     }
 
+    public void EnterTrainingMode()
+    {
+        if (playMode == MODE.MODE_TRAINING)
+        {
+            SceneManager.LoadScene("OfflineMode");
+            return;
+        }
+    }
+
     public void JoinOrCreateRoom(MODE gameMode)
     {
         playMode = gameMode;
@@ -213,6 +223,7 @@ public class LobbyManagerRenewal : MonoBehaviourPunCallbacks
     }
     public override void OnJoinedRoom()
     {
+       
         //  아 방이 만들어졌는데 또 들어가는 오류인건가...
         //  JoinRandomRoom failed. Client is on GameServer (must be Master Server for matchmaking) and ready
         
@@ -238,7 +249,7 @@ public class LobbyManagerRenewal : MonoBehaviourPunCallbacks
             case MODE.MODE_SURVIVAL:
                 PhotonNetwork.LoadLevel("Prototype");
                 break;
-
+            
         }
     }
 

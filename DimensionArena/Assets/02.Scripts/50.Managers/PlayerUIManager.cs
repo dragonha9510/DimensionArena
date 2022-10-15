@@ -19,22 +19,34 @@ public class PlayerUIManager : MonoBehaviour
         //플레이어 받아오기.
         target = GetComponentInParent<Player>();
 
-        if(target.photonView.IsMine)
+
+
+        // JSB -> ARROW 설정
+        if(arrow == null)
+        {
+            playerName.text = "Player";
+        }
+        else if(target.photonView.IsMine)
         {
             arrow.SetActive(true);
-        }
-        //환경 정보 분기점
-        string nickName;
-        nickName = 
-            target.photonView.Owner == null ? target.photonView.name : target.photonView.Owner.NickName;
+            //환경 정보 분기점
+            string nickName;
+            nickName =
+                target.photonView.Owner == null ? target.photonView.name : target.photonView.Owner.NickName;
 
-        //이름 지정
-        playerName.text = nickName;
+
+            //이름 지정
+            playerName.text = nickName;
+            StartCoroutine(ArrowMoveCoroutine());
+        }
+        //////////////
+
+
+
 
         //Target
         target.Info.EcurHPChanged += HpBarChange;
 
-        StartCoroutine(ArrowMoveCoroutine());
 
     }
 
@@ -57,9 +69,7 @@ public class PlayerUIManager : MonoBehaviour
                 yield return new WaitForSeconds(arrowTime * 0.005f);
             }
         }
-
         arrow.SetActive(false);
-
     }
 
 
