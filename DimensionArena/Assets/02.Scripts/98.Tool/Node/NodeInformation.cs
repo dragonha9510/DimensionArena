@@ -21,23 +21,22 @@ namespace GRITTY
     public class NodeInformation
     {
         public static int SIZE = 128;
-        public Texture2D basicGroundTexture;
 
         public string objectName;
         public bool isbrown;
         public GameObject prefab;
         public PREFAB_TYPE type;
-        public GUIStyle gridStyle;
-        public GUIStyle boardStyle;
 
+        public GUIStyle prefabStyle;
+        public Texture2D currentTexture;
         public Texture2D gridNormalTexture;
         public Texture2D gridSelctedTexture;
+        public Texture2D basicGroundTexture;
 
 
         public NodeInformation(bool brown)
         {
-            boardStyle = new GUIStyle();
-
+            prefabStyle = new GUIStyle();
             if (brown)
             {
                 basicGroundTexture = TextureManager.brown;
@@ -47,13 +46,12 @@ namespace GRITTY
                 basicGroundTexture = TextureManager.darkbrown;
             }
 
-            boardStyle.normal.background = basicGroundTexture;
+            currentTexture = basicGroundTexture;
         }
 
         public NodeInformation(NodeInformation _node, bool brown)
         {
-            gridStyle = new GUIStyle();
-            boardStyle = new GUIStyle();
+            prefabStyle = new GUIStyle();
 
             //prefab이 존재하지 않았던 버그 -> nodeinformation을 담는 parsingtonode class 생성으로 고침          
             if (_node.prefab)
@@ -64,13 +62,11 @@ namespace GRITTY
             isbrown = brown;
 
             if(type == PREFAB_TYPE.GROUND)
-            {
-                gridNormalTexture = Resources.Load<Texture2D>(TOOL_PATH.THUMBNAIL_GROUND_PATH + objectName);
-            }
+                gridNormalTexture = Resources.Load<Texture2D>
+                    (TOOL_PATH.THUMBNAIL_GROUND_PATH + objectName);
             else
-            {
-                gridNormalTexture = Resources.Load<Texture2D>(TOOL_PATH.THUMBNAIL_BRICK_PATH + objectName);
-            }
+                gridNormalTexture = Resources.Load<Texture2D>
+                    (TOOL_PATH.THUMBNAIL_BRICK_PATH + objectName);
 
             basicGroundTexture = new Texture2D(128, 128);
 
@@ -96,66 +92,54 @@ namespace GRITTY
 
         public NodeInformation(string name, GameObject prefab, PREFAB_TYPE type, bool brown)
         {
-            gridStyle = new GUIStyle();
-            boardStyle = new GUIStyle();
+            prefabStyle = new GUIStyle();
+
             this.prefab = prefab;
             this.type = type;
             isbrown = brown;
             objectName = name;
 
             if (type == PREFAB_TYPE.GROUND)
-            {
-                gridNormalTexture = Resources.Load<Texture2D>(TOOL_PATH.THUMBNAIL_GROUND_PATH + objectName);
-            }
+                gridNormalTexture = Resources.Load<Texture2D>
+                    (TOOL_PATH.THUMBNAIL_GROUND_PATH + objectName);
             else
-            {
-                gridNormalTexture = Resources.Load<Texture2D>(TOOL_PATH.THUMBNAIL_BRICK_PATH + objectName);
-            }
+                gridNormalTexture = Resources.Load<Texture2D>
+                    (TOOL_PATH.THUMBNAIL_BRICK_PATH + objectName);
  
 
             if (brown)
-            {
                 basicGroundTexture = TextureManager.brown;
-            }
             else
-            {
                 basicGroundTexture = TextureManager.darkbrown;
-            }
+       
 
-
-            if (gridNormalTexture != null)
-            {
+            if (gridNormalTexture)
                 SetupStyles();
-            }
             else
-            {
                 CreatePngAndSetUp();
-            }
         }
         void SetupStyles()
         {
             // =======================
             //  SETUP PALLETE TEXTURE
             // =======================
-
-            Texture2D board;     
-            board = gridNormalTexture;
-           
-            boardStyle.normal.background = board;
+            currentTexture = gridNormalTexture;
 
             // =======================
             //  SETUP PREFAB TEXTURE
             // =======================
-            gridStyle.normal.background = gridNormalTexture;
-            gridStyle.fixedWidth = SIZE;
-            gridStyle.fixedHeight = SIZE;
-            gridStyle.fixedWidth = SIZE;
-            gridStyle.fixedHeight = SIZE;
+            prefabStyle.normal.background = gridNormalTexture;
+            prefabStyle.fixedWidth = SIZE;
+            prefabStyle.fixedHeight = SIZE;
+            prefabStyle.fixedWidth = SIZE;
+            prefabStyle.fixedHeight = SIZE;
 
             // ==========================
             //  CREATE HIGHLIGHT TEXTURE
             // ==========================
-            gridSelctedTexture = TextureManager.MakeSelectedTexture2D(gridNormalTexture);
+            gridSelctedTexture = TextureManager.
+                MakeSelectedTexture2D(gridNormalTexture);
+
         }
 
 

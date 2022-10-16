@@ -322,16 +322,15 @@ namespace GRITTY
             GameObject[] grounds = Resources.LoadAll<GameObject>(TOOL_PATH.GROUND_PREFAB_PATH);
 
             for (int i = 0; i < grounds.Length; ++i)
-            {
-                ground_Prefabs.Add(new NodeInformation(grounds[i].name, grounds[i], PREFAB_TYPE.GROUND, (i % 2 == 0)));
-            }
+                ground_Prefabs.Add(
+                    new NodeInformation(grounds[i].name, grounds[i], PREFAB_TYPE.GROUND, (i % 2 == 0)));
+
 
             GameObject[] bricks = Resources.LoadAll<GameObject>(TOOL_PATH.BRICK_PREFAB_PATH);
 
             for (int i = 0; i < bricks.Length; ++i)
-            {
-               brick_Prefabs.Add(new NodeInformation(bricks[i].name, bricks[i], PREFAB_TYPE.BRICK, (i % 2 == 0)));
-            }
+               brick_Prefabs.Add(
+                   new NodeInformation(bricks[i].name, bricks[i], PREFAB_TYPE.BRICK, (i % 2 == 0)));
         }
 
         Vector2 scrollPos = Vector2.zero;
@@ -345,16 +344,19 @@ namespace GRITTY
             for (int i = 0; i < ground_Prefabs.Count; ++i)
             {
                 if (EditorGUI.Toggle(new Rect((i % 3 * 128) + 100, (i / 3) * 128, 128, 128),
-                idx_Prefab == i, ground_Prefabs[i].gridStyle))
+                idx_Prefab == i, ground_Prefabs[i].prefabStyle))
                 {
                     idx_Prefab = i;
                     //선택시, current PrefabForGrid을 바꿔준다. 
-                    ground_Prefabs[i].gridStyle.normal.background = ground_Prefabs[i].gridSelctedTexture;
+                    ground_Prefabs[i].prefabStyle.normal.background = 
+                        ground_Prefabs[i].gridSelctedTexture;
+
                     curNodeInfo = ground_Prefabs[i];
                 }
                 else
                 {
-                    ground_Prefabs[i].gridStyle.normal.background = ground_Prefabs[i].gridNormalTexture;
+                    ground_Prefabs[i].prefabStyle.normal.background = 
+                        ground_Prefabs[i].gridNormalTexture;
                 }
             }
 
@@ -370,16 +372,19 @@ namespace GRITTY
             for (int i = 0; i < brick_Prefabs.Count; ++i)
             {
                 if (EditorGUI.Toggle(new Rect((i % 3 * 128) + 100, (i / 3) * 128, 128, 128),
-                idx_Prefab == i, brick_Prefabs[i].gridStyle))
+                idx_Prefab == i, brick_Prefabs[i].prefabStyle))
                 {
                     idx_Prefab = i;
                     //선택시, current PrefabForGrid을 바꿔준다. 
-                    brick_Prefabs[i].gridStyle.normal.background = brick_Prefabs[i].gridSelctedTexture;
+                    brick_Prefabs[i].prefabStyle.normal.background 
+                        = brick_Prefabs[i].gridSelctedTexture;
+
                     curNodeInfo = brick_Prefabs[i];
                 }
                 else
                 {
-                    brick_Prefabs[i].gridStyle.normal.background = brick_Prefabs[i].gridNormalTexture;
+                    brick_Prefabs[i].prefabStyle.normal.background 
+                        = brick_Prefabs[i].gridNormalTexture;
                 }
             }
 

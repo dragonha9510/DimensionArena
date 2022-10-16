@@ -19,10 +19,10 @@ namespace GRITTY
         }
         public void CreateBrick(int row, int colmn, NodeInformation _nodeInfo)
         {
-            nodeInfo.boardStyle.normal.background = _nodeInfo.boardStyle.normal.background;
+            nodeInfo.currentTexture = _nodeInfo.currentTexture;
 
-            //If Block Exist Delete
-            if(block)
+            //If Block Exist Delete and Overwrite
+            if (block)
             {
                 MonoBehaviour.DestroyImmediate(block);
             }
@@ -46,11 +46,7 @@ namespace GRITTY
                 block.name = _nodeInfo.objectName;
             }
 
-          
-
-
-
-            //Parsing
+            //Parsing Data Add to Gameobject
             ParsingToNode parsingNode = block.AddComponent<ParsingToNode>();
             parsingNode.rect = rect;
             parsingNode.idx = new Vector2Int(row,colmn);
@@ -65,11 +61,11 @@ namespace GRITTY
                 MonoBehaviour.DestroyImmediate(block);
             }
 
-            nodeInfo.boardStyle.normal.background = nodeInfo.basicGroundTexture;
+            nodeInfo.currentTexture = nodeInfo.basicGroundTexture;
         }
         public void Draw()
         {
-            GUI.Box(rect, "", nodeInfo.boardStyle);
+            GUI.DrawTexture(rect, nodeInfo.currentTexture);
         }
         public void Drag(Vector2 delta)
         {
