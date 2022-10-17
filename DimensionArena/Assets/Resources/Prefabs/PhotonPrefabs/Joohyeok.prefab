@@ -541,10 +541,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc204522c9500054083d02fc8f0c6d93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  range: 6
-  maxMagazine: 4
-  reloadTime: 3
+  atkInfo:
+    range: 0
+    maxMagazine: 0
+    reloadTime: 0
   atkRangeMesh: {fileID: 516184251707268580}
+  skillRangeMesh: {fileID: 0}
   direction: {x: 0, y: 0, z: 0}
   attackDirection: {x: 0, y: 0, z: 0}
   projectileCount: 3
@@ -1581,6 +1583,19 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 8681213730650467918}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &8508506602533450400
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 516184251707268580}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27b4d7b2d00c4504db3883fc7cc61de9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  owner: {fileID: 2737819322045720800}
 --- !u!4 &8311340060677869853 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 805601567251611475, guid: eff1a239d1465d04aaa4b6223e314478,
