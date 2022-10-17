@@ -22,6 +22,10 @@ namespace GRITTY
     {
         public static int SIZE = 128;
 
+<<<<<<< HEAD
+=======
+        public string objectName;
+>>>>>>> GrittyCode
         public GameObject prefab;
         public string objectName;
         public PREFAB_TYPE type;

@@ -19,7 +19,7 @@ namespace PlayerSpace
         public PlayerAtkInfo AtkInfo => atkInfo;
 
         [Header("Programmer Region")]
-        [SerializeField] private GameObject atkRangeMesh;
+        [SerializeField]  private GameObject atkRangeMesh;
         [HideInInspector] public Vector3 direction;
         [HideInInspector] public Vector3 attackDirection;
 
@@ -75,8 +75,8 @@ namespace PlayerSpace
         }
 
 
-        public abstract void Attack();
-        public abstract void Skill();
+        protected abstract void Attack();
+        protected abstract void Skill();
 
 
         public void StartAttack()
