@@ -6,7 +6,7 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/01.Scenes/ProtoType/LoadScene.unity
+    path: Assets/01.Scenes/ProtoType/GameStartScene.unity
     guid: fdf9238cc42e8d849872a348f115075d
   - enabled: 1
     path: Assets/01.Scenes/ProtoType/Lobby_Main.unity
@@ -21,9 +21,12 @@ EditorBuildSettings:
     path: Assets/01.Scenes/ProtoType/ProtoType.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
   - enabled: 1
-    path: Assets/01.Scenes/JSB_Scene/OfflineMode.unity
+    path: Assets/01.Scenes/ProtoType/OfflineMode.unity
     guid: 9993302cc56e3db488b5189b8f558dd8
   - enabled: 1
     path: Assets/01.Scenes/ProtoType/SelectMap.unity
-    guid: 82c5a38bec205404d837c5ae55a019a2
+    guid: ac9c4a115d279594297ec907154176e7
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   m_configObjects: {}

@@ -6,7 +6,10 @@ public class MatchingStartButton : MonoBehaviour
 {
     public void MatchMakingSceneLoad()
     {
-        SceneManager.LoadScene("MatchMaking");
+        if (LobbyManagerRenewal.Instance.playMode != MODE.MODE_TRAINING)
+            SceneManager.LoadScene("MatchMaking");
+        else
+            LobbyManagerRenewal.Instance.EnterTrainingMode();
     }
 
 

@@ -16,6 +16,7 @@ namespace PlayerSpace
         [SerializeField] private GameObject prefab_Projectile;
         [SerializeField] private AudioSource audioSource;
 
+
         protected override void InitalizeAtkInfo()
         {
             atkInfo = new PlayerAtkInfo(6.0f, 3, 1.5f);
@@ -44,7 +45,7 @@ namespace PlayerSpace
         {
             owner.CanDirectionChange = false;
 
-            if (PhotonNetwork.IsConnected)
+            if (PhotonNetwork.InRoom)
             {
                 photonView.RPC("AttackCoroutine", RpcTarget.MasterClient
                                                     , PhotonNetwork.NickName
@@ -106,10 +107,17 @@ namespace PlayerSpace
 
             atkInfo.SubCost(atkInfo.ShotCost);
 
+            GameObject projectile;
+
             for (int i = 0; i < 2; ++i)
             {
                 for (int j = 0; j < projectileCount; ++j)
                 {
+                    // JSB
+                    projectile = Instantiate(prefab_Projectile, this.transform.position + shooterAttackDir, Quaternion.identity);
+                    projectile.GetComponent<Projectile>().AttackToDirection(shooterAttackDir, range, speed);
+                    projectile.GetComponent<Projectile>().ownerID = ownerName;
+                    //
                     yield return new WaitForSeconds(burst_delay);
                 }
                 yield return new WaitForSeconds(attack_delay);
