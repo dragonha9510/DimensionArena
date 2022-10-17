@@ -12,11 +12,11 @@ namespace PlayerSpace
         {
             base.Awake();
 
-            //Player State µî·Ï
+            //Player State ï¿½ï¿½ï¿½
             info = new PlayerInfo(NickName,
                                   CharacterType.Joohyeok,
                                   100.0f, 100.0f, 3.0f);
-            //Attack µî·Ï
+            //Attack ï¿½ï¿½ï¿½
             attack = GetComponent<JooHyeok_Atk>();
             if (!attack)
                 attack = gameObject.AddComponent<JooHyeok_Atk>();
