@@ -13,6 +13,7 @@ public class Projectile : AttackObject
 
     private void Awake()
     {
+
         originPos = transform.position;
         //수정 예정
         SoundManager.Instance.PlaySFXOneShot("JiJooNormalEffect");
