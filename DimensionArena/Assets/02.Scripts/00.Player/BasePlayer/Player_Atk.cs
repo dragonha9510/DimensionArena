@@ -20,10 +20,6 @@ namespace PlayerSpace
 
         [Header("Programmer Region")]
         [SerializeField] private GameObject atkRangeMesh;
-<<<<<<< HEAD
-=======
-        [SerializeField] private GameObject skillRangeMesh;
->>>>>>> main
         [HideInInspector] public Vector3 direction;
 
         [HideInInspector] public Vector3 attackDirection;
