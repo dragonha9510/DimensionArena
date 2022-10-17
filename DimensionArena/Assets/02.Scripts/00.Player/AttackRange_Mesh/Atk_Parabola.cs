@@ -2,8 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(MeshFilter))]
-public class Atk_Parabola : MonoBehaviour
+[RequireComponent(typeof(MeshFilter)), ExecuteInEditMode]
+public class Atk_Parabola : Atk_Range
 {
     private Mesh mesh;
     [SerializeField] private Transform endPoint;
@@ -27,7 +27,7 @@ public class Atk_Parabola : MonoBehaviour
 
     private void OnValidate()
     {
-        if (mesh != null && Application.isPlaying)
+        if (mesh != null)
             MakeArcMesh(CalculateArcArray());
     }
 
@@ -63,18 +63,19 @@ public class Atk_Parabola : MonoBehaviour
             }
         }
 
-        endPoint.localPosition = vertices[((resolution + 1) * 2) - 1] + new Vector3(meshWidth * 0.5f, 1.75f, 0);
+        // Use Angle
+        // endPoint.localPosition = vertices[((resolution + 1) * 2) - 1] + new Vector3(meshWidth * 0.5f, 1.75f, 0);
+        // Use LookAt
+        endPoint.localPosition = vertices[1] + new Vector3(meshWidth * 0.5f, 1.75f, 0);
 
         mesh.vertices = vertices;
         mesh.triangles = triangles;
     }
-
     Vector3[] CalculateArcArray()
     {
         Vector3[] arcArray = new Vector3[resolution + 1];
 
         radianAngle = Mathf.Deg2Rad * angle;
-        //float maxDistance = (velocity * velocity * Mathf.Sin(2 * radianAngle)) / gravity;
         velocity = Mathf.Sqrt((distance * gravity) / Mathf.Sin(2 * radianAngle));
 
         for (int i = 0; i <= resolution; ++i)
@@ -85,12 +86,30 @@ public class Atk_Parabola : MonoBehaviour
 
         return arcArray;
     }
-
     Vector3 CalculateArcPoint(float t, float dist)
     {
         float x = t * dist;
         float y = x * Mathf.Tan(radianAngle) - ((gravity * x * x) / (2 * velocity * velocity * Mathf.Cos(radianAngle) * Mathf.Cos(radianAngle)));
 
         return new Vector3(x, y);
+    }
+
+    public override void Calculate_Range(float maxdistance, Vector3 direction)
+    {
+        if (Mathf.Approximately(direction.magnitude, 0))
+        {
+            distance = 0.1f;
+            return; 
+        }
+
+        distance = maxdistance * direction.magnitude;
+
+        MakeArcMesh(CalculateArcArray());
+
+        transform.position = owner.position +
+                                          direction.normalized * ((distance))
+                                          + new Vector3(0, 0.001f, 0);
+
+        transform.LookAt(owner);
     }
 }

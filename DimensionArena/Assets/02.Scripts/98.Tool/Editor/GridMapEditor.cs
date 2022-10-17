@@ -14,6 +14,7 @@ namespace GRITTY
         /// ==================================
 
         #region STATIC Variable, Methods
+        //해당 툴이 꺼졌다 켜져도 존재하고 있어야되는 것들
         public static GridMapEditor window;
         static GameObject parentGround;
 

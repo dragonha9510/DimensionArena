@@ -98,10 +98,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   endPoint: {fileID: 3538972818967441220}
-  meshWidth: 0.81
-  velocity: 47.81
-  angle: 46.78
-  resolution: 37
+  meshWidth: 0.1
+  distance: 3
+  angle: 45
+  resolution: 20
 --- !u!1 &3538972818967441223
 GameObject:
   m_ObjectHideFlags: 0

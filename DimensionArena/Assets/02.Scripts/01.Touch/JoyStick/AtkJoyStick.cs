@@ -15,6 +15,7 @@ public class AtkJoyStick : MonoBehaviourPun , IBeginDragHandler, IDragHandler, I
     private RectTransform rectTransform;
 
     [SerializeField, Range(10f, 150f)] private float leverRange;
+    private float maxRange = 150f;
 
     private void Awake()
     {
@@ -48,8 +49,6 @@ public class AtkJoyStick : MonoBehaviourPun , IBeginDragHandler, IDragHandler, I
     public void OnEndDrag(PointerEventData eventData)
     {
         lever.anchoredPosition = Vector2.zero;
-
-        //photonView.RPC("PlayerAttackRPC", RpcTarget.All);
         PlayerAttackRPC();
         SetDirection();
     }
@@ -62,7 +61,7 @@ public class AtkJoyStick : MonoBehaviourPun , IBeginDragHandler, IDragHandler, I
     public void SetDirection()
     {
         player.Attack.direction =
-            new Vector3((lever.position.x - rectTransform.position.x) * 0.01f, 0, (lever.position.y - rectTransform.position.y) * 0.01f);
+            new Vector3((lever.position.x - rectTransform.position.x) / maxRange, 0, (lever.position.y - rectTransform.position.y) / maxRange);
     }
     public void DisActiveJoyStick()
     {
