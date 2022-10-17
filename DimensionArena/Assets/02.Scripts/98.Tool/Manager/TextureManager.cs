@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 
 public static class TextureManager 
 {
-    static public Texture2D brown;
-    static public Texture2D darkbrown;
+    public static Texture2D brown;
+    public static Texture2D darkbrown;
+    public static Texture2D alpha;
 
     static public Texture2D MakeSelectedTexture2D(Texture2D source)
     {
@@ -71,5 +73,20 @@ public static class TextureManager
             }
         }
         darkbrown.Apply();
+    }
+
+    public static void MakeAlphaTexture()
+    {
+        alpha = new Texture2D(128, 128);
+        Color32 alphaColor = new Color32(255, 255, 255, 180);
+
+        for (int i = 0; i < darkbrown.width; ++i)
+        {
+            for (int j = 0; j < darkbrown.height; ++j)
+            {
+                alpha.SetPixel(i, j, alphaColor);
+            }
+        }
+        alpha.Apply();
     }
 }

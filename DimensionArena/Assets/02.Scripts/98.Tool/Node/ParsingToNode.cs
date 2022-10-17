@@ -8,8 +8,7 @@ public class ParsingToNode : MonoBehaviour
 {
     public Vector2Int idx;
     public Rect rect;
-    public NodeInformation nodeInfo;   
-    public bool brown;
+    public NodeInformation nodeInfo;
 
 }
 #endif

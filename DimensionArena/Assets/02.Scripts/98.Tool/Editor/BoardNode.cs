@@ -19,10 +19,10 @@ namespace GRITTY
         }
         public void CreateBrick(int row, int colmn, NodeInformation _nodeInfo)
         {
-            nodeInfo.boardStyle.normal.background = _nodeInfo.boardStyle.normal.background;
+            nodeInfo.currentTexture = _nodeInfo.currentTexture;
 
-            //If Block Exist Delete
-            if(block)
+            //If Block Exist Delete and Overwrite
+            if (block)
             {
                 MonoBehaviour.DestroyImmediate(block);
             }
@@ -34,42 +34,51 @@ namespace GRITTY
             if(_nodeInfo.type == PREFAB_TYPE.GROUND)
             {
                 block = MonoBehaviour.Instantiate(_nodeInfo.prefab);
-                block.transform.position = new Vector3((row - originRow) + 0.5f, 0.5f, - (colmn - originColmn) - 0.5f);
+                block.transform.position = new Vector3((row - originRow) + 0.5f, -0.5f, - (colmn - originColmn) - 0.5f);
                 block.transform.parent = GameObject.Find("Floors").transform;
                 block.name = _nodeInfo.objectName;
             }
             else
             {
                 block = MonoBehaviour.Instantiate(_nodeInfo.prefab);
-                block.transform.position = new Vector3((row - originRow) + 0.5f, 1.5f, - (colmn - originColmn) - 0.5f);
+                block.transform.position = new Vector3((row - originRow) + 0.5f, 0.5f, - (colmn - originColmn) - 0.5f);
                 block.transform.parent = GameObject.Find("Obstacles").transform;
                 block.name = _nodeInfo.objectName;
             }
 
-          
-
-
-
-            //Parsing
+            //Parsing Data Add to Gameobject
             ParsingToNode parsingNode = block.AddComponent<ParsingToNode>();
             parsingNode.rect = rect;
             parsingNode.idx = new Vector2Int(row,colmn);
-            parsingNode.brown = ((row + colmn) % 2 == 0);
-            parsingNode.nodeInfo = _nodeInfo;
-
+            parsingNode.nodeInfo = new NodeInformation(_nodeInfo, nodeInfo.basicTexture);
         }
-        public void EraseBrick()
+
+        public void SetBasicGround(Texture2D basicTexture)
+        {
+            nodeInfo.basicTexture = basicTexture;
+            nodeInfo.currentTexture = basicTexture;
+        }
+
+        public void EraseBasicGround()
+        {
+            nodeInfo.basicTexture = TextureManager.alpha;
+            nodeInfo.currentTexture = nodeInfo.basicTexture;
+        }
+
+        public bool EraseBrick()
         {
             if (block)
             {
                 MonoBehaviour.DestroyImmediate(block);
+                nodeInfo.currentTexture = nodeInfo.basicTexture;
+                return true;
             }
 
-            nodeInfo.boardStyle.normal.background = nodeInfo.basicGroundTexture;
+            return false;
         }
         public void Draw()
         {
-            GUI.Box(rect, "", nodeInfo.boardStyle);
+            GUI.DrawTexture(rect, nodeInfo.currentTexture);
         }
         public void Drag(Vector2 delta)
         {
