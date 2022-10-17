@@ -32,7 +32,7 @@ namespace PlayerSpace
             base.LateUpdate();
         }
 
-        protected override void Attack()
+        public override void Attack()
         {
             if (atkInfo.CurCost < atkInfo.ShotCost)
                 WaitAttack();
@@ -64,7 +64,7 @@ namespace PlayerSpace
 
         }
 
-        protected override void Skill()
+        public override void Skill()
         {
             //Skill±¸Çö
         }
