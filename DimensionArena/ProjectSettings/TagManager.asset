@@ -13,6 +13,7 @@ TagManager:
   - ParentGround
   - Player_Body
   - ParentFloor
+  - Bullet
   layers:
   - Default
   - TransparentFX
@@ -23,7 +24,7 @@ TagManager:
   - GroundObject_Brick
   - GroundObject_Bush
   - Obstacle
-  - 
+  - Water
   - 
   - 
   - 
