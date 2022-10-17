@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+
+
 public class ProfileUI : MonoBehaviour
 {
     [SerializeField]
@@ -34,6 +36,11 @@ public class ProfileUI : MonoBehaviour
         {
             // 이름 변경 실패했을때
             failedInformation.SetActive(true);
+        }
+        else
+        {
+            // 저장되어있는 DB 정보값 불러와야함
+
         }
         nickNameText.text = LobbyManagerRenewal.Instance.PlayerName;
     }

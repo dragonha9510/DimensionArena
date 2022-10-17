@@ -83,13 +83,12 @@ public class LobbyManagerRenewal : MonoBehaviourPunCallbacks
 
     private void MakeRandNickname()
     {
-
         loadText.text = "랜덤 이름 생성중...";
         do
         {
             playerName += Random.Range(1, 100).ToString();
         } while (NameOverLapCheck(playerName));
-    }
+    } 
 
     [PunRPC]
     public void PlayerNameAdd(string name)
@@ -97,18 +96,25 @@ public class LobbyManagerRenewal : MonoBehaviourPunCallbacks
         playersName.Add(name);
     }
 
+
+    // 이게 누구한테 있어야하지?????????????????????????
     public bool NameOverLapCheck(string name)
     {
         if(loadText != null)
             loadText.text = "이름 중복 확인중...";
 
-        // 플레이어 이름 목록들을 받아온다.
-        Photon.Realtime.Player[] players = PhotonNetwork.PlayerList;
+
+        List<PlayerData> playerData = FirebaseDB_Manager.Instance.GetPlayerNameList();
+
+        FirebaseDB_Manager.Instance.WritePlayerNameData(name);
+
+        // 플레이어 이름 목록들을 받아온다. 쓰레기 코드
+        //Photon.Realtime.Player[] players = PhotonNetwork.PlayerList;
         
 
-        foreach (Photon.Realtime.Player p in players)
+        foreach (PlayerData data in playerData)
         {
-            if (p.NickName == name)
+            if (data.playerName == name)
             {
                 loadText.text = "이름 중복";
                 return true;

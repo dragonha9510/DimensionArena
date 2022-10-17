@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "499408352703",
+    "firebase_url": "https://dimensionarea-f82d4-default-rtdb.firebaseio.com",
+    "project_id": "dimensionarea-f82d4",
+    "storage_bucket": "dimensionarea-f82d4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:499408352703:android:8df9cb1d8c81bf3a641d0a",
+        "android_client_info": {
+          "package_name": "com.DA3691_Company.DimensionArena"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "499408352703-d837ghhshf1kcnsdged7h3pmi8le21jq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCLp2Dx4R-yGnxGnBXPdPhePLi0nnkB8PE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "499408352703-d837ghhshf1kcnsdged7h3pmi8le21jq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
