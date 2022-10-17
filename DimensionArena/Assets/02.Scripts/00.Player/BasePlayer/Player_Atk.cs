@@ -20,6 +20,7 @@ namespace PlayerSpace
 
         [Header("Programmer Region")]
         [SerializeField] private GameObject atkRangeMesh;
+        [SerializeField] private GameObject skillRangeMesh;
         [HideInInspector] public Vector3 direction;
 
         [HideInInspector] public Vector3 attackDirection;
@@ -29,7 +30,7 @@ namespace PlayerSpace
 
         private float rotationSpeed = 1080.0f;
 
-        //Attack ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ È®ï¿½ï¿½
+        //Attack Áß ÀÎÁö È®ÀÎ
         protected bool isAttack;
         public bool IsAttack { get { return isAttack; } }
 

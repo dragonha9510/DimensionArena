@@ -16,18 +16,15 @@ namespace PlayerSpace
         [SerializeField] private GameObject prefab_Projectile;
         [SerializeField] private AudioSource audioSource;
 
-        private Atk_Parabola parabola;
 
         protected override void InitalizeAtkInfo()
         {
-            atkInfo = new PlayerAtkInfo(6.0f, 10f, 3, 1.5f);
+            atkInfo = new PlayerAtkInfo(6.0f, 3, 1.5f);
         }
         protected override void Start()
         {
             //향후, 바뀌는게 없다면 Player Start, LateUpdate를 private로 변환
             base.Start();
-
-            parabola = GetComponent<Atk_Parabola>();
         }
 
         protected override void LateUpdate()
@@ -35,7 +32,7 @@ namespace PlayerSpace
             base.LateUpdate();
         }
 
-        public override void Attack()
+        protected override void Attack()
         {
             if (atkInfo.CurCost < atkInfo.ShotCost)
                 WaitAttack();
@@ -58,10 +55,16 @@ namespace PlayerSpace
                                                     , gameObject.name);
 
             }
+            else
+                StartCoroutine(AttackCoroutineSingle(null
+                                                    , attackDirection
+                                                    , atkInfo.Range
+                                                    , projectileSpeed
+                                                    , gameObject.name));
 
         }
 
-        public override void Skill()
+        protected override void Skill()
         {
             //Skill구현
         }
@@ -83,6 +86,7 @@ namespace PlayerSpace
             {
                 for (int j = 0; j < projectileCount; ++j)
                 {
+
                     projectile = PhotonNetwork.Instantiate("projectile", shooterPosition.position + shooterAttackDir, Quaternion.identity);
                     projectile.GetComponent<Projectile>().AttackToDirection(shooterAttackDir, range, speed);
                     projectile.GetComponent<Projectile>().ownerID = ownerName;

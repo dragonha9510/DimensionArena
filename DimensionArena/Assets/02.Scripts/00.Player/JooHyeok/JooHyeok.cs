@@ -8,15 +8,18 @@ namespace PlayerSpace
 {
     public class JooHyeok : Player
     {
+
+        AudioClip[] audio;
+
         protected override void Awake()
         {
             base.Awake();
 
-            //Player State ï¿½ï¿½ï¿½
+            //Player State µî·Ï
             info = new PlayerInfo(NickName,
                                   CharacterType.Joohyeok,
                                   100.0f, 100.0f, 3.0f);
-            //Attack ï¿½ï¿½ï¿½
+            //Attack µî·Ï
             attack = GetComponent<JooHyeok_Atk>();
             if (!attack)
                 attack = gameObject.AddComponent<JooHyeok_Atk>();
