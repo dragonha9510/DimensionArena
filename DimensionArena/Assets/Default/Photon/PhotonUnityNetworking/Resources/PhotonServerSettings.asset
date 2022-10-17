@@ -82,6 +82,7 @@ MonoBehaviour:
   - PlayStart
   - RefreshTextAllClient
   - RefreshText
+  - PlayerNameAdd
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1
