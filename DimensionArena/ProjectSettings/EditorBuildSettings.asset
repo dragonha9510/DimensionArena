@@ -25,8 +25,5 @@ EditorBuildSettings:
     guid: 9993302cc56e3db488b5189b8f558dd8
   - enabled: 1
     path: Assets/01.Scenes/ProtoType/SelectMap.unity
-    guid: ac9c4a115d279594297ec907154176e7
-  - enabled: 0
-    path: 
-    guid: 00000000000000000000000000000000
+    guid: 35c2afa06e22da14ba1c64a3e9c57e2f
   m_configObjects: {}
