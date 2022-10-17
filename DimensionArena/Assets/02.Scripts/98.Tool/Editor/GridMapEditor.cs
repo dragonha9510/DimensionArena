@@ -33,13 +33,9 @@ namespace GRITTY
 
             //Check current Map Exists
             if (parentGround)
-            {
                 OpenMap();
-            }
             else
-            {
                 CreateMap();
-            }
 
             //Open GridMap
             window = GetWindow<GridMapEditor>();
@@ -53,14 +49,6 @@ namespace GRITTY
         {
             return GameObject.FindWithTag("MapTool");
         }
-
-
-        public static void SetMapSize(int row, int colmn)
-        {
-            mapSize.x = row;
-            mapSize.y = colmn;
-        }
-
 
         private static void OpenMap()
         {
@@ -85,8 +73,8 @@ namespace GRITTY
             //Texture Setting
             TextureManager.MakeBrownTexture();
             TextureManager.MakeDarkBrownTexture();
+            TextureManager.MakeAlphaTexture();
         }
-
         private static void CreateMap()
         {
             //Ground Setting
@@ -111,16 +99,17 @@ namespace GRITTY
             //Texture Setting
             TextureManager.MakeBrownTexture();
             TextureManager.MakeDarkBrownTexture();
+            TextureManager.MakeAlphaTexture();
 
+        }
+        public static void SetMapSize(int row, int colmn)
+        {
+            mapSize.x = row;
+            mapSize.y = colmn;
         }
         #endregion
 
         /// ==================================
-
-
-
-
-
 
 
         /// ==================================
@@ -141,7 +130,6 @@ namespace GRITTY
 
         /// ==================================
 
-
         bool IsPrefabInstance(GameObject go)
         {
             return PrefabUtility.GetCorrespondingObjectFromSource(go) != null
@@ -159,10 +147,6 @@ namespace GRITTY
             }
         }
 
-
-
-
-
         /// ==================================
         ///           UNITY Methods
         /// ==================================
@@ -175,7 +159,6 @@ namespace GRITTY
             SetBasicGruound();
             RestoreGridMap();
         }
-
         private void OnGUI()
         {
             //Draw
@@ -235,6 +218,9 @@ namespace GRITTY
 
                             list_Ground_Node[parsingData.idx.y][parsingData.idx.x].nodeInfo =
                                 parsingData.nodeInfo;
+
+                            list_Brick_Node[parsingData.idx.y][parsingData.idx.x].SetBasicGround(
+                                list_Ground_Node[parsingData.idx.y][parsingData.idx.x].nodeInfo.currentTexture);
                         }
                     }
                 }
@@ -280,25 +266,15 @@ namespace GRITTY
                 for (int j = 0; j < mapSize.x; ++j)
                 {
                     if (i % 2 == 0)
-                    {
-                        list_Brick_Node[i].Add(new Node(new Vector2(j * size, i * size), size, size,
-                        new NodeInformation(j % 2 == 0)
-                        ));
-
                         list_Ground_Node[i].Add(new Node(new Vector2(j * size, i * size), size, size,
-                       new NodeInformation(j % 2 == 0)
-                       ));
-                    }
+                       new NodeInformation(j % 2 == 0)));
                     else
-                    {
-                        list_Brick_Node[i].Add(new Node(new Vector2(j * size, i * size), size, size,
-                             new NodeInformation(j % 2 == 1)
-                             ));
-
                         list_Ground_Node[i].Add(new Node(new Vector2(j * size, i * size), size, size,
-                             new NodeInformation(j % 2 == 1)
-                             ));
-                    }
+                             new NodeInformation(j % 2 == 1)));
+
+                    list_Brick_Node[i].Add(new Node(new Vector2(j * size, i * size), size, size,
+                   new NodeInformation(TextureManager.alpha)));
+
                 }
             }
 
@@ -442,7 +418,6 @@ namespace GRITTY
         }
 
 
-
         #endregion
 
         /// ==================================
@@ -511,6 +486,8 @@ namespace GRITTY
                 return;
 
             list_Ground_Node[colmn][row].CreateBrick(row, colmn, PrefabSelector.Window.GetCurPrefab());
+            list_Brick_Node[colmn][row].SetBasicGround(PrefabSelector.Window.GetCurPrefab().normalTexture);
+
             GUI.changed = true;
         }
         void DeleteGround(int row, int colmn)
@@ -519,7 +496,10 @@ namespace GRITTY
                 colmn < 0 || row >= list_Ground_Node[colmn].Count)
                 return;
 
-            list_Ground_Node[colmn][row].EraseBrick();
+            if(list_Ground_Node[colmn][row].EraseBrick())
+                list_Brick_Node[colmn][row].EraseBasicGround();
+            
+
             GUI.changed = true;
         }
 
@@ -555,7 +535,6 @@ namespace GRITTY
             }
             GUI.changed = true;
         }
-
         void MouseDragToGroundMode(Vector2 delta)
         {
             drag = delta;
@@ -578,7 +557,6 @@ namespace GRITTY
             GUI.changed = true;
         }
         #endregion
-
         /// ==================================
 
     }

@@ -175,8 +175,7 @@ namespace GRITTY
             loadIconStyle.fixedHeight = 80;
             loadIconStyle.normal.background = loadIcon;
 
-        }
-        
+        }    
         private void SetGUIRectField()
         {
             prefabCount = prefabCount % 3 == 0 ? prefabCount / 3 : prefabCount / 3 + 1;
@@ -206,7 +205,6 @@ namespace GRITTY
 
             modeRect = new Rect(10, menuYpadding * 2, 100, position.height);
         }
-
         private void DrawHeader()
         {
             //PADDING
@@ -218,7 +216,6 @@ namespace GRITTY
             style.fontSize = 16;
             GUI.Label(TitleRect, "PREFAB SELECTOR", style);
         }
-
         private void DrawModeIcon()
         {
             GUILayout.BeginArea(modeRect);
@@ -271,7 +268,6 @@ namespace GRITTY
             GUILayout.EndVertical();
             GUILayout.EndArea();
         }
-
         private void DrawMenuBar()
         {
             GUILayout.BeginArea(menuRect);
@@ -290,8 +286,6 @@ namespace GRITTY
             GUILayout.EndHorizontal();
             GUILayout.EndArea();
         }
-
-
         private void DrawContents()
         {
             switch (prefabType)
@@ -313,7 +307,8 @@ namespace GRITTY
         ///   GET_EVERTYTHING_PREFAB
         /// ============================
 
-        #region GET Prefabs
+        Vector2 scrollPos = Vector2.zero;
+
         private void GetAllPrefabsForTool()
         {
             ground_Prefabs = new List<NodeInformation>();
@@ -332,9 +327,6 @@ namespace GRITTY
                brick_Prefabs.Add(
                    new NodeInformation(bricks[i].name, bricks[i], PREFAB_TYPE.BRICK, (i % 2 == 0)));
         }
-
-        Vector2 scrollPos = Vector2.zero;
-
         private void OpenGroundPrefabs()
         {
             prefabType = PREFAB_TYPE.GROUND;
@@ -349,20 +341,19 @@ namespace GRITTY
                     idx_Prefab = i;
                     //선택시, current PrefabForGrid을 바꿔준다. 
                     ground_Prefabs[i].prefabStyle.normal.background = 
-                        ground_Prefabs[i].gridSelctedTexture;
+                        ground_Prefabs[i].selectedTexture;
 
                     curNodeInfo = ground_Prefabs[i];
                 }
                 else
                 {
                     ground_Prefabs[i].prefabStyle.normal.background = 
-                        ground_Prefabs[i].gridNormalTexture;
+                        ground_Prefabs[i].normalTexture;
                 }
             }
 
             GUI.EndScrollView();
         }
-
         private void OpenBrickPrefabs()
         {
             prefabType = PREFAB_TYPE.BRICK;
@@ -377,28 +368,24 @@ namespace GRITTY
                     idx_Prefab = i;
                     //선택시, current PrefabForGrid을 바꿔준다. 
                     brick_Prefabs[i].prefabStyle.normal.background 
-                        = brick_Prefabs[i].gridSelctedTexture;
+                        = brick_Prefabs[i].selectedTexture;
 
                     curNodeInfo = brick_Prefabs[i];
                 }
                 else
                 {
                     brick_Prefabs[i].prefabStyle.normal.background 
-                        = brick_Prefabs[i].gridNormalTexture;
+                        = brick_Prefabs[i].normalTexture;
                 }
             }
 
             GUI.EndScrollView();
         }
 
-        #endregion
-
 
         /// ============================
         ///   EXTERNALLY_USED_METHOD
         /// ============================
-
-        #region EXTERNALLY METHOD
 
         [MenuItem("Tool/Prefab_Selecotr")]
         public static void Open()
@@ -408,27 +395,19 @@ namespace GRITTY
             window.titleContent = new GUIContent("Prefab Selector");
 
         }
-
         public NodeInformation GetCurPrefab()
         {
             return curNodeInfo;
         }
-
-
         public NodeInformation GetBasicGround()
         {
             return ground_Prefabs[0];
         }
 
-        #endregion
-
-
         /// ============================
         ///       TOOL_MODE_METHOD
         /// ============================
          
-        #region ToolMode Method
-        
         private void SaveMap()
         {
             GameObject map = GameObject.FindWithTag("MapTool");
@@ -462,8 +441,6 @@ namespace GRITTY
             }
         }
                          
-        #endregion
-
     }
 
 }

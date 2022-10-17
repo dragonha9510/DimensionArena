@@ -34,14 +34,14 @@ namespace GRITTY
             if(_nodeInfo.type == PREFAB_TYPE.GROUND)
             {
                 block = MonoBehaviour.Instantiate(_nodeInfo.prefab);
-                block.transform.position = new Vector3((row - originRow) + 0.5f, 0.5f, - (colmn - originColmn) - 0.5f);
+                block.transform.position = new Vector3((row - originRow) + 0.5f, -0.5f, - (colmn - originColmn) - 0.5f);
                 block.transform.parent = GameObject.Find("Floors").transform;
                 block.name = _nodeInfo.objectName;
             }
             else
             {
                 block = MonoBehaviour.Instantiate(_nodeInfo.prefab);
-                block.transform.position = new Vector3((row - originRow) + 0.5f, 1.5f, - (colmn - originColmn) - 0.5f);
+                block.transform.position = new Vector3((row - originRow) + 0.5f, 0.5f, - (colmn - originColmn) - 0.5f);
                 block.transform.parent = GameObject.Find("Obstacles").transform;
                 block.name = _nodeInfo.objectName;
             }
@@ -50,18 +50,31 @@ namespace GRITTY
             ParsingToNode parsingNode = block.AddComponent<ParsingToNode>();
             parsingNode.rect = rect;
             parsingNode.idx = new Vector2Int(row,colmn);
-            parsingNode.brown = ((row + colmn) % 2 == 0);
-            parsingNode.nodeInfo = _nodeInfo;
-
+            parsingNode.nodeInfo = new NodeInformation(_nodeInfo, nodeInfo.basicTexture);
         }
-        public void EraseBrick()
+
+        public void SetBasicGround(Texture2D basicTexture)
+        {
+            nodeInfo.basicTexture = basicTexture;
+            nodeInfo.currentTexture = basicTexture;
+        }
+
+        public void EraseBasicGround()
+        {
+            nodeInfo.basicTexture = TextureManager.alpha;
+            nodeInfo.currentTexture = nodeInfo.basicTexture;
+        }
+
+        public bool EraseBrick()
         {
             if (block)
             {
                 MonoBehaviour.DestroyImmediate(block);
+                nodeInfo.currentTexture = nodeInfo.basicTexture;
+                return true;
             }
 
-            nodeInfo.currentTexture = nodeInfo.basicGroundTexture;
+            return false;
         }
         public void Draw()
         {
