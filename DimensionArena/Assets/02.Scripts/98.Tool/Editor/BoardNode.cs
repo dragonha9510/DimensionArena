@@ -10,7 +10,7 @@ namespace GRITTY
     {
         Rect rect;
         public NodeInformation nodeInfo;
-        public GameObject block;
+        public GameObject brick;
 
         public Node(Vector2 position, float width, float height , NodeInformation _nodeInfo)
         {
@@ -22,9 +22,9 @@ namespace GRITTY
             nodeInfo.currentTexture = _nodeInfo.currentTexture;
 
             //If Block Exist Delete and Overwrite
-            if (block)
+            if (brick)
             {
-                MonoBehaviour.DestroyImmediate(block);
+                MonoBehaviour.DestroyImmediate(brick);
             }
 
             int originRow = GridMapEditor.mapSize.x / 2 == 0 ? (GridMapEditor.mapSize.x / 2) - 1 : (GridMapEditor.mapSize.x / 2);
@@ -33,25 +33,43 @@ namespace GRITTY
 
             if(_nodeInfo.type == PREFAB_TYPE.GROUND)
             {
-                block = MonoBehaviour.Instantiate(_nodeInfo.prefab);
-                block.transform.position = new Vector3((row - originRow) + 0.5f, -0.5f, - (colmn - originColmn) - 0.5f);
-                block.transform.parent = GameObject.Find("Floors").transform;
-                block.name = _nodeInfo.objectName;
+                brick = MonoBehaviour.Instantiate(_nodeInfo.prefab);
+                brick.transform.position = new Vector3((row - originRow) + 0.5f, -0.5f, - (colmn - originColmn) - 0.5f);
+                brick.transform.parent = GameObject.Find("Floors").transform;
+                brick.name = _nodeInfo.objectName;
             }
             else
             {
-                block = MonoBehaviour.Instantiate(_nodeInfo.prefab);
-                block.transform.position = new Vector3((row - originRow) + 0.5f, 0.5f, - (colmn - originColmn) - 0.5f);
-                block.transform.parent = GameObject.Find("Obstacles").transform;
-                block.name = _nodeInfo.objectName;
+                brick = MonoBehaviour.Instantiate(_nodeInfo.prefab);
+                brick.transform.position = new Vector3((row - originRow) + 0.5f, 0.5f, - (colmn - originColmn) - 0.5f);
+                brick.transform.parent = GameObject.Find("Obstacles").transform;
+                brick.name = _nodeInfo.objectName;
             }
 
             //Parsing Data Add to Gameobject
-            ParsingToNode parsingNode = block.AddComponent<ParsingToNode>();
+            ParsingToNode parsingNode = brick.AddComponent<ParsingToNode>();
             parsingNode.rect = rect;
             parsingNode.idx = new Vector2Int(row,colmn);
             parsingNode.nodeInfo = new NodeInformation(_nodeInfo, nodeInfo.basicTexture);
         }
+
+        public void CreateEmptyBrick(int row, int colmn, GameObject obj)
+        {
+            int originRow = GridMapEditor.mapSize.x / 2 == 0 ? (GridMapEditor.mapSize.x / 2) - 1 : (GridMapEditor.mapSize.x / 2);
+            int originColmn = GridMapEditor.mapSize.y / 2 == 0 ? (GridMapEditor.mapSize.y / 2) - 1 : (GridMapEditor.mapSize.y / 2);
+
+            brick = MonoBehaviour.Instantiate(obj);
+            brick.transform.position = new Vector3((row - originRow) + 0.5f, 0.5f, -(colmn - originColmn) - 0.5f);
+            brick.transform.parent = GameObject.Find("Obstacles").transform;
+            brick.name = obj.name;
+
+            //Parsing Data Add to Gameobject
+            ParsingToNode parsingNode = brick.AddComponent<ParsingToNode>();
+            parsingNode.rect = rect;
+            parsingNode.idx = new Vector2Int(row, colmn);
+            parsingNode.nodeInfo = new NodeInformation(TextureManager.alpha);
+        }
+
 
         public void SetBasicGround(Texture2D basicTexture)
         {
@@ -67,9 +85,9 @@ namespace GRITTY
 
         public bool EraseBrick()
         {
-            if (block)
+            if (brick)
             {
-                MonoBehaviour.DestroyImmediate(block);
+                MonoBehaviour.DestroyImmediate(brick);
                 nodeInfo.currentTexture = nodeInfo.basicTexture;
                 return true;
             }

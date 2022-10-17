@@ -47,6 +47,14 @@ namespace GRITTY
             currentTexture = alpha;
         }
 
+        public NodeInformation(GameObject emptyBox)
+        {
+            prefabStyle = new GUIStyle();   
+            basicTexture = TextureManager.alpha;
+            currentTexture = basicTexture;
+            prefab = emptyBox;
+            type = PREFAB_TYPE.BRICK;
+        }
 
         public NodeInformation(bool brown)
         {

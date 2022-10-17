@@ -14,14 +14,16 @@ namespace GRITTY
         /// ==================================
 
         #region STATIC Variable, Methods
+       
         public static GridMapEditor window;
         static GameObject parentGround;
 
         static GameObject parentBlock;
         static GameObject parentFloor;
-        //40, 40칸씩 보여줄 예정
+  
         static Vector2 windowSize = new Vector2(800, 800);
         public static Vector2Int mapSize;
+
 
         [MenuItem("Tool/OpenMap")]
         public static void OpenEditorForMapCreator()
@@ -120,8 +122,8 @@ namespace GRITTY
         int size = 20;
         Vector2 boxSize = new Vector2(20, 20);
 
-        List<List<Node>> list_Ground_Node;
-        List<List<Node>> list_Brick_Node;
+        static List<List<Node>> list_Ground_Node;
+        static List<List<Node>> list_Brick_Node;
 
         Vector2 offset;
         Vector2 drag;
@@ -213,7 +215,7 @@ namespace GRITTY
                         parsingData =  parentFloor.transform.GetChild(i).GetComponent<ParsingToNode>();
                         if (parsingData)
                         {
-                            list_Ground_Node[parsingData.idx.y][parsingData.idx.x].block =
+                            list_Ground_Node[parsingData.idx.y][parsingData.idx.x].brick =
                                 parentFloor.transform.GetChild(i).gameObject;
 
                             list_Ground_Node[parsingData.idx.y][parsingData.idx.x].nodeInfo =
@@ -238,7 +240,7 @@ namespace GRITTY
 
                         if (parsingData)
                         {
-                            list_Brick_Node[parsingData.idx.y][parsingData.idx.x].block =
+                            list_Brick_Node[parsingData.idx.y][parsingData.idx.x].brick =
                                 parentBlock.transform.GetChild(i).gameObject;
 
                             list_Brick_Node[parsingData.idx.y][parsingData.idx.x].nodeInfo =
@@ -556,8 +558,30 @@ namespace GRITTY
             }
             GUI.changed = true;
         }
+
+        void CreateEmptyBox()
+        {
+            GameObject emptyBox = Resources.Load<GameObject>("Tool/Brick/Empty_Box");
+            for (int i = 0; i < mapSize.y; ++i)
+            {
+                for (int j = 0; j < mapSize.x; ++j)
+                {
+                    //모두 비어있을때
+                    if(!list_Ground_Node[i][j].brick)
+                        if(!list_Brick_Node[i][j].brick)
+                            list_Brick_Node[i][j].CreateEmptyBrick(j, i, emptyBox);
+                }
+            }
+        }
         #endregion
         /// ==================================
+
+
+        private void OnDisable()
+        {
+            //Brick 빈 오브젝트 체크
+            CreateEmptyBox();
+        }
 
     }
 }
