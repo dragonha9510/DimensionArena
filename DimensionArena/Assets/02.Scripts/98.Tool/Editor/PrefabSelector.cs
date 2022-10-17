@@ -175,7 +175,8 @@ namespace GRITTY
             loadIconStyle.fixedHeight = 80;
             loadIconStyle.normal.background = loadIcon;
 
-        }    
+        }
+        
         private void SetGUIRectField()
         {
             prefabCount = prefabCount % 3 == 0 ? prefabCount / 3 : prefabCount / 3 + 1;
@@ -205,6 +206,7 @@ namespace GRITTY
 
             modeRect = new Rect(10, menuYpadding * 2, 100, position.height);
         }
+
         private void DrawHeader()
         {
             //PADDING
@@ -216,6 +218,7 @@ namespace GRITTY
             style.fontSize = 16;
             GUI.Label(TitleRect, "PREFAB SELECTOR", style);
         }
+
         private void DrawModeIcon()
         {
             GUILayout.BeginArea(modeRect);
@@ -268,6 +271,7 @@ namespace GRITTY
             GUILayout.EndVertical();
             GUILayout.EndArea();
         }
+
         private void DrawMenuBar()
         {
             GUILayout.BeginArea(menuRect);
@@ -286,6 +290,8 @@ namespace GRITTY
             GUILayout.EndHorizontal();
             GUILayout.EndArea();
         }
+
+
         private void DrawContents()
         {
             switch (prefabType)
@@ -307,8 +313,7 @@ namespace GRITTY
         ///   GET_EVERTYTHING_PREFAB
         /// ============================
 
-        Vector2 scrollPos = Vector2.zero;
-
+        #region GET Prefabs
         private void GetAllPrefabsForTool()
         {
             ground_Prefabs = new List<NodeInformation>();
@@ -317,16 +322,20 @@ namespace GRITTY
             GameObject[] grounds = Resources.LoadAll<GameObject>(TOOL_PATH.GROUND_PREFAB_PATH);
 
             for (int i = 0; i < grounds.Length; ++i)
-                ground_Prefabs.Add(
-                    new NodeInformation(grounds[i].name, grounds[i], PREFAB_TYPE.GROUND, (i % 2 == 0)));
-
+            {
+                ground_Prefabs.Add(new NodeInformation(grounds[i].name, grounds[i], PREFAB_TYPE.GROUND, (i % 2 == 0)));
+            }
 
             GameObject[] bricks = Resources.LoadAll<GameObject>(TOOL_PATH.BRICK_PREFAB_PATH);
 
             for (int i = 0; i < bricks.Length; ++i)
-               brick_Prefabs.Add(
-                   new NodeInformation(bricks[i].name, bricks[i], PREFAB_TYPE.BRICK, (i % 2 == 0)));
+            {
+               brick_Prefabs.Add(new NodeInformation(bricks[i].name, bricks[i], PREFAB_TYPE.BRICK, (i % 2 == 0)));
+            }
         }
+
+        Vector2 scrollPos = Vector2.zero;
+
         private void OpenGroundPrefabs()
         {
             prefabType = PREFAB_TYPE.GROUND;
@@ -336,24 +345,22 @@ namespace GRITTY
             for (int i = 0; i < ground_Prefabs.Count; ++i)
             {
                 if (EditorGUI.Toggle(new Rect((i % 3 * 128) + 100, (i / 3) * 128, 128, 128),
-                idx_Prefab == i, ground_Prefabs[i].prefabStyle))
+                idx_Prefab == i, ground_Prefabs[i].gridStyle))
                 {
                     idx_Prefab = i;
                     //선택시, current PrefabForGrid을 바꿔준다. 
-                    ground_Prefabs[i].prefabStyle.normal.background = 
-                        ground_Prefabs[i].selectedTexture;
-
+                    ground_Prefabs[i].gridStyle.normal.background = ground_Prefabs[i].gridSelctedTexture;
                     curNodeInfo = ground_Prefabs[i];
                 }
                 else
                 {
-                    ground_Prefabs[i].prefabStyle.normal.background = 
-                        ground_Prefabs[i].normalTexture;
+                    ground_Prefabs[i].gridStyle.normal.background = ground_Prefabs[i].gridNormalTexture;
                 }
             }
 
             GUI.EndScrollView();
         }
+
         private void OpenBrickPrefabs()
         {
             prefabType = PREFAB_TYPE.BRICK;
@@ -363,29 +370,30 @@ namespace GRITTY
             for (int i = 0; i < brick_Prefabs.Count; ++i)
             {
                 if (EditorGUI.Toggle(new Rect((i % 3 * 128) + 100, (i / 3) * 128, 128, 128),
-                idx_Prefab == i, brick_Prefabs[i].prefabStyle))
+                idx_Prefab == i, brick_Prefabs[i].gridStyle))
                 {
                     idx_Prefab = i;
                     //선택시, current PrefabForGrid을 바꿔준다. 
-                    brick_Prefabs[i].prefabStyle.normal.background 
-                        = brick_Prefabs[i].selectedTexture;
-
+                    brick_Prefabs[i].gridStyle.normal.background = brick_Prefabs[i].gridSelctedTexture;
                     curNodeInfo = brick_Prefabs[i];
                 }
                 else
                 {
-                    brick_Prefabs[i].prefabStyle.normal.background 
-                        = brick_Prefabs[i].normalTexture;
+                    brick_Prefabs[i].gridStyle.normal.background = brick_Prefabs[i].gridNormalTexture;
                 }
             }
 
             GUI.EndScrollView();
         }
 
+        #endregion
+
 
         /// ============================
         ///   EXTERNALLY_USED_METHOD
         /// ============================
+
+        #region EXTERNALLY METHOD
 
         [MenuItem("Tool/Prefab_Selecotr")]
         public static void Open()
@@ -395,19 +403,27 @@ namespace GRITTY
             window.titleContent = new GUIContent("Prefab Selector");
 
         }
+
         public NodeInformation GetCurPrefab()
         {
             return curNodeInfo;
         }
+
+
         public NodeInformation GetBasicGround()
         {
             return ground_Prefabs[0];
         }
 
+        #endregion
+
+
         /// ============================
         ///       TOOL_MODE_METHOD
         /// ============================
          
+        #region ToolMode Method
+        
         private void SaveMap()
         {
             GameObject map = GameObject.FindWithTag("MapTool");
@@ -441,6 +457,8 @@ namespace GRITTY
             }
         }
                          
+        #endregion
+
     }
 
 }

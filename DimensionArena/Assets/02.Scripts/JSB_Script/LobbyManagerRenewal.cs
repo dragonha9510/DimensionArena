@@ -24,11 +24,10 @@ public class LobbyManagerRenewal : MonoBehaviourPunCallbacks
 
     [SerializeField] TextMeshProUGUI loadText;
 
-    private string randomName = "Guest";
+    private string playerName = "Guest";
+    public string PlayerName { get { return playerName; } }
 
-    bool isConnect = false;
-    public bool IsConnect { get { return isConnect; } }
-
+    
     // Survival , FreeforAll , TeamDeathMatch , SuperStar
     private string[] modeRoomNames = { "SV", "FF", "TD", "SS" };
 
@@ -40,6 +39,9 @@ public class LobbyManagerRenewal : MonoBehaviourPunCallbacks
     public int LeastStartPlayer { get { return leastStartPlayer; } }
     [SerializeField] private int maxStartPlayer = 8;
     public int MaxStartPlayer { get { return maxStartPlayer; } }
+
+    [SerializeField] private List<string> playersName;
+
 
     private void Awake()
     {
@@ -75,38 +77,54 @@ public class LobbyManagerRenewal : MonoBehaviourPunCallbacks
         loadText.text = "서버 접속 성공";
 
         MakeRandNickname();
+        LoadingSceneController.Instance.LoadScene("Lobby_Main");
+
     }
 
     private void MakeRandNickname()
     {
-
         loadText.text = "랜덤 이름 생성중...";
         do
         {
-            randomName += Random.Range(1, 100).ToString();
-        } while (NameOverLapCheck(randomName));
+            playerName += Random.Range(1, 100).ToString();
+        } while (NameOverLapCheck(playerName));
+    } 
+
+    [PunRPC]
+    public void PlayerNameAdd(string name)
+    {
+        playersName.Add(name);
     }
 
 
-    private bool NameOverLapCheck(string name)
+    // 이게 누구한테 있어야하지?????????????????????????
+    public bool NameOverLapCheck(string name)
     {
-        loadText.text = "이름 중복 확인중...";
+        if(loadText != null)
+            loadText.text = "이름 중복 확인중...";
 
 
-        // 플레이어 이름 목록들을 받아온다.
-        Photon.Realtime.Player[] players = PhotonNetwork.PlayerList;
-        foreach (Photon.Realtime.Player p in players)
+        List<PlayerData> playerData = FirebaseDB_Manager.Instance.GetPlayerNameList();
+
+        FirebaseDB_Manager.Instance.WritePlayerNameData(name);
+
+        // 플레이어 이름 목록들을 받아온다. 쓰레기 코드
+        //Photon.Realtime.Player[] players = PhotonNetwork.PlayerList;
+        
+
+        foreach (PlayerData data in playerData)
         {
-            if (p.NickName == name)
+            if (data.playerName == name)
             {
                 loadText.text = "이름 중복";
                 return true;
             }
         }
-        loadText.text = "중복 체크 완료";
+        if (loadText != null)
+            loadText.text = "중복 체크 완료";
+        
         PhotonNetwork.NickName = name;
-        isConnect = true;
-        LoadingSceneController.Instance.LoadScene("Lobby_Main");
+        playerName = name;
         return false;
     }
 
