@@ -12,7 +12,7 @@ namespace PlayerSpace
             //
         }
 
-        public PlayerAtkInfo(float range, int maxMagazine, float reloadTime)
+        public PlayerAtkInfo(float range, float skillrange, int maxMagazine, float reloadTime)
         {
             this.range = range;
             this.maxMagazine = maxMagazine;
@@ -27,6 +27,7 @@ namespace PlayerSpace
 
         [Header("PlayerAttackInfo")]
         [SerializeField] private float range;
+        [SerializeField] private float skillRange;
         [SerializeField] private int maxMagazine;
         [SerializeField] private float reloadTime;
 
@@ -40,6 +41,7 @@ namespace PlayerSpace
         public float CurCost => curCost;
         public float ShotCost => shotCost;
         public float InverseReloadTime => inverseReloadTime;
+        public float SkillRange => skillRange;
 
         public void AddCost(float amount)
         {
