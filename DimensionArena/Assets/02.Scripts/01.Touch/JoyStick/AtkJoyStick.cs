@@ -49,8 +49,6 @@ public class AtkJoyStick : MonoBehaviourPun , IBeginDragHandler, IDragHandler, I
     public void OnEndDrag(PointerEventData eventData)
     {
         lever.anchoredPosition = Vector2.zero;
-
-        //photonView.RPC("PlayerAttackRPC", RpcTarget.All);
         PlayerAttackRPC();
         SetDirection();
     }
