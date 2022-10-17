@@ -20,13 +20,17 @@ namespace PlayerSpace
 
         [Header("Programmer Region")]
         [SerializeField] private GameObject atkRangeMesh;
+        [SerializeField] private GameObject skillRangeMesh;
         [HideInInspector] public Vector3 direction;
+
         [HideInInspector] public Vector3 attackDirection;
 
-        private float rotationSpeed = 1080.0f;
-        private RaycastHit atkRangeRay;
+        private Atk_Range rangeComponent;
+        private Atk_Range skillrangeComponent;
 
-        //Attack중인지 확인
+        private float rotationSpeed = 1080.0f;
+
+        //Attack 중 인지 확인
         protected bool isAttack;
         public bool IsAttack { get { return isAttack; } }
 
@@ -35,7 +39,12 @@ namespace PlayerSpace
             InitalizeAtkInfo();
 
             if (atkRangeMesh == null)
-                Instantiate(atkRangeMesh, transform);
+            {
+                GameObject temp = Instantiate(atkRangeMesh, transform);
+                rangeComponent = temp.GetComponent<Atk_Range>();
+            }
+            else
+                rangeComponent = atkRangeMesh.GetComponent<Atk_Range>();
 
             if (owner)
             {
@@ -56,22 +65,7 @@ namespace PlayerSpace
         {
             float distance = atkInfo.Range;
 
-            Vector3 position = transform.position + new Vector3(0, 0.5f, 0) + direction.normalized;
-
-            if (Physics.Raycast(position, direction.normalized, out atkRangeRay, atkInfo.Range))
-            {
-                Vector3 forLength = Vector3.zero;
-                forLength = atkRangeRay.point - position;
-                distance = forLength.magnitude;
-            }
-
-            atkRangeMesh.transform.localScale = new Vector3(0.5f, 1, distance);
-
-            atkRangeMesh.transform.position = transform.position +
-                                              direction.normalized * ((distance * 0.5f) + 1f)
-                                              + new Vector3(0, 0.001f, 0);
-            atkRangeMesh.transform.forward =
-                    (transform.position - atkRangeMesh.transform.position).normalized;
+            rangeComponent.Calculate_Range(distance, direction);
         }
 
 
