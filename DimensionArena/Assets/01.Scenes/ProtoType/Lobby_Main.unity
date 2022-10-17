@@ -16226,16 +16226,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5527182556833254777, guid: 6116ef1203ac84c4b9d804ff62a7a788,
         type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5527182556833254777, guid: 6116ef1203ac84c4b9d804ff62a7a788,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5527182556833254777, guid: 6116ef1203ac84c4b9d804ff62a7a788,
-        type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.12
       objectReference: {fileID: 0}
@@ -26519,6 +26509,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8145664832025b44b44f124aea82a89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nickNameText: {fileID: 0}
+  willChangeNameText: {fileID: 0}
+  inputField: {fileID: 0}
+  failedInformation: {fileID: 0}
 --- !u!1 &8339185547814527683
 GameObject:
   m_ObjectHideFlags: 0
