@@ -66,7 +66,7 @@ public class Atk_Parabola : Atk_Range
         // Use Angle
         // endPoint.localPosition = vertices[((resolution + 1) * 2) - 1] + new Vector3(meshWidth * 0.5f, 1.75f, 0);
         // Use LookAt
-        endPoint.localPosition = vertices[1] + new Vector3(meshWidth * 0.5f, 1.75f, 0);
+        endPoint.localPosition = vertices[1] + new Vector3(meshWidth * 0.5f, 0.01f, 0);
 
         mesh.vertices = vertices;
         mesh.triangles = triangles;
