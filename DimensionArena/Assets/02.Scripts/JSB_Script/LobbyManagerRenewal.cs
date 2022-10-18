@@ -22,7 +22,7 @@ public class LobbyManagerRenewal : MonoBehaviourPunCallbacks
 {
     public static LobbyManagerRenewal Instance;
 
-    [SerializeField] TextMeshProUGUI loadText;
+    [SerializeField] public TextMeshProUGUI loadText;
 
     private string playerName = "Guest";
     public string PlayerName { get { return playerName; } }
@@ -84,48 +84,15 @@ public class LobbyManagerRenewal : MonoBehaviourPunCallbacks
     private void MakeRandNickname()
     {
         loadText.text = "랜덤 이름 생성중...";
-        do
-        {
-            playerName += Random.Range(1, 100).ToString();
-        } while (NameOverLapCheck(playerName));
+        string playerName = FirebaseDB_Manager.Instance.RegisterJustOnce(loadText);
+        PhotonNetwork.NickName = name;
+        playerName = name;
     } 
 
     [PunRPC]
     public void PlayerNameAdd(string name)
     {
         playersName.Add(name);
-    }
-
-
-    // 이게 누구한테 있어야하지?????????????????????????
-    public bool NameOverLapCheck(string name)
-    {
-        if(loadText != null)
-            loadText.text = "이름 중복 확인중...";
-
-
-        List<PlayerData> playerData = FirebaseDB_Manager.Instance.GetPlayerNameList();
-
-        FirebaseDB_Manager.Instance.WritePlayerNameData(name);
-
-        // 플레이어 이름 목록들을 받아온다. 쓰레기 코드
-        //Photon.Realtime.Player[] players = PhotonNetwork.PlayerList;
-        
-
-        foreach (PlayerData data in playerData)
-        {
-            if (data.playerName == name)
-            {
-                loadText.text = "이름 중복";
-                return true;
-            }
-        }
-        if (loadText != null)
-            loadText.text = "중복 체크 완료";
-        
-        PhotonNetwork.NickName = name;
-        playerName = name;
-        return false;
     }
 
     // 해당 함수는 로비에 돌아갔을 시 자동적으로 호출되는 함수이며 , 로비 내부에서는 갱신을 할 수 없다.
@@ -232,6 +199,13 @@ public class LobbyManagerRenewal : MonoBehaviourPunCallbacks
         }
         else
             PhotonNetwork.JoinRoom(roomName);
+    }
+    public void ChangeNickNmae(string name)
+    {
+        
+        playerName = name;
+        PhotonNetwork.NickName = playerName;
+
     }
 
     public override void OnJoinRoomFailed(short returnCode, string message)

@@ -13,8 +13,6 @@ public class ProfileUI : MonoBehaviour
     private TextMeshProUGUI willChangeNameText;
     [SerializeField]
     private GameObject inputField;
-    [SerializeField]
-    private GameObject failedInformation;
     private void Start()
     {
         nickNameText.text = LobbyManagerRenewal.Instance.PlayerName;
@@ -32,17 +30,14 @@ public class ProfileUI : MonoBehaviour
     public void ChangeNickName()
     {
         inputField.SetActive(false);
-        if (LobbyManagerRenewal.Instance.NameOverLapCheck(willChangeNameText.text))
+        if (FirebaseDB_Manager.Instance.NameOverlapCheck(willChangeNameText.text))
         {
-            // 이름 변경 실패했을때
-            failedInformation.SetActive(true);
         }
         else
         {
             // 저장되어있는 DB 정보값 불러와야함
-
+            FirebaseDB_Manager.Instance.ChangeNickName(willChangeNameText.text);
         }
-        nickNameText.text = LobbyManagerRenewal.Instance.PlayerName;
     }
 
 }
