@@ -11,11 +11,10 @@ namespace PlayerSpace
         public Player Owner => owner;
 
         [Header("Programmer Region")]
-        [SerializeField] private GameObject skillRangeMesh;
+        [SerializeField]  private GameObject skillRangeMesh;
         [HideInInspector] public Vector3 direction;
         [HideInInspector] public Vector3 skillDirection;
-        [SerializeField] SkillJoyStick joystick;
-
+    
 
         private Attack_Type type;
         public Attack_Type Type => type;
@@ -44,16 +43,29 @@ namespace PlayerSpace
 
             if (!owner)
                 owner = GetComponent<Player>();
-
-            if (photonView.IsMine)
-                joystick = GameObject.Find("SkillJoyStick").GetComponent<SkillJoyStick>();
         }
 
         protected virtual void LateUpdate()
         {
+            if (owner.Skill.direction.AlmostEquals(Vector3.zero, float.Epsilon))
+                return;
+
             float distance = maxRange;
             rangeComponent.Calculate_Range(distance, direction);
-        }    //protected abstract void InitializeSkillInfo(float damage, float velocity);
+        }    
+        
+
+        public void OnSkillMesh()
+        {
+            skillRangeMesh.gameObject.SetActive(true);
+        }
+
+        public void OffSkillMesh()
+        {
+            skillRangeMesh.gameObject.SetActive(false);
+        }
+        
+        //protected abstract void InitializeSkillInfo(float damage, float velocity);
     
         
     }
