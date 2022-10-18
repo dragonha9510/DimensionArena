@@ -571,7 +571,6 @@ MonoBehaviour:
   skillRangeMesh: {fileID: 5259609974754891658}
   direction: {x: 0, y: 0, z: 0}
   skillDirection: {x: 0, y: 0, z: 0}
-  joystick: {fileID: 0}
 --- !u!54 &2737819322045720801
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1639,21 +1638,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Atk_Range_Parabola
       objectReference: {fileID: 0}
-    - target: {fileID: 3538972817888371208, guid: 3443466d754ebc640a83911704947677,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 3538972817888371209, guid: 3443466d754ebc640a83911704947677,
         type: 3}
       propertyPath: owner
       value: 
       objectReference: {fileID: 2737819322045720800}
-    - target: {fileID: 3538972817888371209, guid: 3443466d754ebc640a83911704947677,
-        type: 3}
-      propertyPath: distance
-      value: 0.1
-      objectReference: {fileID: 0}
     - target: {fileID: 3538972817888371212, guid: 3443466d754ebc640a83911704947677,
         type: 3}
       propertyPath: m_RootOrder
