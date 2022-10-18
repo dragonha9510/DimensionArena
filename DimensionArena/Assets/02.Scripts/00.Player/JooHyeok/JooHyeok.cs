@@ -8,9 +8,6 @@ namespace PlayerSpace
 {
     public class JooHyeok : Player
     {
-
-        AudioClip[] audio;
-
         protected override void Awake()
         {
             base.Awake();

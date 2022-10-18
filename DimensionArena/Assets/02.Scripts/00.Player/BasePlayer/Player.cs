@@ -32,10 +32,16 @@ namespace PlayerSpace
         protected Player_Atk attack;
         public Player_Atk Attack => attack;
 
+        protected Player_Skill skill;
+        public Player_Skill Skill => skill;
+
         private Player_Movement movement;
+
         private Rigidbody rigid;
+
         private string nickName;
         public string NickName => nickName;
+
         public bool CanDirectionChange { get; set; }
 
         /// =============================
@@ -59,12 +65,15 @@ namespace PlayerSpace
 
         protected virtual void Start()
         {
+            attack = GetComponent<Player_Atk>();
+            skill = GetComponent<Player_Skill>();
             movement = new Player_Movement(this);
             CanDirectionChange = true;
             TryGetComponent<Rigidbody>(out rigid);
 
             if (rigid == null)
                 Destroy(this.gameObject);
+
             if(PhotonNetwork.InRoom)
             {
                 if (photonView.IsMine)
@@ -102,8 +111,8 @@ namespace PlayerSpace
             info.EDisActivePlayer += touchCanvas.DisActiveTouch;
 
 
-            JoyStick joyStick = GameObject.Find("MoveJoyStick").
-                    GetComponent<JoyStick>();
+            MoveJoyStick joyStick = GameObject.Find("MoveJoyStick").
+                    GetComponent<MoveJoyStick>();
             joyStick.player = this;
 
 
@@ -115,6 +124,10 @@ namespace PlayerSpace
             AtkJoyStick atkjoyStick = GameObject.Find("AtkJoyStick").
                 GetComponent<AtkJoyStick>();
             atkjoyStick.player = this;
+
+            SkillJoyStick skillJoyStick = GameObject.Find("SkillJoyStick").
+                GetComponent<SkillJoyStick>();
+            skilljoyStick.player = this;
 
 
             GameObject.Find("Target Camera").

@@ -16,11 +16,11 @@ namespace PlayerSpace
         [SerializeField] private GameObject prefab_Projectile;
         [SerializeField] private AudioSource audioSource;
 
-
         protected override void InitalizeAtkInfo()
         {
             atkInfo = new PlayerAtkInfo(6.0f, 3, 1.5f);
         }
+
         protected override void Start()
         {
             //향후, 바뀌는게 없다면 Player Start, LateUpdate를 private로 변환
@@ -40,7 +40,6 @@ namespace PlayerSpace
                 StartAttackCoroutine();
 
         }
-
         private void StartAttackCoroutine()
         {
             owner.CanDirectionChange = false;
@@ -62,11 +61,6 @@ namespace PlayerSpace
                                                     , projectileSpeed
                                                     , gameObject.name));
 
-        }
-
-        public override void Skill()
-        {
-            //Skill구현
         }
 
         [PunRPC]
@@ -99,7 +93,6 @@ namespace PlayerSpace
             owner.CanDirectionChange = true;
 
         }
-
         private IEnumerator AttackCoroutineSingle(string shooter, Vector3 shooterAttackDir,
             float range, float speed, string ownerName)
         {
@@ -126,7 +119,5 @@ namespace PlayerSpace
             isAttack = false;
             owner.CanDirectionChange = true;
         }
-
-
     }
 }
