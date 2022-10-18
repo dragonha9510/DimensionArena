@@ -6,67 +6,40 @@ using UnityEngine.EventSystems;
 using Photon.Pun;
 using PlayerSpace;
 
-public class AtkJoyStick : MonoBehaviourPun , IBeginDragHandler, IDragHandler, IEndDragHandler
+public class AtkJoyStick : BaseJoyStick
 {
 
-    [SerializeField] public Player player;
-
-    [SerializeField] private RectTransform lever;
-    private RectTransform rectTransform;
-
-    [SerializeField, Range(10f, 150f)] private float leverRange;
-    private float maxRange = 150f;
-
-    private void Awake()
+    protected override void Awake()
     {
         rectTransform = GetComponent<RectTransform>();
     }
 
-    public void OnBeginDrag(PointerEventData eventData)
+    public override void OnBeginDrag(PointerEventData eventData)
     {
-        var realpos = new Vector2(Screen.width - rectTransform.anchoredPosition.x, rectTransform.anchoredPosition.y);
-
-        var inputDir = eventData.position - new Vector2(rectTransform.position.x, rectTransform.position.y);
-
-        var clampedDir = inputDir.magnitude < leverRange ?
-            inputDir : inputDir.normalized * leverRange;
-
-        lever.anchoredPosition = clampedDir;
-        SetDirection();
+        base.OnBeginDrag(eventData);
     }
 
-    public void OnDrag(PointerEventData eventData)
+    public override void OnDrag(PointerEventData eventData)
     {
-        var realpos = new Vector2(Screen.width - rectTransform.anchoredPosition.x, rectTransform.anchoredPosition.y);
-
-        var inputDir = eventData.position - new Vector2(rectTransform.position.x, rectTransform.position.y);
-        var clampedDir = inputDir.magnitude < leverRange ? inputDir : inputDir.normalized * leverRange;
-
-        lever.anchoredPosition = clampedDir;
-        SetDirection();
+        base.OnDrag(eventData);
     }
 
-    public void OnEndDrag(PointerEventData eventData)
+    public override void OnEndDrag(PointerEventData eventData)
     {
         lever.anchoredPosition = Vector2.zero;
-
-        //photonView.RPC("PlayerAttackRPC", RpcTarget.All);
         PlayerAttackRPC();
         SetDirection();
+    }
+    public override void SetDirection()
+    {        
+        player.Attack.direction =
+            new Vector3((lever.position.x - rectTransform.position.x) / leverRange, 0, 
+                        (lever.position.y - rectTransform.position.y) / leverRange);
+
     }
 
     private void PlayerAttackRPC()
     {
         player.Attack.StartAttack();
-    }
-
-    public void SetDirection()
-    {
-        player.Attack.direction =
-            new Vector3((lever.position.x - rectTransform.position.x) / maxRange, 0, (lever.position.y - rectTransform.position.y) / maxRange);
-    }
-    public void DisActiveJoyStick()
-    {
-        gameObject.SetActive(false);
     }
 }

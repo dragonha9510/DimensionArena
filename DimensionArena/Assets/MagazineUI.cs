@@ -46,7 +46,7 @@ public class MagazineUI : MonoBehaviour
         {
             int offsetIdx = i - middleIdx;
             GameObject uiMaskObj = Instantiate(prefab_Mask);
-            uiMaskObj.transform.parent = this.gameObject.transform;
+            uiMaskObj.transform.SetParent(this.gameObject.transform);
 
             Image uiMask = uiMaskObj.GetComponent<Image>();
             uiMask.rectTransform.localScale = ParentImg.rectTransform.localScale;

@@ -6,53 +6,30 @@ using UnityEngine.EventSystems;
 using Photon.Pun;
 using PlayerSpace;
 
-public class SkillJoyStick : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
+public class SkillJoyStick : BaseJoyStick
 {
-    [SerializeField] private RectTransform lever;
-    private RectTransform rectTransform;
-
-    public Player player;
-    [SerializeField, Range(10f, 150f)] private float leverRange;
     [SerializeField] Image[] alphaImage = new Image[3];
     [SerializeField] Image skillImg;
 
-    private void Awake()
+    protected override void Awake()
     {
-        rectTransform = GetComponent<RectTransform>();
+        base.Awake();
         AlphaJoyStick();
     }
 
-
-    public void OnBeginDrag(PointerEventData eventData)
+    public override void OnBeginDrag(PointerEventData eventData)
     {
         if(skillImg.fillAmount.Equals(1.0f))
-        {
-            var realpos = new Vector2(Screen.width - rectTransform.anchoredPosition.x, rectTransform.anchoredPosition.y);
-
-            var inputDir = eventData.position - new Vector2(rectTransform.position.x, rectTransform.position.y);
-
-            var clampedDir = inputDir.magnitude < leverRange ?
-                inputDir : inputDir.normalized * leverRange;
-
-            lever.anchoredPosition = clampedDir;
-        }
-
+            base.OnBeginDrag(eventData);
     }
 
-    public void OnDrag(PointerEventData eventData)
+    public override void OnDrag(PointerEventData eventData)
     {
         if (skillImg.fillAmount.Equals(1.0f))
-        {
-            var realpos = new Vector2(Screen.width - rectTransform.anchoredPosition.x, rectTransform.anchoredPosition.y);
-
-            var inputDir = eventData.position - new Vector2(rectTransform.position.x, rectTransform.position.y);
-            var clampedDir = inputDir.magnitude < leverRange ? inputDir : inputDir.normalized * leverRange;
-
-            lever.anchoredPosition = clampedDir;
-        }
+            base.OnDrag(eventData);
     }
 
-    public void OnEndDrag(PointerEventData eventData)
+    public override void OnEndDrag(PointerEventData eventData)
     {
         if (skillImg.fillAmount.Equals(1.0f))
         {
@@ -61,11 +38,14 @@ public class SkillJoyStick : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
         }
     }
 
-    public void SetDirection()
+    public override void SetDirection()
     {
-        //player.direction = new Vector3((lever.position.x - rectTransform.position.x) * 0.01f, 0, (lever.position.y - rectTransform.position.y) * 0.01f);
+        player.Skill.direction =
+            new Vector3((lever.position.x - rectTransform.position.x) / leverRange , 0, (lever.position.y - rectTransform.position.y) / leverRange);
     }
 
+
+    //옮길 예정 조이스틱의 상태를 관리해주는 클래스 제작하여 동시터치도 막아야하나?
     public void AlphaJoyStick()
     {
         for(int i = 0; i < 3; ++i)

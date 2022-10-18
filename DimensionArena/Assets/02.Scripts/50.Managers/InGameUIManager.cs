@@ -138,6 +138,7 @@ public class InGameUIManager : MonoBehaviour
     {
         //touch Canvas Setting
         touchCanvas.interactable = false;
+        touchCanvas.blocksRaycasts = false;
         touchCanvas.alpha = 0;
 
 
@@ -183,6 +184,7 @@ public class InGameUIManager : MonoBehaviour
 
         touchCanvas.alpha = 1;
         touchCanvas.interactable = true;
+        touchCanvas.blocksRaycasts = true;
     }
 
     /// ===========================

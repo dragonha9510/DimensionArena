@@ -5,7 +5,7 @@ using UnityEngine.EventSystems;
 
 public class TouchScreen : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
-    [SerializeField] private JoyStick joyStick;
+    [SerializeField] private MoveJoyStick joyStick;
     [SerializeField] private RectTransform moveJoyStick;
     private Vector2 oriPosition;
 

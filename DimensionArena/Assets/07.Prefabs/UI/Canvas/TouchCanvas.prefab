@@ -449,11 +449,11 @@ RectTransform:
   m_Father: {fileID: 122259820722831732}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 1, y: 0}
-  m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -300, y: 300}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 132, y: 147}
-  m_Pivot: {x: 1, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &122259820444099788
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -504,8 +504,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7405ccc0d13cbe946ad06f0bc668cb86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lever: {fileID: 122259820220016791}
   player: {fileID: 0}
+  lever: {fileID: 122259820220016791}
   leverRange: 61
   alphaImage:
   - {fileID: 122259820444099787}

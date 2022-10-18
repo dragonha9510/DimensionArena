@@ -7,6 +7,13 @@ using Photon.Pun;
 
 namespace PlayerSpace
 {
+    public enum Attack_Type
+    {
+        RECT,
+        PARABOLA,
+        Attack_Type_End
+    }
+
     public abstract class Player_Atk : MonoBehaviourPun
     {
         public event Action<float> eChangeMagazineCost = (param) => { };
@@ -20,20 +27,20 @@ namespace PlayerSpace
 
         [Header("Programmer Region")]
         [SerializeField] private GameObject atkRangeMesh;
-        [SerializeField] private GameObject skillRangeMesh;
         [HideInInspector] public Vector3 direction;
-
         [HideInInspector] public Vector3 attackDirection;
 
         private Atk_Range rangeComponent;
-        private Atk_Range skillrangeComponent;
+
+        private Attack_Type type;
+        public  Attack_Type Type => type;
 
         private float rotationSpeed = 1080.0f;
 
-        //Attack 중 인지 확인
         protected bool isAttack;
         public bool IsAttack { get { return isAttack; } }
 
+        protected abstract void InitalizeAtkInfo();
         protected virtual void Start()
         {
             InitalizeAtkInfo();
@@ -42,9 +49,13 @@ namespace PlayerSpace
             {
                 GameObject temp = Instantiate(atkRangeMesh, transform);
                 rangeComponent = temp.GetComponent<Atk_Range>();
+                type = SetType(rangeComponent);
             }
             else
+            {
                 rangeComponent = atkRangeMesh.GetComponent<Atk_Range>();
+                type = SetType(rangeComponent);
+            }
 
             if (owner)
             {
@@ -59,8 +70,6 @@ namespace PlayerSpace
             }
 
         }
-
-        protected abstract void InitalizeAtkInfo();
         protected virtual void LateUpdate()
         {
             float distance = atkInfo.Range;
@@ -68,22 +77,17 @@ namespace PlayerSpace
             rangeComponent.Calculate_Range(distance, direction);
         }
 
-
         public abstract void Attack();
-        public abstract void Skill();
-
-
+        protected void WaitAttack()
+        {
+            eCantAttack();
+        }
         public void StartAttack()
         {
             attackDirection = direction;
             attackDirection.Normalize();
             StartCoroutine(LookAttackDirection());
             Attack();
-        }
-
-        protected void WaitAttack()
-        {
-            eCantAttack();
         }
 
         IEnumerator LookAttackDirection()
@@ -100,20 +104,35 @@ namespace PlayerSpace
                 transform.LookAt(transform.position + forward);
             }
         }
-
         IEnumerator MagazineReloadCoroutine()
         {
             while (true)
             {
-             
                 atkInfo.AddCost(Time.deltaTime * atkInfo.InverseReloadTime);
                 eChangeMagazineCost(atkInfo.CurCost);
-                yield return null;
+                yield return null;   
             }
         }
+
+
+        public static Attack_Type SetType(Atk_Range range)
+        {
+            if(range as Atk_Rect)
+            {
+                return Attack_Type.RECT;
+            }
+            else if(range as Atk_Parabola)
+            {
+                return Attack_Type.PARABOLA;
+            }
+            else
+            {
+                Debug.LogError("잘못된 타입의 공격을 할당하였습니다.");
+                return Attack_Type.Attack_Type_End;
+            }
+        }
+
     }
-
-
 }
 
 
