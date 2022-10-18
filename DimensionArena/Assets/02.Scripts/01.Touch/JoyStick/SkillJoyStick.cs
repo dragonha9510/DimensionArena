@@ -20,7 +20,10 @@ public class SkillJoyStick : BaseJoyStick
     public override void OnBeginDrag(PointerEventData eventData)
     {
         if(skillImg.fillAmount.Equals(1.0f))
+        {
             base.OnBeginDrag(eventData);
+            player.Skill.OnSkillMesh();
+        }
     }
 
     public override void OnDrag(PointerEventData eventData)
@@ -35,6 +38,7 @@ public class SkillJoyStick : BaseJoyStick
         {
             lever.anchoredPosition = Vector2.zero;
             SetDirection();
+            player.Skill.OffSkillMesh();
         }
     }
 
