@@ -21,7 +21,6 @@ public class FirebaseDB_Manager : MonoBehaviour
     private string defaultName = "Guest";
     private int mySerializeNumber = 0;
 
-
     private void Awake()
     {
         if (null == Instance)
@@ -35,9 +34,40 @@ public class FirebaseDB_Manager : MonoBehaviour
         DB_reference = FirebaseDatabase.DefaultInstance.GetReference("SerializeNumber");
 
     }
+    // 이름값을 들고있는 고유 식별자 번호를 반환하는 함수
+    private int FindSerializeNumber(string playerName)
+    {
+        int returnNumber = 0;
 
+        DB_reference.GetValueAsync().ContinueWith(task =>
+        {
+            if (task.IsCompleted)
+            {
+                DataSnapshot snapshot = task.Result;
+                foreach (DataSnapshot data in snapshot.Children)
+                {
+                    if (data.Child("playerName").ToString() == playerName)
+                    {
+                        Int32.TryParse(data.Key, out returnNumber);
+                    }
+                }
+            }
+            else if (task.IsCanceled)
+            {
+                // 로드 취소
+            }
+            else if (task.IsFaulted)
+            {
+                // 로드 실패
+            }
+        });
+        return returnNumber;
+    }
+    // 자꾸 이 함수를 호출하는 것도 그러니까 , 값이 변경이 됬는지를 확인하고 싶은데,,,,
+    // 이건 추 후에 생각해보자.
     private void GetDB_PlayerDatas()
     {
+        // 왠앨[ㅁ나레ㅐㅁ너ㅏㄷ;ㅐㄱ러;'ㅁ내ㅓㄷㄱㅎ'ㅔㅁ9댜,ㄱ헤'여기 왜 제대로 안탐??
         DB_reference = FirebaseDatabase.DefaultInstance.GetReference("SerializeNumber");
 
         DB_reference.GetValueAsync().ContinueWith(task =>
@@ -49,7 +79,7 @@ public class FirebaseDB_Manager : MonoBehaviour
                 {
                     int key;
                     Int32.TryParse(data.Key, out key);
-                    if(playerDatas.ContainsKey(key))
+                    if (playerDatas.ContainsKey(key))
                     {
                         // 값이 있음 == 값을 갱신해야함
                         playerDatas[key] = (PlayerData)data.Value;
@@ -59,7 +89,7 @@ public class FirebaseDB_Manager : MonoBehaviour
                         PlayerData newData = new PlayerData(data);
 
 
-                        playerDatas.Add(key,newData);
+                        playerDatas.Add(key, newData);
                     }
                 }
             }
@@ -88,8 +118,8 @@ public class FirebaseDB_Manager : MonoBehaviour
 
     private bool SerializeNumberOverlapCheck(int number)
     {
-        // 이 함수는 어차피 네임 체크 후 들어감으로 고유 번호에서는 굳이 갱신을 하지 않는다.
-        // 추 후 재사용성을 고려하면 해야하지만 , 해당 함수는 오직 딱 한번 실행 된다.
+        GetDB_PlayerDatas();
+
         foreach (int key in playerDatas.Keys)
         {
             if (key == number)
@@ -98,10 +128,11 @@ public class FirebaseDB_Manager : MonoBehaviour
         return false;
     }
 
+
     public void ChangeNickName(string name)
     {
-        // 이 함수는 어차피 네임 체크 후 들어감으로 고유 번호에서는 굳이 갱신을 하지 않는다.
-        // 추 후 재사용성을 고려하면 해야하지만 , 해당 함수는 오직 딱 한번 실행 된다.
+        GetDB_PlayerDatas();
+
 
         // 이것도 예외처리 해야하는데;
         PlayerData willchangeData = playerDatas[mySerializeNumber];
@@ -112,7 +143,7 @@ public class FirebaseDB_Manager : MonoBehaviour
 
     }
 
-    public string RegisterJustOnce(TextMeshProUGUI infoText)
+    private string RegisterNewPlayer(TextMeshProUGUI infoText)
     {
         string newName;
         do
@@ -125,13 +156,12 @@ public class FirebaseDB_Manager : MonoBehaviour
 
 
         int serializeNum;
-
         do
         {
             infoText.text = "고유 식별 번호 랜덤 생성중";
             serializeNum = Random.Range(1, 10000);
             infoText.text = "식별 번호 중복 확인중";
-        }while(SerializeNumberOverlapCheck(serializeNum));
+        } while (SerializeNumberOverlapCheck(serializeNum));
 
         mySerializeNumber = serializeNum;
 
@@ -141,6 +171,29 @@ public class FirebaseDB_Manager : MonoBehaviour
         DB_reference.Child(serializeNum.ToString()).SetRawJsonValueAsync(json);
 
         return newName;
+    }
+    public string RegisterDataBase(TextMeshProUGUI infoText)
+    {
+        GetDB_PlayerDatas();
+        GetDB_PlayerDatas();
+
+        string name = "";
+        foreach(int data in playerDatas.Keys)
+        {
+            // 0 is not used
+            if(playerDatas[data].deviceIdentifier == SystemInfo.deviceUniqueIdentifier)
+            {
+                infoText.text = "기존에 있던 정보 값 불러오는 중. . . ";
+                mySerializeNumber = FindSerializeNumber(playerDatas[data].playerName);
+                name = playerDatas[data].playerName;
+                break;
+            }
+        }
+        if(name == "")
+        {
+            name = RegisterNewPlayer(infoText);
+        }
+        return name;
     }
 
 

@@ -75,18 +75,18 @@ public class LobbyManagerRenewal : MonoBehaviourPunCallbacks
     public override void OnJoinedLobby()
     {
         loadText.text = "서버 접속 성공";
+        
+        playerName = MakeRandNickname();
 
-        MakeRandNickname();
+        PhotonNetwork.NickName = playerName;
         LoadingSceneController.Instance.LoadScene("Lobby_Main");
 
     }
 
-    private void MakeRandNickname()
+    private string MakeRandNickname()
     {
         loadText.text = "랜덤 이름 생성중...";
-        string playerName = FirebaseDB_Manager.Instance.RegisterJustOnce(loadText);
-        PhotonNetwork.NickName = name;
-        playerName = name;
+        return FirebaseDB_Manager.Instance.RegisterDataBase(loadText);
     } 
 
     [PunRPC]
