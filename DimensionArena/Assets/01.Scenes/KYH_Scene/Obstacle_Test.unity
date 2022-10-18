@@ -669,6 +669,36 @@ PrefabInstance:
       propertyPath: m_Name
       value: Joohyeok
       objectReference: {fileID: 0}
+    - target: {fileID: 5259609973875481285, guid: a14dcf423470d6f48b983a3345b4ec9a,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 5259609974754891658, guid: a14dcf423470d6f48b983a3345b4ec9a,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 5513168692347399509, guid: a14dcf423470d6f48b983a3345b4ec9a,
+        type: 3}
+      propertyPath: m_Color.a
+      value: 0.5882353
+      objectReference: {fileID: 0}
+    - target: {fileID: 5513168692347399509, guid: a14dcf423470d6f48b983a3345b4ec9a,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5513168692347399509, guid: a14dcf423470d6f48b983a3345b4ec9a,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5513168692347399509, guid: a14dcf423470d6f48b983a3345b4ec9a,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7354438652316192622, guid: a14dcf423470d6f48b983a3345b4ec9a,
         type: 3}
       propertyPath: m_AnchorMax.x
