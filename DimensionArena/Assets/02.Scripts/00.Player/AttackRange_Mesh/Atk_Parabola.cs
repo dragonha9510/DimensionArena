@@ -103,8 +103,9 @@ public class Atk_Parabola : Atk_Range
         }
         
         distance = maxdistance * direction.magnitude;
-        Debug.Log(distance);
+
         MakeArcMesh(CalculateArcArray());
+
 
         transform.position = owner.position +
                                           direction.normalized * ((distance))

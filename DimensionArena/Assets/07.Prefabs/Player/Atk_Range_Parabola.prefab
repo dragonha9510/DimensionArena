@@ -18,7 +18,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3538972817888371212
 Transform:
   m_ObjectHideFlags: 0
@@ -100,7 +100,7 @@ MonoBehaviour:
   owner: {fileID: 0}
   endPoint: {fileID: 3538972818967441220}
   meshWidth: 0.1
-  distance: 3
+  distance: 0.1
   angle: 45
   resolution: 20
 --- !u!1 &3538972818967441223
