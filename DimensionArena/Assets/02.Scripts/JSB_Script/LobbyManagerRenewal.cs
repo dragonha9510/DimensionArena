@@ -8,6 +8,11 @@ using UnityEngine.SceneManagement;
 using TMPro;
 
 
+// Test
+using Firebase;
+using Firebase.Database;
+//
+
 public enum MODE
 {
     MODE_SURVIVAL,
@@ -43,6 +48,13 @@ public class LobbyManagerRenewal : MonoBehaviourPunCallbacks
     [SerializeField] private List<string> playersName;
 
 
+
+    //Test 
+    [SerializeField] Dictionary<string, PlayerData> playerDatas = new Dictionary<string, PlayerData>();
+
+
+    bool isReconnect = false;
+
     private void Awake()
     {
         if (null == Instance)
@@ -54,9 +66,17 @@ public class LobbyManagerRenewal : MonoBehaviourPunCallbacks
             Destroy(this.gameObject);
     }
 
+    public void ReconnectServerBecauseDB(string name)
+    {
+        isReconnect = true;
+        PhotonNetwork.ConnectUsingSettings();
+    }
+
     // Start is called before the first frame update
     void Start()
     {
+        FirebaseDB_Manager.Instance.GetDB_PlayerDatas();
+
         for (int i = (int)MODE.MODE_SURVIVAL; i < (int)MODE.MODE_END; ++i)
         {
             rooms.Add(new List<RoomInfo>());
@@ -76,11 +96,14 @@ public class LobbyManagerRenewal : MonoBehaviourPunCallbacks
     {
         loadText.text = "서버 접속 성공";
         
+        if(isReconnect)
+        {
+            PhotonNetwork.NickName = playerName;
+            isReconnect = false;
+            return;
+        }
         playerName = MakeRandNickname();
-
-        PhotonNetwork.NickName = playerName;
         LoadingSceneController.Instance.LoadScene("Lobby_Main");
-
     }
 
     private string MakeRandNickname()
