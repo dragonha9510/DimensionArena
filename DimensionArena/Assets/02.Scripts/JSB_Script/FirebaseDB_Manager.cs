@@ -22,6 +22,9 @@ public class FirebaseDB_Manager : MonoBehaviourPun
     private string defaultName = "Guest";
     private string mySerializeNumber = "";
 
+    private bool isRefresh = false;
+    private bool isRerfeshing = false;
+
     private void Awake()
     {
         if (null == Instance)
@@ -39,6 +42,7 @@ public class FirebaseDB_Manager : MonoBehaviourPun
     // 이건 추 후에 생각해보자.
     public void GetDB_PlayerDatas()
     {
+        isRerfeshing = true;
         bool test = PhotonNetwork.IsConnected;
 
         FirebaseDatabase.DefaultInstance.GetReference("SerializeNumber").GetValueAsync().ContinueWith(task =>
@@ -48,6 +52,8 @@ public class FirebaseDB_Manager : MonoBehaviourPun
                 DataSnapshot snapshot = task.Result;
                 foreach (DataSnapshot data in snapshot.Children)
                 {
+                    Debug.Log("데이터 갱신중");
+
                     string key = data.Key;
                     if (playerDatas.ContainsKey(key))
                     {
@@ -60,8 +66,10 @@ public class FirebaseDB_Manager : MonoBehaviourPun
 
 
                         playerDatas.Add(key, newData);
+
                     }
                 }
+                Debug.Log("갱신 끝");
             }
             else if (task.IsCanceled)
             {
@@ -71,16 +79,18 @@ public class FirebaseDB_Manager : MonoBehaviourPun
             {
                 // 로드 실패
             }
+            isRerfeshing = false;
         });
     }
     private void Update()
     {
-        Debug.Log(playerDatas.Count);
+        {
+            GetDB_PlayerDatas();
+        }
     }
 
     public bool NameOverlapCheck(string name)
     {
-        GetDB_PlayerDatas();
         foreach (string key in playerDatas.Keys)
         {
             if (playerDatas[key].playerName == name)
@@ -99,7 +109,6 @@ public class FirebaseDB_Manager : MonoBehaviourPun
         DB_reference.Child(mySerializeNumber.ToString()).SetRawJsonValueAsync(json);
 
     }
-
     private string RegisterNewPlayer(TextMeshProUGUI infoText)
     {
         string newName;

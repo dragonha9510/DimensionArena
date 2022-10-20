@@ -75,8 +75,6 @@ public class LobbyManagerRenewal : MonoBehaviourPunCallbacks
     // Start is called before the first frame update
     void Start()
     {
-        FirebaseDB_Manager.Instance.GetDB_PlayerDatas();
-
         for (int i = (int)MODE.MODE_SURVIVAL; i < (int)MODE.MODE_END; ++i)
         {
             rooms.Add(new List<RoomInfo>());

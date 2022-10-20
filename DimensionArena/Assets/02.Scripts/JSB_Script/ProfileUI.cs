@@ -16,7 +16,6 @@ public class ProfileUI : MonoBehaviourPun
 
     private void OnEnable()
     {
-        PhotonNetwork.Disconnect();
     }
 
     private void Start()
@@ -44,7 +43,7 @@ public class ProfileUI : MonoBehaviourPun
             // 저장되어있는 DB 정보값 불러와야함
             FirebaseDB_Manager.Instance.ChangeNickName(willChangeNameText.text);
         }
-        LobbyManagerRenewal.Instance.ReconnectServerBecauseDB(willChangeNameText.text);
+        //LobbyManagerRenewal.Instance.ReconnectServerBecauseDB(willChangeNameText.text);
     }
 
 }
