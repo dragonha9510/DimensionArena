@@ -151,11 +151,5 @@ namespace PlayerSpace
             yield return new WaitForSeconds(0.5f);
             gameObject.SetActive(false);
         }
-
-        private void OnDisable() 
-        {
-            GameObject obj = GameObject.Find("InGameManager");
-            obj.GetComponent<InGameUIManager>().DefeatUIOn();
-        }
     }
 }

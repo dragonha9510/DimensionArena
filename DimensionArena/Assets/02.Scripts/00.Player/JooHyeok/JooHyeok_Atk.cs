@@ -102,8 +102,6 @@ namespace PlayerSpace
         }
 
 
-
-
         private IEnumerator AttackCoroutineSingle(string shooter, Vector3 shooterAttackDir,
             float range, float speed, string ownerName)
         {

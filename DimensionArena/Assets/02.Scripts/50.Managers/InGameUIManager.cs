@@ -285,58 +285,26 @@ public class InGameUIManager : MonoBehaviour
     public void DefeatUIOn()
     {
         GameEndGroup.SetActive(true);
-        for(int i = 0; i < GameEndGroup.transform.childCount; ++i)
+        CanvasGroup group =  GameEndGroup.GetComponent<CanvasGroup>();
+        StartCoroutine(CanvasAlphaOn(group));
+    }
+
+
+    IEnumerator CanvasAlphaOn(CanvasGroup group)
+    {
+        WaitForSeconds delay = new WaitForSeconds(0.01f);
+        for(int i = 0; i < 100; ++i)
         {
-            Color color = GameEndGroup.transform.GetChild(i).GetComponent<Color>();
-            if (color != null)
-            {
-                AlphaOnImage(ref color);
-            }
-
-            for(int j = 0; j < GameEndGroup.transform.GetChild(i).childCount; ++j)
-            {
-                color = GameEndGroup.transform.GetChild(i).GetChild(j).GetComponent<Color>();
-                if(color != null)
-                {
-                    AlphaOnImage(ref color);
-                }
-            }
-
+            group.alpha += 0.01f;
+            yield return delay;
         }
+
+        group.alpha = 1.0f;
+        group.interactable = true;
+        group.blocksRaycasts = true;
     }
 
 
-    private void AlphaOnImage(ref Color color)
-    {
-        StartCoroutine(AlphaOnCoroutine(color));
-    }
-
-    private void AlphaOffImage(ref Color color)
-    {
-        StartCoroutine(AlphaOffCoroutine(color));
-    }
-
-    IEnumerator AlphaOnCoroutine(Color color)
-    {
-        WaitForSeconds alpha =  new WaitForSeconds(0.00390625f);
-
-        for(int i = 0; i < 256; ++i)
-        {
-            color.a++;
-            yield return alpha;
-        }
-    }
-
-    IEnumerator AlphaOffCoroutine(Color color)
-    {
-        WaitForSeconds alpha = new WaitForSeconds(0.00390625f);
-
-        for (int i = 0; i < 256; ++i)
-        {
-            color.a--;
-            yield return alpha;
-        }
-    }
 
 
 }
