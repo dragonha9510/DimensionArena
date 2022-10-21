@@ -7,11 +7,10 @@ using Firebase.Extensions;
 using TMPro;
 using System;
 
-using Photon.Pun;
 
 using Random = UnityEngine.Random;
 
-public class FirebaseDB_Manager : MonoBehaviourPun
+public class FirebaseDB_Manager : MonoBehaviour
 {
     public static FirebaseDB_Manager Instance;
 
@@ -24,6 +23,9 @@ public class FirebaseDB_Manager : MonoBehaviourPun
     private string mySerializeNumber = "";
 
     private bool isRefreshing = false;
+
+    private bool isInGame = false;
+    public bool IsInGame { set { isInGame = value; } }
 
     private void Awake()
     {
@@ -43,7 +45,6 @@ public class FirebaseDB_Manager : MonoBehaviourPun
     public void GetDB_PlayerDatas()
     {
         isRefreshing = true;
-        bool test = PhotonNetwork.IsConnected;
 
         FirebaseDatabase.DefaultInstance.GetReference("SerializeNumber").GetValueAsync().ContinueWith(task =>
         {
@@ -81,7 +82,8 @@ public class FirebaseDB_Manager : MonoBehaviourPun
     }
     private void Update()
     {
-        if (isRefreshing)
+        // 우선은 임시적으로 막아놓는다.
+        if (isRefreshing || isInGame)
         {
             Debug.Log("갱신중 함수 호출 안함");
             return;
@@ -130,7 +132,6 @@ public class FirebaseDB_Manager : MonoBehaviourPun
         PlayerData newData = new PlayerData(newName);
         string json = JsonUtility.ToJson(newData);
         DB_reference.Child(mySerializeNumber).SetRawJsonValueAsync(json);
-
 
         return newName;
     }

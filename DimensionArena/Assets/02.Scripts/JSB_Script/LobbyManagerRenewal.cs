@@ -29,8 +29,8 @@ public class LobbyManagerRenewal : MonoBehaviourPunCallbacks
 
     [SerializeField] public TextMeshProUGUI loadText;
 
-    private string playerName = "Guest";
-    public string PlayerName { get { return playerName; } }
+    //private string playerName = "Guest";
+    //public string PlayerName { get { return playerName; } }
 
     
     // Survival , FreeforAll , TeamDeathMatch , SuperStar
@@ -66,11 +66,6 @@ public class LobbyManagerRenewal : MonoBehaviourPunCallbacks
             Destroy(this.gameObject);
     }
 
-    public void ReconnectServerBecauseDB(string name)
-    {
-        isReconnect = true;
-        PhotonNetwork.ConnectUsingSettings();
-    }
 
     // Start is called before the first frame update
     void Start()
@@ -94,21 +89,21 @@ public class LobbyManagerRenewal : MonoBehaviourPunCallbacks
     {
         loadText.text = "서버 접속 성공";
         
-        if(isReconnect)
+        /*if(isReconnect)
         {
             PhotonNetwork.NickName = playerName;
             isReconnect = false;
             return;
-        }
-        playerName = MakeRandNickname();
+        }*/
+        //playerName = MakeRandNickname();
         LoadingSceneController.Instance.LoadScene("Lobby_Main");
     }
 
-    private string MakeRandNickname()
+    /*private string MakeRandNickname()
     {
         loadText.text = "랜덤 이름 생성중...";
         return FirebaseDB_Manager.Instance.RegisterDataBase(loadText);
-    } 
+    } */
 
     [PunRPC]
     public void PlayerNameAdd(string name)
@@ -206,6 +201,8 @@ public class LobbyManagerRenewal : MonoBehaviourPunCallbacks
 
     public void JoinOrCreateRoom(MODE gameMode)
     {
+        FirebaseDB_Manager.Instance.IsInGame = true;    
+
         playMode = gameMode;
         string roomName = CheckingRoom(gameMode);
         if (roomName == "empty")
@@ -221,13 +218,13 @@ public class LobbyManagerRenewal : MonoBehaviourPunCallbacks
         else
             PhotonNetwork.JoinRoom(roomName);
     }
-    public void ChangeNickNmae(string name)
+    /*public void ChangeNickNmae(string name)
     {
         
         playerName = name;
         PhotonNetwork.NickName = playerName;
 
-    }
+    }*/
 
     public override void OnJoinRoomFailed(short returnCode, string message)
     {

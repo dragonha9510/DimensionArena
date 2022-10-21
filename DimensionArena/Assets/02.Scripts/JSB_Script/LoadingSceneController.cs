@@ -52,6 +52,8 @@ public class LoadingSceneController : MonoBehaviour
         //비 동기 방식 씬 불러오기 , 씬을 불러오는 중 다른 작업이 가능하다.
         AsyncOperation op = SceneManager.LoadSceneAsync(nextScene);
         
+     
+
         // Fake 씬 로딩을 위한 설정 , 씬이 로딩되면 바로 넘어가지 않도록 하는 설정.
         // 추 후 에셋번들로 나누게 되면 리소스를 따로 관리하기 때문에 이런 설정을 하기도 한다.
         op.allowSceneActivation = false;
@@ -74,6 +76,7 @@ public class LoadingSceneController : MonoBehaviour
                     yield break;
                 }
             }
+            loadInfoText.text = "불러오는중..." + (op.progress * 100f).ToString() + "%";
             loadSlider.value = op.progress;
         }
     }
