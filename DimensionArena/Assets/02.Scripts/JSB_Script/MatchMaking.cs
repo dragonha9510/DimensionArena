@@ -10,9 +10,4 @@ public class MatchMaking : MonoBehaviour
         LobbyManagerRenewal.Instance.JoinOrCreateRoom(MODE.MODE_SURVIVAL);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
