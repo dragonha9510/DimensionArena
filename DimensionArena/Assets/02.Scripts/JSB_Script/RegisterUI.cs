@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using TMPro;
 
 using System.Text.RegularExpressions;
@@ -51,6 +52,8 @@ public class RegisterUI : MonoBehaviour
             warningText.text = "특수문자 및 공백은 들어갈 수 없습니다";
             warningPopUp.SetActive(true);
         }
+        else
+            GoToGameStartScene();
     }
     public void ActiveFalseWarningPopUp()
     {
@@ -60,5 +63,9 @@ public class RegisterUI : MonoBehaviour
     {
         nickCheckPopUp.SetActive(false);
     }
-
+    public void GoToGameStartScene()
+    {
+        SceneManager.LoadScene("GameStartScene");
+        FirebaseDB_Manager.Instance.PlayerNickName = nickNameInputField.text;
+    }
 }

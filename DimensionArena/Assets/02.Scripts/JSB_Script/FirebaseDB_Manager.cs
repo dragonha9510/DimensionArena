@@ -6,11 +6,11 @@ using Firebase.Database;
 using Firebase.Extensions;
 using TMPro;
 using System;
-
+using Photon.Pun;
 
 using Random = UnityEngine.Random;
 
-public class FirebaseDB_Manager : MonoBehaviour
+public class FirebaseDB_Manager : MonoBehaviourPun
 {
     public static FirebaseDB_Manager Instance;
 
@@ -19,8 +19,11 @@ public class FirebaseDB_Manager : MonoBehaviour
 
     [SerializeField] Dictionary<string, PlayerData> playerDatas = new Dictionary<string, PlayerData>();
     
-    private string defaultName = "Guest";
     private string mySerializeNumber = "";
+
+    private string playerNickName = "";
+
+    public string PlayerNickName { get { return playerNickName; } set { playerNickName = value; } }
 
     private bool isRefreshing = false;
 
@@ -115,27 +118,16 @@ public class FirebaseDB_Manager : MonoBehaviour
         DB_reference.Child(mySerializeNumber.ToString()).SetRawJsonValueAsync(json);
 
     }
-    private string RegisterNewPlayer(TextMeshProUGUI infoText)
+    private string RegisterNewPlayer(string newName)
     {
-        string newName;
-        do
-        {
-            infoText.text = "Guest 이름 생성중";
-            newName = defaultName += Random.Range(1, 1000).ToString();
-            infoText.text = "중복 확인중. . .";
-
-        } while (NameOverlapCheck(newName));
-
         mySerializeNumber = SystemInfo.deviceUniqueIdentifier;
-
-        infoText.text = "플레이어 데이터 생성중";
         PlayerData newData = new PlayerData(newName);
         string json = JsonUtility.ToJson(newData);
         DB_reference.Child(mySerializeNumber).SetRawJsonValueAsync(json);
 
         return newName;
     }
-    public string RegisterDataBase(TextMeshProUGUI infoText)
+    public string RegisterDataBase(string newName)
     {
         string name = "";
         foreach(string Key in playerDatas.Keys)
@@ -143,7 +135,6 @@ public class FirebaseDB_Manager : MonoBehaviour
             // 0 is not used
             if(Key == SystemInfo.deviceUniqueIdentifier)
             {
-                infoText.text = "기존에 있던 정보 값 불러오는 중. . . ";
                 name = playerDatas[Key].playerName;
                 mySerializeNumber = Key;
                 break;
@@ -151,7 +142,7 @@ public class FirebaseDB_Manager : MonoBehaviour
         }
         if(name == "")
         {
-            name = RegisterNewPlayer(infoText);
+            name = RegisterNewPlayer(newName);
         }
         return name;
     }
