@@ -10,13 +10,11 @@ public class ProfileUI : MonoBehaviourPun
     [SerializeField]
     private TextMeshProUGUI nickNameText;
     [SerializeField]
-    private TextMeshProUGUI willChangeNameText;
+    private TMP_InputField willChangeNameText;
     [SerializeField]
     private GameObject inputField;
-
-    private void OnEnable()
-    {
-    }
+    [SerializeField]
+    private GameObject failedInformation;
 
     private void Start()
     {
@@ -37,13 +35,26 @@ public class ProfileUI : MonoBehaviourPun
         if (FirebaseDB_Manager.Instance.NameOverlapCheck(willChangeNameText.text))
         {
             // 변경될 값이 중복됨
+            inputField.SetActive(false);
+            StartCoroutine("FailedNotice");
         }
         else
         {
             // 저장되어있는 DB 정보값 불러와야함
-            FirebaseDB_Manager.Instance.ChangeNickName(willChangeNameText.text);
+            FirebaseDB_Manager.Instance.ReWriteData(willChangeNameText.text);
+            LobbyManagerRenewal.Instance.ChangeNickNmae(willChangeNameText.text);
+            nickNameText.text = willChangeNameText.text;
         }
-        //LobbyManagerRenewal.Instance.ReconnectServerBecauseDB(willChangeNameText.text);
+    }
+
+    IEnumerator FailedNotice()
+    {
+        failedInformation.SetActive(true);
+        while(true)
+        {
+            yield return new WaitForSeconds(2.0f);
+            failedInformation.SetActive(false);
+        }
     }
 
 }

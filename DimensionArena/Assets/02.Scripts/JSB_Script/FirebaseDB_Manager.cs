@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Firebase;
 using Firebase.Database;
+using Firebase.Extensions;
 using TMPro;
 using System;
 
@@ -22,8 +23,7 @@ public class FirebaseDB_Manager : MonoBehaviourPun
     private string defaultName = "Guest";
     private string mySerializeNumber = "";
 
-    private bool isRefresh = false;
-    private bool isRerfeshing = false;
+    private bool isRefreshing = false;
 
     private void Awake()
     {
@@ -42,7 +42,7 @@ public class FirebaseDB_Manager : MonoBehaviourPun
     // 이건 추 후에 생각해보자.
     public void GetDB_PlayerDatas()
     {
-        isRerfeshing = true;
+        isRefreshing = true;
         bool test = PhotonNetwork.IsConnected;
 
         FirebaseDatabase.DefaultInstance.GetReference("SerializeNumber").GetValueAsync().ContinueWith(task =>
@@ -58,15 +58,12 @@ public class FirebaseDB_Manager : MonoBehaviourPun
                     if (playerDatas.ContainsKey(key))
                     {
                         // 값이 있음 == 값을 갱신해야함
-                        playerDatas[key] = (PlayerData)data.Value;
+                        playerDatas[key] = new PlayerData(data);
                     }
                     else
                     {
                         PlayerData newData = new PlayerData(data);
-
-
                         playerDatas.Add(key, newData);
-
                     }
                 }
                 Debug.Log("갱신 끝");
@@ -79,12 +76,19 @@ public class FirebaseDB_Manager : MonoBehaviourPun
             {
                 // 로드 실패
             }
-            isRerfeshing = false;
+            isRefreshing = false;
         });
     }
     private void Update()
     {
+        if (isRefreshing)
         {
+            Debug.Log("갱신중 함수 호출 안함");
+            return;
+        }
+        else
+        {
+            Debug.Log("갱신 함수 호출");
             GetDB_PlayerDatas();
         }
     }
@@ -99,7 +103,7 @@ public class FirebaseDB_Manager : MonoBehaviourPun
         return false;
     }
 
-    public void ChangeNickName(string name)
+    public void ReWriteData(string name)
     {
         // 이것도 예외처리 해야하는데;
         PlayerData willchangeData = playerDatas[mySerializeNumber];
