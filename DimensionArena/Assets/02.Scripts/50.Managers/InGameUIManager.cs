@@ -304,6 +304,22 @@ public class InGameUIManager : MonoBehaviour
         group.blocksRaycasts = true;
     }
 
+    public void WatchTarget()
+    {
+        Debug.Log("너를 죽인애 쳐다보기");
+    }
+
+
+    public void LoadResultScene()
+    {
+        PhotonNetwork.LeaveRoom();
+
+        if (PhotonNetwork.InRoom)
+            Debug.Log("연결되있네요... 슬퍼요 ㅠㅠ");
+        
+        SceneChanger_Loading.Instance.ChangeScene("Result");
+    }
+
 
 
 
