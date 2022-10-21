@@ -52,10 +52,7 @@ public class SkillJoyStick : BaseJoyStick
     //옮길 예정 조이스틱의 상태를 관리해주는 클래스 제작하여 동시터치도 막아야하나?
     public void AlphaJoyStick()
     {
-        for(int i = 0; i < 3; ++i)
-        {
-            alphaImage[i].color = new Color(alphaImage[i].color.r, alphaImage[i].color.g, alphaImage[i].color.b, 180 / 255f);
-        }
+       
     }
 
     public void MaxSkillPoint()
@@ -80,9 +77,5 @@ public class SkillJoyStick : BaseJoyStick
         }
     }
 
-    public void DisActiveJoyStick()
-    {
-        gameObject.SetActive(false);
-    }
 }
 

@@ -51,7 +51,7 @@ namespace PlayerSpace
 
         protected virtual void Awake()
         {
-            if(PhotonNetwork.InRoom)
+            if (PhotonNetwork.InRoom)
             {
                 if (photonView.Owner != null)
                 {
@@ -78,7 +78,7 @@ namespace PlayerSpace
             if (rigid == null)
                 Destroy(this.gameObject);
 
-            if(PhotonNetwork.InRoom)
+            if (PhotonNetwork.InRoom)
             {
                 if (photonView.IsMine)
                     SetToOwnerPlayer();
@@ -150,6 +150,12 @@ namespace PlayerSpace
             EffectManager.Instance.CreateParticleEffectOnGameobject(this.transform, "Dead", 3.0f);
             yield return new WaitForSeconds(0.5f);
             gameObject.SetActive(false);
+        }
+
+        private void OnDisable() 
+        {
+            GameObject obj = GameObject.Find("InGameManager");
+            obj.GetComponent<InGameUIManager>().DefeatUIOn();
         }
     }
 }

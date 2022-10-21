@@ -30,7 +30,7 @@ public class FirebaseDB_Manager : MonoBehaviourPun
         if (null == Instance)
         {
             Instance = this;
-            DontDestroyOnLoad(Instance);
+            DontDestroyOnLoad(this.gameObject);
         }
         else
             Destroy(this.gameObject);

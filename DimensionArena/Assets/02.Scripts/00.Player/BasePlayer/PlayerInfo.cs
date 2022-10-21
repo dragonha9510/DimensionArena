@@ -52,6 +52,11 @@ public class PlayerInfo
     public event Action EDisActivePlayer = () => { };
 
 
+    public void eDisActive()
+    {
+        EDisActivePlayer();
+    }
+
     /// =============================
     /// Player Information Region
     /// =============================

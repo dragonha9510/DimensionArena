@@ -15,7 +15,6 @@ public enum GAMEMODE
 
 public class GameManager : MonoBehaviourPunCallbacks, IPunObservable
 {
-    PlayerData data;
     [SerializeField]
     public GameObject playerPrefab;
     public GAMEMODE GameMode { get; private set; }

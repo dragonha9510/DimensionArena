@@ -3,13 +3,36 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Photon.Pun;
 using TMPro;
 using DG.Tweening;
 public class InGameUIManager : MonoBehaviour
 {
+
+    private static InGameUIManager instance;
+    public static InGameUIManager Instance
+    {
+        get
+        {
+
+            if (!instance)
+            {
+                GameObject obj = GameObject.Find("InGameUIManager");
+                if (!obj)
+                {
+                    Debug.LogError("IngameUIManager 프리팹을 해당 씬에 넣어주지 않았습니다. 확인해주세요.");
+                    Application.Quit();
+                }
+                instance = obj.GetComponent<InGameUIManager>();
+            }
+            return instance;
+        }
+    }
+
+
     private struct DeadEvent
     {
-        public DeadEvent(CharacterType killerType, string killerName, 
+        public DeadEvent(CharacterType killerType, string killerName,
             CharacterType victimType, string victimName)
         {
             this.killerName = killerName;
@@ -31,11 +54,9 @@ public class InGameUIManager : MonoBehaviour
 
     }
 
-
-
     [Header("Setting Parameter")]
     [SerializeField] private float announceTime;
-    [SerializeField] private int   countTime;
+    [SerializeField] private int countTime;
 
     [Range(0.001f, 0.005f)]
     [SerializeField] private float infoMoveSmoothNess;
@@ -46,7 +67,7 @@ public class InGameUIManager : MonoBehaviour
 
     [Header("InforMationUI")]
     [SerializeField] private RectTransform[] infoTransform;
-    private Dictionary<string, RectTransform>  DicInfoTransform;
+    private Dictionary<string, RectTransform> DicInfoTransform;
 
     [SerializeField] private TextMeshProUGUI dynamicText;
 
@@ -59,15 +80,15 @@ public class InGameUIManager : MonoBehaviour
 
 
     [Header("Inform UI")]
-    [SerializeField] private CanvasGroup        informCanvas;
-    [SerializeField] private Image              killerImage;
-    [SerializeField] private Image              victimImage;
-    [SerializeField] private TextMeshProUGUI    killerNickName;
-    [SerializeField] private TextMeshProUGUI    victimNickName;
+    [SerializeField] private CanvasGroup informCanvas;
+    [SerializeField] private Image killerImage;
+    [SerializeField] private Image victimImage;
+    [SerializeField] private TextMeshProUGUI killerNickName;
+    [SerializeField] private TextMeshProUGUI victimNickName;
 
     [Header("Inform UI Setting")]
 
-    [Range(0.5f,1.5f)]
+    [Range(0.5f, 1.5f)]
     [SerializeField] private float fadeTime;
     [SerializeField] private float InformTime;
 
@@ -93,7 +114,7 @@ public class InGameUIManager : MonoBehaviour
         StartCoroutine(StartUICoroutine());
     }
     private void Initialize()
-    {    
+    {
         mode = GameManager.instance == null ? GAMEMODE.Survival : GameManager.instance.GameMode;
         ListDeadEv = new List<DeadEvent>();
         isInfromEnd = true;
@@ -101,9 +122,12 @@ public class InGameUIManager : MonoBehaviour
         switch (mode)
         {
             case GAMEMODE.Survival:
-                for(int i = 0; i < PlayerInfoManager.Instance.PlayerInfoArr.Length; ++i)
+                for (int i = 0; i < PlayerInfoManager.Instance.PlayerInfoArr.Length; ++i)
                 {
                     PlayerInfoManager.Instance.PlayerInfoArr[i].EDeadPlayer += InformDeadPlayer;
+
+                    if(PlayerInfoManager.Instance.PlayerObjectArr[i].name == PhotonNetwork.NickName)
+                    PlayerInfoManager.Instance.PlayerInfoArr[i].EDisActivePlayer += DefeatUIOn;
                 }
                 break;
             case GAMEMODE.FreeForAll:
@@ -146,7 +170,7 @@ public class InGameUIManager : MonoBehaviour
 
         WaitForSeconds oneSeconds = new WaitForSeconds(1.0f);
         //Text Count Animation
-        for(int i = countTime; i > 0 ; --i)
+        for (int i = countTime; i > 0; --i)
         {
             objectiveText.text = i.ToString();
             //Add Animation
@@ -162,7 +186,7 @@ public class InGameUIManager : MonoBehaviour
     private IEnumerator InfoUICoroutine()
     {
 
-        switch(mode)
+        switch (mode)
         {
             case GAMEMODE.Survival:
                 dynamicContent = PlayerInfoManager.Instance.PlayerInfoArr.Length;
@@ -200,11 +224,11 @@ public class InGameUIManager : MonoBehaviour
 
 
         //만약, 실행하는 코루틴이 이번의 dead event도 처리했다면 새 코루틴 시작이 들어가지않는다.
-        if (isInfromEnd 
+        if (isInfromEnd
             && ListDeadEv.Count > 0)
         {
             StopCoroutine(InformDeadCoroutine(killerType, killerId, victimType, victimId));
-            StartCoroutine(InformDeadCoroutine(killerType,killerId, victimType,victimId));
+            StartCoroutine(InformDeadCoroutine(killerType, killerId, victimType, victimId));
         }
     }
 
@@ -232,16 +256,16 @@ public class InGameUIManager : MonoBehaviour
             yield return new WaitForSeconds(InformTime);
             informCanvas.DOFade(0.0f, fadeTime * 0.5f);
             yield return new WaitForSeconds(fadeTime * 0.5f);
-            ListDeadEv.RemoveAt(0);             
+            ListDeadEv.RemoveAt(0);
         }
-        isInfromEnd = true;          
-      
+        isInfromEnd = true;
+
     }
 
 
     void SelectThumbnail(Image image, CharacterType type)
     {
-        switch(type)
+        switch (type)
         {
             case CharacterType.Aura:
                 image.sprite = CharacterThumbnail[(int)CharacterType.Aura];
@@ -255,6 +279,62 @@ public class InGameUIManager : MonoBehaviour
             case CharacterType.Sesillia:
                 image.sprite = CharacterThumbnail[(int)CharacterType.Sesillia];
                 break;
+        }
+    }
+
+    public void DefeatUIOn()
+    {
+        GameEndGroup.SetActive(true);
+        for(int i = 0; i < GameEndGroup.transform.childCount; ++i)
+        {
+            Color color = GameEndGroup.transform.GetChild(i).GetComponent<Color>();
+            if (color != null)
+            {
+                AlphaOnImage(ref color);
+            }
+
+            for(int j = 0; j < GameEndGroup.transform.GetChild(i).childCount; ++j)
+            {
+                color = GameEndGroup.transform.GetChild(i).GetChild(j).GetComponent<Color>();
+                if(color != null)
+                {
+                    AlphaOnImage(ref color);
+                }
+            }
+
+        }
+    }
+
+
+    private void AlphaOnImage(ref Color color)
+    {
+        StartCoroutine(AlphaOnCoroutine(color));
+    }
+
+    private void AlphaOffImage(ref Color color)
+    {
+        StartCoroutine(AlphaOffCoroutine(color));
+    }
+
+    IEnumerator AlphaOnCoroutine(Color color)
+    {
+        WaitForSeconds alpha =  new WaitForSeconds(0.00390625f);
+
+        for(int i = 0; i < 256; ++i)
+        {
+            color.a++;
+            yield return alpha;
+        }
+    }
+
+    IEnumerator AlphaOffCoroutine(Color color)
+    {
+        WaitForSeconds alpha = new WaitForSeconds(0.00390625f);
+
+        for (int i = 0; i < 256; ++i)
+        {
+            color.a--;
+            yield return alpha;
         }
     }
 
