@@ -23,12 +23,14 @@ public class FirebaseDB_Manager : MonoBehaviourPun
 
     private string playerNickName = "";
 
-    public string PlayerNickName { get { return playerNickName; } set { playerNickName = value; } }
+    public string PlayerNickName { get { return playerNickName; } }
 
     private bool isRefreshing = false;
 
     private bool isInGame = false;
     public bool IsInGame { set { isInGame = value; } }
+
+   
 
     private void Awake()
     {
@@ -118,32 +120,32 @@ public class FirebaseDB_Manager : MonoBehaviourPun
         DB_reference.Child(mySerializeNumber.ToString()).SetRawJsonValueAsync(json);
 
     }
-    private string RegisterNewPlayer(string newName)
+    public void RegisterNewPlayer(string newName)
     {
+        playerNickName = newName;
         mySerializeNumber = SystemInfo.deviceUniqueIdentifier;
         PlayerData newData = new PlayerData(newName);
         string json = JsonUtility.ToJson(newData);
         DB_reference.Child(mySerializeNumber).SetRawJsonValueAsync(json);
-
-        return newName;
     }
-    public string RegisterDataBase(string newName)
+    // 만약 기존에 데이터가 있다면 true 를 반환
+    public bool RegisterDataBase()
     {
-        string name = "";
+        
+        bool dataAlreadyIn = false;
         foreach(string Key in playerDatas.Keys)
         {
             // 0 is not used
             if(Key == SystemInfo.deviceUniqueIdentifier)
             {
-                name = playerDatas[Key].playerName;
+                dataAlreadyIn = true;
+                playerNickName = playerDatas[Key].playerName;
                 mySerializeNumber = Key;
                 break;
             }
         }
-        if(name == "")
-        {
-            name = RegisterNewPlayer(newName);
-        }
-        return name;
+        return dataAlreadyIn;
     }
+
+
 }

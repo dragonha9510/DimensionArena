@@ -20,20 +20,41 @@ public class RegisterUI : MonoBehaviour
     private GameObject nickCheckPopUp;
     [SerializeField]
     private TextMeshProUGUI checkingNameText;
-    
+    [SerializeField]
+    private GameObject welcomeObj;
+    [SerializeField]
+    private TextMeshProUGUI welcomeText;
+
+    private void Start()
+    {
+        if(FirebaseDB_Manager.Instance.RegisterDataBase())
+        {
+            welcomeObj.SetActive(true);
+            checkingNameText.text = "È¯¿µÇÕ´Ï´Ù ";
+            checkingNameText.text += FirebaseDB_Manager.Instance.PlayerNickName;
+            SceneManager.LoadScene("GameStartScene");
+
+        }
+    }
 
     public void NickNameCheck()
     {
         
         string text = nickNameInputField.text;
         
+        // °ø¹é Ã¼Å©
         if("" == text)
         {
-            warningText.text = "´Ð³×ÀÓÀ» ÀÔ·ÂÇØ ÁÖ¼¼¿ä";
-            warningPopUp.SetActive(true);
+            ActiveWarningPopUp("´Ð³×ÀÓÀ» ÀÔ·ÂÇØ ÁÖ¼¼¿ä");
             return;
         }
-        
+
+        if(FirebaseDB_Manager.Instance.NameOverlapCheck(text))
+        {
+            ActiveWarningPopUp("ÀÌ¹Ì µî·ÏµÈ ÀÌ¸§ÀÌ ÀÖ½À´Ï´Ù");
+            return;
+        }
+
         Regex korRegex = new Regex(@"[¤¡-¤¾°¡-ÆR]");
         bool isInKorean = korRegex.IsMatch(text);
         Regex engRegex = new Regex(@"[a-zA-Z]");
@@ -48,17 +69,26 @@ public class RegisterUI : MonoBehaviour
 
         if (isInSpecial || (!isInKorean && !isInEnglish && !isInNumber))
         {
-            nickNameInputField.text = "";
-            warningText.text = "Æ¯¼ö¹®ÀÚ ¹× °ø¹éÀº µé¾î°¥ ¼ö ¾ø½À´Ï´Ù";
-            warningPopUp.SetActive(true);
+            ActiveWarningPopUp("Æ¯¼ö¹®ÀÚ ¹× °ø¹éÀº µé¾î°¥ ¼ö ¾ø½À´Ï´Ù");
         }
         else
             GoToGameStartScene();
+    }
+    private void ActiveWarningPopUp(string infotext)
+    {
+        nickNameInputField.text = "";
+        warningText.text = infotext;
+        warningPopUp.SetActive(true);
     }
     public void ActiveFalseWarningPopUp()
     {
         warningPopUp.SetActive(false);
     }    
+    public void ActiveTrueNickCheckPopUp()
+    {
+        checkingNameText.text = "ÀÌ¸§À» \"" + nickNameInputField.text + "\" ·Î ÇÏ½Ã°Ú½À´Ï±î?";
+        nickCheckPopUp.SetActive(true);
+    }
     public void ActiveFalseNickCheckPopUp()
     {
         nickCheckPopUp.SetActive(false);
@@ -66,6 +96,6 @@ public class RegisterUI : MonoBehaviour
     public void GoToGameStartScene()
     {
         SceneManager.LoadScene("GameStartScene");
-        FirebaseDB_Manager.Instance.PlayerNickName = nickNameInputField.text;
+        FirebaseDB_Manager.Instance.RegisterNewPlayer(checkingNameText.text);
     }
 }
