@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
-
+using PlayerSpace;
 
 
 public enum CharacterType
@@ -166,15 +166,9 @@ public class PlayerInfo
         isAlive = false;
         EDeadPlayer(killer_type, killer_id, type, id);
         EDisActivePlayer();
+
     }
 
-
-    //Player Destroy Method
-
-    //public void PlayerDestroy()
-    //{
-    //    EDestroyPlayer();
-    //}
     #endregion
 
 }

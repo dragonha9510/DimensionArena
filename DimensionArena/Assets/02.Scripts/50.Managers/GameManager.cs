@@ -15,7 +15,7 @@ public enum GAMEMODE
 
 public class GameManager : MonoBehaviourPunCallbacks, IPunObservable
 {
-
+    PlayerData data;
     [SerializeField]
     public GameObject playerPrefab;
     public GAMEMODE GameMode { get; private set; }
@@ -38,8 +38,11 @@ public class GameManager : MonoBehaviourPunCallbacks, IPunObservable
    
     private void Awake()
     {
+
         if (instance != this)
             Destroy(gameObject);
+        else
+            DontDestroyOnLoad(this.gameObject);
 
         //Test Code
         GameMode = GAMEMODE.Survival;
@@ -74,7 +77,6 @@ public class GameManager : MonoBehaviourPunCallbacks, IPunObservable
         }
     }
 
-   
     private void Start()
     {
         SoundManager.Instance.PlayBGM("BattleMusic");
@@ -82,8 +84,7 @@ public class GameManager : MonoBehaviourPunCallbacks, IPunObservable
         PlayerInfoManager.Instance.RegisterPlayer();
     }
 
-   
-    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+   public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
         throw new System.NotImplementedException();
     }
