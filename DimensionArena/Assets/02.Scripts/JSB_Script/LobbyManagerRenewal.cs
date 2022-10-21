@@ -70,6 +70,7 @@ public class LobbyManagerRenewal : MonoBehaviourPunCallbacks
     // Start is called before the first frame update
     void Start()
     {
+        PhotonNetwork.NickName = FirebaseDB_Manager.Instance.PlayerNickName;
         for (int i = (int)MODE.MODE_SURVIVAL; i < (int)MODE.MODE_END; ++i)
         {
             rooms.Add(new List<RoomInfo>());
