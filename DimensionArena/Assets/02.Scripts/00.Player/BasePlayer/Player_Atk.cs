@@ -78,10 +78,12 @@ namespace PlayerSpace
         }
 
         public abstract void Attack();
+
         protected void WaitAttack()
         {
             eCantAttack();
         }
+
         public void StartAttack()
         {
             attackDirection = direction;
@@ -104,6 +106,7 @@ namespace PlayerSpace
                 transform.LookAt(transform.position + forward);
             }
         }
+
         IEnumerator MagazineReloadCoroutine()
         {
             while (true)
@@ -113,7 +116,6 @@ namespace PlayerSpace
                 yield return null;   
             }
         }
-
 
         public static Attack_Type SetType(Atk_Range range)
         {

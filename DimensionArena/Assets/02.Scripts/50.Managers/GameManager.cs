@@ -15,7 +15,7 @@ public enum GAMEMODE
 
 public class GameManager : MonoBehaviourPunCallbacks, IPunObservable
 {
-
+    PlayerData data;
     [SerializeField]
     public GameObject playerPrefab;
     public GAMEMODE GameMode { get; private set; }
@@ -38,14 +38,17 @@ public class GameManager : MonoBehaviourPunCallbacks, IPunObservable
    
     private void Awake()
     {
+
         if (instance != this)
             Destroy(gameObject);
+        else
+            DontDestroyOnLoad(this.gameObject);
 
         //Test Code
         GameMode = GAMEMODE.Survival;
 
 
-        Vector3 spawnPoint = new Vector3(0, 1, 0);
+        Vector3 spawnPoint = new Vector3(0, 0, 0);
 
         //   추 후 이거 유동적으로 바꿔야함. 게임매니저 문제점 기록하기
         
@@ -74,7 +77,6 @@ public class GameManager : MonoBehaviourPunCallbacks, IPunObservable
         }
     }
 
-   
     private void Start()
     {
         SoundManager.Instance.PlayBGM("BattleMusic");
@@ -82,8 +84,7 @@ public class GameManager : MonoBehaviourPunCallbacks, IPunObservable
         PlayerInfoManager.Instance.RegisterPlayer();
     }
 
-   
-    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+   public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
         throw new System.NotImplementedException();
     }

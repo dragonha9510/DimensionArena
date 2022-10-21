@@ -27,11 +27,11 @@ namespace GRITTY
                 MonoBehaviour.DestroyImmediate(brick);
             }
 
-            int originRow = GridMapEditor.mapSize.x % 2 == 0 ? (GridMapEditor.mapSize.x / 2) - 1 : (GridMapEditor.mapSize.x / 2);
-            int originColmn = GridMapEditor.mapSize.y % 2 == 0 ? (GridMapEditor.mapSize.y / 2) - 1 : (GridMapEditor.mapSize.y / 2);
+            int originRow = (GridMapEditor.mapSize.x / 2);
+            int originColmn = (GridMapEditor.mapSize.y / 2);
 
 
-            if(_nodeInfo.type == PREFAB_TYPE.GROUND)
+            if (_nodeInfo.type == PREFAB_TYPE.GROUND)
             {
                 brick = MonoBehaviour.Instantiate(_nodeInfo.prefab);
                 brick.transform.position = new Vector3((row - originRow) + 0.5f, -0.5f, - (colmn - originColmn) - 0.5f);
@@ -55,8 +55,8 @@ namespace GRITTY
 
         public void CreateEmptyBrick(int row, int colmn, GameObject obj)
         {
-            int originRow = GridMapEditor.mapSize.x % 2 == 0 ? (GridMapEditor.mapSize.x / 2) - 1 : (GridMapEditor.mapSize.x / 2);
-            int originColmn = GridMapEditor.mapSize.y % 2 == 0 ? (GridMapEditor.mapSize.y / 2) - 1 : (GridMapEditor.mapSize.y / 2);
+            int originRow = (GridMapEditor.mapSize.x / 2);
+            int originColmn = (GridMapEditor.mapSize.y / 2);
 
             brick = MonoBehaviour.Instantiate(obj);
             brick.transform.position = new Vector3((row - originRow) + 0.5f, 0.5f, -(colmn - originColmn) - 0.5f);

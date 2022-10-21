@@ -139,8 +139,6 @@ public class InGameUIManager : MonoBehaviour
         //touch Canvas Setting
         touchCanvas.interactable = false;
         touchCanvas.blocksRaycasts = false;
-        touchCanvas.alpha = 0;
-
 
         //Announce Objective Text
         SetGameStart();

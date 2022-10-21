@@ -43,15 +43,17 @@ namespace PlayerSpace
         private void StartAttackCoroutine()
         {
             owner.CanDirectionChange = false;
+            isAttack = true;
 
             if (PhotonNetwork.InRoom)
             {
-                photonView.RPC("AttackCoroutine", RpcTarget.MasterClient
-                                                    , PhotonNetwork.NickName
-                                                    , attackDirection
-                                                    , atkInfo.Range
-                                                    , projectileSpeed
-                                                    , gameObject.name);
+                photonView.RPC("MasterCreateProjectile", RpcTarget.MasterClient
+                                                        , gameObject.name
+                                                        , attackDirection
+                                                        , atkInfo.Range
+                                                        , projectileSpeed
+                                                        , photonView.Controller
+                                                    );
 
             }
             else
@@ -63,19 +65,14 @@ namespace PlayerSpace
 
         }
 
+
         [PunRPC]
-        private IEnumerator AttackCoroutine(string shooter, Vector3 shooterAttackDir,
-            float range, float speed, string ownerName)
-        {
-            isAttack = true;
-
-            //ÇÑ¹ß ½ò¶§¸¶´Ù ShotCost°¡ »©Áü
-            atkInfo.SubCost(atkInfo.ShotCost);
-
+        private IEnumerator MasterCreateProjectile(string shooter, Vector3 shooterAttackDir,
+            float range, float speed,Photon.Realtime.Player controller)
+        {            
             GameObject projectile;
             Transform shooterPosition = PlayerInfoManager.Instance.getPlayerTransform(shooter);
-
-
+           
             for (int i = 0; i < 2; ++i)
             {
                 for (int j = 0; j < projectileCount; ++j)
@@ -83,16 +80,30 @@ namespace PlayerSpace
 
                     projectile = PhotonNetwork.Instantiate("projectile", shooterPosition.position + shooterAttackDir, Quaternion.identity);
                     projectile.GetComponent<Projectile>().AttackToDirection(shooterAttackDir, range, speed);
-                    projectile.GetComponent<Projectile>().ownerID = ownerName;
+                    projectile.GetComponent<Projectile>().ownerID = shooter;
                     yield return new WaitForSeconds(burst_delay);
                 }
                 yield return new WaitForSeconds(attack_delay);
             }
 
-            isAttack = false;
-            owner.CanDirectionChange = true;
-
+            photonView.RPC("EndAttack", controller, shooter);
+            //ÇÑ¹ß ½ò¶§¸¶´Ù ShotCost°¡ »©Áü
         }
+
+        [PunRPC]
+        private void EndAttack(string name)
+        {
+            if(gameObject.name == name)
+            {
+                atkInfo.SubCost(atkInfo.ShotCost);
+                owner.CanDirectionChange = true;
+                isAttack = false;
+            }
+        }
+
+
+
+
         private IEnumerator AttackCoroutineSingle(string shooter, Vector3 shooterAttackDir,
             float range, float speed, string ownerName)
         {

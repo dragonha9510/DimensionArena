@@ -38,13 +38,16 @@ namespace PlayerSpace
         private Player_Movement movement;
 
         private Rigidbody rigid;
+        /// =============================
 
         private string nickName;
         public string NickName => nickName;
 
+        //나중에 고칠것
+        private float reviveTime = 3.0f;
         public bool CanDirectionChange { get; set; }
 
-        /// =============================
+
 
         protected virtual void Awake()
         {
@@ -65,10 +68,11 @@ namespace PlayerSpace
 
         protected virtual void Start()
         {
+            //Memory Register
+            CanDirectionChange = true;
             attack = GetComponent<Player_Atk>();
             skill = GetComponent<Player_Skill>();
             movement = new Player_Movement(this);
-            CanDirectionChange = true;
             TryGetComponent<Rigidbody>(out rigid);
 
             if (rigid == null)
@@ -81,6 +85,13 @@ namespace PlayerSpace
             }
             else
                 SetToOwnerPlayer();
+
+            //Create Event
+            EffectManager.Instance.CreateParticleEffectOnGameobject(this.transform, "Revive", reviveTime);
+
+            //Add Event
+
+            Info.EDisActivePlayer += DisActiveAnimation;
         }
 
         private void Update()
@@ -96,11 +107,6 @@ namespace PlayerSpace
         private void LateUpdate()
         {
             movement.MoveDirection(rigid, transform, direction, info.Speed);
-        }
-
-        private void Destroy()
-        {
-            PhotonNetwork.Destroy(this.gameObject);
         }
 
         private void SetToOwnerPlayer()
@@ -134,5 +140,16 @@ namespace PlayerSpace
                 GetComponent<Prototype_TargetCamera>().target = this.transform;
         }
 
+        private void DisActiveAnimation()
+        {
+            StartCoroutine(DisActivePlayer());
+        }
+
+        private IEnumerator DisActivePlayer()
+        {
+            EffectManager.Instance.CreateParticleEffectOnGameobject(this.transform, "Dead", 3.0f);
+            yield return new WaitForSeconds(0.5f);
+            gameObject.SetActive(false);
+        }
     }
 }
