@@ -79,8 +79,8 @@ public class GameManager : MonoBehaviourPunCallbacks, IPunObservable
 
     private void Start()
     {
-        SoundManager.Instance.PlayBGM("BattleMusic");
-        SoundManager.Instance.AddPhotonView();
+        //SoundManager.Instance.PlayBGM("BattleMusic");
+        //SoundManager.Instance.AddPhotonView();
         PlayerInfoManager.Instance.RegisterPlayer();
     }
 
