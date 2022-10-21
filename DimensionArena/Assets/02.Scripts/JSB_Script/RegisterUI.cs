@@ -27,14 +27,28 @@ public class RegisterUI : MonoBehaviour
 
     private void Start()
     {
-        if(FirebaseDB_Manager.Instance.RegisterDataBase())
-        {
-            welcomeObj.SetActive(true);
-            checkingNameText.text = "환영합니다 ";
-            checkingNameText.text += FirebaseDB_Manager.Instance.PlayerNickName;
-            SceneManager.LoadScene("GameStartScene");
+        StartCoroutine("DataUpdateCheck");
+    }
 
+    IEnumerator DataUpdateCheck()
+    {
+        while(true)
+        {
+            if (FirebaseDB_Manager.Instance.RefreshCount < 1)
+                yield return null;
+            else
+            {
+                if (FirebaseDB_Manager.Instance.RegisterDataBase())
+                {
+                    welcomeObj.SetActive(true);
+                    checkingNameText.text = "환영합니다 ";
+                    checkingNameText.text += FirebaseDB_Manager.Instance.PlayerNickName;
+                    SceneManager.LoadScene("GameStartScene");
+                }
+                yield break;
+            }
         }
+        
     }
 
     public void NickNameCheck()

@@ -30,7 +30,8 @@ public class FirebaseDB_Manager : MonoBehaviourPun
     private bool isInGame = false;
     public bool IsInGame { set { isInGame = value; } }
 
-   
+    private int refreshCount = 0;
+    public int RefreshCount { get { return refreshCount; } }
 
     private void Awake()
     {
@@ -72,6 +73,7 @@ public class FirebaseDB_Manager : MonoBehaviourPun
                         playerDatas.Add(key, newData);
                     }
                 }
+                ++refreshCount;
                 Debug.Log("°»½Å ³¡");
             }
             else if (task.IsCanceled)
