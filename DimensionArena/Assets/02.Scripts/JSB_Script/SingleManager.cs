@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 public class SingleManager : MonoBehaviour
 {
     private enum OPTION
@@ -94,7 +94,6 @@ public class SingleManager : MonoBehaviour
 
     public void ChangeNextMap()
     {
-        Debug.Log(mapPrefaps.Length);
         if (mapIndex + 1 >= mapPrefaps.Length)
             mapIndex = 0;
         else
@@ -115,5 +114,10 @@ public class SingleManager : MonoBehaviour
         if (null != onFieldDummy)
             Destroy(onFieldDummy);
         map = Instantiate(mapPrefaps[mapIndex], new Vector3(0, -1, 0), Quaternion.identity);
+    }
+
+    public void GoToLobby()
+    {
+        SceneManager.LoadScene("Lobby_Main");
     }
 }

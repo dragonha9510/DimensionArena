@@ -9,6 +9,7 @@ public class Lobby_BtnFunction : MonoBehaviour
 {
     [SerializeField] private Image image;
     [SerializeField] private TMP_Text subName;
+    
     public void Start()
     {
         if (string.IsNullOrEmpty(SelectedCharacter.Instance.characterName))

@@ -45,7 +45,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         players = new Photon.Realtime.Player[startPlayerCount];
     }
 
-
+    
     private bool NameOverLapCheck(string name)
     {
         // 플레이어 이름 목록들을 받아온다.

@@ -38,7 +38,6 @@ public class SoundManager : MonoBehaviourPun
                     soundMgr.AddComponent<SoundManager>();
                 }
 
-                instance = soundMgr.GetComponent<SoundManager>();
             }
 
             return instance;
