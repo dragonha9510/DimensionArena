@@ -77,16 +77,18 @@ public class RegisterUI : MonoBehaviour
         bool isInNumber = numRegex.IsMatch(text);
         Regex specialRegex = new Regex(@"[~!@\#$%^&*\()\=+|\\/:;?""<>']");
         bool isInSpecial = specialRegex.IsMatch(text);
+        Regex spaceRegex = new Regex(@"\s");
+        bool isInSpace = spaceRegex.IsMatch(text);
 
         // 스페셜 문자가 있거나
         // 한국어 또는 영어 또는 숫자가 아예 없거나
 
-        if (isInSpecial || (!isInKorean && !isInEnglish && !isInNumber))
+        if (isInSpecial || isInSpace || (!isInKorean && !isInEnglish && !isInNumber))
         {
             ActiveWarningPopUp("특수문자 및 공백은 들어갈 수 없습니다");
         }
         else
-            GoToGameStartScene();
+            ActiveTrueNickCheckPopUp();
     }
     private void ActiveWarningPopUp(string infotext)
     {
@@ -110,6 +112,6 @@ public class RegisterUI : MonoBehaviour
     public void GoToGameStartScene()
     {
         SceneManager.LoadScene("GameStartScene");
-        FirebaseDB_Manager.Instance.RegisterNewPlayer(checkingNameText.text);
+        FirebaseDB_Manager.Instance.RegisterNewPlayer(nickNameInputField.text);
     }
 }
