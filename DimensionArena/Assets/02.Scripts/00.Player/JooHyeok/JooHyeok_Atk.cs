@@ -47,7 +47,7 @@ namespace PlayerSpace
 
             if (PhotonNetwork.InRoom)
             {
-                photonView.RPC("MasterCreateProjectile", RpcTarget.MasterClient
+                photonView.RPC("MasterCreateProjectile",  RpcTarget.MasterClient
                                                         , gameObject.name
                                                         , attackDirection
                                                         , atkInfo.Range
@@ -69,16 +69,20 @@ namespace PlayerSpace
         [PunRPC]
         private IEnumerator MasterCreateProjectile(string shooter, Vector3 shooterAttackDir,
             float range, float speed,Photon.Realtime.Player controller)
-        {            
+        {
+            Debug.Log(shooterAttackDir);
+            Debug.Log(shooter);
+
             GameObject projectile;
             Transform shooterPosition = PlayerInfoManager.Instance.getPlayerTransform(shooter);
-           
+            Debug.Log(shooterPosition);
+
             for (int i = 0; i < 2; ++i)
             {
                 for (int j = 0; j < projectileCount; ++j)
                 {
-
                     projectile = PhotonNetwork.Instantiate("projectile", shooterPosition.position + shooterAttackDir, Quaternion.identity);
+                    Debug.Log(projectile);
                     projectile.GetComponent<Projectile>().AttackToDirection(shooterAttackDir, range, speed);
                     projectile.GetComponent<Projectile>().ownerID = shooter;
                     yield return new WaitForSeconds(burst_delay);
