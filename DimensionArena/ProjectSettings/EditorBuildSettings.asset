@@ -6,7 +6,7 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/01.Scenes/JSB_Scene/GameStartRegister.unity
+    path: Assets/01.Scenes/ProtoType/GameStartRegister.unity
     guid: 6d8a72e0de8f37c498d987a5fe480c05
   - enabled: 1
     path: Assets/01.Scenes/ProtoType/GameStartScene.unity
