@@ -13,7 +13,8 @@ public class BushObject : GroundObject
     private void Start()
     {
         oriPos = myCollider.transform.position;
-        oriColor = _renderer.material.color;
+        //oriColor = _renderer.material.color;
+        oriColor = _renderer.material.GetColor("_BaseColor");
     }
 
     private void OnTriggerEnter(Collider other)
@@ -22,7 +23,8 @@ public class BushObject : GroundObject
         {
             myCollider.transform.position = oriPos + new Vector3(0, 20, 0);
 
-            _renderer.material.color = oriColor * new Color(1, 1, 1, bushAlpha); 
+            //_renderer.material.color = oriColor * new Color(1, 1, 1, bushAlpha);
+            _renderer.material.SetColor("_BaseColor", oriColor * new Color(1, 1, 1, bushAlpha));
         }
     }
 
@@ -32,7 +34,8 @@ public class BushObject : GroundObject
         {
             myCollider.transform.position = oriPos;
 
-            _renderer.material.color = oriColor; 
+            //_renderer.material.color = oriColor; 
+            _renderer.material.SetColor("_BaseColor", oriColor);
         }
     }
 
