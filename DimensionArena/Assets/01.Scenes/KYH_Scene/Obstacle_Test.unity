@@ -130,6 +130,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1270164234, guid: 0a57c1f790ba32044afdc1228e203f1f, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 1647391841, guid: 0a57c1f790ba32044afdc1228e203f1f, type: 3}
       propertyPath: m_Alpha
       value: 1
@@ -137,6 +141,10 @@ PrefabInstance:
     - target: {fileID: 1647391841, guid: 0a57c1f790ba32044afdc1228e203f1f, type: 3}
       propertyPath: m_BlocksRaycasts
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2033034357, guid: 0a57c1f790ba32044afdc1228e203f1f, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 122259820291799627, guid: 0a57c1f790ba32044afdc1228e203f1f,
         type: 3}
