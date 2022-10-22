@@ -8,13 +8,12 @@ using PlayerSpace;
 
 public class SkillJoyStick : BaseJoyStick
 {
-    [SerializeField] Image[] alphaImage = new Image[3];
     [SerializeField] Image skillImg;
 
     protected override void Awake()
     {
-        base.Awake();
         AlphaJoyStick();
+        base.Awake();
     }
 
     public override void OnBeginDrag(PointerEventData eventData)
@@ -36,8 +35,7 @@ public class SkillJoyStick : BaseJoyStick
     {
         if (skillImg.fillAmount.Equals(1.0f))
         {
-            lever.anchoredPosition = Vector2.zero;
-            SetDirection();
+            base.OnEndDrag(eventData);
             player.Skill.OffSkillMesh();
         }
     }
@@ -49,32 +47,33 @@ public class SkillJoyStick : BaseJoyStick
     }
 
 
-    //옮길 예정 조이스틱의 상태를 관리해주는 클래스 제작하여 동시터치도 막아야하나?
-    public void AlphaJoyStick()
+    private void AlphaJoyStick()
     {
-       
+        GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 0.0f);
     }
 
-    public void MaxSkillPoint()
+    private void SetOnSkillLever()
     {
-        alphaImage[0].color = new Color(1, 0.1367925f, 0.1367925f, 1);
+        Color color;
+        if (ColorUtility.TryParseHtmlString("#FFCF32", out color))
+            lever.GetComponent<Image>().color = color;
+    }
 
-        for (int i = 1; i < 3; ++i)
-        {
-            alphaImage[i].color = 
-                new Color(alphaImage[i].color.r, alphaImage[i].color.g, alphaImage[i].color.b, 180 / 255f);
-        }
-
+    private void SetOffSkillLever()
+    {
+        Color color;
+        if (ColorUtility.TryParseHtmlString("#909090", out color))
+            lever.GetComponent<Image>().color = color;
     }
 
     public void SkillSetFillAmount(float value)
     {
         skillImg.fillAmount = value;
 
-        if(value.AlmostEquals(1.0f,float.Epsilon))
-        {
-            MaxSkillPoint();
-        }
+        if (value.AlmostEquals(1.0f, float.Epsilon))
+            SetOnSkillLever();
+        else
+            SetOffSkillLever();
     }
 
 }
