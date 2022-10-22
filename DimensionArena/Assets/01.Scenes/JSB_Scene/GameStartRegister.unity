@@ -1398,7 +1398,7 @@ MonoBehaviour:
   warningPopUp: {fileID: 4867669}
   warningText: {fileID: 1529421334}
   nickCheckPopUp: {fileID: 1970536326}
-  checkingNameText: {fileID: 0}
+  checkingNameText: {fileID: 800266789}
   welcomeObj: {fileID: 452644832}
   welcomeText: {fileID: 731552892}
 --- !u!1 &624098263
@@ -2689,7 +2689,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1403998507
 RectTransform:
   m_ObjectHideFlags: 0
