@@ -52,9 +52,6 @@ public class LobbyManagerRenewal : MonoBehaviourPunCallbacks
     //Test 
     [SerializeField] Dictionary<string, PlayerData> playerDatas = new Dictionary<string, PlayerData>();
 
-
-    bool isReconnect = false;
-
     private void Awake()
     {
         if (null == Instance)

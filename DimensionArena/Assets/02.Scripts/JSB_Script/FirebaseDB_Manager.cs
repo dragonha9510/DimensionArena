@@ -22,7 +22,7 @@ public class FirebaseDB_Manager : MonoBehaviour
 
     private string playerNickName = "";
 
-    public string PlayerNickName { get { return playerNickName; } }
+    public string PlayerNickName { get { return playerNickName; } set { playerNickName = value; } }
 
     private bool isRefreshing = false;
 
