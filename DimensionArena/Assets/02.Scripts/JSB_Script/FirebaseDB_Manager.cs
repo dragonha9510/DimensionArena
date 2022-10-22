@@ -6,11 +6,10 @@ using Firebase.Database;
 using Firebase.Extensions;
 using TMPro;
 using System;
-using Photon.Pun;
 
 using Random = UnityEngine.Random;
 
-public class FirebaseDB_Manager : MonoBehaviourPun
+public class FirebaseDB_Manager : MonoBehaviour
 {
     public static FirebaseDB_Manager Instance;
 

@@ -41,8 +41,8 @@ public class RegisterUI : MonoBehaviour
                 if (FirebaseDB_Manager.Instance.RegisterDataBase())
                 {
                     welcomeObj.SetActive(true);
-                    checkingNameText.text = "환영합니다 ";
-                    checkingNameText.text += FirebaseDB_Manager.Instance.PlayerNickName;
+                    welcomeText.text = "환영합니다 ";
+                    welcomeText.text += FirebaseDB_Manager.Instance.PlayerNickName;
                     SceneManager.LoadScene("GameStartScene");
                 }
                 yield break;

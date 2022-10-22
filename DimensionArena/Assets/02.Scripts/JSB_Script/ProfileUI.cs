@@ -16,9 +16,9 @@ public class ProfileUI : MonoBehaviourPun
     [SerializeField]
     private GameObject failedInformation;
 
-    private void Start()
+    private void OnEnable()
     {
-        //nickNameText.text = LobbyManagerRenewal.Instance.PlayerName;
+        nickNameText.text = PhotonNetwork.NickName;
     }
     public void Profile_UI_Off()
     {
