@@ -26,7 +26,7 @@ public class AtkJoyStick : BaseJoyStick
 
     public override void OnEndDrag(PointerEventData eventData)
     {
-        lever.anchoredPosition = Vector2.zero;
+        base.OnEndDrag(eventData);
         PlayerAttackRPC();
         SetDirection();
     }

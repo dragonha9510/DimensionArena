@@ -25,8 +25,7 @@ public class MoveJoyStick : BaseJoyStick
 
     public override void OnEndDrag(PointerEventData eventData)
     {
-        lever.anchoredPosition = Vector2.zero;
-        SetDirection();
+        base.OnEndDrag(eventData);
     }
 
     public override void SetDirection()
