@@ -6,6 +6,8 @@ public class BushObject : GroundObject
 {
     [SerializeField] private BoxCollider myCollider;
     [SerializeField] private MeshRenderer _renderer;
+    [SerializeField] private Material opaque;
+    [SerializeField] private Material transparent;
     [SerializeField] private float bushAlpha;
     private Color oriColor;
     private Vector3 oriPos;
@@ -29,6 +31,7 @@ public class BushObject : GroundObject
             myCollider.transform.position = oriPos + new Vector3(0, 20, 0);
 
             //_renderer.material.color = oriColor * new Color(1, 1, 1, bushAlpha);
+            _renderer.material = transparent;
             _renderer.material.SetColor("_BaseColor", oriColor * new Color(1, 1, 1, bushAlpha));
         }
     }
@@ -46,6 +49,7 @@ public class BushObject : GroundObject
 
             //_renderer.material.color = oriColor; 
             _renderer.material.SetColor("_BaseColor", oriColor);
+            _renderer.material = opaque;
         }
     }
 

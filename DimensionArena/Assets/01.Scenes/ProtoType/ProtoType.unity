@@ -642,6 +642,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 269671725, guid: 37e62921452946b46ae454cfbdf438b6, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 269671725, guid: 37e62921452946b46ae454cfbdf438b6, type: 3}
+      propertyPath: m_FadeMode
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2950938456775813915, guid: 37e62921452946b46ae454cfbdf438b6,
         type: 3}
       propertyPath: m_RootOrder
