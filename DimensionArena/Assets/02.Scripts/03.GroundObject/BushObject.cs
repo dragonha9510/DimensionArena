@@ -19,8 +19,13 @@ public class BushObject : GroundObject
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player_Ditection") && other.gameObject.GetComponentInParent<PhotonView>().IsMine)
+        if (other.CompareTag("Player_Ditection"))
         {
+            PhotonView temp = other.gameObject.GetComponentInParent<PhotonView>();
+
+            if (temp != null && temp.IsMine == false)
+                return;
+
             myCollider.transform.position = oriPos + new Vector3(0, 20, 0);
 
             //_renderer.material.color = oriColor * new Color(1, 1, 1, bushAlpha);
@@ -30,8 +35,13 @@ public class BushObject : GroundObject
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Player_Ditection") && other.gameObject.GetComponentInParent<PhotonView>().IsMine)
+        if (other.CompareTag("Player_Ditection"))
         {
+            PhotonView temp = other.gameObject.GetComponentInParent<PhotonView>();
+
+            if (temp != null && temp.IsMine == false)
+                return;
+
             myCollider.transform.position = oriPos;
 
             //_renderer.material.color = oriColor; 
