@@ -819,7 +819,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   loadText: {fileID: 463588543}
   playMode: 0
-  leastStartPlayer: 2
+  leastStartPlayer: 1
   maxStartPlayer: 8
   playersName: []
 --- !u!1 &2103924711

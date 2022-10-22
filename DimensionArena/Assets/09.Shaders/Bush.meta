@@ -1,6 +1,10 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:DimensionArena/Assets/GUI PRO Kit - Casual Game/PSD/PSD.unitypackage.meta
+guid: 6bcac6b04f5e509439cd4302f20dc6a9
+========
 guid: 671ccf1cbe24ec345ba07398ca228d05
 folderAsset: yes
+>>>>>>>> main:DimensionArena/Assets/09.Shaders/Bush.meta
 DefaultImporter:
   externalObjects: {}
   userData: 
