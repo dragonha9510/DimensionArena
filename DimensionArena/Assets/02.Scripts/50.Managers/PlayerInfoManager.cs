@@ -51,8 +51,11 @@ public class PlayerInfoManager : MonoBehaviourPun
     {
         foreach(GameObject obj in playerObjectArr)
         {
-            if (obj.name == name)
+            if (obj.name.Equals(name))
+            {
                 return obj.transform;
+                Debug.Log("찾았당~");
+            }
         }
         return null;
     }    
@@ -131,11 +134,13 @@ public class PlayerInfoManager : MonoBehaviourPun
     {
         GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
         playerInfoArr = new PlayerInfo[players.Length];
+        playerObjectArr = new GameObject[players.Length];
         DicPlayerInfo = new Dictionary<string, PlayerInfo>();
 
         for (int i = 0; i < players.Length; ++i)
         {
             //리스트 등록, 딕셔너리 등록
+            playerObjectArr[i] = players[i];
             playerInfoArr[i] = players[i].GetComponent<Player>().Info;
             DicPlayerInfo.Add(players[i].name, playerInfoArr[i]);
         }     
