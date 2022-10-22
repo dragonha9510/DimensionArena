@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using Photon.Pun;
 using PlayerSpace;
-
 
 public class PlayerUIManager : MonoBehaviour
 {
@@ -18,35 +18,22 @@ public class PlayerUIManager : MonoBehaviour
 
         //플레이어 받아오기.
         target = GetComponentInParent<Player>();
-
-
-
         // JSB -> ARROW 설정
-        if(arrow == null)
-        {
-            playerName.text = "Player";
-        }
-        else if(target.photonView.IsMine)
-        {
-            arrow.SetActive(true);
-            //환경 정보 분기점
-            string nickName;
-            nickName =
-                target.photonView.Owner == null ? target.photonView.name : target.photonView.Owner.NickName;
+        if(!PhotonNetwork.IsConnected)
+            playerName.text = "Player"; 
+        
+        //target name 
+        playerName.text = target.photonView.Owner.NickName;
 
-
-            //이름 지정
-            playerName.text = nickName;
-            StartCoroutine(ArrowMoveCoroutine());
-        }
-        //////////////
-
-
-
-
-        //Target
+        //Target hp
         target.Info.EcurHPChanged += HpBarChange;
 
+        if(target.photonView.IsMine)
+        {
+            arrow.SetActive(true);
+            StartCoroutine(ArrowMoveCoroutine());
+            //이름 지정
+        }
 
     }
 

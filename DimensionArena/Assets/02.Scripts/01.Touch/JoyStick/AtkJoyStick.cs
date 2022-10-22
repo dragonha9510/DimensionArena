@@ -26,9 +26,8 @@ public class AtkJoyStick : BaseJoyStick
 
     public override void OnEndDrag(PointerEventData eventData)
     {
-        base.OnEndDrag(eventData);
         PlayerAttackRPC();
-        SetDirection();
+        base.OnEndDrag(eventData);
     }
     public override void SetDirection()
     {        
