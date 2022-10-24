@@ -994,6 +994,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4769831142898037395, guid: b3fd36cf1129e664bae3cd44441a5640,
+        type: 3}
+      propertyPath: effectDictionary.array.Array.data[0].Value
+      value: 
+      objectReference: {fileID: 7090135493917942404, guid: 16ee573e0fbc4fd488b73a449c18b983,
+        type: 3}
+    - target: {fileID: 4769831142898037395, guid: b3fd36cf1129e664bae3cd44441a5640,
+        type: 3}
+      propertyPath: effectDictionary.array.Array.data[1].Value
+      value: 
+      objectReference: {fileID: 1000012903210382, guid: 1e379fe29c90d8f4ca2821abad9b9a46,
+        type: 3}
     - target: {fileID: 4769831142898037397, guid: b3fd36cf1129e664bae3cd44441a5640,
         type: 3}
       propertyPath: m_Name

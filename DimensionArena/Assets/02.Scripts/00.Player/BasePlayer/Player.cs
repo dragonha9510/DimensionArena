@@ -87,7 +87,7 @@ namespace PlayerSpace
                 SetToOwnerPlayer();
 
             //Create Event
-            EffectManager.Instance.CreateParticleEffectOnGameobject(this.transform, "Revive", reviveTime);
+            EffectManager.Instance.CreateParticleEffectOnGameobject(this.transform, "Revive");
 
             //Add Event
 
@@ -147,7 +147,7 @@ namespace PlayerSpace
 
         private IEnumerator DisActivePlayer()
         {
-            EffectManager.Instance.CreateParticleEffectOnGameobject(this.transform, "Dead", 3.0f);
+            EffectManager.Instance.CreateParticleEffectOnGameobject(this.transform, "Dead");
             yield return new WaitForSeconds(0.5f);
             gameObject.SetActive(false);
         }

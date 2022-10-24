@@ -47,12 +47,12 @@ public class RedZone : MonoBehaviourPun
     // Start is called before the first frame update
     void Start()
     {
-        if (PhotonNetwork.IsConnected && !PhotonNetwork.IsMasterClient)
+        if (!PhotonNetwork.OfflineMode && !PhotonNetwork.IsMasterClient)
             return;
         delayPositioning.DelayStart(startDelay);
         innerBorder.localScale = new Vector3(0, 2, 0);
 
-        if(!PhotonNetwork.IsConnected)
+        if(PhotonNetwork.OfflineMode)
             Redzone.gameObject.SetActive(false);
         else
             photonView.RPC("RedzoneActiveSetting", RpcTarget.All , false);
@@ -72,7 +72,7 @@ public class RedZone : MonoBehaviourPun
     // Update is called once per frame
     void Update()
     {
-        if(PhotonNetwork.IsConnected)
+        if(!PhotonNetwork.OfflineMode)
         { 
             if (!PhotonNetwork.IsMasterClient)
                 return;
@@ -95,7 +95,7 @@ public class RedZone : MonoBehaviourPun
             Vector3 pos = transform.position + (Random.insideUnitSphere * transform.localScale.x * 0.5f);
             pos.y = Missile.transform.position.y;
 
-            if (!PhotonNetwork.IsConnected)
+            if (PhotonNetwork.OfflineMode)
                 lastMissile = Instantiate(Missile, pos, Quaternion.identity);
             else
                 lastMissile = PhotonNetwork.Instantiate(PHOTONPATH.PHOTONPATH_PREFAPBFOLDER + "Missile", pos, Quaternion.identity);
@@ -108,7 +108,7 @@ public class RedZone : MonoBehaviourPun
                 {
                     pos = transform.position + (Random.insideUnitSphere * transform.localScale.x * 0.5f);
                     pos.y = Missile.transform.position.y;
-                    if (!PhotonNetwork.IsConnected)
+                    if (PhotonNetwork.OfflineMode)
                         lastMissile = Instantiate(Missile, pos, Quaternion.identity);
                     else    
                         lastMissile = PhotonNetwork.Instantiate(PHOTONPATH.PHOTONPATH_PREFAPBFOLDER + "Item_Missile", pos, Quaternion.identity);
@@ -123,7 +123,7 @@ public class RedZone : MonoBehaviourPun
             ++curRepeatCnt;
             delayPositioning.DelayStart(positionDelay);
 
-            if (!PhotonNetwork.IsConnected)
+            if (PhotonNetwork.OfflineMode)
             {
                 innerBorder.transform.position = new Vector3(transform.position.x, 0.5f, transform.position.z);
                 innerBorder.localScale = new Vector3(0, 2, 0);
@@ -164,7 +164,7 @@ public class RedZone : MonoBehaviourPun
             else
                 safezone = new SafeZone();
 
-            if (!PhotonNetwork.IsConnected)
+            if (PhotonNetwork.OfflineMode)
             {
                 transform.position = new Vector3(Random.Range(safezone.left, safezone.right), 0, Random.Range(safezone.top, safezone.bottom));
                 Redzone.gameObject.SetActive(true);
@@ -194,7 +194,8 @@ public class RedZone : MonoBehaviourPun
             return;
 
         Vector3 scale = innerBorder.localScale + prepareSpeed * Time.deltaTime;
-        if(!PhotonNetwork.IsConnected)
+
+        if(PhotonNetwork.OfflineMode)
             innerBorder.localScale = scale;
         else
             photonView.RPC("InBorderScaleSetting", RpcTarget.All, scale);
@@ -204,7 +205,7 @@ public class RedZone : MonoBehaviourPun
             isReady = true;
             isPreparing = false;
             delayShot.DelayStart(shotDelay);
-            if(!PhotonNetwork.IsConnected)
+            if(PhotonNetwork.OfflineMode)
                 innerBorder.localScale = new Vector3(1, 2f, 1);
             else
                 photonView.RPC("InBorderScaleSetting", RpcTarget.All, new Vector3(1, 2f, 1));

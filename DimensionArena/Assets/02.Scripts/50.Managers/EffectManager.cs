@@ -25,29 +25,18 @@ public class EffectManager : MonoBehaviour
     }
     [SerializeField] SerializableDictionary<string, GameObject> effectDictionary;
 
-    public void CreateParticleEffectOnGameobject(Transform trans, string eventType, float time)
+    public void CreateParticleEffectOnGameobject(Transform trans, string eventType)
     {
-        GameObject effect = null;
-
         switch (eventType)
         {
             case "Revive":
                 if (effectDictionary.ContainsKey("Revive"))
-                    effect = Instantiate(effectDictionary["Revive"], trans.position + (Vector3.up * 0.5f), trans.rotation, trans);
+                    Instantiate(effectDictionary["Revive"], trans.position + (Vector3.up * 0.5f), trans.rotation, trans);
                 break;
             case "Dead":
                 if (effectDictionary.ContainsKey("Dead"))
-                    effect = Instantiate(effectDictionary["Dead"], trans.position + (Vector3.up * 0.5f), trans.rotation);
+                    Instantiate(effectDictionary["Dead"], trans.position + (Vector3.up * 0.5f), trans.rotation);
                 break;
         }
-
-        ParticleSystem ps =  effect.GetComponent<ParticleSystem>();
-        ps.Stop();
-
-        var main = ps.main;
-        main.duration = time;
-        ps.Play();
-
-        Destroy(effect, time);
     }
 }
