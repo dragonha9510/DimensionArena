@@ -23,7 +23,6 @@ namespace PlayerSpace
 
         protected override void Start()
         {
-            //향후, 바뀌는게 없다면 Player Start, LateUpdate를 private로 변환
             base.Start();
         }
 
@@ -47,20 +46,17 @@ namespace PlayerSpace
 
             if (PhotonNetwork.InRoom)
             {
-                photonView.RPC("MasterCreateProjectile",  RpcTarget.MasterClient
-                                                        , gameObject.name
-                                                        , attackDirection
-                                                        , atkInfo.Range
-                                                        , projectileSpeed
-                                                        , photonView.Controller
+                photonView.RPC(nameof(MasterCreateProjectile), RpcTarget.MasterClient
+                                                             , gameObject.name
+                                                             , attackDirection
+                                                             , photonView.Controller
                                                     );
 
             }
             else
                 StartCoroutine(AttackCoroutineSingle(null
+                                                    , transform.rotation               
                                                     , attackDirection
-                                                    , atkInfo.Range
-                                                    , projectileSpeed
                                                     , gameObject.name));
 
         }
@@ -68,22 +64,18 @@ namespace PlayerSpace
 
         [PunRPC]
         private IEnumerator MasterCreateProjectile(string shooter, Vector3 shooterAttackDir,
-            float range, float speed,Photon.Realtime.Player controller)
+                                                   Photon.Realtime.Player controller)
         {
-            Debug.Log(shooterAttackDir);
-            Debug.Log(shooter);
-
             GameObject projectile;
             Transform shooterPosition = PlayerInfoManager.Instance.getPlayerTransform(shooter);
-            Debug.Log(shooterPosition);
+            photonView.RPC(nameof(SubMagazine), controller, shooter);
 
             for (int i = 0; i < 2; ++i)
             {
                 for (int j = 0; j < projectileCount; ++j)
                 {
-                    projectile = PhotonNetwork.Instantiate("projectile", shooterPosition.position + shooterAttackDir, Quaternion.identity);
-                    Debug.Log(projectile);
-                    projectile.GetComponent<Projectile>().AttackToDirection(shooterAttackDir, range, speed);
+                    projectile = PhotonNetwork.Instantiate("projectile", shooterPosition.position + shooterAttackDir + (Vector3.up * 0.5f), shooterPosition.rotation);
+                    projectile.GetComponent<Projectile>().AttackToDirection(shooterAttackDir, AtkInfo.Range, projectileSpeed);
                     projectile.GetComponent<Projectile>().ownerID = shooter;
                     yield return new WaitForSeconds(burst_delay);
                 }
@@ -91,23 +83,28 @@ namespace PlayerSpace
             }
 
             photonView.RPC("EndAttack", controller, shooter);
-            //한발 쏠때마다 ShotCost가 빼짐
         }
+
+        [PunRPC]
+        private void SubMagazine(string name)
+        {
+            if (gameObject.name == name)
+                atkInfo.SubCost(atkInfo.ShotCost);
+        }
+
 
         [PunRPC]
         private void EndAttack(string name)
         {
             if(gameObject.name == name)
             {
-                atkInfo.SubCost(atkInfo.ShotCost);
                 owner.CanDirectionChange = true;
                 isAttack = false;
             }
         }
 
 
-        private IEnumerator AttackCoroutineSingle(string shooter, Vector3 shooterAttackDir,
-            float range, float speed, string ownerName)
+        private IEnumerator AttackCoroutineSingle(string shooter, Quaternion playerRotation, Vector3 shooterAttackDir, string ownerName)
         {
             isAttack = true;
 
@@ -120,8 +117,8 @@ namespace PlayerSpace
                 for (int j = 0; j < projectileCount; ++j)
                 {
                     // JSB
-                    projectile = Instantiate(prefab_Projectile, this.transform.position + shooterAttackDir, Quaternion.identity);
-                    projectile.GetComponent<Projectile>().AttackToDirection(shooterAttackDir, range, speed);
+                    projectile = Instantiate(prefab_Projectile, this.transform.position + shooterAttackDir, playerRotation);
+                    projectile.GetComponent<Projectile>().AttackToDirection(shooterAttackDir, AtkInfo.Range, projectileSpeed);
                     projectile.GetComponent<Projectile>().ownerID = ownerName;
                     //
                     yield return new WaitForSeconds(burst_delay);

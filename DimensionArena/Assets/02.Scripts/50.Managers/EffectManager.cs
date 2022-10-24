@@ -18,11 +18,14 @@ public class EffectManager : MonoBehaviour
                 {
                     GameObject obj = new GameObject("EffectManager");
                     instance = obj.AddComponent<EffectManager>();
+                    
                 }
             }
             return instance;
         }
     }
+
+
     [SerializeField] SerializableDictionary<string, GameObject> effectDictionary;
 
     public void CreateParticleEffectOnGameobject(Transform trans, string eventType, float time)
@@ -40,14 +43,5 @@ public class EffectManager : MonoBehaviour
                     effect = Instantiate(effectDictionary["Dead"], trans.position + (Vector3.up * 0.5f), trans.rotation);
                 break;
         }
-
-        ParticleSystem ps =  effect.GetComponent<ParticleSystem>();
-        ps.Stop();
-
-        var main = ps.main;
-        main.duration = time;
-        ps.Play();
-
-        Destroy(effect, time);
     }
 }

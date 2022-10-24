@@ -47,7 +47,7 @@ public class GameManager : MonoBehaviourPunCallbacks, IPunObservable
         GameMode = GAMEMODE.Survival;
 
 
-        Vector3 spawnPoint = new Vector3(0, 0, 0);
+        Vector3 spawnPoint = new Vector3(5, 0, 5);
 
         //   추 후 이거 유동적으로 바꿔야함. 게임매니저 문제점 기록하기
         

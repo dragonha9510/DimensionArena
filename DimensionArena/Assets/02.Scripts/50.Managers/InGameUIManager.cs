@@ -8,28 +8,6 @@ using TMPro;
 using DG.Tweening;
 public class InGameUIManager : MonoBehaviour
 {
-
-    private static InGameUIManager instance;
-    public static InGameUIManager Instance
-    {
-        get
-        {
-
-            if (!instance)
-            {
-                GameObject obj = GameObject.Find("InGameUIManager");
-                if (!obj)
-                {
-                    Debug.LogError("IngameUIManager 프리팹을 해당 씬에 넣어주지 않았습니다. 확인해주세요.");
-                    Application.Quit();
-                }
-                instance = obj.GetComponent<InGameUIManager>();
-            }
-            return instance;
-        }
-    }
-
-
     private struct DeadEvent
     {
         public DeadEvent(CharacterType killerType, string killerName,
@@ -64,6 +42,12 @@ public class InGameUIManager : MonoBehaviour
     [Header("StartUI")]
     [SerializeField] private GameObject GameStartGroup;
     [SerializeField] private TextMeshProUGUI objectiveText;
+    [SerializeField] private Image dimensionArenaLogo;
+
+    [Header("기획/StartAnimation")]
+    [SerializeField] private float textSmallerDelay;
+    [SerializeField] private float logoGrowDelay;
+    private float totalStartDelay;
 
     [Header("InforMationUI")]
     [SerializeField] private RectTransform[] infoTransform;
@@ -86,8 +70,7 @@ public class InGameUIManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI killerNickName;
     [SerializeField] private TextMeshProUGUI victimNickName;
 
-    [Header("Inform UI Setting")]
-
+    [Header("기획/Inform UI Setting")]
     [Range(0.5f, 1.5f)]
     [SerializeField] private float fadeTime;
     [SerializeField] private float InformTime;
@@ -164,25 +147,32 @@ public class InGameUIManager : MonoBehaviour
         touchCanvas.interactable = false;
         touchCanvas.blocksRaycasts = false;
 
-        //Announce Objective Text
+        Prototype_TargetCamera camera = FindObjectOfType<Prototype_TargetCamera>();
+        camera.FollowTargetAtGameStart();
         SetGameStart();
-        yield return new WaitForSeconds(announceTime);
+        //Announce Objective Text
+        yield return new WaitForSeconds(DelayTime(announceTime));
 
-        WaitForSeconds oneSeconds = new WaitForSeconds(1.0f);
-        //Text Count Animation
-        for (int i = countTime; i > 0; --i)
-        {
-            objectiveText.text = i.ToString();
-            //Add Animation
-            yield return oneSeconds;
-        }
+        objectiveText.rectTransform.DOScale(Vector3.zero, textSmallerDelay);
+        yield return new WaitForSeconds(DelayTime(textSmallerDelay));
+
+        dimensionArenaLogo.transform.DOScale(Vector3.one, logoGrowDelay);
+        yield return new WaitForSeconds(DelayTime(logoGrowDelay + 1.0f));
+       
 
         GameStartGroup.SetActive(false);
-
         //Setting InfoUI
         StartCoroutine(InfoUICoroutine());
 
     }
+
+    private float DelayTime(float delay)
+    {
+        totalStartDelay += delay;
+        return delay;
+        
+    }
+
     private IEnumerator InfoUICoroutine()
     {
 

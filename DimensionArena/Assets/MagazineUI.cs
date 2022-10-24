@@ -65,11 +65,11 @@ public class MagazineUI : MonoBehaviour
         magazineBar.fillAmount = fillAmount;
         int childIdx = transform.childCount;
         float maskArea = (float)(1.0f / childIdx);
+        maskArea = Mathf.Floor(maskArea * 100) / 100.0f;
 
         for (int i = 0; i < childIdx; ++i)
-            transform.GetChild(i).gameObject.SetActive((magazineBar.fillAmount) >= (maskArea * (i + 1)));
-
-       
+            transform.GetChild(i).gameObject.
+                SetActive((fillAmount >= (maskArea * (i + 1))));  
     }
 
 

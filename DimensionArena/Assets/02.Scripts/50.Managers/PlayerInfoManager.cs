@@ -52,10 +52,7 @@ public class PlayerInfoManager : MonoBehaviourPun
         foreach(GameObject obj in playerObjectArr)
         {
             if (obj.name.Equals(name))
-            {
                 return obj.transform;
-                Debug.Log("Ã£¾Ò´ç~");
-            }
         }
         return null;
     }    

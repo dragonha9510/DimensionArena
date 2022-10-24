@@ -121,7 +121,6 @@ namespace PlayerSpace
                     GetComponent<MoveJoyStick>();
             joyStick.player = this;
 
-
             SkillJoyStick skilljoyStick = GameObject.Find("SkillJoyStick").
                 GetComponent<SkillJoyStick>();
             info.EskillAmountChanged += skilljoyStick.SkillSetFillAmount;
@@ -134,7 +133,6 @@ namespace PlayerSpace
             SkillJoyStick skillJoyStick = GameObject.Find("SkillJoyStick").
                 GetComponent<SkillJoyStick>();
             skilljoyStick.player = this;
-
 
             GameObject.Find("Target Camera").
                 GetComponent<Prototype_TargetCamera>().target = this.transform;
