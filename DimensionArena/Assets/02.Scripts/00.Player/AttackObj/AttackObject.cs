@@ -52,6 +52,7 @@ public class AttackObject : MonoBehaviourPun
                         photonView.RPC("OnCollisionToPlayer",
                         RpcTarget.All,
                         collision.gameObject.name);
+
                         PhotonNetwork.Destroy(this.gameObject);
                     }
                 }

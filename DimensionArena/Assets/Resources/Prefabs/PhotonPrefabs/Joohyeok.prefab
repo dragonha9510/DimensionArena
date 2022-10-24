@@ -679,9 +679,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   atkInfo:
-    range: 0
-    maxMagazine: 0
-    reloadTime: 0
+    range: 6
+    maxMagazine: 3
+    reloadTime: 1.5
   atkRangeMesh: {fileID: 516184251707268580}
   direction: {x: 0, y: 0, z: 0}
   attackDirection: {x: 0, y: 0, z: 0}
