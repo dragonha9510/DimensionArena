@@ -1352,17 +1352,17 @@ PrefabInstance:
     - target: {fileID: 296620272005601771, guid: f2bd411598e07ef4f851dc5d4af6827b,
         type: 3}
       propertyPath: sceneViewId
-      value: 7
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 296620272312289421, guid: f2bd411598e07ef4f851dc5d4af6827b,
         type: 3}
       propertyPath: sceneViewId
-      value: 8
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 296620272577343113, guid: f2bd411598e07ef4f851dc5d4af6827b,
         type: 3}
       propertyPath: sceneViewId
-      value: 6
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 1342166286767500842, guid: f2bd411598e07ef4f851dc5d4af6827b,
         type: 3}
@@ -1447,7 +1447,7 @@ PrefabInstance:
     - target: {fileID: 9064641369055107943, guid: f2bd411598e07ef4f851dc5d4af6827b,
         type: 3}
       propertyPath: sceneViewId
-      value: 2
+      value: 20
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f2bd411598e07ef4f851dc5d4af6827b, type: 3}
@@ -1688,7 +1688,7 @@ PrefabInstance:
     - target: {fileID: 4463596343270877479, guid: c936b067844329d4f8453dc043e98c13,
         type: 3}
       propertyPath: sceneViewId
-      value: 3
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 4463596343279060198, guid: c936b067844329d4f8453dc043e98c13,
         type: 3}
@@ -1931,8 +1931,58 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8669601969195298653, guid: ba5c292d70fd27d43a65a2561bb4b717,
         type: 3}
+      propertyPath: magneticfieldScale.x
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8669601969195298653, guid: ba5c292d70fd27d43a65a2561bb4b717,
+        type: 3}
+      propertyPath: magneticfieldScale.y
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8669601969195298653, guid: ba5c292d70fd27d43a65a2561bb4b717,
+        type: 3}
       propertyPath: damageZoneTimeDivideCount
-      value: 20
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8669601969679549074, guid: ba5c292d70fd27d43a65a2561bb4b717,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 13.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 8669601969679549074, guid: ba5c292d70fd27d43a65a2561bb4b717,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 11.700001
+      objectReference: {fileID: 0}
+    - target: {fileID: 8669601970016720289, guid: ba5c292d70fd27d43a65a2561bb4b717,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -14.200001
+      objectReference: {fileID: 0}
+    - target: {fileID: 8669601970016720289, guid: ba5c292d70fd27d43a65a2561bb4b717,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 11.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8669601970158501006, guid: ba5c292d70fd27d43a65a2561bb4b717,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 13.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 8669601970158501006, guid: ba5c292d70fd27d43a65a2561bb4b717,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -11.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 8669601970299966446, guid: ba5c292d70fd27d43a65a2561bb4b717,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -14.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8669601970299966446, guid: ba5c292d70fd27d43a65a2561bb4b717,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -11.899996
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ba5c292d70fd27d43a65a2561bb4b717, type: 3}
@@ -1962,7 +2012,7 @@ MonoBehaviour:
   observableSearch: 2
   ObservedComponents:
   - {fileID: 8669601970273911731}
-  sceneViewId: 1
+  sceneViewId: 15
   InstantiationId: 0
   isRuntimeInstantiated: 0
 --- !u!114 &8669601970273911731

@@ -57,6 +57,12 @@ public class GameManager : MonoBehaviourPunCallbacks, IPunObservable
         InGameServerManager.GetInstance().PhotonNetworkInstantiate(PHOTONPATH.PHOTONPATH_PREFAPBFOLDER
             + playerPrefab.name, spawnPoint, Quaternion.identity);
 
+        InGameServerManager.GetInstance().PhotonNetworkInstantiate(PHOTONPATH.PHOTONPATH_ITEMPREFABFOLDER
+            + "ItemBox", new Vector3(-2, 1, 2), Quaternion.identity);
+        InGameServerManager.GetInstance().PhotonNetworkInstantiate(PHOTONPATH.PHOTONPATH_ITEMPREFABFOLDER
+            + "ItemBox", new Vector3(-2, 1, 1), Quaternion.identity);
+        InGameServerManager.GetInstance().PhotonNetworkInstantiate(PHOTONPATH.PHOTONPATH_ITEMPREFABFOLDER
+            + "ItemBox", new Vector3(-2, 1, 0), Quaternion.identity);
         //PhotonNetwork.Instantiate(PHOTONPATH.PHOTONPATH_PREFAPBFOLDER 
         //    + playerPrefab.name, spawnPoint, Quaternion.identity);
 
