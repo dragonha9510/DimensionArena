@@ -4,17 +4,17 @@ using UnityEngine;
 
 public class ItemMove : MonoBehaviour
 {
-    Rigidbody rigidBody;
+    private Rigidbody rigidBody;
     [SerializeField]
-    float boingPower = 1.0f;
+    private float boingPower = 1.0f;
     [SerializeField]
-    float decreasePower = 0.4f;
+    private float decreasePower = 0.4f;
     [SerializeField]
-    float rotation = 100.0f;
+    private float rotation = 100.0f;
     [SerializeField]
-    float decreaseRotation = 0.9f;
+    private float decreaseRotation = 0.9f;
     [SerializeField]
-    GameObject particle;
+    private GameObject particle;
 
     Vector3 randBoing;
     private int ColliderCount = 0;

@@ -16,7 +16,7 @@ public class Detector : MonoBehaviour
         if (follow)
         {
             Vector3 direction = followTarget - this.transform.position;
-            GetComponentInParent<ItemMove>().Trans.Translate(direction.normalized * followSpeed * Time.deltaTime,Space.World);
+            GetComponentInParent<Item>().Trans.Translate(direction.normalized * followSpeed * Time.deltaTime,Space.World);
         }
     }
     private void OnTriggerStay(Collider other)

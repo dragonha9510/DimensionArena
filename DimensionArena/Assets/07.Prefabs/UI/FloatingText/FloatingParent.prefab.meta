@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:DimensionArena/Assets/07.Prefabs/UI/FloatingText/FloatingParent.prefab.meta
 guid: 3e5d6834c0307ec46ae7cb9f4055e378
+========
+guid: 49fc74ce08469b147b0f6a67dfc83264
+>>>>>>>> main:DimensionArena/Assets/Resources/Prefabs/ProtoTypeItems/ItemBox.prefab.meta
 PrefabImporter:
   externalObjects: {}
   userData: 
