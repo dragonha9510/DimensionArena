@@ -117,7 +117,7 @@ namespace PlayerSpace
                 for (int j = 0; j < projectileCount; ++j)
                 {
                     // JSB
-                    projectile = Instantiate(prefab_Projectile, this.transform.position + shooterAttackDir, playerRotation);
+                    projectile = Instantiate(prefab_Projectile, this.transform.position + shooterAttackDir + (Vector3.up * 0.5f), playerRotation);
                     projectile.GetComponent<Projectile>().AttackToDirection(shooterAttackDir, AtkInfo.Range, projectileSpeed);
                     projectile.GetComponent<Projectile>().ownerID = ownerName;
                     //

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 public class Prototype_TargetCamera : MonoBehaviour
 {
@@ -11,6 +12,9 @@ public class Prototype_TargetCamera : MonoBehaviour
 
     private void Start()
     {
+        if (PhotonNetwork.OfflineMode)
+            isStartEnd = true;
+
         interval = transform.position;
 
         if (target == null)
