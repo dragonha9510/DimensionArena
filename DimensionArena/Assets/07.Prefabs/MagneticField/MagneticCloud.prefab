@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8486874475666850395}
   - component: {fileID: 8486874475666850394}
   - component: {fileID: 8486874475666850388}
+  - component: {fileID: 1303722977921390547}
   m_Layer: 0
   m_Name: MagneticCloud
   m_TagString: Untagged
@@ -101,3 +102,16 @@ MonoBehaviour:
   maxScale: 1
   correctionValue: 0.01
   alliveTime: 3
+  UnDead: 0
+--- !u!114 &1303722977921390547
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8486874475666850393}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d907ff353ce8c5f4fad80b0646d33706, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

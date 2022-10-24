@@ -499,6 +499,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
+  arrivalTime: 0
 --- !u!81 &1256572671
 AudioListener:
   m_ObjectHideFlags: 0
@@ -12116,6 +12117,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerName: {fileID: 2286018879084405584}
   hpBarSlider: {fileID: 4586236822648576153}
+  hpText: {fileID: 0}
   arrow: {fileID: 0}
   arrowTime: 3
 --- !u!1001 &8104851031530353387
@@ -12383,7 +12385,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8669601968383885025}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 52, y: -1.9, z: 35.4}
+  m_LocalPosition: {x: 14.8, y: -1.9, z: -10.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -12480,7 +12482,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8669601968836784029}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -53, y: -1.9, z: -42.9}
+  m_LocalPosition: {x: -28, y: -1.9, z: -42.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -12577,7 +12579,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8669601969122650576}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -53, y: -1.9, z: 35.4}
+  m_LocalPosition: {x: -28, y: -1.9, z: -10.700001}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -12724,7 +12726,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8669601969231905021}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 52, y: -1.9, z: -42.9}
+  m_LocalPosition: {x: 14.799999, y: -1.9, z: -42.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -12760,7 +12762,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &8669601969945645868
 Transform:
   m_ObjectHideFlags: 0
@@ -12795,7 +12797,7 @@ MonoBehaviour:
   damageZoneTimeDivideCount: 20
   divideStayTime: 2
   decreaseTime: 20
-  magneticfieldScale: {x: 30, y: 30}
+  magneticfieldScale: {x: 3, y: 3}
   leftTopGround: {fileID: 8669601969122650577}
   leftBottomGround: {fileID: 8669601968836784030}
   rightTopGround: {fileID: 8669601968383885026}

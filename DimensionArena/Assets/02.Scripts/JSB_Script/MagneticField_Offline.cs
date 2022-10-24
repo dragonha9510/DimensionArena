@@ -86,7 +86,7 @@ public class MagneticField_Offline : MonoBehaviour
 
 
         // 포톤에 의해 변경이 된 부분
-        SetEachOther(cloud, leftTopGround, leftBottomGround);
+        SetEachOther(cloud, leftBottomGround, leftTopGround);
         cloud.GetComponent<MagneticCloudEffectCreator>().cloudType = MagneticCloudPos.MagneticCloudPos_Left;
         originalScale[0] = ((rightTopGround.position.x - leftTopGround.position.x) / 2) * (leftTopGround.position.z - leftBottomGround.position.z);
         //cloud.GetComponent<MagneticCloudEffectCreator>().originalScale = originalScale[0];
@@ -94,7 +94,7 @@ public class MagneticField_Offline : MonoBehaviour
 
         // 오른쪽 면
         cloud = Instantiate(rightField, this.transform.position, this.transform.rotation);
-        SetEachOther(cloud, rightTopGround, rightBottomGround);
+        SetEachOther(cloud, rightBottomGround, rightTopGround);
         //cloud.GetComponent<MagneticCloudEffectCreator>().cloudType = MagneticCloudPos.MagneticCloudPos_Right;
         //cloud.GetComponent<MagneticCloudEffectCreator>().originalScale = originalScale[0];
         magneticfieldObj.Add(cloud);
@@ -225,7 +225,7 @@ public class MagneticField_Offline : MonoBehaviour
         Vector3 scale;
         Vector3 rot = new Vector3(0, 0, 0);
 
-        if (start.position.x == end.position.x)
+        if (start.position.x - end.position.x <= float.Epsilon)
         {
             pos.x = start.position.x;
             pos.z = (start.position.z + end.position.z) / 2;
