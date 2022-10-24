@@ -171,7 +171,6 @@ public class PlayerInfo
         isAlive = false;
         EDeadPlayer(killer_type, killer_id, type, id);
         EDisActivePlayer();
-
     }
 
     #endregion

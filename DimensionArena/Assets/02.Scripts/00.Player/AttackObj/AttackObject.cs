@@ -16,15 +16,13 @@ public class AttackObject : MonoBehaviourPun
 
  
     [PunRPC]
-    protected void OnCollisionToPlayer(string targetId, Vector3 targetPos)
+    protected void OnCollisionToPlayer(string targetId )
     {
         PlayerInfoManager.Instance.
                         CurSkillPtIncrease(ownerID,ultimatePoint);
         //Damaged
         PlayerInfoManager.Instance.
                        CurHpDecrease(ownerID, targetId, damage);
-
-        FloatingText.Instance.CreateFloatingTextForDamage(targetPos, damage);
 
         PlayerInfoManager.Instance.DeadCheckCallServer(ownerID);
     }
@@ -50,10 +48,10 @@ public class AttackObject : MonoBehaviourPun
                 {
                     if(ownerID != collision.gameObject.name)
                     {
+                        FloatingText.Instance.CreateFloatingTextForDamage(collision.transform.position, damage);
                         photonView.RPC("OnCollisionToPlayer",
                         RpcTarget.All,
-                        collision.gameObject.name,
-                        collision.transform.position);
+                        collision.gameObject.name);
                         PhotonNetwork.Destroy(this.gameObject);
                     }
                 }

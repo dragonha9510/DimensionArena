@@ -266,9 +266,6 @@ public class PlayerInfoManager : MonoBehaviourPun
                 PlayerInfo killerInfo;
                 DicPlayerInfo.TryGetValue(killerId, out killerInfo);
                 playerInfoArr[i].PlayerDie(killerInfo.Type, killerId);
-                //Player disactive and DisActive    
-                playerInfoArr[i].eDisActive();
-
             }
         } 
     }

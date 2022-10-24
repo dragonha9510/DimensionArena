@@ -1728,16 +1728,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: FloatingParent
       objectReference: {fileID: 0}
-    - target: {fileID: 7712686097573824046, guid: 3e5d6834c0307ec46ae7cb9f4055e378,
-        type: 3}
-      propertyPath: floatTime
-      value: 1.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 7712686097573824046, guid: 3e5d6834c0307ec46ae7cb9f4055e378,
-        type: 3}
-      propertyPath: floatRange
-      value: 3
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3e5d6834c0307ec46ae7cb9f4055e378, type: 3}
 --- !u!114 &480469601574629498 stripped

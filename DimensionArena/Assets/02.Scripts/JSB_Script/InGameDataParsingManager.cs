@@ -2,8 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+#if UNITY_EDITOR
 public class InGameDataParsingManager : MonoBehaviour
 {
+
     private void Awake()
     {
         ParsingToCsvFile_Item("Log/Item_DB_Test");
@@ -77,3 +79,4 @@ public class InGameDataParsingManager : MonoBehaviour
     }
 
 }
+#endif

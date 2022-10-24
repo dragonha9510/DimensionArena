@@ -142,14 +142,9 @@ namespace PlayerSpace
 
         private void DisActiveAnimation()
         {
-            StartCoroutine(DisActivePlayer());
-        }
-
-        private IEnumerator DisActivePlayer()
-        {
             EffectManager.Instance.CreateParticleEffectOnGameobject(this.transform, "Dead");
-            yield return new WaitForSeconds(0.5f);
             gameObject.SetActive(false);
         }
+
     }
 }

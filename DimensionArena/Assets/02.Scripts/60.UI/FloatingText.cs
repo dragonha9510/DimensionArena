@@ -44,7 +44,6 @@ public class FloatingText : MonoBehaviour
 
     public void CreateFloatingTextForDamage(Vector3 position, float Damage)
     {
-
         GameObject floatingObj = Instantiate(floatingPrefab, position + Vector3.up, Quaternion.identity, transform);
         TextMesh textMesh = floatingObj.GetComponent<TextMesh>();
         textMesh.text = Damage.ToString();
@@ -66,7 +65,7 @@ public class FloatingText : MonoBehaviour
             yield return floatDelay;
         }
 
-        Destroy(this.gameObject);
+        Destroy(obj);
     }
 
 

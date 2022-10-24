@@ -46,5 +46,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   floatingPrefab: {fileID: 4765388971594070409, guid: de585c42b1d034f4f9e7aeaecba9f344,
     type: 3}
-  floatTime: 0
-  floatRange: 0
+  floatTime: 1.5
+  floatRange: 3
