@@ -5,15 +5,21 @@ using UnityEngine.Rendering.Universal;
 
 public class RedZone_Missile_Item : RedZone_Missile
 {
-    [SerializeField] private GameObject[] supplyItem;
+    [SerializeField] private GameObject itemBox;
+    private bool isCreate;
 
     protected override void OnTriggerEnter(Collider other)
     {
-        if (other.name != gameObject.name)
+        if (other.name != gameObject.name && !isCreate)
         {
             base.OnTriggerEnter(other);
-            GameObject temp = supplyItem[Random.Range(0, supplyItem.Length)];
-            Instantiate(temp, new Vector3(transform.position.x, 0, transform.position.z), temp.transform.rotation);
+            Instantiate(itemBox, 
+                new Vector3((float)((int)transform.position.x + 0.5f), 
+                0.5f,
+                (float)((int)transform.position.z + 0.5f)), 
+                itemBox.transform.rotation);
+
+            isCreate = true;
         }
     }
 }

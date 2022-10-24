@@ -109,7 +109,7 @@ public class RedZone : MonoBehaviourPun
                     pos = transform.position + (Random.insideUnitSphere * transform.localScale.x * 0.5f);
                     pos.y = Missile.transform.position.y;
                     if (PhotonNetwork.OfflineMode)
-                        lastMissile = Instantiate(Missile, pos, Quaternion.identity);
+                        lastMissile = Instantiate(ItemMissile, pos, Quaternion.identity);
                     else    
                         lastMissile = PhotonNetwork.Instantiate(PHOTONPATH.PHOTONPATH_PREFAPBFOLDER + "Item_Missile", pos, Quaternion.identity);
                 }
