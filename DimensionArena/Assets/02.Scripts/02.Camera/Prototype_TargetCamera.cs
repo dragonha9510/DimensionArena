@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using Photon.Pun;
 public class Prototype_TargetCamera : MonoBehaviour
 {
     [SerializeField] public Transform target;
@@ -11,7 +11,10 @@ public class Prototype_TargetCamera : MonoBehaviour
 
     private void Start()
     {
-        interval = transform.position;
+        if (!PhotonNetwork.IsConnected)
+            isStartEnd = true;
+
+            interval = transform.position;
 
         if (target == null)
         {

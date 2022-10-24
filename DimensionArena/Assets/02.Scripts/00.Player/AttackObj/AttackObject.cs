@@ -16,19 +16,15 @@ public class AttackObject : MonoBehaviourPun
 
  
     [PunRPC]
-    protected void OnCollisionToPlayer(string targetId)
+    protected void OnCollisionToPlayer(string targetId, Vector3 targetPos)
     {
         PlayerInfoManager.Instance.
                         CurSkillPtIncrease(ownerID,ultimatePoint);
         //Damaged
         PlayerInfoManager.Instance.
                        CurHpDecrease(ownerID, targetId, damage);
-        // 이미 이 함수를 들어온 이상 마스터클라이언트 임으로 밑의 if 문 삭제
 
-        // 아니 마스터에서만 지워야함 이거 있어야함
-        /*if (!PhotonNetwork.IsMasterClient)
-            return;
-        PhotonNetwork.Destroy(this.gameObject);*/
+        FloatingText.Instance.CreateFloatingTextForDamage(targetPos, damage);
 
         PlayerInfoManager.Instance.DeadCheckCallServer(ownerID);
     }
@@ -56,9 +52,8 @@ public class AttackObject : MonoBehaviourPun
                     {
                         photonView.RPC("OnCollisionToPlayer",
                         RpcTarget.All,
-                        collision.gameObject.name);
-
-                        // 걍이거 위애 ToPlayer 에서 뺐음
+                        collision.gameObject.name,
+                        collision.transform.position);
                         PhotonNetwork.Destroy(this.gameObject);
                     }
                 }

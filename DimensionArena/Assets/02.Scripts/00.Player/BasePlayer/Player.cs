@@ -23,6 +23,8 @@ namespace PlayerSpace
         [HideInInspector] public Vector3 direction;
 
         /// ============================= 
+
+
         /// =============================
         /// Component Type Region
         /// =============================

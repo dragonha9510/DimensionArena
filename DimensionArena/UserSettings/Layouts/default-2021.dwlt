@@ -43,7 +43,7 @@ MonoBehaviour:
     width: 1920
     height: 1117
   m_ShowMode: 4
-  m_Title: Project
+  m_Title: Hierarchy
   m_RootView: {fileID: 5}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -97,7 +97,7 @@ MonoBehaviour:
   m_MinSize: {x: 100, y: 121}
   m_MaxSize: {x: 4000, y: 4021}
   vertical: 0
-  controlID: 140
+  controlID: 119
 --- !u!114 &5
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -193,7 +193,7 @@ MonoBehaviour:
   m_MinSize: {x: 400, y: 200}
   m_MaxSize: {x: 32384, y: 16192}
   vertical: 1
-  controlID: 106
+  controlID: 36
 --- !u!114 &9
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -219,7 +219,7 @@ MonoBehaviour:
   m_MinSize: {x: 400, y: 100}
   m_MaxSize: {x: 32384, y: 8096}
   vertical: 0
-  controlID: 107
+  controlID: 37
 --- !u!114 &10
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -244,7 +244,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 100}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 108
+  controlID: 38
 --- !u!114 &11
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -264,8 +264,8 @@ MonoBehaviour:
     y: 0
     width: 350
     height: 589
-  m_MinSize: {x: 100, y: 100}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 101, y: 121}
+  m_MaxSize: {x: 4001, y: 4021}
   m_ActualView: {fileID: 17}
   m_Panes:
   - {fileID: 17}
@@ -290,8 +290,8 @@ MonoBehaviour:
     y: 0
     width: 885
     height: 589
-  m_MinSize: {x: 200, y: 200}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 202, y: 221}
+  m_MaxSize: {x: 4002, y: 4021}
   m_ActualView: {fileID: 18}
   m_Panes:
   - {fileID: 18}
@@ -316,8 +316,8 @@ MonoBehaviour:
     y: 0
     width: 355
     height: 589
-  m_MinSize: {x: 200, y: 200}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 202, y: 221}
+  m_MaxSize: {x: 4002, y: 4021}
   m_ActualView: {fileID: 19}
   m_Panes:
   - {fileID: 19}
@@ -342,8 +342,8 @@ MonoBehaviour:
     y: 0
     width: 330
     height: 589
-  m_MinSize: {x: 275, y: 50}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 276, y: 71}
+  m_MaxSize: {x: 4001, y: 4021}
   m_ActualView: {fileID: 20}
   m_Panes:
   - {fileID: 20}
@@ -837,7 +837,7 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: 9ac7afffb4feafff5cdab2ff0cedb2fff6eeb2ff1e24b3ff5a0db4fff05bb4ffdc5db4ff0493b4ff98bdb6ff60a9b7ffee01b8ffd4adb9ff9c8fbdffaa8fbdffb48fbdffee8fbdff2a90bdff2c93bdff8ecabdff7a67c3ff8467c3ffbe67c3fffa67c3fffc6ac3ff4ea2c3ff5ea2c3ff3656c4ff4056c4ff7a56c4ffb656c4ffb859c4ff1a91c4ff9028c8ff5629c8ffb434c8ffc86bc8ffc06dc8ff886ec8ff5c72c8ff2273c8fff073c8ffb874c9ff1a8fcaff2a8fcaff722aceff6830ceff7c67ceff4268cefff00ccfff0444cfff744ccffffc84cfffeac6d0ffc0c7d0ff94cbd0ff5eccd0ff4eafd1fff89bd2ff30a2d2ffa2edd2fffcdbddfff42be3ffbc2de3ffd62ee3ffce2fe3ff0e31e3ff0832e3ffdc78e3ff2058e4ff3a96e5ff729ce5ff0acee6ff90aae7ffd8d4ecff26d4edff10f4f5fffcf4f7ff68e6f9ff32affaff34b2faffbce8faff5ce9faff60e9faff70e9faff80e9faffc431fdff842efeff0835feff18a4feff66d3feffbadfffff78e6ffffc8e9ffffc0eaffffc0ebffffb4fafffff4ffffffe65d0200204604007a4604003c5404006a5e040056680400b2c405008cd50500
+      m_ExpandedIDs: d4b2ffff84ecffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -897,7 +897,7 @@ MonoBehaviour:
     m_ControlHash: -371814159
     m_PrefName: Preview_InspectorPreview
   m_LastInspectedObjectInstanceID: -1
-  m_LastVerticalScrollValue: 324
+  m_LastVerticalScrollValue: 0
   m_GlobalObjectId: 
   m_InspectorMode: 0
   m_LockTracker:
@@ -943,38 +943,38 @@ MonoBehaviour:
     m_SceneHandles: 
     m_ShowAllHits: 0
     m_SkipHidden: 0
-    m_SearchArea: 0
+    m_SearchArea: 1
     m_Folders:
-    - Assets/01.Scenes/ProtoType
+    - Assets/Resources
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 16
   m_LastFolders:
-  - Assets/01.Scenes/ProtoType
+  - Assets/Resources
   m_LastFoldersGridSize: 16
   m_LastProjectPath: D:\UnityProject\DimensionArena\DimensionArena
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: ac7a0100
-    m_LastClickedID: 96940
-    m_ExpandedIDs: 00000000587a01005a7a0100607a0100627a0100647a0100667a0100687a01006a7a01006e7a0100767a0100787a01007a7a01007c7a01007e7a0100807a0100827a0100847a0100867a0100887a01008a7a01008c7a01008e7a0100907a0100927a0100947a0100967a0100987a01009a7a01009c7a01009e7a0100147b0100aade0100acde0100b0de010062220200142302004423020000ca9a3b
+    scrollPos: {x: 0, y: 539}
+    m_SelectedIDs: 6a120100
+    m_LastClickedID: 70250
+    m_ExpandedIDs: 00000000b6110100b8110100ba110100bc110100be110100c0110100c2110100c4110100c6110100c8110100ca110100cc110100ce110100d0110100d2110100d4110100d6110100d8110100da110100dc110100de110100e0110100e2110100e4110100e6110100e8110100ea110100ec110100ee110100f0110100f2110100f4110100f6110100f8110100fa110100061201006a12010000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: GameOff
-      m_OriginalName: GameOff
+      m_Name: 
+      m_OriginalName: 
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: 96962
+      m_UserData: 0
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
-      m_OriginalEventType: 0
+      m_OriginalEventType: 11
       m_IsRenamingFilename: 1
       m_ClientGUIView: {fileID: 15}
     m_SearchString: 
@@ -988,7 +988,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000587a01005a7a01005c7a01005e7a0100607a0100627a0100647a0100667a0100687a01006a7a01006c7a01006e7a0100707a0100727a0100747a0100767a0100787a01007a7a01007c7a01007e7a0100807a0100827a0100847a0100867a0100887a01008a7a01008c7a01008e7a0100907a0100927a0100947a0100967a0100987a01009a7a01009c7a01009e7a0100
+    m_ExpandedIDs: 00000000b6110100b8110100ba110100bc110100be110100c0110100c2110100c4110100c6110100c8110100ca110100cc110100ce110100d0110100d2110100d4110100d6110100d8110100da110100dc110100de110100e0110100e2110100e4110100e6110100e8110100ea110100ec110100ee110100f0110100f2110100f4110100f6110100f8110100fa110100
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 

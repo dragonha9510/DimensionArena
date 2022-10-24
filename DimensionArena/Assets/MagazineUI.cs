@@ -70,6 +70,7 @@ public class MagazineUI : MonoBehaviour
         for (int i = 0; i < childIdx; ++i)
             transform.GetChild(i).gameObject.
                 SetActive((fillAmount >= (maskArea * (i + 1))));  
+
     }
 
 

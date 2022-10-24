@@ -130,7 +130,7 @@ public class PlayerInfo
     {
         curHP -= damage;
         curHP = Mathf.Max(curHP, 0);
-        EcurHPChanged(curHP);
+        EcurHPChanged(curHP);  
     }
 
     [PunRPC]
