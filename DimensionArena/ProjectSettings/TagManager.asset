@@ -27,8 +27,8 @@ TagManager:
   - GroundObject_Brick
   - GroundObject_Bush
   - Obstacle
+  - Projectile
   - AtkRange
-  - 
   - 
   - 
   - 
