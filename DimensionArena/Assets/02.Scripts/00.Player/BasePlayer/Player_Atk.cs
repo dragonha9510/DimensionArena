@@ -86,10 +86,12 @@ namespace PlayerSpace
 
         public void StartAttack()
         {
+            if (isAttack)
+                return;
+
             attackDirection = direction;
             attackDirection.Normalize();
-            StartCoroutine(LookAttackDirection());
-            Attack();
+            StartCoroutine(LookAttackDirection());  
         }
 
         IEnumerator LookAttackDirection()
@@ -105,14 +107,19 @@ namespace PlayerSpace
 
                 transform.LookAt(transform.position + forward);
             }
+            // 방향이 다 돌아가고 나서 공격 실행
+            Attack();
         }
 
         IEnumerator MagazineReloadCoroutine()
         {
             while (true)
             {
-                atkInfo.AddCost(Time.deltaTime * atkInfo.InverseReloadTime);
-                eChangeMagazineCost(atkInfo.CurCost);
+                if(!atkInfo.CurCost.AlmostEquals(1.0f, float.Epsilon))
+                {
+                    atkInfo.AddCost(Time.deltaTime * atkInfo.InverseReloadTime);
+                    eChangeMagazineCost(atkInfo.CurCost);
+                }
                 yield return null;   
             }
         }

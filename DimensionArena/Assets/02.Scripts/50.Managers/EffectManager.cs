@@ -18,11 +18,14 @@ public class EffectManager : MonoBehaviour
                 {
                     GameObject obj = new GameObject("EffectManager");
                     instance = obj.AddComponent<EffectManager>();
+                    
                 }
             }
             return instance;
         }
     }
+
+
     [SerializeField] SerializableDictionary<string, GameObject> effectDictionary;
 
     public void CreateParticleEffectOnGameobject(Transform trans, string eventType)

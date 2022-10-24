@@ -11,6 +11,7 @@ public class PlayerUIManager : MonoBehaviour
     Player target;
     [SerializeField] TextMeshProUGUI playerName;
     [SerializeField] Slider hpBarSlider;
+    [SerializeField] TextMeshProUGUI hpText;
     [SerializeField] GameObject arrow;
     [SerializeField] float arrowTime = 3.0f;
     void Start()
@@ -24,10 +25,11 @@ public class PlayerUIManager : MonoBehaviour
         
         //target name 
         playerName.text = target.photonView.Owner.NickName;
+        hpText.text = target.Info.MaxHP.ToString(); 
 
         //Target hp
-        target.Info.EcurHPChanged += HpBarChange;
-
+        target.Info.EcurHPChanged += HpChange;
+        
         if(target.photonView.IsMine)
         {
             arrow.SetActive(true);
@@ -60,15 +62,17 @@ public class PlayerUIManager : MonoBehaviour
     }
 
 
-    void HpBarChange(float amount)
+    void HpChange(float amount)
     {
-        hpBarSlider.value = amount;
+        hpBarSlider.value = amount / target.Info.MaxHP;
+        hpText.text = amount.ToString();
     }
+
 
 
 
     private void OnDestroy()
     {
-        target.Info.EcurHPChanged -= HpBarChange;
+        target.Info.EcurHPChanged -= HpChange;
     }
 }

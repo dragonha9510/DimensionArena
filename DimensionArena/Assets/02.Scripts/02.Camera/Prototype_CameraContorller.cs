@@ -5,6 +5,7 @@ using UnityEngine;
 public class Prototype_CameraContorller : MonoBehaviour
 {
     [SerializeField] private GameObject[] _camera;
+
     private int cameraNum = 1;
     private int nextCameraNum = 1;
 
@@ -38,4 +39,5 @@ public class Prototype_CameraContorller : MonoBehaviour
             _camera[cameraNum].SetActive(true);
         }
     }
+
 }
