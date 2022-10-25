@@ -5059,9 +5059,9 @@ GameObject:
   m_Component:
   - component: {fileID: 8808472164530683907}
   - component: {fileID: 8850840794844867483}
+  - component: {fileID: 3460620753441655679}
   - component: {fileID: 8859486997864378991}
   - component: {fileID: 8909246808845504051}
-  - component: {fileID: 3460620753441655679}
   - component: {fileID: 806630071103042075}
   - component: {fileID: 6038638425439934088}
   - component: {fileID: 4711642055103804875}
@@ -5108,6 +5108,23 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.5, y: 0.2, z: 0.7402406}
   m_Center: {x: 0, y: 0.02815685, z: 0.020120263}
+--- !u!114 &3460620753441655679
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8806198835709795471}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a67418ec58fd1c45b8f6d25392bf05c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ownerID: 
+  ultimatePoint: 10
+  damage: 12
+  rigid: {fileID: 8859486997864378991}
+  originPos: {x: 0, y: 0, z: 0}
 --- !u!54 &8859486997864378991
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -5155,23 +5172,6 @@ MonoBehaviour:
   - {fileID: 8806515935899655393}
   - {fileID: 8806284010125210903}
   ActiveParticleSystems: 01010101010101
---- !u!114 &3460620753441655679
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8806198835709795471}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a67418ec58fd1c45b8f6d25392bf05c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ownerID: 
-  ultimatePoint: 10
-  damage: 12
-  rigid: {fileID: 8859486997864378991}
-  originPos: {x: 0, y: 0, z: 0}
 --- !u!82 &806630071103042075
 AudioSource:
   m_ObjectHideFlags: 0

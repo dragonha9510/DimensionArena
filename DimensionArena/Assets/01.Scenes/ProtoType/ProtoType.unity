@@ -1366,18 +1366,58 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1342166286767500842, guid: f2bd411598e07ef4f851dc5d4af6827b,
         type: 3}
+      propertyPath: shotDelay
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 1342166286767500842, guid: f2bd411598e07ef4f851dc5d4af6827b,
+        type: 3}
       propertyPath: startDelay
-      value: 15
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 1342166286767500842, guid: f2bd411598e07ef4f851dc5d4af6827b,
+        type: 3}
+      propertyPath: prepareDelay
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 1342166286767500842, guid: f2bd411598e07ef4f851dc5d4af6827b,
         type: 3}
       propertyPath: magneticField
       value: 
       objectReference: {fileID: 8669601970273911732}
+    - target: {fileID: 1342166286767500842, guid: f2bd411598e07ef4f851dc5d4af6827b,
+        type: 3}
+      propertyPath: positionDelay
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 1342166286767500842, guid: f2bd411598e07ef4f851dc5d4af6827b,
+        type: 3}
+      propertyPath: lastMissileCnt
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1342166286767500842, guid: f2bd411598e07ef4f851dc5d4af6827b,
+        type: 3}
+      propertyPath: MinMaxmissileCntValue.x
+      value: 45
+      objectReference: {fileID: 0}
+    - target: {fileID: 1342166286767500842, guid: f2bd411598e07ef4f851dc5d4af6827b,
+        type: 3}
+      propertyPath: MinMaxmissileCntValue.y
+      value: 60
+      objectReference: {fileID: 0}
     - target: {fileID: 2628270988558472989, guid: f2bd411598e07ef4f851dc5d4af6827b,
         type: 3}
       propertyPath: m_RootOrder
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2628270988558472989, guid: f2bd411598e07ef4f851dc5d4af6827b,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 2628270988558472989, guid: f2bd411598e07ef4f851dc5d4af6827b,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 2628270988558472989, guid: f2bd411598e07ef4f851dc5d4af6827b,
         type: 3}
@@ -1443,6 +1483,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_RootOrder
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9064641367732405542, guid: f2bd411598e07ef4f851dc5d4af6827b,
+        type: 3}
+      propertyPath: size.x
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 9064641367732405542, guid: f2bd411598e07ef4f851dc5d4af6827b,
+        type: 3}
+      propertyPath: size.y
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 9064641369055107943, guid: f2bd411598e07ef4f851dc5d4af6827b,
         type: 3}
@@ -1961,27 +2011,27 @@ PrefabInstance:
     - target: {fileID: 8669601969195298653, guid: ba5c292d70fd27d43a65a2561bb4b717,
         type: 3}
       propertyPath: decreaseTime
-      value: 20
+      value: 120
       objectReference: {fileID: 0}
     - target: {fileID: 8669601969195298653, guid: ba5c292d70fd27d43a65a2561bb4b717,
         type: 3}
       propertyPath: divideStayTime
-      value: 2
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8669601969195298653, guid: ba5c292d70fd27d43a65a2561bb4b717,
         type: 3}
       propertyPath: magneticfieldScale.x
-      value: 5
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8669601969195298653, guid: ba5c292d70fd27d43a65a2561bb4b717,
         type: 3}
       propertyPath: magneticfieldScale.y
-      value: 5
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8669601969195298653, guid: ba5c292d70fd27d43a65a2561bb4b717,
         type: 3}
       propertyPath: damageZoneTimeDivideCount
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8669601969679549074, guid: ba5c292d70fd27d43a65a2561bb4b717,
         type: 3}
