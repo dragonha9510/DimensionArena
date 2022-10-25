@@ -206,7 +206,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 59121204}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1888400616}
+        m_TargetAssemblyTypeName: ResultCanvas, Assembly-CSharp
+        m_MethodName: InfoCanvasActive
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &59121204
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -335,6 +347,7 @@ GameObject:
   - component: {fileID: 208272375}
   - component: {fileID: 208272374}
   - component: {fileID: 208272373}
+  - component: {fileID: 208272377}
   m_Layer: 5
   m_Name: ResultInfoCanvas
   m_TagString: Untagged
@@ -427,6 +440,21 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &208272377
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 208272372}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f296fbfb65660b4582de546cec5092d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  killText: {fileID: 585406566}
+  damageText: {fileID: 1215452080}
+  surviveText: {fileID: 1916906637}
 --- !u!1 &308923240
 GameObject:
   m_ObjectHideFlags: 0
@@ -510,7 +538,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 308923243}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 208272377}
+        m_TargetAssemblyTypeName: ResultInfoCanvas, Assembly-CSharp
+        m_MethodName: ChanageToMainScene
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &308923243
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2437,6 +2477,7 @@ GameObject:
   - component: {fileID: 1888400614}
   - component: {fileID: 1888400613}
   - component: {fileID: 1888400612}
+  - component: {fileID: 1888400616}
   m_Layer: 5
   m_Name: ResultCanvas
   m_TagString: Untagged
@@ -2528,6 +2569,24 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &1888400616
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1888400611}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13b2332750c883c4e80cafcb3f183701, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  infoCanvas: {fileID: 208272372}
+  rankImage: {fileID: 1450577569}
+  rankResource:
+  - {fileID: 21300000, guid: bfc9a43db529bf54788a24f9f701b2da, type: 3}
+  - {fileID: 21300000, guid: 03ff71804b5165d43a8835256a9495ae, type: 3}
+  rankText: {fileID: 1395850747}
 --- !u!1 &1916906635
 GameObject:
   m_ObjectHideFlags: 0

@@ -144,5 +144,18 @@ namespace PlayerSpace
             gameObject.SetActive(false);
         }
 
+
+        public void Win()
+        {
+            if (!PhotonNetwork.IsConnected)
+                return;
+
+            if(photonView.IsMine)
+            {
+                InGameUIManager.Instance.WinUIOn();
+                gameObject.SetActive(false);
+            }
+        }
+
     }
 }

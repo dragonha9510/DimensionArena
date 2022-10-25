@@ -201,21 +201,26 @@ public class PlayerInfoManager : MonoBehaviourPun
     public void CurHpDecrease(string ownerId, string targetId, float damage)
     {
         PlayerInfo target;
-
         //Damage
         if (DicPlayerInfo.TryGetValue(targetId, out target))
         {
-            damage = CheckShieldExist(target, damage);
             
+            damage = damage > target.CurHP ? target.CurHP : damage;
+
+            //Data Regist
+            InGamePlayerData data;
+
+            if (IngameDataManager.Instance.Data.TryGetValue(ownerId, out data))
+            {
+                data.HitPoint(damage);
+            }
+
+            //Ingame 
+            damage = CheckShieldExist(target, damage);
+
             target.Damaged(damage);
         }
-
-        InGamePlayerData data;
-        if(IngameDataManager.Instance.Data.TryGetValue(ownerId, out data))
-        {
-            data.HitPoint(damage);
-        }
-            
+    
     }
     
     //JSB
@@ -234,9 +239,19 @@ public class PlayerInfoManager : MonoBehaviourPun
                 //Ingame UI Inform Kill
                 PlayerInfo killerInfo;
                 DicPlayerInfo.TryGetValue(killerId, out killerInfo);
+
+                //Player Die 
                 playerInfoArr[i].PlayerDie(killerInfo.Type, killerId);
 
+                //GameData Set
                 InGamePlayerData data;
+                
+                if(IngameDataManager.Instance.Data.TryGetValue(playerInfoArr[i].ID, out data))
+                {
+                    data.DeathData();
+                }
+                
+                
                 if (IngameDataManager.Instance.Data.TryGetValue(killerId, out data))
                 {
                     data.KillPoint();

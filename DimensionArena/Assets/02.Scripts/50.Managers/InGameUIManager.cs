@@ -8,6 +8,30 @@ using TMPro;
 using DG.Tweening;
 public class InGameUIManager : MonoBehaviour
 {
+    private static InGameUIManager instance;
+
+    public static InGameUIManager Instance
+    {
+        get
+        {
+            if (null == instance)
+            {
+                GameObject inGameUIManager = GameObject.Find("InGameUIManager");
+
+                if (!inGameUIManager)
+                {
+                    inGameUIManager = new GameObject("InGameUIManager");
+                    inGameUIManager.AddComponent<PlayerInfoManager>();
+                    inGameUIManager.AddComponent<PhotonView>();
+                }
+
+                instance = inGameUIManager.GetComponent<InGameUIManager>();
+            }
+
+            return instance;
+        }
+    }
+
     private struct DeadEvent
     {
         public DeadEvent(CharacterType killerType, string killerName,
@@ -281,6 +305,14 @@ public class InGameUIManager : MonoBehaviour
         StartCoroutine(CanvasAlphaOn(group));
     }
 
+
+    public void WinUIOn()
+    {
+        winLoseText.text = "You Win!";
+        GameEndGroup.SetActive(true);
+        CanvasGroup group = GameEndGroup.GetComponent<CanvasGroup>();
+        StartCoroutine(CanvasAlphaOn(group));
+    }
 
     IEnumerator CanvasAlphaOn(CanvasGroup group)
     {
