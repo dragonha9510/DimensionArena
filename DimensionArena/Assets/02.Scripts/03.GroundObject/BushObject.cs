@@ -4,8 +4,8 @@ using UnityEngine;
 using Photon.Pun;
 public class BushObject : GroundObject
 {
-    [SerializeField] private BoxCollider myCollider;
-    [SerializeField] private MeshRenderer _renderer;
+    private BoxCollider myCollider;
+    private MeshRenderer _renderer;
     [SerializeField] private Material opaque;
     [SerializeField] private Material transparent;
     [SerializeField] private float bushAlpha;
@@ -14,6 +14,9 @@ public class BushObject : GroundObject
 
     private void Start()
     {
+        _renderer = GetComponent<MeshRenderer>();
+        myCollider = transform.GetChild(0).GetComponent<BoxCollider>();
+
         oriPos = myCollider.transform.position;
         //oriColor = _renderer.material.color;
         oriColor = _renderer.material.GetColor("_BaseColor");
