@@ -196,7 +196,7 @@ public class PlayerInfoManager : MonoBehaviourPun
     {     
        
     }
-
+   
 
     public void CurHpDecrease(string ownerId, string targetId, float damage)
     {
@@ -241,9 +241,6 @@ public class PlayerInfoManager : MonoBehaviourPun
                 PlayerInfo killerInfo;
                 DicPlayerInfo.TryGetValue(killerId, out killerInfo);
 
-                //Player Die 
-                playerInfoArr[i].PlayerDie(killerInfo.Type, killerId);
-
                 //GameData Set
                 InGamePlayerData data;
                 
@@ -257,6 +254,9 @@ public class PlayerInfoManager : MonoBehaviourPun
                 {
                     data.KillPoint();
                 }
+                //Player Die 
+                playerInfoArr[i].PlayerDie(killerInfo.Type, killerId);
+
             }
         } 
     }

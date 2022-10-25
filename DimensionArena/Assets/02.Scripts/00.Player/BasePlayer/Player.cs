@@ -153,6 +153,7 @@ namespace PlayerSpace
             if(photonView.IsMine)
             {
                 InGameUIManager.Instance.WinUIOn();
+                IngameDataManager.Instance.OwnerData.SetRank();
                 gameObject.SetActive(false);
             }
         }

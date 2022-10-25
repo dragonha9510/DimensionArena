@@ -19,12 +19,16 @@ public class AttackObject : MonoBehaviourPun
     protected void OnCollisionToPlayer(string targetId )
     {
         PlayerInfoManager.Instance.
-                        CurSkillPtIncrease(ownerID,ultimatePoint);
+                        CurSkillPtIncrease(ownerID, ultimatePoint);
         //Damaged
         PlayerInfoManager.Instance.
                        CurHpDecrease(ownerID, targetId, damage);
 
         PlayerInfoManager.Instance.DeadCheckCallServer(ownerID);
+
+        if(PhotonNetwork.IsMasterClient)
+            PhotonNetwork.Destroy(this.gameObject);
+
     }
 
     //JSB
@@ -53,7 +57,7 @@ public class AttackObject : MonoBehaviourPun
                         RpcTarget.All,
                         collision.gameObject.name);
 
-                        PhotonNetwork.Destroy(this.gameObject);
+                        
                     }
                 }
                 break;

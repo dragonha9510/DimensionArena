@@ -32,6 +32,10 @@ public class InGamePlayerData
         death++;
         liveTime = IngameDataManager.Instance.CurTime;
 
+
+
+        Debug.Log("±Ê¿Ã : " + PlayerInfoManager.Instance.PlayerObjectArr.Length);
+
         for(int i = 0; i < PlayerInfoManager.Instance.PlayerObjectArr.Length; ++i)
         {
             Debug.Log("rank : " + rank);
@@ -53,6 +57,12 @@ public class InGamePlayerData
 
             }
         }
+    }
+
+
+    public void SetRank()
+    {
+        rank = 1;
     }
 
     float damage;
