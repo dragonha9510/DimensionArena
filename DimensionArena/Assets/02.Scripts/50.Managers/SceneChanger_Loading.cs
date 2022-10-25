@@ -45,6 +45,5 @@ public class SceneChanger_Loading
             nextScene = next;
 
         SceneManager.LoadScene(next);
-        SetCurScene();
     }
 }

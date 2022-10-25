@@ -19,6 +19,7 @@ public class ManagerMediator : MonoBehaviour
 
     private void Awake()
     {
+        DontDestroyOnLoad(this.gameObject);
         StartCoroutine(DelayActiveManager());
     }
 

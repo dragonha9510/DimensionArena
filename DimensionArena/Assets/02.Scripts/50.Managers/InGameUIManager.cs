@@ -6,6 +6,8 @@ using UnityEngine.UI;
 using Photon.Pun;
 using TMPro;
 using DG.Tweening;
+using UnityEngine.SceneManagement;
+
 public class InGameUIManager : MonoBehaviour
 {
     private static InGameUIManager instance;
@@ -337,11 +339,7 @@ public class InGameUIManager : MonoBehaviour
     public void LoadResultScene()
     {
         PhotonNetwork.LeaveRoom();
-
-        if (PhotonNetwork.InRoom)
-            Debug.Log("연결되있네요... 슬퍼요 ㅠㅠ");
-        
-        SceneChanger_Loading.Instance.ChangeScene("Result");
+        SceneManager.LoadScene("Result");
     }
 
 

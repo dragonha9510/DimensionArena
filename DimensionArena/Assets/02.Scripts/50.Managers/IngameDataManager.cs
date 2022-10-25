@@ -34,6 +34,7 @@ public class InGamePlayerData
 
         for(int i = 0; i < PlayerInfoManager.Instance.PlayerObjectArr.Length; ++i)
         {
+            Debug.Log("rank : " + rank);
             if(PlayerInfoManager.Instance.PlayerObjectArr[i].activeInHierarchy)
                 rank++;
         }     
@@ -46,6 +47,7 @@ public class InGamePlayerData
             {
                 if (PlayerInfoManager.Instance.PlayerObjectArr[i].activeInHierarchy)
                 {
+                    Debug.Log("임시함수들어감");
                     PlayerInfoManager.Instance.PlayerObjectArr[i].GetComponent<Player>().Win();
                 }
 
@@ -67,11 +69,9 @@ public class InGamePlayerData
     public int Rank => rank;
 }
 
-
 public class IngameDataManager : MonoBehaviour
 {
     private static IngameDataManager instance;
-
     public static IngameDataManager Instance
     {
         get
@@ -89,6 +89,8 @@ public class IngameDataManager : MonoBehaviour
         }
     }
 
+
+
     [SerializeField] private Dictionary<string, InGamePlayerData> data;
     public  Dictionary<string, InGamePlayerData> Data => data;
 
@@ -99,11 +101,11 @@ public class IngameDataManager : MonoBehaviour
     public InGamePlayerData OwnerData => ownerData;
 
     private void Awake()
-    {
-        if (!instance)
+    {     
+        if(!Instance)
+        {
             Destroy(this.gameObject);
-
-        DontDestroyOnLoad(this.gameObject);
+        }
 
         FindAllPlayer();
     }

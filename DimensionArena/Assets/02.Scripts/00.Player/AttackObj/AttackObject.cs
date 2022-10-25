@@ -8,7 +8,7 @@ public class AttackObject : MonoBehaviourPun
 {
     //AttackObject¿« ¡÷¿Œ
     public string ownerID;
-    //JSB
+    
     protected AudioSource audioSource;
     //
     [SerializeField] private int ultimatePoint;

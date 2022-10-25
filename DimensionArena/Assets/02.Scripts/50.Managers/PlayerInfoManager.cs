@@ -74,13 +74,13 @@ public class PlayerInfoManager : MonoBehaviourPun
     {
         get 
         {
-            if (NullCheck.IsNullOrEmpty(playerObjectArr))
+            if ((playerObjectArr).Length <= 0)
             {
                 playerObjectArr = GameObject.FindGameObjectsWithTag("Player");
 
                 if (NullCheck.IsNullOrEmpty(playerInfoArr))
                 {
-                    GameObject[] players = PlayerObjectArr;
+                    GameObject[] players = playerObjectArr;
                     playerInfoArr = new PlayerInfo[players.Length];
                     dicPlayerInfo = new Dictionary<string, PlayerInfo>();
                     dicPlayer = new Dictionary<string, GameObject>();
@@ -212,6 +212,7 @@ public class PlayerInfoManager : MonoBehaviourPun
 
             if (IngameDataManager.Instance.Data.TryGetValue(ownerId, out data))
             {
+                Debug.Log(ownerId + "에damage" + damage + "들어감");
                 data.HitPoint(damage);
             }
 
