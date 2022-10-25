@@ -11,7 +11,7 @@ public class InGamePlayerData
         damage = 0;
         liveTime = 0;
         kill = 0;
-
+        death = 0;
         GameObject obj;
         PlayerInfoManager.Instance.DicPlayer.TryGetValue(ownerID, out obj);
 
@@ -36,6 +36,7 @@ public class InGamePlayerData
     float damage;
     float liveTime;
     int kill;
+    int death;
     bool isMine;
 }
 
