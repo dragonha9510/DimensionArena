@@ -18,55 +18,54 @@ public class InGamePlayerData
     public void HitPoint(float dmg)
     {
         damage += dmg;
-        Debug.Log(damage);
     }
 
     public void KillPoint()
     {
         kill++;
-        Debug.Log(kill);
     }
 
     public void DeathData()
     {
         death++;
+
         liveTime = IngameDataManager.Instance.CurTime;
+        liveTime *= 100;
+        liveTime = Mathf.Floor(liveTime) * 0.01f;
 
-
-
-        Debug.Log("길이 : " + PlayerInfoManager.Instance.PlayerObjectArr.Length);
-
-        for(int i = 0; i < PlayerInfoManager.Instance.PlayerObjectArr.Length; ++i)
+        for (int i = 0; i < PlayerInfoManager.Instance.PlayerObjectArr.Length; ++i)
         {
-            Debug.Log("rank : " + rank);
             if(PlayerInfoManager.Instance.PlayerObjectArr[i].activeInHierarchy)
                 rank++;
         }     
 
-
         //임시함수 제거해야된다
-        if(rank == 2)
+        if(rank == 1)
         {
             for (int i = 0; i < PlayerInfoManager.Instance.PlayerObjectArr.Length; ++i)
             {
                 if (PlayerInfoManager.Instance.PlayerObjectArr[i].activeInHierarchy)
                 {
-                    Debug.Log("임시함수들어감");
                     PlayerInfoManager.Instance.PlayerObjectArr[i].GetComponent<Player>().Win();
                 }
 
             }
         }
+
+        rank++;
     }
 
 
     public void SetRank()
     {
         rank = 1;
+        liveTime = IngameDataManager.Instance.CurTime;
+        liveTime *= 100;
+        liveTime = Mathf.Floor(liveTime) * 0.01f;
     }
 
     float damage;
-    public float Damage;
+    public float Damage => damage;
 
     float liveTime;
     public float LiveTime => liveTime;
@@ -123,12 +122,7 @@ public class IngameDataManager : MonoBehaviour
 
     private void Update()
     {
-        if (!PhotonNetwork.IsMasterClient)
-            return;
-
-
         time += Time.deltaTime;
-
     }
 
 

@@ -210,9 +210,10 @@ public class PlayerInfoManager : MonoBehaviourPun
             //Data Regist
             InGamePlayerData data;
 
+
             if (IngameDataManager.Instance.Data.TryGetValue(ownerId, out data))
             {
-                Debug.Log(ownerId + "에damage" + damage + "들어감");
+                Debug.Log(ownerId + "가" + damage + "만큼 데미지 줌");
                 data.HitPoint(damage);
             }
 
@@ -240,6 +241,7 @@ public class PlayerInfoManager : MonoBehaviourPun
                 //Ingame UI Inform Kill
                 PlayerInfo killerInfo;
                 DicPlayerInfo.TryGetValue(killerId, out killerInfo);
+                playerInfoArr[i].PlayerDie(killerInfo.Type, killerId);
 
                 //GameData Set
                 InGamePlayerData data;
@@ -255,7 +257,6 @@ public class PlayerInfoManager : MonoBehaviourPun
                     data.KillPoint();
                 }
                 //Player Die 
-                playerInfoArr[i].PlayerDie(killerInfo.Type, killerId);
 
             }
         } 
