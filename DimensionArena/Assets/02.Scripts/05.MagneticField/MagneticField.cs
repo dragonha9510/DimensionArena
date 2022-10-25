@@ -237,7 +237,7 @@ public class MagneticField : MonoBehaviourPun
         Vector3 scale;
         Vector3 rot = new Vector3(0, 0, 0);
 
-        if (start.position.x == end.position.x)
+        if (start.position.x - end.position.x <= float.Epsilon)
         {
             pos.x = start.position.x;
             pos.z = (start.position.z + end.position.z) / 2;
