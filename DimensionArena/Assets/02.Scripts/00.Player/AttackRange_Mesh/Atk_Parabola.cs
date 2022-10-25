@@ -7,13 +7,13 @@ public class Atk_Parabola : Atk_Range
 {
     private Mesh mesh;
     [SerializeField] private Transform endPoint;
-    [SerializeField] private Transform endPoint2;
 
     [SerializeField] private float meshWidth;
 
     private float velocity;
     [SerializeField] private float distance = 3;
-    [SerializeField] private float angle;
+    [SerializeField] private float maxYpos = 3;
+    private float angle;
     [SerializeField] private int resolution = 10;
 
 
@@ -67,8 +67,7 @@ public class Atk_Parabola : Atk_Range
         // Use Angle
         // endPoint.localPosition = vertices[((resolution + 1) * 2) - 1] + new Vector3(meshWidth * 0.5f, 1.75f, 0);
         // Use LookAt
-        endPoint.localPosition = vertices[1] + new Vector3(meshWidth * 0.5f, 1.75f, 0);
-        endPoint2.localPosition = vertices[1] + new Vector3(meshWidth * 0.5f, 0.01f, 0);
+        endPoint.localPosition = vertices[1] + new Vector3(meshWidth * 0.5f, 0.01f, 0);
 
         mesh.vertices = vertices;
         mesh.triangles = triangles;
@@ -77,8 +76,7 @@ public class Atk_Parabola : Atk_Range
     {
         Vector3[] arcArray = new Vector3[resolution + 1];
 
-        radianAngle = Mathf.Deg2Rad * angle;
-        velocity = Mathf.Sqrt((distance * gravity) / Mathf.Sin(2 * radianAngle));
+        CalculateAngleWithMaxDistance();
 
         for (int i = 0; i <= resolution; ++i)
         {
@@ -88,6 +86,23 @@ public class Atk_Parabola : Atk_Range
 
         return arcArray;
     }
+
+    void CalculateAngleWithMaxDistance()
+    {
+        float middle = distance * 0.5f;
+
+        for (float i = 30; i < 90; i += 0.5f)
+        {
+            angle = i;
+            radianAngle = Mathf.Deg2Rad * angle;
+            velocity = Mathf.Sqrt((distance * gravity) / Mathf.Sin(2 * radianAngle));
+            float y = middle * Mathf.Tan(radianAngle) - ((gravity * middle * middle) / (2 * velocity * velocity * Mathf.Cos(radianAngle) * Mathf.Cos(radianAngle)));
+
+            if (y >= maxYpos)
+                break;
+        }
+    }
+
     Vector3 CalculateArcPoint(float t, float dist)
     {
         float x = t * dist;
