@@ -68,8 +68,8 @@ public class PlayerInfoManager : MonoBehaviourPun
 
     [SerializeField] private GameObject[] playerObjectArr;
     [SerializeField] private PlayerInfo[] playerInfoArr;
-    private Dictionary<string, PlayerInfo> DicPlayerInfo;
-
+    [SerializeField] private Dictionary<string, PlayerInfo> dicPlayerInfo;
+    [SerializeField] private Dictionary<string, GameObject> dicPlayer;
     public GameObject[] PlayerObjectArr
     {
         get 
@@ -82,13 +82,16 @@ public class PlayerInfoManager : MonoBehaviourPun
                 {
                     GameObject[] players = PlayerObjectArr;
                     playerInfoArr = new PlayerInfo[players.Length];
-                    DicPlayerInfo = new Dictionary<string, PlayerInfo>();
+                    dicPlayerInfo = new Dictionary<string, PlayerInfo>();
+                    dicPlayer = new Dictionary<string, GameObject>();
 
                     for (int i = 0; i < players.Length; ++i)
                     {
                         //리스트 등록, 딕셔너리 등록
                         playerInfoArr[i] = players[i].GetComponent<Player>().Info;
                         DicPlayerInfo.Add(players[i].name, playerInfoArr[i]);
+                        DicPlayer.Add(players[i].name, players[i]);
+
                     }
                 }
             }
@@ -96,6 +99,10 @@ public class PlayerInfoManager : MonoBehaviourPun
             return playerObjectArr;
         }
     }
+
+
+    public Dictionary<string, PlayerInfo> DicPlayerInfo => dicPlayerInfo;
+    public Dictionary<string, GameObject> DicPlayer => dicPlayer;
 
 
 
@@ -132,7 +139,8 @@ public class PlayerInfoManager : MonoBehaviourPun
         GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
         playerInfoArr = new PlayerInfo[players.Length];
         playerObjectArr = new GameObject[players.Length];
-        DicPlayerInfo = new Dictionary<string, PlayerInfo>();
+        dicPlayerInfo = new Dictionary<string, PlayerInfo>();
+        dicPlayer = new Dictionary<string, GameObject>();
 
         for (int i = 0; i < players.Length; ++i)
         {
@@ -140,6 +148,7 @@ public class PlayerInfoManager : MonoBehaviourPun
             playerObjectArr[i] = players[i];
             playerInfoArr[i] = players[i].GetComponent<Player>().Info;
             DicPlayerInfo.Add(players[i].name, playerInfoArr[i]);
+            DicPlayer.Add(players[i].name, players[i]);
         }     
 
 
@@ -201,11 +210,12 @@ public class PlayerInfoManager : MonoBehaviourPun
             target.Damaged(damage);
         }
 
-        if(DicPlayerInfo.TryGetValue(ownerId, out target))
+        InGamePlayerData data;
+        if(IngameDataManager.Instance.Data.TryGetValue(ownerId, out data))
         {
-
+            data.HitPoint(damage);
         }
-       
+            
     }
     
     //JSB
@@ -225,6 +235,12 @@ public class PlayerInfoManager : MonoBehaviourPun
                 PlayerInfo killerInfo;
                 DicPlayerInfo.TryGetValue(killerId, out killerInfo);
                 playerInfoArr[i].PlayerDie(killerInfo.Type, killerId);
+
+                InGamePlayerData data;
+                if (IngameDataManager.Instance.Data.TryGetValue(killerId, out data))
+                {
+                    data.KillPoint();
+                }
             }
         } 
     }

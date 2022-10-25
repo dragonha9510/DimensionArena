@@ -1325,8 +1325,7 @@ MonoBehaviour:
   m_RequiresDepthTextureOption: 2
   m_RequiresOpaqueTextureOption: 2
   m_CameraType: 0
-  m_Cameras:
-  - {fileID: 0}
+  m_Cameras: []
   m_RendererIndex: -1
   m_VolumeLayerMask:
     serializedVersion: 2
@@ -1885,31 +1884,8 @@ PrefabInstance:
       propertyPath: infoTransform.Array.data[1]
       value: 
       objectReference: {fileID: 1546303736}
-    - target: {fileID: 4463596344292227198, guid: c936b067844329d4f8453dc043e98c13,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c936b067844329d4f8453dc043e98c13, type: 3}
---- !u!1 &4463596344478352338 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1310907930, guid: c936b067844329d4f8453dc043e98c13,
-    type: 3}
-  m_PrefabInstance: {fileID: 4463596344478352337}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &4463596344478352339
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4463596344478352338}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 656aafd6ba5645f4997c4609343c5d52, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &8669601970273911728
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1925,7 +1901,7 @@ PrefabInstance:
     - target: {fileID: 8669601969195298651, guid: ba5c292d70fd27d43a65a2561bb4b717,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8669601969195298652, guid: ba5c292d70fd27d43a65a2561bb4b717,
         type: 3}

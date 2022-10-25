@@ -7,11 +7,7 @@ namespace PlayerSpace
     [System.Serializable]
     public class PlayerAtkInfo
     {
-        public PlayerAtkInfo(string fileName)
-        {
-            //
-        }
-
+    
         public PlayerAtkInfo(float range, int maxMagazine, float reloadTime)
         {
             this.range = range;
@@ -40,6 +36,7 @@ namespace PlayerSpace
         public float CurCost => curCost;
         public float ShotCost => shotCost;
         public float InverseReloadTime => inverseReloadTime;
+
 
         public void AddCost(float amount)
         {

@@ -17,6 +17,7 @@ public enum CharacterType
 [Serializable]
 public class PlayerInfo
 {
+
     public PlayerInfo(string ID)
     {
         id = ID;

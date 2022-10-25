@@ -5169,7 +5169,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ownerID: 
   ultimatePoint: 10
-  damage: 10
+  damage: 12
   rigid: {fileID: 8859486997864378991}
   originPos: {x: 0, y: 0, z: 0}
 --- !u!82 &806630071103042075

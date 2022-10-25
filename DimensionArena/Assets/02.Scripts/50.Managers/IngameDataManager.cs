@@ -4,6 +4,42 @@ using UnityEngine;
 using Photon.Pun;
 using PlayerSpace;
 
+public class InGamePlayerData
+{
+    public InGamePlayerData(string ownerID)
+    {
+        damage = 0;
+        liveTime = 0;
+        kill = 0;
+
+        GameObject obj;
+        PlayerInfoManager.Instance.DicPlayer.TryGetValue(ownerID, out obj);
+
+        if (obj.GetComponent<PhotonView>().IsMine)
+            isMine = true;
+        else
+            isMine = false;
+    }
+
+    public void HitPoint(float dmg)
+    {
+        damage += dmg;
+        Debug.Log(damage);
+    }
+
+    public void KillPoint()
+    {
+        kill++;
+        Debug.Log(kill);
+    }
+
+    float damage;
+    float liveTime;
+    int kill;
+    bool isMine;
+}
+
+
 public class IngameDataManager : MonoBehaviour
 {
     private static IngameDataManager instance;
@@ -26,35 +62,26 @@ public class IngameDataManager : MonoBehaviour
     }
 
 
-  
-    Player player;
-    InGamePlayerData data;
+    [SerializeField] private Dictionary<string, InGamePlayerData> data;
+    public  Dictionary<string, InGamePlayerData> Data => data;
 
     private void Awake()
     {
         if (!instance)
             Destroy(this.gameObject);
 
-        FindMyPlayer();
+        FindAllPlayer();
     }
 
-    private void FindMyPlayer()
+    private void FindAllPlayer()
     {
+        data = new Dictionary<string, InGamePlayerData>();
+
         GameObject[] players = PlayerInfoManager.Instance.PlayerObjectArr;
 
         for(int i = 0; i < players.Length; ++i)
         {
-            //when this obj is mine
-            if(players[i].GetComponent<PhotonView>().IsMine)
-            {
-                //player regist and break
-                player = players[i].GetComponent<Player>();
-                break;
-            }
+            data.Add(players[i].name, new InGamePlayerData(players[i].name));
         }
     }
-
-
-
-
 }

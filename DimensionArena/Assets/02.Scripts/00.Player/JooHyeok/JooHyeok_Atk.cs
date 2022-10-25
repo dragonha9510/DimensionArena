@@ -18,7 +18,7 @@ namespace PlayerSpace
 
         protected override void InitalizeAtkInfo()
         {
-            atkInfo = new PlayerAtkInfo(6.0f, 3, 1.5f);
+            atkInfo = new PlayerAtkInfo(6, 3, 2.2f);
         }
 
         protected override void Start()
@@ -39,6 +39,7 @@ namespace PlayerSpace
                 StartAttackCoroutine();
 
         }
+
         private void StartAttackCoroutine()
         {
             owner.CanDirectionChange = false;
