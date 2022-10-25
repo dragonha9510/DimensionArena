@@ -18,7 +18,7 @@ namespace PlayerSpace
 
         protected override void InitalizeAtkInfo()
         {
-            atkInfo = new PlayerAtkInfo(6.0f, 3, 1.5f);
+            atkInfo = new PlayerAtkInfo(6.0f, 3, 2.25f);
         }
 
         protected override void Start()

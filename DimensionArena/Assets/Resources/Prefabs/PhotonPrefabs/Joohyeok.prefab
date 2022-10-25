@@ -658,11 +658,11 @@ MonoBehaviour:
     id: 
     type: 2
     isAlive: 0
-    maxHP: 0
+    maxHP: 100
     curHP: 0
     curSkillPoint: 0
-    maxSkillPoint: 0
-    speed: 0
+    maxSkillPoint: 100
+    speed: 2.3
     curShield: 0
     killScore: 0
     dmgScore: 0
@@ -681,13 +681,13 @@ MonoBehaviour:
   atkInfo:
     range: 6
     maxMagazine: 3
-    reloadTime: 1.5
+    reloadTime: 2.35
   atkRangeMesh: {fileID: 516184251707268580}
   direction: {x: 0, y: 0, z: 0}
   attackDirection: {x: 0, y: 0, z: 0}
   projectileCount: 3
   projectileSpeed: 8
-  burst_delay: 0.1
+  burst_delay: 0.075
   attack_delay: 0.25
   prefab_Projectile: {fileID: 8806198835709795471, guid: c89b77fc162b5484097fa203f4317fd0,
     type: 3}
