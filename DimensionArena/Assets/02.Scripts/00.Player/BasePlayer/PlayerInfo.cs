@@ -47,9 +47,9 @@ public class PlayerInfo
     /// =============================
     public event Action<float> EskillAmountChanged = (param) => { };
     public event Action<float> EcurHPChanged = (param) => { };
+    public event Action EDisActivePlayer = () => { };
     public event Action<CharacterType, string,
                         CharacterType, string> EDeadPlayer = (param, param2, param3, param4) => { };
-    public event Action EDisActivePlayer = () => { };
 
 
     public void eDisActive()

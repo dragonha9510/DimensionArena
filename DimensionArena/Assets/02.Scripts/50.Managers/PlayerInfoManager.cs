@@ -23,7 +23,7 @@ public class PlayerInfoManager : MonoBehaviourPun
         {      
             if (null == instance)
             {
-                GameObject infoMgr = GameObject.Find("PlayerInfoManager");//new GameObject("PlayerInfoManager");
+                GameObject infoMgr = GameObject.Find("PlayerInfoManager");
 
                 if(!infoMgr)
                 {
@@ -184,43 +184,10 @@ public class PlayerInfoManager : MonoBehaviourPun
     }
 
     public void CurHpDecrease(GameObject owner, GameObject target, float damage)
-    {
+    {     
        
-
-        /*
-        for (int i = 0; i < PlayerObjectArr.Length; ++i)
-        {
-            if (PlayerObjectArr[i] == target)
-            {
-                damage = CheckShieldExist(playerInfoArr[i], damage);
-                playerInfoArr[i].Damaged(damage);
-                break;
-            }
-        }
-        */
     }
 
-
-    /*
-    [PunRPC]
-    public void CurHpDecrease(string targetId, float damage)
-    {
-        for (int i = 0; i < playerInfoArr.Length; ++i)
-        {
-            if (playerInfoArr[i].ID == targetId)
-            {
-                playerInfoArr[i].Damaged(damage);
-
-                if (playerInfoArr[i].CurHP.
-                    AlmostEquals(0.0f, float.Epsilon))
-                {
-                    playerInfoArr[i].PlayerDie();
-                }
-                break;
-            }
-        }
-    }
-    */
 
     public void CurHpDecrease(string ownerId, string targetId, float damage)
     {
@@ -231,25 +198,17 @@ public class PlayerInfoManager : MonoBehaviourPun
         {
             damage = CheckShieldExist(target, damage);
             
-            Debug.Log(damage);
-
             target.Damaged(damage);
         }
 
-        //When Die
-        //if (target.CurHP.AlmostEquals(0.0f, float.Epsilon))
-        //{
-        //    PlayerInfo owner;
-        //    if (DicPlayerInfo.TryGetValue(ownerId, out owner))
-        //    {
-        //
-        //        if(photonView.IsMine)
-        //            target.PlayerDie(owner.Type, ownerId);
-        //    }
-        //}
-    }
-    // JSB
+        if(DicPlayerInfo.TryGetValue(ownerId, out target))
+        {
 
+        }
+       
+    }
+    
+    //JSB
     public void DeadCheckCallServer(string killerId)
     {
         photonView.RPC("HealthCheck", RpcTarget.All , killerId);

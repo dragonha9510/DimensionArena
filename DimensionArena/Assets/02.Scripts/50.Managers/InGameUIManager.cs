@@ -93,21 +93,6 @@ public class InGameUIManager : MonoBehaviour
 
     private void Start()
     {
-        StartCoroutine(WaitForAllPlayerRegistForMemory());
-    }
-
-    IEnumerator WaitForAllPlayerRegistForMemory()
-    {
-        if (PhotonNetwork.IsConnected)
-        {
-            while (PhotonNetwork.CurrentRoom.PlayerCount
-           != PlayerInfoManager.Instance.PlayerObjectArr.Length)
-            {
-                yield return null;
-            }
-
-        }
-
         Initialize();
         StartCoroutine(StartUICoroutine());
     }

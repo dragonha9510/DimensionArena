@@ -8,13 +8,37 @@ using Photon;
 
 namespace PlayerSpace
 {
+    public class InGamePlayerData
+    {
+        public InGamePlayerData()
+        {
+            damage = 0;
+            liveTime = 0;
+            kill = 0;
+        }
+
+
+        public void HitPoint(float dmg)
+        {
+            damage += dmg;
+            
+        }
+
+        public void KillPoint()
+        {
+            kill++;
+        }
+
+
+        float damage;
+        float liveTime;
+        int kill;
+    }
+
+
+
     public abstract class Player : MonoBehaviourPunCallbacks
     {
-        /*
-        static Player ownerPlayer;
-        public static Player OwnerPlayer => ownerPlayer;
-        */
-
 
         /// =============================
         /// Direction Region
@@ -40,6 +64,9 @@ namespace PlayerSpace
         private Player_Movement movement;
 
         private Rigidbody rigid;
+
+        private InGamePlayerData playerdata;
+        public InGamePlayerData PlayerData => playerdata;
         /// =============================
 
         private string nickName;
@@ -59,12 +86,14 @@ namespace PlayerSpace
                 {
                     nickName = photonView.Owner.NickName;
                     gameObject.name = nickName;
+                    playerdata = new InGamePlayerData();
                 }
             }
             else
             {
                 nickName = "Player";
                 gameObject.name = "Player";
+                playerdata = new InGamePlayerData();
             }
         }
 
