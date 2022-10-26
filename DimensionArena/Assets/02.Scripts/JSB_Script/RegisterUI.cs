@@ -53,7 +53,7 @@ public class RegisterUI : MonoBehaviour
 
     public void NickNameCheck()
     {
-        
+        SoundManager.Instance.PlaySFXOneShot("ClickEffect");   
         string text = nickNameInputField.text;
         
         // 공백 체크
@@ -98,6 +98,7 @@ public class RegisterUI : MonoBehaviour
     }
     public void ActiveFalseWarningPopUp()
     {
+        SoundManager.Instance.PlaySFXOneShot("CancelEffect");
         warningPopUp.SetActive(false);
     }    
     public void ActiveTrueNickCheckPopUp()
@@ -107,10 +108,12 @@ public class RegisterUI : MonoBehaviour
     }
     public void ActiveFalseNickCheckPopUp()
     {
+        SoundManager.Instance.PlaySFXOneShot("CancelEffect");
         nickCheckPopUp.SetActive(false);
     }
     public void GoToGameStartScene()
     {
+        SoundManager.Instance.PlaySFXOneShot("ClickEffect");
         SceneManager.LoadScene("GameStartScene");
         FirebaseDB_Manager.Instance.RegisterNewPlayer(nickNameInputField.text);
     }

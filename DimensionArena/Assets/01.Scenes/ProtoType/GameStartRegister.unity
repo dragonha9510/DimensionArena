@@ -347,7 +347,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneNames:
-  - 01.LobbyScene
+  - 01.UI
   - 02.GameScene
   bgmPlayer: {fileID: 1136330000}
   sfxPlayer: {fileID: 1136329999}

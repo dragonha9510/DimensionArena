@@ -23,6 +23,8 @@ public class SoundManager : MonoBehaviourPun
 
     private Dictionary<string, AudioClip> AudioClips = new Dictionary<string, AudioClip>();
 
+    private bool isInLobby = false;
+    public bool IsInLobby { set { isInLobby = value; } }
 
     public static SoundManager Instance
     {
@@ -66,10 +68,10 @@ public class SoundManager : MonoBehaviourPun
                 }
             }
         }
-        AudioClip clip = AudioClips["LobbyMusic"];
-        bgmPlayer.clip = AudioClips["LobbyMusic"];
-        bgmPlayer.Play();
-        bgmPlayer.loop = true;
+        //AudioClip clip = AudioClips["LobbyMusic"];
+        //bgmPlayer.clip = AudioClips["LobbyMusic"];
+        //bgmPlayer.Play();
+        //bgmPlayer.loop = true;
     }
 
 
@@ -91,12 +93,6 @@ public class SoundManager : MonoBehaviourPun
     public void SettingMusicVolume(float value)
     {
         bgmPlayer.volume = value;
-    }
-
-
-    public void PlaySFXAllClient(PhotonView PV , string audioClipName)
-    {
-        PV.RPC("PlaySFXOneShot", RpcTarget.All, audioClipName);
     }
 
     public void PlayBGM(string clipName)
