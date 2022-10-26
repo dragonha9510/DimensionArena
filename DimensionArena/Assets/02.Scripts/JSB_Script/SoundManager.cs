@@ -78,6 +78,10 @@ public class SoundManager : MonoBehaviourPun
     public void PlaySFXOneShotInRange(float soundRange,Transform actorTrans,string effectName)
     {
         Transform playerTrans = PlayerInfoManager.Instance.getPlayerTransform(PhotonNetwork.NickName);
+
+        if (playerTrans == null)
+            return;
+
         float distance = Mathf.Pow(Mathf.Abs(playerTrans.position.x - actorTrans.position.x), 2) + Mathf.Pow(Mathf.Abs(playerTrans.position.z - actorTrans.position.z), 2);
         if(soundRange >= distance)
         {

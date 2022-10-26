@@ -74,7 +74,7 @@ namespace PlayerSpace
             {
                 for (int j = 0; j < projectileCount; ++j)
                 {
-                    projectile = PhotonNetwork.Instantiate("projectile", shooterPosition.position + shooterAttackDir + (Vector3.up * 0.5f), shooterPosition.rotation);
+                    projectile = PhotonNetwork.Instantiate("projectile", shooterPosition.position + (Vector3.up * 0.5f), shooterPosition.rotation);
                     projectile.GetComponent<Projectile>().AttackToDirection(shooterAttackDir, AtkInfo.Range, projectileSpeed);
                     projectile.GetComponent<Projectile>().ownerID = shooter;
                     yield return new WaitForSeconds(burst_delay);
