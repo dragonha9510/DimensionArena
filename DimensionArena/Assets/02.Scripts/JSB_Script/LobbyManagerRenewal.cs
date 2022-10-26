@@ -123,6 +123,14 @@ public class LobbyManagerRenewal : MonoBehaviourPunCallbacks
     // 룸은 2글자로 밖에 관리를 못한다 즉 룸 앞의 이름이 절대 겹쳐서는 안된다
     private void SetUpRoomList(List<RoomInfo> roomList)
     {
+        if(0 == roomList.Count)
+        {
+            foreach (List<RoomInfo> roomlist in rooms)
+            {
+                roomlist.Clear();
+            }
+            return;
+        }
         string roomName = "";
         foreach(RoomInfo info in roomList)
         {
@@ -205,6 +213,7 @@ public class LobbyManagerRenewal : MonoBehaviourPunCallbacks
 
         playMode = gameMode;
         string roomName = CheckingRoom(gameMode);
+        bool Test = PhotonNetwork.IsConnected;
         if (roomName == "empty")
         {
             // 임시로 방 생성은 일정한 이름으로 만들어 놨음
@@ -229,7 +238,6 @@ public class LobbyManagerRenewal : MonoBehaviourPunCallbacks
     public override void OnJoinRoomFailed(short returnCode, string message)
     {
         Debug.Log("접속실패");
-        PhotonNetwork.JoinRoom("room");
     }
     public override void OnJoinedRoom()
     {
