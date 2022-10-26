@@ -687,8 +687,8 @@ MonoBehaviour:
   attackDirection: {x: 0, y: 0, z: 0}
   projectileCount: 3
   projectileSpeed: 8
-  burst_delay: 0.075
-  attack_delay: 0.25
+  burst_delay: 0.1
+  attack_delay: 0.2
   prefab_Projectile: {fileID: 913381453853950687, guid: 975ed344785d6bc4094232b7111305be,
     type: 3}
   audioSource: {fileID: 0}

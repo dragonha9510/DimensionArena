@@ -17,35 +17,29 @@ namespace GRITTY
             rect = new Rect(position.x, position.y, width, height);
             nodeInfo = _nodeInfo;
         }
+
+
         public void CreateBrick(int row, int colmn, NodeInformation _nodeInfo)
         {
+
             nodeInfo.currentTexture = _nodeInfo.currentTexture;
 
             //If Block Exist Delete and Overwrite
             if (brick)
-            {
                 MonoBehaviour.DestroyImmediate(brick);
-            }
 
-            int originRow = (GridMapEditor.mapSize.x / 2);
-            int originColmn = (GridMapEditor.mapSize.y / 2);
+            float offsetRow = GridMapEditor.mapSize.x * 0.5f - 0.5f;
+            float offsetColmn = GridMapEditor.mapSize.y * 0.5f - 0.5f;
 
+            //Ground Obstacle split a branch
+            string parentStr = _nodeInfo.type == PREFAB_TYPE.GROUND ? "Floors" : "Obstacles";
+            float yPos = _nodeInfo.type == PREFAB_TYPE.GROUND ? -0.5f : 0.5f;
+            brick = MonoBehaviour.Instantiate(_nodeInfo.prefab);
+            brick.transform.position = new Vector3(row - offsetRow, yPos, offsetColmn - colmn);
+            brick.name = _nodeInfo.objectName;
+            brick.transform.SetParent(GameObject.Find(parentStr).transform);
 
-            if (_nodeInfo.type == PREFAB_TYPE.GROUND)
-            {
-                brick = MonoBehaviour.Instantiate(_nodeInfo.prefab);
-                brick.transform.position = new Vector3((row - originRow) + 0.5f, -0.5f, - (colmn - originColmn) - 0.5f);
-                brick.transform.parent = GameObject.Find("Floors").transform;
-                brick.name = _nodeInfo.objectName;
-            }
-            else
-            {
-                brick = MonoBehaviour.Instantiate(_nodeInfo.prefab);
-                brick.transform.position = new Vector3((row - originRow) + 0.5f, 0.5f, - (colmn - originColmn) - 0.5f);
-                brick.transform.parent = GameObject.Find("Obstacles").transform;
-                brick.name = _nodeInfo.objectName;
-            }
-
+        
             //Parsing Data Add to Gameobject
             ParsingToNode parsingNode = brick.AddComponent<ParsingToNode>();
             parsingNode.rect = rect;
@@ -55,11 +49,11 @@ namespace GRITTY
 
         public void CreateEmptyBrick(int row, int colmn, GameObject obj)
         {
-            int originRow = (GridMapEditor.mapSize.x / 2);
-            int originColmn = (GridMapEditor.mapSize.y / 2);
+            float offsetRow = GridMapEditor.mapSize.x * 0.5f - 0.5f;
+            float offsetColmn = GridMapEditor.mapSize.y * 0.5f - 0.5f;
 
             brick = MonoBehaviour.Instantiate(obj);
-            brick.transform.position = new Vector3((row - originRow) + 0.5f, 0.5f, -(colmn - originColmn) - 0.5f);
+            brick.transform.position = new Vector3(row - offsetRow, 0.5f, offsetColmn - colmn);
             brick.transform.parent = GameObject.Find("Obstacles").transform;
             brick.name = obj.name;
 

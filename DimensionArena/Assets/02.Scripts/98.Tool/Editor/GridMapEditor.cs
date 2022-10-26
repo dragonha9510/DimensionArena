@@ -82,7 +82,7 @@ namespace GRITTY
             //Ground Setting
             GameObject grounds = Resources.Load<GameObject>("Tool/Ground/Plane");
             parentGround = Instantiate(grounds);
-            parentGround.transform.localScale = new Vector3(mapSize.x / 10, 1, mapSize.y / 10);
+            parentGround.transform.localScale = new Vector3(mapSize.x * 0.1f, 1, mapSize.y * 0.1f);
             parentGround.transform.parent = GameObject.FindWithTag("MapTool").transform;
             parentGround.tag = "ParentGround";
 
@@ -569,7 +569,7 @@ namespace GRITTY
                     //모두 비어있을때
                     if(!list_Ground_Node[i][j].brick)
                         if(!list_Brick_Node[i][j].brick)
-                            list_Brick_Node[i][j].CreateEmptyBrick(j, i, emptyBox);
+                            list_Brick_Node[i][j].CreateEmptyBrick(j , i, emptyBox);
                 }
             }
         }
