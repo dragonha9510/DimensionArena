@@ -26,11 +26,13 @@ public class Lobby_BtnFunction : MonoBehaviour
 
     public void ToCharacterChange()
     {
+        SoundManager.Instance.PlaySFXOneShot("ClickEffect");
         SceneManager.LoadScene("CharacterSelect");
     }
 
     public void ToModeChanage()
     {
+        SoundManager.Instance.PlaySFXOneShot("ClickEffect");
         SceneManager.LoadScene("SelectMap");
 
     }

@@ -72,6 +72,8 @@ public class MapSelect : MonoBehaviour
 
     public void ClickMapBtn(string name, string mode, string descrpition)
     {
+        SoundManager.Instance.PlaySFXOneShot("ClickEffect");
+
         mapText.text = name;
 
         switch (mode)
@@ -93,6 +95,8 @@ public class MapSelect : MonoBehaviour
 
     public void SelectMode()
     {
+        SoundManager.Instance.PlaySFXOneShot("ClickEffect");
+
         LobbyManagerRenewal.Instance.playMode = selctedMode;
         SceneManager.LoadScene("Lobby_Main");
     }

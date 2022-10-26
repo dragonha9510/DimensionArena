@@ -28,11 +28,13 @@ public class OptionManager : MonoBehaviour
 
     public void JoyStickFixOn()
     {
+        SoundManager.Instance.PlaySFXOneShot("ClickEffect");
         joyStickFixOff.gameObject.SetActive(false);
         joyStickFixOn.gameObject.SetActive(true);
     }
     public void JoyStickFixOff()
     {
+        SoundManager.Instance.PlaySFXOneShot("ClickEffect");
         joyStickFixOff.gameObject.SetActive(true);
         joyStickFixOn.gameObject.SetActive(false);
     }
@@ -47,6 +49,7 @@ public class OptionManager : MonoBehaviour
 
     public void CanvasOff()
     {
+        SoundManager.Instance.PlaySFXOneShot("CancelEffect");
         optionCanvas.SetActive(false);
     }
 

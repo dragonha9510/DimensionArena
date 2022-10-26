@@ -9,11 +9,13 @@ public class PopUpController : MonoBehaviour
 
     public void SetActivePopUp()
     {
+        SoundManager.Instance.PlaySFXOneShot("ClickEffect");
         popUpObject.SetActive(true);
     }
 
     public void SetDisablePopUp()
     {
+        SoundManager.Instance.PlaySFXOneShot("CancelEffect");
         popUpObject.SetActive(false);
     }
 }

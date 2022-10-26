@@ -32,6 +32,7 @@ public class SelectedCharacter : MonoBehaviour
 
     public void CharacterSelected(bool isOn)
     {
+        SoundManager.Instance.PlaySFXOneShot("ClickEffect");
         characterSelect.gameObject.SetActive(!isOn);
         characterInfo.gameObject.SetActive(isOn);
     }

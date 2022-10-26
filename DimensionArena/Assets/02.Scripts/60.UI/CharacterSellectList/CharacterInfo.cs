@@ -21,11 +21,14 @@ public class CharacterInfo : MonoBehaviour
 
     public void BackSpace()
     {
+        SoundManager.Instance.PlaySFXOneShot("CancelEffect");
         SelectedCharacter.Instance.CharacterSelected(false);
     }
 
     public void CharacterSelected()
     {
+        SoundManager.Instance.PlaySFXOneShot("ClickEffect");
+
         SelectedCharacter.Instance.ChangeCharacterInfo();
     }
 }
