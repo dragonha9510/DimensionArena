@@ -36,8 +36,8 @@ public class LobbyManagerRenewal : MonoBehaviourPunCallbacks
     // Survival , FreeforAll , TeamDeathMatch , SuperStar
     private string[] modeRoomNames = { "SV", "FF", "TD", "SS" };
 
-    private List<Dictionary<string,RoomInfo>> rooms = new List<Dictionary<string, RoomInfo>>();
-    
+    private List<Dictionary<string,CustomRoomInfo>> rooms = new List<Dictionary<string, CustomRoomInfo>>();
+
     public MODE playMode;
 
     [SerializeField] private int leastStartPlayer = 4;
@@ -73,7 +73,7 @@ public class LobbyManagerRenewal : MonoBehaviourPunCallbacks
         PhotonNetwork.NickName = FirebaseDB_Manager.Instance.PlayerNickName;
         for (int i = (int)MODE.MODE_SURVIVAL; i < (int)MODE.MODE_END; ++i)
         {
-            rooms.Add(new Dictionary<string, RoomInfo>());
+            rooms.Add(new Dictionary<string, CustomRoomInfo>());
         }
 
         loadText.text = "서버 접속 시도중...";
@@ -119,13 +119,13 @@ public class LobbyManagerRenewal : MonoBehaviourPunCallbacks
     public override void OnRoomListUpdate(List<RoomInfo> roomList)
     {
         base.OnRoomListUpdate(roomList);
-        if(PhotonNetwork.IsMasterClient)
-            photonView.RPC("SetUpRoomList",RpcTarget.All, roomList);
         SetUpRoomList(roomList);
         //rooms[(int)playMode] = roomList;
     }
 
     // 룸은 2글자로 밖에 관리를 못한다 즉 룸 앞의 이름이 절대 겹쳐서는 안된다
+    // 여기서는 확실성이 없는 OnRoomListUpdate 의 목록에서 반드시 추가된 이름만 추가를 하자.
+    // 아니다 , 플레이어 카운트도 확실하게 받자.
     [PunRPC]
     private void SetUpRoomList(List<RoomInfo> roomList)
     {
@@ -136,16 +136,20 @@ public class LobbyManagerRenewal : MonoBehaviourPunCallbacks
             switch(roomName)
             {
                 case "SV":
-                    rooms[(int)MODE.MODE_SURVIVAL].Add(info.Name,info);
+                    if(!rooms[(int)MODE.MODE_SURVIVAL].ContainsKey(info.Name))
+                        rooms[(int)MODE.MODE_SURVIVAL].Add(info.Name,new CustomRoomInfo(roomName,info.PlayerCount));
                     break;
                 case "FF":
-                    rooms[(int)MODE.MODE_FREEFALLALL].Add(info.Name, info);
+                    if (!rooms[(int)MODE.MODE_FREEFALLALL].ContainsKey(info.Name))
+                        rooms[(int)MODE.MODE_SURVIVAL].Add(info.Name, new CustomRoomInfo(roomName, info.PlayerCount));
                     break;
                 case "TD":
-                    rooms[(int)MODE.MODE_TEAMDEATHMATCH].Add(info.Name, info);
+                    if (!rooms[(int)MODE.MODE_TEAMDEATHMATCH].ContainsKey(info.Name))
+                        rooms[(int)MODE.MODE_SURVIVAL].Add(info.Name, new CustomRoomInfo(roomName, info.PlayerCount));
                     break;
                 case "SS":
-                    rooms[(int)MODE.MODE_SUPERSTAR].Add(info.Name, info);
+                    if (!rooms[(int)MODE.MODE_SUPERSTAR].ContainsKey(info.Name))
+                        rooms[(int)MODE.MODE_SURVIVAL].Add(info.Name, new CustomRoomInfo(roomName, info.PlayerCount));
                     break;
             }
         }
@@ -156,20 +160,20 @@ public class LobbyManagerRenewal : MonoBehaviourPunCallbacks
     {
         if (0 == rooms.Count)
             return "empty";
-        foreach (Dictionary<string, RoomInfo> room in rooms)
+        foreach (Dictionary<string, CustomRoomInfo> room in rooms)
         {
             foreach(string key in room.Keys)
             {
-                if (room[key].IsOpen && nowInRoomName != room[key].Name)
+                if (room[key].IsOpen)
                 {
-                    return room[key].Name;
+                    return key;
                 }
             }
         } 
         return "empty";
     }
 
-    private string GetNewRoomName()
+    private CustomRoomInfo GetNewRoomName()
     {
         int roomCount = 0;
         int playerCount = 0;
@@ -187,20 +191,20 @@ public class LobbyManagerRenewal : MonoBehaviourPunCallbacks
 
         // 최소한의 방이 시작되는 조건이 4명 임으로
         if(15 < playerCount && 4 < roomCount)
-            return "error";
+            return null;
 
         switch (playMode)
         {
             case MODE.MODE_SURVIVAL:
-                return modeRoomNames[(int)MODE.MODE_SURVIVAL] + (rooms[(int)MODE.MODE_SURVIVAL].Count + 1).ToString();
+                return new CustomRoomInfo(modeRoomNames[(int)MODE.MODE_SURVIVAL] + (rooms[(int)MODE.MODE_SURVIVAL].Count + 1).ToString(),0);
             case MODE.MODE_FREEFALLALL:
-                return modeRoomNames[(int)MODE.MODE_FREEFALLALL] + (rooms[(int)MODE.MODE_FREEFALLALL].Count + 1).ToString();
+                return new CustomRoomInfo(modeRoomNames[(int)MODE.MODE_FREEFALLALL] + (rooms[(int)MODE.MODE_SURVIVAL].Count + 1).ToString(), 0);
             case MODE.MODE_TEAMDEATHMATCH:
-                return modeRoomNames[(int)MODE.MODE_TEAMDEATHMATCH] + (rooms[(int)MODE.MODE_TEAMDEATHMATCH].Count + 1).ToString();
+                return new CustomRoomInfo(modeRoomNames[(int)MODE.MODE_TEAMDEATHMATCH] + (rooms[(int)MODE.MODE_SURVIVAL].Count + 1).ToString(), 0);
             case MODE.MODE_SUPERSTAR:
-                return modeRoomNames[(int)MODE.MODE_SUPERSTAR] + (rooms[(int)MODE.MODE_SUPERSTAR].Count + 1).ToString();
+                return new CustomRoomInfo(modeRoomNames[(int)MODE.MODE_FREEFALLALL] + (rooms[(int)MODE.MODE_SURVIVAL].Count + 1).ToString(), 0);
             default:
-                return "error";
+                return null;
         }
     }
 
@@ -230,14 +234,16 @@ public class LobbyManagerRenewal : MonoBehaviourPunCallbacks
         if (roomName == "empty")
         {
             // 임시로 방 생성은 일정한 이름으로 만들어 놨음
-            string newRoomName = GetNewRoomName();
-            nowInRoomName = newRoomName;
+            CustomRoomInfo newRoomInfo = GetNewRoomName();
+            string newRoomName = newRoomInfo.RoomName;
             bool roomMake = PhotonNetwork.CreateRoom(newRoomName, new RoomOptions { MaxPlayers = 8 }, null);
             if(!roomMake)
             {
                 // 방 생성 실패
 
             }
+            else
+            { }
         }
         else
             PhotonNetwork.JoinRoom(roomName);
@@ -256,11 +262,11 @@ public class LobbyManagerRenewal : MonoBehaviourPunCallbacks
     }
     public override void OnJoinedRoom()
     {
-       
+
         //  아 방이 만들어졌는데 또 들어가는 오류인건가...
         //  JoinRandomRoom failed. Client is on GameServer (must be Master Server for matchmaking) and ready
-        
-        
+
+
         int playerCount = PhotonNetwork.CurrentRoom.PlayerCount;
         GameObject obj = GameObject.Find("MatchState");
 
@@ -270,10 +276,24 @@ public class LobbyManagerRenewal : MonoBehaviourPunCallbacks
         {
             isWillStartGame = true;
             PhotonNetwork.CurrentRoom.IsOpen = false;
-            photonView.RPC("PlayStart", RpcTarget.All);
+            SettingCloseRoom(PhotonNetwork.CurrentRoom.Name ,playMode);
+            photonView.RPC("PlayStart",RpcTarget.All);
             // 게임이 시작했으면 방을 닫는다. -> 방을 닫고 씬을 로드해야지 댕청아
             //PhotonNetwork.CurrentRoom.IsOpen = false;
         }
+    }
+
+    [PunRPC]
+    private void SettingCloseRoom(string roomName,MODE mode)
+    {
+        rooms[(int)mode][roomName].IsOpen = false;
+    }
+
+    [PunRPC]
+    private void RegisterCustomRoomInfo(CustomRoomInfo info,MODE gameMode)
+    {
+        if (!rooms[(int)gameMode].ContainsKey(info.RoomName))
+            rooms[(int)gameMode].Add(info.RoomName, info);
     }
 
     public bool TryGetOutRoom()
