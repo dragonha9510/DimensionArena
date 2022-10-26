@@ -15,6 +15,7 @@ public class ManagerMediator : MonoBehaviour
         MANAGER_TYPE_END
     }
 
+
     [SerializeField] SerializableDictionary<MANAGER_TYPE, GameObject> managerDic;
 
     private void Awake()

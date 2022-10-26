@@ -28,6 +28,7 @@ public abstract class BaseJoyStick : MonoBehaviour, IBeginDragHandler, IDragHand
     
     protected RectTransform rectTransform;
     [SerializeField, Range(10f, 150f)] protected float leverRange;
+    protected float reverseLeverRange;
     protected JoyStickType type;
     [SerializeField] private GameObject[] lightRings;
 
@@ -36,6 +37,8 @@ public abstract class BaseJoyStick : MonoBehaviour, IBeginDragHandler, IDragHand
     protected virtual void Awake()
     {
         rectTransform = GetComponent<RectTransform>();
+
+        reverseLeverRange = 1.0f / leverRange;
     }
 
     public virtual void OnBeginDrag(PointerEventData eventData)

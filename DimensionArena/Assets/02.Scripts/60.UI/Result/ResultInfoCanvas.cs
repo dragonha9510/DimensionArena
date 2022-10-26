@@ -26,6 +26,8 @@ public class ResultInfoCanvas : MonoBehaviour
 
     public void ChanageToMainScene()
     {
+        GameObject deleteManage = GameObject.Find("ManagerObserver");
+        Destroy(deleteManage);
         SceneChanger_Loading.Instance.ChangeScene("Lobby_Main");
     }
 }
