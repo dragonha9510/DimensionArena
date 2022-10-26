@@ -20,7 +20,8 @@ public class SoundManager : MonoBehaviourPun
     private AudioSource bgmPlayer;
     [SerializeField]
     private AudioSource sfxPlayer;
-
+    [SerializeField]
+    private int inGameSoundCount = 6;
     private Dictionary<string, AudioClip> AudioClips = new Dictionary<string, AudioClip>();
 
     private bool isInLobby = false;
@@ -102,6 +103,13 @@ public class SoundManager : MonoBehaviourPun
         bgmPlayer.loop = true;
     }
 
+    public void PlayRandomInGameSound()
+    {
+        int randomNumber = Random.Range(1, inGameSoundCount);
+        bgmPlayer.clip = AudioClips["BattleMusic" + randomNumber.ToString()];
+        bgmPlayer.Play();
+        bgmPlayer.loop = true;
+    }
 
     public AudioClip GetClip(string clipName)
     {

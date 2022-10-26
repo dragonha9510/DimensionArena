@@ -88,6 +88,7 @@ public class GameManager : MonoBehaviourPunCallbacks, IPunObservable
         //SoundManager.Instance.PlayBGM("BattleMusic");
         //SoundManager.Instance.AddPhotonView();
         PlayerInfoManager.Instance.RegisterPlayer();
+        SoundManager.Instance.PlayRandomInGameSound();
     }
 
    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
