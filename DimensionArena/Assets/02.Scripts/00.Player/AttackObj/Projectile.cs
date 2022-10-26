@@ -13,6 +13,9 @@ public class Projectile : AttackObject
 
     private void Awake()
     {
+        //JSB Sound
+        SoundManager.Instance.PlaySFXOneShotInRange(2.0f, this.transform, "juhyeok_shot");
+
         originPos = transform.position;
         //수정 예정
         //SoundManager.Instance.PlaySFXOneShot("JiJooNormalEffect");

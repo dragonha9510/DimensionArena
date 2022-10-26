@@ -75,6 +75,15 @@ public class SoundManager : MonoBehaviourPun
         //bgmPlayer.loop = true;
     }
 
+    public void PlaySFXOneShotInRange(float soundRange,Transform actorTrans,string effectName)
+    {
+        Transform playerTrans = PlayerInfoManager.Instance.getPlayerTransform(PhotonNetwork.NickName);
+        float distance = Mathf.Pow(Mathf.Abs(playerTrans.position.x - actorTrans.position.x), 2) + Mathf.Pow(Mathf.Abs(playerTrans.position.z - actorTrans.position.z), 2);
+        if(soundRange >= distance)
+        {
+            PlaySFXOneShot(effectName);
+        }
+    }
 
     [PunRPC]
     public void PlaySFXOneShot(string audioClipName)
