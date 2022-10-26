@@ -17,7 +17,6 @@ namespace PlayerSpace
             //Inverse
             shotCost = (float)(1.0f / maxMagazine);
             inverseReloadTime = 1.0f / (reloadTime * maxMagazine);
-
         }
 
 
