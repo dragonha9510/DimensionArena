@@ -10,6 +10,9 @@ public class RedZone_Missile_Item : RedZone_Missile
 
     protected override void OnTriggerEnter(Collider other)
     {
+        if (itemBox == null)
+            return;
+
         if (other.name != gameObject.name && !isCreate)
         {
             base.OnTriggerEnter(other);

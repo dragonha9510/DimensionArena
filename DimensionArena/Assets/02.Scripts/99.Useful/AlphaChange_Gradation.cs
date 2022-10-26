@@ -62,23 +62,7 @@ public class AlphaChange_Gradation : MonoBehaviour
             return;
 
         alpha += Speed * Time.deltaTime * isNegative;
-
-        Debug.Log(alpha);
-
-        material.color = new Color(material.color.r, material.color.g, material.color.b, alpha);
-
-        if(isNegative == 1)
-        {
-            if (alpha >= alphaFromTo.y)
-                isEnd = true;
-        }
-        else
-        {
-            if (alpha <= alphaFromTo.y)
-                isEnd = true;
-        }
-
-
-
+        StaticFunction.ChangeAlpha<Material>(material, alpha);       
+        isEnd = (isNegative == 1 ? (alpha >= alphaFromTo.y) : (alpha <= alphaFromTo.y));
     }
 }
