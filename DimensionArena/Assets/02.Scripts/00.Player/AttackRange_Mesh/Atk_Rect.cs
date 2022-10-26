@@ -13,7 +13,7 @@ public class Atk_Rect : Atk_Range
 
         if (Physics.Raycast(position, direction.normalized, out atkRangeRay, maxdistance))
         {
-            if (atkRangeRay.collider.tag != "Bush" && atkRangeRay.collider.tag != "HideBush")
+            if (atkRangeRay.collider.tag != "Bush" && atkRangeRay.collider.tag != "HideBush" && atkRangeRay.collider.tag != "Water")
             {
                 Vector3 forLength = Vector3.zero;
                 forLength = atkRangeRay.point - position;

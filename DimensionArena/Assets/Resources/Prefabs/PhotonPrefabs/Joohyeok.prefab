@@ -689,7 +689,7 @@ MonoBehaviour:
   projectileSpeed: 8
   burst_delay: 0.1
   attack_delay: 0.2
-  prefab_Projectile: {fileID: 913381453853950687, guid: 975ed344785d6bc4094232b7111305be,
+  prefab_Projectile: {fileID: 8806198835709795471, guid: c89b77fc162b5484097fa203f4317fd0,
     type: 3}
   audioSource: {fileID: 0}
 --- !u!114 &158572435463090627

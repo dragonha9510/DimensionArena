@@ -167,7 +167,7 @@ MonoBehaviour:
   destroyEffect: {fileID: 1000012903210382, guid: b75a538851e583f42937cda85e429068,
     type: 3}
   missileScale: {x: 0, y: 0}
-  itemBox: {fileID: 7977787445382646825, guid: eb42f02e3dcc2064fa0fc4a66fcd62b4, type: 3}
+  itemBox: {fileID: 0}
 --- !u!114 &6387615248525257143
 MonoBehaviour:
   m_ObjectHideFlags: 0

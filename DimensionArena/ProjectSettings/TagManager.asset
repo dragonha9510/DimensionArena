@@ -17,6 +17,7 @@ TagManager:
   - FX
   - Redzone
   - Redzone_Effect
+  - Water
   layers:
   - Default
   - TransparentFX
