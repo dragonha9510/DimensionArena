@@ -35,15 +35,17 @@ public class SkillJoyStick : BaseJoyStick
     {
         if (skillImg.fillAmount.Equals(1.0f))
         {
-            base.OnEndDrag(eventData);
+            //방향, 거리
+            player.Skill.UseSkill(player.Skill.direction, player.Skill.MaxRange * (player.Skill.direction.magnitude));
             player.Skill.OffSkillMesh();
+            base.OnEndDrag(eventData);
         }
     }
 
     public override void SetDirection()
     {
         player.Skill.direction =
-            new Vector3((lever.position.x - rectTransform.position.x) / leverRange , 0, (lever.position.y - rectTransform.position.y) / leverRange);
+            new Vector3((lever.position.x - rectTransform.position.x) * reverseLeverRange, 0, (lever.position.y - rectTransform.position.y) * reverseLeverRange);
     }
 
 

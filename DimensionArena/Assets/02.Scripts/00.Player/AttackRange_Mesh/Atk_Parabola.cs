@@ -120,7 +120,7 @@ public class Atk_Parabola : Atk_Range
         }
         
         distance = maxdistance * direction.magnitude;
-
+        Debug.Log("주혁이 스킬 거리 : " + distance);
         MakeArcMesh(CalculateArcArray());
 
 

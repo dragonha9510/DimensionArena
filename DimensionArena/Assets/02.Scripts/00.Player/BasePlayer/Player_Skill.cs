@@ -5,12 +5,11 @@ using Photon.Pun;
 
 namespace PlayerSpace
 {
-    public class Player_Skill : MonoBehaviourPun
+    public abstract class Player_Skill : MonoBehaviourPun
     {
         protected Player owner;
         public Player Owner => owner;
 
-        [Header("Programmer Region")]
         [SerializeField]  private GameObject skillRangeMesh;
         [HideInInspector] public Vector3 direction;
         [HideInInspector] public Vector3 skillDirection;
@@ -23,11 +22,12 @@ namespace PlayerSpace
         //player skill info region
         float damage;
         float velocity;
-        float maxRange = 10.0f;
-
-        void Start()
+        float maxRange = 5.0f;
+        public float MaxRange => maxRange;
+        protected virtual void Start()
         {
-            maxRange = 10.0f;
+            //юс╫ц
+            maxRange = 5.0f;
 
             if (skillRangeMesh == null)
             {
@@ -64,7 +64,10 @@ namespace PlayerSpace
         {
             skillRangeMesh.gameObject.SetActive(false);
         }
-        
+
+        public abstract void UseSkill(Vector3 direction, float magnitude);
+
+
         //protected abstract void InitializeSkillInfo(float damage, float velocity);
     
         
