@@ -47,6 +47,8 @@ public class LobbyManagerRenewal : MonoBehaviourPunCallbacks
 
     [SerializeField] private List<string> playersName;
 
+    private bool isWillStartGame = false;
+    public bool IsWillStartGame { get { return isWillStartGame; } }
 
 
     //Test 
@@ -243,10 +245,19 @@ public class LobbyManagerRenewal : MonoBehaviourPunCallbacks
 
         if (leastStartPlayer <= PhotonNetwork.CurrentRoom.PlayerCount)
         {
+            isWillStartGame = true;
             photonView.RPC("PlayStart", RpcTarget.All);
             // 게임이 시작했으면 방을 닫는다.
             PhotonNetwork.CurrentRoom.IsOpen = false;
         }
+    }
+
+    public bool TryGetOutRoom()
+    {
+        if(false == PhotonNetwork.InRoom || true == PhotonNetwork.LeaveRoom())
+            return true;
+        else
+            return false;
     }
 
     [PunRPC]
