@@ -87,6 +87,7 @@ MonoBehaviour:
   - EndAttack
   - MasterCreateProjectile
   - SubMagazine
+  - SetUpRoomList
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1

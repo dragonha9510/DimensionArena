@@ -36,7 +36,7 @@ public class LobbyManagerRenewal : MonoBehaviourPunCallbacks
     // Survival , FreeforAll , TeamDeathMatch , SuperStar
     private string[] modeRoomNames = { "SV", "FF", "TD", "SS" };
 
-    private List<List<RoomInfo>> rooms = new List<List<RoomInfo>>();
+    private List<Dictionary<string,RoomInfo>> rooms = new List<Dictionary<string, RoomInfo>>();
     
     public MODE playMode;
 
@@ -72,7 +72,7 @@ public class LobbyManagerRenewal : MonoBehaviourPunCallbacks
         PhotonNetwork.NickName = FirebaseDB_Manager.Instance.PlayerNickName;
         for (int i = (int)MODE.MODE_SURVIVAL; i < (int)MODE.MODE_END; ++i)
         {
-            rooms.Add(new List<RoomInfo>());
+            rooms.Add(new Dictionary<string, RoomInfo>());
         }
 
         loadText.text = "서버 접속 시도중...";
@@ -118,48 +118,33 @@ public class LobbyManagerRenewal : MonoBehaviourPunCallbacks
     public override void OnRoomListUpdate(List<RoomInfo> roomList)
     {
         base.OnRoomListUpdate(roomList);
+        if(PhotonNetwork.IsMasterClient)
+            photonView.RPC("SetUpRoomList",RpcTarget.All, roomList);
         SetUpRoomList(roomList);
         //rooms[(int)playMode] = roomList;
     }
 
-    private bool RoomNameOverlapCheck(RoomInfo roomInfo)
-    {
-        for(int i = 0; i < rooms.Count; ++i)
-        {
-            for(int j = 0; j < rooms[i].Count; ++j)
-            {
-                if (rooms[i][j].Name == roomInfo.Name)
-                {
-                    rooms[i][j] = roomInfo;
-                    return true;
-                }
-            }
-        }
-        return false;
-    }
-
     // 룸은 2글자로 밖에 관리를 못한다 즉 룸 앞의 이름이 절대 겹쳐서는 안된다
+    [PunRPC]
     private void SetUpRoomList(List<RoomInfo> roomList)
     {
         string roomName = "";
         foreach(RoomInfo info in roomList)
         {
-            if (RoomNameOverlapCheck(info))
-                continue;
             roomName += info.Name[0].ToString() + info.Name[1].ToString();
             switch(roomName)
             {
                 case "SV":
-                    rooms[(int)MODE.MODE_SURVIVAL].Add(info);
+                    rooms[(int)MODE.MODE_SURVIVAL].Add(info.Name,info);
                     break;
                 case "FF":
-                    rooms[(int)MODE.MODE_FREEFALLALL].Add(info);
+                    rooms[(int)MODE.MODE_FREEFALLALL].Add(info.Name, info);
                     break;
                 case "TD":
-                    rooms[(int)MODE.MODE_TEAMDEATHMATCH].Add(info);
+                    rooms[(int)MODE.MODE_TEAMDEATHMATCH].Add(info.Name, info);
                     break;
                 case "SS":
-                    rooms[(int)MODE.MODE_SUPERSTAR].Add(info);
+                    rooms[(int)MODE.MODE_SUPERSTAR].Add(info.Name, info);
                     break;
             }
         }
@@ -170,10 +155,15 @@ public class LobbyManagerRenewal : MonoBehaviourPunCallbacks
     {
         if (0 == rooms.Count)
             return "empty";
-        foreach (RoomInfo room in rooms[(int)gameMode])
+        foreach (Dictionary<string, RoomInfo> room in rooms)
         {
-            if (room.IsOpen)
-                return room.Name;
+            foreach(string key in room.Keys)
+            {
+                if (room[key].IsOpen)
+                {
+                    return room[key].Name;
+                }
+            }
         } 
         return "empty";
     }
@@ -185,8 +175,12 @@ public class LobbyManagerRenewal : MonoBehaviourPunCallbacks
         for(int i = (int)MODE.MODE_SURVIVAL; i < (int)MODE.MODE_END; ++i)
         {
             roomCount += rooms[i].Count;
-            for(int j = 0; j < rooms[i].Count;++j)
-                playerCount += rooms[i][j].PlayerCount;
+              foreach(string key in rooms[i].Keys)
+            {
+                playerCount += rooms[i][key].PlayerCount;
+            }
+            //for(int j = 0; j < rooms[i].Count;++j)
+            //    playerCount += rooms[i][j].PlayerCount;
         }
 
 
@@ -233,7 +227,8 @@ public class LobbyManagerRenewal : MonoBehaviourPunCallbacks
         if (roomName == "empty")
         {
             // 임시로 방 생성은 일정한 이름으로 만들어 놨음
-            bool roomMake = PhotonNetwork.CreateRoom(GetNewRoomName(), new RoomOptions { MaxPlayers = 8 }, null);
+            string newRoomName = GetNewRoomName();
+            bool roomMake = PhotonNetwork.CreateRoom(newRoomName, new RoomOptions { MaxPlayers = 8 }, null);
             if(!roomMake)
             {
                 // 방 생성 실패
@@ -270,9 +265,10 @@ public class LobbyManagerRenewal : MonoBehaviourPunCallbacks
         if (leastStartPlayer <= PhotonNetwork.CurrentRoom.PlayerCount)
         {
             isWillStartGame = true;
-            photonView.RPC("PlayStart", RpcTarget.All);
-            // 게임이 시작했으면 방을 닫는다.
             PhotonNetwork.CurrentRoom.IsOpen = false;
+            photonView.RPC("PlayStart", RpcTarget.All);
+            // 게임이 시작했으면 방을 닫는다. -> 방을 닫고 씬을 로드해야지 댕청아
+            //PhotonNetwork.CurrentRoom.IsOpen = false;
         }
     }
 
