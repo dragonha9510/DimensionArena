@@ -22,6 +22,9 @@ public class GameManager : MonoBehaviourPunCallbacks, IPunObservable
     int startLeastNum = 1;
     public int StartLeastNum { get { return startLeastNum; } }
 
+    private bool isGameEnd = false;
+    public bool IsGameEnd { get { return isGameEnd; } set { isGameEnd = value; } }
+
     private static GameManager m_instance;
     public static GameManager instance
     {

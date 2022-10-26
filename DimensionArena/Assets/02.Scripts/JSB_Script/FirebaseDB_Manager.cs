@@ -90,15 +90,9 @@ public class FirebaseDB_Manager : MonoBehaviour
     {
         // 우선은 임시적으로 막아놓는다.
         if (isRefreshing || isInGame)
-        {
-            Debug.Log("갱신중 함수 호출 안함");
             return;
-        }
         else
-        {
-            Debug.Log("갱신 함수 호출");
             GetDB_PlayerDatas();
-        }
     }
 
     public bool NameOverlapCheck(string name)

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
 public class CloudeEffect : MonoBehaviour
 {
 
@@ -58,6 +59,9 @@ public class CloudeEffect : MonoBehaviour
     }
     private void FixedUpdate()
     {
+        if(GameManager.instance.IsGameEnd)
+            Destroy(this.gameObject);
+
         if (!startUpdate)
             return;
         liveTime -= Time.deltaTime;

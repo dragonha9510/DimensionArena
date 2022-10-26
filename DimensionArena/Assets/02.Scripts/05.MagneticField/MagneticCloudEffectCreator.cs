@@ -66,6 +66,8 @@ public class MagneticCloudEffectCreator : MonoBehaviour
     {
         while (true)
         {
+            if (GameManager.instance.IsGameEnd)
+                Destroy(this.gameObject);
                 if (null != partnerCloud)
                 {
 
@@ -167,6 +169,8 @@ public class MagneticCloudEffectCreator : MonoBehaviour
     {
         while (true)
         {
+            if (GameManager.instance.IsGameEnd)
+                Destroy(this.gameObject);
             SetCloudRange();
             // 스케일에 따른 비율 조절
             float nowScale = Mathf.Abs(randomXRange.y - randomXRange.x) * Mathf.Abs(randomZRange.y - randomZRange.x);

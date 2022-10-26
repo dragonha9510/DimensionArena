@@ -87,6 +87,8 @@ public class LobbyManagerRenewal : MonoBehaviourPunCallbacks
     }
     public override void OnJoinedLobby()
     {
+        Debug.Log("로비 접속 성공");
+
         loadText.text = "서버 접속 성공";
         
         /*if(isReconnect)
@@ -120,20 +122,30 @@ public class LobbyManagerRenewal : MonoBehaviourPunCallbacks
         //rooms[(int)playMode] = roomList;
     }
 
+    private bool RoomNameOverlapCheck(RoomInfo roomInfo)
+    {
+        for(int i = 0; i < rooms.Count; ++i)
+        {
+            for(int j = 0; j < rooms[i].Count; ++j)
+            {
+                if (rooms[i][j].Name == roomInfo.Name)
+                {
+                    rooms[i][j] = roomInfo;
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
     // 룸은 2글자로 밖에 관리를 못한다 즉 룸 앞의 이름이 절대 겹쳐서는 안된다
     private void SetUpRoomList(List<RoomInfo> roomList)
     {
-        if(0 == roomList.Count)
-        {
-            foreach (List<RoomInfo> roomlist in rooms)
-            {
-                roomlist.Clear();
-            }
-            return;
-        }
         string roomName = "";
         foreach(RoomInfo info in roomList)
         {
+            if (RoomNameOverlapCheck(info))
+                continue;
             roomName += info.Name[0].ToString() + info.Name[1].ToString();
             switch(roomName)
             {
@@ -156,7 +168,6 @@ public class LobbyManagerRenewal : MonoBehaviourPunCallbacks
     // 남은 룸이 있는지 확인하는 함수이다.
     private string CheckingRoom(MODE gameMode)
     {
-        OnRoomListUpdate(new List<RoomInfo>());
         if (0 == rooms.Count)
             return "empty";
         foreach (RoomInfo room in rooms[(int)gameMode])
@@ -198,6 +209,12 @@ public class LobbyManagerRenewal : MonoBehaviourPunCallbacks
         }
     }
 
+    public void Reconnect()
+    {
+        if(PhotonNetwork.IsConnected == false)
+            PhotonNetwork.ConnectUsingSettings();
+    }
+
     public void EnterTrainingMode()
     {
         if (playMode == MODE.MODE_TRAINING)
@@ -213,7 +230,6 @@ public class LobbyManagerRenewal : MonoBehaviourPunCallbacks
 
         playMode = gameMode;
         string roomName = CheckingRoom(gameMode);
-        bool Test = PhotonNetwork.IsConnected;
         if (roomName == "empty")
         {
             // 임시로 방 생성은 일정한 이름으로 만들어 놨음

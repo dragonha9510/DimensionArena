@@ -66,6 +66,13 @@ public class ObjectPool : MonoBehaviourPun
 
     #endregion
 
+    public void ResetPool()
+    {
+        cliobjectPool[CLIENTOBJ.CLIENTOBJ_CLOUDEFFECT].Clear();
+        cliobjectPool.Clear();
+        serverobjectPool.Clear();
+    }
+        
 
     public void MakePool(CLIENTOBJ objType, int makeCount)
     {

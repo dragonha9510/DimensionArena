@@ -46,6 +46,8 @@ public class InGamePlayerData
             {
                 if (PlayerInfoManager.Instance.PlayerObjectArr[i].activeInHierarchy)
                 {
+                    ObjectPool.Instance.ResetPool();
+                    GameManager.instance.IsGameEnd = true;
                     PlayerInfoManager.Instance.PlayerObjectArr[i].GetComponent<Player>().Win();
                 }
 

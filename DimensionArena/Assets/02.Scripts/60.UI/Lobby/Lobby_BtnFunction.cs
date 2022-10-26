@@ -15,6 +15,7 @@ public class Lobby_BtnFunction : MonoBehaviour
         // JSB
         SoundManager.Instance.PlayBGM("LobbyMusic");
         SoundManager.Instance.IsInLobby = true;
+        LobbyManagerRenewal.Instance.Reconnect();
         //
         if (string.IsNullOrEmpty(SelectedCharacter.Instance.characterName))
             return;
