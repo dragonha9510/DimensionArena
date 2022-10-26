@@ -1410,7 +1410,7 @@ PrefabInstance:
     - target: {fileID: 1342166286767500842, guid: f2bd411598e07ef4f851dc5d4af6827b,
         type: 3}
       propertyPath: startDelay
-      value: 20
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 1342166286767500842, guid: f2bd411598e07ef4f851dc5d4af6827b,
         type: 3}
@@ -1515,7 +1515,7 @@ PrefabInstance:
     - target: {fileID: 2628270988558472990, guid: f2bd411598e07ef4f851dc5d4af6827b,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6183517314484576770, guid: f2bd411598e07ef4f851dc5d4af6827b,
         type: 3}
@@ -4628,7 +4628,7 @@ PrefabInstance:
     - target: {fileID: 8669601969195298651, guid: ba5c292d70fd27d43a65a2561bb4b717,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8669601969195298652, guid: ba5c292d70fd27d43a65a2561bb4b717,
         type: 3}
@@ -4693,7 +4693,7 @@ PrefabInstance:
     - target: {fileID: 8669601969195298653, guid: ba5c292d70fd27d43a65a2561bb4b717,
         type: 3}
       propertyPath: divideStayTime
-      value: 10
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 8669601969195298653, guid: ba5c292d70fd27d43a65a2561bb4b717,
         type: 3}
@@ -4708,7 +4708,7 @@ PrefabInstance:
     - target: {fileID: 8669601969195298653, guid: ba5c292d70fd27d43a65a2561bb4b717,
         type: 3}
       propertyPath: damageZoneTimeDivideCount
-      value: 1
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 8669601969679549074, guid: ba5c292d70fd27d43a65a2561bb4b717,
         type: 3}
