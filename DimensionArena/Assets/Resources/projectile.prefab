@@ -172,6 +172,7 @@ GameObject:
   - component: {fileID: 4465124601302468949}
   - component: {fileID: 1542270193543238747}
   - component: {fileID: 6798428093538866091}
+  - component: {fileID: 7130302737081838004}
   m_Layer: 9
   m_Name: wave
   m_TagString: Untagged
@@ -5043,6 +5044,20 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!114 &7130302737081838004
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1305391899291263716}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd244aa199f868a45b062e39e036861d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  alphaFromTo: {x: 0, y: 1}
+  Speed: 2
 --- !u!1 &7844676325397142863
 GameObject:
   m_ObjectHideFlags: 0
@@ -9878,6 +9893,7 @@ GameObject:
   - component: {fileID: 4238615109852469370}
   - component: {fileID: 1469366066388983769}
   - component: {fileID: 3383284502820721976}
+  - component: {fileID: 5365792004707181729}
   m_Layer: 9
   m_Name: rocket
   m_TagString: Untagged
@@ -14749,3 +14765,17 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!114 &5365792004707181729
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8609525293991504195}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd244aa199f868a45b062e39e036861d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  alphaFromTo: {x: 0, y: 1}
+  Speed: 2

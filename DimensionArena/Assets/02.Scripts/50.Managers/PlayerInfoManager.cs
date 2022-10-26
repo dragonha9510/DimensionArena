@@ -49,6 +49,9 @@ public class PlayerInfoManager : MonoBehaviourPun
     
     public Transform getPlayerTransform(string name)
     {
+        if (playerObjectArr == null)
+            return null;
+
         foreach(GameObject obj in playerObjectArr)
         {
             if (obj.name.Equals(name))
