@@ -50,6 +50,7 @@ public class LobbyManagerRenewal : MonoBehaviourPunCallbacks
     private bool isWillStartGame = false;
     public bool IsWillStartGame { get { return isWillStartGame; } }
 
+    private string nowInRoomName = "";
 
     //Test 
     [SerializeField] Dictionary<string, PlayerData> playerDatas = new Dictionary<string, PlayerData>();
@@ -159,7 +160,7 @@ public class LobbyManagerRenewal : MonoBehaviourPunCallbacks
         {
             foreach(string key in room.Keys)
             {
-                if (room[key].IsOpen)
+                if (room[key].IsOpen && nowInRoomName != room[key].Name)
                 {
                     return room[key].Name;
                 }
@@ -224,10 +225,13 @@ public class LobbyManagerRenewal : MonoBehaviourPunCallbacks
 
         playMode = gameMode;
         string roomName = CheckingRoom(gameMode);
+        nowInRoomName = roomName;
+
         if (roomName == "empty")
         {
             // 임시로 방 생성은 일정한 이름으로 만들어 놨음
             string newRoomName = GetNewRoomName();
+            nowInRoomName = newRoomName;
             bool roomMake = PhotonNetwork.CreateRoom(newRoomName, new RoomOptions { MaxPlayers = 8 }, null);
             if(!roomMake)
             {
