@@ -11,7 +11,7 @@ public class Prototype_TargetCamera : MonoBehaviour
 
     private void Start()
     {
-        if (!PhotonNetwork.IsConnected)
+        if (PhotonNetwork.OfflineMode)
             isStartEnd = true;
 
             interval = transform.position;

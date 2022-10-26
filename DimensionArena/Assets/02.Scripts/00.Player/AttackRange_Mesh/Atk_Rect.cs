@@ -13,16 +13,19 @@ public class Atk_Rect : Atk_Range
 
         if (Physics.Raycast(position, direction.normalized, out atkRangeRay, maxdistance))
         {
-            Vector3 forLength = Vector3.zero;
-            forLength = atkRangeRay.point - position;
-            distance = forLength.magnitude;
+            if (atkRangeRay.collider.tag != "Bush" && atkRangeRay.collider.tag != "HideBush")
+            {
+                Vector3 forLength = Vector3.zero;
+                forLength = atkRangeRay.point - position;
+                distance = forLength.magnitude;
+            }
         }
 
         transform.localScale = new Vector3(0.5f, 1, distance);
 
         transform.position = owner.position +
                                           direction.normalized * ((distance * 0.5f) + 1f)
-                                          + new Vector3(0, 0.001f, 0);
+                                          + new Vector3(0, 0.1f, 0);
         transform.forward =
                 (owner.position - transform.position).normalized;
     }
