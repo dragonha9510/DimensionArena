@@ -17,7 +17,7 @@ namespace PlayerSpace
 
         private Attack_Type type;
         public Attack_Type Type => type;
-        private Atk_Range rangeComponent;
+        protected Atk_Range rangeComponent;
 
         //player skill info region
         float damage;

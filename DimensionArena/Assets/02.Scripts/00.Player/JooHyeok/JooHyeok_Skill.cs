@@ -1,29 +1,30 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 using PlayerSpace;
 
 public class JooHyeok_Skill : Player_Skill
 {
     [SerializeField] private GameObject skillPrefab;
+    private Atk_Parabola parabola;
+    private Parabola_Projectile projectile;
 
-    // Start is called before the first frame update
-    void Start()
+    public void Start()
     {
         base.Start();
+
+        parabola = rangeComponent as Atk_Parabola;
+
+        if (parabola == null)
+            Destroy(this);
     }
 
     public override void UseSkill(Vector3 direction, float magnitude)
     {
-        //방향 거리까진 구해놨어요.. 전 자유를 찾아 떠날게요..
-        Debug.Log("주혁이 스킬 방향 : " + direction);
-        Debug.Log("주혁이 스킬 거리 : " + magnitude);
-        Debug.Log("주혁이 스킬 시작");
-    }
-
-
-    private void ThrowGranade(Vector3 direction, float magnitude)
-    {
-        
+        //PhotonNetwork.Instantiate("grenade", transform.position, parabola.transform.rotation);
+        GameObject tempSkill = Instantiate(skillPrefab, transform.position, parabola.transform.rotation);
+        projectile = tempSkill.GetComponent<Parabola_Projectile>();
+        projectile.SetArcInfo(direction, parabola.distance, parabola.velocity, parabola.radianAngle);
     }
 }

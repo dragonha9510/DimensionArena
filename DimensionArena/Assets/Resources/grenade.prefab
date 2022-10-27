@@ -11,8 +11,9 @@ GameObject:
   - component: {fileID: 7780763529671798588}
   - component: {fileID: 7780763529670471452}
   - component: {fileID: 7780763529669504476}
+  - component: {fileID: -734824832360484929}
   m_Layer: 0
-  m_Name: GrenadeDefault
+  m_Name: grenade
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -83,3 +84,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &-734824832360484929
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7780763529671439132}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88214846aae0b9640accce4cd29edcf7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  destroyEffect: {fileID: 1000012903210382, guid: b75a538851e583f42937cda85e429068,
+    type: 3}
+  speed: 50
+  rotationSpeed: 180
