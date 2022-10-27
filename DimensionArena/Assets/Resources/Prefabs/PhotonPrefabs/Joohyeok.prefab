@@ -268,7 +268,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -0, y: 2.45}
-  m_SizeDelta: {x: 3, y: 0.8}
+  m_SizeDelta: {x: 5, y: 0.8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1134839205801618655
 CanvasRenderer:
@@ -707,7 +707,8 @@ MonoBehaviour:
   skillRangeMesh: {fileID: 5259609974754891658}
   direction: {x: 0, y: 0, z: 0}
   skillDirection: {x: 0, y: 0, z: 0}
-  skillPrefab: {fileID: 0}
+  skillPrefab: {fileID: 7780763529671439132, guid: 8d9a11bac6389b246a93c1e4ccdb9a59,
+    type: 3}
 --- !u!54 &2737819322045720801
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1733,7 +1734,7 @@ PrefabInstance:
     - target: {fileID: 6628180461585476642, guid: eff1a239d1465d04aaa4b6223e314478,
         type: 3}
       propertyPath: m_Layer
-      value: 10
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 9173840356763218858, guid: eff1a239d1465d04aaa4b6223e314478,
         type: 3}
@@ -1743,7 +1744,7 @@ PrefabInstance:
     - target: {fileID: 9173840356763218858, guid: eff1a239d1465d04aaa4b6223e314478,
         type: 3}
       propertyPath: m_Layer
-      value: 10
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: eff1a239d1465d04aaa4b6223e314478, type: 3}
@@ -1791,6 +1792,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Atk_Range_Parabola
+      objectReference: {fileID: 0}
+    - target: {fileID: 3538972817888371208, guid: 3443466d754ebc640a83911704947677,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 3538972817888371209, guid: 3443466d754ebc640a83911704947677,
         type: 3}
@@ -1856,6 +1862,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Mesh
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3538972818967441223, guid: 3443466d754ebc640a83911704947677,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3443466d754ebc640a83911704947677, type: 3}

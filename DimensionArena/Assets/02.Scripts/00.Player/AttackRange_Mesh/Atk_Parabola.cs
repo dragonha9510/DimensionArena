@@ -10,15 +10,15 @@ public class Atk_Parabola : Atk_Range
 
     [SerializeField] private float meshWidth;
 
-    private float velocity;
-    [SerializeField] private float distance = 3;
+    [SerializeField] public float distance = 3;
     [SerializeField] private float maxYpos = 3;
-    private float angle;
     [SerializeField] private int resolution = 10;
+    [HideInInspector] public float velocity;
+    [HideInInspector] public float angle;
 
 
     private float gravity; // force of gravity on the y axis
-    private float radianAngle;
+    [HideInInspector] public float radianAngle;
 
     private void Awake()
     {

@@ -33930,7 +33930,7 @@ GameObject:
   - component: {fileID: 135543617311100848}
   - component: {fileID: 114388240527896472}
   m_Layer: 0
-  m_Name: RedZone_Effect
+  m_Name: Explosion_Effect_D
   m_TagString: Redzone_Effect
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

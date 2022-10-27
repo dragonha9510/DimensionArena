@@ -17,7 +17,7 @@ public class Projectile : AttackObject
         SoundManager.Instance.PlaySFXOneShotInRange(2.0f, this.transform, "juhyeok_shot");
 
         originPos = transform.position;
-        //¼öÁ¤ ¿¹Á¤
+        //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         //SoundManager.Instance.PlaySFXOneShot("JiJooNormalEffect");
     }
 
@@ -38,8 +38,6 @@ public class Projectile : AttackObject
         rigid.velocity = dir * speed;
     }
 
-    
-
     /*[PunRPC]
     private void ToDirection(Vector3 dir, float range, float speed)
     {
@@ -49,5 +47,5 @@ public class Projectile : AttackObject
         this.range = range;
         rigid.velocity = dir * speed;
     }*/
-    
+
 }
