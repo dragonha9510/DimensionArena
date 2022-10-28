@@ -10,7 +10,7 @@ public class JooHyeok_Skill : Player_Skill
     private Atk_Parabola parabola;
     private Parabola_Projectile projectile;
 
-    public void Start()
+    protected override void Start()
     {
         base.Start();
 
