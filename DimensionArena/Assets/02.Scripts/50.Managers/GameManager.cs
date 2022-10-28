@@ -65,7 +65,7 @@ public class GameManager : MonoBehaviourPunCallbacks, IPunObservable
         //    + playerPrefab.name, spawnPoint, Quaternion.identity
     }
 
-
+    
     private void Start()
     {
         //SoundManager.Instance.PlayBGM("BattleMusic");
@@ -96,7 +96,7 @@ public class GameManager : MonoBehaviourPunCallbacks, IPunObservable
     {
         PhotonNetwork.Instantiate(PHOTONPATH.PHOTONPATH_PREFAPBFOLDER
           + playerPrefab.name, Vector3.zero, Quaternion.identity);
-        Debug.Log(LobbyManagerRenewal.Instance.InGameReadyPlayer);
+        
 
         while (true)
         {

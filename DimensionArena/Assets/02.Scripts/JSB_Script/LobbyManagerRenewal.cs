@@ -336,8 +336,8 @@ public class LobbyManagerRenewal : MonoBehaviourPunCallbacks
     [PunRPC]
     public void PlayersReadyForStartGame()
     {
-        Debug.Log(inGameReadyPlayer);
         ++this.inGameReadyPlayer;
+        Debug.Log(inGameReadyPlayer);
     }
 
 
