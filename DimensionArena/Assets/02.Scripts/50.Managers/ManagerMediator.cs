@@ -30,9 +30,9 @@ namespace ManagerSpace
         private void Start()
         {
 
-            for (int i = 0; i < managerDic.Count; ++i)
+            foreach (var type in managerDic)
             {
-                managerDic[(MANAGER_TYPE)i].SetActive(true);
+                type.Value.SetActive(true);
             }
 
             isAllManagerActive = true;

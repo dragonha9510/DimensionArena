@@ -63,14 +63,7 @@ public class GameManager : MonoBehaviourPunCallbacks, IPunObservable
         //   추 후 이거 유동적으로 바꿔야함. 게임매니저 문제점 기록하기
         
         //GameObject testObject = PhotonNetwork.Instantiate(PHOTONPATH.PHOTONPATH_PREFAPBFOLDER
-        //    + playerPrefab.name, spawnPoint, Quaternion.identity);
-
-
-        //바로, 생성하면 안됨
-        PhotonNetwork.Instantiate(PHOTONPATH.PHOTONPATH_PREFAPBFOLDER
-            + playerPrefab.name, spawnPoint, Quaternion.identity);
-
-
+        //    + playerPrefab.name, spawnPoint, Quaternion.identity
     }
 
 
@@ -102,11 +95,15 @@ public class GameManager : MonoBehaviourPunCallbacks, IPunObservable
 
     IEnumerator WaitAllPlayers()
     {
-        while(true)
+        PhotonNetwork.Instantiate(PHOTONPATH.PHOTONPATH_PREFAPBFOLDER
+          + playerPrefab.name, Vector3.zero, Quaternion.identity);
+
+        while (true)
         {
             if (LobbyManagerRenewal.Instance.InGameReadyPlayer == PhotonNetwork.CurrentRoom.PlayerCount)
             {
                 WatingCanvas.SetActive(false);
+                //바로, 생성하면 안됨    
                 break;
             }
             yield return null;
@@ -114,6 +111,9 @@ public class GameManager : MonoBehaviourPunCallbacks, IPunObservable
 
         if (!PhotonNetwork.IsMasterClient)
             yield break;
+
+        
+
 
         ManagerMediator mediator = GetComponent<ManagerMediator>();
         mediator.enabled = true;
@@ -143,17 +143,18 @@ public class GameManager : MonoBehaviourPunCallbacks, IPunObservable
                     continue;
 
                 spawnPoint[idx].SetRegisterOn();
-                players[i].transform.position = spawnPoint[idx].transform.position;
-                photonView.RPC(nameof(SetPlayerPositionForAllClient), RpcTarget.All, players[i], spawnPoint[idx].transform.position);
+                photonView.RPC(nameof(SetPlayerPositionForAllClient), RpcTarget.All, players[i].name, spawnPoint[idx].transform.position);
                 break;
             }
         }
     }
 
     [PunRPC]
-    public void SetPlayerPositionForAllClient(GameObject player, Vector3 position)
+    public void SetPlayerPositionForAllClient(string playerName, Vector3 position)
     {
-        player.transform.position = position;
+        GameObject obj;
+        PlayerInfoManager.Instance.DicPlayer.TryGetValue(playerName, out obj);
+        obj.transform.position = position;
     }
 
 

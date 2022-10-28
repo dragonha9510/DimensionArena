@@ -16,7 +16,7 @@ namespace ManagerSpace
             {
                 if (!instance)
                 {
-                    if (!(instance = GameObject.FindObjectOfType<EffectManager>()))
+                    if (!(instance = FindObjectOfType<EffectManager>()))
                     {
                         GameObject obj = new GameObject("EffectManager");
                         instance = obj.AddComponent<EffectManager>();
