@@ -10,6 +10,9 @@ public enum MagneticCloudPos
 }
 public class MagneticCloudEffectCreator : MonoBehaviour
 {
+    [SerializeField]
+    private float fieldDamage = 10;
+    public float FieldDamage { get { return fieldDamage; } }
 
     [SerializeField]
     private int createCloudCount = 10;
@@ -186,4 +189,6 @@ public class MagneticCloudEffectCreator : MonoBehaviour
             yield return cloudRandomSpacingTime;
         }
     }
+
+
 }

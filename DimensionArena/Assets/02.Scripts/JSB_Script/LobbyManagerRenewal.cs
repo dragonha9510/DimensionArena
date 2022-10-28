@@ -137,19 +137,19 @@ public class LobbyManagerRenewal : MonoBehaviourPunCallbacks
             {
                 case "SV":
                     if(!rooms[(int)MODE.MODE_SURVIVAL].ContainsKey(info.Name))
-                        rooms[(int)MODE.MODE_SURVIVAL].Add(info.Name,new CustomRoomInfo(roomName,info.PlayerCount));
+                        rooms[(int)MODE.MODE_SURVIVAL].Add(info.Name,new CustomRoomInfo(roomName,info.PlayerCount, info.IsOpen));
                     break;
                 case "FF":
                     if (!rooms[(int)MODE.MODE_FREEFALLALL].ContainsKey(info.Name))
-                        rooms[(int)MODE.MODE_SURVIVAL].Add(info.Name, new CustomRoomInfo(roomName, info.PlayerCount));
+                        rooms[(int)MODE.MODE_SURVIVAL].Add(info.Name, new CustomRoomInfo(roomName, info.PlayerCount, info.IsOpen));
                     break;
                 case "TD":
                     if (!rooms[(int)MODE.MODE_TEAMDEATHMATCH].ContainsKey(info.Name))
-                        rooms[(int)MODE.MODE_SURVIVAL].Add(info.Name, new CustomRoomInfo(roomName, info.PlayerCount));
+                        rooms[(int)MODE.MODE_SURVIVAL].Add(info.Name, new CustomRoomInfo(roomName, info.PlayerCount, info.IsOpen));
                     break;
                 case "SS":
                     if (!rooms[(int)MODE.MODE_SUPERSTAR].ContainsKey(info.Name))
-                        rooms[(int)MODE.MODE_SURVIVAL].Add(info.Name, new CustomRoomInfo(roomName, info.PlayerCount));
+                        rooms[(int)MODE.MODE_SURVIVAL].Add(info.Name, new CustomRoomInfo(roomName, info.PlayerCount, info.IsOpen));
                     break;
             }
         }
@@ -196,13 +196,13 @@ public class LobbyManagerRenewal : MonoBehaviourPunCallbacks
         switch (playMode)
         {
             case MODE.MODE_SURVIVAL:
-                return new CustomRoomInfo(modeRoomNames[(int)MODE.MODE_SURVIVAL] + (rooms[(int)MODE.MODE_SURVIVAL].Count + 1).ToString(),0);
+                return new CustomRoomInfo(modeRoomNames[(int)MODE.MODE_SURVIVAL] + (rooms[(int)MODE.MODE_SURVIVAL].Count + 1).ToString(),0,true);
             case MODE.MODE_FREEFALLALL:
-                return new CustomRoomInfo(modeRoomNames[(int)MODE.MODE_FREEFALLALL] + (rooms[(int)MODE.MODE_SURVIVAL].Count + 1).ToString(), 0);
+                return new CustomRoomInfo(modeRoomNames[(int)MODE.MODE_FREEFALLALL] + (rooms[(int)MODE.MODE_SURVIVAL].Count + 1).ToString(), 0, true);
             case MODE.MODE_TEAMDEATHMATCH:
-                return new CustomRoomInfo(modeRoomNames[(int)MODE.MODE_TEAMDEATHMATCH] + (rooms[(int)MODE.MODE_SURVIVAL].Count + 1).ToString(), 0);
+                return new CustomRoomInfo(modeRoomNames[(int)MODE.MODE_TEAMDEATHMATCH] + (rooms[(int)MODE.MODE_SURVIVAL].Count + 1).ToString(), 0, true);
             case MODE.MODE_SUPERSTAR:
-                return new CustomRoomInfo(modeRoomNames[(int)MODE.MODE_FREEFALLALL] + (rooms[(int)MODE.MODE_SURVIVAL].Count + 1).ToString(), 0);
+                return new CustomRoomInfo(modeRoomNames[(int)MODE.MODE_FREEFALLALL] + (rooms[(int)MODE.MODE_SURVIVAL].Count + 1).ToString(), 0, true);
             default:
                 return null;
         }

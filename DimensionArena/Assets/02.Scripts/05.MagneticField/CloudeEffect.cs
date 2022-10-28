@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CloudeEffect : MonoBehaviour
 {
-
+    
 
     [SerializeField]
     private float minScale = 0.1f;
@@ -44,6 +44,10 @@ public class CloudeEffect : MonoBehaviour
         if (this.transform.localScale.x < minScale)
             upScale = true;
     }
+
+
+    
+
 
     IEnumerator ScaleUpdate()
     {

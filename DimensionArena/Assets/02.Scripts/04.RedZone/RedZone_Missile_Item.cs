@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 
+using Photon.Pun;
 public class RedZone_Missile_Item : RedZone_Missile
 {
     [SerializeField] private GameObject itemBox;
@@ -16,11 +17,20 @@ public class RedZone_Missile_Item : RedZone_Missile
         if (other.name != gameObject.name && !isCreate)
         {
             base.OnTriggerEnter(other);
-            Instantiate(itemBox, 
-                new Vector3((float)((int)transform.position.x + 0.5f), 
-                0.5f,
-                (float)((int)transform.position.z + 0.5f)), 
-                itemBox.transform.rotation);
+            if(!PhotonNetwork.IsConnected)
+            {
+                Instantiate(itemBox,
+               new Vector3((float)((int)transform.position.x + 0.5f),
+               0.5f,
+               (float)((int)transform.position.z + 0.5f)),
+               itemBox.transform.rotation);
+            }
+            else
+            {
+                PhotonNetwork.Instantiate(PHOTONPATH.PHOTONPATH_ITEMPREFABFOLDER + "ItemBox"
+                                            , new Vector3((float)((int)transform.position.x + 0.5f), 0.5f, (float)((int)transform.position.z + 0.5f))
+                                            , Quaternion.identity);
+            }
 
             isCreate = true;
         }

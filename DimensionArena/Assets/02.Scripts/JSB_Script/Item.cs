@@ -79,5 +79,10 @@ public class Item : MonoBehaviour
                 particle.SetActive(true);
             }
         }
+        if(collision.gameObject.tag == "Player")
+        {
+            // 아이템 이벤트 처리
+            Destroy(this.gameObject);
+        }
     }
 }

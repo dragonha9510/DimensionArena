@@ -81,13 +81,11 @@ public class ItemBox : MonoBehaviourPun
     // 주어진 float 0 ~ 1 까지의 확률
     // 0 ~ 1 까지 float 으로 랜덤을 돌린다 . 
 
-
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
         if (!PhotonNetwork.IsMasterClient)
             return;
         PhotonNetwork.Instantiate(PHOTONPATH.PHOTONPATH_ITEMPREFABFOLDER + itemPrefabName, this.transform.position, Quaternion.identity);
         PhotonNetwork.Destroy(this.gameObject);
-
     }
 }

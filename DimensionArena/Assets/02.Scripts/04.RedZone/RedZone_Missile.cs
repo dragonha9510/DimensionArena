@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
-
 public class RedZone_Missile : MonoBehaviour
 {
     //[SerializeField] private GameObject boundaryPrefab;
