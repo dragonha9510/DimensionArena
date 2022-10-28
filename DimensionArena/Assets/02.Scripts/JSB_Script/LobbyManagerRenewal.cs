@@ -235,6 +235,7 @@ public class LobbyManagerRenewal : MonoBehaviourPunCallbacks
         {
             // 임시로 방 생성은 일정한 이름으로 만들어 놨음
             CustomRoomInfo newRoomInfo = GetNewRoomName();
+            rooms[(int)gameMode].Add(newRoomInfo.RoomName,newRoomInfo);
             string newRoomName = newRoomInfo.RoomName;
             bool roomMake = PhotonNetwork.CreateRoom(newRoomName, new RoomOptions { MaxPlayers = 8 }, null);
             if(!roomMake)
