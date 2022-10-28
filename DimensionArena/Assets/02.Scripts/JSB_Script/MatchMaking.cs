@@ -6,7 +6,10 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 public class MatchMaking : MonoBehaviourPun
 {
-
+    [SerializeField]
+    private float rotateSpeed = 2f;
+    [SerializeField]
+    private GameObject rotateImage;
     [SerializeField]
     private Button matchingOutBtn;
     [SerializeField]
@@ -33,5 +36,9 @@ public class MatchMaking : MonoBehaviourPun
         }
     }
 
+    private void FixedUpdate()
+    {
+        rotateImage.transform.Rotate(Vector3.forward * rotateSpeed);
+    }
 
 }

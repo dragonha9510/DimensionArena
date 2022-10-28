@@ -60,7 +60,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d2a61481ea64c84ba6aabf128415b0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  followSpeed: 1
+  followSpeed: 2
 --- !u!1 &2291838589078517510
 GameObject:
   m_ObjectHideFlags: 0
@@ -161,7 +161,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a79d8bf773826d4cb07a833fda8bd6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  boingPower: 3
+  boingPower: 5
   decreasePower: 0.4
   rotation: 100
   decreaseRotation: 0.9
