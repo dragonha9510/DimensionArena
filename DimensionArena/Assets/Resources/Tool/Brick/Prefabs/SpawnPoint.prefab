@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8477972134133006943}
   - component: {fileID: 8477972134133006942}
   - component: {fileID: 8477972134133006941}
+  - component: {fileID: 138280976349844469}
   m_Layer: 0
   m_Name: SpawnPoint
   m_TagString: SpawnPoint
@@ -83,3 +84,15 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &138280976349844469
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8477972134133006883}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f91ecdec8a84e604eaecdb561654c122, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
