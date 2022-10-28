@@ -145,21 +145,26 @@ public class LobbyManagerRenewal : MonoBehaviourPunCallbacks
                 case "SV":
                     if (!rooms[(int)MODE.MODE_SURVIVAL].ContainsKey(info.Name))
                         rooms[(int)MODE.MODE_SURVIVAL].Add(info.Name, new CustomRoomInfo(roomName, info.PlayerCount, info.IsOpen));
+                    else
+                        rooms[(int)MODE.MODE_SURVIVAL][info.Name].IsOpen = info.IsOpen;
                     break;
                 case "FF":
                     if (!rooms[(int)MODE.MODE_FREEFALLALL].ContainsKey(info.Name))
                         rooms[(int)MODE.MODE_FREEFALLALL].Add(info.Name, new CustomRoomInfo(roomName, info.PlayerCount, info.IsOpen));
-
+                    else
+                        rooms[(int)MODE.MODE_FREEFALLALL][info.Name].IsOpen = info.IsOpen;
                     break;
                 case "TD":
                     if (!rooms[(int)MODE.MODE_TEAMDEATHMATCH].ContainsKey(info.Name))
                         rooms[(int)MODE.MODE_TEAMDEATHMATCH].Add(info.Name, new CustomRoomInfo(roomName, info.PlayerCount, info.IsOpen));
-
+                    else
+                        rooms[(int)MODE.MODE_TEAMDEATHMATCH][info.Name].IsOpen = info.IsOpen;
                     break;
                 case "SS":
                     if (!rooms[(int)MODE.MODE_SUPERSTAR].ContainsKey(info.Name))
                         rooms[(int)MODE.MODE_SUPERSTAR].Add(info.Name, new CustomRoomInfo(roomName, info.PlayerCount, info.IsOpen));
-
+                    else
+                        rooms[(int)MODE.MODE_SUPERSTAR][info.Name].IsOpen = info.IsOpen;
                     break;
             }
         }
@@ -301,17 +306,10 @@ public class LobbyManagerRenewal : MonoBehaviourPunCallbacks
             isWillStartGame = true;
             PhotonNetwork.CurrentRoom.IsOpen = false;
             PhotonNetwork.CurrentRoom.IsVisible = false;
-            SettingCloseRoom(PhotonNetwork.CurrentRoom.Name ,playMode);
             photonView.RPC("PlayStart",RpcTarget.All);
             // 게임이 시작했으면 방을 닫는다. -> 방을 닫고 씬을 로드해야지 댕청아
             //PhotonNetwork.CurrentRoom.IsOpen = false;
         }
-    }
-
-    [PunRPC]
-    private void SettingCloseRoom(string roomName,MODE mode)
-    {
-        rooms[(int)mode][roomName].IsOpen = false;
     }
 
     [PunRPC]
