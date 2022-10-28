@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
+using ManagerSpace;
+
 namespace PlayerSpace
 {
     public class JooHyeok_Atk : Player_Atk

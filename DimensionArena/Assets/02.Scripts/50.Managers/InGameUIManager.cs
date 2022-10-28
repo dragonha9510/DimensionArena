@@ -7,6 +7,7 @@ using Photon.Pun;
 using TMPro;
 using DG.Tweening;
 using UnityEngine.SceneManagement;
+using ManagerSpace;
 
 public class InGameUIManager : MonoBehaviour
 {

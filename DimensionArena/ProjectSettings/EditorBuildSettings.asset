@@ -27,7 +27,7 @@ EditorBuildSettings:
     path: Assets/01.Scenes/ProtoType/OfflineMode.unity
     guid: 9993302cc56e3db488b5189b8f558dd8
   - enabled: 1
-    path: Assets/01.Scenes/KJH_Scene/Result.unity
+    path: Assets/01.Scenes/ProtoType/Result.unity
     guid: 52d89e26954603d47acc8753b07a1bee
   - enabled: 1
     path: Assets/01.Scenes/ProtoType/SelectMap.unity

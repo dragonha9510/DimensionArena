@@ -5,41 +5,45 @@ using UnityEngine;
 using UnityEditor;
 using PlayerSpace;
 
-public class EffectManager : MonoBehaviour
+namespace ManagerSpace
 {
-    private static EffectManager instance;
-    public static EffectManager Instance
+    public class EffectManager : MonoBehaviour
     {
-        get
+        private static EffectManager instance;
+        public static EffectManager Instance
         {
-            if (!instance)
+            get
             {
-                if (!(instance = GameObject.FindObjectOfType<EffectManager>()))
+                if (!instance)
                 {
-                    GameObject obj = new GameObject("EffectManager");
-                    instance = obj.AddComponent<EffectManager>();
-                    
+                    if (!(instance = GameObject.FindObjectOfType<EffectManager>()))
+                    {
+                        GameObject obj = new GameObject("EffectManager");
+                        instance = obj.AddComponent<EffectManager>();
+
+                    }
                 }
+                return instance;
             }
-            return instance;
         }
-    }
 
 
-    [SerializeField] SerializableDictionary<string, GameObject> effectDictionary;
+        [SerializeField] SerializableDictionary<string, GameObject> effectDictionary;
 
-    public void CreateParticleEffectOnGameobject(Transform trans, string eventType)
-    {
-        switch (eventType)
+        public void CreateParticleEffectOnGameobject(Transform trans, string eventType)
         {
-            case "Revive":
-                if (effectDictionary.ContainsKey("Revive"))
-                    Instantiate(effectDictionary["Revive"], trans.position + (Vector3.up * 0.5f), trans.rotation, trans);
-                break;
-            case "Dead":
-                if (effectDictionary.ContainsKey("Dead"))
-                    Instantiate(effectDictionary["Dead"], trans.position + (Vector3.up * 0.5f), trans.rotation);
-                break;
+            switch (eventType)
+            {
+                case "Revive":
+                    if (effectDictionary.ContainsKey("Revive"))
+                        Instantiate(effectDictionary["Revive"], trans.position + (Vector3.up * 0.5f), trans.rotation, trans);
+                    break;
+                case "Dead":
+                    if (effectDictionary.ContainsKey("Dead"))
+                        Instantiate(effectDictionary["Dead"], trans.position + (Vector3.up * 0.5f), trans.rotation);
+                    break;
+            }
         }
     }
+
 }

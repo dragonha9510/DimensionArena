@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using TMPro;
 public class ResultInfoCanvas : MonoBehaviour
 {
+    [SerializeField] TextMeshProUGUI rankText;
     [SerializeField] TextMeshProUGUI killText;
     [SerializeField] TextMeshProUGUI damageText;
     [SerializeField] TextMeshProUGUI surviveText;
@@ -18,6 +19,7 @@ public class ResultInfoCanvas : MonoBehaviour
     {
         InGamePlayerData data = IngameDataManager.Instance.OwnerData;
 
+        rankText.text = data.Rank.ToString();
         killText.text = data.Kill.ToString();
         damageText.text = data.Damage.ToString();
         surviveText.text = data.LiveTime.ToString();
@@ -26,8 +28,7 @@ public class ResultInfoCanvas : MonoBehaviour
 
     public void ChanageToMainScene()
     {
-        GameObject deleteManage = GameObject.Find("ManagerObserver");
-        Destroy(deleteManage);
+        IngameDataManager.Instance.DestroyManager();
         SceneChanger_Loading.Instance.ChangeScene("Lobby_Main");
     }
 }

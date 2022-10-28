@@ -15,7 +15,6 @@ public class ResultCanvas : MonoBehaviour
     private void Awake()
     {
         data = IngameDataManager.Instance.OwnerData;
-
         SetUI();
     }
 

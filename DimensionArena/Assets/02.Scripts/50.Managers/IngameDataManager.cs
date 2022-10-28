@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 using PlayerSpace;
+using ManagerSpace;
 
 public class InGamePlayerData
 {
@@ -113,11 +114,10 @@ public class IngameDataManager : MonoBehaviour
 
     private void Awake()
     {     
-        if(!Instance)
-        {
+        if(!instance)
             Destroy(this.gameObject);
-        }
 
+        DontDestroyOnLoad(this.gameObject);
         FindAllPlayer();
     }
 
@@ -152,6 +152,7 @@ public class IngameDataManager : MonoBehaviour
 
     public void DestroyManager()
     {
+        Destroy(Instance);
         Destroy(this.gameObject);
     }
 }

@@ -18,8 +18,6 @@ public class DestroyWithTime_Scale : DestroyWithTime
     // Update is called once per frame
     override protected void Update()
     {
-        Debug.Log(transform.localScale);
-
         curTime += Time.deltaTime;
 
         if (curTime >= deathTime)

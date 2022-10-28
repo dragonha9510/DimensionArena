@@ -1,10 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using Photon.Pun;
-
 using UnityEngine;
-
 using ExitGames.Client.Photon;
+using ManagerSpace;
 
 public enum GAMEMODE
 {
