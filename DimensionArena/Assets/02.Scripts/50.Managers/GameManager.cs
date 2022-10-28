@@ -75,7 +75,6 @@ public class GameManager : MonoBehaviourPunCallbacks, IPunObservable
     {
         //SoundManager.Instance.PlayBGM("BattleMusic");
         //SoundManager.Instance.AddPhotonView();
-        PlayerInfoManager.Instance.RegisterPlayer();
         SoundManager.Instance.PlayRandomInGameSound();
         LobbyManagerRenewal.Instance.ReadyToPlay();
 
@@ -101,6 +100,8 @@ public class GameManager : MonoBehaviourPunCallbacks, IPunObservable
     {
         PhotonNetwork.Instantiate(PHOTONPATH.PHOTONPATH_PREFAPBFOLDER
           + playerPrefab.name, Vector3.zero, Quaternion.identity);
+
+        PlayerInfoManager.Instance.RegisterPlayer();
 
         while (true)
         {

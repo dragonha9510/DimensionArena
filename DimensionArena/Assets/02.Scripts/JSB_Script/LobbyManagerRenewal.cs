@@ -143,20 +143,23 @@ public class LobbyManagerRenewal : MonoBehaviourPunCallbacks
             switch(roomName)
             {
                 case "SV":
-                    if(!rooms[(int)MODE.MODE_SURVIVAL].ContainsKey(info.Name))
-                        rooms[(int)MODE.MODE_SURVIVAL].Add(info.Name,new CustomRoomInfo(roomName,info.PlayerCount, info.IsOpen));
+                    if (!rooms[(int)MODE.MODE_SURVIVAL].ContainsKey(info.Name))
+                        rooms[(int)MODE.MODE_SURVIVAL].Add(info.Name, new CustomRoomInfo(roomName, info.PlayerCount, info.IsOpen));
                     break;
                 case "FF":
                     if (!rooms[(int)MODE.MODE_FREEFALLALL].ContainsKey(info.Name))
-                        rooms[(int)MODE.MODE_SURVIVAL].Add(info.Name, new CustomRoomInfo(roomName, info.PlayerCount, info.IsOpen));
+                        rooms[(int)MODE.MODE_FREEFALLALL].Add(info.Name, new CustomRoomInfo(roomName, info.PlayerCount, info.IsOpen));
+
                     break;
                 case "TD":
                     if (!rooms[(int)MODE.MODE_TEAMDEATHMATCH].ContainsKey(info.Name))
-                        rooms[(int)MODE.MODE_SURVIVAL].Add(info.Name, new CustomRoomInfo(roomName, info.PlayerCount, info.IsOpen));
+                        rooms[(int)MODE.MODE_TEAMDEATHMATCH].Add(info.Name, new CustomRoomInfo(roomName, info.PlayerCount, info.IsOpen));
+
                     break;
                 case "SS":
                     if (!rooms[(int)MODE.MODE_SUPERSTAR].ContainsKey(info.Name))
-                        rooms[(int)MODE.MODE_SURVIVAL].Add(info.Name, new CustomRoomInfo(roomName, info.PlayerCount, info.IsOpen));
+                        rooms[(int)MODE.MODE_SUPERSTAR].Add(info.Name, new CustomRoomInfo(roomName, info.PlayerCount, info.IsOpen));
+
                     break;
             }
         }
@@ -204,7 +207,7 @@ public class LobbyManagerRenewal : MonoBehaviourPunCallbacks
         int newRoomIndex = 0;
         foreach (string key in rooms[(int)playMode].Keys)
         {
-            Int32.TryParse(key[3].ToString(),out newRoomIndex);
+            Int32.TryParse(key[2].ToString(),out newRoomIndex);
         }
 
         ++newRoomIndex;
@@ -253,6 +256,7 @@ public class LobbyManagerRenewal : MonoBehaviourPunCallbacks
         {
             // 임시로 방 생성은 일정한 이름으로 만들어 놨음
             CustomRoomInfo newRoomInfo = GetNewRoomName();
+            Debug.Log(newRoomInfo.RoomName);
             rooms[(int)gameMode].Add(newRoomInfo.RoomName,newRoomInfo);
             string newRoomName = newRoomInfo.RoomName;
             bool roomMake = PhotonNetwork.CreateRoom(newRoomName, new RoomOptions { MaxPlayers = 8 }, null);
@@ -265,7 +269,7 @@ public class LobbyManagerRenewal : MonoBehaviourPunCallbacks
             { }
         }
         else
-            PhotonNetwork.JoinRoom(roomName);
+            PhotonNetwork.JoinOrCreateRoom(roomName, new RoomOptions { MaxPlayers = 8 }, null);
     }
     /*public void ChangeNickNmae(string name)
     {
@@ -296,6 +300,7 @@ public class LobbyManagerRenewal : MonoBehaviourPunCallbacks
             nowGameStartCount = PhotonNetwork.CurrentRoom.PlayerCount;
             isWillStartGame = true;
             PhotonNetwork.CurrentRoom.IsOpen = false;
+            PhotonNetwork.CurrentRoom.IsVisible = false;
             SettingCloseRoom(PhotonNetwork.CurrentRoom.Name ,playMode);
             photonView.RPC("PlayStart",RpcTarget.All);
             // 게임이 시작했으면 방을 닫는다. -> 방을 닫고 씬을 로드해야지 댕청아
@@ -319,7 +324,9 @@ public class LobbyManagerRenewal : MonoBehaviourPunCallbacks
     public bool TryGetOutRoom()
     {
         if(false == PhotonNetwork.InRoom || true == PhotonNetwork.LeaveRoom())
+        {
             return true;
+        }
         else
             return false;
     }
@@ -349,6 +356,6 @@ public class LobbyManagerRenewal : MonoBehaviourPunCallbacks
 
     }
 
-
+    
 
 }
