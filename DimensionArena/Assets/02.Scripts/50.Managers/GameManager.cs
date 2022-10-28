@@ -18,7 +18,6 @@ public class GameManager : MonoBehaviourPunCallbacks, IPunObservable
     [SerializeField]
     private GameObject WatingCanvas;
 
-
     [SerializeField]
     public GameObject playerPrefab;
     public GAMEMODE GameMode { get; private set; }
@@ -53,9 +52,6 @@ public class GameManager : MonoBehaviourPunCallbacks, IPunObservable
         //Test Code
         GameMode = GAMEMODE.Survival;
 
-
-
-
         Vector3 spawnPoint = new Vector3(0, 0, 0);
 
         //   추 후 이거 유동적으로 바꿔야함. 게임매니저 문제점 기록하기
@@ -63,15 +59,25 @@ public class GameManager : MonoBehaviourPunCallbacks, IPunObservable
         //GameObject testObject = PhotonNetwork.Instantiate(PHOTONPATH.PHOTONPATH_PREFAPBFOLDER
         //    + playerPrefab.name, spawnPoint, Quaternion.identity);
 
+
+        //바로, 생성하면 안됨
         PhotonNetwork.Instantiate(PHOTONPATH.PHOTONPATH_PREFAPBFOLDER
             + playerPrefab.name, spawnPoint, Quaternion.identity);
 
-        StartCoroutine(nameof(WaitAllPlayers));
 
+    }
+
+
+    private void Start()
+    {
+        //SoundManager.Instance.PlayBGM("BattleMusic");
+        //SoundManager.Instance.AddPhotonView();
+        PlayerInfoManager.Instance.RegisterPlayer();
+        SoundManager.Instance.PlayRandomInGameSound();
         LobbyManagerRenewal.Instance.ReadyToPlay();
         // 플레이어 대기 상태
         WatingCanvas.SetActive(true);
-
+        StartCoroutine(nameof(WaitAllPlayers));
     }
 
     public void OnEvent(EventData photonEvent)
@@ -86,29 +92,20 @@ public class GameManager : MonoBehaviourPunCallbacks, IPunObservable
         }
     }
 
-    private void Start()
-    {
-        //SoundManager.Instance.PlayBGM("BattleMusic");
-        //SoundManager.Instance.AddPhotonView();
-        PlayerInfoManager.Instance.RegisterPlayer();
-        SoundManager.Instance.PlayRandomInGameSound();
-    }
-
-   public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
-    {
-        throw new System.NotImplementedException();
-    }
-
     IEnumerator WaitAllPlayers()
     {
         while(true)
         {
-            if (LobbyManagerRenewal.Instance.NowGameStartCount == LobbyManagerRenewal.Instance.InGameReadyPlayer)
+            if (LobbyManagerRenewal.Instance.InGameReadyPlayer == PhotonNetwork.CurrentRoom.PlayerCount)
             {
                 WatingCanvas.SetActive(false);
                 yield break;
             }
             yield return null;
         }
+    }
+   public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
+        throw new System.NotImplementedException();
     }
 }
