@@ -6,6 +6,14 @@ using PlayerSpace;
 
 namespace ManagerSpace
 {
+    public enum ENVIROMENT
+    {
+        REDZONE,
+        MAGNETIC
+    }
+
+
+
     public class PlayerInfoManager : MonoBehaviourPun
     {
 
@@ -226,8 +234,31 @@ namespace ManagerSpace
 
                 target.Damaged(damage);
             }
-
         }
+
+
+
+        public void CurHpDecrease(ENVIROMENT enviroment, string targetId, float damage)
+        {
+            PlayerInfo target;
+            //Damage
+            if (DicPlayerInfo.TryGetValue(targetId, out target))
+            {
+
+                damage = damage > target.CurHP ? target.CurHP : damage;
+
+                //Ingame 
+                damage = CheckShieldExist(target, damage);
+
+                target.Damaged(damage);
+            }
+        }
+
+        public void DeadCheckCallServer(ENVIROMENT enviroment)
+        {
+            photonView.RPC("HealthCheck", RpcTarget.All, enviroment);
+        }
+
 
         //JSB
         public void DeadCheckCallServer(string killerId)
@@ -265,6 +296,25 @@ namespace ManagerSpace
                 }
             }
         }
+
+        [PunRPC]
+        private void HealthCheck(ENVIROMENT enviroment)
+        {
+            for (int i = 0; i < playerInfoArr.Length; ++i)
+            {
+                if (playerInfoArr[i].CurHP <= 0 && playerObjectArr[i].activeInHierarchy)
+                {
+                    //Ingame UI Inform Kill
+               
+
+                    //GameData Set
+
+                    //Player Die 
+
+                }
+            }
+        }
+
 
         /// <<<<<<<<<<<<<<<<<<<<<<<<<<
 

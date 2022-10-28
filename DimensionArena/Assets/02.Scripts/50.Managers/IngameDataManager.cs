@@ -5,154 +5,159 @@ using Photon.Pun;
 using PlayerSpace;
 using ManagerSpace;
 
-public class InGamePlayerData
+namespace ManagerSpace
 {
-    public InGamePlayerData(string ownerID)
+
+    public class InGamePlayerData
     {
-        damage = 0;
-        liveTime = 0;
-        kill = 0;
-        death = 0;
-        rank = 0;
-    }
-
-    public void HitPoint(float dmg)
-    {
-        damage += dmg;
-    }
-
-    public void KillPoint()
-    {
-        kill++;
-    }
-
-    public void DeathData()
-    {
-        death++;
-
-        liveTime = IngameDataManager.Instance.CurTime;
-        liveTime *= 100;
-        liveTime = Mathf.Floor(liveTime) * 0.01f;
-
-        for (int i = 0; i < PlayerInfoManager.Instance.PlayerObjectArr.Length; ++i)
+        public InGamePlayerData(string ownerID)
         {
-            if(PlayerInfoManager.Instance.PlayerObjectArr[i].activeInHierarchy)
-                rank++;
-        }     
+            damage = 0;
+            liveTime = 0;
+            kill = 0;
+            death = 0;
+            rank = 0;
+        }
 
-        //임시함수 제거해야된다
-        if(rank == 1)
+        public void HitPoint(float dmg)
         {
+            damage += dmg;
+        }
+
+        public void KillPoint()
+        {
+            kill++;
+        }
+
+        public void DeathData()
+        {
+            death++;
+
+            liveTime = IngameDataManager.Instance.CurTime;
+            liveTime *= 100;
+            liveTime = Mathf.Floor(liveTime) * 0.01f;
+
             for (int i = 0; i < PlayerInfoManager.Instance.PlayerObjectArr.Length; ++i)
             {
                 if (PlayerInfoManager.Instance.PlayerObjectArr[i].activeInHierarchy)
-                {
-                    ObjectPool.Instance.ResetPool();
-                    GameManager.instance.IsGameEnd = true;
-                    PlayerInfoManager.Instance.PlayerObjectArr[i].GetComponent<Player>().Win();
-                }
-
+                    rank++;
             }
-        }
 
-        rank++;
-    }
-
-
-    public void SetRank()
-    {
-        rank = 1;
-        liveTime = IngameDataManager.Instance.CurTime;
-        liveTime *= 100;
-        liveTime = Mathf.Floor(liveTime) * 0.01f;
-    }
-
-    float damage;
-    public float Damage => damage;
-
-    float liveTime;
-    public float LiveTime => liveTime;
-    int kill;
-    public int Kill => kill;
-    int death;
-    public int Death => death;
-
-    int rank;
-    public int Rank => rank;
-}
-
-public class IngameDataManager : MonoBehaviour
-{
-    private static IngameDataManager instance;
-    public static IngameDataManager Instance
-    {
-        get
-        {
-            if(!instance)
+            //임시함수 제거해야된다
+            if (rank == 1)
             {
-                if(!(instance = GameObject.FindObjectOfType<IngameDataManager>()))
+                for (int i = 0; i < PlayerInfoManager.Instance.PlayerObjectArr.Length; ++i)
                 {
-                    GameObject obj = new GameObject("IngameDataManager");
-                    instance = obj.AddComponent<IngameDataManager>();
+                    if (PlayerInfoManager.Instance.PlayerObjectArr[i].activeInHierarchy)
+                    {
+                        ObjectPool.Instance.ResetPool();
+                        GameManager.instance.IsGameEnd = true;
+                        PlayerInfoManager.Instance.PlayerObjectArr[i].GetComponent<Player>().Win();
+                    }
+
                 }
             }
 
-            return instance;
+            rank++;
         }
+
+
+        public void SetRank()
+        {
+            rank = 1;
+            liveTime = IngameDataManager.Instance.CurTime;
+            liveTime *= 100;
+            liveTime = Mathf.Floor(liveTime) * 0.01f;
+        }
+
+        float damage;
+        public float Damage => damage;
+
+        float liveTime;
+        public float LiveTime => liveTime;
+        int kill;
+        public int Kill => kill;
+        int death;
+        public int Death => death;
+
+        int rank;
+        public int Rank => rank;
     }
 
+    public class IngameDataManager : MonoBehaviour
+    {
+        private static IngameDataManager instance;
+        public static IngameDataManager Instance
+        {
+            get
+            {
+                if (!instance)
+                {
+                    if (!(instance = GameObject.FindObjectOfType<IngameDataManager>()))
+                    {
+                        GameObject obj = new GameObject("IngameDataManager");
+                        instance = obj.AddComponent<IngameDataManager>();
+                    }
+                }
+
+                return instance;
+            }
+        }
 
 
-    [SerializeField] private Dictionary<string, InGamePlayerData> data;
-    public  Dictionary<string, InGamePlayerData> Data => data;
 
-    private float time = 0.0f;
-    public float CurTime => time;
+        [SerializeField] private Dictionary<string, InGamePlayerData> data;
+        public Dictionary<string, InGamePlayerData> Data => data;
 
-    private InGamePlayerData ownerData;
-    public InGamePlayerData OwnerData => ownerData;
+        private float time = 0.0f;
+        public float CurTime => time;
 
-    private void Awake()
-    {     
-        if(!instance)
+        private InGamePlayerData ownerData;
+        public InGamePlayerData OwnerData => ownerData;
+
+        private void Awake()
+        {
+            if (!instance)
+                Destroy(this.gameObject);
+
+            DontDestroyOnLoad(this.gameObject);
+            FindAllPlayer();
+        }
+
+
+        private void Update()
+        {
+            time += Time.deltaTime;
+        }
+
+
+        private void FindAllPlayer()
+        {
+            data = new Dictionary<string, InGamePlayerData>();
+
+            GameObject[] players = PlayerInfoManager.Instance.PlayerObjectArr;
+
+            for (int i = 0; i < players.Length; ++i)
+            {
+                data.Add(players[i].name, new InGamePlayerData(players[i].name));
+
+                if (ownerData == null)
+                {
+                    GameObject obj;
+                    PlayerInfoManager.Instance.DicPlayer.TryGetValue(players[i].name, out obj);
+
+                    if (obj.GetComponent<PhotonView>().IsMine)
+                        ownerData = data[players[i].name];
+                }
+
+            }
+        }
+
+        public void DestroyManager()
+        {
+            Destroy(Instance);
             Destroy(this.gameObject);
-
-        DontDestroyOnLoad(this.gameObject);
-        FindAllPlayer();
-    }
-
-
-    private void Update()
-    {
-        time += Time.deltaTime;
-    }
-
-
-    private void FindAllPlayer()
-    {
-        data = new Dictionary<string, InGamePlayerData>();
-
-        GameObject[] players = PlayerInfoManager.Instance.PlayerObjectArr;
-
-        for(int i = 0; i < players.Length; ++i)
-        {
-            data.Add(players[i].name, new InGamePlayerData(players[i].name));
-
-            if(ownerData == null)
-            {
-                GameObject obj;
-                PlayerInfoManager.Instance.DicPlayer.TryGetValue(players[i].name, out obj);
-
-                if (obj.GetComponent<PhotonView>().IsMine)
-                    ownerData = data[players[i].name];
-            }
-
         }
     }
 
-    public void DestroyManager()
-    {
-        Destroy(Instance);
-        Destroy(this.gameObject);
-    }
 }

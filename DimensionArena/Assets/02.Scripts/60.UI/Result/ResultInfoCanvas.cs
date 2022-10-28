@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using ManagerSpace;
+
 public class ResultInfoCanvas : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI rankText;

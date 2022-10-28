@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using ManagerSpace;
+
 public class ResultCanvas : MonoBehaviour
 {
     [SerializeField] GameObject infoCanvas;
