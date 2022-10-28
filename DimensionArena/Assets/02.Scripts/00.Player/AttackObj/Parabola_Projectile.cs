@@ -31,7 +31,7 @@ public class Parabola_Projectile : MonoBehaviour
     {
         rotationAxis = new Vector3(Random.Range(0, 2), Random.Range(0, 2), Random.Range(0, 2));
         oriPosition = transform.position;
-        direction = dir;
+        direction = dir.normalized;
         distance = dist;
         velocity = vel;
         radianAngle = angle;
