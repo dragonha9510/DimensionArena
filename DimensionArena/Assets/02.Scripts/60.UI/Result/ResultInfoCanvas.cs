@@ -1,3 +1,4 @@
+using Photon.Pun;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -30,8 +31,10 @@ public class ResultInfoCanvas : MonoBehaviour
 
     public void ChanageToMainScene()
     {
+        PhotonNetwork.LeaveRoom();
         IngameDataManager.Instance.DestroyManager();
         Destroy(IngameDataManager.Instance.gameObject);
         SceneChanger_Loading.Instance.ChangeScene("Lobby_Main");
+
     }
 }
