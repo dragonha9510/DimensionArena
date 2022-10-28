@@ -56,7 +56,6 @@ namespace ManagerSpace
 
                 }
             }
-            ObjectPool.Instance.ResetPool();
             rank++;
         }
 

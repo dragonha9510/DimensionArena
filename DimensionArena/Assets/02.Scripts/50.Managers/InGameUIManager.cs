@@ -344,6 +344,10 @@ namespace ManagerSpace
         {
             PhotonNetwork.LeaveRoom();
             SceneManager.LoadScene("Result");
+
+
+            GameManager.instance.GameEnd();
+
         }
     }
 }

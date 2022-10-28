@@ -232,6 +232,7 @@ public class LobbyManagerRenewal : MonoBehaviourPunCallbacks
 
     public void JoinOrCreateRoom(MODE gameMode)
     {
+        inGameReadyPlayer = 0;
         FirebaseDB_Manager.Instance.IsInGame = true;    
 
         playMode = gameMode;
@@ -333,6 +334,7 @@ public class LobbyManagerRenewal : MonoBehaviourPunCallbacks
     public void PlayersReadyForStartGame()
     {
         ++this.inGameReadyPlayer;
+        Debug.Log(inGameReadyPlayer);
     }
 
 

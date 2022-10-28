@@ -66,13 +66,27 @@ public class GameManager : MonoBehaviourPunCallbacks, IPunObservable
         PhotonNetwork.Instantiate(PHOTONPATH.PHOTONPATH_PREFAPBFOLDER
             + playerPrefab.name, spawnPoint, Quaternion.identity);
 
-        StartCoroutine(nameof(WaitAllPlayers));
+       
+
+    }
+
+
+    private void Start()
+    {
+        //SoundManager.Instance.PlayBGM("BattleMusic");
+        //SoundManager.Instance.AddPhotonView();
+        PlayerInfoManager.Instance.RegisterPlayer();
+        SoundManager.Instance.PlayRandomInGameSound();
+
+
+
 
         LobbyManagerRenewal.Instance.ReadyToPlay();
         // 플레이어 대기 상태
         WatingCanvas.SetActive(true);
-
+        StartCoroutine(nameof(WaitAllPlayers));
     }
+
 
     public void OnEvent(EventData photonEvent)
     {
@@ -86,13 +100,6 @@ public class GameManager : MonoBehaviourPunCallbacks, IPunObservable
         }
     }
 
-    private void Start()
-    {
-        //SoundManager.Instance.PlayBGM("BattleMusic");
-        //SoundManager.Instance.AddPhotonView();
-        PlayerInfoManager.Instance.RegisterPlayer();
-        SoundManager.Instance.PlayRandomInGameSound();
-    }
 
    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
@@ -103,7 +110,7 @@ public class GameManager : MonoBehaviourPunCallbacks, IPunObservable
     {
         while(true)
         {
-            if (LobbyManagerRenewal.Instance.NowGameStartCount == LobbyManagerRenewal.Instance.InGameReadyPlayer)
+            if (LobbyManagerRenewal.Instance.InGameReadyPlayer == PhotonNetwork.CurrentRoom.PlayerCount)
             {
                 WatingCanvas.SetActive(false);
                 yield break;
@@ -111,4 +118,11 @@ public class GameManager : MonoBehaviourPunCallbacks, IPunObservable
             yield return null;
         }
     }
+
+    public void GameEnd()
+    {
+        IsGameEnd = true;
+        ObjectPool.Instance.ResetPool();
+    }
+
 }
