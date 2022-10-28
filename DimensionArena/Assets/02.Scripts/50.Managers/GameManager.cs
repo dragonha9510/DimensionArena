@@ -53,7 +53,6 @@ public class GameManager : MonoBehaviourPunCallbacks, IPunObservable
 
     private void Awake()
     {
-        DontDestroyOnLoad(this.gameObject);
 
         //Test Code
         GameMode = GAMEMODE.Survival;
@@ -66,7 +65,7 @@ public class GameManager : MonoBehaviourPunCallbacks, IPunObservable
         //    + playerPrefab.name, spawnPoint, Quaternion.identity
     }
 
-
+    
     private void Start()
     {
         //SoundManager.Instance.PlayBGM("BattleMusic");
