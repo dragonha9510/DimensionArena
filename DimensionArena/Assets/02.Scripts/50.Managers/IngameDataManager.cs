@@ -50,7 +50,6 @@ namespace ManagerSpace
                 {
                     if (PlayerInfoManager.Instance.PlayerObjectArr[i].activeInHierarchy)
                     {
-                        GameManager.instance.IsGameEnd = true;
                         PlayerInfoManager.Instance.PlayerObjectArr[i].GetComponent<Player>().Win();
                     }
 

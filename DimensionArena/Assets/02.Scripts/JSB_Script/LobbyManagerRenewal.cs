@@ -200,6 +200,8 @@ public class LobbyManagerRenewal : MonoBehaviourPunCallbacks
         if(15 < playerCount && 4 < roomCount)
             return null;
 
+
+        
         switch (playMode)
         {
             case MODE.MODE_SURVIVAL:
@@ -334,7 +336,6 @@ public class LobbyManagerRenewal : MonoBehaviourPunCallbacks
     public void PlayersReadyForStartGame()
     {
         ++this.inGameReadyPlayer;
-        Debug.Log(inGameReadyPlayer);
     }
 
 

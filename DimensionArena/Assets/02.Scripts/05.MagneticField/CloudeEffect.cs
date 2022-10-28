@@ -63,13 +63,12 @@ public class CloudeEffect : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        if (GameManager.instance.IsGameEnd)
+        if (GameManager.Instance.IsGameEnd)
         {
+            Debug.Log(GameManager.Instance.IsGameEnd);
             Destroy(this.gameObject);
             return;
         }
-        if (!startUpdate)
-            return;
         liveTime -= Time.deltaTime;
         
         //this.transform.position = new Vector3(this.transform.position.x + Random.Range(-0.01f,0.01f), this.transform.position.y, this.transform.position.z + Random.Range(-0.01f, 0.01f));

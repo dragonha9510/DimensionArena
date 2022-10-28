@@ -31,27 +31,29 @@ public class GameManager : MonoBehaviourPunCallbacks, IPunObservable
     private bool isGameEnd = false;
     public bool IsGameEnd { get { return isGameEnd; } set { isGameEnd = value; } }
 
-    private static GameManager m_instance;
-    public static GameManager instance
+    private static GameManager instance;
+    public static GameManager Instance
     {
         get
         {
-            if (null == m_instance)
+            if (null == instance)
             {
-                m_instance = FindObjectOfType<GameManager>();
+                GameObject gameMgr = GameObject.Find("GameManager");//new GameObject("PlayerInfoManager");
+
+                if (!gameMgr)
+                {
+                    gameMgr = new GameObject("GameManager");
+                    gameMgr.AddComponent<GameManager>();
+                }
+                instance = gameMgr.GetComponent<GameManager>();
             }
-            return m_instance;
+            return instance;
         }
     }
-   
 
     private void Awake()
     {
-
-        if (instance != this)
-            Destroy(gameObject);
-        else
-            DontDestroyOnLoad(this.gameObject);
+        DontDestroyOnLoad(this.gameObject);
 
         //Test Code
         GameMode = GAMEMODE.Survival;
@@ -160,5 +162,10 @@ public class GameManager : MonoBehaviourPunCallbacks, IPunObservable
    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
         throw new System.NotImplementedException();
+    }
+    public void GameEnd()
+    {
+        isGameEnd = true;
+        ObjectPool.Instance.ResetPool();
     }
 }

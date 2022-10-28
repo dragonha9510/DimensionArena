@@ -62,7 +62,6 @@ public class RedZone : MonoBehaviourPun
     [PunRPC]
     private void RedzoneActiveSetting(bool state)
     {
-        Debug.Log("세팅 호출 상태값 : " + state);
         GameObject obj = this.transform.Find("RedZone").gameObject;
         obj.SetActive(state);
         //this.transform.Find("RedZone").gameObject.SetActive(state);

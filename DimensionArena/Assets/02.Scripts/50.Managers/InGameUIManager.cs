@@ -129,7 +129,7 @@ namespace ManagerSpace
 
         private void Initialize()
         {
-            mode = GameManager.instance == null ? GAMEMODE.Survival : GameManager.instance.GameMode;
+            mode = GameManager.Instance == null ? GAMEMODE.Survival : GameManager.Instance.GameMode;
             ListDeadEv = new List<DeadEvent>();
             isInfromEnd = true;
 
@@ -161,7 +161,7 @@ namespace ManagerSpace
         private void SetGameStart()
         {
             GAMEMODE mode;
-            mode = GameManager.instance == null ? GAMEMODE.Survival : GameManager.instance.GameMode;
+            mode = GameManager.Instance == null ? GAMEMODE.Survival : GameManager.Instance.GameMode;
 
             switch (mode)
             {
@@ -342,12 +342,9 @@ namespace ManagerSpace
 
         public void LoadResultScene()
         {
+            GameManager.Instance.GameEnd();
             PhotonNetwork.LeaveRoom();
             SceneManager.LoadScene("Result");
-
-
-            GameManager.instance.GameEnd();
-
         }
     }
 }

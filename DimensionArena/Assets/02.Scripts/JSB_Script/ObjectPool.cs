@@ -7,6 +7,7 @@ public enum CLIENTOBJ
 {
     // 서버와 관련되지 않은 것
     CLIENTOBJ_CLOUDEFFECT,
+    CLIENTOBJ_END
 
 }
 public enum SERVEROBJ
@@ -15,6 +16,7 @@ public enum SERVEROBJ
 
     SERVEROBJ_MISSILE,
     SERVEROBJ_ITEMMISSILE,
+    SERVEROBJ_END
 }
 
 public class ObjectPool : MonoBehaviourPun
@@ -68,6 +70,23 @@ public class ObjectPool : MonoBehaviourPun
 
     public void ResetPool()
     {
+        for(int i = 0; i < (int)CLIENTOBJ.CLIENTOBJ_END; ++i)
+        {
+            if (0 == cliobjectPool[(CLIENTOBJ)i].Count)
+                break;
+            foreach (GameObject obj in cliobjectPool[(CLIENTOBJ)i])
+            {
+                Debug.Log("풀에 있는 것 삭제");
+                Destroy(obj.gameObject);
+            }
+        }
+        for (int i = 0; i < (int)SERVEROBJ.SERVEROBJ_END; ++i)
+        {
+            if (0 == serverobjectPool.Count)
+                break;
+            foreach (GameObject obj in serverobjectPool[(SERVEROBJ)i])
+                Destroy(obj);
+        }
         cliobjectPool[CLIENTOBJ.CLIENTOBJ_CLOUDEFFECT].Clear();
         cliobjectPool.Clear();
         serverobjectPool.Clear();
@@ -124,7 +143,6 @@ public class ObjectPool : MonoBehaviourPun
         {
             for (int i = 0; i < addPoolCount; ++i)
             {
-                Debug.Log("PooAdd");
                 cliobjectPool[type].Enqueue(CreateObjectInResources(clientPrefabs[(int)type]));
             }
         }
