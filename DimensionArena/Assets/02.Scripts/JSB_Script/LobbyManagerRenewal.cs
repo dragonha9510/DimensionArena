@@ -327,14 +327,16 @@ public class LobbyManagerRenewal : MonoBehaviourPunCallbacks
             
         }
     }
-
+    
     public void ReadyToPlay()
     {
         photonView.RPC(nameof(PlayersReadyForStartGame), RpcTarget.All);
     }
+
     [PunRPC]
     public void PlayersReadyForStartGame()
     {
+        Debug.Log(inGameReadyPlayer);
         ++this.inGameReadyPlayer;
     }
 
