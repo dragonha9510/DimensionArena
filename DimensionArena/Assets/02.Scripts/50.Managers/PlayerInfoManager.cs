@@ -17,8 +17,6 @@ namespace ManagerSpace
     public class PlayerInfoManager : MonoBehaviourPun
     {
 
-        [SerializeField] GameObject ingameUIManager;
-
         /// ===========================
         /// Singleton Region
         /// >>>>>>>>>>>>>>>>>>>>>>>>>>
@@ -163,12 +161,6 @@ namespace ManagerSpace
                 DicPlayer.Add(players[i].name, players[i]);
             }
 
-
-            if (PhotonNetwork.CurrentRoom.PlayerCount
-                == players.Length)
-            {
-                ingameUIManager.SetActive(true);
-            }
         }
 
         /// <<<<<<<<<<<<<<<<<<<<<<<<<<<

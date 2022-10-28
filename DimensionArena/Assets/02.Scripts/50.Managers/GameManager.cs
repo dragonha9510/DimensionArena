@@ -4,6 +4,7 @@ using Photon.Pun;
 using UnityEngine;
 using ExitGames.Client.Photon;
 using ManagerSpace;
+using PlayerSpace;
 using UnityEngine.UI;
 using TMPro;
 public enum GAMEMODE
@@ -17,6 +18,8 @@ public class GameManager : MonoBehaviourPunCallbacks, IPunObservable
 {
     [SerializeField]
     private GameObject WatingCanvas;
+
+    [SerializeField] private SpawnPoint[] spawnPoint;
 
     [SerializeField]
     public GameObject playerPrefab;
@@ -41,6 +44,7 @@ public class GameManager : MonoBehaviourPunCallbacks, IPunObservable
         }
     }
    
+
     private void Awake()
     {
 
@@ -75,6 +79,8 @@ public class GameManager : MonoBehaviourPunCallbacks, IPunObservable
         PlayerInfoManager.Instance.RegisterPlayer();
         SoundManager.Instance.PlayRandomInGameSound();
         LobbyManagerRenewal.Instance.ReadyToPlay();
+
+        spawnPoint = FindObjectsOfType<SpawnPoint>();     
         // 플레이어 대기 상태
         WatingCanvas.SetActive(true);
         StartCoroutine(nameof(WaitAllPlayers));
@@ -99,11 +105,58 @@ public class GameManager : MonoBehaviourPunCallbacks, IPunObservable
             if (LobbyManagerRenewal.Instance.InGameReadyPlayer == PhotonNetwork.CurrentRoom.PlayerCount)
             {
                 WatingCanvas.SetActive(false);
-                yield break;
+                break;
             }
             yield return null;
         }
+
+        if (!PhotonNetwork.IsMasterClient)
+            yield break;
+
+        ManagerMediator mediator = GetComponent<ManagerMediator>();
+        mediator.enabled = true;
+
+        yield return new WaitUntil(() => mediator.IsAllManagerActive);
+        //모든 플레이어들이 등록된 상황이라면, 
+        StartCoroutine(SpawnPointRegisterPlayer());
+
+
+
     }
+
+    IEnumerator SpawnPointRegisterPlayer()
+    {
+        GameObject[] players = PlayerInfoManager.Instance.PlayerObjectArr;
+
+        int idx;
+
+        for(int i = 0; i < players.Length; ++i)
+        {
+            while(true)
+            {
+                yield return null;
+                idx = Random.Range(0, spawnPoint.Length);
+
+                if (spawnPoint[idx].GetRegisterState())
+                    continue;
+
+                spawnPoint[idx].SetRegisterOn();
+                players[i].transform.position = spawnPoint[idx].transform.position;
+                photonView.RPC(nameof(SetPlayerPositionForAllClient), RpcTarget.All, players[i], spawnPoint[idx].transform.position);
+                break;
+            }
+        }
+    }
+
+    [PunRPC]
+    public void SetPlayerPositionForAllClient(GameObject player, Vector3 position)
+    {
+        player.transform.position = position;
+    }
+
+
+
+
    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
         throw new System.NotImplementedException();

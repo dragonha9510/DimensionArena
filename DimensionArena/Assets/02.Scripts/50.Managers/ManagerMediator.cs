@@ -21,10 +21,21 @@ namespace ManagerSpace
     {
         
         [SerializeField] SerializableDictionary<MANAGER_TYPE, GameObject> managerDic;
+        private bool isAllManagerActive;
+        public bool IsAllManagerActive => isAllManagerActive;
 
-        private void Awake()
+
+      
+
+        private void Start()
         {
-            StartCoroutine(DelayActiveManager());
+
+            for (int i = 0; i < managerDic.Count; ++i)
+            {
+                managerDic[(MANAGER_TYPE)i].SetActive(true);
+            }
+
+            isAllManagerActive = true;
         }
 
         IEnumerator DelayActiveManager()
@@ -88,8 +99,6 @@ namespace ManagerSpace
                     }
                 }
             }
-
-
         }
 
     }
