@@ -6,7 +6,7 @@ using UnityEngine.UI;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
-
+using System;
 
 // Test
 using Firebase;
@@ -200,18 +200,26 @@ public class LobbyManagerRenewal : MonoBehaviourPunCallbacks
         if(15 < playerCount && 4 < roomCount)
             return null;
 
+        // 새로운 방의 인덱스를 구하기 위해 맨 끝 이름을 받는다.
+        int newRoomIndex = 0;
+        foreach (string key in rooms[(int)playMode].Keys)
+        {
+            Int32.TryParse(key[3].ToString(),out newRoomIndex);
+        }
 
-        
+        ++newRoomIndex;
+
+
         switch (playMode)
         {
             case MODE.MODE_SURVIVAL:
-                return new CustomRoomInfo(modeRoomNames[(int)MODE.MODE_SURVIVAL] + (rooms[(int)MODE.MODE_SURVIVAL].Count + 1).ToString(),0,true);
+                return new CustomRoomInfo(modeRoomNames[(int)MODE.MODE_SURVIVAL] + newRoomIndex.ToString(),0,true);
             case MODE.MODE_FREEFALLALL:
-                return new CustomRoomInfo(modeRoomNames[(int)MODE.MODE_FREEFALLALL] + (rooms[(int)MODE.MODE_SURVIVAL].Count + 1).ToString(), 0, true);
+                return new CustomRoomInfo(modeRoomNames[(int)MODE.MODE_FREEFALLALL] + newRoomIndex.ToString(), 0, true);
             case MODE.MODE_TEAMDEATHMATCH:
-                return new CustomRoomInfo(modeRoomNames[(int)MODE.MODE_TEAMDEATHMATCH] + (rooms[(int)MODE.MODE_SURVIVAL].Count + 1).ToString(), 0, true);
+                return new CustomRoomInfo(modeRoomNames[(int)MODE.MODE_TEAMDEATHMATCH] + newRoomIndex.ToString(), 0, true);
             case MODE.MODE_SUPERSTAR:
-                return new CustomRoomInfo(modeRoomNames[(int)MODE.MODE_FREEFALLALL] + (rooms[(int)MODE.MODE_SURVIVAL].Count + 1).ToString(), 0, true);
+                return new CustomRoomInfo(modeRoomNames[(int)MODE.MODE_FREEFALLALL] + newRoomIndex.ToString(), 0, true);
             default:
                 return null;
         }

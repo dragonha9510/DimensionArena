@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CustomRoomInfo : MonoBehaviour
+public class CustomRoomInfo
 {
     private string roomName = "";
     public string RoomName { get { return roomName; } }
