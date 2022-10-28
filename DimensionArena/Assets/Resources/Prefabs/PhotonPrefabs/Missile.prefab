@@ -96,6 +96,7 @@ GameObject:
   - component: {fileID: -8167294185767879211}
   - component: {fileID: 1650859379048545011}
   - component: {fileID: 190571489047571183}
+  - component: {fileID: 627362709755119716}
   m_Layer: 0
   m_Name: Missile
   m_TagString: Untagged
@@ -189,6 +190,26 @@ MonoBehaviour:
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
+--- !u!114 &627362709755119716
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5806869448693917664}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4263fb7953f21e4cbf8bce293d78054, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  info:
+    isOn: 0
+    direction: {x: 0, y: 0, z: 0}
+    speed: 16
+    distance: 1
+  knockBack: {fileID: 6338996334954765853, guid: 4e2ccaa5a98eefb469e9fcea7ceeb6ce,
+    type: 3}
+  triggerRadius: 2
 --- !u!1 &6731869027971370076
 GameObject:
   m_ObjectHideFlags: 0

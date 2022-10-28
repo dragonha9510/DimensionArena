@@ -44,6 +44,10 @@ public class Parabola_Projectile : MonoBehaviour
         realSpeed = speed / 100;
     }
 
+    private void Start()
+    {
+    }
+
     private void Update()
     {
         if (!isReady)
