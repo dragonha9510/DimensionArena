@@ -65,7 +65,7 @@ public class GameManager : MonoBehaviourPunCallbacks, IPunObservable
         //    + playerPrefab.name, spawnPoint, Quaternion.identity
     }
 
-    
+
     private void Start()
     {
         //SoundManager.Instance.PlayBGM("BattleMusic");

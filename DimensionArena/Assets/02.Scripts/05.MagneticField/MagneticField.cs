@@ -334,8 +334,6 @@ public class MagneticField : MonoBehaviourPun
 
     void FixedUpdate()
     {
-        if (GameManager.Instance.IsGameEnd)
-            Destroy(this.gameObject);
         if (!PhotonNetwork.IsMasterClient)
             return;
         if (decreaseOneCircleActiveTime <= divideTime)
