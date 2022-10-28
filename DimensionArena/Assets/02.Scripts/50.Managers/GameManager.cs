@@ -74,7 +74,7 @@ public class GameManager : MonoBehaviourPunCallbacks, IPunObservable
     private void Start()
     {
         //SoundManager.Instance.PlayBGM("BattleMusic");
-        //SoundManager.Instance.AddPhotonView();
+        //SoundManager.Instance.AddPhotonView(); 
         SoundManager.Instance.PlayRandomInGameSound();
         LobbyManagerRenewal.Instance.ReadyToPlay();
 
@@ -105,22 +105,20 @@ public class GameManager : MonoBehaviourPunCallbacks, IPunObservable
 
         while (true)
         {
-            if (LobbyManagerRenewal.Instance.InGameReadyPlayer == PhotonNetwork.CurrentRoom.PlayerCount)
-            {
-                Debug.Log("실행됨");
-                WatingCanvas.SetActive(false);
-                //바로, 생성하면 안됨    
+            if (LobbyManagerRenewal.Instance.InGameReadyPlayer 
+                == PhotonNetwork.CurrentRoom.PlayerCount)   
                 break;
-            }
+            
             yield return null;
         }
-
 
         //모든 플레이어들이 등록된 상황이라면, 
         if (PhotonNetwork.IsMasterClient)
             StartCoroutine(SpawnPointRegisterPlayer());
 
         yield return new WaitUntil(() => isSpawnEnd);
+
+        WatingCanvas.SetActive(false);
 
         ManagerMediator mediator = GetComponent<ManagerMediator>();
         mediator.enabled = true;
@@ -170,15 +168,15 @@ public class GameManager : MonoBehaviourPunCallbacks, IPunObservable
     }
 
 
-   public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
-    {
-        throw new System.NotImplementedException();
-    }
-
 
     public void GameEnd()
     {
         isGameEnd = true;
         ObjectPool.Instance.ResetPool();
     }
+   public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
+        throw new System.NotImplementedException();
+    }
+
 }
