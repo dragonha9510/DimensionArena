@@ -45,7 +45,6 @@ namespace PlayerSpace
         public string NickName => nickName;
 
         //나중에 고칠것
-        private float reviveTime = 3.0f;
         public bool CanDirectionChange { get; set; }
 
 

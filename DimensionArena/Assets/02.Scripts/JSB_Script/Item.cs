@@ -24,9 +24,6 @@ public class Item : MonoBehaviour
     private float liveTime;
     private bool dropPossible;
 
-
-
-
     private Rigidbody rigidBody;
     [SerializeField]
     private float boingPower = 1.0f;

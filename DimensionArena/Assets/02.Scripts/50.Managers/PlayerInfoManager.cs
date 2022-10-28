@@ -235,7 +235,7 @@ namespace ManagerSpace
                 target.Damaged(damage);
             }
         }
-        
+
 
 
         public void CurHpDecrease(string targetId, float damage)
