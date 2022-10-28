@@ -31,6 +31,11 @@ public class GameManager : MonoBehaviourPunCallbacks, IPunObservable
     private bool isGameEnd = false;
     public bool IsGameEnd { get { return isGameEnd; } set { isGameEnd = value; } }
 
+    private bool isSpawnEnd;
+    public bool IsSpawnEnd => isSpawnEnd;
+
+
+
     private static GameManager instance;
     public static GameManager Instance
     {
@@ -109,19 +114,17 @@ public class GameManager : MonoBehaviourPunCallbacks, IPunObservable
             yield return null;
         }
 
-        if (!PhotonNetwork.IsMasterClient)
-            yield break;
 
-        
+        //모든 플레이어들이 등록된 상황이라면, 
+        if (PhotonNetwork.IsMasterClient)
+            StartCoroutine(SpawnPointRegisterPlayer());
+
+        yield return new WaitUntil(() => isSpawnEnd);
+
         ManagerMediator mediator = GetComponent<ManagerMediator>();
         mediator.enabled = true;
 
-        yield return new WaitUntil(() => mediator.IsAllManagerActive);
-        //모든 플레이어들이 등록된 상황이라면, 
-        StartCoroutine(SpawnPointRegisterPlayer());
-
-
-
+            
     }
 
     IEnumerator SpawnPointRegisterPlayer()
@@ -145,7 +148,17 @@ public class GameManager : MonoBehaviourPunCallbacks, IPunObservable
                 break;
             }
         }
+
+        photonView.RPC(nameof(PlayerSpawnEnd), RpcTarget.All);
+
     }
+
+    [PunRPC]
+    public void PlayerSpawnEnd()
+    {
+        isSpawnEnd = true;
+    }
+
 
     [PunRPC]
     public void SetPlayerPositionForAllClient(string playerName, Vector3 position)

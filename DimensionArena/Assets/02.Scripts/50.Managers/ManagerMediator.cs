@@ -24,9 +24,6 @@ namespace ManagerSpace
         private bool isAllManagerActive;
         public bool IsAllManagerActive => isAllManagerActive;
 
-
-      
-
         private void Start()
         {
 
@@ -38,6 +35,8 @@ namespace ManagerSpace
             isAllManagerActive = true;
         }
 
+
+        /*
         IEnumerator DelayActiveManager()
         {
             for (int i = (int)MANAGER_TYPE.EFFECT; i < (int)MANAGER_TYPE.INGAME_DATA; ++i)
@@ -100,12 +99,9 @@ namespace ManagerSpace
                 }
             }
         }
+        */
 
     }
-
-
-
-
 }
 
 
