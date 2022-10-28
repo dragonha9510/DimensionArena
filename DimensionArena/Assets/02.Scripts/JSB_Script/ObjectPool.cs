@@ -70,6 +70,9 @@ public class ObjectPool : MonoBehaviourPun
 
     public void ResetPool()
     {
+        Destroy(this.gameObject);
+
+        /*
         for(int i = 0; i < (int)CLIENTOBJ.CLIENTOBJ_END; ++i)
         {
             if (0 == cliobjectPool[(CLIENTOBJ)i].Count)
@@ -90,6 +93,7 @@ public class ObjectPool : MonoBehaviourPun
         cliobjectPool[CLIENTOBJ.CLIENTOBJ_CLOUDEFFECT].Clear();
         cliobjectPool.Clear();
         serverobjectPool.Clear();
+        */
     }
         
 

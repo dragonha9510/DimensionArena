@@ -84,7 +84,7 @@ namespace ManagerSpace
         {
             get
             {
-                if ((playerObjectArr).Length <= 0)
+                if (NullCheck.IsNullOrEmpty(playerObjectArr))
                 {
                     playerObjectArr = GameObject.FindGameObjectsWithTag("Player");
 

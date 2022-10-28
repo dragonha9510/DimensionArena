@@ -90,7 +90,7 @@ namespace ManagerSpace
             {
                 if (!instance)
                 {
-                    if (!(instance = GameObject.FindObjectOfType<IngameDataManager>()))
+                    if (!(instance = FindObjectOfType<IngameDataManager>()))
                     {
                         GameObject obj = new GameObject("IngameDataManager");
                         instance = obj.AddComponent<IngameDataManager>();
@@ -114,10 +114,12 @@ namespace ManagerSpace
 
         private void Awake()
         {
-            if (!instance)
-                Destroy(this.gameObject);
+            if (instance)
+                Destroy(gameObject);
+            else
+                instance = this;
 
-            DontDestroyOnLoad(this.gameObject);
+            DontDestroyOnLoad(gameObject);
             FindAllPlayer();
         }
 
@@ -153,7 +155,7 @@ namespace ManagerSpace
         public void DestroyManager()
         {
             Destroy(Instance);
-            Destroy(this.gameObject);
+            Destroy(gameObject);
         }
     }
 
