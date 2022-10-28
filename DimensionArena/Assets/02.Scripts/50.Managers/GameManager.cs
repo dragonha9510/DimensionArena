@@ -96,11 +96,13 @@ public class GameManager : MonoBehaviourPunCallbacks, IPunObservable
     {
         PhotonNetwork.Instantiate(PHOTONPATH.PHOTONPATH_PREFAPBFOLDER
           + playerPrefab.name, Vector3.zero, Quaternion.identity);
+        Debug.Log(LobbyManagerRenewal.Instance.InGameReadyPlayer);
 
         while (true)
         {
             if (LobbyManagerRenewal.Instance.InGameReadyPlayer == PhotonNetwork.CurrentRoom.PlayerCount)
             {
+                Debug.Log("실행됨");
                 WatingCanvas.SetActive(false);
                 //바로, 생성하면 안됨    
                 break;
@@ -112,8 +114,6 @@ public class GameManager : MonoBehaviourPunCallbacks, IPunObservable
             yield break;
 
         
-
-
         ManagerMediator mediator = GetComponent<ManagerMediator>();
         mediator.enabled = true;
 
@@ -157,12 +157,12 @@ public class GameManager : MonoBehaviourPunCallbacks, IPunObservable
     }
 
 
-
-
    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
         throw new System.NotImplementedException();
     }
+
+
     public void GameEnd()
     {
         isGameEnd = true;
