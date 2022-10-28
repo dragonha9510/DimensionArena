@@ -31,6 +31,7 @@ public class ResultInfoCanvas : MonoBehaviour
     public void ChanageToMainScene()
     {
         IngameDataManager.Instance.DestroyManager();
+        Destroy(IngameDataManager.Instance.gameObject);
         SceneChanger_Loading.Instance.ChangeScene("Lobby_Main");
     }
 }
