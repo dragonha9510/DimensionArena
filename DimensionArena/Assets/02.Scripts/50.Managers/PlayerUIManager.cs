@@ -12,8 +12,14 @@ namespace ManagerSpace
     {
         Player target;
         [SerializeField] TextMeshProUGUI playerName;
+
         [SerializeField] Slider hpBarSlider;
         [SerializeField] TextMeshProUGUI hpText;
+
+        [SerializeField] Image shieldImg;
+        [SerializeField] TextMeshProUGUI shieldText;
+
+
         [SerializeField] GameObject arrow;
         [SerializeField] float arrowTime = 3.0f;
         void Start()
@@ -70,6 +76,20 @@ namespace ManagerSpace
             hpText.text = amount.ToString();
         }
 
+
+
+        void GetShield(float amount)
+        {
+            //Shield °»½Å
+            shieldImg.fillAmount = 1.0f;
+            shieldText.text = amount.ToString();
+        }
+
+        void ShieldChange(float amount, float ratio)
+        {
+            shieldText.text = amount.ToString();
+            shieldImg.fillAmount = ratio;
+        }
 
 
 

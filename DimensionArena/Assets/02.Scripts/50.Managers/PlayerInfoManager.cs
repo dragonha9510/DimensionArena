@@ -238,7 +238,7 @@ namespace ManagerSpace
 
 
 
-        public void CurHpDecrease(ENVIROMENT enviroment, string targetId, float damage)
+        public void CurHpDecrease(string targetId, float damage)
         {
             PlayerInfo target;
             //Damage
