@@ -63,9 +63,11 @@ public class CloudeEffect : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        if(GameManager.instance.IsGameEnd)
+        if (GameManager.instance.IsGameEnd)
+        {
             Destroy(this.gameObject);
-
+            return;
+        }
         if (!startUpdate)
             return;
         liveTime -= Time.deltaTime;

@@ -159,5 +159,25 @@ namespace PlayerSpace
             }
         }
 
+
+
+        [PunRPC]
+        public void OnTriggerToMangeticField(string ownerID, float damage)
+        {
+            PlayerInfoManager.Instance.CurHpDecrease(ownerID, damage);
+
+            PlayerInfoManager.Instance.DeadCheckCallServer(ownerID);
+        }
+
+        private void OnTriggerStay(Collider other)
+        {
+            if (!PhotonNetwork.IsMasterClient)
+                return;
+            if (other.gameObject.tag == "MagneticField")
+            {
+                photonView.RPC(nameof(OnTriggerToMangeticField), RpcTarget.All, this.gameObject.name, other.GetComponent<MagneticCloudEffectCreator>().FieldDamage);
+
+            }
+        }
     }
 }

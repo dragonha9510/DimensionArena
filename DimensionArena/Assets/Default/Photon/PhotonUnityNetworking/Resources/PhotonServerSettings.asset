@@ -90,6 +90,8 @@ MonoBehaviour:
   - SetUpRoomList
   - SettingCloseRoom
   - RegisterCustomRoomInfo
+  - OnTriggerToMangeticField
+  - PlayersReadyForStartGame
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1

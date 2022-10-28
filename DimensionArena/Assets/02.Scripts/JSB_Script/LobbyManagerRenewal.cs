@@ -52,6 +52,13 @@ public class LobbyManagerRenewal : MonoBehaviourPunCallbacks
 
     private string nowInRoomName = "";
 
+
+    // 게임 끝나면 초기화 시켜줘야함
+    private int inGameReadyPlayer = 0;
+    public int InGameReadyPlayer { get { return inGameReadyPlayer; } }
+    private int nowGameStartCount = 0;
+    public int NowGameStartCount { get { return nowGameStartCount; } }
+
     //Test 
     [SerializeField] Dictionary<string, PlayerData> playerDatas = new Dictionary<string, PlayerData>();
 
@@ -275,6 +282,7 @@ public class LobbyManagerRenewal : MonoBehaviourPunCallbacks
 
         if (leastStartPlayer <= PhotonNetwork.CurrentRoom.PlayerCount)
         {
+            nowGameStartCount = PhotonNetwork.CurrentRoom.PlayerCount;
             isWillStartGame = true;
             PhotonNetwork.CurrentRoom.IsOpen = false;
             SettingCloseRoom(PhotonNetwork.CurrentRoom.Name ,playMode);
@@ -316,5 +324,17 @@ public class LobbyManagerRenewal : MonoBehaviourPunCallbacks
             
         }
     }
+
+    public void ReadyToPlay()
+    {
+        photonView.RPC(nameof(PlayersReadyForStartGame), RpcTarget.All);
+    }
+    [PunRPC]
+    public void PlayersReadyForStartGame()
+    {
+        ++this.inGameReadyPlayer;
+    }
+
+
 
 }

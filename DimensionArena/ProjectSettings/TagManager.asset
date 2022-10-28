@@ -18,6 +18,7 @@ TagManager:
   - Redzone
   - Redzone_Effect
   - Water
+  - MagneticField
   layers:
   - Default
   - TransparentFX

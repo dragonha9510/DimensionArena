@@ -4,7 +4,8 @@ using Photon.Pun;
 using UnityEngine;
 using ExitGames.Client.Photon;
 using ManagerSpace;
-
+using UnityEngine.UI;
+using TMPro;
 public enum GAMEMODE
 {
     Survival,
@@ -14,6 +15,10 @@ public enum GAMEMODE
 
 public class GameManager : MonoBehaviourPunCallbacks, IPunObservable
 {
+    [SerializeField]
+    private GameObject WatingCanvas;
+
+
     [SerializeField]
     public GameObject playerPrefab;
     public GAMEMODE GameMode { get; private set; }
@@ -49,6 +54,8 @@ public class GameManager : MonoBehaviourPunCallbacks, IPunObservable
         GameMode = GAMEMODE.Survival;
 
 
+
+
         Vector3 spawnPoint = new Vector3(0, 0, 0);
 
         //   추 후 이거 유동적으로 바꿔야함. 게임매니저 문제점 기록하기
@@ -56,21 +63,15 @@ public class GameManager : MonoBehaviourPunCallbacks, IPunObservable
         //GameObject testObject = PhotonNetwork.Instantiate(PHOTONPATH.PHOTONPATH_PREFAPBFOLDER
         //    + playerPrefab.name, spawnPoint, Quaternion.identity);
 
-        InGameServerManager.GetInstance().PhotonNetworkInstantiate(PHOTONPATH.PHOTONPATH_PREFAPBFOLDER
+        PhotonNetwork.Instantiate(PHOTONPATH.PHOTONPATH_PREFAPBFOLDER
             + playerPrefab.name, spawnPoint, Quaternion.identity);
 
-        /*
-        InGameServerManager.GetInstance().PhotonNetworkInstantiate(PHOTONPATH.PHOTONPATH_ITEMPREFABFOLDER
-            + "ItemBox", new Vector3(-2, 1, 2), Quaternion.identity);
-        InGameServerManager.GetInstance().PhotonNetworkInstantiate(PHOTONPATH.PHOTONPATH_ITEMPREFABFOLDER
-            + "ItemBox", new Vector3(-2, 1, 1), Quaternion.identity);
-        InGameServerManager.GetInstance().PhotonNetworkInstantiate(PHOTONPATH.PHOTONPATH_ITEMPREFABFOLDER
-            + "ItemBox", new Vector3(-2, 1, 0), Quaternion.identity);
-        //PhotonNetwork.Instantiate(PHOTONPATH.PHOTONPATH_PREFAPBFOLDER 
-        //    + playerPrefab.name, spawnPoint, Quaternion.identity);
+        StartCoroutine(nameof(WaitAllPlayers));
 
-        //photonView.RPC("CreatePlayer", RpcTarget.All, PHOTONPATH.PHOTONPATH_PREFAPBFOLDER + playerPrefab.name, spawnPoint, Quaternion.identity);
-        */
+        LobbyManagerRenewal.Instance.ReadyToPlay();
+        // 플레이어 대기 상태
+        WatingCanvas.SetActive(true);
+
     }
 
     public void OnEvent(EventData photonEvent)
@@ -96,5 +97,18 @@ public class GameManager : MonoBehaviourPunCallbacks, IPunObservable
    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
         throw new System.NotImplementedException();
+    }
+
+    IEnumerator WaitAllPlayers()
+    {
+        while(true)
+        {
+            if (LobbyManagerRenewal.Instance.NowGameStartCount == LobbyManagerRenewal.Instance.InGameReadyPlayer)
+            {
+                WatingCanvas.SetActive(false);
+                yield break;
+            }
+            yield return null;
+        }
     }
 }
