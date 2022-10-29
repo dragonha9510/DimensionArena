@@ -487,10 +487,10 @@ namespace GRITTY
                 return;
 
             list_Ground_Node[colmn][row].CreateBrick(row, colmn, PrefabSelector.Window.GetCurPrefab());
+            list_Brick_Node[colmn][row].SetBasicGround(PrefabSelector.Window.GetCurPrefab().normalTexture);
 
-            if(list_Brick_Node[colmn][row].nodeInfo.objectName == null)
-                list_Brick_Node[colmn][row].SetBasicGround(PrefabSelector.Window.GetCurPrefab().normalTexture);
-
+            if (!list_Brick_Node[colmn][row].brick)
+                list_Brick_Node[colmn][row].ChangeCurrentTexture(PrefabSelector.Window.GetCurPrefab().normalTexture);
             GUI.changed = true;
         }
         void DeleteGround(int row, int colmn)
