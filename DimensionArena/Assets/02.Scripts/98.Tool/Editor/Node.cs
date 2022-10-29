@@ -66,9 +66,9 @@ namespace GRITTY
         }
 
 
-        public void ChangeCurrentTexture(Texture2D texture)
+        public void SetCurrentTextureToBasicTexture()
         {
-            nodeInfo.currentTexture = texture;
+            nodeInfo.currentTexture = nodeInfo.basicTexture;
         }
 
         public void SetBasicGround(Texture2D basicTexture)
@@ -79,7 +79,6 @@ namespace GRITTY
         public void EraseBasicGround()
         {
             nodeInfo.basicTexture = TextureManager.alpha;
-            nodeInfo.currentTexture = nodeInfo.basicTexture;
         }
 
         public bool EraseBrick()

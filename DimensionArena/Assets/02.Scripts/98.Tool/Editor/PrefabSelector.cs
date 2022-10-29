@@ -32,7 +32,6 @@ namespace GRITTY
         List<NodeInformation> brick_Prefabs;
         NodeInformation curNodeInfo;
 
-
         int prefabCount;
         int idx_Prefab;
         #endregion
@@ -77,7 +76,6 @@ namespace GRITTY
         GUIStyle eraseIconStyle;
         GUIStyle saveIconStyle;
         GUIStyle loadIconStyle;
-
 
         Texture2D createIcon;
         Texture2D createSelIcon;
