@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 
-public class Parabola_Projectile : MonoBehaviour
+public class Parabola_Projectile : MonoBehaviourPun
 {
     // Destroy Effect
     [SerializeField] private GameObject destroyEffect;
@@ -29,6 +29,13 @@ public class Parabola_Projectile : MonoBehaviour
 
     public void SetArcInfo(Vector3 dir, float dist, float vel, float angle)
     {
+        photonView.RPC(nameof(SetAllClientArcInfo), RpcTarget.All, dir, dist, vel, angle);
+    }
+
+
+    [PunRPC]
+    public void SetAllClientArcInfo(Vector3 dir, float dist, float vel, float angle)
+    {
         rotationAxis = new Vector3(Random.Range(0, 2), Random.Range(0, 2), Random.Range(0, 2));
         oriPosition = transform.position;
         direction = dir.normalized;
@@ -37,6 +44,7 @@ public class Parabola_Projectile : MonoBehaviour
         radianAngle = angle;
         isReady = true;
     }
+
 
     private void Awake()
     {

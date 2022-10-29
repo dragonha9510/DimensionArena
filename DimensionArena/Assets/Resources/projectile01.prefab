@@ -5138,6 +5138,7 @@ MonoBehaviour:
   ownerID: 
   ultimatePoint: 10
   damage: 12
+  hitPrefab: {fileID: 0}
   rigid: {fileID: 8859486997864378991}
   originPos: {x: 0, y: 0, z: 0}
 --- !u!54 &8859486997864378991
@@ -5314,7 +5315,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8806198835709795471}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
   m_Name: 
@@ -5330,7 +5331,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8806198835709795471}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 64179f3720bbfe947b7724caa67b7c1d, type: 3}
   m_Name: 
