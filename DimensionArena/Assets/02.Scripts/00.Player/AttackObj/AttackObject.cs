@@ -14,6 +14,7 @@ public class AttackObject : MonoBehaviourPun
     //
     [SerializeField] private int ultimatePoint;
     [SerializeField] private int damage;
+    public int Damage { get { return damage; } }
     public GameObject hitPrefab;
 
 

@@ -20,6 +20,7 @@ TagManager:
   - Water
   - MagneticField
   - SpawnPoint
+  - AttackCollider
   layers:
   - Default
   - TransparentFX

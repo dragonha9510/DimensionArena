@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
+using UnityEngine.UI;
+using TMPro;
+
 public class ItemBox : MonoBehaviourPun
 {
     [System.Serializable]
@@ -15,9 +18,26 @@ public class ItemBox : MonoBehaviourPun
     }
     [SerializeField]
     private List<dropTable> dropTables = new List<dropTable>();
+    [SerializeField]
+    private float health;
+    [SerializeField]
+    private TextMeshProUGUI itemHealth;
+    [SerializeField]
+    private Slider itemSlider;
+
+    
+
 
     private ITEM makeItemType = ITEM.ITEM_END;
     private string itemPrefabName = "";
+
+
+    private void Start()
+    {
+        itemHealth.text = health.ToString();
+        itemSlider.maxValue = health;
+        itemSlider.value = health;
+    }
 
     private void OnEnable()
     {
@@ -81,11 +101,46 @@ public class ItemBox : MonoBehaviourPun
     // 주어진 float 0 ~ 1 까지의 확률
     // 0 ~ 1 까지 float 으로 랜덤을 돌린다 . 
 
-    private void OnTriggerEnter(Collider other)
+    private void MakeRandItem()
     {
-        if (!PhotonNetwork.IsMasterClient)
-            return;
         PhotonNetwork.Instantiate(PHOTONPATH.PHOTONPATH_ITEMPREFABFOLDER + itemPrefabName, this.transform.position, Quaternion.identity);
         PhotonNetwork.Destroy(this.gameObject);
     }
+    private void OnTriggerEnter(Collider other)
+    {
+        if(PhotonNetwork.IsConnected)
+        {
+            if (!PhotonNetwork.IsMasterClient)
+                return;
+            if (other.gameObject.tag == "AttackCollider")
+            {
+                health -= other.gameObject.GetComponent<Projectile>().Damage;
+                itemSlider.value = health;
+                if (false == GetComponentInChildren<Shaking>().IsShaking)
+                    GetComponentInChildren<Shaking>().StartShaking();
+                if (health <= 0)
+                {
+                    MakeRandItem();
+                    PhotonNetwork.Destroy(this.gameObject);
+                }
+            }
+        }
+        else
+        {
+            if (other.gameObject.tag == "AttackCollider")
+            {
+                health -= other.gameObject.GetComponent<Projectile>().Damage;
+                itemSlider.value = health;
+                if (health <= 0)
+                {
+                    MakeRandItem();
+                    Destroy(this.gameObject);
+                }
+            }
+        }
+        
+    }
+
+  
+
 }

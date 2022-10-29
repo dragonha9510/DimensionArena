@@ -36,6 +36,7 @@ public class InGameDataParsingManager : MonoBehaviour
         bool isSucces = false;
         UnityEditor.PrefabUtility.SaveAsPrefabAsset(itemBox, itemBoxpath, out isSucces);
         UnityEditor.AssetDatabase.Refresh();
+        Destroy(itemBox);
     }
     private void SettingItemDropTable(GameObject itemBox,int count ,string id,string boolean,string percent)
     {
