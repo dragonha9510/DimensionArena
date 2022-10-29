@@ -344,49 +344,51 @@ namespace GRITTY
         }
         void ProcessNode(PREFAB_TYPE type, Event e)
         {
+
+            //local variable region
             bool isChanaged = false;
-            int row = (int)((e.mousePosition.x - offset.x) / size);
-            int colmn = (int)((e.mousePosition.y - offset.y) / size);
 
-            if ((e.mousePosition.x - offset.x < 0) || (e.mousePosition.x - offset.x > mapSize.x * size)
-                || (e.mousePosition.y - offset.y < 0) || (e.mousePosition.y - offset.y > mapSize.y * size))
+            float rowPos = e.mousePosition.x - offset.x;
+            float colmnPos = e.mousePosition.y - offset.y;
+
+            int row = (int)(rowPos / size);
+            int colmn = (int)(colmnPos / size);
+
+            //Check Region Correct
+            if ((rowPos < 0) || (rowPos > mapSize.x * size) || (colmnPos < 0) || (colmnPos > mapSize.y * size))
+                 return;
+     
+            switch (PrefabSelector.state)
             {
-                return;
-            }
-            else
-            {
-                switch (PrefabSelector.state)
-                {
-                    case SELECTOR_MODE.CREATE:
-                        if (e.type == EventType.MouseDown && e.button == 0)
-                        {
-                            isChanaged = type == PREFAB_TYPE.GROUND ?
-                                CreateGround(row, colmn) : CreateBrick(row, colmn);
-                        }
-                        if (e.type == EventType.MouseDrag && e.button == 0)
-                        {
-                            isChanaged = type == PREFAB_TYPE.GROUND ?
-                                CreateGround(row, colmn) : CreateBrick(row, colmn);
-                            e.Use();
-                        }
-                        break;
-                    case SELECTOR_MODE.ERASE:
-                        if (e.type == EventType.MouseDown && e.button == 0)
-                        {
-                            isChanaged = type == PREFAB_TYPE.GROUND ?
-                                DeleteGround(row, colmn) : DeleteBrick(row, colmn);
+                case SELECTOR_MODE.CREATE:
+                    if (e.type == EventType.MouseDown && e.button == 0)
+                    {
+                        isChanaged = type == PREFAB_TYPE.GROUND ?
+                            CreateGround(row, colmn) : CreateBrick(row, colmn);
+                    }
+                    if (e.type == EventType.MouseDrag && e.button == 0)
+                    {
+                        isChanaged = type == PREFAB_TYPE.GROUND ?
+                            CreateGround(row, colmn) : CreateBrick(row, colmn);
+                        e.Use();
+                    }
+                    break;
+                case SELECTOR_MODE.ERASE:
+                    if (e.type == EventType.MouseDown && e.button == 0)
+                    {
+                        isChanaged = type == PREFAB_TYPE.GROUND ?
+                            DeleteGround(row, colmn) : DeleteBrick(row, colmn);
 
-                        }
-                        if (e.type == EventType.MouseDrag && e.button == 0)
-                        {
-                            isChanaged = type == PREFAB_TYPE.GROUND ?
-                                DeleteGround(row, colmn) : DeleteBrick(row, colmn);
-                            e.Use();
-                        }
-                        break;
-                }
+                    }
+                    if (e.type == EventType.MouseDrag && e.button == 0)
+                    {
+                        isChanaged = type == PREFAB_TYPE.GROUND ?
+                            DeleteGround(row, colmn) : DeleteBrick(row, colmn);
+                        e.Use();
+                    }
+                    break;
             }
-
+          
             GUI.changed = isChanaged;
         }
         /// ==================================

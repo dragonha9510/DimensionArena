@@ -735,7 +735,7 @@ MonoBehaviour:
     id: 
     type: 2
     isAlive: 0
-    maxHP: 100
+    maxHP: 200
     curHP: 0
     curSkillPoint: 100
     maxSkillPoint: 100

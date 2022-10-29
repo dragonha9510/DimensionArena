@@ -58,14 +58,22 @@ public class SkillJoyStick : BaseJoyStick
     {
         Color color;
         if (ColorUtility.TryParseHtmlString("#FFCF32", out color))
+        {
             lever.GetComponent<Image>().color = color;
+            ColorUtility.TryParseHtmlString("#FFFFFF", out color);
+            GetComponent<Image>().color = new Color(1,1,1,1);
+        }
     }
 
     private void SetOffSkillLever()
     {
         Color color;
         if (ColorUtility.TryParseHtmlString("#909090", out color))
+        {
             lever.GetComponent<Image>().color = color;
+            ColorUtility.TryParseHtmlString("#FFFFFF", out color);
+            GetComponent<Image>().color = new Color(1, 1, 1, 0);
+        }
     }
 
     public void SkillSetFillAmount(float value)

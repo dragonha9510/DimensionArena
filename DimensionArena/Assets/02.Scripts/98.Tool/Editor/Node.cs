@@ -32,12 +32,12 @@ namespace GRITTY
             float offsetColmn = GridMapEditor.mapSize.y * 0.5f - 0.5f;
 
             //Ground Obstacle split a branch
-            string parentStr = _nodeInfo.type == PREFAB_TYPE.GROUND ? "Floors" : "Obstacles";
+            string parentTag = _nodeInfo.type == PREFAB_TYPE.GROUND ? "ParentFloor" : "ParentObstacle";
             float yPos = _nodeInfo.type == PREFAB_TYPE.GROUND ? -0.5f : 0.5f;
             brick = MonoBehaviour.Instantiate(_nodeInfo.prefab);
             brick.transform.position = new Vector3(row - offsetRow, yPos, offsetColmn - colmn);
             brick.name = _nodeInfo.objectName;
-            brick.transform.SetParent(GameObject.Find(parentStr).transform);
+            brick.transform.SetParent(GameObject.FindWithTag(parentTag).transform);
 
         
             //Parsing Data Add to Gameobject
@@ -55,7 +55,7 @@ namespace GRITTY
 
             brick = MonoBehaviour.Instantiate(obj);
             brick.transform.position = new Vector3(row - offsetRow, 0.5f, offsetColmn - colmn);
-            brick.transform.parent = GameObject.Find("Obstacles").transform;
+            brick.transform.parent = GameObject.FindWithTag("ParentObstacle").transform;
             brick.name = obj.name;
 
             //Parsing Data Add to Gameobject
