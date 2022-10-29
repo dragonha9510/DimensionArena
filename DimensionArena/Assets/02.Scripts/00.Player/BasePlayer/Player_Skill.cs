@@ -22,13 +22,10 @@ namespace PlayerSpace
         //player skill info region
         float damage;
         float velocity;
-        float maxRange = 5.0f;
+        [SerializeField] private float maxRange = 5.0f;
         public float MaxRange => maxRange;
         protected virtual void Start()
         {
-            //юс╫ц
-            maxRange = 5.0f;
-
             if (skillRangeMesh == null)
             {
                 GameObject temp = Instantiate(skillRangeMesh, transform);
