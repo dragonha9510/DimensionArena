@@ -1932,6 +1932,11 @@ PrefabInstance:
       propertyPath: sceneViewId
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 158572435463090627, guid: a14dcf423470d6f48b983a3345b4ec9a,
+        type: 3}
+      propertyPath: maxRange
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 516184251707268580, guid: a14dcf423470d6f48b983a3345b4ec9a,
         type: 3}
       propertyPath: m_Layer

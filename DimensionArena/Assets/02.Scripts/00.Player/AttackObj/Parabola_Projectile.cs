@@ -18,7 +18,7 @@ public class Parabola_Projectile : MonoBehaviourPun
 
     private float distance;
     private float velocity;
-    private float radianAngle;
+    private float maxY;
     private Vector3 direction;
     private Vector3 oriPosition;
     private bool isReady;
@@ -27,21 +27,36 @@ public class Parabola_Projectile : MonoBehaviourPun
     [SerializeField] private float rotationSpeed = 180f;
     private Vector3 rotationAxis;
 
-    public void SetArcInfo(Vector3 dir, float dist, float vel, float angle)
+    public void SetArcInfo(Vector3 dir, float dist, float vel, float ypos)
     {
-        photonView.RPC(nameof(SetAllClientArcInfo), RpcTarget.All, dir, dist, vel, angle);
+        if(!PhotonNetwork.OfflineMode)
+            photonView.RPC(nameof(SetAllClientArcInfo), RpcTarget.All, dir, dist, vel, ypos);
+        else
+            SetAllClientArcInfo(dir, dist, vel, ypos);
+
     }
 
 
     [PunRPC]
-    public void SetAllClientArcInfo(Vector3 dir, float dist, float vel, float angle)
+    public void SetAllClientArcInfo(Vector3 dir, float dist, float vel, float ypos)
     {
         rotationAxis = new Vector3(Random.Range(0, 2), Random.Range(0, 2), Random.Range(0, 2));
         oriPosition = transform.position;
         direction = dir.normalized;
         distance = dist;
         velocity = vel;
-        radianAngle = angle;
+        maxY = ypos;
+        isReady = true;
+    }
+
+    public void ClientArcInfo(Vector3 dir, float dist, float vel, float ypos)
+    {
+        rotationAxis = new Vector3(Random.Range(0, 2), Random.Range(0, 2), Random.Range(0, 2));
+        oriPosition = transform.position;
+        direction = dir.normalized;
+        distance = dist;
+        velocity = vel;
+        maxY = ypos;
         isReady = true;
     }
 
@@ -81,7 +96,7 @@ public class Parabola_Projectile : MonoBehaviourPun
     float CalculatePosition(float t)
     {
         float x = t * distance;
-        float y = x * Mathf.Tan(radianAngle) - ((gravity * x * x) / (2 * velocity * velocity * Mathf.Cos(radianAngle) * Mathf.Cos(radianAngle)));
+        float y = x * ((4 * maxY) / (maxY * distance)) * ((x / distance) - 1) * -maxY;
 
         return y;
     }

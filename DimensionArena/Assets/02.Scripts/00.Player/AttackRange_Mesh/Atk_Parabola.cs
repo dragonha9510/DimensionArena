@@ -6,15 +6,15 @@ using UnityEngine;
 public class Atk_Parabola : Atk_Range
 {
     private Mesh mesh;
-    [SerializeField] private Transform endPoint;
+    [SerializeField]  private Transform endPoint;
 
-    [SerializeField] private float meshWidth;
+    [SerializeField]  private float meshWidth;
 
-    [SerializeField] public float distance = 3;
-    [SerializeField] private float maxYpos = 3;
-    [SerializeField] private int resolution = 10;
-    [HideInInspector] public float velocity;
-    [HideInInspector] public float angle;
+    [SerializeField]  private int   resolution = 10;
+    [SerializeField]  public  float maxYpos    = 3;
+    [HideInInspector] public  float distance   = 3;
+    [HideInInspector] public  float velocity;
+    [HideInInspector] public  float angle;
 
 
     private float gravity; // force of gravity on the y axis
@@ -76,7 +76,7 @@ public class Atk_Parabola : Atk_Range
     {
         Vector3[] arcArray = new Vector3[resolution + 1];
 
-        CalculateAngleWithMaxDistance();
+        //CalculateAngleWithMaxDistance();
 
         for (int i = 0; i <= resolution; ++i)
         {
@@ -91,7 +91,7 @@ public class Atk_Parabola : Atk_Range
     {
         float middle = distance * 0.5f;
 
-        for (float i = 30; i < 90; i += 0.5f)
+        for (float i = 1; i < 90; i += 0.5f)
         {
             angle = i;
             radianAngle = Mathf.Deg2Rad * angle;
@@ -105,8 +105,10 @@ public class Atk_Parabola : Atk_Range
 
     Vector3 CalculateArcPoint(float t, float dist)
     {
+        //float y = x * Mathf.Tan(radianAngle) - ((gravity * x * x) / (2 * velocity * velocity * Mathf.Cos(radianAngle) * Mathf.Cos(radianAngle)));
+        
         float x = t * dist;
-        float y = x * Mathf.Tan(radianAngle) - ((gravity * x * x) / (2 * velocity * velocity * Mathf.Cos(radianAngle) * Mathf.Cos(radianAngle)));
+        float y = x * ((4 * maxYpos) / (maxYpos * dist)) * ((x / dist) - 1) * -maxYpos;
 
         return new Vector3(x, y);
     }
