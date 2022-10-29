@@ -151,7 +151,6 @@ namespace GRITTY
         ///           UNITY Methods
         /// ==================================
 
-        #region UNITY Methods
         private void OnEnable()
         {
             IsPrefabUnpack();
@@ -163,47 +162,25 @@ namespace GRITTY
         {
             //Draw
             DrawGrid();
-
             DrawNode(PrefabSelector.Window.Type);
-            ProcessNode(PrefabSelector.Window.Type, Event.current);
 
-            /*
-            if (PrefabSelector.Window.Type == PREFAB_TYPE.GROUND)
-            {
-                DrawGroundNodes();
-                ProcessGroundNodes(Event.current);
-            }
-            else
-            {
-                DrawBrickNodes();
-                ProcessBrickNodes(Event.current);
-
-            }
-            */
             //Process Event
             ProcessGrid(Event.current);
-
+            ProcessNode(PrefabSelector.Window.Type, Event.current);
 
             //Repaint
             if (GUI.changed)
-            {
-                //새로그리기
                 Repaint();
-            }
+
         }
-        #endregion
 
         /// ==================================
-
-
 
 
 
         /// ==================================
         ///        Node Parsing Methods
         /// ==================================
-
-        #region Node Add, Parsing Methods
         void RestoreGridMap()
         {
             if (parentFloor)
@@ -285,7 +262,6 @@ namespace GRITTY
             }
 
         }
-        #endregion
 
         /// ==================================
 
@@ -295,7 +271,6 @@ namespace GRITTY
         ///            Grid Methods
         /// ==================================
 
-        #region Grid Method
         void DrawGrid()
         {
 
@@ -339,7 +314,6 @@ namespace GRITTY
                     break;
             }
         }
-        #endregion
 
         /// ==================================
         ///         Node Draw Methods
@@ -368,7 +342,6 @@ namespace GRITTY
                 }
             }
         }
-
         void ProcessNode(PREFAB_TYPE type, Event e)
         {
             bool isChanaged = false;
@@ -419,17 +392,10 @@ namespace GRITTY
         /// ==================================
 
 
-
-
-
-
-
-
         /// ==================================
         ///           Block Methods
         /// ==================================
 
-        #region Block(Node) Methods
         bool CreateBrick(int row, int colmn)
         {
             if (row < 0 || colmn >= list_Brick_Node.Count || colmn < 0 || row >= list_Brick_Node[colmn].Count)
@@ -447,16 +413,12 @@ namespace GRITTY
             return true;
         }
 
-
-        #endregion
-
         /// ==================================
 
 
         /// ==================================
         ///           Ground Methods
         /// ==================================
-
         bool CreateGround(int row, int colmn)
         {
             if (row < 0 || colmn >= list_Ground_Node.Count ||
@@ -489,17 +451,12 @@ namespace GRITTY
 
         }
 
-
         /// ==================================
-
-
 
 
         /// ==================================
         ///            Event Methods
         /// ==================================
-
-        #region EVENT Methods
         void MouseDragToBrickMode(Vector2 delta)
         {
             drag = delta;
@@ -556,15 +513,11 @@ namespace GRITTY
                 }
             }
         }
-        #endregion
+
         /// ==================================
 
-        private void OnDisable()
-        {
-            //Brick 빈 오브젝트 체크
-            CreateEmptyBox();
-        }
-
+        private void OnDisable() => CreateEmptyBox();
     }
 }
+
 #endif
