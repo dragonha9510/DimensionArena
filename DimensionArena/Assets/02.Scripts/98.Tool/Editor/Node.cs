@@ -21,7 +21,6 @@ namespace GRITTY
 
         public void CreateBrick(int row, int colmn, NodeInformation _nodeInfo)
         {
-
             nodeInfo.currentTexture = _nodeInfo.currentTexture;
 
             //If Block Exist Delete and Overwrite
@@ -44,6 +43,7 @@ namespace GRITTY
             ParsingToNode parsingNode = brick.AddComponent<ParsingToNode>();
             parsingNode.rect = rect;
             parsingNode.idx = new Vector2Int(row,colmn);
+            parsingNode.name = _nodeInfo.objectName;
             parsingNode.nodeInfo = new NodeInformation(_nodeInfo, nodeInfo.basicTexture);
         }
 
@@ -88,10 +88,12 @@ namespace GRITTY
 
             return false;
         }
+
         public void Draw()
         {
             GUI.DrawTexture(rect, nodeInfo.currentTexture);
         }
+
         public void Drag(Vector2 delta)
         {
             rect.position += delta;

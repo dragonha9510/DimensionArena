@@ -380,7 +380,6 @@ namespace GRITTY
                         {
                             CreateBrick(row, colmn);
                         }
-
                         if (e.type == EventType.MouseDrag && e.button == 0)
                         {
                             CreateBrick(row, colmn);
@@ -488,7 +487,9 @@ namespace GRITTY
                 return;
 
             list_Ground_Node[colmn][row].CreateBrick(row, colmn, PrefabSelector.Window.GetCurPrefab());
-            list_Brick_Node[colmn][row].SetBasicGround(PrefabSelector.Window.GetCurPrefab().normalTexture);
+
+            if(list_Brick_Node[colmn][row].nodeInfo.objectName == null)
+                list_Brick_Node[colmn][row].SetBasicGround(PrefabSelector.Window.GetCurPrefab().normalTexture);
 
             GUI.changed = true;
         }
@@ -499,8 +500,11 @@ namespace GRITTY
                 return;
 
             if(list_Ground_Node[colmn][row].EraseBrick())
-                list_Brick_Node[colmn][row].EraseBasicGround();
-            
+            {
+                if (list_Brick_Node[colmn][row].nodeInfo.basicTexture == list_Ground_Node[colmn][row].nodeInfo.basicTexture)
+                    list_Brick_Node[colmn][row].EraseBasicGround();
+            }
+                     
 
             GUI.changed = true;
         }

@@ -94,6 +94,10 @@ MonoBehaviour:
   - PlayersReadyForStartGame
   - SetPlayerPositionForAllClient
   - PlayerSpawnEnd
+  - CreateSkillForMaster
+  - MasterCreateSkill
+  - AllGranadeActive
+  - SetAllClientArcInfo
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1

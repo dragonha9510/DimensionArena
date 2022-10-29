@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
+using ManagerSpace;
 using PlayerSpace;
 
 public class JooHyeok_Skill : Player_Skill
@@ -20,11 +21,35 @@ public class JooHyeok_Skill : Player_Skill
             Destroy(this);
     }
 
+
+    
     public override void UseSkill(Vector3 direction, float magnitude)
     {
-        //PhotonNetwork.Instantiate("grenade", transform.position, parabola.transform.rotation);
-        GameObject tempSkill = Instantiate(skillPrefab, transform.position, parabola.transform.rotation);
+        //Parabola rotation, distance velocity radianAngle이 동기화되지 않는다. 이를 전달해주고 싶은데 파라미터를 여러 개 써야할까?
+        if(PhotonNetwork.IsConnected)
+        {
+
+            photonView.RPC(nameof(MasterCreateSkill), RpcTarget.MasterClient, 
+                                                      direction, 
+                                                      parabola.transform.rotation,
+                                                      parabola.distance,
+                                                      parabola.velocity,
+                                                      parabola.radianAngle);
+        }
+        else
+        {
+            GameObject tempSkill = Instantiate(skillPrefab, transform.position, parabola.transform.rotation);
+            projectile = tempSkill.GetComponent<Parabola_Projectile>();
+            projectile.SetArcInfo(direction, parabola.distance, parabola.velocity, parabola.radianAngle);
+        }
+
+    }
+
+    [PunRPC]
+    private void MasterCreateSkill(Vector3 direction, Quaternion rotation, float dist, float velocity, float radianAngle)
+    {
+        GameObject tempSkill = PhotonNetwork.Instantiate("grenade", transform.position, rotation);
         projectile = tempSkill.GetComponent<Parabola_Projectile>();
-        projectile.SetArcInfo(direction, parabola.distance, parabola.velocity, parabola.radianAngle);
+        projectile.SetArcInfo(direction, dist, velocity, radianAngle);
     }
 }
