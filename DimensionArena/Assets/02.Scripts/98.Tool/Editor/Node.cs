@@ -22,7 +22,8 @@ namespace GRITTY
         public void CreateBrick(int row, int colmn, NodeInformation _nodeInfo)
         {
             nodeInfo.currentTexture = _nodeInfo.currentTexture;
-
+            nodeInfo.objectName = _nodeInfo.objectName;
+            
             //If Block Exist Delete and Overwrite
             if (brick)
                 MonoBehaviour.DestroyImmediate(brick);
@@ -65,16 +66,19 @@ namespace GRITTY
         }
 
 
+        public void SetCurrentTextureToBasicTexture()
+        {
+            nodeInfo.currentTexture = nodeInfo.basicTexture;
+        }
+
         public void SetBasicGround(Texture2D basicTexture)
         {
             nodeInfo.basicTexture = basicTexture;
-            nodeInfo.currentTexture = basicTexture;
         }
 
         public void EraseBasicGround()
         {
             nodeInfo.basicTexture = TextureManager.alpha;
-            nodeInfo.currentTexture = nodeInfo.basicTexture;
         }
 
         public bool EraseBrick()

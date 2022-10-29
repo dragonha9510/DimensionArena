@@ -22,17 +22,46 @@ namespace GRITTY
     {
         public static int SIZE = 128;
 
-        public GameObject prefab;
+        [HideInInspector] public GameObject prefab;
+        [HideInInspector] public GUIStyle prefabStyle;
+
         public string objectName;
         public PREFAB_TYPE type;
-
-
-        public GUIStyle prefabStyle;
 
         public Texture2D currentTexture;
         public Texture2D normalTexture;
         public Texture2D selectedTexture;
         public Texture2D basicTexture;
+
+
+        //Base NodeInformation
+        public NodeInformation(string name, GameObject prefab, PREFAB_TYPE type, bool brown)
+        {
+            prefabStyle = new GUIStyle();
+            this.prefab = prefab;
+            this.type = type;
+            objectName = name;
+
+            if (type == PREFAB_TYPE.GROUND)
+                normalTexture = Resources.Load<Texture2D>
+                    (TOOL_PATH.THUMBNAIL_GROUND_PATH + objectName);
+            else
+                normalTexture = Resources.Load<Texture2D>
+                    (TOOL_PATH.THUMBNAIL_BRICK_PATH + objectName);
+
+
+            if (brown)
+                basicTexture = TextureManager.brown;
+            else
+                basicTexture = TextureManager.darkbrown;
+
+
+            if (normalTexture)
+                SetupStyles();
+            else
+                CreatePngAndSetUp();
+        }
+
 
 
         public NodeInformation(Texture2D alpha)
@@ -42,19 +71,11 @@ namespace GRITTY
             selectedTexture = new Texture2D(SIZE,SIZE);
             basicTexture = new Texture2D(SIZE, SIZE);
             currentTexture = new Texture2D(SIZE,SIZE);
-
             basicTexture = alpha;
             currentTexture = alpha;
         }
 
-        public NodeInformation(GameObject emptyBox)
-        {
-            prefabStyle = new GUIStyle();   
-            basicTexture = TextureManager.alpha;
-            currentTexture = basicTexture;
-            prefab = emptyBox;
-            type = PREFAB_TYPE.BRICK;
-        }
+     
 
         public NodeInformation(bool brown)
         {
@@ -70,11 +91,6 @@ namespace GRITTY
         public NodeInformation(NodeInformation _node, Texture2D _basicTexture)
         {
             prefabStyle = new GUIStyle();
-
-            //prefab이 존재하지 않았던 버그 -> nodeinformation을 담는 parsingtonode class 생성으로 고침          
-            if (_node.prefab)
-                prefab = _node.prefab;
-
             type = _node.type;
             objectName = _node.objectName;
 
@@ -94,67 +110,7 @@ namespace GRITTY
                 CreatePngAndSetUp();
         }
 
-
-
-        public NodeInformation(NodeInformation _node, bool brown)
-        {
-            prefabStyle = new GUIStyle();
-
-            //prefab이 존재하지 않았던 버그 -> nodeinformation을 담는 parsingtonode class 생성으로 고침          
-            if (_node.prefab)
-                prefab = _node.prefab;
-
-            type = _node.type;
-            objectName = _node.objectName;
-
-            if(type == PREFAB_TYPE.GROUND)
-                normalTexture = Resources.Load<Texture2D>
-                    (TOOL_PATH.THUMBNAIL_GROUND_PATH + objectName);
-            else
-                normalTexture = Resources.Load<Texture2D>
-                    (TOOL_PATH.THUMBNAIL_BRICK_PATH + objectName);
-
-            basicTexture = new Texture2D(128, 128);
-
-            if (brown)
-                basicTexture = TextureManager.brown;
-            else
-                basicTexture = TextureManager.darkbrown;
-
-            if (normalTexture != null)
-                SetupStyles();
-            else
-                CreatePngAndSetUp();
-        }
-
-
-        public NodeInformation(string name, GameObject prefab, PREFAB_TYPE type, bool brown)
-        {
-            prefabStyle = new GUIStyle();
-
-            this.prefab = prefab;
-            this.type = type;
-            objectName = name;
-
-            if (type == PREFAB_TYPE.GROUND)
-                normalTexture = Resources.Load<Texture2D>
-                    (TOOL_PATH.THUMBNAIL_GROUND_PATH + objectName);
-            else
-                normalTexture = Resources.Load<Texture2D>
-                    (TOOL_PATH.THUMBNAIL_BRICK_PATH + objectName);
- 
-
-            if (brown)
-                basicTexture = TextureManager.brown;
-            else
-                basicTexture = TextureManager.darkbrown;
-       
-
-            if (normalTexture)
-                SetupStyles();
-            else
-                CreatePngAndSetUp();
-        }
+        
         void SetupStyles()
         {
             // =======================
@@ -223,11 +179,9 @@ namespace GRITTY
                     byte[] bytes = normalTexture.EncodeToPNG();
                     File.WriteAllBytes(TOOL_PATH.THUMBNAIL_SAVE_BRICK_PATH + objectName + ".png", bytes);
                 }
-            }
-           
+            }  
             SetupStyles();
         }
-
     }
 }
 

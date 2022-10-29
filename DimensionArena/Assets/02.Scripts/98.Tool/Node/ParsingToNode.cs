@@ -7,7 +7,7 @@ using GRITTY;
 public class ParsingToNode : MonoBehaviour
 {
     public Vector2Int idx;
-    public Rect rect;
+    [HideInInspector] public Rect rect;
     public NodeInformation nodeInfo;
 
 }

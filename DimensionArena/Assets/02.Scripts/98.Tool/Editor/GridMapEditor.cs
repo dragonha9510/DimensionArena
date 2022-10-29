@@ -51,7 +51,6 @@ namespace GRITTY
         {
             return GameObject.FindWithTag("MapTool");
         }
-
         private static void OpenMap()
         {
             //유니티가 꺼졌다 켜졌을 때
@@ -137,7 +136,6 @@ namespace GRITTY
             return PrefabUtility.GetCorrespondingObjectFromSource(go) != null
                 && PrefabUtility.GetPrefabInstanceHandle(go) != null;
         }
-
         private void IsPrefabUnpack()
         {
             GameObject mapTool = GameObject.FindWithTag("MapTool");
@@ -166,6 +164,10 @@ namespace GRITTY
             //Draw
             DrawGrid();
 
+            DrawNode(PrefabSelector.Window.Type);
+            ProcessNode(PrefabSelector.Window.Type, Event.current);
+
+            /*
             if (PrefabSelector.Window.Type == PREFAB_TYPE.GROUND)
             {
                 DrawGroundNodes();
@@ -177,7 +179,7 @@ namespace GRITTY
                 ProcessBrickNodes(Event.current);
 
             }
-
+            */
             //Process Event
             ProcessGrid(Event.current);
 
@@ -223,6 +225,8 @@ namespace GRITTY
 
                             list_Brick_Node[parsingData.idx.y][parsingData.idx.x].SetBasicGround(
                                 list_Ground_Node[parsingData.idx.y][parsingData.idx.x].nodeInfo.currentTexture);
+
+                            list_Brick_Node[parsingData.idx.y][parsingData.idx.x].SetCurrentTextureToBasicTexture();
                         }
                     }
                 }
@@ -338,6 +342,84 @@ namespace GRITTY
         #endregion
 
         /// ==================================
+        ///         Node Draw Methods
+        /// ==================================
+
+        void DrawNode(PREFAB_TYPE type)
+        {
+            if (type == PREFAB_TYPE.GROUND)
+            {
+                foreach (var n in list_Ground_Node)
+                {
+                    foreach (var n2 in n)
+                    {
+                        n2.Draw();
+                    }
+                }
+            }
+            else
+            {
+                foreach (var n in list_Brick_Node)
+                {
+                    foreach (var n2 in n)
+                    {
+                        n2.Draw();
+                    }
+                }
+            }
+        }
+
+        void ProcessNode(PREFAB_TYPE type, Event e)
+        {
+            bool isChanaged = false;
+            int row = (int)((e.mousePosition.x - offset.x) / size);
+            int colmn = (int)((e.mousePosition.y - offset.y) / size);
+
+            if ((e.mousePosition.x - offset.x < 0) || (e.mousePosition.x - offset.x > mapSize.x * size)
+                || (e.mousePosition.y - offset.y < 0) || (e.mousePosition.y - offset.y > mapSize.y * size))
+            {
+                return;
+            }
+            else
+            {
+                switch (PrefabSelector.state)
+                {
+                    case SELECTOR_MODE.CREATE:
+                        if (e.type == EventType.MouseDown && e.button == 0)
+                        {
+                            isChanaged = type == PREFAB_TYPE.GROUND ?
+                                CreateGround(row, colmn) : CreateBrick(row, colmn);
+                        }
+                        if (e.type == EventType.MouseDrag && e.button == 0)
+                        {
+                            isChanaged = type == PREFAB_TYPE.GROUND ?
+                                CreateGround(row, colmn) : CreateBrick(row, colmn);
+                            e.Use();
+                        }
+                        break;
+                    case SELECTOR_MODE.ERASE:
+                        if (e.type == EventType.MouseDown && e.button == 0)
+                        {
+                            isChanaged = type == PREFAB_TYPE.GROUND ?
+                                DeleteGround(row, colmn) : DeleteBrick(row, colmn);
+
+                        }
+                        if (e.type == EventType.MouseDrag && e.button == 0)
+                        {
+                            isChanaged = type == PREFAB_TYPE.GROUND ?
+                                DeleteGround(row, colmn) : DeleteBrick(row, colmn);
+                            e.Use();
+                        }
+                        break;
+                }
+            }
+
+            GUI.changed = isChanaged;
+        }
+        /// ==================================
+
+
+
 
 
 
@@ -348,74 +430,21 @@ namespace GRITTY
         /// ==================================
 
         #region Block(Node) Methods
-
-        void DrawBrickNodes()
-        {
-            foreach (var n in list_Brick_Node)
-            {
-                foreach (var n2 in n)
-                {
-                    n2.Draw();
-                }
-            }
-        }
-        void ProcessBrickNodes(Event e)
-        {
-            //find idx
-            int row = (int)((e.mousePosition.x - offset.x) / size);
-            int colmn = (int)((e.mousePosition.y - offset.y) / size);
-
-            if ((e.mousePosition.x - offset.x < 0) || (e.mousePosition.x - offset.x > mapSize.x * size)
-                || (e.mousePosition.y - offset.y < 0) || (e.mousePosition.y - offset.y > mapSize.y * size))
-            {
-                return;
-                //
-            }
-            else
-            {
-                switch (PrefabSelector.state)
-                {
-                    case SELECTOR_MODE.CREATE:
-                        if (e.type == EventType.MouseDown && e.button == 0)
-                        {
-                            CreateBrick(row, colmn);
-                        }
-                        if (e.type == EventType.MouseDrag && e.button == 0)
-                        {
-                            CreateBrick(row, colmn);
-                            e.Use();
-                        }
-                        break;
-                    case SELECTOR_MODE.ERASE:
-                        if (e.type == EventType.MouseDown && e.button == 0)
-                        {
-                            DeleteBrick(row, colmn);
-                        }
-
-                        if (e.type == EventType.MouseDrag && e.button == 0)
-                        {
-                            DeleteBrick(row, colmn);
-                            e.Use();
-                        }
-                        break;
-                }
-            }
-        }
-        void CreateBrick(int row, int colmn)
+        bool CreateBrick(int row, int colmn)
         {
             if (row < 0 || colmn >= list_Brick_Node.Count || colmn < 0 || row >= list_Brick_Node[colmn].Count)
-                return;
+                return false;
 
             list_Brick_Node[colmn][row].CreateBrick(row, colmn, PrefabSelector.Window.GetCurPrefab());
-            GUI.changed = true;
+            return true;
         }
-        void DeleteBrick(int row, int colmn)
+        bool DeleteBrick(int row, int colmn)
         {
             if (row < 0 || colmn >= list_Brick_Node.Count || colmn < 0 || row >= list_Brick_Node[colmn].Count)
-                return;
+                return false;
 
             list_Brick_Node[colmn][row].EraseBrick();
-            GUI.changed = true;
+            return true;
         }
 
 
@@ -423,90 +452,41 @@ namespace GRITTY
 
         /// ==================================
 
+
         /// ==================================
         ///           Ground Methods
         /// ==================================
 
-        void DrawGroundNodes()
-        {
-            foreach (var n in list_Ground_Node)
-            {
-                foreach (var n2 in n)
-                {
-                    n2.Draw();
-                }
-            }
-        }
-        void ProcessGroundNodes(Event e)
-        {
-            //find idx
-            int row = (int)((e.mousePosition.x - offset.x) / size);
-            int colmn = (int)((e.mousePosition.y - offset.y) / size);
-
-            if ((e.mousePosition.x - offset.x < 0) || (e.mousePosition.x - offset.x > mapSize.x * size)
-                || (e.mousePosition.y - offset.y < 0) || (e.mousePosition.y - offset.y > mapSize.y * size))
-            {
-                return;
-                //
-            }
-            else
-            {
-                switch (PrefabSelector.state)
-                {
-                    case SELECTOR_MODE.CREATE:
-                        if (e.type == EventType.MouseDown && e.button == 0)
-                        {
-                            CreateGround(row, colmn);
-                        }
-
-                        if (e.type == EventType.MouseDrag && e.button == 0)
-                        {
-                            CreateGround(row, colmn);
-                            e.Use();
-                        }
-                        break;
-                    case SELECTOR_MODE.ERASE:
-                        if (e.type == EventType.MouseDown && e.button == 0)
-                        {
-                            DeleteGround(row, colmn);
-                        }
-
-                        if (e.type == EventType.MouseDrag && e.button == 0)
-                        {
-                            DeleteGround(row, colmn);
-                            e.Use();
-                        }
-                        break;
-                }
-            }
-        }
-        void CreateGround(int row, int colmn)
+        bool CreateGround(int row, int colmn)
         {
             if (row < 0 || colmn >= list_Ground_Node.Count ||
                 colmn < 0 || row >= list_Ground_Node[colmn].Count)
-                return;
+                return false;
 
             list_Ground_Node[colmn][row].CreateBrick(row, colmn, PrefabSelector.Window.GetCurPrefab());
+            list_Brick_Node[colmn][row].SetBasicGround(PrefabSelector.Window.GetCurPrefab().normalTexture);
 
-            if(list_Brick_Node[colmn][row].nodeInfo.objectName == null)
-                list_Brick_Node[colmn][row].SetBasicGround(PrefabSelector.Window.GetCurPrefab().normalTexture);
+            if (!list_Brick_Node[colmn][row].brick)
+                list_Brick_Node[colmn][row].SetCurrentTextureToBasicTexture();
 
-            GUI.changed = true;
+            return true;
         }
-        void DeleteGround(int row, int colmn)
+        bool DeleteGround(int row, int colmn)
         {
             if (row < 0 || colmn >= list_Ground_Node.Count ||
                 colmn < 0 || row >= list_Ground_Node[colmn].Count)
-                return;
+                return false;
 
-            if(list_Ground_Node[colmn][row].EraseBrick())
-            {
-                if (list_Brick_Node[colmn][row].nodeInfo.basicTexture == list_Ground_Node[colmn][row].nodeInfo.basicTexture)
-                    list_Brick_Node[colmn][row].EraseBasicGround();
-            }
-                     
+            if (list_Brick_Node[colmn][row].nodeInfo.basicTexture 
+                == list_Ground_Node[colmn][row].nodeInfo.currentTexture)
+                list_Brick_Node[colmn][row].EraseBasicGround();
 
-            GUI.changed = true;
+            if (!list_Brick_Node[colmn][row].brick)
+                list_Brick_Node[colmn][row].SetCurrentTextureToBasicTexture();
+
+            list_Ground_Node[colmn][row].EraseBrick();
+            return true;
+
         }
 
 
@@ -562,7 +542,6 @@ namespace GRITTY
             }
             GUI.changed = true;
         }
-
         void CreateEmptyBox()
         {
             GameObject emptyBox = Resources.Load<GameObject>("Tool/Brick/Empty_Box");
@@ -579,7 +558,6 @@ namespace GRITTY
         }
         #endregion
         /// ==================================
-
 
         private void OnDisable()
         {
