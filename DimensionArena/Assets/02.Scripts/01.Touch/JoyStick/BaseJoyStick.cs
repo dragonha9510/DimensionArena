@@ -5,7 +5,7 @@ using UnityEngine.EventSystems;
 using PlayerSpace;
 
 
-public abstract class BaseJoyStick : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
+public abstract class BaseJoyStick : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IPointerClickHandler
 {
     private enum Direction
     { 
@@ -32,6 +32,9 @@ public abstract class BaseJoyStick : MonoBehaviour, IBeginDragHandler, IDragHand
     protected JoyStickType type;
     [SerializeField] private GameObject[] lightRings;
 
+    [SerializeField] protected float cancelRange = 30f;
+    protected bool isDragging;
+    protected bool isCancel;
 
 
     protected virtual void Awake()
@@ -59,7 +62,15 @@ public abstract class BaseJoyStick : MonoBehaviour, IBeginDragHandler, IDragHand
         var inputDir = eventData.position - new Vector2(rectTransform.position.x, rectTransform.position.y);
         var clampedDir = inputDir.magnitude < leverRange ? inputDir : inputDir.normalized * leverRange;
 
-        lever.anchoredPosition = clampedDir;
+        isCancel = inputDir.magnitude < cancelRange;
+        if (isCancel)
+        {
+            lever.anchoredPosition = Vector2.zero;
+            eventData.Reset();
+        }
+        else
+            lever.anchoredPosition = clampedDir;
+        
         CheckLight();
         SetDirection();
     }
@@ -114,6 +125,11 @@ public abstract class BaseJoyStick : MonoBehaviour, IBeginDragHandler, IDragHand
                 lightRings[i].SetActive(false);
         }
         
+
+    }
+
+    public virtual void OnPointerClick(PointerEventData eventData)
+    {
 
     }
 }

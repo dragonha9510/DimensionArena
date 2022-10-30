@@ -26,6 +26,16 @@ public class AtkJoyStick : BaseJoyStick
 
     public override void OnEndDrag(PointerEventData eventData)
     {
+        if (isCancel)
+        {
+            Debug.Log("드래그 취소");
+            isCancel = false;
+            return;
+        }
+
+        Debug.Log("드래그");
+        isDragging = true;
+
         PlayerAttackRPC();
         base.OnEndDrag(eventData);
     }
@@ -35,6 +45,17 @@ public class AtkJoyStick : BaseJoyStick
             new Vector3((lever.position.x - rectTransform.position.x) / leverRange, 0, 
                         (lever.position.y - rectTransform.position.y) / leverRange);
 
+    }
+
+    public override void OnPointerClick(PointerEventData eventData)
+    {
+        if(isDragging)
+        {
+            isDragging = false;
+            return;
+        }
+
+        Debug.Log("자동공격");
     }
 
     private void PlayerAttackRPC()
