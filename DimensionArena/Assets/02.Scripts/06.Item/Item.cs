@@ -18,7 +18,7 @@ public enum ITEM
 
 public abstract class Item : MonoBehaviourPun
 {
-
+   
     // For Parshing
     [SerializeField]
     protected ItemInfo info;
@@ -44,19 +44,18 @@ public abstract class Item : MonoBehaviourPun
     // Start is called before the first frame update
     void Start()
     {
+            trans = this.transform;
+            randBoing = new Vector3(Random.Range(-0.2f, 0.2f), 1, Random.Range(-0.2f, 0.2f));
 
-        trans = this.transform;
-        randBoing = new Vector3(Random.Range(-0.2f, 0.2f), 1, Random.Range(-0.2f, 0.2f));
-
-        rigidBody = GetComponent<Rigidbody>();
-        rigidBody.AddForce(randBoing.normalized * boingPower, ForceMode.Impulse);
+            rigidBody = GetComponent<Rigidbody>();
+            rigidBody.AddForce(randBoing.normalized * boingPower, ForceMode.Impulse);
 
     }
 
 
     private void FixedUpdate()
     {
-        if (!photonView.IsMine)
+        if (!PhotonNetwork.IsMasterClient)
             return;
         this.transform.Rotate(Vector3.up * rotation * Time.deltaTime, Space.World);
         if (0 >= info.liveTime)
@@ -66,7 +65,7 @@ public abstract class Item : MonoBehaviourPun
     
     private void OnCollisionEnter(Collision collision)
     {
-        if (!photonView.IsMine)
+        if (!PhotonNetwork.IsMasterClient)
             return;
         if (collision.gameObject.tag == "ParentGround")
         {

@@ -1332,6 +1332,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: TestBox
       objectReference: {fileID: 0}
+    - target: {fileID: 6598020527321615234, guid: 6672388c5b322894ebdcd437f41791c3,
+        type: 3}
+      propertyPath: sceneViewId
+      value: 23
+      objectReference: {fileID: 0}
     - target: {fileID: 7628456527405566897, guid: 6672388c5b322894ebdcd437f41791c3,
         type: 3}
       propertyPath: sceneViewId

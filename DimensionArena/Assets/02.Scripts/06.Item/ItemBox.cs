@@ -106,7 +106,7 @@ public class ItemBox : MonoBehaviourPun
         PhotonNetwork.Instantiate(PHOTONPATH.PHOTONPATH_ITEMPREFABFOLDER + itemPrefabName, this.transform.position, Quaternion.identity);
         PhotonNetwork.Destroy(this.gameObject);
     }
-
+    [PunRPC]
     private void HpDecrease(int damage)
     {
         health -= damage;
@@ -126,7 +126,7 @@ public class ItemBox : MonoBehaviourPun
     {
         if(PhotonNetwork.IsConnected)
         {
-            if (!photonView.IsMine)
+            if (!PhotonNetwork.IsMasterClient)
                 return;
             if (other.gameObject.tag == "AttackCollider")
             {
