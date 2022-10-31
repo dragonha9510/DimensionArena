@@ -42,6 +42,13 @@ namespace ManagerSpace
                     if (effectDictionary.ContainsKey("Dead"))
                         Instantiate(effectDictionary["Dead"], trans.position + (Vector3.up * 0.5f), trans.rotation);
                     break;
+                // JSB
+                case "ItemDrop":
+                    if(effectDictionary.ContainsKey("ItemDrop"))
+                        Instantiate(effectDictionary["ItemDrop"], trans.position + (Vector3.up * 0.5f), trans.rotation);
+                    break;
+                    //
+                
             }
         }
     }

@@ -1,7 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using PlayerSpace;
+using ManagerSpace;
 
 public enum ITEM
 {
@@ -18,11 +19,8 @@ public abstract class Item : MonoBehaviour
 {
 
     // For Parshing
-    private string itemNumber;
-    private string item_ID;
-    private float achieveRange;
-    private float liveTime;
-    private bool dropPossible;
+    [SerializeField]
+    protected ItemInfo info;
 
     private Rigidbody rigidBody;
     [SerializeField]
@@ -45,11 +43,15 @@ public abstract class Item : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
         trans = this.transform;
         randBoing = new Vector3(Random.Range(-0.2f, 0.2f), 1, Random.Range(-0.2f, 0.2f));
 
         rigidBody = GetComponent<Rigidbody>();
         rigidBody.AddForce(randBoing.normalized * boingPower, ForceMode.Impulse);
+
+
+        Destroy(gameObject, info.liveTime);
     }
 
 
@@ -58,6 +60,7 @@ public abstract class Item : MonoBehaviour
         this.transform.Rotate(Vector3.up * rotation * Time.deltaTime, Space.World);
     }
 
+    
     private void OnCollisionEnter(Collision collision)
     {
         
@@ -78,9 +81,20 @@ public abstract class Item : MonoBehaviour
         }
         if(collision.gameObject.tag == "Player")
         {
+            EffectManager.Instance.CreateParticleEffectOnGameobject(collision.gameObject.transform, "ItemDrop");
+
             // 아이템 이벤트 처리
 
             Destroy(this.gameObject);
         }
     }
+    public void SettingItem(ItemInfo itemInfo)
+    {
+        info = itemInfo;
+    }
+
+
+    protected abstract void InteractItem();
+
+
 }

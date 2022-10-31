@@ -1,0 +1,9 @@
+item_num,item_id,achieve_range,Max_duration,attack_nesting_or_not,attack_increment,speed_amount,recovery_amount,shield_amount,gauge_recovery_amount
+#1~4행은 Data로 인식하지 않는다.,,,,전투능력 계열,,,체력 계열,,스킬 게이지 계열
+#아이템 넘버링,아이템 ID,획득 사정범위,최대 지속시간(s),공격력 중첩 여부,공격력 증가량,이동속도 증가량,회복량,실드량,게이지 회복량
+item000,PowerKit,1,10,TRUE,0.1,0,0,0,0
+item100,MedicKit,1,0,FALSE,0,0,100,0,0
+item150,ShieldKit,1,10,FALSE,0,0,0,100,0
+item200,SpeedKit,1,10,FALSE,0,0.1,0,0,0
+item300,EnergyKit,1,10,FALSE,0,0,0,0,100
+item400,DemensionKit,1,10,TRUE,0.1,0.1,100,0,100

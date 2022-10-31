@@ -8,10 +8,81 @@ public class InGameDataParsingManager : MonoBehaviour
 
     private void Awake()
     {
-        ParsingToCsvFile_Item("Log/Item_DB_Test");
+        ParsingToCsvFile_ItemBox("Log/Item_DB_Test");
+        ParsingToCsbFile_Items("Log/Items");
     }
 
-    private void ParsingToCsvFile_Item(string path)
+    private void ParsingToCsbFile_Items(string path)
+    {
+
+        string itemResourcePath = "Assets/Resources/Prefabs/ProtoTypeItems/";
+        List<GameObject> itemObjs = new List<GameObject>();
+        List<Dictionary<string, object>> data_Map = CSVReader.Read(path);
+
+
+        for(int i = 0; i < data_Map.Count; ++i)
+        {
+            if (data_Map[i]["item_num"].ToString()[0] == '#')
+                continue;
+            string itemPrefapPath = itemResourcePath + data_Map[i]["item_id"].ToString() + ".prefab";
+            Object itemObj = UnityEditor.AssetDatabase.LoadAssetAtPath<UnityEngine.Object>(itemPrefapPath);
+            GameObject item = Instantiate(itemObj) as GameObject;
+            itemObjs.Add(item);
+
+            SettingItemData(item
+                            , data_Map[i]["item_num"].ToString(), data_Map[i]["item_id"].ToString()
+                            , data_Map[i]["achieve_range"].ToString(), data_Map[i]["Max_duration"].ToString()
+                            , data_Map[i]["attack_nesting_or_not"].ToString()
+                            , data_Map[i]["attack_increment"].ToString(),data_Map[i]["speed_amount"].ToString(), data_Map[i]["recovery_amount"].ToString(), data_Map[i]["shield_amount"].ToString(), data_Map[i]["gauge_recovery_amount"].ToString());
+            bool isSucces = false;
+            UnityEditor.PrefabUtility.SaveAsPrefabAsset(item, itemPrefapPath, out isSucces);
+            UnityEditor.AssetDatabase.Refresh();
+        }
+
+        foreach(GameObject obj in itemObjs)
+        {
+            Destroy(obj);
+        }
+
+    }
+
+    private void SettingItemData(GameObject item
+                            , string item_Num, string item_ID
+                            , string acheive_Range, string live_Time
+                            , string attack_Nesting
+                            , string attack, string speed, string health, string shield, string skill)
+    {
+        ItemInfo tmpItemInfo = new ItemInfo();
+        tmpItemInfo.itemNumber = item_Num;
+        tmpItemInfo.item_ID = item_ID;
+        float.TryParse(acheive_Range, out tmpItemInfo.achieveRange);
+        float.TryParse(live_Time, out tmpItemInfo.liveTime);
+
+        tmpItemInfo.attackNesting = GetBool(attack_Nesting);
+
+        float.TryParse(attack, out tmpItemInfo.attackIncrement);
+        float.TryParse(speed, out tmpItemInfo.speedAmount);
+        float.TryParse(health, out tmpItemInfo.healthAmount);
+        float.TryParse(shield, out tmpItemInfo.achieveRange);
+        float.TryParse(skill, out tmpItemInfo.achieveRange);
+
+        item.GetComponent<Item>().SettingItem(tmpItemInfo);
+
+    }
+
+    private bool GetBool(string str)
+    {
+        switch(str)
+        {
+            case "TRUE":
+                return true;
+            case "FALSE":
+                return false;
+        }
+        return false;
+    }
+
+    private void ParsingToCsvFile_ItemBox(string path)
     {
         string itemBoxpath = "Assets/Resources/Prefabs/ProtoTypeItems/ItemBox.prefab";
         Object obj = UnityEditor.AssetDatabase.LoadAssetAtPath<UnityEngine.Object>(itemBoxpath);
@@ -62,16 +133,7 @@ public class InGameDataParsingManager : MonoBehaviour
                 itemType = ITEM.ITEM_DEMENSIONKIT;
                 break;
         }
-        bool dropPossible = true;
-        switch(boolean)
-        {
-            case "TRUE":
-                dropPossible = true;
-                break;
-            case "FALSE":
-                dropPossible = false;
-                break;
-        }
+        bool dropPossible = GetBool(boolean);
         float dropPercent = float.Parse(percent);
         itemBox.GetComponent<ItemBox>().SetDropTable(itemType,dropPossible, dropPercent);
 
