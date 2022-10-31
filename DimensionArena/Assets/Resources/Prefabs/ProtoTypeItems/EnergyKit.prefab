@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 1092218685689241425}
   - component: {fileID: 2419466360805943140}
   - component: {fileID: 4995746609264264113}
+  - component: {fileID: -3640010919035805263}
+  - component: {fileID: 4682356483620928036}
   m_Layer: 0
   m_Name: EnergyKit
   m_TagString: Untagged
@@ -84,7 +86,9 @@ MonoBehaviour:
   Synchronization: 3
   OwnershipTransfer: 0
   observableSearch: 2
-  ObservedComponents: []
+  ObservedComponents:
+  - {fileID: -3640010919035805263}
+  - {fileID: 4682356483620928036}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
@@ -111,12 +115,44 @@ MonoBehaviour:
     healthAmount: 0
     shieldAmount: 0
     skillRecovery: 0
-  boingPower: 1
+  boingPower: 4
   decreasePower: 0.4
   rotation: 100
   decreaseRotation: 0.9
   particle: {fileID: 5024009746357069194, guid: ec3f674830402cc45bce805cf6493db7,
     type: 3}
+--- !u!114 &-3640010919035805263
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1092218685689241431}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizePosition: 1
+  m_SynchronizeRotation: 1
+  m_SynchronizeScale: 0
+  m_UseLocal: 1
+--- !u!114 &4682356483620928036
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1092218685689241431}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64179f3720bbfe947b7724caa67b7c1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizeVelocity: 1
+  m_SynchronizeAngularVelocity: 0
+  m_TeleportEnabled: 0
+  m_TeleportIfDistanceGreaterThan: 3
 --- !u!1 &1092218686747100166
 GameObject:
   m_ObjectHideFlags: 0
@@ -5165,11 +5201,11 @@ Transform:
   m_LocalScale: {x: 0.15, y: 0.15, z: 0.15}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 2510122421605368096}
+  - {fileID: 7320982036991574608}
   m_Father: {fileID: 3849273736481854661}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &7394091060348370893
+--- !u!1 &4889851825251373235
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5177,9 +5213,9 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 2510122421605368096}
-  - component: {fileID: 2066622141579772780}
-  - component: {fileID: 7418278208994314309}
+  - component: {fileID: 7320982036991574608}
+  - component: {fileID: 8893080503086396559}
+  - component: {fileID: 3895136899246009932}
   m_Layer: 0
   m_Name: Thunder
   m_TagString: Untagged
@@ -5187,13 +5223,13 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &2510122421605368096
+--- !u!4 &7320982036991574608
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7394091060348370893}
+  m_GameObject: {fileID: 4889851825251373235}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -5202,21 +5238,21 @@ Transform:
   m_Father: {fileID: 4652029201515519336}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &2066622141579772780
+--- !u!33 &8893080503086396559
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7394091060348370893}
+  m_GameObject: {fileID: 4889851825251373235}
   m_Mesh: {fileID: 4300000, guid: d68560c914d59e24c9e15c1f9207a7eb, type: 3}
---- !u!23 &7418278208994314309
+--- !u!23 &3895136899246009932
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7394091060348370893}
+  m_GameObject: {fileID: 4889851825251373235}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1

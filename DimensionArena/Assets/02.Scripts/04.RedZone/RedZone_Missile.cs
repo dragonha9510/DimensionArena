@@ -72,7 +72,9 @@ public class RedZone_Missile : MonoBehaviour
                 transform.position = new Vector3(transform.position.x, 0, transform.position.z);
             }
 
-            Destroy(this.gameObject);
+
+            if(this.gameObject)
+                Destroy(this.gameObject);
 
             if (destroyEffect)
                 Instantiate(destroyEffect, transform.position/*new Vector3(transform.position.x, 0, transform.position.z)*/, destroyEffect.transform.rotation);

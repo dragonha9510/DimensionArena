@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using PlayerSpace;
 using ManagerSpace;
+using Photon.Pun;
 
 public enum ITEM
 {
@@ -15,9 +16,9 @@ public enum ITEM
     ITEM_END
 }
 
-public abstract class Item : MonoBehaviour
+public abstract class Item : MonoBehaviourPun
 {
-
+   
     // For Parshing
     [SerializeField]
     protected ItemInfo info;
@@ -43,27 +44,29 @@ public abstract class Item : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+            trans = this.transform;
+            randBoing = new Vector3(Random.Range(-0.2f, 0.2f), 1, Random.Range(-0.2f, 0.2f));
 
-        trans = this.transform;
-        randBoing = new Vector3(Random.Range(-0.2f, 0.2f), 1, Random.Range(-0.2f, 0.2f));
+            rigidBody = GetComponent<Rigidbody>();
+            rigidBody.AddForce(randBoing.normalized * boingPower, ForceMode.Impulse);
 
-        rigidBody = GetComponent<Rigidbody>();
-        rigidBody.AddForce(randBoing.normalized * boingPower, ForceMode.Impulse);
-
-
-        Destroy(gameObject, info.liveTime);
     }
 
 
     private void FixedUpdate()
     {
+        if (!PhotonNetwork.IsMasterClient)
+            return;
         this.transform.Rotate(Vector3.up * rotation * Time.deltaTime, Space.World);
+        if (0 >= info.liveTime)
+            PhotonNetwork.Destroy(this.gameObject);
     }
 
     
     private void OnCollisionEnter(Collision collision)
     {
-        
+        if (!PhotonNetwork.IsMasterClient)
+            return;
         if (collision.gameObject.tag == "ParentGround")
         {
             if (ColliderCount <= StopCount)
