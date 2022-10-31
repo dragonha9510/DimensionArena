@@ -103,29 +103,9 @@ public class ItemBox : MonoBehaviourPun
 
     private void MakeRandItem()
     {
-        if (!PhotonNetwork.IsMasterClient)
-            return;
-        GameObject Test = PhotonNetwork.Instantiate(PHOTONPATH.PHOTONPATH_ITEMPREFABFOLDER + itemPrefabName, this.transform.position, Quaternion.identity);
+        PhotonNetwork.Instantiate(PHOTONPATH.PHOTONPATH_ITEMPREFABFOLDER + itemPrefabName, this.transform.position, Quaternion.identity);
         PhotonNetwork.Destroy(this.gameObject);
     }
-
-    [PunRPC]
-    private void HealthDecrease(int damage)
-    {
-        health -= damage;
-        itemSlider.value = health;
-        if (false == GetComponentInChildren<Shaking>().IsShaking)
-            GetComponentInChildren<Shaking>().StartShaking();
-        if (health <= 0)
-        {
-            if(photonView.IsMine)
-            {
-                MakeRandItem();
-                PhotonNetwork.Destroy(this.gameObject);
-            }
-        }
-    }
-
     private void OnTriggerEnter(Collider other)
     {
         if(PhotonNetwork.IsConnected)
@@ -134,7 +114,15 @@ public class ItemBox : MonoBehaviourPun
                 return;
             if (other.gameObject.tag == "AttackCollider")
             {
-                photonView.RPC(nameof(HealthDecrease), RpcTarget.All, other.gameObject.GetComponent<AttackObject>().Damage);
+                health -= other.gameObject.GetComponent<Projectile>().Damage;
+                itemSlider.value = health;
+                if (false == GetComponentInChildren<Shaking>().IsShaking)
+                    GetComponentInChildren<Shaking>().StartShaking();
+                if (health <= 0)
+                {
+                    MakeRandItem();
+                    PhotonNetwork.Destroy(this.gameObject);
+                }
             }
         }
         else

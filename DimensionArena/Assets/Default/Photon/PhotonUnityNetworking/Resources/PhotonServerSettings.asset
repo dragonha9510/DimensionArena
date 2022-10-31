@@ -98,13 +98,9 @@ MonoBehaviour:
   - MasterCreateSkill
   - AllGranadeActive
   - SetAllClientArcInfo
-<<<<<<< Updated upstream
   - DmgDown
   - DmgUp
   - DamagedShield
-=======
-  - HealthDecrease
->>>>>>> Stashed changes
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1

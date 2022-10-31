@@ -1,9 +1,9 @@
 item_num,item_id,drop_possible,drop_percentage
 #아이템 넘버링,아이템 ID,드랍 가능 여부,드랍 확률
 #string,string,bool,float
-item000,power_kit,TRUE,0
-item100,medic_kit,TRUE,1
-item150,shield_kit,TRUE,0
-item200,speed_kit,TRUE,0
-item300,energy_kit,TRUE,0
-item400,dimension_kit,TRUE,0
+item000,power_kit,TRUE,0.2
+item100,medic_kit,TRUE,0.3
+item150,shield_kit,TRUE,0.2
+item200,speed_kit,TRUE,0.1
+item300,energy_kit,TRUE,0.1
+item400,dimension_kit,TRUE,0.1
