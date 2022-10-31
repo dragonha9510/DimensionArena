@@ -16,6 +16,8 @@ namespace PlayerSpace
 
     public abstract class Player_Atk : MonoBehaviourPun
     {
+        protected Animator animator;
+
         public event Action<float> eChangeMagazineCost = (param) => { };
         public event Action eCantAttack = () => { };
 
@@ -43,6 +45,8 @@ namespace PlayerSpace
         protected abstract void InitalizeAtkInfo();
         protected virtual void Start()
         {
+            animator = GetComponentInChildren<Animator>();
+
             InitalizeAtkInfo();
 
             if (atkRangeMesh == null)
@@ -77,7 +81,15 @@ namespace PlayerSpace
             rangeComponent.Calculate_Range(distance, direction);
         }
 
-        public abstract void Attack();
+        protected virtual void AtkTrigger()
+        {
+            animator.SetTrigger("attack");
+        }
+
+        public virtual void Attack()
+        {
+            AtkTrigger();
+        }
 
         protected void WaitAttack()
         {
@@ -99,7 +111,7 @@ namespace PlayerSpace
             Vector3 forward = Vector3.Slerp(transform.forward,
                 attackDirection, rotationSpeed * Time.deltaTime / Vector3.Angle(transform.forward, direction));
 
-            while (!forward.AlmostEquals(attackDirection, float.Epsilon))
+            while (Vector3.Angle(attackDirection, transform.forward) >= 5)
             {
                 yield return null;
                 forward = Vector3.Slerp(transform.forward,

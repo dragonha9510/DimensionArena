@@ -12,6 +12,7 @@ namespace PlayerSpace
 
     public abstract class Player : MonoBehaviourPunCallbacks
     {
+        Animator animator;
 
         /// =============================
         /// Direction Region
@@ -68,6 +69,9 @@ namespace PlayerSpace
 
         protected virtual void Start()
         {
+            // Animation
+            animator = GetComponentInChildren<Animator>();
+
             //Memory Register
             CanDirectionChange = true;
             attack = GetComponent<Player_Atk>();
@@ -103,7 +107,9 @@ namespace PlayerSpace
                 directionLocation.gameObject.SetActive(true);
                 directionLocation.position = transform.position + (direction * 1.25f);
             }
+            animator.SetFloat("speed", direction.magnitude);
         }
+
         private void LateUpdate()
         {
             movement.MoveDirection(rigid, transform, direction, info.Speed);

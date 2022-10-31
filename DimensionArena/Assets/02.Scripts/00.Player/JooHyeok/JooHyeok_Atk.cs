@@ -40,6 +40,8 @@ namespace PlayerSpace
             else if (!isAttack)
                 StartAttackCoroutine();
 
+            // Animation Temp
+            AtkTrigger();
         }
         private void StartAttackCoroutine()
         {
