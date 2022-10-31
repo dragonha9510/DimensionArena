@@ -87,10 +87,10 @@ public abstract class Item : MonoBehaviourPun
         else if(collision.gameObject.tag == "Player")
         {
             EffectManager.Instance.CreateParticleEffectOnGameobject(collision.gameObject.transform, "ItemDrop");
+            PhotonNetwork.Destroy(this.gameObject);
             InteractItem(collision.gameObject.name);
             // 아이템 이벤트 처리
            
-            Destroy(this.gameObject);
         }
 
     }

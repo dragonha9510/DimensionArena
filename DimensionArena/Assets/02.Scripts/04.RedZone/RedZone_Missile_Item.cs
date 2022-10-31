@@ -27,6 +27,8 @@ public class RedZone_Missile_Item : RedZone_Missile
             }
             else
             {
+                if (!PhotonNetwork.IsMasterClient)
+                    return;
                 PhotonNetwork.Instantiate(PHOTONPATH.PHOTONPATH_ITEMPREFABFOLDER + "ItemBox"
                                             , new Vector3((float)((int)transform.position.x + 0.5f), 0.5f, (float)((int)transform.position.z + 0.5f))
                                             , Quaternion.identity);
