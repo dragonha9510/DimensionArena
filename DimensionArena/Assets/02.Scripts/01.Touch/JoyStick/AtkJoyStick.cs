@@ -28,12 +28,10 @@ public class AtkJoyStick : BaseJoyStick
     {
         if (isCancel)
         {
-            Debug.Log("드래그 취소");
             isCancel = false;
             return;
         }
 
-        Debug.Log("드래그");
         isDragging = true;
 
         PlayerAttackRPC();
@@ -55,7 +53,7 @@ public class AtkJoyStick : BaseJoyStick
             return;
         }
 
-        Debug.Log("자동공격");
+        // 자동공격 루틴 추가
     }
 
     private void PlayerAttackRPC()
