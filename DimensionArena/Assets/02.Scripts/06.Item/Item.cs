@@ -1,7 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using PlayerSpace;
+using ManagerSpace;
 
 public enum ITEM
 {
@@ -78,6 +79,7 @@ public class Item : MonoBehaviour
         }
         if(collision.gameObject.tag == "Player")
         {
+            EffectManager.Instance.CreateParticleEffectOnGameobject(collision.gameObject.transform, "ItemDrop");
             // 아이템 이벤트 처리
             Destroy(this.gameObject);
         }
