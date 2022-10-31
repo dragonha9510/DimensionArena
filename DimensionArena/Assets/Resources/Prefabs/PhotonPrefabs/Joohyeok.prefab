@@ -741,6 +741,7 @@ MonoBehaviour:
     maxSkillPoint: 100
     speed: 2.3
     curShield: 0
+    maxSheld: 0
     killScore: 0
     dmgScore: 0
 --- !u!114 &1876143292272218706

@@ -14,7 +14,7 @@ public enum ITEM
     ITEM_END
 }
 
-public class Item : MonoBehaviour
+public abstract class Item : MonoBehaviour
 {
 
     // For Parshing
@@ -60,7 +60,7 @@ public class Item : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-
+        
         if (collision.gameObject.tag == "ParentGround")
         {
             if (ColliderCount <= StopCount)
@@ -79,6 +79,7 @@ public class Item : MonoBehaviour
         if(collision.gameObject.tag == "Player")
         {
             // 아이템 이벤트 처리
+
             Destroy(this.gameObject);
         }
     }

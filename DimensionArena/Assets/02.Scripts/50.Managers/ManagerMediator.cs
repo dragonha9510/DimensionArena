@@ -26,7 +26,7 @@ namespace ManagerSpace
 
         private void Start()
         {
-
+            //시작 시 할당된 모는 
             foreach (var type in managerDic)
             {
                 type.Value.SetActive(true);

@@ -222,7 +222,7 @@ namespace ManagerSpace
                 }
 
                 //Ingame 
-                damage = CheckShieldExist(target, damage);
+                damage = DamagedShield(target, damage);
 
                 target.Damaged(damage);
             }
@@ -240,7 +240,7 @@ namespace ManagerSpace
                 damage = damage > target.CurHP ? target.CurHP : damage;
 
                 //Ingame 
-                damage = CheckShieldExist(target, damage);
+                damage = DamagedShield(target, damage);
 
                 target.Damaged(damage);
             }
@@ -297,12 +297,18 @@ namespace ManagerSpace
                 if (playerInfoArr[i].CurHP <= 0 && playerObjectArr[i].activeInHierarchy)
                 {
                     //Ingame UI Inform Kill
-               
+                    //Player Die 
+                    if (enviroment.Equals(ENVIROMENT.REDZONE))
+                        playerInfoArr[i].PlayerDie(UNITTYPE.RedZone, "레드존");
+                    else
+                        playerInfoArr[i].PlayerDie(UNITTYPE.Magnetic, "자기장");
 
                     //GameData Set
-
-                    //Player Die 
-
+                    InGamePlayerData data;
+                    if (IngameDataManager.Instance.Data.TryGetValue(playerInfoArr[i].ID, out data))
+                    {
+                        data.DeathData();
+                    }
                 }
             }
         }
@@ -316,7 +322,7 @@ namespace ManagerSpace
         /// >>>>>>>>>>>>>>>>>>>>>>>>>>
 
         [PunRPC]
-        private float CheckShieldExist(PlayerInfo target, float damage)
+        private float DamagedShield(PlayerInfo target, float damage)
         {
             //Shield가 존재한다면 Shield를 깍고 남은 데미지 주기
             if (target.CurShield > 0)
@@ -330,31 +336,11 @@ namespace ManagerSpace
         }
 
 
-
-        [PunRPC]
-        public void ShieldIncrease(string owner, string target, float amount)
+        public void GetShield(string target, float amount)
         {
-            for (int i = 0; i < PlayerObjectArr.Length; ++i)
-            {
-                if (PlayerObjectArr[i].name == target)
-                {
-                    //playerInfoArr[i].owner.RPC("GetShield", RpcTarget.All, amount);
-                }
-            }
-            //Do Something wiht Owner relation..
-
-
+            dicPlayerInfo.GetValueOrDefault(target).GetShield(amount);
         }
-        public void ShieldIncrease(GameObject target, float amount)
-        {
-            for (int i = 0; i < PlayerObjectArr.Length; ++i)
-            {
-                if (PlayerObjectArr[i] == target)
-                {
-                    //playerInfoArr[i].owner.RPC("GetShield", RpcTarget.All, amount);
-                }
-            }
-        }
+
 
         /// <<<<<<<<<<<<<<<<<<<<<<<<<<
 
@@ -439,28 +425,16 @@ namespace ManagerSpace
         /// <<<<<<<<<<<<<<<<<<<<<<<<<<
 
 
-
-
-
-
         /// 향후, 필요시 추가 구역
 
-        public void MaxSkiilPtIncrease(string owner, string target, float damage)
+        public void DmgUp(string target, float amount)
         {
-
-        }
-        public void MaxSkiilPtIncrease(string target, float damage)
-        {
-
+            DicPlayerInfo.GetValueOrDefault(target).DmgUp(amount);
         }
 
-        public void MaxSkiilPtDecrease(string owner, string target, float damage)
+        public void DmgDown(string target, float amount)
         {
-
-        }
-        public void MaxSkiilPtDecrease(string target, float damage)
-        {
-
+            DicPlayerInfo.GetValueOrDefault(target).DmgDown(amount);
         }
 
     }

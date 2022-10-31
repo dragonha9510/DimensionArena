@@ -37,6 +37,7 @@ namespace ManagerSpace
 
             //Target hp
             target.Info.EcurHPChanged += HpChange;
+            target.Info.EcurShieldChanged += ShieldAmountChange;
 
             if (target.photonView.IsMine)
             {
@@ -77,21 +78,18 @@ namespace ManagerSpace
         }
 
 
-
-        void GetShield(float amount)
+        void ShieldAmountChange(float amount )
         {
-            //Shield °»½Å
-            shieldImg.fillAmount = 1.0f;
+
+            shieldImg.fillAmount = amount / target.Info.MaxShield;
             shieldText.text = amount.ToString();
+
+            if (amount == 0)
+                shieldImg.gameObject.SetActive(false);
+            else
+                shieldImg.gameObject.SetActive(true);
+
         }
-
-        void ShieldChange(float amount, float ratio)
-        {
-            shieldText.text = amount.ToString();
-            shieldImg.fillAmount = ratio;
-        }
-
-
 
         private void OnDestroy()
         {
