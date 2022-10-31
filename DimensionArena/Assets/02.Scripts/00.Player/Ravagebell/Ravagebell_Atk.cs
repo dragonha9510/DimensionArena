@@ -67,13 +67,31 @@ namespace PlayerSpace
             Transform shooterPosition = PlayerInfoManager.Instance.getPlayerTransform(shooter);
             photonView.RPC(nameof(SubMagazine), controller, shooter);
 
+            //projectile = PhotonNetwork.Instantiate("projectile_ravagebell", shooterPosition.position + (Vector3.up * 0.5f), shooterPosition.rotation);
+            //projectile.GetComponent<Projectile>().AttackToDirection(Vector3.up, AtkInfo.Range, projectileSpeed);
+            //projectile.GetComponent<Projectile>().ownerID = shooter;
+            //yield return new WaitForSeconds(atkDelay);
 
-            projectile = PhotonNetwork.Instantiate("projectile_ravagebell", shooterPosition.position + (Vector3.up * 0.5f), shooterPosition.rotation);
-            projectile.GetComponent<Projectile>().AttackToDirection(Vector3.up, AtkInfo.Range, projectileSpeed);
-            projectile.GetComponent<Projectile>().ownerID = shooter;
+            ///
+            AtkTrigger();
+
             yield return new WaitForSeconds(atkDelay);
 
+            Destroy(PhotonNetwork.Instantiate("muzzle_ravagebell", this.transform.position + (Vector3.up * 2f), shooterPosition.rotation), 0.5f);
+            projectile = PhotonNetwork.Instantiate("projectile_ravagebell", this.transform.position + (Vector3.up * 2f), shooterPosition.rotation);
+            projectile.GetComponent<Projectile>().AttackToDirection(Vector3.up, AtkInfo.Range, projectileSpeed);
+            projectile.GetComponent<Projectile>().ownerID = shooter;
+
             photonView.RPC("EndAttack", controller, shooter);
+
+            yield return new WaitForSeconds(dropDelay);
+
+            projectile = PhotonNetwork.Instantiate("projectile_ravagebell",
+                this.transform.position + (shooterAttackDir.normalized * curdistance * AtkInfo.Range) + (Vector3.up * AtkInfo.Range),
+                shooterPosition.rotation);
+            projectile.GetComponent<Projectile>().AttackToDirection(Vector3.down, AtkInfo.Range, projectileSpeed);
+            projectile.GetComponent<Projectile>().ownerID = shooter;
+            ///
         }
 
         [PunRPC]
