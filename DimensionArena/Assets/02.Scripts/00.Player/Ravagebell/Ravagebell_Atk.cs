@@ -11,11 +11,13 @@ namespace PlayerSpace
         [Header("RavagebellAttackInfo")]
         [SerializeField] private float projectileSpeed = 8.0f;
         [SerializeField] private float atkDelay;
+        [SerializeField] private float dropDelay = 1;
 
         [Header("Prefab")]
         [SerializeField] private GameObject prefab_Muzzle;
         [SerializeField] private GameObject prefab_Projectile;
         [SerializeField] private AudioSource audioSource;
+
 
         protected override void InitalizeAtkInfo()
         {
@@ -33,9 +35,6 @@ namespace PlayerSpace
                 WaitAttack();
             else if (!isAttack)
                 StartAttackCoroutine();
-
-            // Animation Temp
-            AtkTrigger();
         }
         private void StartAttackCoroutine()
         {
@@ -103,17 +102,26 @@ namespace PlayerSpace
             atkInfo.SubCost(atkInfo.ShotCost);
 
             GameObject projectile;
+            AtkTrigger();
 
             yield return new WaitForSeconds(atkDelay);
 
-            Instantiate(prefab_Muzzle, this.transform.position + shooterAttackDir + (Vector3.up * 0.5f), playerRotation);
-            projectile = Instantiate(prefab_Projectile, this.transform.position + shooterAttackDir + (Vector3.up * 0.5f), playerRotation);
-            projectile.GetComponent<Projectile>().AttackToDirection(shooterAttackDir, AtkInfo.Range, projectileSpeed);
+            Destroy(Instantiate(prefab_Muzzle, this.transform.position + (Vector3.up * 2f), playerRotation), 0.5f);
+            projectile = Instantiate(prefab_Projectile, this.transform.position + (Vector3.up * 2f), playerRotation);
+            projectile.GetComponent<Projectile>().AttackToDirection(Vector3.up, AtkInfo.Range, projectileSpeed);
             projectile.GetComponent<Projectile>().ownerID = ownerName;
-
 
             isAttack = false;
             owner.CanDirectionChange = true;
+
+            yield return new WaitForSeconds(dropDelay);
+
+            projectile = Instantiate(prefab_Projectile, 
+                this.transform.position + (shooterAttackDir.normalized * curdistance * AtkInfo.Range) + (Vector3.up * AtkInfo.Range),
+                playerRotation);
+            projectile.GetComponent<Projectile>().AttackToDirection(Vector3.down, AtkInfo.Range, projectileSpeed);
+            projectile.GetComponent<Projectile>().ownerID = ownerName;
+
         }
     }
 }

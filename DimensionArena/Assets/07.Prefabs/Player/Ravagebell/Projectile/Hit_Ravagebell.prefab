@@ -18954,7 +18954,7 @@ GameObject:
   - component: {fileID: 198968207822751480}
   - component: {fileID: 199974120939372960}
   m_Layer: 0
-  m_Name: vfx_Hit_Radioactive
+  m_Name: Hit_Ravagebell
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

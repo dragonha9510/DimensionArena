@@ -48,7 +48,6 @@ public class AtkJoyStick : BaseJoyStick
         player.Attack.direction =
             new Vector3((lever.position.x - rectTransform.position.x) / leverRange, 0, 
                         (lever.position.y - rectTransform.position.y) / leverRange);
-
     }
 
     public override void OnPointerClick(PointerEventData eventData)

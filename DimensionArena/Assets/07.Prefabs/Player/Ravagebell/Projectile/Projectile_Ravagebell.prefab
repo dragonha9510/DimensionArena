@@ -14686,7 +14686,7 @@ GameObject:
   - component: {fileID: 7841963177906532258}
   - component: {fileID: 8543374909435412747}
   m_Layer: 0
-  m_Name: vfx_Projectile_RadioactiveBall
+  m_Name: Projectile_Ravagebell
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
