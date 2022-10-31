@@ -21,6 +21,8 @@ TagManager:
   - MagneticField
   - SpawnPoint
   - AttackCollider
+  - Chara
+  - Item
   layers:
   - Default
   - TransparentFX
@@ -32,8 +34,8 @@ TagManager:
   - AtkRange
   - Obstacle
   - Projectile
-  - 
-  - 
+  - Item
+  - Player
   - 
   - 
   - 

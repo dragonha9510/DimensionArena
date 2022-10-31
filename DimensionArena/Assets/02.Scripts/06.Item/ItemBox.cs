@@ -104,7 +104,6 @@ public class ItemBox : MonoBehaviourPun
     private void MakeRandItem()
     {
         PhotonNetwork.Instantiate(PHOTONPATH.PHOTONPATH_ITEMPREFABFOLDER + itemPrefabName, this.transform.position, Quaternion.identity);
-        PhotonNetwork.Destroy(this.gameObject);
     }
     [PunRPC]
     private void HpDecrease(int damage)
