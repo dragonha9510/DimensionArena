@@ -189,6 +189,8 @@ GameObject:
   - component: {fileID: 2929368511073096566}
   - component: {fileID: 8866487103202276847}
   - component: {fileID: 8036984987185046156}
+  - component: {fileID: 579912265146271126}
+  - component: {fileID: -3497605900261854971}
   m_Layer: 0
   m_Name: DemensionKit
   m_TagString: Untagged
@@ -260,7 +262,8 @@ MonoBehaviour:
   Synchronization: 3
   OwnershipTransfer: 0
   observableSearch: 2
-  ObservedComponents: []
+  ObservedComponents:
+  - {fileID: 579912265146271126}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
@@ -287,12 +290,44 @@ MonoBehaviour:
     healthAmount: 100
     shieldAmount: 0
     skillRecovery: 0
-  boingPower: 1
+  boingPower: 4
   decreasePower: 0.4
   rotation: 100
   decreaseRotation: 0.9
   particle: {fileID: 5024009746357069194, guid: ec3f674830402cc45bce805cf6493db7,
     type: 3}
+--- !u!114 &579912265146271126
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2929368511073096563}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizePosition: 1
+  m_SynchronizeRotation: 1
+  m_SynchronizeScale: 0
+  m_UseLocal: 1
+--- !u!114 &-3497605900261854971
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2929368511073096563}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64179f3720bbfe947b7724caa67b7c1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizeVelocity: 1
+  m_SynchronizeAngularVelocity: 0
+  m_TeleportEnabled: 0
+  m_TeleportIfDistanceGreaterThan: 3
 --- !u!1 &2929368511151041866
 GameObject:
   m_ObjectHideFlags: 0

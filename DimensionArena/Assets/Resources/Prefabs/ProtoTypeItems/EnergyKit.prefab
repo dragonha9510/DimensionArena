@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 1092218685689241425}
   - component: {fileID: 2419466360805943140}
   - component: {fileID: 4995746609264264113}
+  - component: {fileID: -3640010919035805263}
+  - component: {fileID: 4682356483620928036}
   m_Layer: 0
   m_Name: EnergyKit
   m_TagString: Untagged
@@ -111,12 +113,44 @@ MonoBehaviour:
     healthAmount: 0
     shieldAmount: 0
     skillRecovery: 0
-  boingPower: 1
+  boingPower: 4
   decreasePower: 0.4
   rotation: 100
   decreaseRotation: 0.9
   particle: {fileID: 5024009746357069194, guid: ec3f674830402cc45bce805cf6493db7,
     type: 3}
+--- !u!114 &-3640010919035805263
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1092218685689241431}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizePosition: 1
+  m_SynchronizeRotation: 1
+  m_SynchronizeScale: 0
+  m_UseLocal: 1
+--- !u!114 &4682356483620928036
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1092218685689241431}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64179f3720bbfe947b7724caa67b7c1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizeVelocity: 1
+  m_SynchronizeAngularVelocity: 0
+  m_TeleportEnabled: 0
+  m_TeleportIfDistanceGreaterThan: 3
 --- !u!1 &1092218686747100166
 GameObject:
   m_ObjectHideFlags: 0
