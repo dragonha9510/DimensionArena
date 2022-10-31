@@ -9,7 +9,7 @@ using PlayerSpace;
 public enum CharacterType
 {
     Aura,
-    Raebijibel,
+    Ravagebell,
     Joohyeok,
     Sesillia,
 }

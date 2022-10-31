@@ -14,10 +14,12 @@ public class MagazineUI : MonoBehaviour
 
     void Start()
     {
+        Player player = GetComponent<Player>();
         ownerAtk = GetComponentInParent<Player_Atk>();
-        if(ownerAtk.Owner)
+
+        if(player)
         {
-            if (!ownerAtk.Owner.photonView.IsMine)
+            if (!player.photonView.IsMine)
             {
                 parentMagazineUI.SetActive(false);
                 return;

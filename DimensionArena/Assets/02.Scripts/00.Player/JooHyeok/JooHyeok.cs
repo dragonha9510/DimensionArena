@@ -12,10 +12,10 @@ namespace PlayerSpace
         {
             base.Awake();
 
-            //Player State 등록
-            info = new PlayerInfo(NickName,
-                                  CharacterType.Joohyeok,
-                                  100.0f, 100.0f, 2.3f);
+            ////Player State 등록
+            //info = new PlayerInfo(NickName,
+            //                      CharacterType.Joohyeok,
+            //                      info.MaxHP, info.MaxSkillPoint, info.Speed);
             //Attack 등록
             attack = GetComponent<JooHyeok_Atk>();
             if (!attack)

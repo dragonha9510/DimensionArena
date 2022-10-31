@@ -292,8 +292,8 @@ namespace ManagerSpace
                 case CharacterType.Aura:
                     image.sprite = CharacterThumbnail[(int)CharacterType.Aura];
                     break;
-                case CharacterType.Raebijibel:
-                    image.sprite = CharacterThumbnail[(int)CharacterType.Raebijibel];
+                case CharacterType.Ravagebell:
+                    image.sprite = CharacterThumbnail[(int)CharacterType.Ravagebell];
                     break;
                 case CharacterType.Joohyeok:
                     image.sprite = CharacterThumbnail[(int)CharacterType.Joohyeok];

@@ -11,6 +11,7 @@ namespace PlayerSpace
     {
         RECT,
         PARABOLA,
+        CIRCLE,
         Attack_Type_End
     }
 
@@ -63,7 +64,6 @@ namespace PlayerSpace
 
             if (owner)
             {
-                owner = GetComponent<Player>();
                 if (owner.photonView.IsMine)
                     StartCoroutine(MagazineReloadCoroutine());
             }
@@ -73,12 +73,19 @@ namespace PlayerSpace
                 StartCoroutine(MagazineReloadCoroutine());
             }
 
+            atkRangeMesh.SetActive(false);
         }
-        protected virtual void LateUpdate()
+
+        public void Calculate()
         {
             float distance = atkInfo.Range;
 
             rangeComponent.Calculate_Range(distance, direction);
+        }
+
+        public virtual void AtkRangeMeshOnOff(bool temp)
+        {
+            atkRangeMesh.SetActive(temp);
         }
 
         protected virtual void AtkTrigger()
@@ -145,6 +152,10 @@ namespace PlayerSpace
             else if(range as Atk_Parabola)
             {
                 return Attack_Type.PARABOLA;
+            }
+            else if(range as Atk_Circle)
+            {
+                return Attack_Type.CIRCLE;
             }
             else
             {

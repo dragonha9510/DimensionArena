@@ -17,15 +17,20 @@ public class AtkJoyStick : BaseJoyStick
     public override void OnBeginDrag(PointerEventData eventData)
     {
         base.OnBeginDrag(eventData);
+        player.Attack.AtkRangeMeshOnOff(true);
     }
 
     public override void OnDrag(PointerEventData eventData)
     {
+        player.Attack.AtkRangeMeshOnOff(!isCancel);
+
         base.OnDrag(eventData);
     }
 
     public override void OnEndDrag(PointerEventData eventData)
     {
+        player.Attack.AtkRangeMeshOnOff(false);
+
         if (isCancel)
         {
             isCancel = false;
@@ -38,7 +43,8 @@ public class AtkJoyStick : BaseJoyStick
         base.OnEndDrag(eventData);
     }
     public override void SetDirection()
-    {        
+    {
+        player.Attack.Calculate();
         player.Attack.direction =
             new Vector3((lever.position.x - rectTransform.position.x) / leverRange, 0, 
                         (lever.position.y - rectTransform.position.y) / leverRange);
