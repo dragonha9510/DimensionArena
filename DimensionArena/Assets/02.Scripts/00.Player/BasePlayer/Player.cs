@@ -65,6 +65,8 @@ namespace PlayerSpace
                 nickName = "Player";
                 gameObject.name = "Player";
             }
+
+            info.ID = gameObject.name;
         }
 
         protected virtual void Start()

@@ -99,7 +99,7 @@ public class PlayerInfo
     public float MaxShield { get { return maxSheld; } }
     public float AdditionalDmg { get { return additionalDmg; } }
     
-    public string ID { get { return id; } }
+    public string ID { get { return id; } set { id = value; } }
     public bool IsAlive { get { return isAlive; } }
 
 
