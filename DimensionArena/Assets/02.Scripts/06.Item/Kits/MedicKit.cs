@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpeedItem : Item
+public class MedicKit : Item
 {
     protected override void InteractItem()
     {
