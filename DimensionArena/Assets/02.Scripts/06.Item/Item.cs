@@ -90,7 +90,8 @@ public abstract class Item : MonoBehaviourPun
             PhotonNetwork.Destroy(this.gameObject);
 
             // 아이템 이벤트 처리
-            photonView.RPC(nameof(InteractItemForAllClient), RpcTarget.All);
+            if(PhotonNetwork.IsMasterClient)
+                photonView.RPC(nameof(InteractItemForAllClient), RpcTarget.All);
            
         }
     }
