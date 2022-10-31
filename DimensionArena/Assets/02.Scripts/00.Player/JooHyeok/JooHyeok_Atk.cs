@@ -28,11 +28,6 @@ namespace PlayerSpace
             base.Start();
         }
 
-        protected override void LateUpdate()
-        {
-            base.LateUpdate();
-        }
-
         public override void Attack()
         {
             if (atkInfo.CurCost < atkInfo.ShotCost)

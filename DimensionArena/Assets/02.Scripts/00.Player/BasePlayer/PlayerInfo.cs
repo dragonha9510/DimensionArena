@@ -9,7 +9,7 @@ using PlayerSpace;
 public enum UNITTYPE
 {
     Aura,
-    Raebijibel,
+    Ravagebell,
     Joohyeok,
     Sesillia,
     RedZone,
