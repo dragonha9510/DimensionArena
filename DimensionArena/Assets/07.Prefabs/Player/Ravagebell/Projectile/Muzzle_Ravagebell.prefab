@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4369799241942668}
   m_Layer: 0
-  m_Name: vfx_Muzzle_Radiocative
+  m_Name: Muzzle_Ravagebell
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
