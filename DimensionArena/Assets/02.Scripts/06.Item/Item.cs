@@ -88,12 +88,20 @@ public abstract class Item : MonoBehaviourPun
         {
             EffectManager.Instance.CreateParticleEffectOnGameobject(collision.gameObject.transform, "ItemDrop");
             PhotonNetwork.Destroy(this.gameObject);
-            InteractItem(collision.gameObject.name);
+
             // 아이템 이벤트 처리
+            photonView.RPC(nameof(InteractItemForAllClient), RpcTarget.All);
            
         }
-
     }
+
+    [PunRPC]
+    public void InteractItemForAllClient(string name)
+    {
+        InteractItem(name);
+    }
+
+
     public void SettingItem(ItemInfo itemInfo)
     {
         info = itemInfo;
