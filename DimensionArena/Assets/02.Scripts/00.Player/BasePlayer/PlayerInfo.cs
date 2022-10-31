@@ -144,7 +144,7 @@ public class PlayerInfo
     public void Heal(float amount)
     {
         curHP += amount;
-        curHP = Mathf.Max(curHP, MaxHP);
+        curHP = Mathf.Min(curHP, MaxHP);
         EcurHPChanged(curHP);
     }
 
@@ -168,26 +168,26 @@ public class PlayerInfo
     [PunRPC]
     public void DmgUp(float ratio)
     {
-        additionalDmg += ratio;
+        additionalDmg += ratio * 100;
     }
 
     [PunRPC]
     public void DmgDown(float ratio)
     {
-        additionalDmg -= ratio;
+        additionalDmg -= ratio * 100;
     }
 
 
     [PunRPC]
     public void SpeedUp(float ratio)
     {
-        speed += speed * ratio;
+        speed += speed * (ratio * 100);
     }
 
     [PunRPC]
     public void SpeedDown(float ratio)
     {
-        speed -= speed * ratio;
+        speed -= speed * (ratio * 100);
     }
 
     public void PlayerDie(UNITTYPE killer_type, string killer_id)

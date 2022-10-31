@@ -1,18 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public class NewBehaviourScript : MonoBehaviour
+using ManagerSpace;
+public class EnergyKit : Item
 {
-    // Start is called before the first frame update
-    void Start()
+    protected override void InteractItem(string targetID)
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        Debug.Log("energy Get");
+        PlayerInfoManager.Instance.CurSkillPtIncrease(targetID, info.skillRecovery);
     }
 }

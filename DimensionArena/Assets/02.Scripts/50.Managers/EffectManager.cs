@@ -40,15 +40,13 @@ namespace ManagerSpace
                     break;
                 case "Dead":
                     if (effectDictionary.ContainsKey("Dead"))
-                        Instantiate(effectDictionary["Dead"], trans.position + (Vector3.up * 0.5f), trans.rotation);
+                        Instantiate(effectDictionary["Dead"], trans.position + (Vector3.up * 0.5f), trans.rotation, trans);
                     break;
                 // JSB
                 case "ItemDrop":
                     if(effectDictionary.ContainsKey("ItemDrop"))
-                        Instantiate(effectDictionary["ItemDrop"], trans.position + (Vector3.up * 0.5f), trans.rotation);
-                    break;
-                    //
-                
+                        Instantiate(effectDictionary["ItemDrop"], trans.position + (Vector3.up * 0.5f), trans.rotation, trans);
+                    break;               
             }
         }
     }

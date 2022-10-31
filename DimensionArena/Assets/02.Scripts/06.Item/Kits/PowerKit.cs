@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using ManagerSpace;
 
 public class PowerKit : Item
 {
-    protected override void InteractItem()
+    protected override void InteractItem(string targetID)
     {
-        throw new System.NotImplementedException();
+        Debug.Log("power Get");
+        PlayerInfoManager.Instance.DmgUp(targetID, info.attackIncrement);
     }
 }

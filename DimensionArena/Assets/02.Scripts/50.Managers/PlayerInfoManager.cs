@@ -185,15 +185,9 @@ namespace ManagerSpace
             //Do Something wiht Owner relation..
         }
 
-        public void CurHpIncrease(GameObject target, float amount)
+        public void CurHpIncrease(string target, float amount)
         {
-            for (int i = 0; i < PlayerObjectArr.Length; ++i)
-            {
-                if (PlayerObjectArr[i] == target)
-                {
-                    //playerInfoArr[i].owner.RPC("Heal", RpcTarget.All, amount);
-                }
-            }
+            dicPlayerInfo.GetValueOrDefault(target).Heal(amount);
         }
 
         public void CurHpDecrease(GameObject owner, GameObject target, float damage)

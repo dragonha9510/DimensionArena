@@ -16,7 +16,9 @@ namespace ManagerSpace
         [SerializeField] Slider hpBarSlider;
         [SerializeField] TextMeshProUGUI hpText;
 
-        [SerializeField] Image shieldImg;
+        [SerializeField] GameObject shield;
+        [SerializeField] Image      shieldImg;
+
         [SerializeField] TextMeshProUGUI shieldText;
 
 
@@ -78,16 +80,16 @@ namespace ManagerSpace
         }
 
 
-        void ShieldAmountChange(float amount )
+        void ShieldAmountChange(float amount)
         {
-
+            Debug.Log("½¯µåÀÌº¥Æ®µé¾î¿È");
             shieldImg.fillAmount = amount / target.Info.MaxShield;
             shieldText.text = amount.ToString();
 
             if (amount == 0)
-                shieldImg.gameObject.SetActive(false);
+                shield.SetActive(false);
             else
-                shieldImg.gameObject.SetActive(true);
+                shield.SetActive(true);
 
         }
 
