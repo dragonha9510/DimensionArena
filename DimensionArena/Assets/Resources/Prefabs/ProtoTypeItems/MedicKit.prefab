@@ -126,7 +126,7 @@ GameObject:
   - component: {fileID: 4539924223189176224}
   - component: {fileID: 4539924223189176238}
   - component: {fileID: 4539924223189176225}
-  m_Layer: 10
+  m_Layer: 12
   m_Name: Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -241,7 +241,7 @@ GameObject:
   - component: {fileID: 4539924223656180349}
   - component: {fileID: 4539924223656180347}
   - component: {fileID: 4539924223656180346}
-  m_Layer: 10
+  m_Layer: 12
   m_Name: Detector
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -455,7 +455,7 @@ GameObject:
   - component: {fileID: 4539924224231704596}
   - component: {fileID: 4539924224231704599}
   - component: {fileID: 4539924224231704598}
-  m_Layer: 10
+  m_Layer: 12
   m_Name: Particle
   m_TagString: Untagged
   m_Icon: {fileID: 0}

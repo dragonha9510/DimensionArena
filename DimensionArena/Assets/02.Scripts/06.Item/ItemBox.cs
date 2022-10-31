@@ -103,7 +103,8 @@ public class ItemBox : MonoBehaviourPun
 
     private void MakeRandItem()
     {
-        PhotonNetwork.Instantiate(PHOTONPATH.PHOTONPATH_ITEMPREFABFOLDER + itemPrefabName, this.transform.position, Quaternion.identity);
+        GameObject item = PhotonNetwork.Instantiate(PHOTONPATH.PHOTONPATH_ITEMPREFABFOLDER + itemPrefabName, this.transform.position, Quaternion.identity);
+        item.GetComponent<Item>().enabled = true;
     }
     [PunRPC]
     private void HpDecrease(int damage)
@@ -114,7 +115,7 @@ public class ItemBox : MonoBehaviourPun
             GetComponentInChildren<Shaking>().StartShaking();
         if (health <= 0)
         {
-            if (!photonView.IsMine)
+            if (!PhotonNetwork.IsMasterClient)
                 return;
             MakeRandItem();
             PhotonNetwork.Destroy(this.gameObject);

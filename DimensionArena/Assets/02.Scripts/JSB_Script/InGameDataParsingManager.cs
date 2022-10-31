@@ -35,7 +35,6 @@ public class InGameDataParsingManager : MonoBehaviour
                             , data_Map[i]["attack_nesting_or_not"].ToString()
                             , data_Map[i]["attack_increment"].ToString(),data_Map[i]["speed_amount"].ToString(), data_Map[i]["recovery_amount"].ToString(), data_Map[i]["shield_amount"].ToString(), data_Map[i]["gauge_recovery_amount"].ToString());
             bool isSucces = false;
-            item.GetComponent<Item>().enabled = true;
             UnityEditor.PrefabUtility.SaveAsPrefabAsset(item, itemPrefapPath, out isSucces);
             UnityEditor.AssetDatabase.Refresh();
         }
