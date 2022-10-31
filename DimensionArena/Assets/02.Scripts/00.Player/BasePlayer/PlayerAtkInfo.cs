@@ -33,8 +33,8 @@ namespace PlayerSpace
         public float Range => range;
         public float ReloadTime => reloadTime;
         public float CurCost => curCost;
-        public float ShotCost => shotCost;
-        public float InverseReloadTime => inverseReloadTime;
+        public float ShotCost => (float)(1.0f / maxMagazine);
+        public float InverseReloadTime => 1.0f / (reloadTime * maxMagazine);
 
 
         public void AddCost(float amount)

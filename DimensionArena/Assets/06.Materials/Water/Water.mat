@@ -120,7 +120,7 @@ Material:
     - _FoamCutOut: 0.11
     - _FoamDepth: 1
     - _FoamFallOff: 4
-    - _FoamShoreWidth: 0.85
+    - _FoamShoreWidth: 0.88
     - _FoamTiling: 2
     - _GlossMapScale: 0
     - _Glossiness: 0
@@ -142,7 +142,7 @@ Material:
     - _ZWrite: 1
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
-    - _CausticColor: {r: 2.1185474, g: 2.1185474, b: 2.1185474, a: 0}
+    - _CausticColor: {r: 1.35141, g: 1.35141, b: 1.35141, a: 0}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _FoamColor: {r: 2, g: 2, b: 2, a: 0}
