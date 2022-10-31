@@ -139,8 +139,7 @@ public class ItemBox : MonoBehaviourPun
                 health -= other.gameObject.GetComponent<Projectile>().Damage;
                 itemSlider.value = health;
                 if (health <= 0)
-                {
-                    MakeRandItem();
+                {      
                     Destroy(this.gameObject);
                 }
             }
