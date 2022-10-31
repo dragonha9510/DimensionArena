@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using PlayerSpace;
 using ManagerSpace;
+using Photon.Pun;
 
 public enum ITEM
 {
@@ -15,7 +16,7 @@ public enum ITEM
     ITEM_END
 }
 
-public abstract class Item : MonoBehaviour
+public abstract class Item : MonoBehaviourPun
 {
 
     // For Parshing
@@ -50,20 +51,30 @@ public abstract class Item : MonoBehaviour
         rigidBody = GetComponent<Rigidbody>();
         rigidBody.AddForce(randBoing.normalized * boingPower, ForceMode.Impulse);
 
-
-        Destroy(gameObject, info.liveTime);
     }
 
 
+    
+
     private void FixedUpdate()
     {
+        if (!photonView.IsMine)
+            return;
         this.transform.Rotate(Vector3.up * rotation * Time.deltaTime, Space.World);
+        info.liveTime -= Time.fixedDeltaTime;
+        if (0 >= info.liveTime)
+            PhotonNetwork.Destroy(this.gameObject);
     }
 
     
     private void OnCollisionEnter(Collision collision)
     {
+<<<<<<< Updated upstream
         
+=======
+        if (!photonView.IsMine)
+            return;
+>>>>>>> Stashed changes
         if (collision.gameObject.tag == "ParentGround")
         {
             if (ColliderCount <= StopCount)
@@ -84,8 +95,12 @@ public abstract class Item : MonoBehaviour
             EffectManager.Instance.CreateParticleEffectOnGameobject(collision.gameObject.transform, "ItemDrop");
             InteractItem(collision.gameObject.name);
             // 아이템 이벤트 처리
+<<<<<<< Updated upstream
            
             Destroy(this.gameObject);
+=======
+            PhotonNetwork.Destroy(this.gameObject);
+>>>>>>> Stashed changes
         }
 
     }
