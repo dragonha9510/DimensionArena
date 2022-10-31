@@ -43,6 +43,8 @@ namespace PlayerSpace
             // Animation Temp
             AtkTrigger();
         }
+
+
         private void StartAttackCoroutine()
         {
             owner.CanDirectionChange = false;

@@ -86,15 +86,13 @@ namespace PlayerSpace
             {
                 if (photonView.IsMine)
                     SetToOwnerPlayer();
+
+                EffectManager.Instance.CreateParticleEffectOnGameobject(this.transform, "Revive");
             }
             else
                 SetToOwnerPlayer();
 
-            //Create Event
-            EffectManager.Instance.CreateParticleEffectOnGameobject(this.transform, "Revive");
-
             //Add Event
-
             Info.EDisActivePlayer += DisActiveAnimation;
         }
 

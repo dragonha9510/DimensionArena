@@ -30,11 +30,12 @@ namespace ManagerSpace
             //플레이어 받아오기.
             target = GetComponentInParent<Player>();
             // JSB -> ARROW 설정
-            if (!PhotonNetwork.IsConnected)
-                playerName.text = "Player";
-
             //target name 
-            playerName.text = target.photonView.Owner.NickName;
+            if (!PhotonNetwork.InRoom)
+                playerName.text = "Player";
+            else
+                playerName.text = target.photonView.Owner.NickName;
+
             hpText.text = target.Info.MaxHP.ToString();
 
             //Target hp

@@ -180,8 +180,6 @@ MonoBehaviour:
   nodeInfo:
     prefab: {fileID: 7977787445382646825, guid: eb42f02e3dcc2064fa0fc4a66fcd62b4,
       type: 3}
-    objectName: Deco
-    type: 1
     prefabStyle:
       m_Name: 
       m_Normal:
@@ -249,6 +247,8 @@ MonoBehaviour:
       m_FixedHeight: 128
       m_StretchWidth: 1
       m_StretchHeight: 0
+    objectName: Deco
+    type: 1
     currentTexture: {fileID: 2800000, guid: f6dcb393ca7e0454a8b91f66719c916c, type: 3}
     normalTexture: {fileID: 0}
     selectedTexture: {fileID: 0}
@@ -373,8 +373,6 @@ MonoBehaviour:
   nodeInfo:
     prefab: {fileID: 7977787445382646825, guid: 80956fb0373904c41a54d0827f5ab451,
       type: 3}
-    objectName: Obstacle
-    type: 1
     prefabStyle:
       m_Name: 
       m_Normal:
@@ -442,6 +440,8 @@ MonoBehaviour:
       m_FixedHeight: 128
       m_StretchWidth: 1
       m_StretchHeight: 0
+    objectName: Obstacle
+    type: 1
     currentTexture: {fileID: 2800000, guid: 3314657ca440ce045bcb2ab13a4f0ed0, type: 3}
     normalTexture: {fileID: 0}
     selectedTexture: {fileID: 0}
@@ -664,8 +664,6 @@ MonoBehaviour:
   nodeInfo:
     prefab: {fileID: 7977787445382646825, guid: eb42f02e3dcc2064fa0fc4a66fcd62b4,
       type: 3}
-    objectName: Deco
-    type: 1
     prefabStyle:
       m_Name: 
       m_Normal:
@@ -733,6 +731,8 @@ MonoBehaviour:
       m_FixedHeight: 128
       m_StretchWidth: 1
       m_StretchHeight: 0
+    objectName: Deco
+    type: 1
     currentTexture: {fileID: 2800000, guid: f6dcb393ca7e0454a8b91f66719c916c, type: 3}
     normalTexture: {fileID: 0}
     selectedTexture: {fileID: 0}
@@ -857,8 +857,6 @@ MonoBehaviour:
   nodeInfo:
     prefab: {fileID: 7977787445382646825, guid: eb42f02e3dcc2064fa0fc4a66fcd62b4,
       type: 3}
-    objectName: Deco
-    type: 1
     prefabStyle:
       m_Name: 
       m_Normal:
@@ -926,6 +924,8 @@ MonoBehaviour:
       m_FixedHeight: 128
       m_StretchWidth: 1
       m_StretchHeight: 0
+    objectName: Deco
+    type: 1
     currentTexture: {fileID: 2800000, guid: f6dcb393ca7e0454a8b91f66719c916c, type: 3}
     normalTexture: {fileID: 0}
     selectedTexture: {fileID: 0}
@@ -1050,8 +1050,6 @@ MonoBehaviour:
   nodeInfo:
     prefab: {fileID: 7977787445382646825, guid: eb42f02e3dcc2064fa0fc4a66fcd62b4,
       type: 3}
-    objectName: Deco
-    type: 1
     prefabStyle:
       m_Name: 
       m_Normal:
@@ -1119,6 +1117,8 @@ MonoBehaviour:
       m_FixedHeight: 128
       m_StretchWidth: 1
       m_StretchHeight: 0
+    objectName: Deco
+    type: 1
     currentTexture: {fileID: 2800000, guid: f6dcb393ca7e0454a8b91f66719c916c, type: 3}
     normalTexture: {fileID: 0}
     selectedTexture: {fileID: 0}
@@ -1286,8 +1286,6 @@ MonoBehaviour:
   nodeInfo:
     prefab: {fileID: 7977787445382646825, guid: eb42f02e3dcc2064fa0fc4a66fcd62b4,
       type: 3}
-    objectName: Deco
-    type: 1
     prefabStyle:
       m_Name: 
       m_Normal:
@@ -1355,6 +1353,8 @@ MonoBehaviour:
       m_FixedHeight: 128
       m_StretchWidth: 1
       m_StretchHeight: 0
+    objectName: Deco
+    type: 1
     currentTexture: {fileID: 2800000, guid: f6dcb393ca7e0454a8b91f66719c916c, type: 3}
     normalTexture: {fileID: 0}
     selectedTexture: {fileID: 0}
@@ -1510,8 +1510,6 @@ MonoBehaviour:
   nodeInfo:
     prefab: {fileID: 7977787445382646825, guid: d3d0ae7cdb4114043809db103b0214ea,
       type: 3}
-    objectName: BaseFloor
-    type: 0
     prefabStyle:
       m_Name: 
       m_Normal:
@@ -1579,6 +1577,8 @@ MonoBehaviour:
       m_FixedHeight: 128
       m_StretchWidth: 1
       m_StretchHeight: 0
+    objectName: BaseFloor
+    type: 0
     currentTexture: {fileID: 2800000, guid: 42761c47dcc9f944584b428a929102c4, type: 3}
     normalTexture: {fileID: 0}
     selectedTexture: {fileID: 0}
@@ -1703,8 +1703,6 @@ MonoBehaviour:
   nodeInfo:
     prefab: {fileID: 7977787445382646825, guid: 80956fb0373904c41a54d0827f5ab451,
       type: 3}
-    objectName: Obstacle
-    type: 1
     prefabStyle:
       m_Name: 
       m_Normal:
@@ -1772,6 +1770,8 @@ MonoBehaviour:
       m_FixedHeight: 128
       m_StretchWidth: 1
       m_StretchHeight: 0
+    objectName: Obstacle
+    type: 1
     currentTexture: {fileID: 2800000, guid: 3314657ca440ce045bcb2ab13a4f0ed0, type: 3}
     normalTexture: {fileID: 0}
     selectedTexture: {fileID: 0}
@@ -1896,8 +1896,6 @@ MonoBehaviour:
   nodeInfo:
     prefab: {fileID: 7977787445382646825, guid: 80956fb0373904c41a54d0827f5ab451,
       type: 3}
-    objectName: Obstacle
-    type: 1
     prefabStyle:
       m_Name: 
       m_Normal:
@@ -1965,6 +1963,8 @@ MonoBehaviour:
       m_FixedHeight: 128
       m_StretchWidth: 1
       m_StretchHeight: 0
+    objectName: Obstacle
+    type: 1
     currentTexture: {fileID: 2800000, guid: 3314657ca440ce045bcb2ab13a4f0ed0, type: 3}
     normalTexture: {fileID: 0}
     selectedTexture: {fileID: 0}
@@ -2089,8 +2089,6 @@ MonoBehaviour:
   nodeInfo:
     prefab: {fileID: 7977787445382646825, guid: eb42f02e3dcc2064fa0fc4a66fcd62b4,
       type: 3}
-    objectName: Deco
-    type: 1
     prefabStyle:
       m_Name: 
       m_Normal:
@@ -2158,6 +2156,8 @@ MonoBehaviour:
       m_FixedHeight: 128
       m_StretchWidth: 1
       m_StretchHeight: 0
+    objectName: Deco
+    type: 1
     currentTexture: {fileID: 2800000, guid: f6dcb393ca7e0454a8b91f66719c916c, type: 3}
     normalTexture: {fileID: 0}
     selectedTexture: {fileID: 0}
@@ -2282,8 +2282,6 @@ MonoBehaviour:
   nodeInfo:
     prefab: {fileID: 7977787445382646825, guid: eb42f02e3dcc2064fa0fc4a66fcd62b4,
       type: 3}
-    objectName: Deco
-    type: 1
     prefabStyle:
       m_Name: 
       m_Normal:
@@ -2351,6 +2349,8 @@ MonoBehaviour:
       m_FixedHeight: 128
       m_StretchWidth: 1
       m_StretchHeight: 0
+    objectName: Deco
+    type: 1
     currentTexture: {fileID: 2800000, guid: f6dcb393ca7e0454a8b91f66719c916c, type: 3}
     normalTexture: {fileID: 0}
     selectedTexture: {fileID: 0}
@@ -2475,8 +2475,6 @@ MonoBehaviour:
   nodeInfo:
     prefab: {fileID: 7977787445382646825, guid: d3d0ae7cdb4114043809db103b0214ea,
       type: 3}
-    objectName: BaseFloor
-    type: 0
     prefabStyle:
       m_Name: 
       m_Normal:
@@ -2544,6 +2542,8 @@ MonoBehaviour:
       m_FixedHeight: 128
       m_StretchWidth: 1
       m_StretchHeight: 0
+    objectName: BaseFloor
+    type: 0
     currentTexture: {fileID: 2800000, guid: 42761c47dcc9f944584b428a929102c4, type: 3}
     normalTexture: {fileID: 0}
     selectedTexture: {fileID: 0}
@@ -2716,8 +2716,6 @@ MonoBehaviour:
   nodeInfo:
     prefab: {fileID: 7977787445382646825, guid: 80956fb0373904c41a54d0827f5ab451,
       type: 3}
-    objectName: Obstacle
-    type: 1
     prefabStyle:
       m_Name: 
       m_Normal:
@@ -2785,6 +2783,8 @@ MonoBehaviour:
       m_FixedHeight: 128
       m_StretchWidth: 1
       m_StretchHeight: 0
+    objectName: Obstacle
+    type: 1
     currentTexture: {fileID: 2800000, guid: 3314657ca440ce045bcb2ab13a4f0ed0, type: 3}
     normalTexture: {fileID: 0}
     selectedTexture: {fileID: 0}
@@ -2909,8 +2909,6 @@ MonoBehaviour:
   nodeInfo:
     prefab: {fileID: 7977787445382646825, guid: d3d0ae7cdb4114043809db103b0214ea,
       type: 3}
-    objectName: BaseFloor
-    type: 0
     prefabStyle:
       m_Name: 
       m_Normal:
@@ -2978,6 +2976,8 @@ MonoBehaviour:
       m_FixedHeight: 128
       m_StretchWidth: 1
       m_StretchHeight: 0
+    objectName: BaseFloor
+    type: 0
     currentTexture: {fileID: 2800000, guid: 42761c47dcc9f944584b428a929102c4, type: 3}
     normalTexture: {fileID: 0}
     selectedTexture: {fileID: 0}
@@ -3111,6 +3111,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
+  arrivalTime: 0
 --- !u!81 &568856790
 AudioListener:
   m_ObjectHideFlags: 0
@@ -3234,8 +3235,6 @@ MonoBehaviour:
   nodeInfo:
     prefab: {fileID: 7977787445382646825, guid: eb42f02e3dcc2064fa0fc4a66fcd62b4,
       type: 3}
-    objectName: Deco
-    type: 1
     prefabStyle:
       m_Name: 
       m_Normal:
@@ -3303,6 +3302,8 @@ MonoBehaviour:
       m_FixedHeight: 128
       m_StretchWidth: 1
       m_StretchHeight: 0
+    objectName: Deco
+    type: 1
     currentTexture: {fileID: 2800000, guid: f6dcb393ca7e0454a8b91f66719c916c, type: 3}
     normalTexture: {fileID: 0}
     selectedTexture: {fileID: 0}
@@ -3427,8 +3428,6 @@ MonoBehaviour:
   nodeInfo:
     prefab: {fileID: 7977787445382646825, guid: 80956fb0373904c41a54d0827f5ab451,
       type: 3}
-    objectName: Obstacle
-    type: 1
     prefabStyle:
       m_Name: 
       m_Normal:
@@ -3496,6 +3495,8 @@ MonoBehaviour:
       m_FixedHeight: 128
       m_StretchWidth: 1
       m_StretchHeight: 0
+    objectName: Obstacle
+    type: 1
     currentTexture: {fileID: 2800000, guid: 3314657ca440ce045bcb2ab13a4f0ed0, type: 3}
     normalTexture: {fileID: 0}
     selectedTexture: {fileID: 0}
@@ -3620,8 +3621,6 @@ MonoBehaviour:
   nodeInfo:
     prefab: {fileID: 7977787445382646825, guid: eb42f02e3dcc2064fa0fc4a66fcd62b4,
       type: 3}
-    objectName: Deco
-    type: 1
     prefabStyle:
       m_Name: 
       m_Normal:
@@ -3689,6 +3688,8 @@ MonoBehaviour:
       m_FixedHeight: 128
       m_StretchWidth: 1
       m_StretchHeight: 0
+    objectName: Deco
+    type: 1
     currentTexture: {fileID: 2800000, guid: f6dcb393ca7e0454a8b91f66719c916c, type: 3}
     normalTexture: {fileID: 0}
     selectedTexture: {fileID: 0}
@@ -3813,8 +3814,6 @@ MonoBehaviour:
   nodeInfo:
     prefab: {fileID: 7977787445382646825, guid: d3d0ae7cdb4114043809db103b0214ea,
       type: 3}
-    objectName: BaseFloor
-    type: 0
     prefabStyle:
       m_Name: 
       m_Normal:
@@ -3882,6 +3881,8 @@ MonoBehaviour:
       m_FixedHeight: 128
       m_StretchWidth: 1
       m_StretchHeight: 0
+    objectName: BaseFloor
+    type: 0
     currentTexture: {fileID: 2800000, guid: 42761c47dcc9f944584b428a929102c4, type: 3}
     normalTexture: {fileID: 0}
     selectedTexture: {fileID: 0}
@@ -4006,8 +4007,6 @@ MonoBehaviour:
   nodeInfo:
     prefab: {fileID: 7977787445382646825, guid: eb42f02e3dcc2064fa0fc4a66fcd62b4,
       type: 3}
-    objectName: Deco
-    type: 1
     prefabStyle:
       m_Name: 
       m_Normal:
@@ -4075,6 +4074,8 @@ MonoBehaviour:
       m_FixedHeight: 128
       m_StretchWidth: 1
       m_StretchHeight: 0
+    objectName: Deco
+    type: 1
     currentTexture: {fileID: 2800000, guid: f6dcb393ca7e0454a8b91f66719c916c, type: 3}
     normalTexture: {fileID: 0}
     selectedTexture: {fileID: 0}
@@ -4199,8 +4200,6 @@ MonoBehaviour:
   nodeInfo:
     prefab: {fileID: 7977787445382646825, guid: eb42f02e3dcc2064fa0fc4a66fcd62b4,
       type: 3}
-    objectName: Deco
-    type: 1
     prefabStyle:
       m_Name: 
       m_Normal:
@@ -4268,6 +4267,8 @@ MonoBehaviour:
       m_FixedHeight: 128
       m_StretchWidth: 1
       m_StretchHeight: 0
+    objectName: Deco
+    type: 1
     currentTexture: {fileID: 2800000, guid: f6dcb393ca7e0454a8b91f66719c916c, type: 3}
     normalTexture: {fileID: 0}
     selectedTexture: {fileID: 0}
@@ -4392,8 +4393,6 @@ MonoBehaviour:
   nodeInfo:
     prefab: {fileID: 7977787445382646825, guid: eb42f02e3dcc2064fa0fc4a66fcd62b4,
       type: 3}
-    objectName: Deco
-    type: 1
     prefabStyle:
       m_Name: 
       m_Normal:
@@ -4461,6 +4460,8 @@ MonoBehaviour:
       m_FixedHeight: 128
       m_StretchWidth: 1
       m_StretchHeight: 0
+    objectName: Deco
+    type: 1
     currentTexture: {fileID: 2800000, guid: f6dcb393ca7e0454a8b91f66719c916c, type: 3}
     normalTexture: {fileID: 0}
     selectedTexture: {fileID: 0}
@@ -4594,6 +4595,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
+  arrivalTime: 0
 --- !u!81 &741270920
 AudioListener:
   m_ObjectHideFlags: 0
@@ -4768,8 +4770,6 @@ MonoBehaviour:
   nodeInfo:
     prefab: {fileID: 7977787445382646825, guid: eb42f02e3dcc2064fa0fc4a66fcd62b4,
       type: 3}
-    objectName: Deco
-    type: 1
     prefabStyle:
       m_Name: 
       m_Normal:
@@ -4837,6 +4837,8 @@ MonoBehaviour:
       m_FixedHeight: 128
       m_StretchWidth: 1
       m_StretchHeight: 0
+    objectName: Deco
+    type: 1
     currentTexture: {fileID: 2800000, guid: f6dcb393ca7e0454a8b91f66719c916c, type: 3}
     normalTexture: {fileID: 0}
     selectedTexture: {fileID: 0}
@@ -4961,8 +4963,6 @@ MonoBehaviour:
   nodeInfo:
     prefab: {fileID: 7977787445382646825, guid: eb42f02e3dcc2064fa0fc4a66fcd62b4,
       type: 3}
-    objectName: Deco
-    type: 1
     prefabStyle:
       m_Name: 
       m_Normal:
@@ -5030,6 +5030,8 @@ MonoBehaviour:
       m_FixedHeight: 128
       m_StretchWidth: 1
       m_StretchHeight: 0
+    objectName: Deco
+    type: 1
     currentTexture: {fileID: 2800000, guid: f6dcb393ca7e0454a8b91f66719c916c, type: 3}
     normalTexture: {fileID: 0}
     selectedTexture: {fileID: 0}
@@ -5154,8 +5156,6 @@ MonoBehaviour:
   nodeInfo:
     prefab: {fileID: 7977787445382646825, guid: eb42f02e3dcc2064fa0fc4a66fcd62b4,
       type: 3}
-    objectName: Deco
-    type: 1
     prefabStyle:
       m_Name: 
       m_Normal:
@@ -5223,6 +5223,8 @@ MonoBehaviour:
       m_FixedHeight: 128
       m_StretchWidth: 1
       m_StretchHeight: 0
+    objectName: Deco
+    type: 1
     currentTexture: {fileID: 2800000, guid: f6dcb393ca7e0454a8b91f66719c916c, type: 3}
     normalTexture: {fileID: 0}
     selectedTexture: {fileID: 0}
@@ -5347,8 +5349,6 @@ MonoBehaviour:
   nodeInfo:
     prefab: {fileID: 7977787445382646825, guid: 80956fb0373904c41a54d0827f5ab451,
       type: 3}
-    objectName: Obstacle
-    type: 1
     prefabStyle:
       m_Name: 
       m_Normal:
@@ -5416,6 +5416,8 @@ MonoBehaviour:
       m_FixedHeight: 128
       m_StretchWidth: 1
       m_StretchHeight: 0
+    objectName: Obstacle
+    type: 1
     currentTexture: {fileID: 2800000, guid: 3314657ca440ce045bcb2ab13a4f0ed0, type: 3}
     normalTexture: {fileID: 0}
     selectedTexture: {fileID: 0}
@@ -5540,8 +5542,6 @@ MonoBehaviour:
   nodeInfo:
     prefab: {fileID: 7977787445382646825, guid: 80956fb0373904c41a54d0827f5ab451,
       type: 3}
-    objectName: Obstacle
-    type: 1
     prefabStyle:
       m_Name: 
       m_Normal:
@@ -5609,6 +5609,8 @@ MonoBehaviour:
       m_FixedHeight: 128
       m_StretchWidth: 1
       m_StretchHeight: 0
+    objectName: Obstacle
+    type: 1
     currentTexture: {fileID: 2800000, guid: 3314657ca440ce045bcb2ab13a4f0ed0, type: 3}
     normalTexture: {fileID: 0}
     selectedTexture: {fileID: 0}
@@ -5764,8 +5766,6 @@ MonoBehaviour:
   nodeInfo:
     prefab: {fileID: 7977787445382646825, guid: eb42f02e3dcc2064fa0fc4a66fcd62b4,
       type: 3}
-    objectName: Deco
-    type: 1
     prefabStyle:
       m_Name: 
       m_Normal:
@@ -5833,6 +5833,8 @@ MonoBehaviour:
       m_FixedHeight: 128
       m_StretchWidth: 1
       m_StretchHeight: 0
+    objectName: Deco
+    type: 1
     currentTexture: {fileID: 2800000, guid: f6dcb393ca7e0454a8b91f66719c916c, type: 3}
     normalTexture: {fileID: 0}
     selectedTexture: {fileID: 0}
@@ -5957,8 +5959,6 @@ MonoBehaviour:
   nodeInfo:
     prefab: {fileID: 7977787445382646825, guid: eb42f02e3dcc2064fa0fc4a66fcd62b4,
       type: 3}
-    objectName: Deco
-    type: 1
     prefabStyle:
       m_Name: 
       m_Normal:
@@ -6026,6 +6026,8 @@ MonoBehaviour:
       m_FixedHeight: 128
       m_StretchWidth: 1
       m_StretchHeight: 0
+    objectName: Deco
+    type: 1
     currentTexture: {fileID: 2800000, guid: f6dcb393ca7e0454a8b91f66719c916c, type: 3}
     normalTexture: {fileID: 0}
     selectedTexture: {fileID: 0}
@@ -6150,8 +6152,6 @@ MonoBehaviour:
   nodeInfo:
     prefab: {fileID: 7977787445382646825, guid: 80956fb0373904c41a54d0827f5ab451,
       type: 3}
-    objectName: Obstacle
-    type: 1
     prefabStyle:
       m_Name: 
       m_Normal:
@@ -6219,6 +6219,8 @@ MonoBehaviour:
       m_FixedHeight: 128
       m_StretchWidth: 1
       m_StretchHeight: 0
+    objectName: Obstacle
+    type: 1
     currentTexture: {fileID: 2800000, guid: 3314657ca440ce045bcb2ab13a4f0ed0, type: 3}
     normalTexture: {fileID: 0}
     selectedTexture: {fileID: 0}
@@ -6343,8 +6345,6 @@ MonoBehaviour:
   nodeInfo:
     prefab: {fileID: 7977787445382646825, guid: 80956fb0373904c41a54d0827f5ab451,
       type: 3}
-    objectName: Obstacle
-    type: 1
     prefabStyle:
       m_Name: 
       m_Normal:
@@ -6412,6 +6412,8 @@ MonoBehaviour:
       m_FixedHeight: 128
       m_StretchWidth: 1
       m_StretchHeight: 0
+    objectName: Obstacle
+    type: 1
     currentTexture: {fileID: 2800000, guid: 3314657ca440ce045bcb2ab13a4f0ed0, type: 3}
     normalTexture: {fileID: 0}
     selectedTexture: {fileID: 0}
@@ -6536,8 +6538,6 @@ MonoBehaviour:
   nodeInfo:
     prefab: {fileID: 7977787445382646825, guid: eb42f02e3dcc2064fa0fc4a66fcd62b4,
       type: 3}
-    objectName: Deco
-    type: 1
     prefabStyle:
       m_Name: 
       m_Normal:
@@ -6605,6 +6605,8 @@ MonoBehaviour:
       m_FixedHeight: 128
       m_StretchWidth: 1
       m_StretchHeight: 0
+    objectName: Deco
+    type: 1
     currentTexture: {fileID: 2800000, guid: f6dcb393ca7e0454a8b91f66719c916c, type: 3}
     normalTexture: {fileID: 0}
     selectedTexture: {fileID: 0}
@@ -6729,8 +6731,6 @@ MonoBehaviour:
   nodeInfo:
     prefab: {fileID: 7977787445382646825, guid: eb42f02e3dcc2064fa0fc4a66fcd62b4,
       type: 3}
-    objectName: Deco
-    type: 1
     prefabStyle:
       m_Name: 
       m_Normal:
@@ -6798,6 +6798,8 @@ MonoBehaviour:
       m_FixedHeight: 128
       m_StretchWidth: 1
       m_StretchHeight: 0
+    objectName: Deco
+    type: 1
     currentTexture: {fileID: 2800000, guid: f6dcb393ca7e0454a8b91f66719c916c, type: 3}
     normalTexture: {fileID: 0}
     selectedTexture: {fileID: 0}
@@ -6922,8 +6924,6 @@ MonoBehaviour:
   nodeInfo:
     prefab: {fileID: 7977787445382646825, guid: eb42f02e3dcc2064fa0fc4a66fcd62b4,
       type: 3}
-    objectName: Deco
-    type: 1
     prefabStyle:
       m_Name: 
       m_Normal:
@@ -6991,6 +6991,8 @@ MonoBehaviour:
       m_FixedHeight: 128
       m_StretchWidth: 1
       m_StretchHeight: 0
+    objectName: Deco
+    type: 1
     currentTexture: {fileID: 2800000, guid: f6dcb393ca7e0454a8b91f66719c916c, type: 3}
     normalTexture: {fileID: 0}
     selectedTexture: {fileID: 0}
@@ -7146,8 +7148,6 @@ MonoBehaviour:
   nodeInfo:
     prefab: {fileID: 7977787445382646825, guid: d3d0ae7cdb4114043809db103b0214ea,
       type: 3}
-    objectName: BaseFloor
-    type: 0
     prefabStyle:
       m_Name: 
       m_Normal:
@@ -7215,6 +7215,8 @@ MonoBehaviour:
       m_FixedHeight: 128
       m_StretchWidth: 1
       m_StretchHeight: 0
+    objectName: BaseFloor
+    type: 0
     currentTexture: {fileID: 2800000, guid: 42761c47dcc9f944584b428a929102c4, type: 3}
     normalTexture: {fileID: 0}
     selectedTexture: {fileID: 0}
@@ -7311,6 +7313,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 406a8c82fa1f07c46aab766388f3eebf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  WatingCanvas: {fileID: 0}
+  spawnPoint: []
   playerPrefab: {fileID: 2737819322045720829, guid: 9d15aa6fd1bf5cf4999b3322b9a95d24,
     type: 3}
 --- !u!4 &1112580489
@@ -7385,8 +7389,6 @@ MonoBehaviour:
   nodeInfo:
     prefab: {fileID: 7977787445382646825, guid: eb42f02e3dcc2064fa0fc4a66fcd62b4,
       type: 3}
-    objectName: Deco
-    type: 1
     prefabStyle:
       m_Name: 
       m_Normal:
@@ -7454,6 +7456,8 @@ MonoBehaviour:
       m_FixedHeight: 128
       m_StretchWidth: 1
       m_StretchHeight: 0
+    objectName: Deco
+    type: 1
     currentTexture: {fileID: 2800000, guid: f6dcb393ca7e0454a8b91f66719c916c, type: 3}
     normalTexture: {fileID: 0}
     selectedTexture: {fileID: 0}
@@ -7578,8 +7582,6 @@ MonoBehaviour:
   nodeInfo:
     prefab: {fileID: 7977787445382646825, guid: d3d0ae7cdb4114043809db103b0214ea,
       type: 3}
-    objectName: BaseFloor
-    type: 0
     prefabStyle:
       m_Name: 
       m_Normal:
@@ -7647,6 +7649,8 @@ MonoBehaviour:
       m_FixedHeight: 128
       m_StretchWidth: 1
       m_StretchHeight: 0
+    objectName: BaseFloor
+    type: 0
     currentTexture: {fileID: 2800000, guid: 42761c47dcc9f944584b428a929102c4, type: 3}
     normalTexture: {fileID: 0}
     selectedTexture: {fileID: 0}
@@ -7771,8 +7775,6 @@ MonoBehaviour:
   nodeInfo:
     prefab: {fileID: 7977787445382646825, guid: 80956fb0373904c41a54d0827f5ab451,
       type: 3}
-    objectName: Obstacle
-    type: 1
     prefabStyle:
       m_Name: 
       m_Normal:
@@ -7840,6 +7842,8 @@ MonoBehaviour:
       m_FixedHeight: 128
       m_StretchWidth: 1
       m_StretchHeight: 0
+    objectName: Obstacle
+    type: 1
     currentTexture: {fileID: 2800000, guid: 3314657ca440ce045bcb2ab13a4f0ed0, type: 3}
     normalTexture: {fileID: 0}
     selectedTexture: {fileID: 0}
@@ -8011,8 +8015,6 @@ MonoBehaviour:
   nodeInfo:
     prefab: {fileID: 7977787445382646825, guid: 80956fb0373904c41a54d0827f5ab451,
       type: 3}
-    objectName: Obstacle
-    type: 1
     prefabStyle:
       m_Name: 
       m_Normal:
@@ -8080,6 +8082,8 @@ MonoBehaviour:
       m_FixedHeight: 128
       m_StretchWidth: 1
       m_StretchHeight: 0
+    objectName: Obstacle
+    type: 1
     currentTexture: {fileID: 2800000, guid: 3314657ca440ce045bcb2ab13a4f0ed0, type: 3}
     normalTexture: {fileID: 0}
     selectedTexture: {fileID: 0}
@@ -8204,8 +8208,6 @@ MonoBehaviour:
   nodeInfo:
     prefab: {fileID: 7977787445382646825, guid: eb42f02e3dcc2064fa0fc4a66fcd62b4,
       type: 3}
-    objectName: Deco
-    type: 1
     prefabStyle:
       m_Name: 
       m_Normal:
@@ -8273,6 +8275,8 @@ MonoBehaviour:
       m_FixedHeight: 128
       m_StretchWidth: 1
       m_StretchHeight: 0
+    objectName: Deco
+    type: 1
     currentTexture: {fileID: 2800000, guid: f6dcb393ca7e0454a8b91f66719c916c, type: 3}
     normalTexture: {fileID: 0}
     selectedTexture: {fileID: 0}
@@ -8397,8 +8401,6 @@ MonoBehaviour:
   nodeInfo:
     prefab: {fileID: 7977787445382646825, guid: 80956fb0373904c41a54d0827f5ab451,
       type: 3}
-    objectName: Obstacle
-    type: 1
     prefabStyle:
       m_Name: 
       m_Normal:
@@ -8466,6 +8468,8 @@ MonoBehaviour:
       m_FixedHeight: 128
       m_StretchWidth: 1
       m_StretchHeight: 0
+    objectName: Obstacle
+    type: 1
     currentTexture: {fileID: 2800000, guid: 3314657ca440ce045bcb2ab13a4f0ed0, type: 3}
     normalTexture: {fileID: 0}
     selectedTexture: {fileID: 0}
@@ -8590,8 +8594,6 @@ MonoBehaviour:
   nodeInfo:
     prefab: {fileID: 7977787445382646825, guid: eb42f02e3dcc2064fa0fc4a66fcd62b4,
       type: 3}
-    objectName: Deco
-    type: 1
     prefabStyle:
       m_Name: 
       m_Normal:
@@ -8659,6 +8661,8 @@ MonoBehaviour:
       m_FixedHeight: 128
       m_StretchWidth: 1
       m_StretchHeight: 0
+    objectName: Deco
+    type: 1
     currentTexture: {fileID: 2800000, guid: f6dcb393ca7e0454a8b91f66719c916c, type: 3}
     normalTexture: {fileID: 0}
     selectedTexture: {fileID: 0}
@@ -8783,8 +8787,6 @@ MonoBehaviour:
   nodeInfo:
     prefab: {fileID: 7977787445382646825, guid: d3d0ae7cdb4114043809db103b0214ea,
       type: 3}
-    objectName: BaseFloor
-    type: 0
     prefabStyle:
       m_Name: 
       m_Normal:
@@ -8852,6 +8854,8 @@ MonoBehaviour:
       m_FixedHeight: 128
       m_StretchWidth: 1
       m_StretchHeight: 0
+    objectName: BaseFloor
+    type: 0
     currentTexture: {fileID: 2800000, guid: 42761c47dcc9f944584b428a929102c4, type: 3}
     normalTexture: {fileID: 0}
     selectedTexture: {fileID: 0}
@@ -8976,8 +8980,6 @@ MonoBehaviour:
   nodeInfo:
     prefab: {fileID: 7977787445382646825, guid: eb42f02e3dcc2064fa0fc4a66fcd62b4,
       type: 3}
-    objectName: Deco
-    type: 1
     prefabStyle:
       m_Name: 
       m_Normal:
@@ -9045,6 +9047,8 @@ MonoBehaviour:
       m_FixedHeight: 128
       m_StretchWidth: 1
       m_StretchHeight: 0
+    objectName: Deco
+    type: 1
     currentTexture: {fileID: 2800000, guid: f6dcb393ca7e0454a8b91f66719c916c, type: 3}
     normalTexture: {fileID: 0}
     selectedTexture: {fileID: 0}
@@ -9169,8 +9173,6 @@ MonoBehaviour:
   nodeInfo:
     prefab: {fileID: 7977787445382646825, guid: eb42f02e3dcc2064fa0fc4a66fcd62b4,
       type: 3}
-    objectName: Deco
-    type: 1
     prefabStyle:
       m_Name: 
       m_Normal:
@@ -9238,6 +9240,8 @@ MonoBehaviour:
       m_FixedHeight: 128
       m_StretchWidth: 1
       m_StretchHeight: 0
+    objectName: Deco
+    type: 1
     currentTexture: {fileID: 2800000, guid: f6dcb393ca7e0454a8b91f66719c916c, type: 3}
     normalTexture: {fileID: 0}
     selectedTexture: {fileID: 0}
@@ -9553,6 +9557,94 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0a57c1f790ba32044afdc1228e203f1f, type: 3}
+--- !u!1001 &1359637986
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 284761423, guid: d298b730270c5a549951545db8b24d42, type: 3}
+      propertyPath: sceneViewId
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2276796244850972976, guid: d298b730270c5a549951545db8b24d42,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2276796244850972976, guid: d298b730270c5a549951545db8b24d42,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2276796244850972976, guid: d298b730270c5a549951545db8b24d42,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2276796244850972976, guid: d298b730270c5a549951545db8b24d42,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2276796244850972976, guid: d298b730270c5a549951545db8b24d42,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2276796244850972976, guid: d298b730270c5a549951545db8b24d42,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2276796244850972976, guid: d298b730270c5a549951545db8b24d42,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2276796244850972976, guid: d298b730270c5a549951545db8b24d42,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2276796244850972976, guid: d298b730270c5a549951545db8b24d42,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2276796244850972976, guid: d298b730270c5a549951545db8b24d42,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2276796244850972976, guid: d298b730270c5a549951545db8b24d42,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2276796244850972979, guid: d298b730270c5a549951545db8b24d42,
+        type: 3}
+      propertyPath: m_Name
+      value: Sesillia
+      objectReference: {fileID: 0}
+    - target: {fileID: 2276796245745797174, guid: d298b730270c5a549951545db8b24d42,
+        type: 3}
+      propertyPath: sceneViewId
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2276796246037971320, guid: d298b730270c5a549951545db8b24d42,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2276796246037971320, guid: d298b730270c5a549951545db8b24d42,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: d298b730270c5a549951545db8b24d42, type: 3}
 --- !u!1 &1417238040
 GameObject:
   m_ObjectHideFlags: 0
@@ -9610,8 +9702,6 @@ MonoBehaviour:
   nodeInfo:
     prefab: {fileID: 7977787445382646825, guid: eb42f02e3dcc2064fa0fc4a66fcd62b4,
       type: 3}
-    objectName: Deco
-    type: 1
     prefabStyle:
       m_Name: 
       m_Normal:
@@ -9679,6 +9769,8 @@ MonoBehaviour:
       m_FixedHeight: 128
       m_StretchWidth: 1
       m_StretchHeight: 0
+    objectName: Deco
+    type: 1
     currentTexture: {fileID: 2800000, guid: f6dcb393ca7e0454a8b91f66719c916c, type: 3}
     normalTexture: {fileID: 0}
     selectedTexture: {fileID: 0}
@@ -9803,8 +9895,6 @@ MonoBehaviour:
   nodeInfo:
     prefab: {fileID: 7977787445382646825, guid: d3d0ae7cdb4114043809db103b0214ea,
       type: 3}
-    objectName: BaseFloor
-    type: 0
     prefabStyle:
       m_Name: 
       m_Normal:
@@ -9872,6 +9962,8 @@ MonoBehaviour:
       m_FixedHeight: 128
       m_StretchWidth: 1
       m_StretchHeight: 0
+    objectName: BaseFloor
+    type: 0
     currentTexture: {fileID: 2800000, guid: 42761c47dcc9f944584b428a929102c4, type: 3}
     normalTexture: {fileID: 0}
     selectedTexture: {fileID: 0}
@@ -9996,8 +10088,6 @@ MonoBehaviour:
   nodeInfo:
     prefab: {fileID: 7977787445382646825, guid: eb42f02e3dcc2064fa0fc4a66fcd62b4,
       type: 3}
-    objectName: Deco
-    type: 1
     prefabStyle:
       m_Name: 
       m_Normal:
@@ -10065,6 +10155,8 @@ MonoBehaviour:
       m_FixedHeight: 128
       m_StretchWidth: 1
       m_StretchHeight: 0
+    objectName: Deco
+    type: 1
     currentTexture: {fileID: 2800000, guid: f6dcb393ca7e0454a8b91f66719c916c, type: 3}
     normalTexture: {fileID: 0}
     selectedTexture: {fileID: 0}
@@ -10189,8 +10281,6 @@ MonoBehaviour:
   nodeInfo:
     prefab: {fileID: 7977787445382646825, guid: eb42f02e3dcc2064fa0fc4a66fcd62b4,
       type: 3}
-    objectName: Deco
-    type: 1
     prefabStyle:
       m_Name: 
       m_Normal:
@@ -10258,6 +10348,8 @@ MonoBehaviour:
       m_FixedHeight: 128
       m_StretchWidth: 1
       m_StretchHeight: 0
+    objectName: Deco
+    type: 1
     currentTexture: {fileID: 2800000, guid: f6dcb393ca7e0454a8b91f66719c916c, type: 3}
     normalTexture: {fileID: 0}
     selectedTexture: {fileID: 0}
@@ -10325,115 +10417,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1552009258}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1001 &1573163499
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: -1550659867611885123, guid: a14dcf423470d6f48b983a3345b4ec9a,
-        type: 3}
-      propertyPath: sceneViewId
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1876143292272218706, guid: a14dcf423470d6f48b983a3345b4ec9a,
-        type: 3}
-      propertyPath: atkInfo.range
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 1876143292272218706, guid: a14dcf423470d6f48b983a3345b4ec9a,
-        type: 3}
-      propertyPath: atkInfo.curCost
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1876143292272218706, guid: a14dcf423470d6f48b983a3345b4ec9a,
-        type: 3}
-      propertyPath: atkInfo.reloadTime
-      value: 1.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1876143292272218706, guid: a14dcf423470d6f48b983a3345b4ec9a,
-        type: 3}
-      propertyPath: atkInfo.maxMagazine
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2737819322045720800, guid: a14dcf423470d6f48b983a3345b4ec9a,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 2737819322045720800, guid: a14dcf423470d6f48b983a3345b4ec9a,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 1.36
-      objectReference: {fileID: 0}
-    - target: {fileID: 2737819322045720800, guid: a14dcf423470d6f48b983a3345b4ec9a,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2737819322045720800, guid: a14dcf423470d6f48b983a3345b4ec9a,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 3.25
-      objectReference: {fileID: 0}
-    - target: {fileID: 2737819322045720800, guid: a14dcf423470d6f48b983a3345b4ec9a,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2737819322045720800, guid: a14dcf423470d6f48b983a3345b4ec9a,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2737819322045720800, guid: a14dcf423470d6f48b983a3345b4ec9a,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2737819322045720800, guid: a14dcf423470d6f48b983a3345b4ec9a,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2737819322045720800, guid: a14dcf423470d6f48b983a3345b4ec9a,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2737819322045720800, guid: a14dcf423470d6f48b983a3345b4ec9a,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2737819322045720800, guid: a14dcf423470d6f48b983a3345b4ec9a,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2737819322045720829, guid: a14dcf423470d6f48b983a3345b4ec9a,
-        type: 3}
-      propertyPath: m_Name
-      value: Joohyeok
-      objectReference: {fileID: 0}
-    - target: {fileID: 7354438652316192622, guid: a14dcf423470d6f48b983a3345b4ec9a,
-        type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7354438652316192622, guid: a14dcf423470d6f48b983a3345b4ec9a,
-        type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8870261335253071263, guid: a14dcf423470d6f48b983a3345b4ec9a,
-        type: 3}
-      propertyPath: sceneViewId
-      value: 1
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: a14dcf423470d6f48b983a3345b4ec9a, type: 3}
 --- !u!1 &1600704742
 GameObject:
   m_ObjectHideFlags: 0
@@ -10491,8 +10474,6 @@ MonoBehaviour:
   nodeInfo:
     prefab: {fileID: 7977787445382646825, guid: eb42f02e3dcc2064fa0fc4a66fcd62b4,
       type: 3}
-    objectName: Deco
-    type: 1
     prefabStyle:
       m_Name: 
       m_Normal:
@@ -10560,6 +10541,8 @@ MonoBehaviour:
       m_FixedHeight: 128
       m_StretchWidth: 1
       m_StretchHeight: 0
+    objectName: Deco
+    type: 1
     currentTexture: {fileID: 2800000, guid: f6dcb393ca7e0454a8b91f66719c916c, type: 3}
     normalTexture: {fileID: 0}
     selectedTexture: {fileID: 0}
@@ -10690,8 +10673,6 @@ MonoBehaviour:
   nodeInfo:
     prefab: {fileID: 7977787445382646825, guid: d3d0ae7cdb4114043809db103b0214ea,
       type: 3}
-    objectName: BaseFloor
-    type: 0
     prefabStyle:
       m_Name: 
       m_Normal:
@@ -10759,6 +10740,8 @@ MonoBehaviour:
       m_FixedHeight: 128
       m_StretchWidth: 1
       m_StretchHeight: 0
+    objectName: BaseFloor
+    type: 0
     currentTexture: {fileID: 2800000, guid: 42761c47dcc9f944584b428a929102c4, type: 3}
     normalTexture: {fileID: 0}
     selectedTexture: {fileID: 0}
@@ -11233,8 +11216,6 @@ MonoBehaviour:
   nodeInfo:
     prefab: {fileID: 7977787445382646825, guid: 80956fb0373904c41a54d0827f5ab451,
       type: 3}
-    objectName: Obstacle
-    type: 1
     prefabStyle:
       m_Name: 
       m_Normal:
@@ -11302,6 +11283,8 @@ MonoBehaviour:
       m_FixedHeight: 128
       m_StretchWidth: 1
       m_StretchHeight: 0
+    objectName: Obstacle
+    type: 1
     currentTexture: {fileID: 2800000, guid: 3314657ca440ce045bcb2ab13a4f0ed0, type: 3}
     normalTexture: {fileID: 0}
     selectedTexture: {fileID: 0}
@@ -11426,8 +11409,6 @@ MonoBehaviour:
   nodeInfo:
     prefab: {fileID: 7977787445382646825, guid: d3d0ae7cdb4114043809db103b0214ea,
       type: 3}
-    objectName: BaseFloor
-    type: 0
     prefabStyle:
       m_Name: 
       m_Normal:
@@ -11495,6 +11476,8 @@ MonoBehaviour:
       m_FixedHeight: 128
       m_StretchWidth: 1
       m_StretchHeight: 0
+    objectName: BaseFloor
+    type: 0
     currentTexture: {fileID: 2800000, guid: 42761c47dcc9f944584b428a929102c4, type: 3}
     normalTexture: {fileID: 0}
     selectedTexture: {fileID: 0}
@@ -11619,8 +11602,6 @@ MonoBehaviour:
   nodeInfo:
     prefab: {fileID: 7977787445382646825, guid: 80956fb0373904c41a54d0827f5ab451,
       type: 3}
-    objectName: Obstacle
-    type: 1
     prefabStyle:
       m_Name: 
       m_Normal:
@@ -11688,6 +11669,8 @@ MonoBehaviour:
       m_FixedHeight: 128
       m_StretchWidth: 1
       m_StretchHeight: 0
+    objectName: Obstacle
+    type: 1
     currentTexture: {fileID: 2800000, guid: 3314657ca440ce045bcb2ab13a4f0ed0, type: 3}
     normalTexture: {fileID: 0}
     selectedTexture: {fileID: 0}
@@ -11812,8 +11795,6 @@ MonoBehaviour:
   nodeInfo:
     prefab: {fileID: 7977787445382646825, guid: eb42f02e3dcc2064fa0fc4a66fcd62b4,
       type: 3}
-    objectName: Deco
-    type: 1
     prefabStyle:
       m_Name: 
       m_Normal:
@@ -11881,6 +11862,8 @@ MonoBehaviour:
       m_FixedHeight: 128
       m_StretchWidth: 1
       m_StretchHeight: 0
+    objectName: Deco
+    type: 1
     currentTexture: {fileID: 2800000, guid: f6dcb393ca7e0454a8b91f66719c916c, type: 3}
     normalTexture: {fileID: 0}
     selectedTexture: {fileID: 0}
@@ -12005,8 +11988,6 @@ MonoBehaviour:
   nodeInfo:
     prefab: {fileID: 7977787445382646825, guid: eb42f02e3dcc2064fa0fc4a66fcd62b4,
       type: 3}
-    objectName: Deco
-    type: 1
     prefabStyle:
       m_Name: 
       m_Normal:
@@ -12074,6 +12055,8 @@ MonoBehaviour:
       m_FixedHeight: 128
       m_StretchWidth: 1
       m_StretchHeight: 0
+    objectName: Deco
+    type: 1
     currentTexture: {fileID: 2800000, guid: f6dcb393ca7e0454a8b91f66719c916c, type: 3}
     normalTexture: {fileID: 0}
     selectedTexture: {fileID: 0}
@@ -12198,8 +12181,6 @@ MonoBehaviour:
   nodeInfo:
     prefab: {fileID: 7977787445382646825, guid: eb42f02e3dcc2064fa0fc4a66fcd62b4,
       type: 3}
-    objectName: Deco
-    type: 1
     prefabStyle:
       m_Name: 
       m_Normal:
@@ -12267,6 +12248,8 @@ MonoBehaviour:
       m_FixedHeight: 128
       m_StretchWidth: 1
       m_StretchHeight: 0
+    objectName: Deco
+    type: 1
     currentTexture: {fileID: 2800000, guid: f6dcb393ca7e0454a8b91f66719c916c, type: 3}
     normalTexture: {fileID: 0}
     selectedTexture: {fileID: 0}
@@ -12391,8 +12374,6 @@ MonoBehaviour:
   nodeInfo:
     prefab: {fileID: 7977787445382646825, guid: eb42f02e3dcc2064fa0fc4a66fcd62b4,
       type: 3}
-    objectName: Deco
-    type: 1
     prefabStyle:
       m_Name: 
       m_Normal:
@@ -12460,6 +12441,8 @@ MonoBehaviour:
       m_FixedHeight: 128
       m_StretchWidth: 1
       m_StretchHeight: 0
+    objectName: Deco
+    type: 1
     currentTexture: {fileID: 2800000, guid: f6dcb393ca7e0454a8b91f66719c916c, type: 3}
     normalTexture: {fileID: 0}
     selectedTexture: {fileID: 0}
@@ -12584,8 +12567,6 @@ MonoBehaviour:
   nodeInfo:
     prefab: {fileID: 7977787445382646825, guid: eb42f02e3dcc2064fa0fc4a66fcd62b4,
       type: 3}
-    objectName: Deco
-    type: 1
     prefabStyle:
       m_Name: 
       m_Normal:
@@ -12653,6 +12634,8 @@ MonoBehaviour:
       m_FixedHeight: 128
       m_StretchWidth: 1
       m_StretchHeight: 0
+    objectName: Deco
+    type: 1
     currentTexture: {fileID: 2800000, guid: f6dcb393ca7e0454a8b91f66719c916c, type: 3}
     normalTexture: {fileID: 0}
     selectedTexture: {fileID: 0}
@@ -12777,8 +12760,6 @@ MonoBehaviour:
   nodeInfo:
     prefab: {fileID: 7977787445382646825, guid: 80956fb0373904c41a54d0827f5ab451,
       type: 3}
-    objectName: Obstacle
-    type: 1
     prefabStyle:
       m_Name: 
       m_Normal:
@@ -12846,6 +12827,8 @@ MonoBehaviour:
       m_FixedHeight: 128
       m_StretchWidth: 1
       m_StretchHeight: 0
+    objectName: Obstacle
+    type: 1
     currentTexture: {fileID: 2800000, guid: 3314657ca440ce045bcb2ab13a4f0ed0, type: 3}
     normalTexture: {fileID: 0}
     selectedTexture: {fileID: 0}
@@ -13001,8 +12984,6 @@ MonoBehaviour:
   nodeInfo:
     prefab: {fileID: 7977787445382646825, guid: d3d0ae7cdb4114043809db103b0214ea,
       type: 3}
-    objectName: BaseFloor
-    type: 0
     prefabStyle:
       m_Name: 
       m_Normal:
@@ -13070,6 +13051,8 @@ MonoBehaviour:
       m_FixedHeight: 128
       m_StretchWidth: 1
       m_StretchHeight: 0
+    objectName: BaseFloor
+    type: 0
     currentTexture: {fileID: 2800000, guid: 42761c47dcc9f944584b428a929102c4, type: 3}
     normalTexture: {fileID: 0}
     selectedTexture: {fileID: 0}
@@ -13194,8 +13177,6 @@ MonoBehaviour:
   nodeInfo:
     prefab: {fileID: 7977787445382646825, guid: eb42f02e3dcc2064fa0fc4a66fcd62b4,
       type: 3}
-    objectName: Deco
-    type: 1
     prefabStyle:
       m_Name: 
       m_Normal:
@@ -13263,6 +13244,8 @@ MonoBehaviour:
       m_FixedHeight: 128
       m_StretchWidth: 1
       m_StretchHeight: 0
+    objectName: Deco
+    type: 1
     currentTexture: {fileID: 2800000, guid: f6dcb393ca7e0454a8b91f66719c916c, type: 3}
     normalTexture: {fileID: 0}
     selectedTexture: {fileID: 0}
@@ -13387,8 +13370,6 @@ MonoBehaviour:
   nodeInfo:
     prefab: {fileID: 7977787445382646825, guid: eb42f02e3dcc2064fa0fc4a66fcd62b4,
       type: 3}
-    objectName: Deco
-    type: 1
     prefabStyle:
       m_Name: 
       m_Normal:
@@ -13456,6 +13437,8 @@ MonoBehaviour:
       m_FixedHeight: 128
       m_StretchWidth: 1
       m_StretchHeight: 0
+    objectName: Deco
+    type: 1
     currentTexture: {fileID: 2800000, guid: f6dcb393ca7e0454a8b91f66719c916c, type: 3}
     normalTexture: {fileID: 0}
     selectedTexture: {fileID: 0}
@@ -13580,8 +13563,6 @@ MonoBehaviour:
   nodeInfo:
     prefab: {fileID: 7977787445382646825, guid: 80956fb0373904c41a54d0827f5ab451,
       type: 3}
-    objectName: Obstacle
-    type: 1
     prefabStyle:
       m_Name: 
       m_Normal:
@@ -13649,6 +13630,8 @@ MonoBehaviour:
       m_FixedHeight: 128
       m_StretchWidth: 1
       m_StretchHeight: 0
+    objectName: Obstacle
+    type: 1
     currentTexture: {fileID: 2800000, guid: 3314657ca440ce045bcb2ab13a4f0ed0, type: 3}
     normalTexture: {fileID: 0}
     selectedTexture: {fileID: 0}
@@ -13773,8 +13756,6 @@ MonoBehaviour:
   nodeInfo:
     prefab: {fileID: 7977787445382646825, guid: eb42f02e3dcc2064fa0fc4a66fcd62b4,
       type: 3}
-    objectName: Deco
-    type: 1
     prefabStyle:
       m_Name: 
       m_Normal:
@@ -13842,6 +13823,8 @@ MonoBehaviour:
       m_FixedHeight: 128
       m_StretchWidth: 1
       m_StretchHeight: 0
+    objectName: Deco
+    type: 1
     currentTexture: {fileID: 2800000, guid: f6dcb393ca7e0454a8b91f66719c916c, type: 3}
     normalTexture: {fileID: 0}
     selectedTexture: {fileID: 0}
@@ -13966,8 +13949,6 @@ MonoBehaviour:
   nodeInfo:
     prefab: {fileID: 7977787445382646825, guid: eb42f02e3dcc2064fa0fc4a66fcd62b4,
       type: 3}
-    objectName: Deco
-    type: 1
     prefabStyle:
       m_Name: 
       m_Normal:
@@ -14035,6 +14016,8 @@ MonoBehaviour:
       m_FixedHeight: 128
       m_StretchWidth: 1
       m_StretchHeight: 0
+    objectName: Deco
+    type: 1
     currentTexture: {fileID: 2800000, guid: f6dcb393ca7e0454a8b91f66719c916c, type: 3}
     normalTexture: {fileID: 0}
     selectedTexture: {fileID: 0}
@@ -14190,8 +14173,6 @@ MonoBehaviour:
   nodeInfo:
     prefab: {fileID: 7977787445382646825, guid: eb42f02e3dcc2064fa0fc4a66fcd62b4,
       type: 3}
-    objectName: Deco
-    type: 1
     prefabStyle:
       m_Name: 
       m_Normal:
@@ -14259,6 +14240,8 @@ MonoBehaviour:
       m_FixedHeight: 128
       m_StretchWidth: 1
       m_StretchHeight: 0
+    objectName: Deco
+    type: 1
     currentTexture: {fileID: 2800000, guid: f6dcb393ca7e0454a8b91f66719c916c, type: 3}
     normalTexture: {fileID: 0}
     selectedTexture: {fileID: 0}
@@ -14470,8 +14453,6 @@ MonoBehaviour:
   nodeInfo:
     prefab: {fileID: 7977787445382646825, guid: d3d0ae7cdb4114043809db103b0214ea,
       type: 3}
-    objectName: BaseFloor
-    type: 0
     prefabStyle:
       m_Name: 
       m_Normal:
@@ -14539,6 +14520,8 @@ MonoBehaviour:
       m_FixedHeight: 128
       m_StretchWidth: 1
       m_StretchHeight: 0
+    objectName: BaseFloor
+    type: 0
     currentTexture: {fileID: 2800000, guid: 42761c47dcc9f944584b428a929102c4, type: 3}
     normalTexture: {fileID: 0}
     selectedTexture: {fileID: 0}
@@ -14663,8 +14646,6 @@ MonoBehaviour:
   nodeInfo:
     prefab: {fileID: 7977787445382646825, guid: eb42f02e3dcc2064fa0fc4a66fcd62b4,
       type: 3}
-    objectName: Deco
-    type: 1
     prefabStyle:
       m_Name: 
       m_Normal:
@@ -14732,6 +14713,8 @@ MonoBehaviour:
       m_FixedHeight: 128
       m_StretchWidth: 1
       m_StretchHeight: 0
+    objectName: Deco
+    type: 1
     currentTexture: {fileID: 2800000, guid: f6dcb393ca7e0454a8b91f66719c916c, type: 3}
     normalTexture: {fileID: 0}
     selectedTexture: {fileID: 0}
