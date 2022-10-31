@@ -8,16 +8,16 @@ using PlayerSpace;
 public class Ravagebell_Skill : Player_Skill
 {
     [SerializeField] private GameObject skillPrefab;
-    private Atk_Parabola parabola;
-    private Parabola_Projectile projectile;
+    private Atk_Circle circle;
+    private GameObject projectile;
 
     protected override void Start()
     {
         base.Start();
 
-        parabola = rangeComponent as Atk_Parabola;
+        circle = rangeComponent as Atk_Circle;
 
-        if (parabola == null)
+        if (circle == null)
             Destroy(this);
     }
 
@@ -30,26 +30,21 @@ public class Ravagebell_Skill : Player_Skill
         {
 
             photonView.RPC(nameof(MasterCreateSkill), RpcTarget.MasterClient,
-                                                      direction,
-                                                      parabola.transform.rotation,
-                                                      parabola.distance,
-                                                      parabola.velocity,
-                                                      parabola.maxYpos);
+                                                      direction);
         }
         else
         {
-            GameObject tempSkill = Instantiate(skillPrefab, transform.position, parabola.transform.rotation);
-            projectile = tempSkill.GetComponent<Parabola_Projectile>();
-            projectile.SetArcInfo(direction, parabola.distance, parabola.velocity, parabola.maxYpos);
+            projectile = Instantiate(skillPrefab, transform.position, skillPrefab.transform.rotation);
+
+            // 여기서 부터 코드 수정
+            projectile.GetComponent<Projectile>().AttackToDirection(Vector3.up, MaxRange, 5f);
         }
 
     }
 
     [PunRPC]
-    private void MasterCreateSkill(Vector3 direction, Quaternion rotation, float dist, float velocity, float ypos)
+    private void MasterCreateSkill(Vector3 direction)
     {
-        GameObject tempSkill = PhotonNetwork.Instantiate("grenade", transform.position, rotation);
-        projectile = tempSkill.GetComponent<Parabola_Projectile>();
-        projectile.SetArcInfo(direction, dist, velocity, ypos);
+        //GameObject tempSkill = PhotonNetwork.Instantiate("projectile_ravagebell", transform.position, rotation);
     }
 }
