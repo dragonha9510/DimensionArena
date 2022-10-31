@@ -63,7 +63,7 @@ public class InGameDataParsingManager : MonoBehaviour
         float.TryParse(attack, out tmpItemInfo.attackIncrement);
         float.TryParse(speed, out tmpItemInfo.speedAmount);
         float.TryParse(health, out tmpItemInfo.healthAmount);
-        float.TryParse(shield, out tmpItemInfo.achieveRange);
+        float.TryParse(shield, out tmpItemInfo.shieldAmount);
         float.TryParse(skill, out tmpItemInfo.achieveRange);
 
         item.GetComponent<Item>().SettingItem(tmpItemInfo);
