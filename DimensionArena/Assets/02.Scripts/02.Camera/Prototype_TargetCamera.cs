@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
+using DG.Tweening;
+
 public class Prototype_TargetCamera : MonoBehaviour
 {
     [SerializeField] public Transform target;
@@ -14,15 +16,16 @@ public class Prototype_TargetCamera : MonoBehaviour
         if (PhotonNetwork.OfflineMode)
             isStartEnd = true;
 
-            interval = transform.position;
+        interval = transform.position;
 
         if (target == null)
         {
             GameObject temp = Instantiate(new GameObject(), transform);
             temp.transform.position = Vector3.zero;
-
             target = temp.transform;
         }
+
+        StartCoroutine(FollowTargetCoroutine());
     }
 
     private void FixedUpdate()
@@ -50,21 +53,10 @@ public class Prototype_TargetCamera : MonoBehaviour
 
     private IEnumerator FollowTargetCoroutine()
     {
-        float time = 0.0f;
-        
-        while (true)
-        {
-            time += Time.unscaledTime;
-            Vector3 location = target.position + interval;
-            location.y = transform.position.y;
-            Vector3 direction = location - transform.position;
-            if (arrivalTime <= time) break;
-            float speed = direction.magnitude / (arrivalTime - time);
-            Debug.Log(speed);
-            direction.Normalize();
-            transform.position = transform.position + (direction * speed * Time.deltaTime);
-            yield return null;
-        }
+        Vector3 location = target.position + interval;
+        location.y = transform.position.y;
+        transform.DOMove(location, arrivalTime);
+        yield return new WaitForSeconds(arrivalTime);
         isStartEnd = true;
     }
 }

@@ -14,7 +14,7 @@ namespace PlayerSpace
 
             //Player State 등록
             info = new PlayerInfo(NickName,
-                                  CharacterType.Joohyeok,
+                                  UNITTYPE.Joohyeok,
                                   100.0f, 100.0f, 2.3f);
             //Attack 등록
             attack = GetComponent<JooHyeok_Atk>();

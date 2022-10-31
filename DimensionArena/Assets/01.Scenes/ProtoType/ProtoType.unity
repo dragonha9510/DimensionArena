@@ -944,8 +944,8 @@ GameObject:
   - component: {fileID: 1058569137}
   - component: {fileID: 1058569136}
   - component: {fileID: 3108057128768116422}
-  - component: {fileID: 3108057128768116423}
   - component: {fileID: 3108057128768116424}
+  - component: {fileID: 3108057128768116423}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -982,7 +982,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 21
+  m_RootOrder: 20
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1097827797
 GameObject:
@@ -1485,7 +1485,7 @@ PrefabInstance:
     - target: {fileID: 4769831142898037394, guid: b3fd36cf1129e664bae3cd44441a5640,
         type: 3}
       propertyPath: m_RootOrder
-      value: 20
+      value: 21
       objectReference: {fileID: 0}
     - target: {fileID: 4769831142898037394, guid: b3fd36cf1129e664bae3cd44441a5640,
         type: 3}
@@ -2074,7 +2074,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  arrivalTime: 1.5
+  arrivalTime: 3
 --- !u!114 &1767598475
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10768,11 +10768,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 480469602389915558, guid: 472cf58ce3dcc014f83a351bb53fe090,
         type: 3}
-      propertyPath: InformTime
-      value: 5.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 480469602389915558, guid: 472cf58ce3dcc014f83a351bb53fe090,
-        type: 3}
       propertyPath: dynamicText
       value: 
       objectReference: {fileID: 1546303735}
@@ -10808,11 +10803,6 @@ PrefabInstance:
       objectReference: {fileID: 1915301517}
     - target: {fileID: 480469602389915558, guid: 472cf58ce3dcc014f83a351bb53fe090,
         type: 3}
-      propertyPath: logoGrowDelay
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 480469602389915558, guid: 472cf58ce3dcc014f83a351bb53fe090,
-        type: 3}
       propertyPath: objectiveText
       value: 
       objectReference: {fileID: 1546303738}
@@ -10833,11 +10823,6 @@ PrefabInstance:
       objectReference: {fileID: 1915301513}
     - target: {fileID: 480469602389915558, guid: 472cf58ce3dcc014f83a351bb53fe090,
         type: 3}
-      propertyPath: textSmallerDelay
-      value: 0.25
-      objectReference: {fileID: 0}
-    - target: {fileID: 480469602389915558, guid: 472cf58ce3dcc014f83a351bb53fe090,
-        type: 3}
       propertyPath: dimensionArenaLogo
       value: 
       objectReference: {fileID: 995285743}
@@ -10855,11 +10840,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: InGameUIManager
-      objectReference: {fileID: 0}
-    - target: {fileID: 480469602389915559, guid: 472cf58ce3dcc014f83a351bb53fe090,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 472cf58ce3dcc014f83a351bb53fe090, type: 3}
@@ -10895,7 +10875,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   managerDic:
     array:
-    - Key: 0
+    - Key: 3
       Value: {fileID: 4463596343507525067}
     - Key: 2
       Value: {fileID: 480469601574629499}

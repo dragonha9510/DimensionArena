@@ -138,9 +138,6 @@ public class ObjectPool : MonoBehaviourPun
          }
      }*/
 
-
-
-
     public GameObject GetObjectInPool(CLIENTOBJ type, Transform parent, Vector3 pos)
     {
         if (cliobjectPool[type].Count <= 0)

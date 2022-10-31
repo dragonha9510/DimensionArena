@@ -741,8 +741,8 @@ MonoBehaviour:
     maxSkillPoint: 100
     speed: 2.3
     curShield: 0
-    killScore: 0
-    dmgScore: 0
+    maxSheld: 0
+    additionalDmg: 0
 --- !u!114 &1876143292272218706
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1660,6 +1660,7 @@ MonoBehaviour:
   playerName: {fileID: 2286018880159179529}
   hpBarSlider: {fileID: 4586236821575833792}
   hpText: {fileID: 7673253345025643054}
+  shield: {fileID: 6459897610535640099}
   shieldImg: {fileID: 5274534120455390827}
   shieldText: {fileID: 4152641045085457138}
   arrow: {fileID: 7795392208730009320}
@@ -1681,7 +1682,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &8306515895085828594
 RectTransform:
   m_ObjectHideFlags: 0

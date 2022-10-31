@@ -63,7 +63,7 @@ public abstract class Item : MonoBehaviour
     
     private void OnCollisionEnter(Collision collision)
     {
-
+        
         if (collision.gameObject.tag == "ParentGround")
         {
             if (ColliderCount <= StopCount)
@@ -79,13 +79,15 @@ public abstract class Item : MonoBehaviour
                 particle.SetActive(true);
             }
         }
-        if(collision.gameObject.tag == "Player")
+        else if(collision.gameObject.tag == "Player")
         {
             EffectManager.Instance.CreateParticleEffectOnGameobject(collision.gameObject.transform, "ItemDrop");
-
+            InteractItem(collision.gameObject.name);
             // 아이템 이벤트 처리
+           
             Destroy(this.gameObject);
         }
+
     }
     public void SettingItem(ItemInfo itemInfo)
     {
@@ -93,7 +95,7 @@ public abstract class Item : MonoBehaviour
     }
 
 
-    protected abstract void InteractItem();
+    protected abstract void InteractItem(string targetID);
 
 
 }

@@ -40,8 +40,8 @@ namespace ManagerSpace
 
         private struct DeadEvent
         {
-            public DeadEvent(CharacterType killerType, string killerName,
-                CharacterType victimType, string victimName)
+            public DeadEvent(UNITTYPE killerType, string killerName,
+                UNITTYPE victimType, string victimName)
             {
                 this.killerName = killerName;
                 this.victimName = victimName;
@@ -51,13 +51,13 @@ namespace ManagerSpace
 
             private string killerName;
             private string victimName;
-            private CharacterType killerType;
-            private CharacterType victimType;
+            private UNITTYPE killerType;
+            private UNITTYPE victimType;
 
             public string KillerName => killerName;
             public string VictimName => victimName;
-            public CharacterType KillerType => killerType;
-            public CharacterType VictimType => victimType;
+            public UNITTYPE KillerType => killerType;
+            public UNITTYPE VictimType => victimType;
 
 
         }
@@ -239,7 +239,7 @@ namespace ManagerSpace
         /// >>>>>>>>>>>>>>>>>>>>>>>>>>
 
 
-        private void InformDeadPlayer(CharacterType killerType, string killerId, CharacterType victimType, string victimId)
+        private void InformDeadPlayer(UNITTYPE killerType, string killerId, UNITTYPE victimType, string victimId)
         {
             //Insert To DeadEvList
             ListDeadEv.Add(new DeadEvent(killerType, killerId, victimType, victimId));
@@ -255,7 +255,7 @@ namespace ManagerSpace
         }
 
 
-        IEnumerator InformDeadCoroutine(CharacterType killerType, string killerId, CharacterType victimType, string victimId)
+        IEnumerator InformDeadCoroutine(UNITTYPE killerType, string killerId, UNITTYPE victimType, string victimId)
         {
             isInfromEnd = false;
 
@@ -285,24 +285,33 @@ namespace ManagerSpace
         }
 
 
-        void SelectThumbnail(Image image, CharacterType type)
+        void SelectThumbnail(Image image, UNITTYPE type)
         {
             switch (type)
             {
-                case CharacterType.Aura:
-                    image.sprite = CharacterThumbnail[(int)CharacterType.Aura];
+                case UNITTYPE.Aura:
+                    image.sprite = CharacterThumbnail[(int)UNITTYPE.Aura];
                     break;
-                case CharacterType.Raebijibel:
-                    image.sprite = CharacterThumbnail[(int)CharacterType.Raebijibel];
+                case UNITTYPE.Raebijibel:
+                    image.sprite = CharacterThumbnail[(int)UNITTYPE.Raebijibel];
                     break;
-                case CharacterType.Joohyeok:
-                    image.sprite = CharacterThumbnail[(int)CharacterType.Joohyeok];
+                case UNITTYPE.Joohyeok:
+                    image.sprite = CharacterThumbnail[(int)UNITTYPE.Joohyeok];
                     break;
-                case CharacterType.Sesillia:
-                    image.sprite = CharacterThumbnail[(int)CharacterType.Sesillia];
+                case UNITTYPE.Sesillia:
+                    image.sprite = CharacterThumbnail[(int)UNITTYPE.Sesillia];
+                    break;
+                case UNITTYPE.RedZone:
+                    image.sprite = CharacterThumbnail[(int)UNITTYPE.RedZone];
+                    break;
+                case UNITTYPE.Magnetic:
+                    image.sprite = CharacterThumbnail[(int)UNITTYPE.Magnetic];
                     break;
             }
         }
+
+
+
 
         public void DefeatUIOn()
         {
