@@ -7,7 +7,12 @@ public class ShieldKit : Item
 {
     protected override void InteractItem(string targetID)
     {
-        Debug.Log("shield Get");
+        photonView.RPC(nameof(InteractItemForAllcient),Photon.Pun.RpcTarget.All, targetID);
+    }
+
+
+    public void InteractItemForAllcient(string targetID)
+    {
         PlayerInfoManager.Instance.GetShield(targetID, info.shieldAmount);
     }
 
