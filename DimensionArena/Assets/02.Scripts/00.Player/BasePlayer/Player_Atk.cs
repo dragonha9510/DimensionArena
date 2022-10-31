@@ -34,7 +34,7 @@ namespace PlayerSpace
         [HideInInspector] public Vector3 attackDirection;
 
         protected float curdistance;
-        protected Atk_Range rangeComponent;
+        private Atk_Range rangeComponent;
 
         private Attack_Type type;
         public  Attack_Type Type => type;
@@ -110,8 +110,6 @@ namespace PlayerSpace
                 return;
 
             attackDirection = direction;
-            curdistance = direction.magnitude;
-
             attackDirection.Normalize();
             StartCoroutine(LookAttackDirection());  
         }

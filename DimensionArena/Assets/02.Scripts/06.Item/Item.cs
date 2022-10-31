@@ -86,20 +86,17 @@ public abstract class Item : MonoBehaviourPun
         }
         else if(collision.gameObject.tag == "Player")
         {
+            if(PhotonNetwork.IsMasterClient)
+                InteractItem(collision.gameObject.name);
+            
             EffectManager.Instance.CreateParticleEffectOnGameobject(collision.gameObject.transform, "ItemDrop");
+
+            
             PhotonNetwork.Destroy(this.gameObject);
 
             // 아이템 이벤트 처리
-            if(PhotonNetwork.IsMasterClient)
-                photonView.RPC(nameof(InteractItemForAllClient), RpcTarget.All);
-           
-        }
-    }
 
-    [PunRPC]
-    public void InteractItemForAllClient(string name)
-    {
-        InteractItem(name);
+        }
     }
 
 
