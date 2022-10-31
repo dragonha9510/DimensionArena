@@ -60,6 +60,8 @@ public abstract class Item : MonoBehaviourPun
         this.transform.Rotate(Vector3.up * rotation * Time.deltaTime, Space.World);
         if (0 >= info.liveTime)
             PhotonNetwork.Destroy(this.gameObject);
+        else
+            info.liveTime -= Time.fixedDeltaTime;
     }
 
     

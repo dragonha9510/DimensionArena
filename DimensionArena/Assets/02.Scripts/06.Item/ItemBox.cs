@@ -111,6 +111,7 @@ public class ItemBox : MonoBehaviourPun
     {
         health -= damage;
         itemSlider.value = health;
+        itemHealth.text = health.ToString();
         if (false == GetComponentInChildren<Shaking>().IsShaking)
             GetComponentInChildren<Shaking>().StartShaking();
         if (health <= 0)
