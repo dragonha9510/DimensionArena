@@ -5,7 +5,6 @@ TagManager:
   serializedVersion: 2
   tags:
   - Ground
-  - Player_Ditection
   - Bush
   - HideBush
   - MapTool
@@ -23,6 +22,8 @@ TagManager:
   - AttackCollider
   - Chara
   - Item
+  - PoisonField
+  - Player_Detection
   layers:
   - Default
   - TransparentFX

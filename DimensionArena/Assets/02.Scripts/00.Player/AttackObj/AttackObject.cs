@@ -17,7 +17,7 @@ public class AttackObject : MonoBehaviourPun
     public int Damage { get { return damage; } }
     public GameObject hitPrefab;
 
-
+    protected bool isWater;
 
     [PunRPC]
     protected void OnCollisionToPlayer(string ownerId, string targetId, Vector3 pos)
@@ -46,52 +46,6 @@ public class AttackObject : MonoBehaviourPun
     }
     //
 
-    void OnTriggerEnter(Collider other)
-    {
-        if (!PhotonNetwork.IsMasterClient)
-            return;
-
-        switch (other.tag)
-        {
-            //상대 Player에게 데미지를 준 경우, 
-            case "Player":
-                {
-                    if (ownerID != other.gameObject.name)
-                    {
-                        photonView.RPC("OnCollisionToPlayer",
-                        RpcTarget.All,
-                        ownerID,
-                        other.gameObject.name,
-                        other.transform.position);
-                    }
-                }
-                break;
-            //Damaged된 Obstacle 공격체 방향으로 살짝 흔들리는 모션
-            case "ParentObstacle":
-                {
-                    Quaternion rot = Quaternion.AngleAxis(transform.rotation.eulerAngles.y, Vector3.up);/*Quaternion.FromToRotation(Vector3.up, contact.normal);*/
-                    Vector3 pos = other.GetComponent<Collider>().ClosestPointOnBounds(transform.position);
-
-                    if (hitPrefab != null)
-                    {
-                        var hitVFX = Instantiate(hitPrefab, pos, rot);
-                        var psHit = hitVFX.GetComponent<ParticleSystem>();
-                        if (psHit != null)
-                            Destroy(hitVFX, psHit.main.duration);
-                        else
-                        {
-                            var psChild = hitVFX.transform.GetChild(0).GetComponent<ParticleSystem>();
-                            Destroy(hitVFX, psChild.main.duration);
-                        }
-                    }
-
-                    PhotonNetwork.Destroy(this.gameObject);
-                }
-                break;
-            default:
-                break;
-        }
-    }
 
     //private void OnTriggerEnter(Collider collision)
     //{

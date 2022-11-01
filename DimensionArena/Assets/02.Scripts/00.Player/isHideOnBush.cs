@@ -7,7 +7,7 @@ public class isHideOnBush : MonoBehaviourPun
 {
     [SerializeField] private Renderer[] AvartarRender;
     [SerializeField] private GameObject Additional;
-    [SerializeField] private DitectionRange ditection;
+    [SerializeField] private DetectionRange detection;
 
     private int exitCnt;
     private int sizeCnt;
@@ -28,11 +28,11 @@ public class isHideOnBush : MonoBehaviourPun
         }
         else if (photonView.IsMine && other.CompareTag("Bush"))
         {
-            if (ditection == null)
+            if (detection == null)
                 return;
 
             ++sizeCnt;
-            ditection.SetRangeMax(); 
+            detection.SetRangeMax(); 
         }
     }
 
@@ -55,7 +55,7 @@ public class isHideOnBush : MonoBehaviourPun
         }
         else if (photonView.IsMine && other.CompareTag("Bush"))
         {
-            if (ditection == null)
+            if (detection == null)
                 return;
 
             --sizeCnt;
@@ -63,7 +63,7 @@ public class isHideOnBush : MonoBehaviourPun
             if (sizeCnt > 0)
                 return;
 
-            ditection.SetRangeMin(); 
+            detection.SetRangeMin(); 
         }
     }
 }

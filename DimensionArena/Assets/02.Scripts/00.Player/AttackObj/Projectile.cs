@@ -38,14 +38,50 @@ public class Projectile : AttackObject
         rigid.velocity = dir * speed;
     }
 
-    /*[PunRPC]
-    private void ToDirection(Vector3 dir, float range, float speed)
+    protected virtual void OnTriggerEnter(Collider other)
     {
-        //JSB
-        EffectSoundPlay("JiJooNormalEffect");
-        //
-        this.range = range;
-        rigid.velocity = dir * speed;
-    }*/
+        if (!PhotonNetwork.IsMasterClient)
+            return;
 
+        switch (other.tag)
+        {
+            //상대 Player에게 데미지를 준 경우, 
+            case "Player":
+                {
+                    if (ownerID != other.gameObject.name)
+                    {
+                        photonView.RPC("OnCollisionToPlayer",
+                        RpcTarget.All,
+                        ownerID,
+                        other.gameObject.name,
+                        other.transform.position);
+                    }
+                }
+                break;
+            //Damaged된 Obstacle 공격체 방향으로 살짝 흔들리는 모션
+            case "ParentObstacle":
+                {
+                    Quaternion rot = Quaternion.AngleAxis(transform.rotation.eulerAngles.y, Vector3.up);/*Quaternion.FromToRotation(Vector3.up, contact.normal);*/
+                    Vector3 pos = other.GetComponent<Collider>().ClosestPointOnBounds(transform.position);
+
+                    if (hitPrefab != null)
+                    {
+                        var hitVFX = PhotonNetwork.Instantiate(hitPrefab.name, pos, rot);
+                        var psHit = hitVFX.GetComponent<ParticleSystem>();
+                        if (psHit != null)
+                            Destroy(hitVFX, psHit.main.duration);
+                        else
+                        {
+                            var psChild = hitVFX.transform.GetChild(0).GetComponent<ParticleSystem>();
+                            Destroy(hitVFX, psChild.main.duration);
+                        }
+                    }
+
+                    PhotonNetwork.Destroy(this.gameObject);
+                }
+                break;
+            default:
+                break;
+        }
+    }
 }
