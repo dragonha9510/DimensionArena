@@ -10,8 +10,7 @@ public class Sesillia_Atk : Player_Atk
     [Header("SesilliaAttackInfo")]
     [SerializeField] private int projectileCount = 3;
     [SerializeField] private float projectileSpeed = 8.0f;
-    [SerializeField] private float burst_delay = 0.1f;
-    [SerializeField] private float attack_delay = 0.25f;
+    [SerializeField] private float attack_delay = 0.05f;
 
     [Header("Prefab")]
     [SerializeField] private GameObject prefab_Projectile;
@@ -35,7 +34,7 @@ public class Sesillia_Atk : Player_Atk
             StartAttackCoroutine();
 
         // Animation Temp
-        AtkTrigger();
+
     }
 
     private void StartAttackCoroutine()
@@ -69,17 +68,18 @@ public class Sesillia_Atk : Player_Atk
         Transform shooterPosition = PlayerInfoManager.Instance.getPlayerTransform(shooter);
         photonView.RPC(nameof(SubMagazine), controller, shooter);
 
-        for (int i = 0; i < 2; ++i)
+        float offset;
+        AtkTrigger();
+
+        for (int i = 0; i < projectileCount; ++i)
         {
-            for (int j = 0; j < projectileCount; ++j)
-            {
-                projectile = PhotonNetwork.Instantiate("projectile", shooterPosition.position + (Vector3.up * 0.5f), shooterPosition.rotation);
-                projectile.GetComponent<Projectile>().AttackToDirection(shooterAttackDir, AtkInfo.Range, projectileSpeed);
-                projectile.GetComponent<Projectile>().ownerID = shooter;
-                yield return new WaitForSeconds(burst_delay);
-            }
+            offset = (i % 2 == 0) ? 0.3f : -0.3f;
+            projectile = PhotonNetwork.Instantiate("projectile", shooterPosition.position + (Vector3.right * offset) + (Vector3.up * 0.5f), shooterPosition.rotation);
+            projectile.GetComponent<Projectile>().AttackToDirection(shooterAttackDir, AtkInfo.Range, projectileSpeed);
+            projectile.GetComponent<Projectile>().ownerID = shooter;
             yield return new WaitForSeconds(attack_delay);
         }
+
 
         photonView.RPC("EndAttack", controller, shooter);
     }
@@ -106,27 +106,30 @@ public class Sesillia_Atk : Player_Atk
     private IEnumerator AttackCoroutineSingle(string shooter, Quaternion playerRotation, Vector3 shooterAttackDir, string ownerName)
     {
         isAttack = true;
-
         atkInfo.SubCost(atkInfo.ShotCost);
 
         GameObject projectile;
+        WaitForSeconds attackDelay =   new WaitForSeconds(attack_delay);
+        float right;
 
-        for (int i = 0; i < 2; ++i)
+        AtkTrigger();
+
+
+
+        Vector3 offset = shooterAttackDir * 0.1f + (Vector3.up * 0.5f);
+
+        for (int i = 0; i < projectileCount; ++i)
         {
-            for (int j = 0; j < projectileCount; ++j)
-            {
-                // JSB
-                projectile = Instantiate(prefab_Projectile, this.transform.position + shooterAttackDir + (Vector3.up * 0.5f), playerRotation);
-                projectile.GetComponent<Projectile>().AttackToDirection(shooterAttackDir, AtkInfo.Range, projectileSpeed);
-                projectile.GetComponent<Projectile>().ownerID = ownerName;
-                //
-                yield return new WaitForSeconds(burst_delay);
-            }
-            yield return new WaitForSeconds(attack_delay);
+            right = i % 2 == 0 ? 0.15f : -0.15f;
+            projectile = Instantiate(prefab_Projectile, transform.position + offset + transform.right * right, playerRotation);
+            projectile.GetComponent<Projectile>().AttackToDirection(shooterAttackDir, AtkInfo.Range, projectileSpeed);
+            projectile.GetComponent<Projectile>().ownerID = ownerName;
+            yield return attackDelay;
         }
-
+        
         isAttack = false;
         owner.CanDirectionChange = true;
     }
 }
+
 

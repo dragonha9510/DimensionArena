@@ -181,13 +181,13 @@ public class PlayerInfo
     [PunRPC]
     public void SpeedUp(float ratio)
     {
-        speed += speed * (ratio * 100);
+        speed += speed * ratio;
     }
 
     [PunRPC]
     public void SpeedDown(float ratio)
     {
-        speed -= speed * (ratio * 100);
+        speed -= speed * ratio;
     }
 
     public void PlayerDie(UNITTYPE killer_type, string killer_id)
