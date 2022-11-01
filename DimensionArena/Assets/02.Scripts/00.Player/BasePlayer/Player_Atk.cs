@@ -91,14 +91,12 @@ namespace PlayerSpace
 
         protected virtual void AtkTrigger()
         {
+            owner.Info.BattleOn();
             animator.SetTrigger("attack");
         }
 
-        public virtual void Attack()
-        {
-            AtkTrigger();
-        }
-
+        public abstract void Attack();
+       
         protected void WaitAttack()
         {
             eCantAttack();
@@ -128,7 +126,7 @@ namespace PlayerSpace
 
                 transform.LookAt(transform.position + forward);
             }
-            // 방향이 다 돌아가고 나서 공격 실행
+
             Attack();
         }
 

@@ -6,8 +6,7 @@ namespace PlayerSpace
 {
     [System.Serializable]
     public class PlayerAtkInfo
-    {
-    
+    {  
         public PlayerAtkInfo(float range, int maxMagazine, float reloadTime)
         {
             this.range = range;
@@ -28,7 +27,8 @@ namespace PlayerSpace
         private float curCost;
         private float shotCost;
         private float inverseReloadTime;
-
+        private bool isBattle;
+        public bool IsBattle => isBattle;
         public int MaxMagazine => maxMagazine;
         public float Range => range;
         public float ReloadTime => reloadTime;
@@ -36,7 +36,7 @@ namespace PlayerSpace
         public float ShotCost => (float)(1.0f / maxMagazine);
         public float InverseReloadTime => 1.0f / (reloadTime * maxMagazine);
 
-
+   
         public void AddCost(float amount)
         {
             curCost += amount;

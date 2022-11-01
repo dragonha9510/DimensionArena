@@ -17,6 +17,7 @@ namespace PlayerSpace
         /// =============================
         /// Direction Region
         /// =============================
+
         [SerializeField] private Transform directionLocation;
         [HideInInspector] public Vector3 direction;
 
@@ -44,8 +45,8 @@ namespace PlayerSpace
         private string nickName;
         public string NickName => nickName;
 
-        private bool isInMangeticField = false;
         // 뭣같은 자기장 알고리즘 때문에 생긴 변수
+        private bool isInMangeticField = false;
         private int collisionMagneticCount = 0;
 
 
@@ -100,6 +101,24 @@ namespace PlayerSpace
 
             //Add Event
             Info.EDisActivePlayer += DisActiveAnimation;
+            Info.EBattleStateOn += BattleStateProcess;
+        }
+
+        private Coroutine lastCoroutine = null;
+        private void BattleStateProcess()
+        {
+            if(lastCoroutine != null)
+                StopCoroutine(lastCoroutine);
+
+            lastCoroutine = StartCoroutine(BattleStateProcessCoroutine());
+        }
+
+        private IEnumerator BattleStateProcessCoroutine()
+        {
+            Debug.Log("배틀 상태 ON");
+            yield return new WaitForSeconds(info.BattleOffTime);
+            info.BattleOff();
+            Debug.Log("배틀 상태 OFF");
         }
 
         private void Update()

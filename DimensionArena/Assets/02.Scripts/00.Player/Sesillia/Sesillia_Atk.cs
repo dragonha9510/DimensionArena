@@ -67,10 +67,9 @@ public class Sesillia_Atk : Player_Atk
         GameObject projectile;
         Transform shooterPosition = PlayerInfoManager.Instance.getPlayerTransform(shooter);
         photonView.RPC(nameof(SubMagazine), controller, shooter);
-
         float offset;
-        AtkTrigger();
 
+        AtkTrigger();
         for (int i = 0; i < projectileCount; ++i)
         {
             offset = (i % 2 == 0) ? 0.3f : -0.3f;
@@ -111,13 +110,9 @@ public class Sesillia_Atk : Player_Atk
         GameObject projectile;
         WaitForSeconds attackDelay =   new WaitForSeconds(attack_delay);
         float right;
-
-        AtkTrigger();
-
-
-
         Vector3 offset = shooterAttackDir * 0.1f + (Vector3.up * 0.5f);
 
+        AtkTrigger();
         for (int i = 0; i < projectileCount; ++i)
         {
             right = i % 2 == 0 ? 0.15f : -0.15f;

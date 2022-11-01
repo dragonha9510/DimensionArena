@@ -56,6 +56,7 @@ public class PlayerInfo
     public event Action EDisActivePlayer = () => { };
     public event Action<UNITTYPE, string,
                         UNITTYPE, string> EDeadPlayer = (param, param2, param3, param4) => { };
+    public event Action EBattleStateOn = () => { };
 
 
     public void eDisActive()
@@ -82,6 +83,8 @@ public class PlayerInfo
     [SerializeField] private float curShield;
     [SerializeField] private float maxSheld;
     [SerializeField] private float additionalDmg;
+    [SerializeField] private bool isBattle;
+    [SerializeField] private float battleOffTime;
     /// <summary>
     /// If etc variable related with Score So many, then add a new class under the name PlayerScore 
     /// </summary>
@@ -98,6 +101,9 @@ public class PlayerInfo
     public float CurShield { get { return curShield; } }
     public float MaxShield { get { return maxSheld; } }
     public float AdditionalDmg { get { return additionalDmg; } }
+    public bool IsBattle => isBattle;
+
+    public float BattleOffTime => battleOffTime;
     
     public string ID { get { return id; } set { id = value; } }
     public bool IsAlive { get { return isAlive; } }
@@ -132,7 +138,6 @@ public class PlayerInfo
         }
     }
 
-    [PunRPC]
     public void Damaged(float damage)
     {
         curHP -= damage;
@@ -140,7 +145,6 @@ public class PlayerInfo
         EcurHPChanged(curHP);  
     }
 
-    [PunRPC]
     public void Heal(float amount)
     {
         curHP += amount;
@@ -148,7 +152,6 @@ public class PlayerInfo
         EcurHPChanged(curHP);
     }
 
-    [PunRPC]
     public void GetShield(float amount)
     {
         //Chanage Max Shield
@@ -157,7 +160,6 @@ public class PlayerInfo
         EcurShieldChanged(curShield);
     }
 
-    [PunRPC]
     public void DamageShield(float amount)
     {
         curShield -= amount;
@@ -165,26 +167,22 @@ public class PlayerInfo
         EcurShieldChanged(curShield);
     }
 
-    [PunRPC]
     public void DmgUp(float ratio)
     {
         additionalDmg += ratio * 100;
     }
 
-    [PunRPC]
     public void DmgDown(float ratio)
     {
         additionalDmg -= ratio * 100;
     }
 
 
-    [PunRPC]
     public void SpeedUp(float ratio)
     {
         speed += speed * ratio;
     }
 
-    [PunRPC]
     public void SpeedDown(float ratio)
     {
         speed -= speed * ratio;
@@ -196,6 +194,17 @@ public class PlayerInfo
         EDeadPlayer(killer_type, killer_id, type, id);
         EDisActivePlayer();
     }
+
+    public void BattleOn()
+    {
+        isBattle = true;
+        EBattleStateOn();
+    }
+
+
+
+    public void BattleOff() => isBattle = false;
+
 
     #endregion
 

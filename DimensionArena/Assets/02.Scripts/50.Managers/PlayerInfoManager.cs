@@ -202,23 +202,19 @@ namespace ManagerSpace
             //Damage
             if (DicPlayerInfo.TryGetValue(targetId, out target))
             {
-
                 damage = damage > target.CurHP ? target.CurHP : damage;
 
                 //Data Regist
                 InGamePlayerData data;
 
-
                 if (IngameDataManager.Instance.Data.TryGetValue(ownerId, out data))
-                {
-                    Debug.Log(ownerId + "가" + damage + "만큼 데미지 줌");
                     data.HitPoint(damage);
-                }
 
                 //Ingame 
                 damage = DamagedShield(target, damage);
-
                 target.Damaged(damage);
+                target.BattleOn();
+
             }
         }
 
@@ -232,11 +228,12 @@ namespace ManagerSpace
             {
 
                 damage = damage > target.CurHP ? target.CurHP : damage;
-
                 //Ingame 
                 damage = DamagedShield(target, damage);
 
                 target.Damaged(damage);
+                target.BattleOn();        
+                
             }
         }
 
