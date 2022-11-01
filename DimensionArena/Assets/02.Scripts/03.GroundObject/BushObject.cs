@@ -24,7 +24,7 @@ public class BushObject : GroundObject
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player_Ditection"))
+        if (other.CompareTag("Player_Detection"))
         {
             PhotonView temp = other.gameObject.GetComponentInParent<PhotonView>();
 
@@ -41,7 +41,7 @@ public class BushObject : GroundObject
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Player_Ditection"))
+        if (other.CompareTag("Player_Detection"))
         {
             PhotonView temp = other.gameObject.GetComponentInParent<PhotonView>();
 

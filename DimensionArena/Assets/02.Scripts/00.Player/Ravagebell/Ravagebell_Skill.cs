@@ -16,6 +16,8 @@ public class Ravagebell_Skill : Player_Skill
     [SerializeField] private float attackInterval = 0.3f;
     [SerializeField] private float atkDelay = 0.2f;
 
+    private Vector3 shotPosition;
+
     private Atk_Circle circle;
     private GameObject projectile;
 
@@ -34,12 +36,16 @@ public class Ravagebell_Skill : Player_Skill
         WaitForSeconds atkDelayWait = new WaitForSeconds(atkDelay);
         WaitForSeconds attackIntervalWait = new WaitForSeconds(attackInterval);
 
+
+
         for (int i = 0; i < shotCnt; ++i)
         {
             // 애니메이션
             animator.SetTrigger("attack");
             yield return atkDelayWait;
             ShotUp();
+            if(i == 0)
+                shotPosition = transform.position;
             yield return attackIntervalWait;
         }
 
@@ -65,7 +71,7 @@ public class Ravagebell_Skill : Player_Skill
     private void ShotDown(Vector3 direction)
     {
         projectile = Instantiate(skillPrefab,
-            this.transform.position + (skillDirection.normalized * skillDirection.magnitude * MaxRange) + (Vector3.up * MaxRange),
+            shotPosition + (skillDirection.normalized * skillDirection.magnitude * MaxRange) + (Vector3.up * MaxRange),
             skillPrefab.transform.rotation);
         projectile.GetComponent<Projectile>().AttackToDirection(Vector3.down, MaxRange, projectileSpeed);
         projectile.GetComponent<Projectile>().ownerID = gameObject.name;

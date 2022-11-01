@@ -78,7 +78,7 @@ namespace PlayerSpace
 
             yield return new WaitForSeconds(atkDelay);
 
-            Destroy(PhotonNetwork.Instantiate("muzzle_ravagebell", transform.position + (Vector3.up * 2f), shooterPosition.rotation), 0.5f);
+            Destroy(PhotonNetwork.Instantiate("muzzle_ravagebell", transform.position + (Vector3.up * 2f), shooterPosition.rotation), 1.0f);
             projectile = PhotonNetwork.Instantiate("projectile_ravagebell", transform.position + (Vector3.up * 2f), shooterPosition.rotation);
             projectile.GetComponent<Projectile>().AttackToDirection(Vector3.up, AtkInfo.Range, projectileSpeed);
             projectile.GetComponent<Projectile>().ownerID = shooter;
@@ -126,7 +126,7 @@ namespace PlayerSpace
 
             yield return new WaitForSeconds(atkDelay);
 
-            Destroy(Instantiate(prefab_Muzzle, this.transform.position + (Vector3.up * 2f), playerRotation), 0.5f);
+            Destroy(Instantiate(prefab_Muzzle, this.transform.position + (Vector3.up * 2f), playerRotation), 1.0f);
             projectile = Instantiate(prefab_Projectile, this.transform.position + (Vector3.up * 2f), playerRotation);
             projectile.GetComponent<Projectile>().AttackToDirection(Vector3.up, AtkInfo.Range, projectileSpeed);
             projectile.GetComponent<Projectile>().ownerID = ownerName;

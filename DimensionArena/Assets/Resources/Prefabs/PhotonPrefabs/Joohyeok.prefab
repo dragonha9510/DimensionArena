@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6663434931482882021}
   m_Layer: 11
   m_Name: Ditection
-  m_TagString: Player_Ditection
+  m_TagString: Player_Detection
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -58,7 +58,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43922b984d98d784a9d345316c46090e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ditectionRange: {x: 1, y: 2}
+  detectionRange: {x: 0, y: 0}
 --- !u!1 &616692475070831393
 GameObject:
   m_ObjectHideFlags: 0
@@ -2658,7 +2658,7 @@ MonoBehaviour:
   - {fileID: 5819820553572415330}
   - {fileID: 2838034358553737404}
   Additional: {fileID: 6012048157382810618}
-  ditection: {fileID: 6663434931482882021}
+  detection: {fileID: 0}
 --- !u!4 &1414611701423156955 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7369448170708576204, guid: 4dba30b2e19b7214994774c8d4ea37d8,
