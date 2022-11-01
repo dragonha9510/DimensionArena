@@ -74,20 +74,21 @@ namespace PlayerSpace
 
             ///
             AtkTrigger();
+            Vector3 shotPosition = transform.position;
 
             yield return new WaitForSeconds(atkDelay);
 
-            Destroy(PhotonNetwork.Instantiate("muzzle_ravagebell", this.transform.position + (Vector3.up * 2f), shooterPosition.rotation), 0.5f);
-            projectile = PhotonNetwork.Instantiate("projectile_ravagebell", this.transform.position + (Vector3.up * 2f), shooterPosition.rotation);
+            Destroy(PhotonNetwork.Instantiate("muzzle_ravagebell", transform.position + (Vector3.up * 2f), shooterPosition.rotation), 0.5f);
+            projectile = PhotonNetwork.Instantiate("projectile_ravagebell", transform.position + (Vector3.up * 2f), shooterPosition.rotation);
             projectile.GetComponent<Projectile>().AttackToDirection(Vector3.up, AtkInfo.Range, projectileSpeed);
             projectile.GetComponent<Projectile>().ownerID = shooter;
 
             photonView.RPC("EndAttack", controller, shooter);
 
-            yield return new WaitForSeconds(dropDelay);
+            yield return new WaitForSeconds(dropDelay + atkDelay);
 
             projectile = PhotonNetwork.Instantiate("projectile_ravagebell",
-                this.transform.position + (shooterAttackDir.normalized * curdistance * AtkInfo.Range) + (Vector3.up * AtkInfo.Range),
+                shotPosition + (shooterAttackDir.normalized * curdistance * AtkInfo.Range) + (Vector3.up * AtkInfo.Range),
                 shooterPosition.rotation);
             projectile.GetComponent<Projectile>().AttackToDirection(Vector3.down, AtkInfo.Range, projectileSpeed);
             projectile.GetComponent<Projectile>().ownerID = shooter;
@@ -121,6 +122,7 @@ namespace PlayerSpace
 
             GameObject projectile;
             AtkTrigger();
+            Vector3 shotPosition = transform.position;
 
             yield return new WaitForSeconds(atkDelay);
 
@@ -134,8 +136,8 @@ namespace PlayerSpace
 
             yield return new WaitForSeconds(dropDelay);
 
-            projectile = Instantiate(prefab_Projectile, 
-                this.transform.position + (shooterAttackDir.normalized * curdistance * AtkInfo.Range) + (Vector3.up * AtkInfo.Range),
+            projectile = Instantiate(prefab_Projectile,
+                shotPosition + (shooterAttackDir.normalized * curdistance * AtkInfo.Range) + (Vector3.up * AtkInfo.Range),
                 playerRotation);
             projectile.GetComponent<Projectile>().AttackToDirection(Vector3.down, AtkInfo.Range, projectileSpeed);
             projectile.GetComponent<Projectile>().ownerID = ownerName;

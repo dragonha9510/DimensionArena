@@ -110,6 +110,7 @@ namespace PlayerSpace
                 return;
 
             attackDirection = direction;
+            curdistance = direction.magnitude;
             attackDirection.Normalize();
             StartCoroutine(LookAttackDirection());  
         }

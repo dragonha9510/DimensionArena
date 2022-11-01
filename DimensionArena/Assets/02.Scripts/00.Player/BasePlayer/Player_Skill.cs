@@ -7,13 +7,17 @@ namespace PlayerSpace
 {
     public abstract class Player_Skill : MonoBehaviourPun
     {
+        // Animator
+        protected Animator animator;
+
         protected Player owner;
         public Player Owner => owner;
 
         [SerializeField]  private GameObject skillRangeMesh;
         [HideInInspector] public Vector3 direction;
         [HideInInspector] public Vector3 skillDirection;
-    
+
+        private float rotationSpeed = 1080.0f;
 
         private Attack_Type type;
         public Attack_Type Type => type;
@@ -26,6 +30,8 @@ namespace PlayerSpace
         public float MaxRange => maxRange;
         protected virtual void Start()
         {
+            animator = GetComponentInChildren<Animator>();
+
             if (skillRangeMesh == null)
             {
                 GameObject temp = Instantiate(skillRangeMesh, transform);
@@ -42,18 +48,14 @@ namespace PlayerSpace
                 owner = GetComponent<Player>();
         }
 
-        protected virtual void LateUpdate()
+        public void OnSkillMesh()
         {
             if (owner.Skill.direction.AlmostEquals(Vector3.zero, float.Epsilon))
                 return;
 
             float distance = maxRange;
             rangeComponent.Calculate_Range(distance, direction);
-        }    
-        
 
-        public void OnSkillMesh()
-        {
             skillRangeMesh.gameObject.SetActive(true);
         }
 
@@ -62,11 +64,30 @@ namespace PlayerSpace
             skillRangeMesh.gameObject.SetActive(false);
         }
 
-        public abstract void UseSkill(Vector3 direction, float magnitude);
+        public void UseSkill(Vector3 attackdirection, float magnitude)
+        {
+            skillDirection = attackdirection;
+            StartCoroutine(LookAttackDirection(attackdirection, magnitude));
 
+            // 방향이 다 돌아가고 나서 공격 실행
+            ActSkill(attackdirection, magnitude);
+        }
 
-        //protected abstract void InitializeSkillInfo(float damage, float velocity);
-    
-        
+        public abstract void ActSkill(Vector3 attackdirection, float magnitude);
+
+        IEnumerator LookAttackDirection(Vector3 attackDirection, float magnitude)
+        {
+            Vector3 forward = Vector3.Slerp(transform.forward,
+                attackDirection, rotationSpeed * Time.deltaTime / Vector3.Angle(transform.forward, direction));
+
+            while (Vector3.Angle(attackDirection, transform.forward) >= 5)
+            {
+                yield return null;
+                forward = Vector3.Slerp(transform.forward,
+                attackDirection, rotationSpeed * Time.deltaTime / Vector3.Angle(transform.forward, attackDirection));
+
+                transform.LookAt(transform.position + forward);
+            }
+        }
     }
 }

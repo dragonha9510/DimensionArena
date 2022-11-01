@@ -10,6 +10,10 @@ namespace PlayerSpace
         private Atk_Parabola parabola;
         private Parabola_Projectile projectile;
 
+        public override void ActSkill(Vector3 attackdirection, float magnitude)
+        {
+        }
+
         protected override void Start()
         {
             base.Start();
@@ -20,11 +24,5 @@ namespace PlayerSpace
 
                 Destroy(this);
         }
-
-        public override void UseSkill(Vector3 direction, float magnitude)
-        {
-            
-        }
-
     }
 }
