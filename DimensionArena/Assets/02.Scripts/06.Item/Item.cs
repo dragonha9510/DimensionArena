@@ -67,10 +67,11 @@ public abstract class Item : MonoBehaviourPun
     
     private void OnCollisionEnter(Collision collision)
     {
-        if (!PhotonNetwork.IsMasterClient)
+        if (!PhotonNetwork.IsMasterClient || null == rigidBody)
             return;
         if (collision.gameObject.tag == "ParentGround")
         {
+            Debug.Log("아이템 콜리전 엔터");
             if (ColliderCount <= StopCount)
             {
                 boingPower *= decreasePower;

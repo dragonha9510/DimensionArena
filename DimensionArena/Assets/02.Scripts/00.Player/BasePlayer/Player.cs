@@ -39,11 +39,15 @@ namespace PlayerSpace
 
         private Rigidbody rigid;
 
- 
         /// =============================
 
         private string nickName;
         public string NickName => nickName;
+
+        private bool isInMangeticField = false;
+        // 뭣같은 자기장 알고리즘 때문에 생긴 변수
+        private int collisionMagneticCount = 0;
+
 
         //나중에 고칠것
         public bool CanDirectionChange { get; set; }
@@ -165,24 +169,59 @@ namespace PlayerSpace
         }
 
 
+        IEnumerator InMangneticField(float time,float damage)
+        {
+            while(true)
+            {
+                if(false == isInMangeticField)
+                    yield break;
+                yield return new WaitForSeconds(time);
+                photonView.RPC(nameof(OnTriggerToMangeticField), RpcTarget.All, this.gameObject.name, damage);
+                yield return null;
+            }
+        }
 
         [PunRPC]
-        public void OnTriggerToMangeticField(string ownerID, float damage)
+        public void OnTriggerToMangeticField(string ownerID,float damage)
         {
             PlayerInfoManager.Instance.CurHpDecrease(ownerID, damage);
 
             PlayerInfoManager.Instance.DeadCheckCallServer(ownerID);
         }
 
-        private void OnTriggerStay(Collider other)
+        private void OnTriggerEnter(Collider other)
         {
             if (!PhotonNetwork.IsMasterClient)
                 return;
             if (other.gameObject.tag == "MagneticField")
             {
-                photonView.RPC(nameof(OnTriggerToMangeticField), RpcTarget.All, this.gameObject.name, other.GetComponent<MagneticCloudEffectCreator>().FieldDamage);
-
+                ++collisionMagneticCount;
+                Debug.Log("자기장 닿인 카운트 : " + collisionMagneticCount.ToString());
+                isInMangeticField = true;
+                if(collisionMagneticCount == 1)
+                {
+                    Debug.Log("자기장 안에 있음");
+                    StartCoroutine(InMangneticField
+                    (other.GetComponent<MagneticCloudEffectCreator>().DamageTickCount
+                    , other.GetComponent<MagneticCloudEffectCreator>().FieldDamage));
+                }
             }
         }
+
+        private void OnTriggerExit(Collider other)
+        {
+            if (!PhotonNetwork.IsMasterClient)
+                return;
+            if (other.gameObject.tag == "MagneticField")
+            {
+                --collisionMagneticCount;
+                if (0 == collisionMagneticCount)
+                {
+                    Debug.Log("자기장 멈춰");
+                    isInMangeticField = false;
+                }
+            }
+        }
+
     }
 }

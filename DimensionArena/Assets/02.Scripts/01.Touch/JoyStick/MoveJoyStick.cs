@@ -30,7 +30,7 @@ public class MoveJoyStick : BaseJoyStick
 
     public override void SetDirection()
     {
-        player.direction 
+        player.direction
             = new Vector3( (lever.position.x - rectTransform.position.x) * 0.01f, 0, (lever.position.y - rectTransform.position.y) * 0.01f);
     }
 

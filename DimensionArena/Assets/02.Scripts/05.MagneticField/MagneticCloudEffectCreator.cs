@@ -11,8 +11,11 @@ public enum MagneticCloudPos
 public class MagneticCloudEffectCreator : MonoBehaviour
 {
     [SerializeField]
-    private float fieldDamage = 10;
+    private float fieldDamage = 10f;
     public float FieldDamage { get { return fieldDamage; } }
+    [SerializeField]
+    private float damageTickCount = 2f;
+    public float DamageTickCount { get { return damageTickCount; } }
 
     [SerializeField]
     private int createCloudCount = 10;
