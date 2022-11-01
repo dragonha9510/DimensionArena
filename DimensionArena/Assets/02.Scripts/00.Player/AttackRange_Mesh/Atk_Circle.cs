@@ -11,6 +11,6 @@ public class Atk_Circle : Atk_Range
         if (Mathf.Approximately(direction.magnitude, 0))
             return;
 
-        transform.position = owner.position + direction * maxdistance;
+        transform.position = owner.position + direction * maxdistance + Vector3.up * 0.01f;
     }
 }

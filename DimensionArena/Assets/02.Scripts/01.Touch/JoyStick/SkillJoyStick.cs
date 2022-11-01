@@ -29,6 +29,14 @@ public class SkillJoyStick : BaseJoyStick
     {
         if (skillImg.fillAmount.Equals(1.0f))
             base.OnDrag(eventData);
+
+        if(isCancel)
+        {
+            player.Skill.OffSkillMesh();
+            return;
+        }
+
+        player.Skill.OnSkillMesh();
     }
 
     public override void OnEndDrag(PointerEventData eventData)
