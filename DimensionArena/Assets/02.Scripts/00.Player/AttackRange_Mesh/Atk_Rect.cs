@@ -21,10 +21,10 @@ public class Atk_Rect : Atk_Range
             }
         }
 
-        transform.localScale = new Vector3(0.5f, 1, distance);
+        transform.localScale = new Vector3(transform.localScale.x, 1, distance);
 
         transform.position = owner.position +
-                                          direction.normalized * ((distance * 0.5f) + 1f)
+                                          direction.normalized * ((distance * 0.5f) + 0.5f)
                                           + new Vector3(0, 0.1f, 0);
         transform.forward =
                 (owner.position - transform.position).normalized;

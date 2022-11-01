@@ -39,7 +39,7 @@ namespace PlayerSpace
         private Attack_Type type;
         public  Attack_Type Type => type;
 
-        private float rotationSpeed = 1080.0f;
+        private float rotationSpeed = 1240.0f;
 
         protected bool isAttack;
         public bool IsAttack { get { return isAttack; } }

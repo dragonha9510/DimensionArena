@@ -7,6 +7,9 @@ namespace PlayerSpace
 {
     public class Sesillia : Player
     {
+
+        [SerializeField] private float hpPercentPassive;
+
         protected override void Awake()
         {
             base.Awake();
@@ -22,6 +25,16 @@ namespace PlayerSpace
         protected override void Start()
         {
             base.Start();
+        }
+
+        
+        IEnumerator StartPassive()
+        {
+            while(true)
+            {
+                yield return new WaitUntil(() => Info.CurHP / Info.MaxHP < hpPercentPassive);
+
+            }
         }
     }
 }
