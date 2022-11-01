@@ -24,6 +24,7 @@ public class Atk_Parabola : Atk_Range
     {
         mesh = GetComponent<MeshFilter>().mesh;
         gravity = Mathf.Abs(Physics.gravity.y);
+        this.gameObject.SetActive(false);
     }
 
     private void OnValidate()

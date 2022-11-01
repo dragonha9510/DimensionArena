@@ -67,7 +67,7 @@ public class Projectile : AttackObject
                     if (hitPrefab != null)
                     {
                         var hitVFX = PhotonNetwork.Instantiate(hitPrefab.name, pos, rot);
-                        var psHit = hitVFX.GetComponent<ParticleSystem>();
+                        var psHit = hitVFX.GetComponentInChildren<ParticleSystem>();
                         if (psHit != null)
                             Destroy(hitVFX, psHit.main.duration);
                         else
