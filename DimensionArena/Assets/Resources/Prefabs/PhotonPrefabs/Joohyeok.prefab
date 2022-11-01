@@ -738,10 +738,8 @@ MonoBehaviour:
     maxHP: 200
     curHP: 200
     curSkillPoint: 100
-    originalSpeed: 2
-    curSpeed: 2.3
-    maxSpeed: 10
     maxSkillPoint: 100
+    speed: 2.3
     curShield: 0
     maxSheld: 0
     additionalDmg: 0
