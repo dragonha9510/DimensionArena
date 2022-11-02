@@ -3351,14 +3351,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8aa0bf0ed285994b911c9d7f6252dd7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isRotation: 0
   atkInfo:
-    range: 6
-    maxMagazine: 6
+    range: 7
+    maxMagazine: 1
     reloadTime: 1
   atkRangeMesh: {fileID: 4901776913499584426}
   direction: {x: 0, y: 0, z: 0}
   attackDirection: {x: 0, y: 0, z: 0}
-  projectileSpeed: 8
+  projectileSpeed: 30
   atkDelay: 0.2
   dropDelay: 1
   prefab_Muzzle: {fileID: 1072413172352700, guid: f1e8b976982c5524a948dd7aaa20669d,
@@ -3378,6 +3379,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5323cafb5b1d6bb4b923c037fc39c037, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isRotation: 0
   skillRangeMesh: {fileID: 4901776912704385013}
   direction: {x: 0, y: 0, z: 0}
   skillDirection: {x: 0, y: 0, z: 0}
@@ -3386,11 +3388,11 @@ MonoBehaviour:
     type: 3}
   muzzlePrefab: {fileID: 1072413172352700, guid: f1e8b976982c5524a948dd7aaa20669d,
     type: 3}
-  projectileSpeed: 8
+  projectileSpeed: 30
   shotCnt: 3
-  dropDelay: 1
+  dropDelay: 0.66
   attackInterval: 0.1
-  atkDelay: 0.2
+  atkDelay: 0.05
 --- !u!1 &1473817681718991573
 GameObject:
   m_ObjectHideFlags: 0
@@ -4704,6 +4706,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_RootOrder
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8470181645017657382, guid: 7766c49707403134ca396ddacf35e50d,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8470181645017657382, guid: 7766c49707403134ca396ddacf35e50d,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 8470181645017657382, guid: 7766c49707403134ca396ddacf35e50d,
         type: 3}

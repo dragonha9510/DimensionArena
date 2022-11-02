@@ -18,7 +18,6 @@ namespace PlayerSpace
         [SerializeField] private GameObject prefab_Projectile;
         [SerializeField] private AudioSource audioSource;
 
-
         protected override void InitalizeAtkInfo()
         {
 
@@ -73,6 +72,7 @@ namespace PlayerSpace
             //yield return new WaitForSeconds(atkDelay);
 
             ///
+            animator.speed = 1;
             AtkTrigger();
             Vector3 shotPosition = transform.position;
 
@@ -121,6 +121,7 @@ namespace PlayerSpace
             atkInfo.SubCost(atkInfo.ShotCost);
 
             GameObject projectile;
+            animator.speed = 1;
             AtkTrigger();
             Vector3 shotPosition = transform.position;
 

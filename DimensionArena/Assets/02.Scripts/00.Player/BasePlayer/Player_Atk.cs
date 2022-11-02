@@ -19,6 +19,8 @@ namespace PlayerSpace
     {
         protected Animator animator;
 
+        [SerializeField] private bool isRotation = true;
+
         public event Action<float> eChangeMagazineCost = (param) => { };
         public event Action eCantAttack = () => { };
 
@@ -117,16 +119,19 @@ namespace PlayerSpace
 
         IEnumerator LookAttackDirection()
         {
-            Vector3 forward = Vector3.Slerp(transform.forward,
-                attackDirection, rotationSpeed * Time.deltaTime / Vector3.Angle(transform.forward, direction));
-
-            while (Vector3.Angle(attackDirection, transform.forward) >= 5)
+            if (isRotation)
             {
-                yield return null;
-                forward = Vector3.Slerp(transform.forward,
-                attackDirection, rotationSpeed * Time.deltaTime / Vector3.Angle(transform.forward, attackDirection));
+                Vector3 forward = Vector3.Slerp(transform.forward,
+                    attackDirection, rotationSpeed * Time.deltaTime / Vector3.Angle(transform.forward, direction));
 
-                transform.LookAt(transform.position + forward);
+                while (Vector3.Angle(attackDirection, transform.forward) >= 5)
+                {
+                    yield return null;
+                    forward = Vector3.Slerp(transform.forward,
+                    attackDirection, rotationSpeed * Time.deltaTime / Vector3.Angle(transform.forward, attackDirection));
+
+                    transform.LookAt(transform.position + forward);
+                }
             }
             // 방향이 다 돌아가고 나서 공격 실행
             Attack();
