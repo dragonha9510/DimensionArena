@@ -62,8 +62,10 @@ public class Projectile_Ravagebell : Projectile
                     Destroy(hitVFX, psChild.main.duration);
                 }
             }
+            Vector3 fieldPosition = transform.position;
+            fieldPosition.y = 0.01f;
 
-            Instantiate(PoisonTile, transform.position - (Vector3.up * transform.position.y), PoisonTile.transform.rotation);
+            Instantiate(PoisonTile, fieldPosition, PoisonTile.transform.rotation);
         }
         else
         {
@@ -121,7 +123,10 @@ public class Projectile_Ravagebell : Projectile
                 }
             }
 
-            PhotonNetwork.Instantiate(PoisonTile.name, transform.position - (Vector3.up * transform.position.y), PoisonTile.transform.rotation);
+            Vector3 fieldPosition = transform.position;
+            fieldPosition.y = 0.01f;
+
+            PhotonNetwork.Instantiate(PoisonTile.name, fieldPosition, PoisonTile.transform.rotation);
         }
     }
 }
