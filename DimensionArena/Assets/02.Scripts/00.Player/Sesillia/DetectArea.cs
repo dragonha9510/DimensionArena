@@ -9,20 +9,6 @@ public class DetectArea : MonoBehaviour
     List<Collision> collisions = new List<Collision>();
     bool isCantStep;
 
-    private void Update()
-    {
-        Debug.Log(isCantStep);
-    }
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        isCantStep = true;
-    }
-
-
-    private void OnCollisionExit(Collision collision)
-    {
-        isCantStep = false;
-    }
+  
   
 }
