@@ -10944,7 +10944,7 @@ PrefabInstance:
     - target: {fileID: 8669601969195298653, guid: ba5c292d70fd27d43a65a2561bb4b717,
         type: 3}
       propertyPath: decreaseTime
-      value: 120
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 8669601969195298653, guid: ba5c292d70fd27d43a65a2561bb4b717,
         type: 3}

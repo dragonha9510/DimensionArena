@@ -400,6 +400,9 @@ MonoBehaviour:
     curShield: 0
     maxSheld: 0
     additionalDmg: 0
+  hpPercentRatio: 0
+  hpPercentShield: 0
+  shieldPercent: 0
 --- !u!114 &284761427
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -493,7 +496,7 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 284761422}
   - {fileID: 284761421}
-  sceneViewId: 2
+  sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
 --- !u!114 &284761422
@@ -1417,7 +1420,7 @@ MonoBehaviour:
   OwnershipTransfer: 0
   observableSearch: 2
   ObservedComponents: []
-  sceneViewId: 1
+  sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
 --- !u!114 &2276796245745797169
@@ -1816,7 +1819,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43922b984d98d784a9d345316c46090e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ditectionRange: {x: 1, y: 2}
+  detectionRange: {x: 0, y: 0}
 --- !u!1001 &2276796244301202113
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2380,4 +2383,4 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   Additional: {fileID: 0}
-  ditection: {fileID: 0}
+  detection: {fileID: 0}
