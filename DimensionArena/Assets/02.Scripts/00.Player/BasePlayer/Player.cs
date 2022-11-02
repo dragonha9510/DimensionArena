@@ -169,44 +169,6 @@ namespace PlayerSpace
         }
 
 
-        IEnumerator InMangneticField(float time,float damage)
-        {
-            while(true)
-            {
-                if(false == isInMangeticField)
-                    yield break;
-                yield return new WaitForSeconds(time);
-                photonView.RPC(nameof(OnTriggerToMangeticField), RpcTarget.All, this.gameObject.name, damage);
-                yield return null;
-            }
-        }
-
-        [PunRPC]
-        public void OnTriggerToMangeticField(string ownerID,float damage)
-        {
-            PlayerInfoManager.Instance.CurHpDecrease(ownerID, damage);
-
-            PlayerInfoManager.Instance.DeadCheckCallServer(ownerID);
-        }
-
-        private void OnTriggerEnter(Collider other)
-        {
-            if (!PhotonNetwork.IsMasterClient)
-                return;
-            if (other.gameObject.tag == "MagneticField")
-            {
-                ++collisionMagneticCount;
-                Debug.Log("자기장 닿인 카운트 : " + collisionMagneticCount.ToString());
-                isInMangeticField = true;
-                if(collisionMagneticCount == 1)
-                {
-                    Debug.Log("자기장 안에 있음");
-                    StartCoroutine(InMangneticField
-                    (other.GetComponent<MagneticCloudEffectCreator>().DamageTickCount
-                    , other.GetComponent<MagneticCloudEffectCreator>().FieldDamage));
-                }
-            }
-        }
 
         private void OnTriggerExit(Collider other)
         {
