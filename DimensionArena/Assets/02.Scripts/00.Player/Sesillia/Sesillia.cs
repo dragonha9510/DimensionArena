@@ -8,14 +8,18 @@ namespace PlayerSpace
 {
     public class Sesillia : Player
     {
-        [Header("Sesillia Region")]
-        [SerializeField] private float hpPercentRatio;
-        [SerializeField] private float hpPercentShield;
-        [SerializeField] private float healTickTime;
+        [Header("Sesillia Passive Active Percent")]
+        [SerializeField] private float shieldPassivePercent;
+
+        [Header("Sesillia heal, shield Amount")]
+        [SerializeField] private float healPercent;
         [SerializeField] private float shieldPercent;
+
+        [Header("Sesillia Passive Delay Time")]
+        [SerializeField] private float healTickTime;
         [SerializeField] private float shieldPassiveCount;
         bool isBattle;
-        
+
         protected override void Awake()
         {
             base.Awake();
@@ -32,8 +36,8 @@ namespace PlayerSpace
         {
             base.Start();
 
-            if(PhotonNetwork.InRoom)
-                StartCoroutine(StartPassiveFromOnline());      
+            if (PhotonNetwork.InRoom)
+                StartCoroutine(StartPassiveFromOnline());
             else
                 StartCoroutine(StartPassiveFromOff());
 
@@ -53,19 +57,16 @@ namespace PlayerSpace
                 //배틀중이 아닐때 체력을 키운다.
                 if (!Info.IsBattle && !Info.MaxHP.Equals(info.CurHP))
                 {
-                    if(info.MaxHP * hpPercentRatio >= info.CurHP)
+                    if (healTime >= healTickTime)
                     {
-                        if(healTime >= healTickTime)
-                        {
-                            Debug.Log(info.MaxHP * hpPercentRatio + "만큼 회복..");
-                            PlayerInfoManager.Instance.CurHpIncrease(gameObject.name, info.MaxHP * hpPercentRatio);
-                            healTime = 0;
-                        }
+                        Debug.Log(info.MaxHP * healPercent + "만큼 회복..");
+                        PlayerInfoManager.Instance.CurHpIncrease(gameObject.name, info.MaxHP * healPercent);
+                        healTime = 0;
                     }
                 }
 
                 //체력이 일정 이하일때 보호막 생성
-                if(Info.CurHP / Info.MaxHP < hpPercentShield)
+                if (Info.CurHP / Info.MaxHP < shieldPassivePercent)
                 {
                     if (shieldtime >= shieldPassiveCount)
                     {
@@ -95,21 +96,18 @@ namespace PlayerSpace
                 //배틀중이 아닐때 체력을 키운다.
                 if (!Info.IsBattle && !Info.MaxHP.Equals(info.CurHP))
                 {
-                    if (info.MaxHP * hpPercentRatio >= info.CurHP)
+                    if (healTime >= healTickTime)
                     {
-                        if (healTime >= healTickTime)
-                        {
-                            Debug.Log(info.MaxHP * hpPercentRatio + "만큼 회복..");
-                            info.Heal(info.MaxHP * hpPercentRatio);
-                            healTime = 0f;
-                        }
+                        Debug.Log(info.MaxHP * healPercent + "만큼 회복..");
+                        info.Heal(info.MaxHP * healPercent);
+                        healTime = 0;
                     }
                 }
 
                 //체력이 일정 이하일때 보호막 생성
-                if (Info.CurHP / Info.MaxHP < hpPercentShield)
+                if (Info.CurHP / Info.MaxHP < shieldPassivePercent)
                 {
-                    if (shieldtime > shieldPassiveCount)
+                    if (shieldtime >= shieldPassiveCount)
                     {
                         Debug.Log("실드 패시브 활성화!");
                         info.GetShield(info.MaxHP * shieldPercent);
@@ -126,5 +124,3 @@ namespace PlayerSpace
 
     }
 }
-
-

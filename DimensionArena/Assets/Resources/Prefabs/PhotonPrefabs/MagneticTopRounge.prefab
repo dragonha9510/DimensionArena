@@ -112,7 +112,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f87cef5fcdd35ce4f88b58c710f832ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fieldDamage: 1
+  fieldDamage: 10
   damageTickCount: 2
   createCloudCount: 2
   cloudSpacing: 2

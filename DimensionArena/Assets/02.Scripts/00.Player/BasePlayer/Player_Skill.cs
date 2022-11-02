@@ -19,7 +19,7 @@ namespace PlayerSpace
 
         private float rotationSpeed = 1080.0f;
 
-        private Attack_Type type;
+        protected Attack_Type type;
         public Attack_Type Type => type;
         protected Atk_Range rangeComponent;
 

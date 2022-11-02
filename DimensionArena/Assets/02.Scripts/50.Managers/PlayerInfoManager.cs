@@ -235,6 +235,7 @@ namespace ManagerSpace
                 target.BattleOn();        
                 
             }
+
         }
 
         public void DeadCheckCallServer(ENVIROMENT enviroment)

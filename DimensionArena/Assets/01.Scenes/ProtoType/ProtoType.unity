@@ -967,7 +967,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   WatingCanvas: {fileID: 1250774241}
   spawnPoint: []
-  playerPrefab: {fileID: 2737819322045720829, guid: a14dcf423470d6f48b983a3345b4ec9a,
+  playerPrefab: {fileID: 2276796244850972979, guid: d298b730270c5a549951545db8b24d42,
     type: 3}
 --- !u!4 &1058569137
 Transform:

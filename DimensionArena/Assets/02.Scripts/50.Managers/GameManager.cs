@@ -148,6 +148,9 @@ public class GameManager : MonoBehaviourPunCallbacks, IPunObservable
             }
         }
 
+        //대기 시간
+        yield return new WaitForSeconds(0.2f);
+
         photonView.RPC(nameof(PlayerSpawnEnd), RpcTarget.All);
 
     }

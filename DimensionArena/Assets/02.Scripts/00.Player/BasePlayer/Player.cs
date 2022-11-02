@@ -188,13 +188,20 @@ namespace PlayerSpace
         }
 
 
+
+
+       
+
+
         IEnumerator InMangneticField(float time,float damage)
         {
+
+            WaitForSeconds delayTime = new WaitForSeconds(time);
             while(true)
             {
                 if(false == isInMangeticField)
                     yield break;
-                yield return new WaitForSeconds(time);
+                yield return delayTime;
                 photonView.RPC(nameof(OnTriggerToMangeticField), RpcTarget.All, this.gameObject.name, damage);
                 yield return null;
             }
@@ -203,6 +210,7 @@ namespace PlayerSpace
         [PunRPC]
         public void OnTriggerToMangeticField(string ownerID,float damage)
         {
+
             PlayerInfoManager.Instance.CurHpDecrease(ownerID, damage);
 
             PlayerInfoManager.Instance.DeadCheckCallServer(ownerID);

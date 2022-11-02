@@ -17,7 +17,6 @@ public class Projectile : AttackObject
         SoundManager.Instance.PlaySFXOneShotInRange(2.0f, this.transform, "juhyeok_shot");
 
         originPos = transform.position;
-        //���� ����
         //SoundManager.Instance.PlaySFXOneShot("JiJooNormalEffect");
     }
 

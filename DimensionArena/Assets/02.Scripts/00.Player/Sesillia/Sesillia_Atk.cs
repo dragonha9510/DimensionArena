@@ -66,6 +66,8 @@ public class Sesillia_Atk : Player_Atk
     {
         GameObject projectile;
         Transform shooterPosition = PlayerInfoManager.Instance.getPlayerTransform(shooter);
+        WaitForSeconds attackDelay = new WaitForSeconds(attack_delay);
+
         photonView.RPC(nameof(SubMagazine), controller, shooter);
         float offset;
 
@@ -73,10 +75,10 @@ public class Sesillia_Atk : Player_Atk
         for (int i = 0; i < projectileCount; ++i)
         {
             offset = (i % 2 == 0) ? 0.3f : -0.3f;
-            projectile = PhotonNetwork.Instantiate("projectile", shooterPosition.position + (Vector3.right * offset) + (Vector3.up * 0.5f), shooterPosition.rotation);
+            projectile = PhotonNetwork.Instantiate("SA_Projectile", shooterPosition.position + (Vector3.right * offset) + (Vector3.up * 0.5f), shooterPosition.rotation);
             projectile.GetComponent<Projectile>().AttackToDirection(shooterAttackDir, AtkInfo.Range, projectileSpeed);
             projectile.GetComponent<Projectile>().ownerID = shooter;
-            yield return new WaitForSeconds(attack_delay);
+            yield return attackDelay;
         }
 
 
@@ -103,8 +105,7 @@ public class Sesillia_Atk : Player_Atk
 
 
     private IEnumerator AttackCoroutineSingle(string shooter, Quaternion playerRotation, Vector3 shooterAttackDir, string ownerName)
-    {
-        isAttack = true;
+    {       
         atkInfo.SubCost(atkInfo.ShotCost);
 
         GameObject projectile;

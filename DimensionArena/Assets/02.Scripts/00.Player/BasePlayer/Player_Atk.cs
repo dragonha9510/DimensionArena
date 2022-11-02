@@ -12,6 +12,7 @@ namespace PlayerSpace
         RECT,
         PARABOLA,
         CIRCLE,
+        FIXEDCIRCLE,
         Attack_Type_End
     }
 
@@ -91,8 +92,8 @@ namespace PlayerSpace
 
         protected virtual void AtkTrigger()
         {
-            owner.Info.BattleOn();
             animator.SetTrigger("attack");
+            owner.Info.BattleOn();
         }
 
         public abstract void Attack();
@@ -156,6 +157,10 @@ namespace PlayerSpace
             else if(range as Atk_Circle)
             {
                 return Attack_Type.CIRCLE;
+            }
+            else if(range as Atk_FixedCircle)
+            {
+                return Attack_Type.FIXEDCIRCLE;
             }
             else
             {
