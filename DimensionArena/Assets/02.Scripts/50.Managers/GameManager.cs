@@ -99,7 +99,7 @@ public class GameManager : MonoBehaviourPunCallbacks, IPunObservable
     IEnumerator WaitAllPlayers()
     {
         PhotonNetwork.Instantiate(PHOTONPATH.PHOTONPATH_PREFAPBFOLDER
-          + playerPrefab.name, Vector3.zero, Quaternion.identity);
+          + SelectedCharacter.Instance.characterName, Vector3.zero, Quaternion.identity);
 
         PlayerInfoManager.Instance.RegisterPlayer();
 

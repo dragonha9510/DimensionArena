@@ -30,7 +30,7 @@ public class MaintainScale : MonoBehaviour
             if (maintainRatio)
             {
                 float maxValue = transform.localScale.x < transform.localScale.y ? transform.localScale.x : transform.localScale.y;
-                transform.localScale = new Vector3(ratio.x * maxValue, ratio.y * maxValue, 1);
+                transform.localScale = new Vector3(ratio.x * maxValue, ratio.y * maxValue, ratio.z * maxValue);
             }
         }
     }

@@ -63,7 +63,7 @@ public class Projectile_Ravagebell : Projectile
                 }
             }
             Vector3 fieldPosition = transform.position;
-            fieldPosition.y = 0.01f;
+            fieldPosition.y = 0.038f;
 
             Instantiate(PoisonTile, fieldPosition, PoisonTile.transform.rotation);
         }
@@ -124,7 +124,7 @@ public class Projectile_Ravagebell : Projectile
             }
 
             Vector3 fieldPosition = transform.position;
-            fieldPosition.y = 0.01f;
+            fieldPosition.y = 0.038f;
 
             PhotonNetwork.Instantiate(PoisonTile.name, fieldPosition, PoisonTile.transform.rotation);
         }

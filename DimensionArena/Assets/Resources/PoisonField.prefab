@@ -9604,8 +9604,8 @@ ParticleSystem:
     startColor:
       serializedVersion: 2
       minMaxState: 2
-      minColor: {r: 0.7529412, g: 0.9647059, b: 0, a: 1}
-      maxColor: {r: 0.49019608, g: 1, b: 0, a: 1}
+      minColor: {r: 0.86274517, g: 1, b: 0, a: 1}
+      maxColor: {r: 0.3647059, g: 1, b: 0, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -14056,7 +14056,7 @@ GameObject:
   - component: {fileID: 198245718579790338}
   - component: {fileID: 199820046345470908}
   - component: {fileID: -2539891349493049266}
-  - component: {fileID: 8843848133763690579}
+  - component: {fileID: 3279797304468797986}
   m_Layer: 0
   m_Name: PoisonField
   m_TagString: Untagged
@@ -18888,21 +18888,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   deathTime: 2
   delayTime: 0.1
---- !u!114 &8843848133763690579
+--- !u!114 &3279797304468797986
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1749833007681888}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 614c219b13d0e73448dddb9417e82300, type: 3}
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  deathTime: 2
-  delayTime: 2
-  hegiht: 0.02
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents: []
+  sceneViewId: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1 &1976213851748652
 GameObject:
   m_ObjectHideFlags: 0

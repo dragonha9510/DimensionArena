@@ -41,6 +41,14 @@ public class SkillJoyStick : BaseJoyStick
 
     public override void OnEndDrag(PointerEventData eventData)
     {
+        if (isCancel)
+        {
+            isCancel = false;
+            return;
+        }
+
+        isDragging = true;
+
         if (skillImg.fillAmount.Equals(1.0f))
         {
             //방향, 거리
@@ -94,5 +102,15 @@ public class SkillJoyStick : BaseJoyStick
             SetOffSkillLever();
     }
 
+    public override void OnPointerClick(PointerEventData eventData)
+    {
+        if (isDragging)
+        {
+            isDragging = false;
+            return;
+        }
+
+        // 자동공격 루틴 추가
+    }
 }
 

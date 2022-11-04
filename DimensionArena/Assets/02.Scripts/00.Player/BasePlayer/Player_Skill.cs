@@ -76,6 +76,8 @@ namespace PlayerSpace
 
         IEnumerator LookAttackDirection(Vector3 attackDirection, float magnitude)
         {
+            ActSkill(attackDirection, magnitude);
+         
             if (isRotation)
             {
                 Vector3 forward = Vector3.Slerp(transform.forward,
@@ -90,8 +92,6 @@ namespace PlayerSpace
                     transform.LookAt(transform.position + forward);
                 }
             }
-            // 방향이 다 돌아가고 나서 공격 실행
-            ActSkill(attackDirection, magnitude);
         }
     }
 }
