@@ -12,6 +12,7 @@ namespace PlayerSpace
         RECT,
         PARABOLA,
         CIRCLE,
+        SECTORFORM,
         FIXEDCIRCLE,
         Attack_Type_End
     }
@@ -112,8 +113,8 @@ namespace PlayerSpace
         {
             if (isAttack)
                 return;
-
-            attackDirection = direction;
+            if(false != owner.CanDirectionChange)
+                attackDirection = direction;
             curdistance = direction.magnitude;
             attackDirection.Normalize();
             StartCoroutine(LookAttackDirection());  
@@ -169,6 +170,10 @@ namespace PlayerSpace
             else if(range as Atk_FixedCircle)
             {
                 return Attack_Type.FIXEDCIRCLE;
+            }
+            else if (range as FieldOfView)
+            {
+                return Attack_Type.SECTORFORM;
             }
             else
             {

@@ -17,6 +17,7 @@ namespace PlayerSpace
         /// =============================
         /// Direction Region
         /// =============================
+
         [SerializeField] private Transform directionLocation;
         [HideInInspector] public Vector3 direction;
 
@@ -44,8 +45,8 @@ namespace PlayerSpace
         private string nickName;
         public string NickName => nickName;
 
-        private bool isInMangeticField = false;
         // 뭣같은 자기장 알고리즘 때문에 생긴 변수
+        private bool isInMangeticField = false;
         private int collisionMagneticCount = 0;
 
 
@@ -100,6 +101,24 @@ namespace PlayerSpace
 
             //Add Event
             Info.EDisActivePlayer += DisActiveAnimation;
+            Info.EBattleStateOn += BattleStateProcess;
+        }
+
+        private Coroutine lastCoroutine = null;
+        private void BattleStateProcess()
+        {
+            if(lastCoroutine != null)
+                StopCoroutine(lastCoroutine);
+
+            lastCoroutine = StartCoroutine(BattleStateProcessCoroutine());
+        }
+
+        private IEnumerator BattleStateProcessCoroutine()
+        {
+            Debug.Log("배틀 상태 ON");
+            yield return new WaitForSeconds(info.BattleOffTime);
+            info.BattleOff();
+            Debug.Log("배틀 상태 OFF");
         }
 
         private void Update()
@@ -169,6 +188,44 @@ namespace PlayerSpace
         }
 
 
+        IEnumerator InMangneticField(float time,float damage)
+        {
+            while(true)
+            {
+                if(false == isInMangeticField)
+                    yield break;
+                yield return new WaitForSeconds(time);
+                photonView.RPC(nameof(OnTriggerToMangeticField), RpcTarget.All, this.gameObject.name, damage);
+                yield return null;
+            }
+        }
+
+        [PunRPC]
+        public void OnTriggerToMangeticField(string ownerID,float damage)
+        {
+            PlayerInfoManager.Instance.CurHpDecrease(ownerID, damage);
+
+            PlayerInfoManager.Instance.DeadCheckCallServer(ownerID);
+        }
+
+        private void OnTriggerEnter(Collider other)
+        {
+            if (!PhotonNetwork.IsMasterClient)
+                return;
+            if (other.gameObject.tag == "MagneticField")
+            {
+                ++collisionMagneticCount;
+                Debug.Log("자기장 닿인 카운트 : " + collisionMagneticCount.ToString());
+                isInMangeticField = true;
+                if(collisionMagneticCount == 1)
+                {
+                    Debug.Log("자기장 안에 있음");
+                    StartCoroutine(InMangneticField
+                    (other.GetComponent<MagneticCloudEffectCreator>().DamageTickCount
+                    , other.GetComponent<MagneticCloudEffectCreator>().FieldDamage));
+                }
+            }
+        }
 
         private void OnTriggerExit(Collider other)
         {

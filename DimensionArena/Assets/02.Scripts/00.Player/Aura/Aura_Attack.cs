@@ -64,6 +64,7 @@ namespace PlayerSpace
         IEnumerator AttackTime()
         {
             owner.CanDirectionChange = false;
+            Debug.Log("방향고정");
             yield return new WaitForSeconds(nextAnimation_delay[nowPlayAnimationIndex]);
             Debug.Log("Bool초기화");
             auraAnimator.SetBool("Attack1", false);
@@ -100,6 +101,10 @@ namespace PlayerSpace
             StartCoroutine(nameof(AttackTime));
         }
 
+        public override void AutoAttack()
+        {
+            throw new System.NotImplementedException();
+        }
     }
 
 }
