@@ -71,29 +71,30 @@ namespace PlayerSpace
         public void UseSkill(Vector3 attackdirection, float magnitude)
         {
             skillDirection = attackdirection;
-            StartCoroutine(LookAttackDirection(attackdirection, magnitude));
+
+            if (isRotation)
+                StartCoroutine(LookAttackDirection(attackdirection, magnitude));
+            else
+                ActSkill(attackdirection, magnitude);
         }
 
         public abstract void ActSkill(Vector3 attackdirection, float magnitude);
         public abstract void AutoSkill();
         IEnumerator LookAttackDirection(Vector3 attackDirection, float magnitude)
         {
-            ActSkill(attackDirection, magnitude);
-         
-            if (isRotation)
+            Vector3 forward = Vector3.Slerp(transform.forward,
+                attackDirection, rotationSpeed * Time.deltaTime / Vector3.Angle(transform.forward, direction));
+            
+            while (Vector3.Angle(attackDirection, transform.forward) >= 5)
             {
-                Vector3 forward = Vector3.Slerp(transform.forward,
-                    attackDirection, rotationSpeed * Time.deltaTime / Vector3.Angle(transform.forward, direction));
-
-                while (Vector3.Angle(attackDirection, transform.forward) >= 5)
-                {
-                    yield return null;
-                    forward = Vector3.Slerp(transform.forward,
-                    attackDirection, rotationSpeed * Time.deltaTime / Vector3.Angle(transform.forward, attackDirection));
-
-                    transform.LookAt(transform.position + forward);
-                }
+                yield return null;
+                forward = Vector3.Slerp(transform.forward,
+                attackDirection, rotationSpeed * Time.deltaTime / Vector3.Angle(transform.forward, attackDirection));
+            
+                transform.LookAt(transform.position + forward);
             }
+         
+            ActSkill(attackDirection, magnitude);
         }
     }
 }
