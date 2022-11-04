@@ -58,7 +58,7 @@ public class AtkJoyStick : BaseJoyStick
             return;
         }
 
-        // 자동공격 루틴 추가
+        player.Attack.AutoAttack();
     }
 
     private void PlayerAttackRPC()

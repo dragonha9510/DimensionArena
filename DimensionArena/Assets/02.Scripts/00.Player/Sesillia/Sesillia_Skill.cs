@@ -63,8 +63,10 @@ namespace PlayerSpace
             Gizmos.DrawWireSphere(transform.position, MaxRange);          
         }
 
-
-
+        public override void AutoSkill()
+        {
+            // 자동 공격
+        }
     }
 }
 

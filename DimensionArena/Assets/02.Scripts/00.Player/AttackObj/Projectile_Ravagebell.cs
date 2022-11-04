@@ -31,6 +31,7 @@ public class Projectile_Ravagebell : Projectile
                     break;
                 //Damaged된 Obstacle 공격체 방향으로 살짝 흔들리는 모션
                 case "ParentObstacle":
+                case "ParentGround":
                     {
                         PhotonNetwork.Destroy(this.gameObject);
                     }
@@ -38,10 +39,8 @@ public class Projectile_Ravagebell : Projectile
                 case "Water":
                     isWater = true;
                     break;
-                case "Player_Detection":
-                    return;
                 default:
-                    break;
+                    return;
             }
 
             if (isWater)
@@ -91,6 +90,7 @@ public class Projectile_Ravagebell : Projectile
                     break;
                 //Damaged된 Obstacle 공격체 방향으로 살짝 흔들리는 모션
                 case "ParentObstacle":
+                case "ParentGround":
                     {
                         PhotonNetwork.Destroy(this.gameObject);
                     }
@@ -98,10 +98,8 @@ public class Projectile_Ravagebell : Projectile
                 case "Water":
                     isWater = true;
                     break;
-                case "Player_Detection":
-                    return;
                 default:
-                    break;
+                    return;
             }
 
             if (isWater)

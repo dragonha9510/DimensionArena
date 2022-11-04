@@ -48,4 +48,9 @@ public class JooHyeok_Skill : Player_Skill
             projectile.SetArcInfo(direction, parabola.distance, parabola.velocity, parabola.maxYpos);
         }
     }
+
+    public override void AutoSkill()
+    {
+        // 자동 공격
+    }
 }

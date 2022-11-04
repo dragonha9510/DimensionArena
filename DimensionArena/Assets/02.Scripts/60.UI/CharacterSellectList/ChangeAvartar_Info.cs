@@ -6,6 +6,7 @@ public class ChangeAvartar_Info : MonoBehaviour
 {
     // Start is called before the first frame update
     [SerializeField] private GameObject[] avartar;
+    [SerializeField] private bool isMainLobby = false;
 
     void Start()
     {
@@ -21,10 +22,11 @@ public class ChangeAvartar_Info : MonoBehaviour
     private void SetAvartar()
     {
         bool isChange = false;
+        string tempName = isMainLobby ? SelectedCharacter.Instance.characterName : SelectedCharacter.Instance.nextCharacterName;
 
-        for(int i = 0; i < avartar.Length; ++i)
+        for (int i = 0; i < avartar.Length; ++i)
         {
-            if (avartar[i].name == SelectedCharacter.Instance.characterName)
+            if (avartar[i].name == tempName)
                 avartar[i].SetActive(isChange = true);
             else
                 avartar[i].SetActive(false);

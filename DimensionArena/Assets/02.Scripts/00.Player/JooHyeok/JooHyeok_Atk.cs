@@ -130,5 +130,10 @@ namespace PlayerSpace
             isAttack = false;
             owner.CanDirectionChange = true;
         }
+
+        public override void AutoAttack()
+        {
+            // 자동 공격 루틴 추가
+        }
     }
 }

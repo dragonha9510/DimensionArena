@@ -144,5 +144,93 @@ namespace PlayerSpace
             projectile.GetComponent<Projectile>().ownerID = ownerName;
 
         }
+
+        public override void AutoAttack()
+        {
+            if (atkInfo.CurCost < atkInfo.ShotCost)
+            { 
+                WaitAttack();
+                return;
+            }
+
+            if (isAttack)
+                return;
+
+            owner.CanDirectionChange = false;
+            isAttack = true;
+
+            if (PhotonNetwork.InRoom)
+            {
+                photonView.RPC(nameof(AutoCreateProjectile), RpcTarget.MasterClient
+                                                             , gameObject.name
+                                                             , photonView.Controller
+                                                    );
+            }
+            else
+            {
+                StartCoroutine(AutoAttackCoroutineSingle(null
+                                          , transform.rotation
+                                          , gameObject.name));
+            }
+        }
+
+        [PunRPC]
+        private IEnumerator AutoCreateProjectile(string shooter, Photon.Realtime.Player controller)
+        {
+            GameObject projectile;
+            Transform shooterPosition = PlayerInfoManager.Instance.getPlayerTransform(shooter);
+            photonView.RPC(nameof(SubMagazine), controller, shooter);
+
+            ///
+            animator.speed = 1;
+            AtkTrigger();
+            Vector3 shotPosition = autoAtk.targetPos;
+
+            yield return new WaitForSeconds(atkDelay);
+
+            Destroy(PhotonNetwork.Instantiate(prefab_Muzzle.name, transform.position + (Vector3.up * 2f), shooterPosition.rotation), 1.0f);
+            projectile = PhotonNetwork.Instantiate(prefab_Projectile.name, transform.position + (Vector3.up * 2f), shooterPosition.rotation);
+            projectile.GetComponent<Projectile>().AttackToDirection(Vector3.up, AtkInfo.Range, projectileSpeed);
+            projectile.GetComponent<Projectile>().ownerID = shooter;
+
+            photonView.RPC("EndAttack", controller, shooter);
+
+            yield return new WaitForSeconds(dropDelay + atkDelay);
+
+            projectile = PhotonNetwork.Instantiate(prefab_Projectile.name,
+                shotPosition + (Vector3.up * AtkInfo.Range),
+                shooterPosition.rotation);
+            projectile.GetComponent<Projectile>().AttackToDirection(Vector3.down, AtkInfo.Range, projectileSpeed);
+            projectile.GetComponent<Projectile>().ownerID = shooter;
+            ///
+        }
+
+        private IEnumerator AutoAttackCoroutineSingle(string shooter, Quaternion playerRotation, string ownerName)
+        {
+            atkInfo.SubCost(atkInfo.ShotCost);
+
+            GameObject projectile;
+            animator.speed = 1;
+            AtkTrigger();
+            Vector3 shotPosition = autoAtk.targetPos;
+
+            yield return new WaitForSeconds(atkDelay);
+
+            Destroy(Instantiate(prefab_Muzzle, this.transform.position + (Vector3.up * 2f), playerRotation), 1.0f);
+            projectile = Instantiate(prefab_Projectile, this.transform.position + (Vector3.up * 2f), playerRotation);
+            projectile.GetComponent<Projectile>().AttackToDirection(Vector3.up, AtkInfo.Range, projectileSpeed);
+            projectile.GetComponent<Projectile>().ownerID = ownerName;
+
+            isAttack = false;
+            owner.CanDirectionChange = true;
+
+            yield return new WaitForSeconds(dropDelay);
+
+            projectile = Instantiate(prefab_Projectile,
+                shotPosition + (Vector3.up * AtkInfo.Range),
+                playerRotation);
+            projectile.GetComponent<Projectile>().AttackToDirection(Vector3.down, AtkInfo.Range, projectileSpeed);
+            projectile.GetComponent<Projectile>().ownerID = ownerName;
+        }
     }
 }

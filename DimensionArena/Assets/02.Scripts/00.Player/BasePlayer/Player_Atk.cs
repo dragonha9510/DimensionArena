@@ -22,6 +22,8 @@ namespace PlayerSpace
 
         [SerializeField] private bool isRotation = true;
 
+        [SerializeField] protected AutoAtk_Detection autoAtk;
+
         public event Action<float> eChangeMagazineCost = (param) => { };
         public event Action eCantAttack = () => { };
 
@@ -99,6 +101,7 @@ namespace PlayerSpace
         }
 
         public abstract void Attack();
+        public abstract void AutoAttack();
        
         protected void WaitAttack()
         {

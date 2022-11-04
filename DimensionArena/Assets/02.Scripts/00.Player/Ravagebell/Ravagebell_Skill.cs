@@ -57,10 +57,11 @@ public class Ravagebell_Skill : Player_Skill
         yield return new WaitForSeconds(dropDelay);
 
         skillPoint = Quaternion.AngleAxis(transform.rotation.eulerAngles.y, Vector3.up) * skillPoint;
+        Vector3 location = direction;
         for (int i = 0; i < shotCnt; ++i)
         {
             yield return atkDelayWait;
-            ShotDown(skillPoint);
+            ShotDown(location, skillPoint);
             skillPoint = Quaternion.AngleAxis(120, Vector3.up) * skillPoint;
             yield return attackIntervalWait;
         }
@@ -75,10 +76,10 @@ public class Ravagebell_Skill : Player_Skill
         projectile.GetComponent<Projectile>().ownerID = gameObject.name;
     }
 
-    private void ShotDown(Vector3 direction)
+    private void ShotDown(Vector3 location, Vector3 direction)
     {
         projectile = Instantiate(skillPrefab,
-            shotPosition + (skillDirection.normalized * skillDirection.magnitude * MaxRange) + (Vector3.up * MaxRange) + direction,
+            shotPosition + location + (Vector3.up * MaxRange) + direction,
             skillPrefab.transform.rotation);
         projectile.GetComponent<Projectile>().AttackToDirection(Vector3.down, MaxRange, projectileSpeed);
         projectile.GetComponent<Projectile>().ownerID = gameObject.name;
@@ -114,7 +115,7 @@ public class Ravagebell_Skill : Player_Skill
         for (int i = 0; i < shotCnt; ++i)
         {
             yield return atkDelayWait;
-            ShotDown_Server(skillPoint);
+            ShotDown_Server(shooterAttackDir, skillPoint);
             skillPoint = Quaternion.AngleAxis(120, Vector3.up) * skillPoint;
             yield return attackIntervalWait;
         }
@@ -129,10 +130,10 @@ public class Ravagebell_Skill : Player_Skill
         projectile.GetComponent<Projectile>().ownerID = gameObject.name;
     }
 
-    private void ShotDown_Server(Vector3 direction)
+    private void ShotDown_Server(Vector3 location, Vector3 direction)
     {
         projectile = PhotonNetwork.Instantiate(skillPrefab.name,
-            shotPosition + (skillDirection.normalized * skillDirection.magnitude * MaxRange) + (Vector3.up * MaxRange) + direction,
+            shotPosition + location + (Vector3.up * MaxRange) + direction,
             skillPrefab.transform.rotation);
         projectile.GetComponent<Projectile>().AttackToDirection(Vector3.down, MaxRange, projectileSpeed);
         projectile.GetComponent<Projectile>().ownerID = gameObject.name;
@@ -145,11 +146,25 @@ public class Ravagebell_Skill : Player_Skill
         {
 
             photonView.RPC(nameof(MasterCreateSkill), RpcTarget.MasterClient,
-                                                      direction);
+                                                      (skillDirection.normalized * skillDirection.magnitude * MaxRange));
         }
         else
         {
-            StartCoroutine(SingleCreateSkill(direction));
+            StartCoroutine(SingleCreateSkill((skillDirection.normalized * skillDirection.magnitude * MaxRange)));
+        }
+    }
+
+    public override void AutoSkill()
+    {
+        if (!PhotonNetwork.OfflineMode)
+        {
+
+            photonView.RPC(nameof(MasterCreateSkill), RpcTarget.MasterClient,
+                                                      autoSkill.targetPos - transform.position);
+        }
+        else
+        {
+            StartCoroutine(SingleCreateSkill(autoSkill.targetPos - transform.position));
         }
     }
 }

@@ -111,6 +111,7 @@ public class SkillJoyStick : BaseJoyStick
         }
 
         // 자동공격 루틴 추가
+        player.Skill.AutoSkill();
     }
 }
 

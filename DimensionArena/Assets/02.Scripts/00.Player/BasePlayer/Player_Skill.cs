@@ -12,6 +12,8 @@ namespace PlayerSpace
 
         [SerializeField] private bool isRotation = true;
 
+        [SerializeField] protected AutoAtk_Detection autoSkill;
+
         protected Player owner;
         public Player Owner => owner;
 
@@ -73,7 +75,7 @@ namespace PlayerSpace
         }
 
         public abstract void ActSkill(Vector3 attackdirection, float magnitude);
-
+        public abstract void AutoSkill();
         IEnumerator LookAttackDirection(Vector3 attackDirection, float magnitude)
         {
             ActSkill(attackDirection, magnitude);

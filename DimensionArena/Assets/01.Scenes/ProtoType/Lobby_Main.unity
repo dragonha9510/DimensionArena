@@ -875,17 +875,17 @@ PrefabInstance:
     - target: {fileID: 5527182556833254777, guid: 6116ef1203ac84c4b9d804ff62a7a788,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.67291665
+      value: 0.49312174
       objectReference: {fileID: 0}
     - target: {fileID: 5527182556833254777, guid: 6116ef1203ac84c4b9d804ff62a7a788,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.67291665
+      value: 0.49312174
       objectReference: {fileID: 0}
     - target: {fileID: 5527182556833254777, guid: 6116ef1203ac84c4b9d804ff62a7a788,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.67291665
+      value: 0.49312174
       objectReference: {fileID: 0}
     - target: {fileID: 5527182556833254777, guid: 6116ef1203ac84c4b9d804ff62a7a788,
         type: 3}
@@ -987,6 +987,7 @@ MonoBehaviour:
   - {fileID: 5527182555630530739}
   - {fileID: 5527182555630530740}
   - {fileID: 5527182555630530740}
+  isMainLobby: 1
 --- !u!1001 &5529166021421527344
 PrefabInstance:
   m_ObjectHideFlags: 0
