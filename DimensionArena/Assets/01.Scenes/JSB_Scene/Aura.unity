@@ -3819,11 +3819,11 @@ MonoBehaviour:
   animation_speed:
   - 1
   - 1
-  - 0.47
+  - 1.13
   nextAnimation_delay:
   - 0.7
   - 0.7
-  - 0.7
+  - 3.21
   attackCount: 3
   projectileCount: 3
   projectileSpeed: 10

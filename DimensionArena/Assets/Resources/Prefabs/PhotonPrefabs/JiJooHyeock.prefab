@@ -758,6 +758,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isRotation: 1
+  autoAtk: {fileID: 0}
   atkInfo:
     range: 6
     maxMagazine: 3
@@ -785,6 +786,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isRotation: 1
+  autoSkill: {fileID: 0}
   skillRangeMesh: {fileID: 5259609974754891658}
   direction: {x: 0, y: 0, z: 0}
   skillDirection: {x: 0, y: 0, z: 0}
