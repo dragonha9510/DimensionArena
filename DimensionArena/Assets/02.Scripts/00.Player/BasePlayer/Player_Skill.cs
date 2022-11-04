@@ -10,6 +10,10 @@ namespace PlayerSpace
         // Animator
         protected Animator animator;
 
+        [SerializeField] private bool isRotation = true;
+
+        [SerializeField] protected AutoAtk_Detection autoSkill;
+
         protected Player owner;
         public Player Owner => owner;
 
@@ -19,7 +23,7 @@ namespace PlayerSpace
 
         private float rotationSpeed = 1080.0f;
 
-        private Attack_Type type;
+        protected Attack_Type type;
         public Attack_Type Type => type;
         protected Atk_Range rangeComponent;
 
@@ -68,25 +72,27 @@ namespace PlayerSpace
         {
             skillDirection = attackdirection;
             StartCoroutine(LookAttackDirection(attackdirection, magnitude));
-
-            // 방향이 다 돌아가고 나서 공격 실행
-            ActSkill(attackdirection, magnitude);
         }
 
         public abstract void ActSkill(Vector3 attackdirection, float magnitude);
-
+        public abstract void AutoSkill();
         IEnumerator LookAttackDirection(Vector3 attackDirection, float magnitude)
         {
-            Vector3 forward = Vector3.Slerp(transform.forward,
-                attackDirection, rotationSpeed * Time.deltaTime / Vector3.Angle(transform.forward, direction));
-
-            while (Vector3.Angle(attackDirection, transform.forward) >= 5)
+            ActSkill(attackDirection, magnitude);
+         
+            if (isRotation)
             {
-                yield return null;
-                forward = Vector3.Slerp(transform.forward,
-                attackDirection, rotationSpeed * Time.deltaTime / Vector3.Angle(transform.forward, attackDirection));
+                Vector3 forward = Vector3.Slerp(transform.forward,
+                    attackDirection, rotationSpeed * Time.deltaTime / Vector3.Angle(transform.forward, direction));
 
-                transform.LookAt(transform.position + forward);
+                while (Vector3.Angle(attackDirection, transform.forward) >= 5)
+                {
+                    yield return null;
+                    forward = Vector3.Slerp(transform.forward,
+                    attackDirection, rotationSpeed * Time.deltaTime / Vector3.Angle(transform.forward, attackDirection));
+
+                    transform.LookAt(transform.position + forward);
+                }
             }
         }
     }

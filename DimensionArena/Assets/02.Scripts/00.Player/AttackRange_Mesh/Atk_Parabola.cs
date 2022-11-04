@@ -24,6 +24,7 @@ public class Atk_Parabola : Atk_Range
     {
         mesh = GetComponent<MeshFilter>().mesh;
         gravity = Mathf.Abs(Physics.gravity.y);
+        MakeArcMesh(CalculateArcArray());
         this.gameObject.SetActive(false);
     }
 
@@ -40,7 +41,15 @@ public class Atk_Parabola : Atk_Range
 
     void MakeArcMesh(Vector3[] arcVerts)
     {
-        mesh.Clear();
+        if(mesh != null)
+            mesh.Clear();
+        else
+        {
+            mesh = GetComponent<MeshFilter>().mesh;
+            gravity = Mathf.Abs(Physics.gravity.y);
+            mesh.Clear();
+        }
+
         Vector3[] vertices = new Vector3[(resolution + 1) * 2];
         int[] triangles = new int[resolution * 12];
 

@@ -99,7 +99,7 @@ public class GameManager : MonoBehaviourPunCallbacks, IPunObservable
     IEnumerator WaitAllPlayers()
     {
         PhotonNetwork.Instantiate(PHOTONPATH.PHOTONPATH_PREFAPBFOLDER
-          + playerPrefab.name, Vector3.zero, Quaternion.identity);
+          + SelectedCharacter.Instance.characterName, Vector3.zero, Quaternion.identity);
 
         PlayerInfoManager.Instance.RegisterPlayer();
 
@@ -147,6 +147,9 @@ public class GameManager : MonoBehaviourPunCallbacks, IPunObservable
                 break;
             }
         }
+
+        //대기 시간
+        yield return new WaitForSeconds(0.2f);
 
         photonView.RPC(nameof(PlayerSpawnEnd), RpcTarget.All);
 

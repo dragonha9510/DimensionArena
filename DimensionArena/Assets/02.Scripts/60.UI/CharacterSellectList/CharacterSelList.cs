@@ -9,31 +9,33 @@ public class CharacterSelList : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        DirectoryInfo di = new DirectoryInfo("../DimensionArena/Assets/Resources/CharacterIillustration/");
         int idx = 0;
 
-        foreach(FileInfo File in di.GetFiles())
+        Sprite[] fileinfos = Resources.LoadAll<Sprite>("CharacterIillustration/");
+
+        foreach(var sprite in fileinfos)
         {
-            if (File.FullName.Contains(".meta"))
-                continue;
+            //FileInfo File = (FileInfo)fileinfo;
+            //if (File.FullName.Contains(".meta"))
+            //    continue;
             
             GameObject temp = transform.GetChild(idx + 3).gameObject;
             temp.SetActive(true);
 
-            string strTemp = "";
+            string strTemp = sprite.name;
 
-            for(int i = 0; i <= File.Name.Length; ++i)
-            {
-                if (File.Name[i] == '.')
-                    break;
-                strTemp += File.Name[i];
-            }
+            //for (int i = 0; i <= sprite.name.Length; ++i)
+            //{
+            //    if (sprite.name[i] == '.')
+            //        break;
+            //    strTemp += sprite.name[i];
+            //}
 
             GameObject imageTemp = new GameObject(strTemp);
             imageTemp.transform.SetParent(temp.transform);
             Image image = imageTemp.AddComponent<Image>();
-
-            image.sprite = Resources.Load<Sprite>("CharacterIillustration/" + strTemp);
+            
+            image.sprite = sprite;
             imageTemp.AddComponent<SetSelectedName>().mySprite = image.sprite;
 
             image.rectTransform.pivot = new Vector2(0.5f, 1);

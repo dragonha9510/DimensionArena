@@ -7,7 +7,7 @@ public class DestroyWithTime_Alpha : DestroyWithTime
     public float delayTime = 1f;
     private float maxTime;
 
-    [SerializeField] private Renderer alphaRenderer;
+    [SerializeField] private Renderer[] alphaRenderer;
 
     private void Start()
     {
@@ -21,13 +21,15 @@ public class DestroyWithTime_Alpha : DestroyWithTime
 
         if (curTime >= deathTime)
         {
-            alphaRenderer.material.color = 
-                new Color(
-                    alphaRenderer.material.color.r, 
-                    alphaRenderer.material.color.g,
-                    alphaRenderer.material.color.b,
-                    (delayTime - (curTime - deathTime)) / delayTime);
-
+            for (int i = 0; i < alphaRenderer.Length; ++i)
+            {
+                alphaRenderer[i].material.color =
+                  new Color(
+                      alphaRenderer[i].material.color.r,
+                      alphaRenderer[i].material.color.g,
+                      alphaRenderer[i].material.color.b,
+                      (delayTime - (curTime - deathTime)) / delayTime);
+            }
             if (curTime >= maxTime)
                 Destroy(this.gameObject);
         }

@@ -31,6 +31,7 @@ public class Projectile_Ravagebell : Projectile
                     break;
                 //Damaged된 Obstacle 공격체 방향으로 살짝 흔들리는 모션
                 case "ParentObstacle":
+                case "ParentGround":
                     {
                         PhotonNetwork.Destroy(this.gameObject);
                     }
@@ -38,10 +39,8 @@ public class Projectile_Ravagebell : Projectile
                 case "Water":
                     isWater = true;
                     break;
-                case "Player_Detection":
-                    return;
                 default:
-                    break;
+                    return;
             }
 
             if (isWater)
@@ -62,8 +61,10 @@ public class Projectile_Ravagebell : Projectile
                     Destroy(hitVFX, psChild.main.duration);
                 }
             }
+            Vector3 fieldPosition = transform.position;
+            fieldPosition.y = 0.038f;
 
-            Instantiate(PoisonTile, transform.position - (Vector3.up * transform.position.y), PoisonTile.transform.rotation);
+            Instantiate(PoisonTile, fieldPosition, PoisonTile.transform.rotation);
         }
         else
         {
@@ -89,6 +90,7 @@ public class Projectile_Ravagebell : Projectile
                     break;
                 //Damaged된 Obstacle 공격체 방향으로 살짝 흔들리는 모션
                 case "ParentObstacle":
+                case "ParentGround":
                     {
                         PhotonNetwork.Destroy(this.gameObject);
                     }
@@ -96,10 +98,8 @@ public class Projectile_Ravagebell : Projectile
                 case "Water":
                     isWater = true;
                     break;
-                case "Player_Detection":
-                    return;
                 default:
-                    break;
+                    return;
             }
 
             if (isWater)
@@ -121,7 +121,10 @@ public class Projectile_Ravagebell : Projectile
                 }
             }
 
-            PhotonNetwork.Instantiate(PoisonTile.name, transform.position - (Vector3.up * transform.position.y), PoisonTile.transform.rotation);
+            Vector3 fieldPosition = transform.position;
+            fieldPosition.y = 0.038f;
+
+            PhotonNetwork.Instantiate(PoisonTile.name, fieldPosition, PoisonTile.transform.rotation);
         }
     }
 }

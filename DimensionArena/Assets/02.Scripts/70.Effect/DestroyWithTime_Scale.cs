@@ -11,7 +11,7 @@ public class DestroyWithTime_Scale : DestroyWithTime
 
     private void Start()
     {
-        maxTime = base.deathTime + delayTime;
+        maxTime = deathTime + delayTime;
         oriScale = transform.localScale;
     }
 
