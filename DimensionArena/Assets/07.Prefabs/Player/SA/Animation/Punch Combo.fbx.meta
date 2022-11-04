@@ -1,0 +1,1202 @@
+fileFormatVersion: 2
+guid: e75c59db554138140b45c477d024f97c
+ModelImporter:
+  serializedVersion: 21300
+  internalIDToNameTable:
+  - first:
+      74: -203655887218126122
+    second: SA_Punch
+  externalObjects: {}
+  materials:
+    materialImportMode: 2
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    removeConstantScaleCurves: 1
+    motionNodeName: <Root Transform>
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 3
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: SA_Punch
+      takeName: mixamo.com
+      internalID: 0
+      firstFrame: 44
+      lastFrame: 109
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 1
+      loopBlendPositionY: 1
+      loopBlendPositionXZ: 1
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 0
+      keepOriginalPositionXZ: 1
+      heightFromFeet: 1
+      mirror: 1
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 0
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    nodeNameCollisionStrategy: 1
+    fileIdsGeneration: 2
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    keepQuads: 0
+    weldVertices: 1
+    bakeAxisConversion: 0
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    optimizeBones: 1
+    meshOptimizationFlags: -1
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 1
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
+  importAnimation: 1
+  humanDescription:
+    serializedVersion: 3
+    human:
+    - boneName: KisoraSD_Hips
+      humanName: Hips
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: KisoraSD_LeftUpLeg
+      humanName: LeftUpperLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: KisoraSD_RightUpReg
+      humanName: RightUpperLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: KisoraSD_LeftLeg
+      humanName: LeftLowerLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: KisoraSD_RightReg
+      humanName: RightLowerLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: KisoraSD_LeftFoot
+      humanName: LeftFoot
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: KisoraSD_RightFoot
+      humanName: RightFoot
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: KisoraSD_Spine
+      humanName: Spine
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: KisoraSD_Spine1
+      humanName: Chest
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: KisoraSD_Neck
+      humanName: Neck
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: KisoraSD_Head
+      humanName: Head
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: KisoraSD_LeftShoulder
+      humanName: LeftShoulder
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: KisoraSD_RightShoulder
+      humanName: RightShoulder
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: KisoraSD_LeftArm
+      humanName: LeftUpperArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: KisoraSD_RightArm
+      humanName: RightUpperArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: KisoraSD_LeftForeArm
+      humanName: LeftLowerArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: KisoraSD_RightForeArm
+      humanName: RightLowerArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: KisoraSD_LeftHand
+      humanName: LeftHand
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: KisoraSD_RightHand
+      humanName: RightHand
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: KisoraSD_LeftToeBase
+      humanName: LeftToes
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: KisoraSD_RightToeBase
+      humanName: RightToes
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: KisoraSD_LeftHandThumb1
+      humanName: Left Thumb Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: KisoraSD_LeftHandThumb2
+      humanName: Left Thumb Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: KisoraSD_LeftHandIndex1
+      humanName: Left Index Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: KisoraSD_LeftHandIndex2
+      humanName: Left Index Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: KisoraSD_LeftHandMiddle1
+      humanName: Left Middle Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: KisoraSD_LeftHandMiddle2
+      humanName: Left Middle Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: KisoraSD_LeftHandRing1
+      humanName: Left Ring Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: KisoraSD_LeftHandRing2
+      humanName: Left Ring Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: KisoraSD_LeftHandPinky1
+      humanName: Left Little Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: KisoraSD_LeftHandPinky2
+      humanName: Left Little Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: KisoraSD_RightHandThumb1
+      humanName: Right Thumb Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: KisoraSD_RightHandThumb2
+      humanName: Right Thumb Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: KisoraSD_RightHandIndex1
+      humanName: Right Index Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: KisoraSD_RightHandIndex2
+      humanName: Right Index Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: KisoraSD_RightHandMiddle1
+      humanName: Right Middle Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: KisoraSD_RightHandMiddle2
+      humanName: Right Middle Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: KisoraSD_RightHandRing1
+      humanName: Right Ring Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: KisoraSD_RightHandRing2
+      humanName: Right Ring Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: KisoraSD_RightHandPinky1
+      humanName: Right Little Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: KisoraSD_RightHandPinky2
+      humanName: Right Little Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    skeleton:
+    - name: SAPSD@model(Clone)
+      parentName: 
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Blendshape_grp
+      parentName: SAPSD@model(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: brow_blendshape
+      parentName: Blendshape_grp
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: eyes_blendshape
+      parentName: Blendshape_grp
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: mouth_blendshape
+      parentName: Blendshape_grp
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: KisoraSD_Reference
+      parentName: SAPSD@model(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: KisoraSD_Hips
+      parentName: KisoraSD_Reference
+      position: {x: -0, y: 0.16711155, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: skirt_F_01
+      parentName: KisoraSD_Hips
+      position: {x: 0.00019906047, y: 0.008063755, z: 0.029086363}
+      rotation: {x: 0.42969033, y: 0.56157476, z: 0.42969033, w: 0.56157476}
+      scale: {x: 1, y: 1, z: 1}
+    - name: skirt_F_02
+      parentName: skirt_F_01
+      position: {x: -0.030489948, y: -0.0012777613, z: -0.00019906047}
+      rotation: {x: 0, y: 0, z: 0.16623427, w: 0.9860863}
+      scale: {x: 1, y: 1, z: 1}
+    - name: skirt_FL_01
+      parentName: KisoraSD_Hips
+      position: {x: -0.030869205, y: 0.010138971, z: 0.021942226}
+      rotation: {x: 0.28119808, y: 0.2629546, z: 0.5292778, w: 0.7560738}
+      scale: {x: 1, y: 1, z: 1}
+    - name: skirt_FL_02
+      parentName: skirt_FL_01
+      position: {x: -0.029947655, y: -5.3290704e-17, z: 2.6645352e-17}
+      rotation: {x: -0.019386286, y: 0.004302872, z: 0.16823095, w: 0.9855476}
+      scale: {x: 1, y: 1, z: 1}
+    - name: skirt_L_01
+      parentName: KisoraSD_Hips
+      position: {x: -0.0465286, y: 0.021269273, z: -0.0009234429}
+      rotation: {x: 0.010469167, y: -0.006297914, z: 0.5154449, w: 0.85683566}
+      scale: {x: 1, y: 1, z: 1}
+    - name: skirt_L_02
+      parentName: skirt_L_01
+      position: {x: -0.03150761, y: 3.5527136e-17, z: 1.110223e-18}
+      rotation: {x: -0.004192987, y: 0.012830147, z: 0.1709282, w: 0.98519105}
+      scale: {x: 1, y: 1, z: 1}
+    - name: skirt_BL_01
+      parentName: KisoraSD_Hips
+      position: {x: -0.028873272, y: 0.016233174, z: -0.025164202}
+      rotation: {x: -0.23512177, y: -0.47892702, z: 0.41777372, w: 0.7353991}
+      scale: {x: 1, y: 1, z: 1}
+    - name: skirt_BL_02
+      parentName: skirt_BL_01
+      position: {x: -0.032070577, y: -0.001208945, z: 0.0030685754}
+      rotation: {x: 0.032798912, y: 0.013079996, z: 0.2033218, w: 0.9784751}
+      scale: {x: 1, y: 1, z: 1}
+    - name: skirt_B_01
+      parentName: KisoraSD_Hips
+      position: {x: -7.219219e-19, y: 0.0154235605, z: -0.028126264}
+      rotation: {x: -0.33318457, y: -0.62368906, z: 0.33318457, w: 0.62368906}
+      scale: {x: 1, y: 1, z: 1}
+    - name: skirt_B_02
+      parentName: skirt_B_01
+      position: {x: -0.03323071, y: 1.7763568e-17, z: -3.330669e-18}
+      rotation: {x: 0, y: 0, z: 0.18208057, w: 0.98328364}
+      scale: {x: 1, y: 1, z: 1}
+    - name: skirt_FR_01
+      parentName: KisoraSD_Hips
+      position: {x: 0.030869199, y: 0.010139087, z: 0.021942249}
+      rotation: {x: 0.5292797, y: 0.75607246, z: 0.28119743, w: 0.26295528}
+      scale: {x: 1, y: 1, z: 1}
+    - name: skirt_FR_02
+      parentName: skirt_FR_01
+      position: {x: -0.029948162, y: -1.7763568e-17, z: -2.2204459e-17}
+      rotation: {x: 0.019385573, y: -0.004302483, z: 0.16822672, w: 0.9855483}
+      scale: {x: 1, y: 1, z: 1}
+    - name: skirt_R_01
+      parentName: KisoraSD_Hips
+      position: {x: 0.0465286, y: 0.021269215, z: -0.0009234429}
+      rotation: {x: 0.5154475, y: 0.85683405, z: 0.010469028, w: -0.006297875}
+      scale: {x: 1, y: 1, z: 1}
+    - name: skirt_R_02
+      parentName: skirt_R_01
+      position: {x: -0.03150794, y: 0, z: -3.441691e-17}
+      rotation: {x: 0.0041929567, y: -0.0128301205, z: 0.17092358, w: 0.9851918}
+      scale: {x: 1, y: 1, z: 1}
+    - name: skirt_BR_01
+      parentName: KisoraSD_Hips
+      position: {x: 0.028873298, y: 0.016232882, z: -0.025164196}
+      rotation: {x: 0.41777372, y: 0.7353991, z: -0.23512177, w: -0.47892702}
+      scale: {x: 1, y: 1, z: 1}
+    - name: skirt_BR_02
+      parentName: skirt_BR_01
+      position: {x: -0.032070708, y: -0.0012090253, z: -0.0030685132}
+      rotation: {x: -0.032798912, y: -0.013079996, z: 0.2033218, w: 0.9784751}
+      scale: {x: 1, y: 1, z: 1}
+    - name: KisoraSD_LeftUpLeg
+      parentName: KisoraSD_Hips
+      position: {x: -0.024, y: -0.009303588, z: -0.0047973474}
+      rotation: {x: 0, y: 0.000000010536712, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: KisoraSD_LeftLeg
+      parentName: KisoraSD_LeftUpLeg
+      position: {x: 4.440892e-18, y: -0.08053004, z: 5.551115e-19}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: wing_L_01
+      parentName: KisoraSD_LeftLeg
+      position: {x: -0.01662661, y: -0.0123939095, z: 0.0009021062}
+      rotation: {x: 0.16820227, y: -0.5920128, z: -0.21541165, w: 0.7581732}
+      scale: {x: 1, y: 1, z: 1}
+    - name: KisoraSD_LeftFoot
+      parentName: KisoraSD_LeftLeg
+      position: {x: -1.3322676e-17, y: -0.05554647, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: KisoraSD_LeftToeBase
+      parentName: KisoraSD_LeftFoot
+      position: {x: -0.000000016922378, y: -0.011047852, z: 0.017962089}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: KisoraSD_Spine
+      parentName: KisoraSD_Hips
+      position: {x: -0, y: 0.024990473, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: KisoraSD_Spine1
+      parentName: KisoraSD_Spine
+      position: {x: -7.6148105e-18, y: 0.023439083, z: -0.000937355}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: breast_L_01
+      parentName: KisoraSD_Spine1
+      position: {x: -0.020009931, y: 0.02134901, z: 0.01941381}
+      rotation: {x: -0.0055185133, y: 0.5372881, z: -0.0035156806, w: 0.8433734}
+      scale: {x: 1, y: 1, z: 1}
+    - name: breastTip_L_02
+      parentName: breast_L_01
+      position: {x: -0.03, y: 0, z: -1.9872992e-16}
+      rotation: {x: 0.0046267705, y: -0.7070917, z: 0.0046267705, w: 0.7070917}
+      scale: {x: 1, y: 1, z: 1}
+    - name: KisoraSD_LeftShoulder
+      parentName: KisoraSD_Spine1
+      position: {x: -0.01234926, y: 0.043537635, z: -0.0077715595}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: KisoraSD_LeftArm
+      parentName: KisoraSD_LeftShoulder
+      position: {x: -0.025988795, y: 0.00000022888183, z: 1.110223e-18}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: KisoraSD_LeftShoulderTwist
+      parentName: KisoraSD_LeftArm
+      position: {x: -0.015, y: 1.0658141e-16, z: -2.220446e-18}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: KisoraSD_LeftForeArm
+      parentName: KisoraSD_LeftArm
+      position: {x: -0.053608596, y: 1.4210854e-16, z: -1.110223e-18}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: KisoraSD_LeftForeArmRoll
+      parentName: KisoraSD_LeftForeArm
+      position: {x: -0.03, y: -7.105427e-17, z: 3.330669e-18}
+      rotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
+      scale: {x: 1, y: 1, z: 1}
+    - name: KisoraSD_LeftHand
+      parentName: KisoraSD_LeftForeArm
+      position: {x: -0.04281638, y: -1.0658141e-16, z: 4.440892e-18}
+      rotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
+      scale: {x: 1, y: 1, z: 1}
+    - name: KisoraSD_LeftHandThumb1
+      parentName: KisoraSD_LeftHand
+      position: {x: -0.0076805204, y: 0.006054038, z: 0.002887363}
+      rotation: {x: 0.2480025, y: -0.0648958, z: -0.43639517, w: 0.8624631}
+      scale: {x: 1, y: 1, z: 1}
+    - name: KisoraSD_LeftHandThumb2
+      parentName: KisoraSD_LeftHandThumb1
+      position: {x: -0.0115986345, y: -3.5527136e-17, z: 1.0658141e-16}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: KisoraSD_LeftHandIndex1
+      parentName: KisoraSD_LeftHand
+      position: {x: -0.017280463, y: 0.007837962, z: -0.00092572626}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: KisoraSD_LeftHandIndex2
+      parentName: KisoraSD_LeftHandIndex1
+      position: {x: -0.00824399, y: -0.000000076293944, z: 0.000000038743018}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: KisoraSD_LeftHandMiddle1
+      parentName: KisoraSD_LeftHand
+      position: {x: -0.017425003, y: 0.002301712, z: -0.0009170431}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: KisoraSD_LeftHandMiddle2
+      parentName: KisoraSD_LeftHandMiddle1
+      position: {x: -0.0087941075, y: 0.0000005149841, z: 1.0658141e-16}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: KisoraSD_LeftHandRing1
+      parentName: KisoraSD_LeftHand
+      position: {x: -0.017038343, y: -0.0031067654, z: -0.00050807954}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: KisoraSD_LeftHandRing2
+      parentName: KisoraSD_LeftHandRing1
+      position: {x: -0.008437204, y: -4.440892e-18, z: 3.5527136e-17}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: KisoraSD_LeftHandPinky1
+      parentName: KisoraSD_LeftHand
+      position: {x: -0.016066149, y: -0.008370971, z: -0.00012643098}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: KisoraSD_LeftHandPinky2
+      parentName: KisoraSD_LeftHandPinky1
+      position: {x: -0.008306436, y: 0, z: -0.00000007152557}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: KisoraSD_Neck
+      parentName: KisoraSD_Spine1
+      position: {x: 2.9582283e-33, y: 0.054441, z: -0.004198811}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: KisoraSD_Head
+      parentName: KisoraSD_Neck
+      position: {x: -9.860761e-34, y: 0.030110316, z: -0.007841561}
+      rotation: {x: 0, y: -0, z: -0.7071068, w: 0.7071068}
+      scale: {x: 1, y: 1, z: 1}
+    - name: transform1
+      parentName: KisoraSD_Head
+      position: {x: 0.3000924, y: -1.3555948e-16, z: 0.012977726}
+      rotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
+      scale: {x: 1, y: 1, z: 1}
+    - name: bottomTeeth
+      parentName: transform1
+      position: {x: 8.308945e-17, y: 0.2904569, z: 0.03484903}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: transform5
+      parentName: KisoraSD_Head
+      position: {x: 0.3000924, y: -1.3555948e-16, z: 0.012977726}
+      rotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
+      scale: {x: 1, y: 1, z: 1}
+    - name: topTeeth
+      parentName: transform5
+      position: {x: 8.308945e-17, y: 0.293281, z: 0.03484903}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: sasd_Head_end
+      parentName: KisoraSD_Head
+      position: {x: -0.14297438, y: 3.174669e-17, z: -2.220446e-18}
+      rotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
+      scale: {x: 1, y: 1, z: 1}
+    - name: eye_L
+      parentName: KisoraSD_Head
+      position: {x: -0.026383003, y: -0.028766526, z: 0.043512035}
+      rotation: {x: 0.13492234, y: -0.11061587, z: 0.69840115, w: 0.6941152}
+      scale: {x: 1, y: 1, z: 1}
+    - name: eye_R
+      parentName: KisoraSD_Head
+      position: {x: -0.026383003, y: 0.028766526, z: 0.043512035}
+      rotation: {x: 0.69840115, y: 0.6941152, z: -0.13492234, w: 0.11061587}
+      scale: {x: 1, y: 1, z: 1}
+    - name: hair_FR_01
+      parentName: KisoraSD_Head
+      position: {x: -0.09225995, y: 0.05586791, z: 0.046486985}
+      rotation: {x: -0.051901974, y: 0.9201917, z: 0.38369855, w: -0.057696737}
+      scale: {x: 1, y: 1, z: 1}
+    - name: hair_FR_02
+      parentName: hair_FR_01
+      position: {x: -0.04635046, y: 1.7763568e-17, z: -8.881784e-18}
+      rotation: {x: -0.000059000933, y: 0.10520672, z: 0.2945641, w: 0.9498229}
+      scale: {x: 1, y: 1, z: 1}
+    - name: hair_F_01
+      parentName: KisoraSD_Head
+      position: {x: -0.10219874, y: 0.012159322, z: 0.064480685}
+      rotation: {x: 0.14253207, y: 0.6925927, z: 0.693393, w: 0.1385864}
+      scale: {x: 1, y: 1, z: 1}
+    - name: hair_F_02
+      parentName: hair_F_01
+      position: {x: -0.04469777, y: -3.5527136e-17, z: 0}
+      rotation: {x: -0.022470726, y: -0.11969919, z: 0.17757307, w: 0.97654235}
+      scale: {x: 1, y: 1, z: 1}
+    - name: hair_FL_01
+      parentName: KisoraSD_Head
+      position: {x: -0.10941741, y: -0.02488718, z: 0.06026872}
+      rotation: {x: 0.19534314, y: 0.6795889, z: 0.69118214, w: 0.1492223}
+      scale: {x: 1, y: 1, z: 1}
+    - name: hair_FL_02
+      parentName: hair_FL_01
+      position: {x: -0.046933807, y: -0.0021213451, z: -0.000000014288401}
+      rotation: {x: 0, y: 0, z: 0.256965, w: 0.96642077}
+      scale: {x: 1, y: 1, z: 1}
+    - name: hair_L_01
+      parentName: KisoraSD_Head
+      position: {x: -0.055084843, y: -0.07246138, z: 0.008091837}
+      rotation: {x: 0.13960414, y: -0.029944899, z: 0.9883062, w: -0.053524606}
+      scale: {x: 1, y: 1, z: 1}
+    - name: hair_R_01
+      parentName: KisoraSD_Head
+      position: {x: -0.047891885, y: 0.06680198, z: 0.014241099}
+      rotation: {x: 0.0061994004, y: 0.99993545, z: 0.00005903162, w: 0.009521536}
+      scale: {x: 1, y: 1, z: 1}
+    - name: hair_BR_01
+      parentName: KisoraSD_Head
+      position: {x: 0.0023611134, y: 0.047523376, z: -0.06769446}
+      rotation: {x: 0.85525393, y: 0.3494221, z: -0.14473438, w: 0.35425535}
+      scale: {x: 1, y: 1, z: 1}
+    - name: hair_BR_02
+      parentName: hair_BR_01
+      position: {x: 0.03998582, y: 0.0000002721623, z: 0.000000010435368}
+      rotation: {x: 1.4006434e-11, y: -0.0000017150976, z: 0.000008166552, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: hair_BR_03
+      parentName: hair_BR_02
+      position: {x: 0.0391441, y: 0.00000005332121, z: -0.0000000015344174}
+      rotation: {x: -7.233169e-14, y: -0.000000010563593, z: -0.000006847262, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: hair_BR_04
+      parentName: hair_BR_03
+      position: {x: 0.039564904, y: -0.00000040741858, z: -0.0000000023833395}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: hair_BL_01
+      parentName: KisoraSD_Head
+      position: {x: 0.002361055, y: -0.04752336, z: -0.06769447}
+      rotation: {x: 0.14473438, y: -0.35425535, z: 0.85525393, w: 0.3494221}
+      scale: {x: 1, y: 1, z: 1}
+    - name: hair_BL_02
+      parentName: hair_BL_01
+      position: {x: -0.03998581, y: -3.5527136e-17, z: 4.440892e-18}
+      rotation: {x: 1.4006434e-11, y: -0.0000017150976, z: 0.000008166552, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: hair_BL_03
+      parentName: hair_BL_02
+      position: {x: -0.039144192, y: 1.239897e-14, z: 2.5845989e-15}
+      rotation: {x: -7.2331775e-14, y: -0.000000010563599, z: -0.000006847266, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: hair_BL_04
+      parentName: hair_BL_03
+      position: {x: -0.039565004, y: 1.9394264e-13, z: -3.1530333e-16}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: flower_01
+      parentName: KisoraSD_Head
+      position: {x: -0.10879802, y: -0.06856157, z: 0.020782951}
+      rotation: {x: -0.6187944, y: -0.3421893, z: 0.39312774, w: 0.58775043}
+      scale: {x: 1, y: 1, z: 1}
+    - name: breast_R_01
+      parentName: KisoraSD_Spine1
+      position: {x: 0.0200099, y: 0.0213487, z: 0.019413855}
+      rotation: {x: 0.8433734, y: 0.0035156806, z: 0.5372881, w: 0.0055185133}
+      scale: {x: 1, y: 1, z: 1}
+    - name: breastTip_R_02
+      parentName: breast_R_01
+      position: {x: 0.03, y: -2.1316282e-16, z: 0.00000006902073}
+      rotation: {x: 0.0046267705, y: -0.7070917, z: 0.0046267705, w: 0.7070917}
+      scale: {x: 1, y: 1, z: 1}
+    - name: KisoraSD_RightShoulder
+      parentName: KisoraSD_Spine1
+      position: {x: 0.012349299, y: 0.0435377, z: -0.0077715646}
+      rotation: {x: 1, y: 0, z: 0, w: -6.123234e-17}
+      scale: {x: 1, y: 1, z: 1}
+    - name: KisoraSD_RightArm
+      parentName: KisoraSD_RightShoulder
+      position: {x: 0.0259888, y: 7.105427e-17, z: -3.330669e-18}
+      rotation: {x: 0.000000010536712, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: KisoraSD_RightShoulderTwist
+      parentName: KisoraSD_RightArm
+      position: {x: 0.015, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: KisoraSD_RightForeArm
+      parentName: KisoraSD_RightArm
+      position: {x: 0.053608596, y: 3.5527136e-17, z: -1.110223e-18}
+      rotation: {x: -0.000000010536712, y: 0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: KisoraSD_RightForeArmRoll
+      parentName: KisoraSD_RightForeArm
+      position: {x: 0.0300003, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
+      scale: {x: 1, y: 1, z: 1}
+    - name: KisoraSD_RightHand
+      parentName: KisoraSD_RightForeArm
+      position: {x: 0.042816296, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
+      scale: {x: 1, y: 1, z: 1}
+    - name: KisoraSD_RightHandThumb1
+      parentName: KisoraSD_RightHand
+      position: {x: 0.007681, y: -0.006054, z: -0.0028873698}
+      rotation: {x: 0.24800038, y: -0.064894795, z: -0.43640128, w: 0.86246073}
+      scale: {x: 1, y: 1, z: 1}
+    - name: KisoraSD_RightHandThumb2
+      parentName: KisoraSD_RightHandThumb1
+      position: {x: 0.011598669, y: -0.000000011354731, z: 0.000000037586695}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: KisoraSD_RightHandIndex1
+      parentName: KisoraSD_RightHand
+      position: {x: 0.017281, y: -0.007838, z: 0.0009257199}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: KisoraSD_RightHandIndex2
+      parentName: KisoraSD_RightHandIndex1
+      position: {x: 0.008243, y: -3.316791e-17, z: -0.000000039999996}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: KisoraSD_RightHandMiddle1
+      parentName: KisoraSD_RightHand
+      position: {x: 0.017424999, y: -0.0023019998, z: 0.00091704}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: KisoraSD_RightHandMiddle2
+      parentName: KisoraSD_RightHandMiddle1
+      position: {x: 0.008794, y: -3.330669e-17, z: 3.5527136e-17}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: KisoraSD_RightHandRing1
+      parentName: KisoraSD_RightHand
+      position: {x: 0.017037997, y: 0.0031069994, z: 0.00050808}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: KisoraSD_RightHandRing2
+      parentName: KisoraSD_RightHandRing1
+      position: {x: 0.0084379995, y: -3.330669e-17, z: 3.5527136e-17}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: KisoraSD_RightHandPinky1
+      parentName: KisoraSD_RightHand
+      position: {x: 0.016066, y: 0.008371, z: 0.00012643}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: KisoraSD_RightHandPinky2
+      parentName: KisoraSD_RightHandPinky1
+      position: {x: 0.008307, y: -3.9968027e-17, z: 0.00000006999999}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: KisoraSD_RightUpReg
+      parentName: KisoraSD_Hips
+      position: {x: 0.024, y: -0.009303784, z: -0.0047973474}
+      rotation: {x: 1, y: -1.3686494e-24, z: 0.000000022351742, w: -6.123234e-17}
+      scale: {x: 1, y: 1, z: 1}
+    - name: KisoraSD_RightReg
+      parentName: KisoraSD_RightUpReg
+      position: {x: 8.881784e-18, y: 0.08052979, z: -8.881784e-18}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: wing_R_01
+      parentName: KisoraSD_RightReg
+      position: {x: 0.0166266, y: 0.012393927, z: -0.0009021046}
+      rotation: {x: 0.16820227, y: -0.5920128, z: -0.21541165, w: 0.7581732}
+      scale: {x: 1, y: 1, z: 1}
+    - name: KisoraSD_RightFoot
+      parentName: KisoraSD_RightReg
+      position: {x: -0, y: 0.055546507, z: -5.5511148e-18}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: KisoraSD_RightToeBase
+      parentName: KisoraSD_RightFoot
+      position: {x: -0, y: 0.011047899, z: -0.017962089}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: outer_FL_01
+      parentName: KisoraSD_Hips
+      position: {x: -0.012999998, y: 0.027349582, z: 0.02904761}
+      rotation: {x: 0.26384765, y: 0.30362588, z: 0.39693242, w: 0.82500935}
+      scale: {x: 1, y: 1, z: 1}
+    - name: outer_FL_02
+      parentName: outer_FL_01
+      position: {x: -0.021472955, y: 1.7763568e-17, z: 2.2204459e-17}
+      rotation: {x: -0.021704195, y: 0.0003678806, z: 0.21554267, w: 0.97625315}
+      scale: {x: 1, y: 1, z: 1}
+    - name: outer_FR_01
+      parentName: KisoraSD_Hips
+      position: {x: 0.012999998, y: 0.02734971, z: 0.02904763}
+      rotation: {x: 0.82500935, y: -0.39693242, z: 0.30362588, w: -0.26384765}
+      scale: {x: 1, y: 1, z: 1}
+    - name: outer_FR_02
+      parentName: outer_FR_01
+      position: {x: 0.021472922, y: -0.00000005554609, z: 0.000000025939054}
+      rotation: {x: -0.021704195, y: 0.0003678806, z: 0.21554267, w: 0.97625315}
+      scale: {x: 1, y: 1, z: 1}
+    - name: outer_L1_01
+      parentName: KisoraSD_Hips
+      position: {x: -0.034594353, y: 0.030551944, z: 0.012452629}
+      rotation: {x: 0.17575566, y: 0.12658812, z: 0.3675812, w: 0.9044166}
+      scale: {x: 1, y: 1, z: 1}
+    - name: outer_L1_02
+      parentName: outer_L1_01
+      position: {x: -0.020205911, y: 1.7763568e-17, z: 0}
+      rotation: {x: -0.094607174, y: -0.16148648, z: 0.04682815, w: 0.9812129}
+      scale: {x: 1, y: 1, z: 1}
+    - name: outer_L1_03
+      parentName: outer_L1_02
+      position: {x: -0.038733803, y: -1.7763568e-17, z: 1.7763568e-17}
+      rotation: {x: 0.09841773, y: -0.13799194, z: 0.14298666, w: 0.9751036}
+      scale: {x: 1, y: 1, z: 1}
+    - name: outer_L2_01
+      parentName: KisoraSD_Hips
+      position: {x: -0.03594901, y: 0.027429583, z: -0.013340333}
+      rotation: {x: -0.10473494, y: -0.2602569, z: 0.35834026, w: 0.89044327}
+      scale: {x: 1, y: 1, z: 1}
+    - name: outer_L2_02
+      parentName: outer_L2_01
+      position: {x: -0.020254074, y: 0, z: 3.330669e-18}
+      rotation: {x: -0.054836035, y: -0.057552595, z: -0.0039530387, w: 0.99682754}
+      scale: {x: 1, y: 1, z: 1}
+    - name: outer_L2_03
+      parentName: outer_L2_02
+      position: {x: -0.0353024, y: 3.5527136e-17, z: -1.7763568e-17}
+      rotation: {x: 0.006122892, y: -0.11246884, z: 0.05957098, w: 0.99184906}
+      scale: {x: 1, y: 1, z: 1}
+    - name: outer_L2_04
+      parentName: outer_L2_03
+      position: {x: -0.04582296, y: -5.3290704e-17, z: 4.439808e-18}
+      rotation: {x: 0.018948605, y: -0.036546096, z: 0.120447405, w: 0.9918658}
+      scale: {x: 1, y: 1, z: 1}
+    - name: outer_L2_05
+      parentName: outer_L2_04
+      position: {x: -0.04350863, y: 0.0010040344, z: 0.00024875416}
+      rotation: {x: -0.095857576, y: 0.00760542, z: 0.10199761, w: 0.99012625}
+      scale: {x: 1, y: 1, z: 1}
+    - name: outer_BL_01
+      parentName: KisoraSD_Hips
+      position: {x: -0.022586789, y: 0.030459162, z: -0.023649264}
+      rotation: {x: -0.2176932, y: -0.4807748, z: 0.3503587, w: 0.77376616}
+      scale: {x: 1, y: 1, z: 1}
+    - name: outer_BL_02
+      parentName: outer_BL_01
+      position: {x: -0.0193319, y: 0, z: -4.440892e-18}
+      rotation: {x: -0.010184644, y: -0.009036351, z: -0.0052849534, w: 0.99989337}
+      scale: {x: 1, y: 1, z: 1}
+    - name: outer_BL_03
+      parentName: outer_BL_02
+      position: {x: -0.036127575, y: 7.105427e-17, z: -1.08801845e-16}
+      rotation: {x: 0.015174366, y: 0.013360684, z: 0.009087225, w: 0.9997543}
+      scale: {x: 1, y: 1, z: 1}
+    - name: outer_B_01
+      parentName: KisoraSD_Hips
+      position: {x: 0.0000000011920929, y: 0.0336533, z: -0.02775323}
+      rotation: {x: -0.31388247, y: -0.63362277, z: 0.31388247, w: 0.63362277}
+      scale: {x: 1, y: 1, z: 1}
+    - name: outer_BR_01
+      parentName: KisoraSD_Hips
+      position: {x: 0.0225868, y: 0.030459318, z: -0.02364927}
+      rotation: {x: 0.77376616, y: -0.3503587, z: -0.4807748, w: 0.2176932}
+      scale: {x: 1, y: 1, z: 1}
+    - name: outer_BR_02
+      parentName: outer_BR_01
+      position: {x: 0.019331736, y: -0.000000113667355, z: 0.00000004622392}
+      rotation: {x: -0.010184644, y: -0.009036351, z: -0.0052849534, w: 0.99989337}
+      scale: {x: 1, y: 1, z: 1}
+    - name: outer_BR_03
+      parentName: outer_BR_02
+      position: {x: 0.036127653, y: 0.000000023488816, z: -0.000000029201303}
+      rotation: {x: 0.015174366, y: 0.013360684, z: 0.009087225, w: 0.9997543}
+      scale: {x: 1, y: 1, z: 1}
+    - name: outer_R2_01
+      parentName: KisoraSD_Hips
+      position: {x: 0.036474977, y: 0.027429638, z: -0.0133403735}
+      rotation: {x: 0.89044327, y: -0.35834026, z: -0.2602569, w: 0.10473494}
+      scale: {x: 1, y: 1, z: 1}
+    - name: outer_R2_02
+      parentName: outer_R2_01
+      position: {x: 0.020254327, y: 0.00000034005356, z: 0.000000010622808}
+      rotation: {x: -0.054836035, y: -0.057552595, z: -0.0039530387, w: 0.99682754}
+      scale: {x: 1, y: 1, z: 1}
+    - name: outer_R2_03
+      parentName: outer_R2_02
+      position: {x: 0.035302024, y: -0.000000381949, z: 0.00000002332215}
+      rotation: {x: 0.006122892, y: -0.11246884, z: 0.05957098, w: 0.99184906}
+      scale: {x: 1, y: 1, z: 1}
+    - name: outer_R2_04
+      parentName: outer_R2_03
+      position: {x: 0.045822915, y: 0.00000001085393, z: -0.000000030927147}
+      rotation: {x: 0.018948605, y: -0.036546096, z: 0.120447405, w: 0.9918658}
+      scale: {x: 1, y: 1, z: 1}
+    - name: outer_R2_05
+      parentName: outer_R2_04
+      position: {x: 0.0435088, y: -0.0010039713, z: -0.0002488756}
+      rotation: {x: -0.095857576, y: 0.00760542, z: 0.10199761, w: 0.99012625}
+      scale: {x: 1, y: 1, z: 1}
+    - name: outer_R1_01
+      parentName: KisoraSD_Hips
+      position: {x: 0.035120275, y: 0.03055181, z: 0.0124526}
+      rotation: {x: 0.9044167, y: -0.36758122, z: 0.12658814, w: -0.17575568}
+      scale: {x: 1, y: 1, z: 1}
+    - name: outer_R1_02
+      parentName: outer_R1_01
+      position: {x: 0.020205965, y: 0.00000011342611, z: -0.00000004509754}
+      rotation: {x: -0.094607174, y: -0.16148648, z: 0.04682815, w: 0.9812129}
+      scale: {x: 1, y: 1, z: 1}
+    - name: outer_R1_03
+      parentName: outer_R1_02
+      position: {x: 0.038733665, y: -0.00000016625981, z: 0.000000041791026}
+      rotation: {x: 0.09841773, y: -0.13799194, z: 0.14298666, w: 0.9751036}
+      scale: {x: 1, y: 1, z: 1}
+    - name: mesh_grp
+      parentName: SAPSD@model(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: body_grp
+      parentName: mesh_grp
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: button_GEO
+      parentName: body_grp
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: hairSuff_GEO
+      parentName: body_grp
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: leg_GEO
+      parentName: body_grp
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: legPart_GEO
+      parentName: body_grp
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: outerskirt_GEO
+      parentName: body_grp
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: outerskirtInside_GEO
+      parentName: body_grp
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: skirt_GEO
+      parentName: body_grp
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: skirtInside_GEO
+      parentName: body_grp
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: torso_GEO
+      parentName: body_grp
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: head_grp
+      parentName: mesh_grp
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: brow_GEO
+      parentName: head_grp
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: eyecover_GEO
+      parentName: head_grp
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: eyes_GEO
+      parentName: head_grp
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: eyeSore_close_GEO
+      parentName: head_grp
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: eyeSore_GEO
+      parentName: head_grp
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: face_GEO
+      parentName: head_grp
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: hair_back_GEO
+      parentName: head_grp
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: hair_front_GEO
+      parentName: head_grp
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: sweat_GEO
+      parentName: head_grp
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: teeth_GEO
+      parentName: head_grp
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: teethbottom_GEO
+      parentName: head_grp
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    globalScale: 1
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 1
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: b0e89a6985662e542bfa2be4f49a20fa,
+    type: 3}
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 3
+  humanoidOversampling: 1
+  avatarSetup: 2
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 1
+  remapMaterialsIfMaterialImportModeIsNone: 0
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

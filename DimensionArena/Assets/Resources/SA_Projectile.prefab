@@ -38875,8 +38875,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ownerID: 
-  ultimatePoint: 0
-  damage: 20
+  ultimatePoint: 9
+  damage: 100
   hitPrefab: {fileID: 0}
   rigid: {fileID: 54270707880095282}
   originPos: {x: 0, y: 0, z: 0}
