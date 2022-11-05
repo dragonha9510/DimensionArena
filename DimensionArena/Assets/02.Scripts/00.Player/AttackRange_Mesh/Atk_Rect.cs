@@ -11,14 +11,13 @@ public class Atk_Rect : Atk_Range
         float distance = maxdistance;
         Vector3 position = owner.position + new Vector3(0, 0.5f, 0) + direction.normalized;
 
-        if (Physics.Raycast(position, direction.normalized, out atkRangeRay, maxdistance))
+        int layerMask = 1 << LayerMask.NameToLayer("GroundObject_Brick");
+
+        if (Physics.Raycast(position, direction.normalized, out atkRangeRay, maxdistance, layerMask))
         {
-            if (atkRangeRay.collider.tag != "Bush" && atkRangeRay.collider.tag != "HideBush" && atkRangeRay.collider.tag != "Water")
-            {
-                Vector3 forLength = Vector3.zero;
-                forLength = atkRangeRay.point - position;
-                distance = forLength.magnitude;
-            }
+            Vector3 forLength = Vector3.zero;
+            forLength = atkRangeRay.point - position;
+            distance = forLength.magnitude;
         }
 
         transform.localScale = new Vector3(transform.localScale.x, 1, distance);
