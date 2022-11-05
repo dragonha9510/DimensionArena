@@ -638,6 +638,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isRotation: 0
+  autoSkill: {fileID: 0}
   skillRangeMesh: {fileID: 4901776912704385013}
   direction: {x: 0, y: 0, z: 0}
   skillDirection: {x: 0, y: 0, z: 0}
@@ -1268,7 +1269,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43922b984d98d784a9d345316c46090e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  detectionRange: {x: 0, y: 0}
+  detectionRange: {x: 1, y: 2.5}
 --- !u!1 &4108501103228199793
 GameObject:
   m_ObjectHideFlags: 0

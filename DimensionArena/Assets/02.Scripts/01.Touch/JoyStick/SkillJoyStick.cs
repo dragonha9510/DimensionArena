@@ -27,8 +27,10 @@ public class SkillJoyStick : BaseJoyStick
 
     public override void OnDrag(PointerEventData eventData)
     {
-        if (skillImg.fillAmount.Equals(1.0f))
-            base.OnDrag(eventData);
+        if (!skillImg.fillAmount.Equals(1.0f))
+            return;
+        
+        base.OnDrag(eventData);
 
         if(isCancel)
         {
