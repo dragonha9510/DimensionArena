@@ -5,9 +5,6 @@ using Photon.Pun;
 public class AuraSkillProjectile : AttackObject
 {
     [SerializeField]
-    private GameObject skillProjectile;
-
-    [SerializeField]
     private Rigidbody rigid;
 
     [SerializeField] 

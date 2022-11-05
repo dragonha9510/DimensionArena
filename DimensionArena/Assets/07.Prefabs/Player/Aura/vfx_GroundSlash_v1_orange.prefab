@@ -54,7 +54,7 @@ TrailRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 4a49927e1edfd864499f64c3818e8d98, type: 2}
+  - {fileID: 2100000, guid: 1bb10bea00f803349ad5cdf9d727639a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -202,7 +202,7 @@ TrailRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 4a49927e1edfd864499f64c3818e8d98, type: 2}
+  - {fileID: 2100000, guid: 1bb10bea00f803349ad5cdf9d727639a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -307,8 +307,9 @@ GameObject:
   - component: {fileID: 4364861999203606395}
   - component: {fileID: 4364861999203606392}
   - component: {fileID: 1984475393032754013}
+  - component: {fileID: -7436256275920150340}
   m_Layer: 0
-  m_Name: vfx_GroundSlash_v1_green
+  m_Name: vfx_GroundSlash_v1_orange
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -322,7 +323,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4364861999203606394}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -0.357, y: 0, z: 0.462}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -351,7 +352,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbc108c5a99dd7d4fb620d2ab459ccdc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 14
+  speed: 18.56
   slowDownRate: 0.1
   detectingDistance: 3
   destroyDelay: 5
@@ -371,6 +372,24 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 1
+--- !u!114 &-7436256275920150340
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4364861999203606394}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f77713299ac629848b281941442f4936, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ownerID: 
+  ultimatePoint: 0
+  damage: 0
+  hitPrefab: {fileID: 0}
+  rigid: {fileID: 1984475393032754013}
+  originPos: {x: 0, y: 0, z: 0}
 --- !u!1 &4364862000155842778
 GameObject:
   m_ObjectHideFlags: 0
@@ -427,42 +446,12 @@ VisualEffect:
       - m_Value: 0.9
         m_Name: SlashLifetime
         m_Overridden: 1
-      - m_Value: 10
-        m_Name: FlyingFlamesRate
-        m_Overridden: 1
-      - m_Value: 15
-        m_Name: ParticlesRate
-        m_Overridden: 1
-      - m_Value: 0.8
-        m_Name: ParticlesLifetime
-        m_Overridden: 1
-      - m_Value: 0.155
-        m_Name: ParticlesSize
-        m_Overridden: 1
-      - m_Value: 1.2
-        m_Name: GroundFlamesSize
-        m_Overridden: 1
-      - m_Value: 1.1
-        m_Name: GroundFlamesLifetime
-        m_Overridden: 1
     m_Vector2f:
       m_Array: []
     m_Vector3f:
       m_Array: []
     m_Vector4f:
-      m_Array:
-      - m_Value: {x: 4.517757, y: 13.2172785, z: 1.2456075, w: 1}
-        m_Name: SlashColor
-        m_Overridden: 1
-      - m_Value: {x: 3.7022238, y: 4.3000007, z: 0.5628274, w: 1}
-        m_Name: ParticlesColor
-        m_Overridden: 1
-      - m_Value: {x: 2.4582365, y: 6.4199996, z: 0.7058637, w: 1}
-        m_Name: GroundCrackBrightColor
-        m_Overridden: 1
-      - m_Value: {x: 3.2224205, y: 7.369999, z: 0.73314136, w: 1}
-        m_Name: SimpleDecalBrightColor
-        m_Overridden: 1
+      m_Array: []
     m_Uint:
       m_Array: []
     m_Int:
@@ -472,38 +461,7 @@ VisualEffect:
     m_AnimationCurve:
       m_Array: []
     m_Gradient:
-      m_Array:
-      - m_Value:
-          serializedVersion: 2
-          key0: {r: 5.72764, g: 12.186629, b: 1.0846738, a: 0}
-          key1: {r: 0, g: 0, b: 0, a: 1}
-          key2: {r: 0, g: 0, b: 0, a: 0.8}
-          key3: {r: 0, g: 0, b: 0, a: 0}
-          key4: {r: 0, g: 0, b: 0, a: 0}
-          key5: {r: 0, g: 0, b: 0, a: 0}
-          key6: {r: 0, g: 0, b: 0, a: 0}
-          key7: {r: 0, g: 0, b: 0, a: 0}
-          ctime0: 5012
-          ctime1: 61295
-          ctime2: 0
-          ctime3: 0
-          ctime4: 0
-          ctime5: 0
-          ctime6: 0
-          ctime7: 0
-          atime0: 0
-          atime1: 9059
-          atime2: 23130
-          atime3: 65535
-          atime4: 0
-          atime5: 0
-          atime6: 0
-          atime7: 0
-          m_Mode: 0
-          m_NumColorKeys: 2
-          m_NumAlphaKeys: 4
-        m_Name: FlamesGradient
-        m_Overridden: 1
+      m_Array: []
     m_NamedObject:
       m_Array: []
     m_Bool:
@@ -602,7 +560,7 @@ TrailRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 4a49927e1edfd864499f64c3818e8d98, type: 2}
+  - {fileID: 2100000, guid: 1bb10bea00f803349ad5cdf9d727639a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -750,7 +708,7 @@ TrailRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 4a49927e1edfd864499f64c3818e8d98, type: 2}
+  - {fileID: 2100000, guid: 1bb10bea00f803349ad5cdf9d727639a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -897,7 +855,7 @@ TrailRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 616d8fd2faee976488eedfb212e0874c, type: 2}
+  - {fileID: 2100000, guid: ee3431e7f58c7e244a6afb8966422407, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1028,7 +986,7 @@ TrailRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 616d8fd2faee976488eedfb212e0874c, type: 2}
+  - {fileID: 2100000, guid: ee3431e7f58c7e244a6afb8966422407, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1329,7 +1287,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 0.47673666, g: 0.98039216, b: 0.14509805, a: 1}
+      maxColor: {r: 0.98039216, g: 0.37254903, b: 0.14509805, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -6029,7 +5987,7 @@ TrailRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 616d8fd2faee976488eedfb212e0874c, type: 2}
+  - {fileID: 2100000, guid: ee3431e7f58c7e244a6afb8966422407, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -6160,7 +6118,7 @@ TrailRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 616d8fd2faee976488eedfb212e0874c, type: 2}
+  - {fileID: 2100000, guid: ee3431e7f58c7e244a6afb8966422407, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
