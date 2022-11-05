@@ -11,6 +11,12 @@ public class JooHyeok_Skill : Player_Skill
     private Atk_Parabola parabola;
     private Parabola_Projectile projectile;
 
+    /// 
+    private Quaternion parabolaRotation;
+    private float parabolaDistance;
+    private float parabolaVelocity;
+    private float parabolaMaxYPos;
+
     protected override void Start()
     {
         base.Start();
@@ -29,23 +35,31 @@ public class JooHyeok_Skill : Player_Skill
         projectile.SetArcInfo(direction, dist, velocity, ypos);
     }
 
+    public override void SetSkillInfo()
+    {
+        parabolaRotation = parabola.transform.rotation;
+        parabolaDistance = parabola.distance;
+        parabolaVelocity = parabola.velocity;
+        parabolaMaxYPos = parabola.maxYpos;
+    }
+
     public override void ActSkill(Vector3 attackdirection, float magnitude)
     {        
         //Parabola rotation, distance velocity radianAngle이 동기화되지 않는다. 이를 전달해주고 싶은데 파라미터를 여러 개 써야할까?
         if (!PhotonNetwork.OfflineMode)
         {
             photonView.RPC(nameof(MasterCreateSkill), RpcTarget.MasterClient,
-                                                      direction,
-                                                      parabola.transform.rotation,
-                                                      parabola.distance,
-                                                      parabola.velocity,
-                                                      parabola.maxYpos);
+                                                      attackdirection,
+                                                      parabolaRotation,
+                                                      parabolaDistance,
+                                                      parabolaVelocity,
+                                                      parabolaMaxYPos);
         }
         else
         {
-            GameObject tempSkill = Instantiate(skillPrefab, transform.position, parabola.transform.rotation);
+            GameObject tempSkill = Instantiate(skillPrefab, transform.position, parabolaRotation);
             projectile = tempSkill.GetComponent<Parabola_Projectile>();
-            projectile.SetArcInfo(direction, parabola.distance, parabola.velocity, parabola.maxYpos);
+            projectile.SetArcInfo(attackdirection, parabolaDistance, parabolaVelocity, parabolaMaxYPos);
         }
     }
 

@@ -347,6 +347,9 @@ namespace ManagerSpace
         {
             for (int i = 0; i < PlayerObjectArr.Length; ++i)
             {
+                if (playerInfoArr[i] == null)
+                    continue;
+
                 if (playerInfoArr[i].ID == targetId)
                 {
                     playerInfoArr[i].GetSkillPoint(amount);

@@ -52,6 +52,8 @@ namespace PlayerSpace
                 owner = GetComponent<Player>();
         }
 
+        public virtual void SetSkillInfo() { }
+
         public void OnSkillMesh()
         {
             if (owner.Skill.direction.AlmostEquals(Vector3.zero, float.Epsilon))
@@ -82,6 +84,7 @@ namespace PlayerSpace
         public abstract void AutoSkill();
         IEnumerator LookAttackDirection(Vector3 attackDirection, float magnitude)
         {
+            SetSkillInfo();
             Vector3 forward = Vector3.Slerp(transform.forward,
                 attackDirection, rotationSpeed * Time.deltaTime / Vector3.Angle(transform.forward, direction));
             
