@@ -22,7 +22,14 @@ public class Projectile : AttackObject
 
     private void LateUpdate()
     {
-        if (!PhotonNetwork.IsMasterClient)
+        if(PhotonNetwork.OfflineMode)
+        {
+            if (range < (this.transform.position - originPos).magnitude)
+            {
+                Destroy(this.gameObject);
+            }
+        }
+        else if (!PhotonNetwork.IsMasterClient)
             return;
 
         if(range < (this.transform.position - originPos).magnitude)
