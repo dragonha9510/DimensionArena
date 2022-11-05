@@ -14,9 +14,11 @@ public class RedZone_Missile_Item : RedZone_Missile
         if (itemBox == null)
             return;
 
-        if (other.name != gameObject.name && !isCreate)
+        base.OnTriggerEnter(other);
+
+        if (effectOn && !isCreate)
         {
-            base.OnTriggerEnter(other);
+
             if(!PhotonNetwork.IsConnected)
             {
                 Instantiate(itemBox,
