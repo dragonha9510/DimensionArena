@@ -4,8 +4,8 @@ using UnityEngine;
 using UnityEditor;
 
 
-[CustomEditor(typeof(FieldOfView))]
-public class FieldOfViewEditor : Editor
+//[CustomEditor(typeof(FieldOfView))]
+/*public class FieldOfViewEditor : Editor
 {
     private void OnSceneGUI()
     {
@@ -22,4 +22,4 @@ public class FieldOfViewEditor : Editor
 
     }
 
-}
+}*/

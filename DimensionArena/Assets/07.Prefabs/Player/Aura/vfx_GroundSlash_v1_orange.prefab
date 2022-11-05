@@ -308,6 +308,7 @@ GameObject:
   - component: {fileID: 4364861999203606392}
   - component: {fileID: 1984475393032754013}
   - component: {fileID: -7436256275920150340}
+  - component: {fileID: 5717070832494948911}
   m_Layer: 0
   m_Name: vfx_GroundSlash_v1_orange
   m_TagString: Untagged
@@ -355,7 +356,6 @@ MonoBehaviour:
   speed: 18.56
   slowDownRate: 0.1
   detectingDistance: 3
-  destroyDelay: 5
 --- !u!54 &1984475393032754013
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -390,6 +390,29 @@ MonoBehaviour:
   hitPrefab: {fileID: 0}
   rigid: {fileID: 1984475393032754013}
   originPos: {x: 0, y: 0, z: 0}
+--- !u!114 &5717070832494948911
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4364861999203606394}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4263fb7953f21e4cbf8bce293d78054, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  info:
+    isOn: 0
+    direction: {x: 0, y: 0, z: 0}
+    speed: 5
+    distance: 5
+  knockBack: {fileID: 6338996334954765853, guid: 4e2ccaa5a98eefb469e9fcea7ceeb6ce,
+    type: 3}
+  triggerRadius: 0
+  isOnDestroy: 1
+  isOnDisable: 0
+  isOnEnable: 0
 --- !u!1 &4364862000155842778
 GameObject:
   m_ObjectHideFlags: 0

@@ -30,7 +30,6 @@ public class KnockBackObject : MonoBehaviour
         temp.SetActive(true);
     }
 
-
     private void OnDestroy()
     {
         if (!isOnDestroy)

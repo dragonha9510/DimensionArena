@@ -17,8 +17,6 @@ namespace PlayerSpace
         private FieldOfView FOV;
         [SerializeField]
         private Animator animator;
-        [SerializeField]
-        private AuraSkillDetector ditector;
 
         protected override void Start()
         {
@@ -56,6 +54,7 @@ namespace PlayerSpace
             }
             else
             {
+                
                 Quaternion skillRot = FOV.transform.rotation;
                 skillRot.eulerAngles = new Vector3(skillRot.eulerAngles.x, skillRot.eulerAngles.y - (FOV.viewAngle / 2), skillRot.eulerAngles.z);
                 for (int i = 0; i < 3; ++i)
@@ -64,16 +63,18 @@ namespace PlayerSpace
                     tempSkill1.GetComponent<AuraSkillProjectile>().StartAttack(projectileSpeed, projectileRange);
                     skillRot.eulerAngles = new Vector3(skillRot.eulerAngles.x, skillRot.eulerAngles.y + (FOV.viewAngle / 2), skillRot.eulerAngles.z);
                 }
-                List<GameObject> objList = ditector.WillTakeDamageObj;
 
-                foreach(GameObject obj in objList)
+                Transform rayTrans = FOV.transform;
+                //Quaternion rayRot = FOV.transform.rotation;
+                //rayRot.eulerAngles = new Vector3(rayRot.eulerAngles.x, rayRot.eulerAngles.y - (FOV.viewAngle / 2), rayRot.eulerAngles.z);
+                for(int i = 0; i < 5; ++i)
                 {
-                    if(obj.tag == "Player")
-                    {
-                        Vector3 tmp = (obj.transform.position - this.transform.position).normalized;
-                        obj.GetComponent<Rigidbody>().velocity = tmp * 1000.0f;
-                    }
+                    RaycastHit hitInfo;
+                    //Physics.Raycast(this.transform.position, out hitInfo,"Player", FOV.ViewRadius);
+
                 }
+
+
 
             }
         }
