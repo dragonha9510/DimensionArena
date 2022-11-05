@@ -17,6 +17,8 @@ namespace PlayerSpace
         private FieldOfView FOV;
         [SerializeField]
         private Animator animator;
+        [SerializeField]
+        private AuraSkillDetector ditector;
 
         protected override void Start()
         {
@@ -24,9 +26,23 @@ namespace PlayerSpace
         }
         public override void ActSkill(Vector3 attackdirection, float magnitude)
         {
+            projectileRange = FOV.ViewRadius;
             animator.SetBool("SkillUse", true);
+            SetMovePrevSkill();
         }
 
+        private void SetMovePrevSkill()
+        {
+            owner.Info.SpeedDown(0.9f);
+            owner.CanDirectionChange = false;
+        }
+        private void SetMoveAfterSkill()
+        {
+            Debug.Log("애니메이션 돌리기");
+            animator.SetBool("SkillUse", false);
+            owner.Info.SpeedUp(10f);
+            owner.CanDirectionChange = true;
+        }
         private void MakeSkillProjectile()
         {
             if (PhotonNetwork.InRoom)
@@ -40,17 +56,33 @@ namespace PlayerSpace
             }
             else
             {
-                Debug.Log("스킬 생성");
-                GameObject tempSkill = Instantiate(skillPrefab, transform.position, FOV.transform.rotation);
-                tempSkill.GetComponent<AuraSkillProjectile>().StartAttack(projectileSpeed, projectileRange);
-            }
-            animator.SetBool("SkillUse", false);
+                Quaternion skillRot = FOV.transform.rotation;
+                skillRot.eulerAngles = new Vector3(skillRot.eulerAngles.x, skillRot.eulerAngles.y - (FOV.viewAngle / 2), skillRot.eulerAngles.z);
+                for (int i = 0; i < 3; ++i)
+                {
+                    GameObject tempSkill1 = Instantiate(skillPrefab, transform.position + transform.forward * 0.2f, skillRot);
+                    tempSkill1.GetComponent<AuraSkillProjectile>().StartAttack(projectileSpeed, projectileRange);
+                    skillRot.eulerAngles = new Vector3(skillRot.eulerAngles.x, skillRot.eulerAngles.y + (FOV.viewAngle / 2), skillRot.eulerAngles.z);
+                }
+                List<GameObject> objList = ditector.WillTakeDamageObj;
 
+                foreach(GameObject obj in objList)
+                {
+                    if(obj.tag == "Player")
+                    {
+                        Vector3 tmp = (obj.transform.position - this.transform.position).normalized;
+                        obj.GetComponent<Rigidbody>().velocity = tmp * 1000.0f;
+                    }
+                }
+
+            }
         }
 
         public override void AutoSkill()
         {
-            throw new System.NotImplementedException();
+            return;
         }
+
+
     }
 }

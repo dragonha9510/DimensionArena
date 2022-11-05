@@ -16,19 +16,20 @@ public class AuraSkillProjectile : AttackObject
 
     private void LateUpdate()
     {
-        if (PhotonNetwork.OfflineMode)
+        if (PhotonNetwork.InRoom)
         {
+            Debug.Log((this.transform.position - originPos).magnitude);
             if (range < (this.transform.position - originPos).magnitude)
             {
                 Destroy(this.gameObject);
             }
         }
-        else if (!PhotonNetwork.IsMasterClient)
-            return;
-
-        if (range < (this.transform.position - originPos).magnitude)
+        else
         {
-            PhotonNetwork.Destroy(this.gameObject);
+            if (range < (this.transform.position - originPos).magnitude)
+            {
+                Destroy(this.gameObject);
+            }
         }
     }
     public void StartAttack(float _speed , float _range)
