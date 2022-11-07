@@ -199,14 +199,13 @@ namespace ManagerSpace
         }
 
 
-        public void CurHpDecrease(string ownerId, string targetId, float damage)
+        public int CurHpDecrease(string ownerId, string targetId, float damage)
         {
             PlayerInfo target;
             //Damage
             if (DicPlayerInfo.TryGetValue(targetId, out target))
             {
-                damage = damage > target.CurHP ? target.CurHP : damage;
-
+                damage = damage > target.CurHP + target.CurShield ? target.CurHP : damage;
                 //Data Regist
                 InGamePlayerData data;
 
@@ -217,35 +216,82 @@ namespace ManagerSpace
                 damage = DamagedShield(target, damage);
                 target.Damaged(damage);
                 target.BattleOn();
+                return (int)damage;
+            }
+
+            return 0;
+        }
+
+
+        public int CurHPDecreaseRatio(string ownerId, string targetId, float ratio)
+        {
+            PlayerInfo target;
+            int damage;
+            //Damage
+            if (DicPlayerInfo.TryGetValue(targetId, out target))
+            {
+                damage = (int)(target.MaxHP * ratio);
+                damage = (int)(damage > target.CurHP + target.CurShield ? target.CurHP : damage);
+                //Ingame 
+                ratio = DamagedShield(target, damage);
+
+
+                //Data Regist
+                InGamePlayerData data;
+
+                if (IngameDataManager.Instance.Data.TryGetValue(ownerId, out data))
+                    data.HitPoint(damage);
+
+                target.Damaged(damage);
+                target.BattleOn();
+                return damage;
 
             }
+
+            return 0;
         }
 
 
 
-        public void CurHpDecrease(string targetId, float damage)
+
+        public int CurHpDecrease(string targetId, float damage)
         {
             PlayerInfo target;
             //Damage
             if (DicPlayerInfo.TryGetValue(targetId, out target))
             {
-
-                damage = damage > target.CurHP ? target.CurHP : damage;
+                damage = damage > target.CurHP + target.CurShield ? target.CurHP : damage;
                 //Ingame 
                 damage = DamagedShield(target, damage);
 
                 target.Damaged(damage);
                 target.BattleOn();        
-                
+                return (int)damage;
             }
+            return 0;
 
         }
 
-        public void DeadCheckCallServer(ENVIROMENT enviroment)
+        public int CurHPDecreaseRatio(string targetId, float ratio)
         {
-            photonView.RPC("HealthCheck", RpcTarget.All, enviroment);
-        }
+            PlayerInfo target;
+            //Damage
+            if (DicPlayerInfo.TryGetValue(targetId, out target))
+            {
+                int damage;
+                damage = (int)(target.MaxHP * ratio);
+                damage = (int)(damage > target.CurHP + target.CurShield ? target.CurHP : damage);
+                //Ingame 
+                ratio = DamagedShield(target, damage);
 
+                target.Damaged(damage);
+                target.BattleOn();
+                return damage;
+
+            }
+            return 0;
+
+        }
 
         //JSB
         public void DeadCheckCallServer(string killerId)
@@ -262,6 +308,7 @@ namespace ManagerSpace
                 {
                     //Ingame UI Inform Kill
                     PlayerInfo killerInfo;
+                    Debug.Log(killerId);
                     DicPlayerInfo.TryGetValue(killerId, out killerInfo);
                     playerInfoArr[i].PlayerDie(killerInfo.Type, killerId);
 
@@ -280,38 +327,22 @@ namespace ManagerSpace
                     }
                     //Player Die 
 
-                }
-            }
-        }
-
-        [PunRPC]
-        private void HealthCheck(ENVIROMENT enviroment)
-        {
-            for (int i = 0; i < playerInfoArr.Length; ++i)
-            {
-                if (playerInfoArr[i].CurHP <= 0 && playerObjectArr[i].activeInHierarchy)
-                {
-                    //Ingame UI Inform Kill
-                    //Player Die 
-                    if (enviroment.Equals(ENVIROMENT.REDZONE))
-                        playerInfoArr[i].PlayerDie(UNITTYPE.RedZone, "레드존");
-                    else
-                        playerInfoArr[i].PlayerDie(UNITTYPE.Magnetic, "자기장");
-
-                    //GameData Set
-                    InGamePlayerData data;
-                    if (IngameDataManager.Instance.Data.TryGetValue(playerInfoArr[i].ID, out data))
+                    if(killerInfo == null)
                     {
-                        data.DeathData();
+                        if(killerId.Equals("MagneticField"))
+                        {
+                            playerInfoArr[i].PlayerDie(UNITTYPE.Magnetic, "자기장");
+                        }
+                        else if(killerId.Equals("RedZone"))
+                        {
+                            playerInfoArr[i].PlayerDie(UNITTYPE.RedZone, "레드존");
+                        }
                     }
                 }
             }
         }
-
-
+      
         /// <<<<<<<<<<<<<<<<<<<<<<<<<<
-
-
         /// ===========================
         /// Shield Region
         /// >>>>>>>>>>>>>>>>>>>>>>>>>>
@@ -348,28 +379,23 @@ namespace ManagerSpace
         [PunRPC]
         public void CurSkillPtIncrease(string targetId, float amount)
         {
-            for (int i = 0; i < PlayerObjectArr.Length; ++i)
-            {
-                if (playerInfoArr[i] == null)
-                    continue;
+            PlayerInfo info;
 
-                if (playerInfoArr[i].ID == targetId)
-                {
-                    playerInfoArr[i].GetSkillPoint(amount);
-                }
-            }
+            if (!DicPlayerInfo.TryGetValue(targetId, out info))
+                return;
+
+            info.GetSkillPoint(amount);
         }
 
         [PunRPC]
         public void CurSkillPtDecrease(string targetId, float amount)
         {
-            for (int i = 0; i < PlayerObjectArr.Length; ++i)
-            {
-                if (playerInfoArr[i].ID == targetId)
-                {
-                    playerInfoArr[i].GetSkillPoint(amount);
-                }
-            }
+            PlayerInfo info;
+
+            if (!DicPlayerInfo.TryGetValue(targetId, out info))
+                return;
+
+            info.LoseSkillPoint(amount);
         }
 
         /// <<<<<<<<<<<<<<<<<<<<<<<<<<
