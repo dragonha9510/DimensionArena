@@ -123,6 +123,7 @@ public class LobbyManagerRenewal : MonoBehaviourPunCallbacks
 
     // 해당 함수는 로비에 돌아갔을 시 자동적으로 호출되는 함수이며 , 로비 내부에서는 갱신을 할 수 없다.
     // -> 그럼 이거 로비에 둘 다 있을 때 방을 만들면 호출이 되는건가..;;
+    
     public override void OnRoomListUpdate(List<RoomInfo> roomList)
     {
         base.OnRoomListUpdate(roomList);
@@ -305,7 +306,6 @@ public class LobbyManagerRenewal : MonoBehaviourPunCallbacks
             nowGameStartCount = PhotonNetwork.CurrentRoom.PlayerCount;
             isWillStartGame = true;
             PhotonNetwork.CurrentRoom.IsOpen = false;
-            PhotonNetwork.CurrentRoom.IsVisible = false;
             photonView.RPC("PlayStart",RpcTarget.All);
             // 게임이 시작했으면 방을 닫는다. -> 방을 닫고 씬을 로드해야지 댕청아
             //PhotonNetwork.CurrentRoom.IsOpen = false;
