@@ -736,8 +736,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 374889390}
-  m_LocalRotation: {x: -0, y: 0.042700786, z: -0, w: 0.999088}
-  m_LocalPosition: {x: 1.23, y: 0, z: 8.4}
+  m_LocalRotation: {x: -0, y: 0.014888095, z: -0, w: 0.9998892}
+  m_LocalPosition: {x: 1.288, y: 0, z: 8.241}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -748,7 +748,7 @@ Transform:
   - {fileID: 1761391693}
   m_Father: {fileID: 0}
   m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 4.895, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 1.706, z: 0}
 --- !u!1 &424089126
 GameObject:
   m_ObjectHideFlags: 0
@@ -14101,7 +14101,7 @@ MonoBehaviour:
   projectileRange: 10
   FOV: {fileID: 7052004657253666737}
   animator: {fileID: 5312294639762832882}
-  ditector: {fileID: 1761391695}
+  rayCount: 3
 --- !u!114 &5312294639762832884
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15454,7 +15454,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   owner: {fileID: 374889392}
-  viewAngle: 80
+  viewAngle: 60
   viewRadius: 5
   meshResolution: 0.5
   viewMeshFilter: {fileID: 7052004657253666735}

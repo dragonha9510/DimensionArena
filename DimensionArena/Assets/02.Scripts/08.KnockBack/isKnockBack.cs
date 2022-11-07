@@ -37,4 +37,27 @@ public class isKnockBack : MonoBehaviour
         else
             curSpeed -= realSpeed * Time.deltaTime * curDistance;
     }
+
+
+    public void CallMoveKnockBack(Vector3 pos,Vector3 direction, float speed, float knockbackDistance)
+    {
+        StartCoroutine(MoveKnockBack(pos,direction, speed, knockbackDistance));
+    }
+
+    private IEnumerator MoveKnockBack(Vector3 pos,Vector3 direction , float speed , float knockbackDistance)
+    {
+        while(true)
+        {
+            if (Vector3.Distance(pos, this.transform.position) > knockbackDistance)
+                yield break;
+            else
+            {
+                Debug.Log("움직이는중");
+                this.transform.position = this.transform.position + direction * speed * Time.fixedDeltaTime;
+                yield return null;
+            }
+        }
+    }
+
 }
+
