@@ -18888,7 +18888,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: faceb9b25eb566e47aedda797e63905f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  deathTime: 2
+  deathTime: 1.9
   delayTime: 0.1
 --- !u!114 &3279797304468797986
 MonoBehaviour:
@@ -18926,6 +18926,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tickDamage: 220
   damageTime: 1
+  startDamage: 1
   isNestingCollision: 1
   partnerObject: []
   haveOwner: 1
