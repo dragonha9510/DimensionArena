@@ -20,6 +20,10 @@ namespace PlayerSpace
         [SerializeField]
         private int rayCount = 3;
         [SerializeField]
+        private float skillDamage = 10.0f;
+
+        private List<GameObject> hitedObj = new List<GameObject>();
+
         protected override void Start()
         {
             base.Start();
@@ -44,16 +48,52 @@ namespace PlayerSpace
             owner.Info.SpeedUp(10f);
             owner.CanDirectionChange = true;
         }
+
+        [PunRPC]
+        private void CreateSkillProjectile(string prefabName,Vector3 trans,Quaternion rot)
+        {
+            GameObject skill = PhotonNetwork.Instantiate(prefabName, trans, rot);
+            skill.GetComponent<AuraSkillProjectile>().StartAttack(projectileSpeed, projectileRange);
+        }
+
         private void MakeSkillProjectile()
         {
             if (PhotonNetwork.InRoom)
             {
-                /*photonView.RPC(nameof(MasterCreateSkill), RpcTarget.MasterClient,
-                                                          direction,
-                                                          parabola.transform.rotation,
-                                                          parabola.distance,
-                                                          parabola.velocity,
-                                                          parabola.maxYpos);*/
+                Quaternion skillRot = FOV.transform.rotation;
+                skillRot.eulerAngles = new Vector3(skillRot.eulerAngles.x, skillRot.eulerAngles.y - (FOV.viewAngle / 2), skillRot.eulerAngles.z);
+                for (int i = 0; i < 3; ++i)
+                {
+                    photonView.RPC(nameof(CreateSkillProjectile), RpcTarget.MasterClient, skillPrefab.name, transform.position + transform.forward * 0.2f, skillRot);
+                    skillRot.eulerAngles = new Vector3(skillRot.eulerAngles.x, skillRot.eulerAngles.y + (FOV.viewAngle / 2), skillRot.eulerAngles.z);
+                }
+
+                if (!PhotonNetwork.IsMasterClient)
+                    return;
+                Ray ray = new Ray();
+                RaycastHit rayHit;
+                ray.origin = FOV.transform.position;
+
+                ray.direction = FOV.transform.forward;
+                ray.direction = Quaternion.AngleAxis(-(FOV.viewAngle / 2), Vector3.up) * ray.direction;
+
+                float correctionAngle = FOV.viewAngle / (rayCount - 1);
+
+
+                for (int i = 0; i < rayCount; ++i)
+                {
+                    if (true == Physics.Raycast(ray, out rayHit, FOV.ViewRadius) && rayHit.transform.gameObject != owner && false == hitedObj.Contains(rayHit.transform.gameObject))
+                    {
+                        hitedObj.Add(rayHit.transform.gameObject);
+                        Debug.Log("ºÎ‹HÈû");
+                        //rayHit.transform.gameObject.transform.position = owner.transform.position + ((rayHit.transform.gameObject.transform.position - owner.transform.position).normalized * FOV.ViewRadius);
+
+                        rayHit.transform.gameObject.GetComponent<isKnockBack>().CallMoveKnockBack(owner.transform.position, (rayHit.transform.gameObject.transform.position - owner.transform.position).normalized, projectileSpeed, FOV.ViewRadius);
+                        rayHit.transform.gameObject.GetComponent<PlayerInfo>().Damaged(skillDamage);
+                    }
+                    ray.direction = Quaternion.AngleAxis(correctionAngle, Vector3.up) * ray.direction;
+                }
+                hitedObj.Clear();
             }
             else
             {
@@ -76,7 +116,6 @@ namespace PlayerSpace
 
                 float correctionAngle = FOV.viewAngle / (rayCount - 1);
 
-                List<GameObject> hitedObj = new List<GameObject>();
 
                 for (int i = 0; i < rayCount; ++i)
                 {
@@ -87,9 +126,11 @@ namespace PlayerSpace
                         //rayHit.transform.gameObject.transform.position = owner.transform.position + ((rayHit.transform.gameObject.transform.position - owner.transform.position).normalized * FOV.ViewRadius);
                         
                         rayHit.transform.gameObject.GetComponent<isKnockBack>().CallMoveKnockBack(owner.transform.position,(rayHit.transform.gameObject.transform.position - owner.transform.position).normalized, projectileSpeed, FOV.ViewRadius);
+                        rayHit.transform.gameObject.GetComponent<PlayerInfo>().Damaged(skillDamage);
                     }
                     ray.direction = Quaternion.AngleAxis(correctionAngle, Vector3.up) * ray.direction;
                 }
+                hitedObj.Clear();
             }
         }
 

@@ -54,12 +54,28 @@ namespace PlayerSpace
                 AnimationTriggerSetting();
             }
         }
+
+        [PunRPC]
+        private void MakeProjectileOnServer(string prefapName,Vector3 pos,Quaternion rot)
+        {
+            GameObject proj  = PhotonNetwork.Instantiate(prefapName, pos, rot);
+            proj.GetComponent<Aura_Projectile>().AttackToDirection(this.transform.position, attackDirection, AtkInfo.Range, projectileSpeed);
+            proj.GetComponent<Aura_Projectile>().ownerID = this.gameObject.name;
+        }
+
         private void MakeProjectile()
         {
-            GameObject projectile;
-            projectile = Instantiate(prefab_Projectile, this.transform.position + (Vector3.up * 0.5f) + (attackDirection * 0.5f), this.transform.rotation);
-            projectile.GetComponent<Aura_Projectile>().AttackToDirection(this.transform.position, attackDirection, AtkInfo.Range, projectileSpeed);
-            projectile.GetComponent<Aura_Projectile>().ownerID = this.gameObject.name;
+            if(PhotonNetwork.InRoom)
+            {
+               photonView.RPC(nameof(MakeProjectileOnServer), RpcTarget.MasterClient, prefab_Projectile.name, this.transform.position + (Vector3.up * 0.5f) + (attackDirection * 0.5f), this.transform.rotation);
+            }
+            else
+            {
+                GameObject projectile;
+                projectile = Instantiate(prefab_Projectile, this.transform.position + (Vector3.up * 0.5f) + (attackDirection * 0.5f), this.transform.rotation);
+                projectile.GetComponent<Aura_Projectile>().AttackToDirection(this.transform.position, attackDirection, AtkInfo.Range, projectileSpeed);
+                projectile.GetComponent<Aura_Projectile>().ownerID = this.gameObject.name;
+            }
         }
         
         IEnumerator AttackTime()
