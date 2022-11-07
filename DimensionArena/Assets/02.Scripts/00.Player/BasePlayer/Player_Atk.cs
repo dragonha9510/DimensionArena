@@ -95,6 +95,7 @@ namespace PlayerSpace
             atkRangeMesh.SetActive(temp);
         }
 
+        [PunRPC]
         protected virtual void AtkTrigger()
         {
             animator.SetTrigger("attack");
