@@ -784,7 +784,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   WatingCanvas: {fileID: 1250774241}
   spawnPoint: []
-  playerPrefab: {fileID: 2276796244850972979, guid: d298b730270c5a549951545db8b24d42,
+  playerPrefab: {fileID: 7309405340590815873, guid: 8c85d8ab5c8b4054fa41eaff81f46e42,
     type: 3}
 --- !u!4 &1058569137
 Transform:
@@ -34121,10 +34121,39 @@ PrefabInstance:
       propertyPath: infoTransform.Array.data[1]
       value: 
       objectReference: {fileID: 1546303736}
+    - target: {fileID: 480469602389915558, guid: 472cf58ce3dcc014f83a351bb53fe090,
+        type: 3}
+      propertyPath: CharacterThumbnail.Array.data[0]
+      value: 
+      objectReference: {fileID: 21300000, guid: 0839813c4eb66e44d9e717c2e5685ace,
+        type: 3}
+    - target: {fileID: 480469602389915558, guid: 472cf58ce3dcc014f83a351bb53fe090,
+        type: 3}
+      propertyPath: CharacterThumbnail.Array.data[1]
+      value: 
+      objectReference: {fileID: 21300000, guid: 095f000b5101cb84d9297830b89e5417,
+        type: 3}
+    - target: {fileID: 480469602389915558, guid: 472cf58ce3dcc014f83a351bb53fe090,
+        type: 3}
+      propertyPath: CharacterThumbnail.Array.data[2]
+      value: 
+      objectReference: {fileID: 21300000, guid: 303bad82bb835884a89db88348c1344f,
+        type: 3}
+    - target: {fileID: 480469602389915558, guid: 472cf58ce3dcc014f83a351bb53fe090,
+        type: 3}
+      propertyPath: CharacterThumbnail.Array.data[3]
+      value: 
+      objectReference: {fileID: 21300000, guid: b47916aa1501d2f4b829364c4e2647d2,
+        type: 3}
     - target: {fileID: 480469602389915559, guid: 472cf58ce3dcc014f83a351bb53fe090,
         type: 3}
       propertyPath: m_Name
       value: InGameUIManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 480469602389915559, guid: 472cf58ce3dcc014f83a351bb53fe090,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 472cf58ce3dcc014f83a351bb53fe090, type: 3}

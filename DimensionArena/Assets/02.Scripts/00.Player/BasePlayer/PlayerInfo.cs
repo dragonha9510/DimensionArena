@@ -11,7 +11,7 @@ public enum UNITTYPE
     Aura,
     Ravagebell,
     Joohyeok,
-    Sesillia,
+    Secilia,
     RedZone,
     Magnetic
 }
