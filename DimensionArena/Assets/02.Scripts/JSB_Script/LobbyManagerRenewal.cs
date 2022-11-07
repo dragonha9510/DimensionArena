@@ -354,6 +354,12 @@ public class LobbyManagerRenewal : MonoBehaviourPunCallbacks
 
     }
 
-    
-
+    public void MinusLeastStartPlayer()
+    {
+        --leastStartPlayer;
+    }
+    public void PlusLeastStartPlayer()
+    {
+        ++leastStartPlayer;
+    }
 }
