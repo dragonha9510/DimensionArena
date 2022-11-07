@@ -1003,6 +1003,16 @@ PrefabInstance:
       propertyPath: sceneViewId
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 4269494465708713449, guid: 6116ef1203ac84c4b9d804ff62a7a788,
+        type: 3}
+      propertyPath: m_AABB.m_Center.y
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4269494465720281537, guid: 6116ef1203ac84c4b9d804ff62a7a788,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4269494466182362498, guid: 6116ef1203ac84c4b9d804ff62a7a788,
         type: 3}
       propertyPath: sceneViewId
@@ -1103,7 +1113,7 @@ PrefabInstance:
   m_SourcePrefab: {fileID: 100100000, guid: 6116ef1203ac84c4b9d804ff62a7a788, type: 3}
 --- !u!1 &5527182555630530737 stripped
 GameObject:
-  m_CorrespondingSourceObject: {fileID: 4269494467043370119, guid: 6116ef1203ac84c4b9d804ff62a7a788,
+  m_CorrespondingSourceObject: {fileID: 4269494465720281537, guid: 6116ef1203ac84c4b9d804ff62a7a788,
     type: 3}
   m_PrefabInstance: {fileID: 5527182555630530736}
   m_PrefabAsset: {fileID: 0}

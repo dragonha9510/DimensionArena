@@ -177,11 +177,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 235af01428cfcb94e85e4fccb77967c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tickDamage: 1
+  tickDamage: 0.33
   damageTime: 3
   startDamage: 0
   isNestingCollision: 1
   partnerObject: []
-  haveOwner: 0
-  OwnerID: 
+  OwnerID: MagneticField
   ultimatePoint: 0
+  isPercent: 1

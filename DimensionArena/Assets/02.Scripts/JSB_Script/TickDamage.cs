@@ -23,31 +23,30 @@ public class TickDamage : MonoBehaviourPun
     public Dictionary<string,bool> WillDamageApply { get { return willDamageApply; } }
     private Dictionary<string, Transform> damageTransform = new Dictionary<string, Transform>();
 
-    [SerializeField] private bool haveOwner;
     public string OwnerID;
     public float ultimatePoint;
 
+    [SerializeField] private bool isPercent;
 
     [PunRPC]
     public void DamageApply(string userID,float damage)
     {
-        if (haveOwner && userID.Equals(OwnerID))
+        if (userID.Equals(OwnerID))
             return;
 
-        FloatingText.Instance.CreateFloatingTextForDamage(damageTransform[userID].position, damage);
-
-        if (haveOwner)
-        {
-            PlayerInfoManager.Instance.CurHpDecrease(OwnerID, userID, damage);
-            PlayerInfoManager.Instance.CurSkillPtIncrease(OwnerID, ultimatePoint);
-        }
+        int decreaseHP;
+        if (isPercent)
+            decreaseHP = PlayerInfoManager.Instance.CurHPDecreaseRatio(OwnerID, userID, damage);
         else
-            PlayerInfoManager.Instance.CurHpDecrease(userID, damage);
+            decreaseHP = PlayerInfoManager.Instance.CurHpDecrease(OwnerID, userID, damage);
+
+        FloatingText.Instance.CreateFloatingTextForDamage(damageTransform[userID].position, decreaseHP);
+        PlayerInfoManager.Instance.CurSkillPtIncrease(OwnerID, ultimatePoint);
+      
     }
 
     IEnumerator InDamageZone(string userID, float time, float damage)
     {
-        Debug.Log(userID + "는 데미지를 곧 받을거야");
 
         if (startDamage)
         {
@@ -60,10 +59,8 @@ public class TickDamage : MonoBehaviourPun
         while (true)
         {
             // 이 부분 수정하기 , 나가면 바로 꺼지지 않고 , time 만큼 기다렸다가 데미지를 입음
-            Debug.Log("난돌고있어!!");
             if (false == willDamageApply[userID])
             {
-                Debug.Log(userID + "는 데미지존을 나갔어 코루틴을 멈출거야");
                 willDamageApply.Remove(userID);
                 damageTransform.Remove(userID);
                 yield break;
@@ -78,7 +75,6 @@ public class TickDamage : MonoBehaviourPun
             else
                 DamageApply(userID, damage);
 
-            Debug.Log(userID + "는 데미지를 받았어");
         }
     }
     private void OnTriggerExit(Collider other)
