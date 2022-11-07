@@ -42,7 +42,11 @@ public class TickDamage : MonoBehaviourPun
                 yield break;
             }
             yield return new WaitForSeconds(time);
-            if (PhotonNetwork.InRoom)
+
+            if (false == willDamageApply[userID])
+                continue;
+            
+            if (!PhotonNetwork.OfflineMode)
                 photonView.RPC(nameof(DamageApply), RpcTarget.All, userID, damage);
             else
                 PlayerInfoManager.Instance.CurHpDecrease(userID, damage);
@@ -51,7 +55,7 @@ public class TickDamage : MonoBehaviourPun
     }
     private void OnTriggerExit(Collider other)
     {
-        if (PhotonNetwork.IsMasterClient && PhotonNetwork.InRoom)
+        if (PhotonNetwork.IsMasterClient && !PhotonNetwork.OfflineMode)
         {
             if (other.gameObject.tag == "Player")
             {
@@ -87,9 +91,9 @@ public class TickDamage : MonoBehaviourPun
     {
         // 데미지 타임을 딱 두고 , , , 딱대라 시간 지내면 때린다
         // 또 코루틴?
-        if(PhotonNetwork.IsMasterClient && PhotonNetwork.InRoom)
+        if(PhotonNetwork.IsMasterClient && !PhotonNetwork.OfflineMode)
         {
-            if(other.gameObject.tag == "Player")
+            if (other.gameObject.CompareTag("Player"))
             {
                 if(true == isNestingCollision)
                 {
@@ -107,15 +111,18 @@ public class TickDamage : MonoBehaviourPun
         }
         else
         {
-            if (true == isNestingCollision)
+            if (other.gameObject.CompareTag("Player"))
             {
-                StartCoroutine(InDamageZone(other.gameObject.name, damageTime, tickDamage));
-                willDamageApply.Add(other.name, true);
-            }
-            else if (false == isNestingCollision && false == IsInOtherObject(other.gameObject.name))
-            {
-                StartCoroutine(InDamageZone(other.gameObject.name, damageTime, tickDamage));
-                willDamageApply.Add(other.name, true);
+                if (true == isNestingCollision)
+                {
+                    willDamageApply.Add(other.name, true);
+                    StartCoroutine(InDamageZone(other.gameObject.name, damageTime, tickDamage));
+                }
+                else if (false == isNestingCollision && false == IsInOtherObject(other.gameObject.name))
+                {
+                    willDamageApply.Add(other.name, true);
+                    StartCoroutine(InDamageZone(other.gameObject.name, damageTime, tickDamage));
+                }
             }
         }
     }

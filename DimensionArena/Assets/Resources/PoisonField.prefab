@@ -14057,6 +14057,7 @@ GameObject:
   - component: {fileID: 199820046345470908}
   - component: {fileID: -2539891349493049266}
   - component: {fileID: 3279797304468797986}
+  - component: {fileID: 1776680616755257400}
   m_Layer: 0
   m_Name: PoisonField
   m_TagString: Untagged
@@ -18910,6 +18911,22 @@ MonoBehaviour:
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
+--- !u!114 &1776680616755257400
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1749833007681888}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 235af01428cfcb94e85e4fccb77967c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tickDamage: 15
+  damageTime: 1
+  isNestingCollision: 1
+  partnerObject: []
 --- !u!1 &1976213851748652
 GameObject:
   m_ObjectHideFlags: 0
