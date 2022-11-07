@@ -31,7 +31,7 @@ public class TickDamage : MonoBehaviourPun
     [PunRPC]
     public void DamageApply(string userID,float damage)
     {
-        if (haveOwner && userID == OwnerID)
+        if (haveOwner && userID.Equals(OwnerID))
             return;
 
         FloatingText.Instance.CreateFloatingTextForDamage(damageTransform[userID].position, damage);
@@ -119,6 +119,9 @@ public class TickDamage : MonoBehaviourPun
     {
         // 데미지 타임을 딱 두고 , , , 딱대라 시간 지내면 때린다
         // 또 코루틴?
+        if (other.gameObject.name.Equals(OwnerID))
+            return;
+
         if(PhotonNetwork.IsMasterClient && !PhotonNetwork.OfflineMode)
         {
             if (other.gameObject.CompareTag("Player"))
