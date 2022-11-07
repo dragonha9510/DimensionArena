@@ -18,7 +18,6 @@ public class AuraSkillProjectile : AttackObject
     {
         if (PhotonNetwork.InRoom)
         {
-            Debug.Log((this.transform.position - originPos).magnitude);
             if (range < (this.transform.position - originPos).magnitude)
             {
                 Destroy(this.gameObject);

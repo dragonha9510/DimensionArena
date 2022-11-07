@@ -180,7 +180,7 @@ MonoBehaviour:
   tickDamage: 1
   damageTime: 3
   startDamage: 0
-  isNestingCollision: 1
+  isNestingCollision: 0
   partnerObject: []
   haveOwner: 0
   OwnerID: 

@@ -87,9 +87,12 @@ namespace PlayerSpace
                         hitedObj.Add(rayHit.transform.gameObject);
                         Debug.Log("부딫힘");
                         //rayHit.transform.gameObject.transform.position = owner.transform.position + ((rayHit.transform.gameObject.transform.position - owner.transform.position).normalized * FOV.ViewRadius);
-
-                        rayHit.transform.gameObject.GetComponent<isKnockBack>().CallMoveKnockBack(owner.transform.position, (rayHit.transform.gameObject.transform.position - owner.transform.position).normalized, projectileSpeed, FOV.ViewRadius);
-                        rayHit.transform.gameObject.GetComponent<PlayerInfo>().Damaged(skillDamage);
+                        // 맞는 애가 넉백이 없을 시에 ( 플레이어가 아닐 때 ) 는 넉백 작동 안함.
+                        if(null != rayHit.transform.gameObject.GetComponent<isKnockBack>())
+                        {
+                            rayHit.transform.gameObject.GetComponent<isKnockBack>().CallMoveKnockBack(owner.transform.position, (rayHit.transform.gameObject.transform.position - owner.transform.position).normalized, projectileSpeed, FOV.ViewRadius);
+                            rayHit.transform.gameObject.GetComponent<PlayerInfo>().Damaged(skillDamage);
+                        }
                     }
                     ray.direction = Quaternion.AngleAxis(correctionAngle, Vector3.up) * ray.direction;
                 }
