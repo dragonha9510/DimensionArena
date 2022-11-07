@@ -5143,7 +5143,7 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
---- !u!1 &3372032610457279464
+--- !u!1 &3575850948647834038
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5151,9 +5151,9 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 2545158638804641692}
-  - component: {fileID: 7107249264178240427}
-  - component: {fileID: 8872876932816329008}
+  - component: {fileID: 1395018850269363322}
+  - component: {fileID: 2260001338461010178}
+  - component: {fileID: 4151654769998674913}
   m_Layer: 10
   m_Name: Sword
   m_TagString: Untagged
@@ -5161,13 +5161,13 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &2545158638804641692
+--- !u!4 &1395018850269363322
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3372032610457279464}
+  m_GameObject: {fileID: 3575850948647834038}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -5176,21 +5176,21 @@ Transform:
   m_Father: {fileID: 4183991132070141746}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &7107249264178240427
+--- !u!33 &2260001338461010178
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3372032610457279464}
+  m_GameObject: {fileID: 3575850948647834038}
   m_Mesh: {fileID: 4300000, guid: cf12bd79e92a365489b4e99c979705d7, type: 3}
---- !u!23 &8872876932816329008
+--- !u!23 &4151654769998674913
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3372032610457279464}
+  m_GameObject: {fileID: 3575850948647834038}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -5254,7 +5254,7 @@ Transform:
   m_LocalScale: {x: 0.16, y: 0.16, z: 0.16}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 2545158638804641692}
+  - {fileID: 1395018850269363322}
   m_Father: {fileID: 8109030747260438690}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -30}
