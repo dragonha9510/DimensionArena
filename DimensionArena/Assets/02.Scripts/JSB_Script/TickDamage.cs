@@ -124,7 +124,7 @@ public class TickDamage : MonoBehaviourPun
 
         if(PhotonNetwork.IsMasterClient && !PhotonNetwork.OfflineMode)
         {
-            if (other.gameObject.CompareTag("Player"))
+            if (other.CompareTag("Player"))
             {
                 if(true == isNestingCollision)
                 {
@@ -145,7 +145,7 @@ public class TickDamage : MonoBehaviourPun
         }
         else
         {
-            if (other.gameObject.CompareTag("Player"))
+            if (other.CompareTag("Player"))
             {
                 if (true == isNestingCollision)
                 {
