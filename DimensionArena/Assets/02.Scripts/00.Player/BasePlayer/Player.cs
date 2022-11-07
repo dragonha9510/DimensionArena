@@ -67,8 +67,8 @@ namespace PlayerSpace
             }
             else
             {
-                nickName = "Player";
-                gameObject.name = "Player";
+                nickName = "Player" + gameObject.name;
+                gameObject.name = "Player" + gameObject.name;
             }
 
             info.ID = gameObject.name;

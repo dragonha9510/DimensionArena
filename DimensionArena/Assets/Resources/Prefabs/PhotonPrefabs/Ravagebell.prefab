@@ -586,11 +586,11 @@ MonoBehaviour:
     id: 
     type: 1
     isAlive: 0
-    maxHP: 250
-    curHP: 250
+    maxHP: 750
+    curHP: 750
     curSkillPoint: 100
     maxSkillPoint: 100
-    speed: 2.3
+    speed: 2.1
     curShield: 0
     maxSheld: 0
     additionalDmg: 0
@@ -611,9 +611,9 @@ MonoBehaviour:
   isRotation: 0
   autoAtk: {fileID: 8158497396768418250}
   atkInfo:
-    range: 7
+    range: 8
     maxMagazine: 1
-    reloadTime: 1
+    reloadTime: 1.3
   atkRangeMesh: {fileID: 4901776913499584426}
   direction: {x: 0, y: 0, z: 0}
   attackDirection: {x: 0, y: 0, z: 0}
@@ -638,11 +638,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isRotation: 0
-  autoSkill: {fileID: 0}
+  autoSkill: {fileID: 8670677893159184793}
   skillRangeMesh: {fileID: 4901776912704385013}
   direction: {x: 0, y: 0, z: 0}
   skillDirection: {x: 0, y: 0, z: 0}
-  maxRange: 6
+  maxRange: 8
   skillPrefab: {fileID: 1997882812359486, guid: 1ab7062c749455b4eb29530d8e77d7aa,
     type: 3}
   muzzlePrefab: {fileID: 1072413172352700, guid: 44d140f73b47c77439c4a4ed660e45df,
@@ -2228,6 +2228,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 14b00aeb5922694488838123e409720a, type: 3}
+--- !u!114 &8670677893159184793 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4483466908246715429, guid: 14b00aeb5922694488838123e409720a,
+    type: 3}
+  m_PrefabInstance: {fileID: 5074456155147093436}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a26212d95e588a46bc514f05726b015, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &8774316465043765809 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4587114866574966669, guid: 14b00aeb5922694488838123e409720a,

@@ -140,7 +140,10 @@ namespace ManagerSpace
         /// 
         public void RegisterPlayer()
         {
-            photonView.RPC("RegisterforMasterClient", RpcTarget.All);
+            if (!PhotonNetwork.OfflineMode)
+                photonView.RPC("RegisterforMasterClient", RpcTarget.All);
+            else
+                RegisterforMasterClient();
         }
 
         [PunRPC]
