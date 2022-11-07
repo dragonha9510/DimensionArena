@@ -9,7 +9,7 @@ public class Lobby_BtnFunction : MonoBehaviour
 {
     [SerializeField] private Image image;
     [SerializeField] private TMP_Text subName;
-    
+    [SerializeField] private TMP_Text tmpLobbyState;
     public void Start()
     {
         // JSB
@@ -36,5 +36,17 @@ public class Lobby_BtnFunction : MonoBehaviour
         SoundManager.Instance.PlaySFXOneShot("ClickEffect");
         SceneManager.LoadScene("SelectMap");
 
+    }
+
+    public void Plus()
+    {
+        LobbyManagerRenewal.Instance.PlusLeastStartPlayer();
+        tmpLobbyState.text = LobbyManagerRenewal.Instance.LeastStartPlayer.ToString();
+    }
+    public void Mins()
+    {
+        LobbyManagerRenewal.Instance.MinusLeastStartPlayer();
+
+        tmpLobbyState.text = LobbyManagerRenewal.Instance.LeastStartPlayer.ToString();
     }
 }
