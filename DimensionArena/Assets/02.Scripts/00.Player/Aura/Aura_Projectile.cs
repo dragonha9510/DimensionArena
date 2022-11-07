@@ -8,7 +8,6 @@ public class Aura_Projectile : AttackObject
     [SerializeField] Rigidbody rigid;
     [SerializeField] Vector3 originPos;
 
-
     float range = 10.0f;
 
 
@@ -39,26 +38,42 @@ public class Aura_Projectile : AttackObject
 
     protected virtual void OnTriggerEnter(Collider other)
     {
-        if (!PhotonNetwork.IsMasterClient)
-            return;
-
-        switch (other.tag)
+        if(PhotonNetwork.InRoom)
         {
-            //상대 Player에게 데미지를 준 경우, 
-            case "Player":
-                {
-                    if (ownerID != other.gameObject.name)
+            if (!PhotonNetwork.IsMasterClient)
+                return;
+
+            switch (other.tag)
+            {
+                //상대 Player에게 데미지를 준 경우, 
+                case "Player":
                     {
-                        photonView.RPC("OnCollisionToPlayer",
-                        RpcTarget.All,
-                        ownerID,
-                        other.gameObject.name,
-                        other.transform.position);
+                        if (ownerID != other.gameObject.name)
+                        {
+                            photonView.RPC("OnCollisionToPlayer",
+                            RpcTarget.All,
+                            ownerID,
+                            other.gameObject.name,
+                            other.transform.position);
+                        }
                     }
-                }
-                break;
-            default:
-                break;
+                    break;
+                default:
+                    break;
+            }
+        }
+        else
+        {
+            switch (other.tag)
+            {
+                //상대 Player에게 데미지를 준 경우, 
+                case "Player":
+                    OnCollisionToPlayer(ownerID, other.gameObject.name, other.gameObject.transform.position);
+                    Destroy(this.gameObject);
+                    break;
+                default:
+                    break;
+            }
         }
     }
 

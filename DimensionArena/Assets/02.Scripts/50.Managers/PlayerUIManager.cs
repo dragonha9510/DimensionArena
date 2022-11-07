@@ -42,13 +42,15 @@ namespace ManagerSpace
             target.Info.EcurHPChanged += HpChange;
             target.Info.EcurShieldChanged += ShieldAmountChange;
 
-            if (target.photonView.IsMine)
+            if(PhotonNetwork.InRoom)
             {
-                arrow.SetActive(true);
-                StartCoroutine(ArrowMoveCoroutine());
-                //이름 지정
+                if (target.photonView.IsMine)
+                {
+                    arrow.SetActive(true);
+                    StartCoroutine(ArrowMoveCoroutine());
+                    //이름 지정
+                }
             }
-
         }
 
         IEnumerator ArrowMoveCoroutine()

@@ -37,7 +37,8 @@ namespace PlayerSpace
         public Player_Skill Skill => skill;
 
         private Player_Movement movement;
-
+        
+        public Player_Movement Movement { get { return movement; } }
         private Rigidbody rigid;
 
         /// =============================

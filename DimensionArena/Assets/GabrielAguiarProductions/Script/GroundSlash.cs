@@ -7,7 +7,6 @@ public class GroundSlash : MonoBehaviour
     public float speed = 30;
     public float slowDownRate = 0.01f;
     public float detectingDistance = 0.1f;
-    public float destroyDelay = 5;
 
     private Rigidbody rb;
     private bool stopped;
@@ -19,12 +18,10 @@ public class GroundSlash : MonoBehaviour
         if (GetComponent<Rigidbody>() != null)
         {
             rb = GetComponent<Rigidbody>();
-            StartCoroutine(SlowDown());
         }
         else
             Debug.Log("No Rigidbody");
 
-        Destroy(gameObject, destroyDelay);
     }
 
     private void FixedUpdate()
@@ -43,18 +40,5 @@ public class GroundSlash : MonoBehaviour
             }*/
             Debug.DrawRay(distance, transform.TransformDirection(-Vector3.up * detectingDistance), Color.red);
         }
-    }
-
-    IEnumerator SlowDown ()
-    {
-        float t = 1;
-        while (t > 0)
-        {
-            rb.velocity = Vector3.Lerp(Vector3.zero, rb.velocity, t);
-            t -= slowDownRate;
-            yield return new WaitForSeconds(0.1f);
-        }
-
-        stopped = true;
     }
 }

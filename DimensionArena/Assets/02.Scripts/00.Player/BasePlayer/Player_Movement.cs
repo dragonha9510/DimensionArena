@@ -7,6 +7,10 @@ public class Player_Movement
 {
     Player owner;
 
+    private bool canMove = true;
+    public bool CanMove { set { canMove = value; } }
+
+
     public Player_Movement(Player owner)
     {
         this.owner = owner;
@@ -14,6 +18,8 @@ public class Player_Movement
 
     public void MoveDirection(Rigidbody rigid, Transform transform, Vector3 direction, float speed)
     {
+        if (!canMove)
+            return;
         if (direction.sqrMagnitude > 0.01f)
         {
             Vector3 forward = Vector3.Slerp(transform.forward, direction, 720.0f * Time.deltaTime / Vector3.Angle(transform.forward, direction));  
