@@ -5203,11 +5203,11 @@ Transform:
   m_LocalScale: {x: 0.15, y: 0.15, z: 0.15}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 2431121271842281154}
+  - {fileID: 1303611192239739689}
   m_Father: {fileID: 3849273736481854661}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &5069076922173491388
+--- !u!1 &6485812836602019648
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5215,9 +5215,9 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 2431121271842281154}
-  - component: {fileID: 541453071986414871}
-  - component: {fileID: 801707769478415191}
+  - component: {fileID: 1303611192239739689}
+  - component: {fileID: 4397440548249706238}
+  - component: {fileID: 8049834654785069619}
   m_Layer: 10
   m_Name: Thunder
   m_TagString: Untagged
@@ -5225,13 +5225,13 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &2431121271842281154
+--- !u!4 &1303611192239739689
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5069076922173491388}
+  m_GameObject: {fileID: 6485812836602019648}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -5240,21 +5240,21 @@ Transform:
   m_Father: {fileID: 4652029201515519336}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &541453071986414871
+--- !u!33 &4397440548249706238
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5069076922173491388}
+  m_GameObject: {fileID: 6485812836602019648}
   m_Mesh: {fileID: 4300000, guid: d68560c914d59e24c9e15c1f9207a7eb, type: 3}
---- !u!23 &801707769478415191
+--- !u!23 &8049834654785069619
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5069076922173491388}
+  m_GameObject: {fileID: 6485812836602019648}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1

@@ -210,9 +210,6 @@ MonoBehaviour:
   knockBack: {fileID: 6338996334954765853, guid: 4e2ccaa5a98eefb469e9fcea7ceeb6ce,
     type: 3}
   triggerRadius: 2
-  isOnDestroy: 1
-  isOnDisable: 0
-  isOnEnable: 0
 --- !u!1 &6731869027971370076
 GameObject:
   m_ObjectHideFlags: 0

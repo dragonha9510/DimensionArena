@@ -35,7 +35,7 @@ public class AutoAtk_Detection : MonoBehaviour
 
         if (detectedTransform.Count == 0)
             return;
-
+        
         detectedTransform.Sort(delegate (Transform A, Transform B)
         {
             float Adistance = Vector3.Distance(transform.position, A.position);

@@ -179,6 +179,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tickDamage: 1
   damageTime: 3
+  startDamage: 0
   isNestingCollision: 1
   partnerObject: []
   haveOwner: 0
