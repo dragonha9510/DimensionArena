@@ -62,6 +62,14 @@ namespace PlayerSpace
 
 
         [PunRPC]
+        public void SetAttackTrigger()
+        {
+            AtkTrigger();
+        }
+
+
+
+        [PunRPC]
         private IEnumerator MasterCreateProjectile(string shooter, Vector3 shooterAttackDir,
                                                    Photon.Realtime.Player controller)
         {
@@ -72,7 +80,7 @@ namespace PlayerSpace
             photonView.RPC(nameof(SubMagazine), controller, shooter);
             float offset;
 
-            AtkTrigger();
+            photonView.RPC(nameof(SetAttackTrigger), RpcTarget.All);
             for (int i = 0; i < projectileCount; ++i)
             {
                 offset = (i % 2 == 0) ? 0.3f : -0.3f;
