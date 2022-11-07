@@ -18930,6 +18930,7 @@ MonoBehaviour:
   partnerObject: []
   haveOwner: 1
   OwnerID: 
+  ultimatePoint: 0
 --- !u!135 &8138711694175651048
 SphereCollider:
   m_ObjectHideFlags: 0

@@ -33,6 +33,8 @@ namespace PlayerSpace
 
         public override void ActSkill(Vector3 attackdirection, float magnitude)
         {
+            Debug.Log("isCanFirstStep : " + isCanFirstStep);
+            Debug.Log("targetDetect.IsTargetDetect" + targetDetect.IsTargetDetect);
             if (isCanFirstStep && targetDetect.IsTargetDetect)
             {
                 GameObject particle = Instantiate(skillParticle, transform.position, Quaternion.identity);
@@ -49,8 +51,6 @@ namespace PlayerSpace
 
         private void CheckFirstStep()
         {
-            isCanFirstStep = false;
-
             int layerMask = (1 << LayerMask.NameToLayer("Obstacle") | 1 << LayerMask.NameToLayer("Player") | 1 << LayerMask.NameToLayer("GroundObject_Brick"));
             RaycastHit[] hitInfo;
 
@@ -101,7 +101,8 @@ namespace PlayerSpace
                         hitInfo = Physics.SphereCastAll(firstStepPos, 0.49f, Vector3.up, 0, layerMask);
                         break;
                 }
-                //오브젝트가 해당 공간에 있을 경우,
+                //오브젝트가 해당 공간에 없을 경우 들어갈 수 있다.
+                Debug.Log(hitInfo.Length);
                 if (hitInfo.Length < 1)
                 {                   
                     isCanFirstStep = true;
