@@ -8,7 +8,7 @@ public struct ItemInfo
     public string itemNumber;
     public string item_ID;
     public float achieveRange;
-    public float liveTime;
+    public float statusDuration;
 
     public bool attackNesting;
 

@@ -35,6 +35,9 @@ public abstract class Item : MonoBehaviourPun
     [SerializeField]
     private GameObject particle;
 
+    [SerializeField]
+    private float liveTime = 20.0f;
+
     private float curTime;
     public float CurTime => curTime;
     public string ownerName;
@@ -64,12 +67,12 @@ public abstract class Item : MonoBehaviourPun
             return;
         this.transform.Rotate(Vector3.up * rotation * Time.deltaTime, Space.World);
 
-        if (0 >= info.liveTime)
+        if (0 >= liveTime)
             PhotonNetwork.Destroy(this.gameObject);
         else
         {
             curTime += Time.fixedDeltaTime;
-            info.liveTime -= Time.fixedDeltaTime;
+            liveTime -= Time.fixedDeltaTime;
         }
     }
 

@@ -53,7 +53,7 @@ public class InGameDataParsingManager : MonoBehaviour
 
     private void SettingItemData(GameObject item
                             , string item_Num, string item_ID
-                            , string acheive_Range, string live_Time
+                            , string acheive_Range, string duration_time
                             , string attack_Nesting
                             , string attack, string speed, string health, string shield, string skill)
     {
@@ -61,7 +61,7 @@ public class InGameDataParsingManager : MonoBehaviour
         tmpItemInfo.itemNumber = item_Num;
         tmpItemInfo.item_ID = item_ID;
         float.TryParse(acheive_Range, out tmpItemInfo.achieveRange);
-        float.TryParse(live_Time, out tmpItemInfo.liveTime);
+        float.TryParse(duration_time, out tmpItemInfo.statusDuration);
 
         tmpItemInfo.attackNesting = GetBool(attack_Nesting);
 
