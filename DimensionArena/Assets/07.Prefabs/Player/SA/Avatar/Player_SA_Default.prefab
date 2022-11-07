@@ -4155,7 +4155,7 @@ GameObject:
   - component: {fileID: 5885288290146544048}
   - component: {fileID: 5885288291234106196}
   - component: {fileID: 5885288291234106197}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: Player_SA_Default
   m_TagString: Player_Body
   m_Icon: {fileID: 0}
@@ -4227,10 +4227,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AvartarRender:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 5885288290142295922}
+  - {fileID: 5885288290142295906}
+  - {fileID: 5885288290142295908}
+  - {fileID: 5885288290142295910}
+  - {fileID: 5885288290142295912}
+  - {fileID: 5885288290142295914}
+  - {fileID: 5885288290142295916}
+  - {fileID: 5885288290142295918}
+  - {fileID: 5885288290142295830}
+  - {fileID: 5885288290142295910}
+  - {fileID: 5885288290142295920}
+  - {fileID: 5885288290142295924}
+  - {fileID: 5885288290142295926}
+  - {fileID: 5885288290142295928}
+  - {fileID: 5885288290142295930}
+  - {fileID: 5885288290142295932}
+  - {fileID: 5885288290142295934}
+  - {fileID: 5885288290142295904}
+  - {fileID: 5885288290142295824}
+  - {fileID: 5885288290142295826}
+  - {fileID: 5885288290142295828}
   Additional: {fileID: 0}
   detection: {fileID: 0}
 --- !u!1 &5885288290137021278

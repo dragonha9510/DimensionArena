@@ -25,8 +25,6 @@ public class ItemBox : MonoBehaviourPun
     [SerializeField]
     private Slider itemSlider;
 
-    
-
 
     private ITEM makeItemType = ITEM.ITEM_END;
     private string itemPrefabName = "";
@@ -101,13 +99,15 @@ public class ItemBox : MonoBehaviourPun
     // 주어진 float 0 ~ 1 까지의 확률
     // 0 ~ 1 까지 float 으로 랜덤을 돌린다 . 
 
-    private void MakeRandItem()
+    private void MakeRandItem(string owner)
     {
         GameObject item = PhotonNetwork.Instantiate(PHOTONPATH.PHOTONPATH_ITEMPREFABFOLDER + itemPrefabName, this.transform.position, Quaternion.identity);
         item.GetComponent<Item>().enabled = true;
+        item.GetComponent<Item>().ownerName = owner;
     }
+
     [PunRPC]
-    private void HpDecrease(int damage)
+    private void HpDecrease(int damage, string owner)
     {
         health -= damage;
         itemSlider.value = health;
@@ -118,20 +118,21 @@ public class ItemBox : MonoBehaviourPun
         {
             if (!PhotonNetwork.IsMasterClient)
                 return;
-            MakeRandItem();
+            MakeRandItem(owner);
             PhotonNetwork.Destroy(this.gameObject);
         }
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if(PhotonNetwork.IsConnected)
+        if(PhotonNetwork.InRoom)
         {
             if (!PhotonNetwork.IsMasterClient)
                 return;
+
             if (other.gameObject.tag == "AttackCollider")
             {
-                photonView.RPC(nameof(HpDecrease), RpcTarget.All, other.GetComponent<AttackObject>().Damage);
+                photonView.RPC(nameof(HpDecrease), RpcTarget.All, other.GetComponent<AttackObject>().Damage, other.GetComponent<AttackObject>().ownerID);
             }
         }
         else
