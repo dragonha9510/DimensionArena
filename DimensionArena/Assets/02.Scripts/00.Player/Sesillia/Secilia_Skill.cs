@@ -60,6 +60,8 @@ namespace PlayerSpace
 
             Transform target = targetDetect.Target;
 
+
+
             for (int i = 0; i < 8; ++i)
             {
                 switch (i)
@@ -104,9 +106,9 @@ namespace PlayerSpace
                 //오브젝트가 해당 공간에 없을 경우 들어갈 수 있다.
                 Debug.Log(hitInfo.Length);
                 if (hitInfo.Length < 1)
-                {                   
+                {
                     isCanFirstStep = true;
-                    return;                  
+                    return;
                 }
             }
 
