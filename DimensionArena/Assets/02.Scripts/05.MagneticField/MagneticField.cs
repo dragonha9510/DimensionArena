@@ -36,7 +36,13 @@ public class MagneticField : MonoBehaviourPun
     // 최종적으로 줄어들 시간
     [SerializeField] float decreaseTime = 10.0f;
 
+    [SerializeField]
+    private float magneticFieldStartTime = 10.0f;
+    private bool isReadyField = false;
+
+
     private float decreaseOneCircleActiveTime;
+
 
     [SerializeField] Vector2 magneticfieldScale;
 
@@ -71,16 +77,9 @@ public class MagneticField : MonoBehaviourPun
         else
             willDecreaseSafeZone = calculatedSafeZones[nowPhaseIndex];
     }
-
-    void Start()
+    
+    private void SettingMagneticField()
     {
-        // ObjectPool
-        ObjectPool.Instance.MakePool(CLIENTOBJ.CLIENTOBJ_CLOUDEFFECT, 5000);
-        //
-        if (!PhotonNetwork.IsMasterClient)
-            return;
-
-
         // 확장 주기 시간 설정
         decreaseOneCircleActiveTime = decreaseTime / (float)damageZoneTimeDivideCount;
 
@@ -132,7 +131,14 @@ public class MagneticField : MonoBehaviourPun
         calculatedSafeZones = new SafeZone[damageZoneTimeDivideCount + 1];
 
         SettingRandomPosition();
-
+    }
+    void Start()
+    {
+        // ObjectPool
+        ObjectPool.Instance.MakePool(CLIENTOBJ.CLIENTOBJ_CLOUDEFFECT, 5000);
+        //
+        if (!PhotonNetwork.IsMasterClient)
+            return;
     }
 
     [PunRPC]
@@ -264,7 +270,7 @@ public class MagneticField : MonoBehaviourPun
             pos.y = start.position.y + 1;
 
             scale.y = 1;
-            scale.z = 1 * (end.position.z - start.position.z);
+            scale.z = 1 * Mathf.Abs(end.position.z - start.position.z);
             scale.x = 0.1f;
 
             newMagneticField.transform.localPosition = pos;
@@ -278,7 +284,7 @@ public class MagneticField : MonoBehaviourPun
 
             scale.y = 1;
             scale.z = 0.1f;
-            scale.x = 1 * (end.position.x - start.position.x);
+            scale.x = 1 * Mathf.Abs(end.position.x - start.position.x);
 
             newMagneticField.transform.localPosition = pos;
             newMagneticField.transform.localScale = scale;
@@ -356,20 +362,36 @@ public class MagneticField : MonoBehaviourPun
     {
         if (!PhotonNetwork.IsMasterClient)
             return;
-        if (decreaseOneCircleActiveTime <= divideTime)
+        if (false == isReadyField)
         {
-            inDivideAccumTime += Time.deltaTime;
-            if (divideStayTime <= inDivideAccumTime)
+            magneticFieldStartTime -= Time.fixedDeltaTime;
+            if (0 > magneticFieldStartTime)
             {
-                ++nowPhaseIndex;
-                inDivideAccumTime = 0.0f;
-                divideTime = 0.0f;
+                SettingMagneticField();
+                isReadyField = true;
+            }
+            return;
+        }
+
+        if(isReadyField)
+        {
+            if (decreaseOneCircleActiveTime <= divideTime)
+            {
+                inDivideAccumTime += Time.deltaTime;
+                if (divideStayTime <= inDivideAccumTime)
+                {
+                    ++nowPhaseIndex;
+                    inDivideAccumTime = 0.0f;
+                    divideTime = 0.0f;
+                }
+            }
+            else
+            {
+                if (0f <= decreaseTime)
+                    expansionMangeticField();
             }
         }
-        else
-        {
-            if (0f <= decreaseTime)
-                expansionMangeticField();
-        }
+
+        
     }
 }

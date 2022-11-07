@@ -99,7 +99,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   minScale: 0.1
-  maxScale: 1
+  maxScale: 0.6
   correctionValue: 0.01
   alliveTime: 3
   UnDead: 0

@@ -34203,6 +34203,8 @@ MonoBehaviour:
       Value: {fileID: 4463596343507525067}
     - Key: 2
       Value: {fileID: 480469601574629499}
+    - Key: 1
+      Value: {fileID: 8669601970273911729}
 --- !u!114 &3108057128768116423
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -34297,7 +34299,7 @@ PrefabInstance:
     - target: {fileID: 8669601969195298651, guid: ba5c292d70fd27d43a65a2561bb4b717,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8669601969195298652, guid: ba5c292d70fd27d43a65a2561bb4b717,
         type: 3}
@@ -34373,6 +34375,11 @@ PrefabInstance:
         type: 3}
       propertyPath: magneticfieldScale.y
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8669601969195298653, guid: ba5c292d70fd27d43a65a2561bb4b717,
+        type: 3}
+      propertyPath: magneticFieldStartTime
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8669601969195298653, guid: ba5c292d70fd27d43a65a2561bb4b717,
         type: 3}
