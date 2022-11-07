@@ -298,8 +298,8 @@ namespace ManagerSpace
                 case UNITTYPE.Joohyeok:
                     image.sprite = CharacterThumbnail[(int)UNITTYPE.Joohyeok];
                     break;
-                case UNITTYPE.Sesillia:
-                    image.sprite = CharacterThumbnail[(int)UNITTYPE.Sesillia];
+                case UNITTYPE.Secilia:
+                    image.sprite = CharacterThumbnail[(int)UNITTYPE.Secilia];
                     break;
             }
         }
