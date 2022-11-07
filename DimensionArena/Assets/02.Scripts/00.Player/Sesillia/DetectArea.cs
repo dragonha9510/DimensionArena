@@ -9,7 +9,8 @@ public class DetectArea : MonoBehaviour
     List<GameObject> listTarget = new List<GameObject>();
     [SerializeField] Transform target;
     public Transform Target => target;
-    bool isCanFirstStep;
+    bool isTargetDetect;
+    public bool IsTargetDetect => isTargetDetect;
 
     private void Start()
     {
@@ -21,6 +22,7 @@ public class DetectArea : MonoBehaviour
     {
         if (listTarget.Count < 1)
         {
+            isTargetDetect = false;
             target = null;
             return;
         }
@@ -36,6 +38,7 @@ public class DetectArea : MonoBehaviour
             return 0;
         });
 
+        isTargetDetect = true;
         target = listTarget[0].transform;
     }
 
