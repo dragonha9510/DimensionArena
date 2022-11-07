@@ -1447,11 +1447,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5351956342554078428, guid: 4afd7a521ffd6cb4d987a16651087756,
+        type: 3}
+      propertyPath: m_Name
+      value: VictimThumbnail
+      objectReference: {fileID: 0}
     - target: {fileID: 7164362508668320621, guid: 4afd7a521ffd6cb4d987a16651087756,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 480469601574629498}
+    - target: {fileID: 7825333633909880192, guid: 4afd7a521ffd6cb4d987a16651087756,
+        type: 3}
+      propertyPath: m_Name
+      value: KillerThumbnail
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4afd7a521ffd6cb4d987a16651087756, type: 3}
 --- !u!114 &1546303733 stripped
@@ -34060,7 +34070,7 @@ PrefabInstance:
         type: 3}
       propertyPath: killerImage
       value: 
-      objectReference: {fileID: 1915301516}
+      objectReference: {fileID: 1915301515}
     - target: {fileID: 480469602389915558, guid: 472cf58ce3dcc014f83a351bb53fe090,
         type: 3}
       propertyPath: touchCanvas
@@ -34070,7 +34080,7 @@ PrefabInstance:
         type: 3}
       propertyPath: victimImage
       value: 
-      objectReference: {fileID: 1915301515}
+      objectReference: {fileID: 1915301516}
     - target: {fileID: 480469602389915558, guid: 472cf58ce3dcc014f83a351bb53fe090,
         type: 3}
       propertyPath: winLoseText

@@ -73,7 +73,8 @@ namespace PlayerSpace
 
             ///
             animator.speed = 1;
-            AtkTrigger();
+            photonView.RPC("AtkTrigger", RpcTarget.All);
+
             Vector3 shotPosition = transform.position;
 
             yield return new WaitForSeconds(atkDelay);
@@ -183,7 +184,8 @@ namespace PlayerSpace
 
             ///
             animator.speed = 1;
-            AtkTrigger();
+            photonView.RPC("AtkTrigger", RpcTarget.All);
+
             Vector3 shotPosition = autoAtk.targetPos;
 
             yield return new WaitForSeconds(atkDelay);

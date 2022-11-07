@@ -86,6 +86,18 @@ public class Ravagebell_Skill : Player_Skill
     }
 
     [PunRPC]
+    private void AnimationTrigger()
+    {
+        animator.SetTrigger("attack");
+    }
+
+    [PunRPC]
+    private void AnimationSpeed(float speed)
+    {
+        animator.speed = speed;
+    }
+
+    [PunRPC]
     private IEnumerator MasterCreateSkill(Vector3 shooterAttackDir)
     {
         WaitForSeconds atkDelayWait = new WaitForSeconds(atkDelay);
@@ -96,13 +108,13 @@ public class Ravagebell_Skill : Player_Skill
         for (int i = 0; i < shotCnt; ++i)
         {
             // 애니메이션
-            animator.SetTrigger("attack");
-            animator.speed = 0.2f / atkDelay;
+            photonView.RPC("AnimationTrigger", RpcTarget.All);
+            photonView.RPC("AnimationSpeed", RpcTarget.All, 0.2f / atkDelay);
             
             yield return atkDelayWait;
           
             ShotUp_Server();
-            animator.speed = 1;
+            photonView.RPC("AnimationSpeed", RpcTarget.All, 1);
 
             if (i == 0)
                 shotPosition = transform.position;
@@ -144,7 +156,6 @@ public class Ravagebell_Skill : Player_Skill
         //Parabola rotation, distance velocity radianAngle이 동기화되지 않는다. 이를 전달해주고 싶은데 파라미터를 여러 개 써야할까?
         if (!PhotonNetwork.OfflineMode)
         {
-
             photonView.RPC(nameof(MasterCreateSkill), RpcTarget.MasterClient,
                                                       (skillDirection.normalized * skillDirection.magnitude * MaxRange));
         }
