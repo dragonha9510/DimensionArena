@@ -18,7 +18,7 @@ public enum ITEM
 
 public abstract class Item : MonoBehaviourPun
 {
-   
+
     // For Parshing
     [SerializeField]
     protected ItemInfo info;
@@ -35,6 +35,10 @@ public abstract class Item : MonoBehaviourPun
     [SerializeField]
     private GameObject particle;
 
+    private float curTime;
+    public float CurTime => curTime;
+    public string ownerName;
+
     Vector3 randBoing;
     private int ColliderCount = 0;
     private int StopCount = 3;
@@ -44,12 +48,13 @@ public abstract class Item : MonoBehaviourPun
     // Start is called before the first frame update
     void Start()
     {
-            trans = this.transform;
-            randBoing = new Vector3(Random.Range(-0.2f, 0.2f), 1, Random.Range(-0.2f, 0.2f));
+        trans = this.transform;
+        randBoing = new Vector3(Random.Range(-0.2f, 0.2f), 1, Random.Range(-0.2f, 0.2f));
 
-            rigidBody = GetComponent<Rigidbody>();
-            rigidBody.AddForce(randBoing.normalized * boingPower, ForceMode.Impulse);
-
+        rigidBody = GetComponent<Rigidbody>();
+        rigidBody.AddForce(randBoing.normalized * boingPower, ForceMode.Impulse);
+        Detector dectector = GetComponentInChildren<Detector>();
+        dectector.item = this;
     }
 
 
@@ -58,17 +63,22 @@ public abstract class Item : MonoBehaviourPun
         if (!PhotonNetwork.IsMasterClient)
             return;
         this.transform.Rotate(Vector3.up * rotation * Time.deltaTime, Space.World);
+
         if (0 >= info.liveTime)
             PhotonNetwork.Destroy(this.gameObject);
         else
+        {
+            curTime += Time.fixedDeltaTime;
             info.liveTime -= Time.fixedDeltaTime;
+        }
     }
 
-    
+
     private void OnCollisionEnter(Collision collision)
     {
         if (!PhotonNetwork.IsMasterClient || null == rigidBody)
             return;
+
         if (collision.gameObject.tag == "ParentGround")
         {
             Debug.Log("아이템 콜리전 엔터");
@@ -85,14 +95,19 @@ public abstract class Item : MonoBehaviourPun
                 particle.SetActive(true);
             }
         }
-        else if(collision.gameObject.tag == "Player")
+        else if (collision.gameObject.CompareTag("Player"))
         {
-            if(PhotonNetwork.IsMasterClient)
-                InteractItem(collision.gameObject.name);
-            
-            EffectManager.Instance.CreateParticleEffectOnGameobject(collision.gameObject.transform, "ItemDrop");
+            //5초동안 아이템 우선권 부여
+            if (curTime <= 5.0f)
+            {
+                if (!ownerName.Equals(collision.gameObject.name))
+                    return;
+            }
 
-            
+            if (PhotonNetwork.IsMasterClient)
+                InteractItem(collision.gameObject.name);
+
+            EffectManager.Instance.CreateParticleEffectOnGameobject(collision.gameObject.transform, "ItemDrop");
             PhotonNetwork.Destroy(this.gameObject);
 
             // 아이템 이벤트 처리

@@ -76,7 +76,7 @@ public class RedZone_Missile : MonoBehaviour
         }
         else if (other.CompareTag("Water_Plane"))
             Destroy(this.gameObject);
-        else if (other.CompareTag("Bush"))
+        else if (other.CompareTag("Bush") || other.CompareTag("Item_Box"))
             Destroy(other.gameObject);
 
         if (effectOn)

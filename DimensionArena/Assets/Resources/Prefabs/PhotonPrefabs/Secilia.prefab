@@ -519,7 +519,8 @@ MonoBehaviour:
   skillDirection: {x: 0, y: 0, z: 0}
   maxRange: 6
   targetDetect: {fileID: 7262903620926830243}
-  skillParticle: {fileID: 0}
+  skillParticle: {fileID: 5425442492292068097, guid: e77fc56dd4c67bf42a0863dc1a39d68c,
+    type: 3}
 --- !u!114 &284761423
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2394,11 +2395,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Player_SA_Default
-      objectReference: {fileID: 0}
-    - target: {fileID: 5885288290137021276, guid: b215e4ab0f06e5e4ab20614bec1c30f8,
-        type: 3}
-      propertyPath: m_Layer
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5885288290137245628, guid: b215e4ab0f06e5e4ab20614bec1c30f8,
         type: 3}

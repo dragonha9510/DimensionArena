@@ -1,3 +1,4 @@
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,6 +11,8 @@ public class Detector : MonoBehaviour
     private bool follow;
     private Vector3 followTarget;
 
+    public Item item;
+
     private void FixedUpdate()
     {
         this.transform.rotation = Quaternion.Euler(0, 0, 0);
@@ -21,9 +24,17 @@ public class Detector : MonoBehaviour
     }
     private void OnTriggerStay(Collider other)
     {
-        if (other.gameObject.tag == "Player")
+        if (other.gameObject.CompareTag("Player"))
         {
-            Debug.Log("Ãæµ¹!!");
+            if (!item)
+                return;
+
+            if(item.CurTime < 5.0f)
+            {
+                if (!item.ownerName.Equals(other.gameObject.name))
+                    return;
+            }
+
             follow = true;
             followTarget = other.gameObject.transform.position;
         }

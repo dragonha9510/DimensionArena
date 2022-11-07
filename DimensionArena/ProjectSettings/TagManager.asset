@@ -25,6 +25,7 @@ TagManager:
   - PoisonField
   - Player_Detection
   - Water_Plane
+  - Item_Box
   layers:
   - Default
   - TransparentFX
