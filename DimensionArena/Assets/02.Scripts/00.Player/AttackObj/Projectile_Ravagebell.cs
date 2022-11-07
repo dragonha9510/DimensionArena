@@ -11,7 +11,6 @@ public class Projectile_Ravagebell : Projectile
     {
         GameObject poisonFieldTemp;
 
-        isWater = false;
         if (PhotonNetwork.OfflineMode)
         {
             switch (other.tag)
@@ -26,6 +25,8 @@ public class Projectile_Ravagebell : Projectile
                             ownerID,
                             other.gameObject.name,
                             other.transform.position);
+
+                            Destroy(this.gameObject);
                         }
                         else
                             return;
@@ -34,19 +35,11 @@ public class Projectile_Ravagebell : Projectile
                 //Damaged된 Obstacle 공격체 방향으로 살짝 흔들리는 모션
                 case "ParentObstacle":
                 case "ParentGround":
-                    {
-                        PhotonNetwork.Destroy(this.gameObject);
-                    }
-                    break;
-                case "Water":
-                    isWater = true;
+                        Destroy(this.gameObject);
                     break;
                 default:
                     return;
             }
-
-            if (isWater)
-                return;
 
             Quaternion rot = Quaternion.AngleAxis(transform.rotation.eulerAngles.y, Vector3.up);/*Quaternion.FromToRotation(Vector3.up, contact.normal);*/
             Vector3 pos = other.GetComponent<Collider>().ClosestPointOnBounds(transform.position);
@@ -66,6 +59,7 @@ public class Projectile_Ravagebell : Projectile
             Vector3 fieldPosition = transform.position;
             fieldPosition.y = 0.038f;
 
+            Debug.Log("생성");
             poisonFieldTemp = Instantiate(PoisonTile, fieldPosition, PoisonTile.transform.rotation);
         }
         else
@@ -85,6 +79,8 @@ public class Projectile_Ravagebell : Projectile
                             ownerID,
                             other.gameObject.name,
                             other.transform.position);
+
+                            PhotonNetwork.Destroy(this.gameObject);
                         }
                         else
                             return;
@@ -97,15 +93,9 @@ public class Projectile_Ravagebell : Projectile
                         PhotonNetwork.Destroy(this.gameObject);
                     }
                     break;
-                case "Water":
-                    isWater = true;
-                    break;
                 default:
                     return;
             }
-
-            if (isWater)
-                return;
 
             Quaternion rot = Quaternion.AngleAxis(transform.rotation.eulerAngles.y, Vector3.up);/*Quaternion.FromToRotation(Vector3.up, contact.normal);*/
             Vector3 pos = other.GetComponent<Collider>().ClosestPointOnBounds(transform.position);
@@ -126,6 +116,7 @@ public class Projectile_Ravagebell : Projectile
             Vector3 fieldPosition = transform.position;
             fieldPosition.y = 0.038f;
 
+            Debug.Log("생성");
             poisonFieldTemp = PhotonNetwork.Instantiate(PoisonTile.name, fieldPosition, PoisonTile.transform.rotation);
         }
 

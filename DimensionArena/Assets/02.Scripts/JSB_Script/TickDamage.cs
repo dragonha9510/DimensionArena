@@ -9,6 +9,8 @@ public class TickDamage : MonoBehaviourPun
     private float tickDamage = 1f;
     [SerializeField]
     private float damageTime = 3f;
+    [SerializeField]
+    private bool startDamage;
 
     // 해당 bool 값은 반드시 파트너들끼리 통일이 되어야 합니다.
     [SerializeField]
@@ -29,7 +31,7 @@ public class TickDamage : MonoBehaviourPun
     [PunRPC]
     public void DamageApply(string userID,float damage)
     {
-        if (userID == OwnerID)
+        if (haveOwner && userID == OwnerID)
             return;
 
         FloatingText.Instance.CreateFloatingTextForDamage(damageTransform[userID].position, damage);
@@ -46,6 +48,15 @@ public class TickDamage : MonoBehaviourPun
     IEnumerator InDamageZone(string userID, float time, float damage)
     {
         Debug.Log(userID + "는 데미지를 곧 받을거야");
+
+        if (startDamage)
+        {
+            if (!PhotonNetwork.OfflineMode)
+                photonView.RPC(nameof(DamageApply), RpcTarget.All, userID, damage);
+            else
+                DamageApply(userID, damage);
+        }
+
         while (true)
         {
             // 이 부분 수정하기 , 나가면 바로 꺼지지 않고 , time 만큼 기다렸다가 데미지를 입음
