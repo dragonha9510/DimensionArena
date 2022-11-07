@@ -14061,7 +14061,7 @@ GameObject:
   - component: {fileID: 8138711694175651048}
   m_Layer: 0
   m_Name: PoisonField
-  m_TagString: Untagged
+  m_TagString: AttackCollider
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -18930,6 +18930,7 @@ MonoBehaviour:
   partnerObject: []
   haveOwner: 1
   OwnerID: 
+  ultimatePoint: 0
 --- !u!135 &8138711694175651048
 SphereCollider:
   m_ObjectHideFlags: 0

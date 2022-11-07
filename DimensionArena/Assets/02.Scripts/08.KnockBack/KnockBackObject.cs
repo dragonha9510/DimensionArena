@@ -16,7 +16,7 @@ public class KnockBackObject : MonoBehaviour
         temp.SetActive(false);
     }
 
-    void KnockBackStart()
+    public void KnockBackStart()
     {
         temp.transform.position = transform.position;
         temp.SetActive(true);
@@ -25,11 +25,11 @@ public class KnockBackObject : MonoBehaviour
 
     private void OnDestroy()
     {
-        KnockBackStart();
+        //KnockBackStart();
     }
 
     private void OnDisable()
     {
-        KnockBackStart();
+        //KnockBackStart();
     }
 }

@@ -38,8 +38,6 @@ public class RedZone_Missile_Item : RedZone_Missile
 
                 Vector3 position = new Vector3((float)((int)transform.position.x + 0.5f), 0.5f, (float)((int)transform.position.z + 0.5f));
 
-                RaycastHit info;
-
                 if (Physics.Raycast(position + Vector3.up, Vector3.down, 2.0f, layerMask))
                     return;
 

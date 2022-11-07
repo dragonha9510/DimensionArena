@@ -2070,6 +2070,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ravagebell
       objectReference: {fileID: 0}
+    - target: {fileID: 5564437212985626742, guid: 94612daf4ff52cc44866a3876d82c65b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5564437212985986098, guid: 94612daf4ff52cc44866a3876d82c65b,
         type: 3}
       propertyPath: m_RootOrder
@@ -2125,6 +2130,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8640978837337968273, guid: 94612daf4ff52cc44866a3876d82c65b,
+        type: 3}
+      propertyPath: detection
+      value: 
+      objectReference: {fileID: 7922952910114133941}
     - target: {fileID: 8640978837337968273, guid: 94612daf4ff52cc44866a3876d82c65b,
         type: 3}
       propertyPath: Additional

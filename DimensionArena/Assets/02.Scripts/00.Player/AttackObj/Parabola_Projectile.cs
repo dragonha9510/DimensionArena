@@ -84,6 +84,8 @@ public class Parabola_Projectile : MonoBehaviourPun
             Destroy(this.gameObject);
             // Effect »ý¼º
 
+            GetComponent<KnockBackObject>().KnockBackStart();
+
             if (destroyEffect != null)
                 Instantiate(destroyEffect, transform.position, destroyEffect.transform.rotation);
         }

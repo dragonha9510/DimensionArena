@@ -81,6 +81,8 @@ public class RedZone_Missile : MonoBehaviour
 
         if (effectOn)
         {
+            GetComponent<KnockBackObject>().KnockBackStart();
+
             if (destroyEffect)
                 Instantiate(destroyEffect, transform.position, destroyEffect.transform.rotation);
         }
