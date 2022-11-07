@@ -301,6 +301,12 @@ namespace ManagerSpace
                 case UNITTYPE.Secilia:
                     image.sprite = CharacterThumbnail[(int)UNITTYPE.Secilia];
                     break;
+                case UNITTYPE.Magnetic:
+                    image.sprite = CharacterThumbnail[(int)UNITTYPE.Magnetic];
+                    break;
+                case UNITTYPE.RedZone:
+                    image.sprite = CharacterThumbnail[(int)UNITTYPE.RedZone];
+                    break;
             }
         }
 

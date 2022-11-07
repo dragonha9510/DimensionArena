@@ -216,6 +216,10 @@ namespace ManagerSpace
                 damage = DamagedShield(target, damage);
                 target.Damaged(damage);
                 target.BattleOn();
+
+                if (target.CurHP <= 0)
+                    DeadCheckCallServer(ownerId);
+
                 return (int)damage;
             }
 
@@ -231,9 +235,9 @@ namespace ManagerSpace
             if (DicPlayerInfo.TryGetValue(targetId, out target))
             {
                 damage = (int)(target.MaxHP * ratio);
-                damage = (int)(damage > target.CurHP + target.CurShield ? target.CurHP : damage);
+                damage = (int)(damage > target.CurHP + target.CurShield ? target.CurHP + target.CurShield : damage);
                 //Ingame 
-                ratio = DamagedShield(target, damage);
+                damage = DamagedShield(target, damage);
 
 
                 //Data Regist
@@ -244,6 +248,10 @@ namespace ManagerSpace
 
                 target.Damaged(damage);
                 target.BattleOn();
+
+                if(target.CurHP <= 0)
+                    DeadCheckCallServer(ownerId);
+
                 return damage;
 
             }
@@ -265,7 +273,11 @@ namespace ManagerSpace
                 damage = DamagedShield(target, damage);
 
                 target.Damaged(damage);
-                target.BattleOn();        
+                target.BattleOn();
+
+                if (target.CurHP <= 0)
+                    DeadCheckCallServer(targetId);
+
                 return (int)damage;
             }
             return 0;
@@ -286,6 +298,11 @@ namespace ManagerSpace
 
                 target.Damaged(damage);
                 target.BattleOn();
+
+                if (target.CurHP <= 0)
+                    DeadCheckCallServer(targetId);
+
+
                 return damage;
 
             }
@@ -310,6 +327,20 @@ namespace ManagerSpace
                     PlayerInfo killerInfo;
                     Debug.Log(killerId);
                     DicPlayerInfo.TryGetValue(killerId, out killerInfo);
+                    
+                    if(killerInfo == null)
+                    {
+                        if(killerId.Equals("MagneticField"))
+                        {
+                            playerInfoArr[i].PlayerDie(UNITTYPE.Magnetic, "자기장");
+                        }
+                        else if(killerId.Equals("RedZone"))
+                        {
+                            playerInfoArr[i].PlayerDie(UNITTYPE.RedZone, "레드존");
+                        }
+                        break;
+                    }
+
                     playerInfoArr[i].PlayerDie(killerInfo.Type, killerId);
 
                     //GameData Set
@@ -327,17 +358,6 @@ namespace ManagerSpace
                     }
                     //Player Die 
 
-                    if(killerInfo == null)
-                    {
-                        if(killerId.Equals("MagneticField"))
-                        {
-                            playerInfoArr[i].PlayerDie(UNITTYPE.Magnetic, "자기장");
-                        }
-                        else if(killerId.Equals("RedZone"))
-                        {
-                            playerInfoArr[i].PlayerDie(UNITTYPE.RedZone, "레드존");
-                        }
-                    }
                 }
             }
         }
@@ -348,7 +368,7 @@ namespace ManagerSpace
         /// >>>>>>>>>>>>>>>>>>>>>>>>>>
 
         [PunRPC]
-        private float DamagedShield(PlayerInfo target, float damage)
+        private int DamagedShield(PlayerInfo target, float damage)
         {
             //Shield가 존재한다면 Shield를 깍고 남은 데미지 주기
             if (target.CurShield > 0)
@@ -358,7 +378,7 @@ namespace ManagerSpace
                 damage = Mathf.Max(damage, 0);
             }
 
-            return damage;
+            return (int)damage;
         }
 
 

@@ -104,6 +104,9 @@ namespace PlayerSpace
         private Coroutine lastCoroutine = null;
         private void BattleStateProcess()
         {
+            if (!gameObject.activeInHierarchy)
+                return;
+
             if(lastCoroutine != null)
                 StopCoroutine(lastCoroutine);
 

@@ -31,8 +31,6 @@ public class AttackObject : MonoBehaviourPun
         PlayerInfoManager.Instance.
                        CurHpDecrease(ownerId, targetId, damage);
 
-        PlayerInfoManager.Instance.DeadCheckCallServer(ownerId);
-
         if(PhotonNetwork.IsMasterClient)
             PhotonNetwork.Destroy(this.gameObject);
     }
