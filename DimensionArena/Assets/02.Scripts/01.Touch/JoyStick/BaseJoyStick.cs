@@ -27,7 +27,7 @@ public abstract class BaseJoyStick : MonoBehaviour, IBeginDragHandler, IDragHand
     [SerializeField] protected RectTransform lever;
     
     protected RectTransform rectTransform;
-    [SerializeField, Range(10f, 150f)] protected float leverRange;
+    [SerializeField, Range(0f, 150f)] protected float leverRange;
     protected float reverseLeverRange;
     protected JoyStickType type;
     [SerializeField] private GameObject[] lightRings;

@@ -1,72 +1,121 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using ManagerSpace;
+using Photon.Pun;
 
 namespace PlayerSpace
 {
     public class Secilia_Skill : Player_Skill
     {
-        [SerializeField] private SphereCollider SpawnDetector;
-        private Atk_FixedCircle cricle;
-        private Parabola_Projectile projectile;
-
-
+        [SerializeField] private DetectArea targetDetect;
+        [SerializeField] private GameObject skillParticle;
+        private Atk_FixedCircle circle;
+        Vector3 firstStepPos;
+        bool isCanFirstStep;
         protected override void Start()
         {
             base.Start();
-           
-            cricle = rangeComponent as Atk_FixedCircle;
 
-            if (cricle == null)
+            circle = rangeComponent as Atk_FixedCircle;
+
+            if (circle == null)
                 Destroy(this);
-            
+
+            circle.transform.localScale = new Vector3(MaxRange * 0.5f, MaxRange * 0.5f, 1);
+            targetDetect.GetComponent<SphereCollider>().radius = MaxRange * 0.5f;
+        }
+
+        private void LateUpdate()
+        {
+            CheckFirstStep();
         }
 
         public override void ActSkill(Vector3 attackdirection, float magnitude)
         {
-            FirstStep(magnitude);
+            if (isCanFirstStep && targetDetect.IsTargetDetect)
+            {
+                GameObject particle = Instantiate(skillParticle, transform.position, Quaternion.identity);
+                Destroy(particle, 0.6f);
+                firstStepPos.y = 0;
+                transform.position = firstStepPos;
+                particle = Instantiate(skillParticle, transform.position, Quaternion.identity);
+                Destroy(particle, 0.6f);
+                Vector3 tempPos = targetDetect.Target.position;
+                tempPos.y = 0;
+                transform.LookAt(tempPos, Vector3.up);
+            }
         }
 
-        private void FirstStep(float magnitude)
+        private void CheckFirstStep()
         {
+            isCanFirstStep = false;
 
-            int layerMask = 1 << LayerMask.NameToLayer("Player");
-
-
-            SortedList<float, Vector3> targetPos = new SortedList<float, Vector3>();
+            int layerMask = (1 << LayerMask.NameToLayer("Obstacle") | 1 << LayerMask.NameToLayer("Player") | 1 << LayerMask.NameToLayer("GroundObject_Brick"));
             RaycastHit[] hitInfo;
-            hitInfo = Physics.SphereCastAll(transform.position, magnitude, Vector3.up, 0f, layerMask);
 
-            for (int i = hitInfo.Length - 1; i >= 0; --i)
+            //Find
+            if (!targetDetect.Target)
+                return;
+
+            Transform target = targetDetect.Target;
+
+            for (int i = 0; i < 8; ++i)
             {
-                if (hitInfo[i].collider.name == gameObject.name)
-                    continue;
-                targetPos.Add(Vector3.Distance(hitInfo[i].transform.position, transform.position), hitInfo[i].transform.position + hitInfo[i].transform.forward);
+                switch (i)
+                {
+                    case 0:
+                        firstStepPos = target.position + target.forward;
+                        hitInfo = Physics.SphereCastAll(firstStepPos, 0.49f, Vector3.up, 0, layerMask);
+                        break;
+                    case 1:
+                        firstStepPos = target.position + (target.forward + target.right).normalized;
+                        hitInfo = Physics.SphereCastAll(firstStepPos, 0.49f, Vector3.up, 0, layerMask);
+                        break;
+                    case 2:
+                        firstStepPos = target.position + (target.forward + -target.right).normalized;
+                        hitInfo = Physics.SphereCastAll(firstStepPos, 0.49f, Vector3.up, 0, layerMask);
+                        break;
+                    case 3:
+                        firstStepPos = target.position + target.right;
+                        hitInfo = Physics.SphereCastAll(firstStepPos, 0.49f, Vector3.up, 0, layerMask);
+                        break;
+                    case 4:
+                        firstStepPos = target.position - target.right;
+                        hitInfo = Physics.SphereCastAll(firstStepPos, 0.49f, Vector3.up, 0, layerMask);
+                        break;
+                    case 5:
+                        firstStepPos = target.position + (-target.forward + target.right).normalized;
+                        hitInfo = Physics.SphereCastAll(firstStepPos, 0.49f, Vector3.up, 0, layerMask);
+                        break;
+                    case 6:
+                        firstStepPos = target.position + (-target.forward + -target.right).normalized;
+                        hitInfo = Physics.SphereCastAll(firstStepPos, 0.49f, Vector3.up, 0, layerMask);
+                        break;
+                    case 7:
+                        firstStepPos = target.position + -target.forward;
+                        hitInfo = Physics.SphereCastAll(firstStepPos, 0.49f, Vector3.up, 0, layerMask);
+                        break;
+                    default:
+                        firstStepPos = target.position + target.forward;
+                        hitInfo = Physics.SphereCastAll(firstStepPos, 0.49f, Vector3.up, 0, layerMask);
+                        break;
+                }
+                //오브젝트가 해당 공간에 있을 경우,
+                if (hitInfo.Length < 1)
+                {                   
+                    isCanFirstStep = true;
+                    return;                  
+                }
             }
 
-            
-            foreach(var target in targetPos)
-            {
-                if(CheckFirstStepForTaget(target.Value, target.Value))
-                    break;                    
-            }
-
+            isCanFirstStep = false;
         }
 
-        bool CheckFirstStepForTaget(Vector3 position, Vector3 forward)
-        {
-            //만약, 상대방의 정면에 아무런 Obstacle이 존재하지 않는다면 정면 -> 아니라면 45도씩 돌으며 순보가 가능한 위치를 파악한다.
-            int leftCheck;
-            for(int i = 0; i < 8; ++i)
-            {
-                leftCheck = i % 2 == 0 ? 1 : -1;
-            }
-            return true;
-        }
 
         private void OnDrawGizmos()
         {
-            Gizmos.DrawWireSphere(transform.position, MaxRange);          
+            Gizmos.DrawSphere(firstStepPos, 0.5f);
         }
 
         public override void AutoSkill()

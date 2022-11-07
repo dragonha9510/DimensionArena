@@ -9,8 +9,7 @@ public class RedZone_Missile : MonoBehaviour
     //private GameObject boundary;
     //private GameObject outterBoundary;
     //private DecalProjector proj;
-    private float posY;
-
+    protected bool effectOn;
 
     [SerializeField] private GameObject destroyEffect;
     [SerializeField] private Vector2 missileScale;
@@ -38,7 +37,7 @@ public class RedZone_Missile : MonoBehaviour
         //float sizeScale = ((posY - transform.position.y) / posY) * missileScale.x;
         //proj.size = new Vector3(sizeScale, sizeScale, 2.5f);
 
-        if(transform.position.y < 0)
+        if(transform.position.y < -5f)
         {
             Destroy(this.gameObject);
             if (destroyEffect)
@@ -50,7 +49,8 @@ public class RedZone_Missile : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.name != gameObject.name && collision.gameObject.tag != "Redzone_Effect")
+        if (collision.gameObject.tag == "Player" || collision.gameObject.tag == "ParentGround"
+            || collision.gameObject.tag == "Parent_Obstacle")
         {
             Destroy(this.gameObject);
 
@@ -60,27 +60,31 @@ public class RedZone_Missile : MonoBehaviour
             //Destroy(boundary);
             //Destroy(outterBoundary);
         }
+        else if (collision.gameObject.tag == "Water_Plane")
+            Destroy(this.gameObject);
     }
 
     protected virtual void OnTriggerEnter(Collider other)
     {
-        if (other.name != gameObject.name && other.tag != "Redzone_Effect")
+        effectOn = false;
+
+        if (other.CompareTag("Player") || other.CompareTag("ParentGround")
+            || other.CompareTag("ParentObstacle"))
         {
-            if (other.tag == "Bush")
-            { 
-                Destroy(other.gameObject);
-                transform.position = new Vector3(transform.position.x, 0, transform.position.z);
-            }
+            Destroy(this.gameObject);
+            effectOn = true;
+        }
+        else if (other.CompareTag("Water_Plane"))
+            Destroy(this.gameObject);
+        else if (other.CompareTag("Bush") || other.CompareTag("Item_Box"))
+            Destroy(other.gameObject);
 
-
-            if(this.gameObject)
-                Destroy(this.gameObject);
+        if (effectOn)
+        {
+            GetComponent<KnockBackObject>().KnockBackStart();
 
             if (destroyEffect)
-                Instantiate(destroyEffect, transform.position/*new Vector3(transform.position.x, 0, transform.position.z)*/, destroyEffect.transform.rotation);
-
-            //Destroy(boundary);
-            //Destroy(outterBoundary);
+                Instantiate(destroyEffect, transform.position, destroyEffect.transform.rotation);
         }
     }
 }

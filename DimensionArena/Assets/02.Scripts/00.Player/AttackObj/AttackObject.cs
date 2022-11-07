@@ -12,7 +12,7 @@ public class AttackObject : MonoBehaviourPun
     
     protected AudioSource audioSource;
     //
-    [SerializeField] private int ultimatePoint;
+    [SerializeField] protected int ultimatePoint;
     [SerializeField] private int damage;
     public int Damage { get { return damage; } }
     public GameObject hitPrefab;

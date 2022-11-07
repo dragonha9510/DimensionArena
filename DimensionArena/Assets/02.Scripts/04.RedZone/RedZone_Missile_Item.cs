@@ -14,10 +14,12 @@ public class RedZone_Missile_Item : RedZone_Missile
         if (itemBox == null)
             return;
 
-        if (other.name != gameObject.name && !isCreate)
+        base.OnTriggerEnter(other);
+
+        if (effectOn && !isCreate)
         {
-            base.OnTriggerEnter(other);
-            if(!PhotonNetwork.IsConnected)
+
+            if(!PhotonNetwork.InRoom)
             {
                 Instantiate(itemBox,
                new Vector3((float)((int)transform.position.x + 0.5f),
@@ -29,8 +31,19 @@ public class RedZone_Missile_Item : RedZone_Missile
             {
                 if (!PhotonNetwork.IsMasterClient)
                     return;
+
+                int layerMask = (1 << LayerMask.NameToLayer("Obstacle") | 
+                                 1 << LayerMask.NameToLayer("Player") | 1 << LayerMask.NameToLayer("GroundObject_Brick") 
+                               | 1 << LayerMask.NameToLayer("Bush") | 1 << LayerMask.NameToLayer("Water"));
+
+                Vector3 position = new Vector3((float)((int)transform.position.x + 0.5f), 0.5f, (float)((int)transform.position.z + 0.5f));
+
+                if (Physics.Raycast(position + Vector3.up, Vector3.down, 2.0f, layerMask))
+                    return;
+
+
                 PhotonNetwork.Instantiate(PHOTONPATH.PHOTONPATH_ITEMPREFABFOLDER + "ItemBox"
-                                            , new Vector3((float)((int)transform.position.x + 0.5f), 0.5f, (float)((int)transform.position.z + 0.5f))
+                                            , position
                                             , Quaternion.identity);
             }
 

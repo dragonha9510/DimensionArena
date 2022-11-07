@@ -9,6 +9,8 @@ public class Projectile_Ravagebell : Projectile
 
     protected override void OnTriggerEnter(Collider other)
     {
+        GameObject poisonFieldTemp;
+
         isWater = false;
         if (PhotonNetwork.OfflineMode)
         {
@@ -64,7 +66,7 @@ public class Projectile_Ravagebell : Projectile
             Vector3 fieldPosition = transform.position;
             fieldPosition.y = 0.038f;
 
-            Instantiate(PoisonTile, fieldPosition, PoisonTile.transform.rotation);
+            poisonFieldTemp = Instantiate(PoisonTile, fieldPosition, PoisonTile.transform.rotation);
         }
         else
         {
@@ -124,7 +126,14 @@ public class Projectile_Ravagebell : Projectile
             Vector3 fieldPosition = transform.position;
             fieldPosition.y = 0.038f;
 
-            PhotonNetwork.Instantiate(PoisonTile.name, fieldPosition, PoisonTile.transform.rotation);
+            poisonFieldTemp = PhotonNetwork.Instantiate(PoisonTile.name, fieldPosition, PoisonTile.transform.rotation);
+        }
+
+        if(poisonFieldTemp != null)
+        {
+            TickDamage temp = poisonFieldTemp.GetComponent<TickDamage>();
+            temp.OwnerID = ownerID;
+            temp.ultimatePoint = ultimatePoint;
         }
     }
 }

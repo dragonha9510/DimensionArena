@@ -181,3 +181,6 @@ MonoBehaviour:
   damageTime: 3
   isNestingCollision: 1
   partnerObject: []
+  haveOwner: 0
+  OwnerID: 
+  ultimatePoint: 0

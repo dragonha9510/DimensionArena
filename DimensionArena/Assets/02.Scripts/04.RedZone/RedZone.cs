@@ -107,6 +107,7 @@ public class RedZone : MonoBehaviourPun
                 {
                     pos = transform.position + (Random.insideUnitSphere * transform.localScale.x * 0.5f);
                     pos.y = Missile.transform.position.y;
+
                     if (PhotonNetwork.OfflineMode)
                         lastMissile = Instantiate(ItemMissile, pos, Quaternion.identity);
                     else    
@@ -187,6 +188,7 @@ public class RedZone : MonoBehaviourPun
         this.transform.position = pos;
         //this.transform.position = new Vector3(0, 0, 0);
     }
+
     void Prepare()
     {
         if (!isPreparing)

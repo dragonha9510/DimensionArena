@@ -140,7 +140,10 @@ namespace ManagerSpace
         /// 
         public void RegisterPlayer()
         {
-            photonView.RPC("RegisterforMasterClient", RpcTarget.All);
+            if (!PhotonNetwork.OfflineMode)
+                photonView.RPC("RegisterforMasterClient", RpcTarget.All);
+            else
+                RegisterforMasterClient();
         }
 
         [PunRPC]
@@ -347,6 +350,9 @@ namespace ManagerSpace
         {
             for (int i = 0; i < PlayerObjectArr.Length; ++i)
             {
+                if (playerInfoArr[i] == null)
+                    continue;
+
                 if (playerInfoArr[i].ID == targetId)
                 {
                     playerInfoArr[i].GetSkillPoint(amount);
