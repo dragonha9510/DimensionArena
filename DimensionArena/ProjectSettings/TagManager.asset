@@ -26,6 +26,7 @@ TagManager:
   - Player_Detection
   - Water_Plane
   - Item_Box
+  - KnockBack
   layers:
   - Default
   - TransparentFX
