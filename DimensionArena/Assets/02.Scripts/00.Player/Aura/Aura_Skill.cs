@@ -45,7 +45,7 @@ namespace PlayerSpace
         {
             Debug.Log("애니메이션 돌리기");
             animator.SetBool("SkillUse", false);
-            owner.Info.SpeedUp(10f);
+            owner.Info.SpeedUp(0.9f);
             owner.CanDirectionChange = true;
         }
 
@@ -53,7 +53,7 @@ namespace PlayerSpace
         private void CreateSkillProjectile(string prefabName,Vector3 trans,Quaternion rot)
         {
             GameObject skill = PhotonNetwork.Instantiate(prefabName, trans, rot);
-            skill.GetComponent<AuraSkillProjectile>().StartAttack(projectileSpeed, projectileRange);
+            skill.GetComponent<Projectile>().AttackToDirection(projectileRange, projectileSpeed);
         }
 
         private void MakeSkillProjectile()
@@ -106,7 +106,7 @@ namespace PlayerSpace
                 for (int i = 0; i < 3; ++i)
                 {
                     GameObject tempSkill1 = Instantiate(skillPrefab, transform.position + transform.forward * 0.2f, skillRot);
-                    tempSkill1.GetComponent<AuraSkillProjectile>().StartAttack(projectileSpeed, projectileRange);
+                    tempSkill1.GetComponent<Projectile>().AttackToDirection(projectileRange, projectileSpeed);
                     skillRot.eulerAngles = new Vector3(skillRot.eulerAngles.x, skillRot.eulerAngles.y + (FOV.viewAngle / 2), skillRot.eulerAngles.z);
                 }
 

@@ -307,8 +307,8 @@ GameObject:
   - component: {fileID: 4364861999203606395}
   - component: {fileID: 4364861999203606392}
   - component: {fileID: 1984475393032754013}
-  - component: {fileID: -7436256275920150340}
   - component: {fileID: 3856557923471577762}
+  - component: {fileID: 7281907579111601467}
   m_Layer: 0
   m_Name: AuraSkillProjectile
   m_TagString: Untagged
@@ -372,24 +372,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 1
---- !u!114 &-7436256275920150340
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4364861999203606394}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f77713299ac629848b281941442f4936, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ownerID: 
-  ultimatePoint: 0
-  damage: 0
-  hitPrefab: {fileID: 0}
-  rigid: {fileID: 1984475393032754013}
-  originPos: {x: 0, y: 0, z: 0}
 --- !u!114 &3856557923471577762
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -412,6 +394,24 @@ MonoBehaviour:
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
+--- !u!114 &7281907579111601467
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4364861999203606394}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a67418ec58fd1c45b8f6d25392bf05c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ownerID: 
+  ultimatePoint: 0
+  damage: 0
+  hitPrefab: {fileID: 0}
+  rigid: {fileID: 1984475393032754013}
+  originPos: {x: 0, y: 0, z: 0}
 --- !u!1 &4364862000155842778
 GameObject:
   m_ObjectHideFlags: 0

@@ -41,9 +41,7 @@ public class FirebaseDB_Manager : MonoBehaviour
         }
         else
             Destroy(this.gameObject);
-
         DB_reference = FirebaseDatabase.DefaultInstance.GetReference("SerializeNumber");
-
     }
     // 자꾸 이 함수를 호출하는 것도 그러니까 , 값이 변경이 됬는지를 확인하고 싶은데,,,,
     // 이건 추 후에 생각해보자.
