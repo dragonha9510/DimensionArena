@@ -62,7 +62,7 @@ namespace ManagerSpace
 
         }
 
-        [Header("Setting Parameter")]
+        [Header("Inform/Setting Parameter")]
         [SerializeField] private float announceTime;
         [SerializeField] private int countTime;
 
@@ -73,15 +73,12 @@ namespace ManagerSpace
         [SerializeField] private GameObject GameStartGroup;
         [SerializeField] private TextMeshProUGUI objectiveText;
         [SerializeField] private Image dimensionArenaLogo;
+        [SerializeField] private TextMeshProUGUI[] surviverText;
 
         [Header("기획/StartAnimation")]
         [SerializeField] private float textSmallerDelay;
         [SerializeField] private float logoGrowDelay;
         private float totalStartDelay;
-
-        [Header("InforMationUI")]
-        [SerializeField] private RectTransform[] infoTransform;
-        private Dictionary<string, RectTransform> DicInfoTransform;
 
         [SerializeField] private TextMeshProUGUI dynamicText;
 
@@ -148,15 +145,6 @@ namespace ManagerSpace
                 case GAMEMODE.FreeForAll:
                     break;
             }
-
-
-            DicInfoTransform = new Dictionary<string, RectTransform>();
-
-            //gameInfo Image Transfrom Add
-            for (int i = 0; i < infoTransform.Length; ++i)
-            {
-                DicInfoTransform.Add(infoTransform[i].gameObject.name, infoTransform[i]);
-            }
         }
         private void SetGameStart()
         {
@@ -175,6 +163,7 @@ namespace ManagerSpace
         }
         private IEnumerator StartUICoroutine()
         {
+            
             //touch Canvas Setting
             touchCanvas.interactable = false;
             touchCanvas.blocksRaycasts = false;
@@ -218,15 +207,15 @@ namespace ManagerSpace
                     //개발 예정
                     break;
             }
-            for (int i = 0; i < 100; ++i)
+
+            foreach (var text in surviverText)
             {
-                DicInfoTransform["UpImage"].anchoredPosition += Vector2.down;
-                DicInfoTransform["UnderImage"].anchoredPosition += Vector2.up;
-                touchCanvas.alpha = i * 0.01f;
-                yield return new WaitForSeconds(infoMoveSmoothNess);
+                text.DOFade(1.0f, 1.0f);
             }
 
-            touchCanvas.alpha = 1;
+            touchCanvas.DOFade(1.0f, 0.5f);
+            yield return new WaitForSeconds(0.5f);
+
             touchCanvas.interactable = true;
             touchCanvas.blocksRaycasts = true;
         }

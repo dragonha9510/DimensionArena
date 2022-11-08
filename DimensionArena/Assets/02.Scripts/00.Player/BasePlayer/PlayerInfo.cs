@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 using PlayerSpace;
-
+using ManagerSpace;
 
 public enum UNITTYPE
 {
@@ -193,6 +193,7 @@ public class PlayerInfo
         isAlive = false;
         EDeadPlayer(killer_type, killer_id, type, id);
         EDisActivePlayer();
+        
     }
 
     public void BattleOn()

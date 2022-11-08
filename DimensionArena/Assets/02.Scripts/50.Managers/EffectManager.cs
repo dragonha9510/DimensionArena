@@ -32,22 +32,26 @@ namespace ManagerSpace
 
         public void CreateParticleEffectOnGameobject(Transform trans, string eventType)
         {
+            GameObject particle = null;
             switch (eventType)
             {
                 case "Revive":
                     if (effectDictionary.ContainsKey("Revive"))
-                        Instantiate(effectDictionary["Revive"], trans.position + (Vector3.up * 0.5f), trans.rotation, trans);
+                        particle = Instantiate(effectDictionary["Revive"], trans.position + (Vector3.up * 0.5f), trans.rotation);
                     break;
                 case "Dead":
                     if (effectDictionary.ContainsKey("Dead"))
-                        Instantiate(effectDictionary["Dead"], trans.position + (Vector3.up * 0.5f), trans.rotation, trans);
+                        particle =Instantiate(effectDictionary["Dead"], trans.position + (Vector3.up * 0.5f), trans.rotation);
                     break;
                 // JSB
                 case "ItemDrop":
                     if(effectDictionary.ContainsKey("ItemDrop"))
-                        Instantiate(effectDictionary["ItemDrop"], trans.position + (Vector3.up * 0.5f), trans.rotation, trans);
+                        particle = Instantiate(effectDictionary["ItemDrop"], trans.position + (Vector3.up * 0.5f), trans.rotation);
                     break;               
+
             }
+
+            Destroy(particle, 3.0f);
         }
     }
 
