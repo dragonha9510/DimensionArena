@@ -9,8 +9,8 @@ public class Parabola_Projectile : AttackObject
     [SerializeField] private GameObject destroyEffect;
 
     // 0 ~ 1 까지 가는 속도.
-    // realSpeed = speed / 100
-    [SerializeField, Range(0, 100)] private float speed;
+    // realSpeed = 1 / time
+    [SerializeField] private float time;
     private float realSpeed;
     private float myLocation;
 
@@ -22,6 +22,8 @@ public class Parabola_Projectile : AttackObject
     private Vector3 direction;
     private Vector3 oriPosition;
     private bool isReady;
+
+    [SerializeField] private float tempRatio = 1.5f;
 
     // 회전
     [SerializeField] private float rotationSpeed = 180f;
@@ -64,7 +66,7 @@ public class Parabola_Projectile : AttackObject
     private void Awake()
     {
         gravity = Mathf.Abs(Physics.gravity.y);
-        realSpeed = speed / 100;
+        realSpeed = 1 / time;
     }
 
     private void Start()
@@ -87,7 +89,10 @@ public class Parabola_Projectile : AttackObject
             GetComponent<KnockBackObject>().KnockBackStartDamage(ownerID, Damage, ultimatePoint);
 
             if (destroyEffect != null)
-                Instantiate(destroyEffect, transform.position, destroyEffect.transform.rotation);
+            { 
+                GameObject fxSize = Instantiate(destroyEffect, transform.position, destroyEffect.transform.rotation);
+                fxSize.transform.localScale *= tempRatio;
+            }
         }
 
         Vector3 tempPosition = oriPosition + (direction * distance * myLocation);

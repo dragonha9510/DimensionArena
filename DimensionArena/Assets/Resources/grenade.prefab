@@ -101,11 +101,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ownerID: 
   ultimatePoint: 10
-  damage: 10
+  damage: 660
   hitPrefab: {fileID: 0}
   destroyEffect: {fileID: 1000012903210382, guid: b75a538851e583f42937cda85e429068,
     type: 3}
-  speed: 50
+  time: 1.15
   rotationSpeed: 180
 --- !u!114 &8003007787291434875
 MonoBehaviour:
@@ -125,14 +125,14 @@ MonoBehaviour:
     damage: 0
     ultimatePoint: 0
     ownerID: 
-    speed: 8
-    distance: 2
+    speed: 10
+    distance: 0.3
     isDamage: 1
     isPercentDamage: 0
     isEnvironment: 0
   knockBack: {fileID: 6338996334954765853, guid: 4e2ccaa5a98eefb469e9fcea7ceeb6ce,
     type: 3}
-  triggerRadius: 1
+  triggerRadius: 1.75
 --- !u!114 &6285392066674466738
 MonoBehaviour:
   m_ObjectHideFlags: 0

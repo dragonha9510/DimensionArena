@@ -12,8 +12,35 @@ public class KnockBack : MonoBehaviour
     {
     }
 
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Item_Box"))
+        {
+            ItemBox itembox = collision.gameObject.GetComponent<ItemBox>();
+
+            itembox.HpDecrease_KnockBack(info.damage, info.ownerID);
+
+            return;
+        }
+    }
+
     private void OnTriggerEnter(Collider other)
     {
+        if(other.CompareTag("Item_Box"))
+        {
+            if (info.ownerID == "RedZone")
+            {
+                Destroy(this.gameObject);
+                return;
+            }
+            ItemBox itembox = other.GetComponent<ItemBox>();
+
+            itembox.HpDecrease_KnockBack(info.damage, info.ownerID);
+
+            Destroy(this.gameObject);
+            return;
+        }
+
         isKnockBack temp = other.GetComponent<isKnockBack>();
 
         if (temp == null)

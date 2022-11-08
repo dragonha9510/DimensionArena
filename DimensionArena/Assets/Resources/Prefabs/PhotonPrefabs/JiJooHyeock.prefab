@@ -896,8 +896,14 @@ MonoBehaviour:
   info:
     isOn: 0
     direction: {x: 0, y: 0, z: 0}
+    damage: 0
+    ultimatePoint: 0
+    ownerID: 
     speed: 0
     distance: 0
+    isDamage: 0
+    isPercentDamage: 0
+    isEnvironment: 0
 --- !u!1 &3294120503737928153
 GameObject:
   m_ObjectHideFlags: 0
@@ -2908,10 +2914,25 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 3538972818967441220, guid: 3443466d754ebc640a83911704947677,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.0875
+      objectReference: {fileID: 0}
+    - target: {fileID: 3538972818967441220, guid: 3443466d754ebc640a83911704947677,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.0875
+      objectReference: {fileID: 0}
     - target: {fileID: 3538972818967441223, guid: 3443466d754ebc640a83911704947677,
         type: 3}
       propertyPath: m_Layer
       value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 3847098654603729111, guid: 3443466d754ebc640a83911704947677,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3443466d754ebc640a83911704947677, type: 3}

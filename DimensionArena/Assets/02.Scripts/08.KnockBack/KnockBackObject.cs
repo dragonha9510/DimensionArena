@@ -15,6 +15,7 @@ public class KnockBackObject : MonoBehaviour
         knockBack_create = Instantiate(knockBack, transform.position, knockBack.transform.rotation);
         knockBack_info = knockBack_create.GetComponent<KnockBack>();
         knockBack_info.info = info;
+        knockBack_create.GetComponent<SphereCollider>().radius = triggerRadius;
 
         knockBack_create.SetActive(false);
     }
