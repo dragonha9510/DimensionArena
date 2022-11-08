@@ -13,6 +13,7 @@ public class RedZone_Missile : MonoBehaviour
 
     [SerializeField] private GameObject destroyEffect;
     [SerializeField] private Vector2 missileScale;
+    [SerializeField] private float Damage;
 
     protected virtual void Start()
     {
@@ -81,7 +82,7 @@ public class RedZone_Missile : MonoBehaviour
 
         if (effectOn)
         {
-            GetComponent<KnockBackObject>().KnockBackStart();
+            GetComponent<KnockBackObject>().KnockBackStartDamage("RedZone", Damage);
 
             if (destroyEffect)
                 Instantiate(destroyEffect, transform.position, destroyEffect.transform.rotation);

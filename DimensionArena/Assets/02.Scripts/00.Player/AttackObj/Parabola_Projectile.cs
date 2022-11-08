@@ -84,7 +84,7 @@ public class Parabola_Projectile : AttackObject
             Destroy(this.gameObject);
             // Effect »ý¼º
 
-            GetComponent<KnockBackObject>().KnockBackStart();
+            GetComponent<KnockBackObject>().KnockBackStartDamage(ownerID, Damage, ultimatePoint);
 
             if (destroyEffect != null)
                 Instantiate(destroyEffect, transform.position, destroyEffect.transform.rotation);

@@ -59,8 +59,8 @@ namespace PlayerSpace
         private void MakeProjectileOnServer(string prefapName,Vector3 pos,Quaternion rot)
         {
             GameObject proj  = PhotonNetwork.Instantiate(prefapName, pos, rot);
-            proj.GetComponent<Aura_Projectile>().AttackToDirection(this.transform.position, attackDirection, AtkInfo.Range, projectileSpeed);
-            proj.GetComponent<Aura_Projectile>().ownerID = this.gameObject.name;
+            proj.GetComponent<Projectile>().AttackToDirection(attackDirection, AtkInfo.Range, projectileSpeed);
+            proj.GetComponent<Projectile>().ownerID = this.gameObject.name;
         }
 
         private void MakeProjectile()
@@ -73,8 +73,8 @@ namespace PlayerSpace
             {
                 GameObject projectile;
                 projectile = Instantiate(prefab_Projectile, this.transform.position + (Vector3.up * 0.5f) + (attackDirection * 0.5f), this.transform.rotation);
-                projectile.GetComponent<Aura_Projectile>().AttackToDirection(this.transform.position, attackDirection, AtkInfo.Range, projectileSpeed);
-                projectile.GetComponent<Aura_Projectile>().ownerID = this.gameObject.name;
+                projectile.GetComponent<Projectile>().AttackToDirection(attackDirection, AtkInfo.Range, projectileSpeed);
+                projectile.GetComponent<Projectile>().ownerID = this.gameObject.name;
             }
         }
         
@@ -122,7 +122,6 @@ namespace PlayerSpace
 
         public override void AutoAttack()
         {
-            throw new System.NotImplementedException();
         }
     }
 
