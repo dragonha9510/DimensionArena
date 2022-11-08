@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 
-public class Parabola_Projectile : MonoBehaviourPun
+public class Parabola_Projectile : AttackObject
 {
     // Destroy Effect
     [SerializeField] private GameObject destroyEffect;
