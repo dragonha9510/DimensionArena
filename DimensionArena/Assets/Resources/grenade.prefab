@@ -106,6 +106,7 @@ MonoBehaviour:
   destroyEffect: {fileID: 1000012903210382, guid: b75a538851e583f42937cda85e429068,
     type: 3}
   time: 1.15
+  tempRatio: 1.5
   rotationSpeed: 180
 --- !u!114 &8003007787291434875
 MonoBehaviour:

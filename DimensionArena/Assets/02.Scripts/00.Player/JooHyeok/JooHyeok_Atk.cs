@@ -18,6 +18,10 @@ namespace PlayerSpace
         [SerializeField] private GameObject prefab_Projectile;
         [SerializeField] private AudioSource audioSource;
 
+        private int passiveCnt = 0;
+        private const int attackCnt = 2;
+        private const int passiveAttackCnt = 3;
+
         protected override void InitalizeAtkInfo()
         {
             atkInfo = new PlayerAtkInfo(6.0f, 3, 2.25f);
@@ -33,10 +37,12 @@ namespace PlayerSpace
             if (atkInfo.CurCost < atkInfo.ShotCost)
                 WaitAttack();
             else if (!isAttack)
+            {
+                ++passiveCnt;
                 StartAttackCoroutine();
-
+            }
             // Animation Temp
-            AtkTrigger();
+
         }
 
 
@@ -71,10 +77,19 @@ namespace PlayerSpace
             Transform shooterPosition = PlayerInfoManager.Instance.getPlayerTransform(shooter);
             photonView.RPC(nameof(SubMagazine), controller, shooter);
 
-            for (int i = 0; i < 2; ++i)
+            int atkCnt = 2;
+
+            if(passiveCnt == 3)
+            {
+                atkCnt = 3;
+                passiveCnt = 0;
+            }
+
+            for (int i = 0; i < atkCnt; ++i)
             {
                 for (int j = 0; j < projectileCount; ++j)
                 {
+                    AtkTrigger();
                     projectile = PhotonNetwork.Instantiate("projectile", shooterPosition.position + (Vector3.up * 0.5f), shooterPosition.rotation);
                     projectile.GetComponent<Projectile>().AttackToDirection(shooterAttackDir, AtkInfo.Range, projectileSpeed);
                     projectile.GetComponent<Projectile>().ownerID = shooter;
@@ -113,7 +128,15 @@ namespace PlayerSpace
 
             GameObject projectile;
 
-            for (int i = 0; i < 2; ++i)
+            int atkCnt = attackCnt;
+
+            if (passiveCnt == passiveAttackCnt)
+            {
+                atkCnt = passiveAttackCnt;
+                passiveCnt = 0;
+            }
+
+            for (int i = 0; i < atkCnt; ++i)
             {
                 for (int j = 0; j < projectileCount; ++j)
                 {
