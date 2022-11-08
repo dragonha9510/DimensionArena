@@ -129,7 +129,7 @@ public class TickDamage : MonoBehaviourPun
                     damageTransform.Add(other.name, other.transform);
                     StartCoroutine(InDamageZone(other.gameObject.name, damageTime, tickDamage));
                 }
-                else if (false == isNestingCollision && false == IsInOtherObject(other.gameObject.name) && false == willDamageApply[other.gameObject.name])
+                else if (false == isNestingCollision && false == IsInOtherObject(other.gameObject.name) && false == willDamageApply.ContainsKey(other.gameObject.name))
                 {
                     Debug.Log("데미지 중첩아님 코루틴 시작할꺼야");
                     willDamageApply.Add(other.name, true);
