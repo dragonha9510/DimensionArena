@@ -115,10 +115,8 @@ namespace PlayerSpace
 
         private IEnumerator BattleStateProcessCoroutine()
         {
-            Debug.Log("배틀 상태 ON");
             yield return new WaitForSeconds(info.BattleOffTime);
             info.BattleOff();
-            Debug.Log("배틀 상태 OFF");
         }
 
         private void Update()

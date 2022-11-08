@@ -93,6 +93,8 @@ public class Projectile_Ravagebell : Projectile
                         PhotonNetwork.Destroy(this.gameObject);
                     }
                     break;
+                case "Item_Box":
+                    break;
                 default:
                     return;
             }

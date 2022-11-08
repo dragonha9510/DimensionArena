@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 
-public class Parabola_Projectile : MonoBehaviourPun
+public class Parabola_Projectile : AttackObject
 {
     // Destroy Effect
     [SerializeField] private GameObject destroyEffect;
@@ -84,7 +84,7 @@ public class Parabola_Projectile : MonoBehaviourPun
             Destroy(this.gameObject);
             // Effect »ý¼º
 
-            GetComponent<KnockBackObject>().KnockBackStart();
+            GetComponent<KnockBackObject>().KnockBackStartDamage(ownerID, Damage, ultimatePoint);
 
             if (destroyEffect != null)
                 Instantiate(destroyEffect, transform.position, destroyEffect.transform.rotation);

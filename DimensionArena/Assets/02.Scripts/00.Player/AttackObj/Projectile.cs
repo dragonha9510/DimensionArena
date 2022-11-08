@@ -81,6 +81,9 @@ public class Projectile : AttackObject
                     onEffect = true;
                 }
                 break;
+            case "Item_Box":
+                onEffect = true;
+                break;
             default:
                 break;
         }
@@ -90,7 +93,7 @@ public class Projectile : AttackObject
 
         if (PhotonNetwork.OfflineMode)
         {
-            Quaternion rot = Quaternion.AngleAxis(transform.rotation.eulerAngles.y, Vector3.up);/*Quaternion.FromToRotation(Vector3.up, contact.normal);*/
+            Quaternion rot = Quaternion.AngleAxis(transform.rotation.eulerAngles.y, Vector3.up);
             Vector3 pos = other.GetComponent<Collider>().ClosestPointOnBounds(transform.position);
 
             if (hitPrefab != null)
@@ -108,7 +111,7 @@ public class Projectile : AttackObject
         }
         else
         {
-            Quaternion rot = Quaternion.AngleAxis(transform.rotation.eulerAngles.y, Vector3.up);/*Quaternion.FromToRotation(Vector3.up, contact.normal);*/
+            Quaternion rot = Quaternion.AngleAxis(transform.rotation.eulerAngles.y, Vector3.up); 
             Vector3 pos = other.GetComponent<Collider>().ClosestPointOnBounds(transform.position);
 
             if (hitPrefab != null)

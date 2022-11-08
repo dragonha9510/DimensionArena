@@ -122,7 +122,6 @@ namespace PlayerSpace
 
         public override void AutoAttack()
         {
-            throw new System.NotImplementedException();
         }
     }
 

@@ -42,35 +42,5 @@ public class AttackObject : MonoBehaviourPun
         audioSource.clip = SoundManager.Instance.GetClip("clipName");
         audioSource.Play();
     }
-    //
-
-
-    //private void OnTriggerEnter(Collider collision)
-    //{
-    //    if (!PhotonNetwork.IsMasterClient)
-    //        return;
-
-    //    switch (collision.gameObject.tag)
-    //    {
-    //            //상대 Player에게 데미지를 준 경우, 
-    //        case "Player":
-    //            {
-    //                if(ownerID != collision.gameObject.name)
-    //                {                   
-    //                    photonView.RPC("OnCollisionToPlayer",
-    //                    RpcTarget.All,
-    //                    ownerID,
-    //                    collision.gameObject.name,
-    //                    collision.transform.position);
-    //                }
-    //            }
-    //            break;
-    //            //Damaged된 Obstacle 공격체 방향으로 살짝 흔들리는 모션
-    //        case "Obstacle":
-    //            {
-
-    //            }
-    //            break;   
-    //    }
-    //}
+  
 }

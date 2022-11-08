@@ -111,7 +111,7 @@ MonoBehaviour:
   - AnimationTrigger
   - AtkTrigger
   - SetAttackTrigger
-  - SpeedIncrease
+  - SkillTriger
   DisableAutoOpenWizard: 1
   ShowSettings: 0
   DevRegionSetOnce: 1

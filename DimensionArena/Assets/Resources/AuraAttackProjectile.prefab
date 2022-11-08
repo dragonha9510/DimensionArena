@@ -292,6 +292,7 @@ GameObject:
   - component: {fileID: 65587493913425502}
   - component: {fileID: 54147740285676064}
   - component: {fileID: -6708357848635022238}
+  - component: {fileID: 6457922396957755960}
   m_Layer: 0
   m_Name: AuraAttackProjectile
   m_TagString: Untagged
@@ -373,6 +374,24 @@ MonoBehaviour:
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
+--- !u!114 &6457922396957755960
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1146459598616756}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a67418ec58fd1c45b8f6d25392bf05c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ownerID: 
+  ultimatePoint: 0
+  damage: 5
+  hitPrefab: {fileID: 0}
+  rigid: {fileID: 54147740285676064}
+  originPos: {x: 0, y: 0, z: 0}
 --- !u!1 &1272923511814132
 GameObject:
   m_ObjectHideFlags: 0
