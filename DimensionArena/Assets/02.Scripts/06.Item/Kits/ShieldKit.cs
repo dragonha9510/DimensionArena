@@ -13,7 +13,7 @@ public class ShieldKit : Item
     [PunRPC]
     public void InteractItemForAllcient(string targetID)
     {
-        PlayerInfoManager.Instance.GetShield(targetID, info.shieldAmount);
+        PlayerInfoManager.Instance.GetShield(targetID, info.shieldAmount,info.statusDuration);
     }
 
 }

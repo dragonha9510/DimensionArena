@@ -17,4 +17,5 @@ public struct ItemInfo
     public float healthAmount;
     public float shieldAmount;
     public float skillRecovery;
+
 }

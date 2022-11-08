@@ -15,7 +15,7 @@ public class DemensionKit : Item
     public void InteractItemForAllcient(string targetID)
     {
         PlayerInfoManager.Instance.DmgUp(targetID, info.attackIncrement);
-        PlayerInfoManager.Instance.SpeedIncrease(targetID, info.speedAmount);
+        PlayerInfoManager.Instance.SpeedIncrease(targetID, info.speedAmount,info.statusDuration);
         PlayerInfoManager.Instance.CurHpIncrease(targetID, info.healthAmount);
     }
 

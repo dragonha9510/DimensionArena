@@ -80,6 +80,10 @@ namespace ManagerSpace
         [SerializeField] private PlayerInfo[] playerInfoArr;
         [SerializeField] private Dictionary<string, PlayerInfo> dicPlayerInfo;
         [SerializeField] private Dictionary<string, GameObject> dicPlayer;
+
+        private Queue<Buf> bufs = new Queue<Buf>();
+
+
         public GameObject[] PlayerObjectArr
         {
             get
@@ -386,7 +390,12 @@ namespace ManagerSpace
         {
             dicPlayerInfo.GetValueOrDefault(target).GetShield(amount);
         }
-
+        // 아이템을 위한 오버로딩
+        public void GetShield(string target, float amount, float durationtime)
+        {
+            dicPlayerInfo.GetValueOrDefault(target).GetShield(amount);
+            ItemEffectAdd(target,durationtime,amount, ITEM.ITEM_SHIELDKIT);
+        }
 
         /// <<<<<<<<<<<<<<<<<<<<<<<<<<
 
@@ -423,26 +432,39 @@ namespace ManagerSpace
         /// ===========================
         /// Speed Region
         /// >>>>>>>>>>>>>>>>>>>>>>>>>>
-
+        [PunRPC]
         public void SpeedIncrease(string owner, string target, float amount)
         {
-            for (int i = 0; i < PlayerObjectArr.Length; ++i)
+            /*for (int i = 0; i < PlayerObjectArr.Length; ++i)
             {
                 if (PlayerObjectArr[i].name == target)
                 {
-                    //playerInfoArr[i].owner.RPC("SpeedUp", RpcTarget.All, amount);
+                    playerInfoArr[i].owner.RPC("SpeedUp", RpcTarget.All, amount);
                 }
-            }
+            }*/
         }
+        [PunRPC]
         public void SpeedIncrease(string target, float amount)
         {
-            for (int i = 0; i < PlayerObjectArr.Length; ++i)
-            {
-                if (PlayerObjectArr[i].name == target)
-                {
-                    //playerInfoArr[i].owner.RPC("SpeedUp", RpcTarget.All, amount);
-                }
-            }
+            PlayerInfo info;
+
+            if (!DicPlayerInfo.TryGetValue(target, out info))
+                return;
+
+            info.SpeedUp(amount);
+        }
+
+        // 아이템을 위한 함수
+        [PunRPC]
+        public void SpeedIncrease(string target, float amount,float durationtime)
+        {
+            PlayerInfo info;
+
+            if (!DicPlayerInfo.TryGetValue(target, out info))
+                return;
+
+            info.SpeedUp(amount);
+            ItemEffectAdd(target , durationtime , amount , ITEM.ITEM_SPEEDKIT);
         }
 
         public void SpeedDecrease(string owner, string target, float amount)
@@ -468,6 +490,55 @@ namespace ManagerSpace
 
         /// <<<<<<<<<<<<<<<<<<<<<<<<<<
 
+        public void ItemEffectAdd(string ID,float durationTime,float amount, ITEM itemType)
+        {
+            bufs.Enqueue(new Buf(ID,durationTime,amount, itemType));
+        }
+
+        private void FixedUpdate()
+        {
+            if (0 == bufs.Count || !PhotonNetwork.IsMasterClient)
+                return;
+            foreach(Buf inBuf in bufs)
+            {
+                Debug.Log("아이템 지속시간 감속중.. 아이템 유형 : " + inBuf.itemType);
+                inBuf.durationTime -= Time.fixedDeltaTime;
+                if (inBuf.durationTime < 0)
+                {
+                    switch (inBuf.itemType)
+                    {
+                        case ITEM.ITEM_MEDICKIT:
+                            break;
+                        case ITEM.ITEM_POWERKIT:
+                            break;
+                        case ITEM.ITEM_SHIELDKIT:
+                            dicPlayerInfo.GetValueOrDefault(inBuf.playerName).DamageShield(inBuf.amount);
+                            break;
+                        case ITEM.ITEM_SPEEDKIT:
+                            dicPlayerInfo.GetValueOrDefault(inBuf.playerName).SpeedDown(inBuf.amount);
+                            break;
+                        case ITEM.ITEM_ENERGYKIT:
+                            break;
+                        case ITEM.ITEM_DEMENSIONKIT:
+                            dicPlayerInfo.GetValueOrDefault(inBuf.playerName).SpeedDown(inBuf.amount);
+                            break;
+                        case ITEM.ITEM_END:
+                            break;
+                    }
+                    
+                }
+            }
+            foreach (Buf inBuf in bufs)
+            {
+                if (inBuf.durationTime < 0)
+                {
+                    bufs.Dequeue();
+                    Debug.Log("아이템 지속시간 종료 효과 제거");
+                    break;
+                }
+               
+            }
+        }
 
         /// 향후, 필요시 추가 구역
 

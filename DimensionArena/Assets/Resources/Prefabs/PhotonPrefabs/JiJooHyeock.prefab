@@ -741,12 +741,13 @@ MonoBehaviour:
     curHP: 820
     curSkillPoint: 100
     maxSkillPoint: 100
-    speed: 2.3
     curShield: 0
     maxSheld: 0
     additionalDmg: 0
     isBattle: 0
     battleOffTime: 0
+    baseSpeed: 2.25
+    curSpeed: 2.25
 --- !u!114 &1876143292272218706
 MonoBehaviour:
   m_ObjectHideFlags: 0

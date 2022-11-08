@@ -16,9 +16,12 @@ public enum UNITTYPE
     Magnetic
 }
 
+
+
 [Serializable]
 public class PlayerInfo
 {
+
 
     public PlayerInfo(string ID)
     {
@@ -27,9 +30,12 @@ public class PlayerInfo
         curHP = 100.0f;
         maxSkillPoint = 100.0f;
         curSkillPoint = 0.0f;
-        speed = 3.0f;
+        baseSpeed = 3.0f;
+        curSpeed = 3.0f;
         curShield = 0.0f;
         isAlive = true;
+
+        additionalDmg = 1.0f;
     }
 
     public PlayerInfo(string ID, UNITTYPE type,
@@ -42,7 +48,11 @@ public class PlayerInfo
         curHP = maxHP;
         maxSkillPoint = maxSkillpt;
         curSkillPoint = 0;
-        this.speed = speed;
+
+        this.baseSpeed = speed;
+        this.curSpeed = speed;
+
+        additionalDmg = 1.0f;
     }
 
 
@@ -79,12 +89,18 @@ public class PlayerInfo
     [SerializeField] private float curHP;
     [SerializeField] private float curSkillPoint;
     [SerializeField] private float maxSkillPoint;
-    [SerializeField] private float speed;
     [SerializeField] private float curShield;
     [SerializeField] private float maxSheld;
     [SerializeField] private float additionalDmg;
     [SerializeField] private bool isBattle;
     [SerializeField] private float battleOffTime;
+
+    // 속도 증감은 baseSpeed 기준으로 증가한다.
+    [SerializeField] private float baseSpeed;
+    // 캐릭터의 이동은 curSpeed 기준으로 한다
+    [SerializeField] private float curSpeed;
+
+
     /// <summary>
     /// If etc variable related with Score So many, then add a new class under the name PlayerScore 
     /// </summary>
@@ -97,7 +113,7 @@ public class PlayerInfo
     public float CurHP { get { return curHP; } }
     public float CurSkillPoint { get { return curSkillPoint; } }
     public float MaxSkillPoint { get { return maxSkillPoint; } }
-    public float Speed { get { return speed; } }
+    public float Speed { get { return curSpeed; } }
     public float CurShield { get { return curShield; } }
     public float MaxShield { get { return maxSheld; } }
     public float AdditionalDmg { get { return additionalDmg; } }
@@ -169,23 +185,24 @@ public class PlayerInfo
 
     public void DmgUp(float ratio)
     {
-        additionalDmg += ratio * 100;
+        additionalDmg += ratio;
     }
 
     public void DmgDown(float ratio)
     {
-        additionalDmg -= ratio * 100;
+        additionalDmg -= ratio;
     }
 
 
     public void SpeedUp(float ratio)
     {
-        speed += speed * ratio;
+        Debug.Log("스피드 업");
+        curSpeed += baseSpeed * ratio;
     }
 
     public void SpeedDown(float ratio)
     {
-        speed -= speed * ratio;
+        curSpeed -= baseSpeed * ratio;
     }
 
     public void PlayerDie(UNITTYPE killer_type, string killer_id)
@@ -201,6 +218,7 @@ public class PlayerInfo
         EBattleStateOn();
     }
 
+   
 
 
     public void BattleOff() => isBattle = false;
