@@ -33,6 +33,7 @@ public class JooHyeok_Skill : Player_Skill
         GameObject tempSkill = PhotonNetwork.Instantiate("grenade", transform.position, rotation);
         projectile = tempSkill.GetComponent<Parabola_Projectile>();
         projectile.SetArcInfo(direction, dist, velocity, ypos);
+        projectile.ownerID = gameObject.name;
     }
 
     public override void SetSkillInfo()
@@ -60,6 +61,7 @@ public class JooHyeok_Skill : Player_Skill
             GameObject tempSkill = Instantiate(skillPrefab, transform.position, parabolaRotation);
             projectile = tempSkill.GetComponent<Parabola_Projectile>();
             projectile.SetArcInfo(attackdirection, parabolaDistance, parabolaVelocity, parabolaMaxYPos);
+            projectile.ownerID = gameObject.name;
         }
     }
 

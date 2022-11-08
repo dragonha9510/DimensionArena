@@ -168,6 +168,7 @@ MonoBehaviour:
   destroyEffect: {fileID: 1000012903210382, guid: b75a538851e583f42937cda85e429068,
     type: 3}
   missileScale: {x: 2, y: 2}
+  Damage: 0.33
 --- !u!114 &190571489047571183
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -205,8 +206,14 @@ MonoBehaviour:
   info:
     isOn: 0
     direction: {x: 0, y: 0, z: 0}
+    damage: 0
+    ultimatePoint: 0
+    ownerID: 
     speed: 16
     distance: 1
+    isDamage: 1
+    isPercentDamage: 1
+    isEnvironment: 1
   knockBack: {fileID: 6338996334954765853, guid: 4e2ccaa5a98eefb469e9fcea7ceeb6ce,
     type: 3}
   triggerRadius: 2

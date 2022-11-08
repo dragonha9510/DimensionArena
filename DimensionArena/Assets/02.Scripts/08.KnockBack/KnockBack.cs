@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using ManagerSpace;
 
 [RequireComponent(typeof(SphereCollider))]
 public class KnockBack : MonoBehaviour
@@ -36,6 +37,20 @@ public class KnockBack : MonoBehaviour
 
         temp.info.speed = info.speed;
         temp.info.distance = info.distance;
+
+        if(info.isDamage || info.isPercentDamage)
+        {
+            FloatingText.Instance.CreateFloatingTextForDamage(other.transform.position, info.damage);
+
+            if(!info.isEnvironment)
+                PlayerInfoManager.Instance.
+                                CurSkillPtIncrease(info.ownerID, info.ultimatePoint);
+
+            if (info.isPercentDamage)
+                PlayerInfoManager.Instance.CurHPDecreaseRatio(info.ownerID, other.name, info.damage);
+            else
+                PlayerInfoManager.Instance.CurHpDecrease(info.ownerID, other.name, info.damage);
+        }
 
         temp.SetValue();
 
