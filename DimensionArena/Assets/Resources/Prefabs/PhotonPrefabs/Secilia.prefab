@@ -519,7 +519,7 @@ MonoBehaviour:
   skillDirection: {x: 0, y: 0, z: 0}
   maxRange: 6
   targetDetect: {fileID: 7262903620926830243}
-  skillParticle: {fileID: 5425442492292068097, guid: e77fc56dd4c67bf42a0863dc1a39d68c,
+  skillParticle: {fileID: 5362913370467476738, guid: bab00db1d8ebe74458f03eba0411d33d,
     type: 3}
 --- !u!114 &284761423
 MonoBehaviour:

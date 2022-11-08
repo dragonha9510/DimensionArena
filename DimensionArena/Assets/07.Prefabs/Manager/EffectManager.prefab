@@ -50,7 +50,7 @@ MonoBehaviour:
       Value: {fileID: 7090135493917942404, guid: f3e180887cc53164fa0da5d6db5d30f9,
         type: 3}
     - Key: Dead
-      Value: {fileID: 1000012903210382, guid: a2eeb1d442bcb7f478fc55e0975bb631, type: 3}
+      Value: {fileID: 1000012903210382, guid: ba81ca9a152422d4d91a8f5cc7a6a905, type: 3}
     - Key: ItemDrop
       Value: {fileID: 5024009746357069194, guid: ec3f674830402cc45bce805cf6493db7,
         type: 3}

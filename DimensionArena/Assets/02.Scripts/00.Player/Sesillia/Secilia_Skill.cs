@@ -13,6 +13,7 @@ namespace PlayerSpace
         private Atk_FixedCircle circle;
         Vector3 firstStepPos;
         bool isCanFirstStep;
+
         protected override void Start()
         {
             base.Start();
@@ -26,85 +27,42 @@ namespace PlayerSpace
             targetDetect.GetComponent<SphereCollider>().radius = MaxRange * 0.5f;
         }
 
-        private void LateUpdate()
-        {
-            CheckFirstStep();
-        }
+        private void LateUpdate() => CheckFirstStep();
 
+        //Quaternion.LookRotation(direction)
         public override void ActSkill(Vector3 attackdirection, float magnitude)
         {
-            Debug.Log("isCanFirstStep : " + isCanFirstStep);
-            Debug.Log("targetDetect.IsTargetDetect" + targetDetect.IsTargetDetect);
-            if (isCanFirstStep && targetDetect.IsTargetDetect)
-            {
-                GameObject particle = Instantiate(skillParticle, transform.position, Quaternion.identity);
-                Destroy(particle, 0.6f);
-                firstStepPos.y = 0;
-                transform.position = firstStepPos;
-                particle = Instantiate(skillParticle, transform.position, Quaternion.identity);
-                Destroy(particle, 0.6f);
-                Vector3 tempPos = targetDetect.Target.position;
-                tempPos.y = 0;
-                transform.LookAt(tempPos, Vector3.up);
-            }
-        }
+            if (!isCanFirstStep || !targetDetect.IsTargetDetect)
+                return;
 
+            Vector3 direction = firstStepPos - transform.position;
+            
+            GameObject particle = Instantiate(skillParticle, transform.position, Quaternion.identity);
+            particle.transform.LookAt(firstStepPos, Vector3.up);
+            Destroy(particle, 0.6f);
+
+            firstStepPos.y = 0;
+            
+            //FirstStep
+            transform.position = firstStepPos;
+            Vector3 tempPos = targetDetect.Target.position;
+            tempPos.y = 0;
+            transform.LookAt(tempPos, Vector3.up);
+
+        }
+       
         private void CheckFirstStep()
         {
-            int layerMask = (1 << LayerMask.NameToLayer("Obstacle") | 1 << LayerMask.NameToLayer("Player") | 1 << LayerMask.NameToLayer("GroundObject_Brick"));
-            RaycastHit[] hitInfo;
-
             //Find
             if (!targetDetect.Target)
                 return;
 
-            Transform target = targetDetect.Target;
-
-
+            RaycastHit[] hitInfo;
 
             for (int i = 0; i < 8; ++i)
             {
-                switch (i)
-                {
-                    case 0:
-                        firstStepPos = target.position + target.forward;
-                        hitInfo = Physics.SphereCastAll(firstStepPos, 0.49f, Vector3.up, 0, layerMask);
-                        break;
-                    case 1:
-                        firstStepPos = target.position + (target.forward + target.right).normalized;
-                        hitInfo = Physics.SphereCastAll(firstStepPos, 0.49f, Vector3.up, 0, layerMask);
-                        break;
-                    case 2:
-                        firstStepPos = target.position + (target.forward + -target.right).normalized;
-                        hitInfo = Physics.SphereCastAll(firstStepPos, 0.49f, Vector3.up, 0, layerMask);
-                        break;
-                    case 3:
-                        firstStepPos = target.position + target.right;
-                        hitInfo = Physics.SphereCastAll(firstStepPos, 0.49f, Vector3.up, 0, layerMask);
-                        break;
-                    case 4:
-                        firstStepPos = target.position - target.right;
-                        hitInfo = Physics.SphereCastAll(firstStepPos, 0.49f, Vector3.up, 0, layerMask);
-                        break;
-                    case 5:
-                        firstStepPos = target.position + (-target.forward + target.right).normalized;
-                        hitInfo = Physics.SphereCastAll(firstStepPos, 0.49f, Vector3.up, 0, layerMask);
-                        break;
-                    case 6:
-                        firstStepPos = target.position + (-target.forward + -target.right).normalized;
-                        hitInfo = Physics.SphereCastAll(firstStepPos, 0.49f, Vector3.up, 0, layerMask);
-                        break;
-                    case 7:
-                        firstStepPos = target.position + -target.forward;
-                        hitInfo = Physics.SphereCastAll(firstStepPos, 0.49f, Vector3.up, 0, layerMask);
-                        break;
-                    default:
-                        firstStepPos = target.position + target.forward;
-                        hitInfo = Physics.SphereCastAll(firstStepPos, 0.49f, Vector3.up, 0, layerMask);
-                        break;
-                }
-                //오브젝트가 해당 공간에 없을 경우 들어갈 수 있다.
-                Debug.Log(hitInfo.Length);
+                firstStepPos = targetDetect.TargetPos[i];
+                hitInfo = Physics.SphereCastAll(firstStepPos, 0.49f, Vector3.up, 0f, targetDetect.CollisionLayer);
                 if (hitInfo.Length < 1)
                 {
                     isCanFirstStep = true;
@@ -113,12 +71,6 @@ namespace PlayerSpace
             }
 
             isCanFirstStep = false;
-        }
-
-
-        private void OnDrawGizmos()
-        {
-            Gizmos.DrawSphere(firstStepPos, 0.5f);
         }
 
         public override void AutoSkill()
