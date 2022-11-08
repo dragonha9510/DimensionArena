@@ -81,6 +81,8 @@ public class Projectile : AttackObject
                     onEffect = true;
                 }
                 break;
+            case "Item_Box":
+                break;
             default:
                 break;
         }
