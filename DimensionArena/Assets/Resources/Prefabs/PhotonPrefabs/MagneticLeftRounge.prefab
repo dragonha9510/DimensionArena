@@ -115,8 +115,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fieldDamage: 10
   damageTickCount: 2
-  createCloudCount: 100
-  cloudSpacing: 2
+  createCloudCount: 10
+  cloudSpacing: 3
   randomSpacingTime: 0.0001
   spacingTime: 0.5
   magneticCloud: {fileID: 8486874475666850393, guid: a99e7a4e73f73054c87af2927487ce14,
