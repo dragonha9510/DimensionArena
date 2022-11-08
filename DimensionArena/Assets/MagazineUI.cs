@@ -11,9 +11,10 @@ public class MagazineUI : MonoBehaviour
     [SerializeField] GameObject parentMagazineUI;
     [SerializeField] Image magazineBar;
     [SerializeField] GameObject prefab_Mask;
-
+    Vector3 originRectPos;
     void Start()
     {
+        originRectPos = magazineBar.rectTransform.anchoredPosition;
         Player player = GetComponent<Player>();
         ownerAtk = GetComponentInParent<Player_Atk>();
 
@@ -76,9 +77,19 @@ public class MagazineUI : MonoBehaviour
        
     }
 
-
+    bool isAnimation;
     void OscillateMagazineBar()
     {
+        if(!isAnimation)
+            StartCoroutine(OscillatetMagazineBarCoroutine());
+    }
+
+    private IEnumerator OscillatetMagazineBarCoroutine()
+    {
+        isAnimation = true;
         magazineBar.rectTransform.DOShakeAnchorPos(0.5f, new Vector2(0.35f, 0.0f));
+        yield return new WaitForSeconds(0.5f);
+        magazineBar.rectTransform.anchoredPosition = originRectPos;
+        isAnimation = false;
     }
 }

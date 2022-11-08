@@ -11,9 +11,15 @@ public class DetectArea : MonoBehaviour
     public Transform Target => target;
     bool isTargetDetect;
     public bool IsTargetDetect => isTargetDetect;
-
+    private Vector3[] targetPos = new Vector3[8];
+    public Vector3[] TargetPos => targetPos;
+   
+    private int collisionlayer;
+    public  int CollisionLayer => collisionlayer;
+    
     private void Start()
     {
+        collisionlayer = (1 << LayerMask.NameToLayer("Obstacle") | 1 << LayerMask.NameToLayer("Player") | 1 << LayerMask.NameToLayer("GroundObject_Brick"));
         Player_Skill skill = GetComponentInParent<Player_Skill>();
         sphareCollide.radius = skill.MaxRange;
     }
@@ -40,6 +46,14 @@ public class DetectArea : MonoBehaviour
 
         isTargetDetect = true;
         target = listTarget[0].transform;
+        targetPos[0] = target.position + target.forward;
+        targetPos[1] = target.position + (target.forward + target.right).normalized;
+        targetPos[2] = target.position + (target.forward - target.right).normalized; ;
+        targetPos[3] = target.position + target.right;
+        targetPos[4] = target.position - target.right;
+        targetPos[5] = target.position + (-target.forward + target.right).normalized;
+        targetPos[6] = target.position + (-target.forward - target.right).normalized;
+        targetPos[7] = target.position - target.forward;
     }
 
 
