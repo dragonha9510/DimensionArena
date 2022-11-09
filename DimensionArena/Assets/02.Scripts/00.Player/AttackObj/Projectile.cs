@@ -98,7 +98,7 @@ public class Projectile : AttackObject
             return;
 
         if (!PhotonNetwork.IsMasterClient)
-            PhotonNetwork.Destroy(this.gameObject);
+            PhotonNetwork.Destroy(this.gameObject);  
 
         if (PhotonNetwork.OfflineMode)
         {

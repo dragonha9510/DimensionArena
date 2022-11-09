@@ -17,14 +17,15 @@ namespace PlayerSpace
         [SerializeField] private GameObject prefab_Projectile;
         [SerializeField] private AudioSource audioSource;
 
-        protected override void InitalizeAtkInfo()
-        {
-
-        }
-
         protected override void Start()
         {
             base.Start();
+        }
+
+        [PunRPC]
+        public void SetAttackTrigger()
+        {
+            AtkTrigger();
         }
 
         public override void Attack()
@@ -61,13 +62,6 @@ namespace PlayerSpace
         }
 
 
-        [PunRPC]
-        public void SetAttackTrigger()
-        {
-            AtkTrigger();
-        }
-
-
 
         [PunRPC]
         private IEnumerator MasterCreateProjectile(string shooter, Vector3 shooterAttackDir,
@@ -81,7 +75,7 @@ namespace PlayerSpace
             float offset;
 
             photonView.RPC(nameof(SetAttackTrigger), RpcTarget.All);
-            for (int i = 0; i < projectileCount; ++i)
+            for (int i = 0; i < 3; ++i)
             {
                 offset = (i % 2 == 0) ? 0.3f : -0.3f;
                 projectile = PhotonNetwork.Instantiate("SA_Projectile", shooterPosition.position + (Vector3.right * offset) + (Vector3.up * 0.5f), shooterPosition.rotation);
@@ -92,6 +86,31 @@ namespace PlayerSpace
             }
             photonView.RPC("EndAttack", controller, shooter);
         }
+
+        private IEnumerator AttackCoroutineSingle(string shooter, Quaternion playerRotation, Vector3 shooterAttackDir, string ownerName)
+        {
+            atkInfo.SubCost(atkInfo.ShotCost);
+
+            GameObject projectile;
+            WaitForSeconds attackDelay = new WaitForSeconds(attack_delay);
+            float right;
+            Vector3 offset = shooterAttackDir * 0.1f + (Vector3.up * 0.5f);
+
+            AtkTrigger();
+            for (int i = 0; i < 3; ++i)
+            {
+                right = i % 2 == 0 ? 0.15f : -0.15f;
+                projectile = Instantiate(prefab_Projectile, transform.position + offset + transform.right * right, playerRotation);
+                projectile.GetComponent<Projectile>().AttackToDirection(shooterAttackDir, AtkInfo.Range, projectileSpeed);
+                projectile.GetComponent<Projectile>().ownerID = ownerName;
+                yield return attackDelay;
+            }
+
+            isAttack = false;
+            owner.CanDirectionChange = true;
+        }
+
+
 
         [PunRPC]
         private void SubMagazine(string name)
@@ -112,32 +131,15 @@ namespace PlayerSpace
         }
 
 
-        private IEnumerator AttackCoroutineSingle(string shooter, Quaternion playerRotation, Vector3 shooterAttackDir, string ownerName)
-        {
-            atkInfo.SubCost(atkInfo.ShotCost);
-
-            GameObject projectile;
-            WaitForSeconds attackDelay = new WaitForSeconds(attack_delay);
-            float right;
-            Vector3 offset = shooterAttackDir * 0.1f + (Vector3.up * 0.5f);
-
-            AtkTrigger();
-            for (int i = 0; i < projectileCount; ++i)
-            {
-                right = i % 2 == 0 ? 0.15f : -0.15f;
-                projectile = Instantiate(prefab_Projectile, transform.position + offset + transform.right * right, playerRotation);
-                projectile.GetComponent<Projectile>().AttackToDirection(shooterAttackDir, AtkInfo.Range, projectileSpeed);
-                projectile.GetComponent<Projectile>().ownerID = ownerName;
-                yield return attackDelay;
-            }
-
-            isAttack = false;
-            owner.CanDirectionChange = true;
-        }
+        
 
         public override void AutoAttack()
         {
             // 자동 공격 루틴 추가
+        }
+
+        protected override void InitalizeAtkInfo()
+        {
         }
     }
 
