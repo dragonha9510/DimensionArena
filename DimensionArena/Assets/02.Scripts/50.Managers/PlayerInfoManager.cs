@@ -410,7 +410,7 @@ namespace ManagerSpace
         {
             PlayerInfo info;
 
-            if (!DicPlayerInfo.TryGetValue(targetId, out info))
+            if (!DicPlayerInfo.TryGetValue(targetId, out info) || amount.Equals(0))
                 return;
 
             info.GetSkillPoint(amount);
@@ -421,7 +421,7 @@ namespace ManagerSpace
         {
             PlayerInfo info;
 
-            if (!DicPlayerInfo.TryGetValue(targetId, out info))
+            if (!DicPlayerInfo.TryGetValue(targetId, out info) || amount.Equals(0))
                 return;
 
             info.LoseSkillPoint(amount);
