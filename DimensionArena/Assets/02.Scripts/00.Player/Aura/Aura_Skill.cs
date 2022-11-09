@@ -61,6 +61,8 @@ namespace PlayerSpace
 
         private void MakeSkillProjectile()
         {
+            if (!photonView.IsMine)
+                return;
             if (PhotonNetwork.InRoom)
             {
                 Quaternion skillRot = FOV.transform.rotation;

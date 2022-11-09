@@ -58,13 +58,13 @@ namespace PlayerSpace
         private void MakeProjectileOnServer(string prefapName,Vector3 attackDirection,Vector3 pos,Quaternion rot)
         {
             GameObject proj  = PhotonNetwork.Instantiate(prefapName, pos, rot);
-            proj.GetComponent<Projectile>().AttackToDirection(attackDirection, AtkInfo.Range, projectileSpeed);
+            proj.GetComponent<Projectile>().AttackToDirection(AtkInfo.Range, projectileSpeed);
             proj.GetComponent<Projectile>().ownerID = this.gameObject.name;
         }
 
         private void MakeProjectile()
         {
-            if(PhotonNetwork.InRoom)
+            if (PhotonNetwork.InRoom && photonView.IsMine)
             {
                photonView.RPC(nameof(MakeProjectileOnServer), RpcTarget.MasterClient, prefab_Projectile.name, owner.Attack.attackDirection, this.transform.position + (Vector3.up * 0.5f) + (attackDirection * 0.5f), this.transform.rotation);
             }

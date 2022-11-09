@@ -22,15 +22,15 @@ public class Projectile : AttackObject
 
     private void LateUpdate()
     {
-        if(PhotonNetwork.OfflineMode)
+        if (!PhotonNetwork.IsMasterClient)
+            return;
+        if(!PhotonNetwork.InRoom)
         {
             if (range < (this.transform.position - originPos).magnitude)
             {
                 Destroy(this.gameObject);
             }
         }
-        else if (!PhotonNetwork.IsMasterClient)
-            return;
 
         if(range < (this.transform.position - originPos).magnitude)
         {
@@ -93,7 +93,7 @@ public class Projectile : AttackObject
         if (!onEffect)
             return;
 
-        PhotonNetwork.Destroy(this.gameObject);
+        //PhotonNetwork.Destroy(this.gameObject);
 
         if (PhotonNetwork.OfflineMode)
         {
