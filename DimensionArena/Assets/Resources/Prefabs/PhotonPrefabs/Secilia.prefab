@@ -464,8 +464,8 @@ MonoBehaviour:
     additionalDmg: 0
     isBattle: 0
     battleOffTime: 3
-    baseSpeed: 0
-    curSpeed: 0
+    baseSpeed: 3
+    curSpeed: 3
   shieldPassivePercent: 0.2
   healPercent: 0.05
   shieldPercent: 0.3
@@ -518,7 +518,7 @@ MonoBehaviour:
   skillRangeMesh: {fileID: 8773357901300345585}
   direction: {x: 0, y: 0, z: 0}
   skillDirection: {x: 0, y: 0, z: 0}
-  maxRange: 6
+  maxRange: 3
   targetDetect: {fileID: 7262903620926830243}
   skillParticle: {fileID: 5362913370467476738, guid: bab00db1d8ebe74458f03eba0411d33d,
     type: 3}

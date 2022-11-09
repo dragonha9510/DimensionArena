@@ -13184,7 +13184,6 @@ GameObject:
   - component: {fileID: 3227170782532345050}
   - component: {fileID: 3227170782532345049}
   - component: {fileID: 3227170782532345047}
-  - component: {fileID: 3227170782532345048}
   m_Layer: 11
   m_Name: Aura
   m_TagString: Player
@@ -13262,14 +13261,15 @@ MonoBehaviour:
   direction: {x: 0, y: 0, z: 0}
   skillDirection: {x: 0, y: 0, z: 0}
   maxRange: 5
-  skillPrefab: {fileID: 4364861999203606394, guid: 49fd2bffbe32161498d6fcc9c13f8ee6,
+  skillPrefab: {fileID: 4364861999203606394, guid: bbaf002db5fac8646ba41880bcf4be6a,
     type: 3}
   projectileSpeed: 15
   projectileRange: 10
   FOV: {fileID: 337200087289245342}
-  animator: {fileID: 3227170782532345053}
+  auraAnimator: {fileID: 3227170782532345053}
   rayCount: 3
-  skillDamage: 10
+  skillDamage: 600
+  skillAnimationSpeed: 2
 --- !u!114 &7684523567143468576
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13287,7 +13287,7 @@ MonoBehaviour:
   atkInfo:
     range: 10
     maxMagazine: 3
-    reloadTime: 5
+    reloadTime: 2
   atkRangeMesh: {fileID: 1882573213908131554}
   direction: {x: 0, y: 0, z: 0}
   attackDirection: {x: 0, y: 0, z: 0}
@@ -13304,7 +13304,7 @@ MonoBehaviour:
   projectileSpeed: 10
   attack_delay: 0.35
   attack_range: 10
-  prefab_Projectile: {fileID: 1146459598616756, guid: 14576ba7dc6907d479f952a59a432fe0,
+  prefab_Projectile: {fileID: 1146459598616756, guid: 72c732ea14df9e64c893462cfd5d8e7e,
     type: 3}
   audioSource: {fileID: 0}
   auraAnimator: {fileID: 3227170782532345053}
@@ -13326,10 +13326,10 @@ MonoBehaviour:
     id: 
     type: 0
     isAlive: 0
-    maxHP: 100
-    curHP: 100
+    maxHP: 930
+    curHP: 930
     curSkillPoint: 0
-    maxSkillPoint: 0
+    maxSkillPoint: 100
     curShield: 0
     maxSheld: 0
     additionalDmg: 0
@@ -13405,7 +13405,6 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 3227170782532345049}
   - {fileID: 3227170782532345047}
-  - {fileID: 3227170782532345048}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
@@ -13441,50 +13440,6 @@ MonoBehaviour:
   m_SynchronizeAngularVelocity: 0
   m_TeleportEnabled: 0
   m_TeleportIfDistanceGreaterThan: 3
---- !u!114 &3227170782532345048
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7309405340590815873}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9b8c4a61274f60b4ea5fb4299cfdbf14, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ShowLayerWeightsInspector: 1
-  ShowParameterInspector: 1
-  m_SynchronizeParameters:
-  - Type: 1
-    SynchronizeType: 2
-    Name: speed
-  - Type: 4
-    SynchronizeType: 2
-    Name: Attack1
-  - Type: 4
-    SynchronizeType: 2
-    Name: Attack2
-  - Type: 4
-    SynchronizeType: 2
-    Name: Attack3
-  - Type: 1
-    SynchronizeType: 2
-    Name: AttackSpeed0
-  - Type: 1
-    SynchronizeType: 2
-    Name: AttackSpeed1
-  - Type: 1
-    SynchronizeType: 2
-    Name: AttackSpeed2
-  - Type: 4
-    SynchronizeType: 2
-    Name: SkillUse
-  m_SynchronizeLayers:
-  - SynchronizeType: 2
-    LayerIndex: 0
-  - SynchronizeType: 2
-    LayerIndex: 1
 --- !u!1 &7309405340878061143
 GameObject:
   m_ObjectHideFlags: 0
@@ -15548,6 +15503,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: AutoSkill_Detection
       objectReference: {fileID: 0}
+    - target: {fileID: 3660753806917315653, guid: 14b00aeb5922694488838123e409720a,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4483466908246715429, guid: 14b00aeb5922694488838123e409720a,
         type: 3}
       propertyPath: isSkill
@@ -15639,6 +15599,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: AutoAtk_Detection
+      objectReference: {fileID: 0}
+    - target: {fileID: 3660753806917315653, guid: 14b00aeb5922694488838123e409720a,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4587114866574966669, guid: 14b00aeb5922694488838123e409720a,
         type: 3}

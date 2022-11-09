@@ -150,6 +150,7 @@ namespace PlayerSpace
 
             SkillJoyStick skilljoyStick = GameObject.Find("SkillJoyStick").
                 GetComponent<SkillJoyStick>();
+            
             info.EskillAmountChanged += skilljoyStick.SkillSetFillAmount;
             skilljoyStick.player = this;
 
@@ -170,22 +171,6 @@ namespace PlayerSpace
             EffectManager.Instance.CreateParticleEffectOnGameobject(this.transform, "Dead");
             gameObject.SetActive(false);
         }
-
-
-        public void Win()
-        {
-            if (!PhotonNetwork.IsConnected)
-                return;
-
-            if(photonView.IsMine)
-            {
-                InGameUIManager.Instance.WinUIOn();
-                IngameDataManager.Instance.OwnerData.SetRank();
-                gameObject.SetActive(false);
-            }
-        }
-
-
 
     }
 }

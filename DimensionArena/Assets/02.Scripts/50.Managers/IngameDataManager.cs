@@ -29,43 +29,19 @@ namespace ManagerSpace
             kill++;
         }
 
-        public void DeathData()
+        public void ResultData(int rank, bool isDead)
         {
-            death++;
-
-            liveTime = IngameDataManager.Instance.CurTime;
-            liveTime *= 100;
-            liveTime = Mathf.Floor(liveTime) * 0.01f;
-
-            for (int i = 0; i < PlayerInfoManager.Instance.PlayerObjectArr.Length; ++i)
-            {
-                if (PlayerInfoManager.Instance.PlayerObjectArr[i].activeInHierarchy)
-                    rank++;
-            }
-
-            //임시함수 제거해야된다
-            if (rank == 1)
-            {
-                for (int i = 0; i < PlayerInfoManager.Instance.PlayerObjectArr.Length; ++i)
-                {
-                    if (PlayerInfoManager.Instance.PlayerObjectArr[i].activeInHierarchy)
-                    {
-                        PlayerInfoManager.Instance.PlayerObjectArr[i].GetComponent<Player>().Win();
-                    }
-
-                }
-            }
-            rank++;
-        }
-
-
-        public void SetRank()
-        {
-            rank = 1;
+            if(isDead)
+                death++;
+            
+            this.rank = rank;
             liveTime = IngameDataManager.Instance.CurTime;
             liveTime *= 100;
             liveTime = Mathf.Floor(liveTime) * 0.01f;
         }
+
+      
+
 
         float damage;
         public float Damage => damage;

@@ -70,6 +70,14 @@ namespace PlayerSpace
 
 
         [PunRPC]
+        public void SetAttackTrigger()
+        {
+            AtkTrigger();
+        }
+
+
+
+        [PunRPC]
         private IEnumerator MasterCreateProjectile(string shooter, Vector3 shooterAttackDir,
                                                    Photon.Realtime.Player controller)
         {
@@ -85,21 +93,26 @@ namespace PlayerSpace
                 passiveCnt = 0;
             }
 
+
+            WaitForSeconds burstDelay = new WaitForSeconds(burst_delay);
+            WaitForSeconds attackDelay = new WaitForSeconds(attack_delay);
+
             for (int i = 0; i < atkCnt; ++i)
             {
                 for (int j = 0; j < projectileCount; ++j)
                 {
-                    AtkTrigger();
+                    photonView.RPC(nameof(SetAttackTrigger), RpcTarget.All);
                     projectile = PhotonNetwork.Instantiate("projectile", shooterPosition.position + (Vector3.up * 0.5f), shooterPosition.rotation);
-                    projectile.GetComponent<Projectile>().AttackToDirection(shooterAttackDir, AtkInfo.Range, projectileSpeed);
+                    projectile.GetComponent<Projectile>().AttackToDirection(AtkInfo.Range, projectileSpeed);
                     projectile.GetComponent<Projectile>().ownerID = shooter;
-                    yield return new WaitForSeconds(burst_delay);
+                    yield return burstDelay;
                 }
-                yield return new WaitForSeconds(attack_delay);
+                yield return attackDelay;
             }
 
             photonView.RPC("EndAttack", controller, shooter);
         }
+
 
         [PunRPC]
         private void SubMagazine(string name)
@@ -107,6 +120,7 @@ namespace PlayerSpace
             if (gameObject.name == name)
                 atkInfo.SubCost(atkInfo.ShotCost);
         }
+
 
 
         [PunRPC]

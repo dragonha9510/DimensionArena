@@ -64,15 +64,10 @@ public class PlayerInfo
     public event Action<float> EcurHPChanged = (param) => { };
     public event Action<float> EcurShieldChanged = (param) => { };
     public event Action EDisActivePlayer = () => { };
+    public event Action EBattleStateOn = () => { };
     public event Action<UNITTYPE, string,
                         UNITTYPE, string> EDeadPlayer = (param, param2, param3, param4) => { };
-    public event Action EBattleStateOn = () => { };
 
-
-    public void eDisActive()
-    {
-        EDisActivePlayer();
-    }
 
     /// =============================
     /// Player Information Region
@@ -139,7 +134,8 @@ public class PlayerInfo
         {
             curSkillPoint -= point;
             curSkillPoint = Mathf.Max(curSkillPoint, 0);
-            EskillAmountChanged(curSkillPoint / maxSkillPoint);
+            if (EskillAmountChanged != null)
+                EskillAmountChanged(curSkillPoint / maxSkillPoint);
         }
     }
 
@@ -150,7 +146,8 @@ public class PlayerInfo
         {
             curSkillPoint += point;
             curSkillPoint = Mathf.Min(curSkillPoint, maxSkillPoint);
-            EskillAmountChanged(curSkillPoint / maxSkillPoint);
+            if(EskillAmountChanged != null)
+                EskillAmountChanged(curSkillPoint / maxSkillPoint);
         }
     }
 
@@ -210,7 +207,6 @@ public class PlayerInfo
         isAlive = false;
         EDeadPlayer(killer_type, killer_id, type, id);
         EDisActivePlayer();
-        
     }
 
     public void BattleOn()
@@ -218,9 +214,6 @@ public class PlayerInfo
         isBattle = true;
         EBattleStateOn();
     }
-
-   
-
 
     public void BattleOff() => isBattle = false;
 

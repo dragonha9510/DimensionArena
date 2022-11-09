@@ -30,7 +30,6 @@ namespace PlayerSpace
 
         protected override void InitalizeAtkInfo()
         {
-            atkInfo = new PlayerAtkInfo(attack_range, projectileCount, attack_delay);
         }
 
         protected override void Start()
@@ -56,24 +55,24 @@ namespace PlayerSpace
         }
 
         [PunRPC]
-        private void MakeProjectileOnServer(string prefapName,Vector3 pos,Quaternion rot)
+        private void MakeProjectileOnServer(string prefapName,Vector3 attackDirection,Vector3 pos,Quaternion rot)
         {
             GameObject proj  = PhotonNetwork.Instantiate(prefapName, pos, rot);
-            proj.GetComponent<Projectile>().AttackToDirection(attackDirection, AtkInfo.Range, projectileSpeed);
+            proj.GetComponent<Projectile>().AttackToDirection(AtkInfo.Range, projectileSpeed);
             proj.GetComponent<Projectile>().ownerID = this.gameObject.name;
         }
 
         private void MakeProjectile()
         {
-            if(PhotonNetwork.InRoom)
+            if (PhotonNetwork.InRoom && photonView.IsMine)
             {
-               photonView.RPC(nameof(MakeProjectileOnServer), RpcTarget.MasterClient, prefab_Projectile.name, this.transform.position + (Vector3.up * 0.5f) + (attackDirection * 0.5f), this.transform.rotation);
+               photonView.RPC(nameof(MakeProjectileOnServer), RpcTarget.MasterClient, prefab_Projectile.name, owner.Attack.attackDirection, this.transform.position + (Vector3.up * 0.5f) + (attackDirection * 0.5f), this.transform.rotation);
             }
             else
             {
                 GameObject projectile;
                 projectile = Instantiate(prefab_Projectile, this.transform.position + (Vector3.up * 0.5f) + (attackDirection * 0.5f), this.transform.rotation);
-                projectile.GetComponent<Projectile>().AttackToDirection(attackDirection, AtkInfo.Range, projectileSpeed);
+                projectile.GetComponent<Projectile>().AttackToDirection(AtkInfo.Range, projectileSpeed);
                 projectile.GetComponent<Projectile>().ownerID = this.gameObject.name;
             }
         }

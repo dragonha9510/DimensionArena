@@ -115,7 +115,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fieldDamage: 10
   damageTickCount: 2
-  createCloudCount: 10
+  createCloudCount: 8
   cloudSpacing: 3
   randomSpacingTime: 0.0001
   spacingTime: 0.5

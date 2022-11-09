@@ -350,7 +350,6 @@ public class LobbyManagerRenewal : MonoBehaviourPunCallbacks
     public void PlayersReadyForStartGame()
     {
         ++this.inGameReadyPlayer;
-        Debug.Log(inGameReadyPlayer);
 
     }
 
