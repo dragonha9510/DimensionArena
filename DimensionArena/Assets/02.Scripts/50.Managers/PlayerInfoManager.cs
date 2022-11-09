@@ -80,7 +80,8 @@ namespace ManagerSpace
         [SerializeField] private PlayerInfo[] playerInfoArr;
         [SerializeField] private Dictionary<string, PlayerInfo> dicPlayerInfo;
         [SerializeField] private Dictionary<string, GameObject> dicPlayer;
-
+        int length;
+        public int SurvivalCount => length;
         private Queue<Buf> bufs = new Queue<Buf>();
 
 
@@ -159,17 +160,20 @@ namespace ManagerSpace
             dicPlayerInfo = new Dictionary<string, PlayerInfo>();
             dicPlayer = new Dictionary<string, GameObject>();
 
+            length = PlayerObjectArr.Length;
+
             for (int i = 0; i < players.Length; ++i)
             {
                 //리스트 등록, 딕셔너리 등록
                 playerObjectArr[i] = players[i];
                 playerInfoArr[i] = players[i].GetComponent<Player>().Info;
+                playerInfoArr[i].EDisActivePlayer += DiePlayer;
+
                 DicPlayerInfo.Add(players[i].name, playerInfoArr[i]);
                 DicPlayer.Add(players[i].name, players[i]);
             }
 
         }
-
         /// <<<<<<<<<<<<<<<<<<<<<<<<<<<
 
 
@@ -178,32 +182,14 @@ namespace ManagerSpace
         /// CurHp Region
         /// >>>>>>>>>>>>>>>>>>>>>>>>>>
 
-        public void CurHpIncrease(GameObject owner, GameObject target, float amount)
-        {
-
-            for (int i = 0; i < PlayerObjectArr.Length; ++i)
-            {
-                if (PlayerObjectArr[i] == target)
-                {
-                    //playerInfoArr[i].("Heal", RpcTarget.MasterClient, amount);
-                }
-            }
-
-            //Do Something wiht Owner relation..
-        }
 
         public void CurHpIncrease(string target, float amount)
         {
             dicPlayerInfo.GetValueOrDefault(target).Heal(amount);
         }
 
-        public void CurHpDecrease(GameObject owner, GameObject target, float damage)
-        {
 
-        }
-
-
-        public int CurHpDecrease(string ownerId, string targetId, float damage)
+        public int CurHpDecrease(string killerId, string targetId, float damage)
         {
             PlayerInfo target;
             //Damage
@@ -213,7 +199,7 @@ namespace ManagerSpace
                 //Data Regist
                 InGamePlayerData data;
 
-                if (IngameDataManager.Instance.Data.TryGetValue(ownerId, out data))
+                if (IngameDataManager.Instance.Data.TryGetValue(killerId, out data))
                     data.HitPoint(damage);
 
                 //Ingame 
@@ -222,7 +208,7 @@ namespace ManagerSpace
                 target.BattleOn();
 
                 if (target.CurHP <= 0)
-                    DeadCheckCallServer(ownerId);
+                    DeadCheckCallServer(killerId, targetId);
 
                 return (int)damage;
             }
@@ -231,7 +217,7 @@ namespace ManagerSpace
         }
 
 
-        public int CurHPDecreaseRatio(string ownerId, string targetId, float ratio)
+        public int CurHPDecreaseRatio(string killerId, string targetId, float ratio)
         {
             PlayerInfo target;
             int damage;
@@ -247,14 +233,14 @@ namespace ManagerSpace
                 //Data Regist
                 InGamePlayerData data;
 
-                if (IngameDataManager.Instance.Data.TryGetValue(ownerId, out data))
+                if (IngameDataManager.Instance.Data.TryGetValue(killerId, out data))
                     data.HitPoint(damage);
 
                 target.Damaged(damage);
                 target.BattleOn();
 
                 if(target.CurHP <= 0)
-                    DeadCheckCallServer(ownerId);
+                    DeadCheckCallServer(killerId, targetId);
 
                 return damage;
 
@@ -263,106 +249,65 @@ namespace ManagerSpace
             return 0;
         }
 
-
-
-
-        public int CurHpDecrease(string targetId, float damage)
-        {
-            PlayerInfo target;
-            //Damage
-            if (DicPlayerInfo.TryGetValue(targetId, out target))
-            {
-                damage = damage > target.CurHP + target.CurShield ? target.CurHP : damage;
-                //Ingame 
-                damage = DamagedShield(target, damage);
-
-                target.Damaged(damage);
-                target.BattleOn();
-
-                if (target.CurHP <= 0)
-                    DeadCheckCallServer(targetId);
-
-                return (int)damage;
-            }
-            return 0;
-
-        }
-
-        public int CurHPDecreaseRatio(string targetId, float ratio)
-        {
-            PlayerInfo target;
-            //Damage
-            if (DicPlayerInfo.TryGetValue(targetId, out target))
-            {
-                int damage;
-                damage = (int)(target.MaxHP * ratio);
-                damage = (int)(damage > target.CurHP + target.CurShield ? target.CurHP : damage);
-                //Ingame 
-                ratio = DamagedShield(target, damage);
-
-                target.Damaged(damage);
-                target.BattleOn();
-
-                if (target.CurHP <= 0)
-                    DeadCheckCallServer(targetId);
-
-
-                return damage;
-
-            }
-            return 0;
-
-        }
 
         //JSB
-        public void DeadCheckCallServer(string killerId)
+        public void DeadCheckCallServer(string killerId, string targetId)
         {
-            photonView.RPC("HealthCheck", RpcTarget.All, killerId);
+            photonView.RPC("HealthCheck", RpcTarget.All, killerId, targetId);
         }
 
         [PunRPC]
-        private void HealthCheck(string killerId)
+        private void HealthCheck(string killerId, string targetId)
         {
-            for (int i = 0; i < playerInfoArr.Length; ++i)
+            GameObject target = null;
+            int rank = 0;
+
+            Debug.Log(playerObjectArr.Length);
+
+            foreach(var temp in playerObjectArr)
             {
-                if (playerInfoArr[i].CurHP <= 0 && playerObjectArr[i].activeInHierarchy)
+                if(temp.name.Equals(targetId))
+                    target = temp;
+
+                if (temp.activeInHierarchy)
+                    rank++;
+            }
+            
+            PlayerInfo targetInfo;
+            PlayerInfo killerInfo;
+
+            DicPlayerInfo.TryGetValue(targetId, out targetInfo);
+            DicPlayerInfo.TryGetValue(killerId, out killerInfo);
+
+            if(target.activeInHierarchy && targetInfo.CurHP <= 0)
+            {
+                //환경에 의해 사망했을 경우
+                if(killerInfo == null)
                 {
-                    //Ingame UI Inform Kill
-                    PlayerInfo killerInfo;
-                    Debug.Log(killerId);
-                    DicPlayerInfo.TryGetValue(killerId, out killerInfo);
-                    
-                    if(killerInfo == null)
+                    if (killerId.Equals("MagneticField"))
                     {
-                        if(killerId.Equals("MagneticField"))
-                        {
-                            playerInfoArr[i].PlayerDie(UNITTYPE.Magnetic, "자기장");
-                        }
-                        else if(killerId.Equals("RedZone"))
-                        {
-                            playerInfoArr[i].PlayerDie(UNITTYPE.RedZone, "레드존");
-                        }
-                        break;
+                        targetInfo.PlayerDie(UNITTYPE.Magnetic, "자기장");
                     }
-
-                    playerInfoArr[i].PlayerDie(killerInfo.Type, killerId);
-
-                    //GameData Set
-                    InGamePlayerData data;
-
-                    if (IngameDataManager.Instance.Data.TryGetValue(playerInfoArr[i].ID, out data))
+                    else if (killerId.Equals("RedZone"))
                     {
-                        data.DeathData();
+                        targetInfo.PlayerDie(UNITTYPE.RedZone, "레드존");
                     }
-
-
-                    if (IngameDataManager.Instance.Data.TryGetValue(killerId, out data))
-                    {
-                        data.KillPoint();
-                    }
-                    //Player Die 
-
                 }
+                //플레이어에 의해 사망했을 경우
+                else
+                {
+                    targetInfo.PlayerDie(killerInfo.Type, killerId);                
+                }
+
+                //GameData Set
+                InGamePlayerData data;
+
+                if (IngameDataManager.Instance.Data.TryGetValue(targetId, out data))
+                    data.ResultData(rank, true);
+
+
+                if (IngameDataManager.Instance.Data.TryGetValue(killerId, out data))
+                    data.KillPoint();
             }
         }
       
@@ -432,17 +377,7 @@ namespace ManagerSpace
         /// ===========================
         /// Speed Region
         /// >>>>>>>>>>>>>>>>>>>>>>>>>>
-        [PunRPC]
-        public void SpeedIncrease(string owner, string target, float amount)
-        {
-            /*for (int i = 0; i < PlayerObjectArr.Length; ++i)
-            {
-                if (PlayerObjectArr[i].name == target)
-                {
-                    playerInfoArr[i].owner.RPC("SpeedUp", RpcTarget.All, amount);
-                }
-            }*/
-        }
+
         [PunRPC]
         public void SpeedIncrease(string target, float amount)
         {
@@ -551,6 +486,31 @@ namespace ManagerSpace
         {
             DicPlayerInfo.GetValueOrDefault(target).DmgDown(amount);
         }
+
+
+        private void DiePlayer()
+        {
+            length--;
+
+            if (length.Equals(1))
+            {
+                for (int i = 0; i < playerInfoArr.Length; ++i)
+                {
+                    if (playerInfoArr[i].CurHP > 0)
+                    {
+                        IngameDataManager.Instance.Data.GetValueOrDefault(playerObjectArr[i].name).ResultData(1, false);
+
+                        if (playerObjectArr[i].GetComponent<PhotonView>().IsMine)
+                        {
+                            InGameUIManager.Instance.ResutUIOn();
+                        }
+                    }
+                }
+
+            }
+        }
+
+
 
     }
 }

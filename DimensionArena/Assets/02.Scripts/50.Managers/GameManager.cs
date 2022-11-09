@@ -105,8 +105,6 @@ public class GameManager : MonoBehaviourPunCallbacks, IPunObservable
             PhotonNetwork.Instantiate(PHOTONPATH.PHOTONPATH_PREFAPBFOLDER
               + SelectedCharacter.Instance.characterName, Vector3.zero, Quaternion.identity);
 
-        PlayerInfoManager.Instance.RegisterPlayer();
-
         while (true)
         {
             if (LobbyManagerRenewal.Instance.InGameReadyPlayer 
@@ -118,7 +116,10 @@ public class GameManager : MonoBehaviourPunCallbacks, IPunObservable
 
         //모든 플레이어들이 등록된 상황이라면, 
         if (PhotonNetwork.IsMasterClient)
+        {
+            PlayerInfoManager.Instance.RegisterPlayer();
             StartCoroutine(SpawnPointRegisterPlayer());
+        }
 
         yield return new WaitUntil(() => isSpawnEnd);
 

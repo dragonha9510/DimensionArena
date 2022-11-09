@@ -19,7 +19,7 @@ public class DetectArea : MonoBehaviour
     
     private void Start()
     {
-        collisionlayer = (1 << LayerMask.NameToLayer("Obstacle") | 1 << LayerMask.NameToLayer("Player") | 1 << LayerMask.NameToLayer("GroundObject_Brick") | LayerMask.NameToLayer("Water"));
+        collisionlayer = (1 << LayerMask.NameToLayer("Obstacle") | 1 << LayerMask.NameToLayer("Player") | 1 << LayerMask.NameToLayer("GroundObject_Brick") | 1 << LayerMask.NameToLayer("Water"));
         Player_Skill skill = GetComponentInParent<Player_Skill>();
         sphareCollide.radius = skill.MaxRange;
     }

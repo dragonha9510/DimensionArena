@@ -130,7 +130,6 @@ namespace ManagerSpace
             ListDeadEv = new List<DeadEvent>();
             isInfromEnd = true;
 
-
             switch (mode)
             {
                 case GAMEMODE.Survival:
@@ -139,7 +138,7 @@ namespace ManagerSpace
                         PlayerInfoManager.Instance.PlayerInfoArr[i].EDeadPlayer += InformDeadPlayer;
 
                         if (PlayerInfoManager.Instance.PlayerObjectArr[i].name == PhotonNetwork.NickName)
-                            PlayerInfoManager.Instance.PlayerInfoArr[i].EDisActivePlayer += DefeatUIOn;
+                            PlayerInfoManager.Instance.PlayerInfoArr[i].EDisActivePlayer += ResutUIOn;
                     }
                     break;
                 case GAMEMODE.FreeForAll:
@@ -299,22 +298,6 @@ namespace ManagerSpace
             }
         }
 
-        public void DefeatUIOn()
-        {
-            GameEndGroup.SetActive(true);
-            CanvasGroup group = GameEndGroup.GetComponent<CanvasGroup>();
-            StartCoroutine(CanvasAlphaOn(group));
-        }
-
-
-        public void WinUIOn()
-        {
-            winLoseText.text = "You Win!";
-            GameEndGroup.SetActive(true);
-            CanvasGroup group = GameEndGroup.GetComponent<CanvasGroup>();
-            StartCoroutine(CanvasAlphaOn(group));
-        }
-
         IEnumerator CanvasAlphaOn(CanvasGroup group)
         {
             WaitForSeconds delay = new WaitForSeconds(0.01f);
@@ -328,6 +311,29 @@ namespace ManagerSpace
             group.interactable = true;
             group.blocksRaycasts = true;
         }
+
+        public void ResutUIOn()
+        {
+            if (PlayerInfoManager.Instance.SurvivalCount == 1)
+                winLoseText.text = "You Win!";
+            else
+                winLoseText.text = "You Die";
+
+            GameEndGroup.SetActive(true);
+            CanvasGroup group = GameEndGroup.GetComponent<CanvasGroup>();
+            StartCoroutine(CanvasAlphaOn(group));
+        }
+
+
+        [PunRPC]
+        public void WinUIOn()
+        {
+            winLoseText.text = "You Win!";
+            GameEndGroup.SetActive(true);
+            CanvasGroup group = GameEndGroup.GetComponent<CanvasGroup>();
+            StartCoroutine(CanvasAlphaOn(group));
+        }
+
 
         public void WatchTarget()
         {

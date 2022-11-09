@@ -96,7 +96,7 @@ namespace PlayerSpace
                         if(null != rayHit.transform.gameObject.GetComponent<isKnockBack>())
                         {
                             rayHit.transform.gameObject.GetComponent<isKnockBack>().CallMoveKnockBack(owner.transform.position, (rayHit.transform.gameObject.transform.position - owner.transform.position).normalized, projectileSpeed, FOV.ViewRadius);
-                            PlayerInfoManager.Instance.CurHpDecrease(rayHit.transform.gameObject.name, skillDamage);
+                            PlayerInfoManager.Instance.CurHpDecrease(gameObject.name, rayHit.transform.gameObject.name, skillDamage);
                         }
                     }
                     ray.direction = Quaternion.AngleAxis(correctionAngle, Vector3.up) * ray.direction;
