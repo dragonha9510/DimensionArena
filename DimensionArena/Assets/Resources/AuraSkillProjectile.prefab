@@ -394,6 +394,7 @@ MonoBehaviour:
   observableSearch: 2
   ObservedComponents:
   - {fileID: 7467841121908476165}
+  - {fileID: -2134524326931581384}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
@@ -410,7 +411,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ownerID: 
-  ultimatePoint: 0
+  ultimatePoint: 10
   damage: 0
   hitPrefab: {fileID: 0}
   rigid: {fileID: 1984475393032754013}

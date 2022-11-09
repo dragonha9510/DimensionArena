@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &3542692898261084685
+--- !u!1 &3531548516100261708
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,9 +8,9 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4094249711885142022}
-  - component: {fileID: 5945282899233689043}
-  - component: {fileID: 1689097331505165058}
+  - component: {fileID: 3956484233478201856}
+  - component: {fileID: 748886793470291509}
+  - component: {fileID: 5859209704432862950}
   m_Layer: 10
   m_Name: Wing
   m_TagString: Untagged
@@ -18,13 +18,13 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4094249711885142022
+--- !u!4 &3956484233478201856
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3542692898261084685}
+  m_GameObject: {fileID: 3531548516100261708}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -33,21 +33,21 @@ Transform:
   m_Father: {fileID: 6329200295913954083}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &5945282899233689043
+--- !u!33 &748886793470291509
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3542692898261084685}
+  m_GameObject: {fileID: 3531548516100261708}
   m_Mesh: {fileID: 4300000, guid: 3143dbaec35c5b848a2c8a8108191421, type: 3}
---- !u!23 &1689097331505165058
+--- !u!23 &5859209704432862950
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3542692898261084685}
+  m_GameObject: {fileID: 3531548516100261708}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -5287,7 +5287,7 @@ Transform:
   m_LocalScale: {x: 0.15, y: 0.15, z: 0.15}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 4094249711885142022}
+  - {fileID: 3956484233478201856}
   m_Father: {fileID: 6149912211729458768}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

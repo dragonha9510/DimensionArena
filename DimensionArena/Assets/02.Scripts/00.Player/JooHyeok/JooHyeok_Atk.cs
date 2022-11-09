@@ -103,7 +103,7 @@ namespace PlayerSpace
                 {
                     photonView.RPC(nameof(SetAttackTrigger), RpcTarget.All);
                     projectile = PhotonNetwork.Instantiate("projectile", shooterPosition.position + (Vector3.up * 0.5f), shooterPosition.rotation);
-                    projectile.GetComponent<Projectile>().AttackToDirection(shooterAttackDir, AtkInfo.Range, projectileSpeed);
+                    projectile.GetComponent<Projectile>().AttackToDirection(AtkInfo.Range, projectileSpeed);
                     projectile.GetComponent<Projectile>().ownerID = shooter;
                     yield return burstDelay;
                 }
