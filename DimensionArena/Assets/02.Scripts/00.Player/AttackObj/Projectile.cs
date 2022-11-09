@@ -29,8 +29,7 @@ public class Projectile : AttackObject
                 Destroy(this.gameObject);
             }
         }
-        else if (!PhotonNetwork.IsMasterClient)
-            return;
+
 
         if(range < (this.transform.position - originPos).magnitude)
         {
