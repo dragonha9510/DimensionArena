@@ -20,6 +20,7 @@ public class SkillJoyStick : BaseJoyStick
     {
         if(skillImg.fillAmount.Equals(1.0f))
         {
+            isDragging = true;
             base.OnBeginDrag(eventData);
             player.Skill.OnSkillMesh();
         }
@@ -34,10 +35,12 @@ public class SkillJoyStick : BaseJoyStick
 
         if(isCancel)
         {
+            isDragging = false;
             player.Skill.OffSkillMesh();
             return;
         }
 
+        isDragging = true;
         player.Skill.OnSkillMesh();
     }
 
@@ -45,14 +48,16 @@ public class SkillJoyStick : BaseJoyStick
     {
         if (isCancel)
         {
+            isDragging = false;
             isCancel = false;
             return;
         }
 
-        isDragging = true;
+        Debug.Log("수동 스킬");
 
         if (skillImg.fillAmount.Equals(1.0f))
         {
+            isDragging = false;
             //방향, 거리
             player.Skill.UseSkill(player.Skill.direction, player.Skill.MaxRange * (player.Skill.direction.magnitude));
             player.Skill.OffSkillMesh();
@@ -106,12 +111,16 @@ public class SkillJoyStick : BaseJoyStick
 
     public override void OnPointerClick(PointerEventData eventData)
     {
-        if (isDragging)
+        if (isDragging && !isCancel)
         {
             isDragging = false;
             return;
         }
 
+        if (!skillImg.fillAmount.Equals(1.0f))
+            return;
+
+        Debug.Log("자동 스킬");
         // 자동공격 루틴 추가
         player.Skill.AutoSkill();
     }

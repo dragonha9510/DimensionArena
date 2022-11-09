@@ -21,7 +21,7 @@ namespace PlayerSpace
     {
         protected Animator animator;
 
-        [SerializeField] private bool isRotation = true;
+        [SerializeField] protected bool isRotation = true;
 
         [SerializeField] protected AutoAtk_Detection autoAtk;
 
@@ -45,7 +45,7 @@ namespace PlayerSpace
         private Attack_Type type;
         public  Attack_Type Type => type;
 
-        private float rotationSpeed = 1240.0f;
+        protected float rotationSpeed = 1240.0f;
 
         protected bool isAttack;
         public bool IsAttack { get { return isAttack; } }

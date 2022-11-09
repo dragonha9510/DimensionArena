@@ -516,7 +516,6 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 213612932350774985}
   - {fileID: 6662924281841221693}
-  - {fileID: 4570089329660853859}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
@@ -567,8 +566,14 @@ MonoBehaviour:
   info:
     isOn: 0
     direction: {x: 0, y: 0, z: 0}
+    damage: 0
+    ultimatePoint: 0
+    ownerID: 
     speed: 0
     distance: 0
+    isDamage: 0
+    isPercentDamage: 0
+    isEnvironment: 0
 --- !u!114 &6662924281841221688
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -591,12 +596,13 @@ MonoBehaviour:
     curHP: 750
     curSkillPoint: 100
     maxSkillPoint: 100
-    speed: 2.1
     curShield: 0
     maxSheld: 0
     additionalDmg: 0
     isBattle: 0
     battleOffTime: 0
+    baseSpeed: 0
+    curSpeed: 2.1
 --- !u!114 &6662924281841221695
 MonoBehaviour:
   m_ObjectHideFlags: 0
