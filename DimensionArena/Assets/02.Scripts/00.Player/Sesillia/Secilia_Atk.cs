@@ -93,14 +93,19 @@ namespace PlayerSpace
 
             GameObject projectile;
             WaitForSeconds attackDelay = new WaitForSeconds(attack_delay);
-            float right;
+            float right = 0.15f;
             Vector3 offset = shooterAttackDir * 0.1f + (Vector3.up * 0.5f);
+            Vector3 position1 = transform.position + offset + transform.right * 0.15f;
+            Vector3 position2 = transform.position + offset + transform.right * -0.15f;
+            Vector3 pos;
+
 
             AtkTrigger();
             for (int i = 0; i < 3; ++i)
             {
+                pos = i % 2 == 0 ? position1 : position2;
                 right = i % 2 == 0 ? 0.15f : -0.15f;
-                projectile = Instantiate(prefab_Projectile, transform.position + offset + transform.right * right, playerRotation);
+                projectile = Instantiate(prefab_Projectile, pos, playerRotation);
                 projectile.GetComponent<Projectile>().AttackToDirection(shooterAttackDir, AtkInfo.Range, projectileSpeed);
                 projectile.GetComponent<Projectile>().ownerID = ownerName;
                 yield return attackDelay;
