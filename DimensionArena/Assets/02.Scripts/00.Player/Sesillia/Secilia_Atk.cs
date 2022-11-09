@@ -85,13 +85,19 @@ namespace PlayerSpace
             {
                 offset = (i % 2 == 0) ? 0.3f : -0.3f;
                 projectile = PhotonNetwork.Instantiate("SA_Projectile", shooterPosition.position + (Vector3.right * offset) + (Vector3.up * 0.5f), shooterPosition.rotation);
-                projectile.GetComponent<Projectile>().AttackToDirection(shooterAttackDir, AtkInfo.Range, projectileSpeed);
-                projectile.GetComponent<Projectile>().ownerID = shooter;
+                Projectile proj = projectile.GetComponent<Projectile>();
+                photonView.RPC(nameof(SetProjectileAttackDirection), RpcTarget.All, proj, shooterAttackDir, owner.Attack.AtkInfo.Range, projectileSpeed);
+
                 yield return attackDelay;
             }
-
-
             photonView.RPC("EndAttack", controller, shooter);
+        }
+
+        [PunRPC]
+        private void SetProjectileAttackDirection(Projectile obj, Vector3 direction, float range, float speed, string owner)
+        {
+            obj.AttackToDirection(direction, range, speed);
+            obj.ownerID = owner;
         }
 
         [PunRPC]
