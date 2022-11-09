@@ -45,7 +45,8 @@ public class AutoAtk_Detection : MonoBehaviour
 
             return 0;
         });
-
+        if (null == detectedTransform)
+            return;
         targetPos = detectedTransform[0].position;
     }
     private void OnTriggerEnter(Collider other)

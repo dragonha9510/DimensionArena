@@ -72,7 +72,7 @@ namespace PlayerSpace
             {
                 GameObject projectile;
                 projectile = Instantiate(prefab_Projectile, this.transform.position + (Vector3.up * 0.5f) + (attackDirection * 0.5f), this.transform.rotation);
-                projectile.GetComponent<Projectile>().AttackToDirection(attackDirection, AtkInfo.Range, projectileSpeed);
+                projectile.GetComponent<Projectile>().AttackToDirection(AtkInfo.Range, projectileSpeed);
                 projectile.GetComponent<Projectile>().ownerID = this.gameObject.name;
             }
         }
