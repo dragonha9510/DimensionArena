@@ -152,7 +152,6 @@ namespace PlayerSpace
                 GetComponent<SkillJoyStick>();
             
             info.EskillAmountChanged += skilljoyStick.SkillSetFillAmount;
-            Debug.Log("¼º°ø");
             skilljoyStick.player = this;
 
             AtkJoyStick atkjoyStick = GameObject.Find("AtkJoyStick").

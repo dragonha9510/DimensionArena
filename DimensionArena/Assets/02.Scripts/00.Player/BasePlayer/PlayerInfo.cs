@@ -139,7 +139,8 @@ public class PlayerInfo
         {
             curSkillPoint -= point;
             curSkillPoint = Mathf.Max(curSkillPoint, 0);
-            EskillAmountChanged(curSkillPoint / maxSkillPoint);
+            if (EskillAmountChanged != null)
+                EskillAmountChanged(curSkillPoint / maxSkillPoint);
         }
     }
 
@@ -150,7 +151,8 @@ public class PlayerInfo
         {
             curSkillPoint += point;
             curSkillPoint = Mathf.Min(curSkillPoint, maxSkillPoint);
-            EskillAmountChanged(curSkillPoint / maxSkillPoint);
+            if(EskillAmountChanged != null)
+                EskillAmountChanged(curSkillPoint / maxSkillPoint);
         }
     }
 
