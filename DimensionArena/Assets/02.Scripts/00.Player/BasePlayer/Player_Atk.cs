@@ -40,7 +40,7 @@ namespace PlayerSpace
         [HideInInspector] public Vector3 attackDirection;
         [HideInInspector] public Vector3 tmpDirection;
 
-        protected bool isAura = false;
+        //protected bool isAura = false;
 
         protected float curdistance;
         private Atk_Range rangeComponent;
@@ -127,6 +127,14 @@ namespace PlayerSpace
 
         IEnumerator LookAttackDirection()
         {
+            /*Debug.Log(attackDirection);
+            Debug.Log(this.transform.forward);
+            if(isAura && attackDirection != this.transform.forward)
+            {
+                Debug.Log("강제 회전");
+                this.transform.rotation = Quaternion.LookRotation(tmpDirection);
+            }*/
+
             if (isRotation)
             {
                 Vector3 forward = Vector3.Slerp(transform.forward,

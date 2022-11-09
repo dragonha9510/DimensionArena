@@ -43,7 +43,7 @@ namespace PlayerSpace
             {
                 auraAnimator.SetFloat(auraAttackName + i.ToString(), animation_speed[i]);
             }
-            isAura = true;
+            //isAura = true;
         }
 
 

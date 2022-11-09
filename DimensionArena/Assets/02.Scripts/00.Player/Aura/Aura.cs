@@ -16,7 +16,8 @@ namespace PlayerSpace
         private float netingTiming = 0f;
 
         private float maxSpeed = 0f;
-
+        [Header("AuraPessive")]
+        [SerializeField]
         private float speedNesting = 0f;
 
         private float moveTime = 0f;
