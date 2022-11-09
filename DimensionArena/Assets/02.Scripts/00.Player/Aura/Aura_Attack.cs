@@ -30,7 +30,6 @@ namespace PlayerSpace
 
         protected override void InitalizeAtkInfo()
         {
-            atkInfo = new PlayerAtkInfo(attack_range, projectileCount, attack_delay);
         }
 
         protected override void Start()
