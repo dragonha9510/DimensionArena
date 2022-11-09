@@ -114,15 +114,13 @@ namespace PlayerSpace
         }
 
 
-
-  
-
         [PunRPC]
         private void SubMagazine(string name)
         {
             if (gameObject.name == name)
                 atkInfo.SubCost(atkInfo.ShotCost);
         }
+
 
 
         [PunRPC]

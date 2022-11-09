@@ -24,6 +24,7 @@ public class Projectile : AttackObject
     {
         if (!PhotonNetwork.IsMasterClient)
             return;
+
         if(!PhotonNetwork.InRoom)
         {
             if (range < (this.transform.position - originPos).magnitude)
@@ -31,7 +32,7 @@ public class Projectile : AttackObject
                 Destroy(this.gameObject);
             }
         }
-
+        
         if(range < (this.transform.position - originPos).magnitude)
         {
             PhotonNetwork.Destroy(this.gameObject);
@@ -75,9 +76,12 @@ public class Projectile : AttackObject
                             other.transform.position);
                         }
                         else
+                        {
                             OnCollisionToPlayer(ownerID, other.gameObject.name, other.transform.position);
+                        }
 
                         onEffect = true;
+                        return;
                     }
                 }
                 break;
@@ -93,7 +97,8 @@ public class Projectile : AttackObject
         if (!onEffect)
             return;
 
-        //PhotonNetwork.Destroy(this.gameObject);
+        if (!PhotonNetwork.IsMasterClient)
+            PhotonNetwork.Destroy(this.gameObject);
 
         if (PhotonNetwork.OfflineMode)
         {
