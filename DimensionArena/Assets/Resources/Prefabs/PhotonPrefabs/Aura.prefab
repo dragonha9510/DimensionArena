@@ -13267,9 +13267,10 @@ MonoBehaviour:
   projectileSpeed: 15
   projectileRange: 10
   FOV: {fileID: 337200087289245342}
-  animator: {fileID: 3227170782532345053}
+  auraAnimator: {fileID: 0}
   rayCount: 3
   skillDamage: 10
+  skillAnimationSpeed: 2
 --- !u!114 &7684523567143468576
 MonoBehaviour:
   m_ObjectHideFlags: 0

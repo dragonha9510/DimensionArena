@@ -70,6 +70,14 @@ namespace PlayerSpace
 
 
         [PunRPC]
+        public void SetAttackTrigger()
+        {
+            AtkTrigger();
+        }
+
+
+
+        [PunRPC]
         private IEnumerator MasterCreateProjectile(string shooter, Vector3 shooterAttackDir,
                                                    Photon.Realtime.Player controller)
         {
@@ -85,20 +93,33 @@ namespace PlayerSpace
                 passiveCnt = 0;
             }
 
+
+            WaitForSeconds burstDelay = new WaitForSeconds(burst_delay);
+            WaitForSeconds attackDelay = new WaitForSeconds(attack_delay);
+
             for (int i = 0; i < atkCnt; ++i)
             {
                 for (int j = 0; j < projectileCount; ++j)
                 {
-                    AtkTrigger();
+                    photonView.RPC(nameof(SetAttackTrigger), RpcTarget.All);
                     projectile = PhotonNetwork.Instantiate("projectile", shooterPosition.position + (Vector3.up * 0.5f), shooterPosition.rotation);
-                    projectile.GetComponent<Projectile>().AttackToDirection(shooterAttackDir, AtkInfo.Range, projectileSpeed);
-                    projectile.GetComponent<Projectile>().ownerID = shooter;
-                    yield return new WaitForSeconds(burst_delay);
+                    Projectile proj = projectile.GetComponent<Projectile>();
+                    photonView.RPC(nameof(SetProjectileAttackDirection), RpcTarget.All, proj, shooterAttackDir, owner.Attack.AtkInfo.Range, projectileSpeed);
+                    yield return burstDelay;
                 }
-                yield return new WaitForSeconds(attack_delay);
+                yield return attackDelay;
             }
 
             photonView.RPC("EndAttack", controller, shooter);
+        }
+
+
+
+        [PunRPC]
+        private void SetProjectileAttackDirection(Projectile obj, Vector3 direction, float range, float speed, string owner)
+        {
+            obj.AttackToDirection(direction, range, speed);
+            obj.ownerID = owner;
         }
 
         [PunRPC]

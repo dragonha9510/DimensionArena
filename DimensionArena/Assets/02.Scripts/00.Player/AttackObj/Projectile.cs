@@ -43,11 +43,14 @@ public class Projectile : AttackObject
         this.range = range;
         rigid.velocity = dir * speed;
     }
+
     public void AttackToDirection(float range, float speed)
     {
         this.range = range;
         rigid.velocity = this.transform.forward * speed;
     }
+
+
     protected virtual void OnTriggerEnter(Collider other)
     {
         if (!PhotonNetwork.IsMasterClient)

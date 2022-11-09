@@ -464,8 +464,8 @@ MonoBehaviour:
     additionalDmg: 0
     isBattle: 0
     battleOffTime: 3
-    baseSpeed: 0
-    curSpeed: 0
+    baseSpeed: 3
+    curSpeed: 3
   shieldPassivePercent: 0.2
   healPercent: 0.05
   shieldPercent: 0.3
