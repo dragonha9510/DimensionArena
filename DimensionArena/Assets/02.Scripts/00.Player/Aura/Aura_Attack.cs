@@ -55,7 +55,7 @@ namespace PlayerSpace
         }
 
         [PunRPC]
-        private void MakeProjectileOnServer(string prefapName,Vector3 pos,Quaternion rot)
+        private void MakeProjectileOnServer(string prefapName,Vector3 attackDirection,Vector3 pos,Quaternion rot)
         {
             GameObject proj  = PhotonNetwork.Instantiate(prefapName, pos, rot);
             proj.GetComponent<Projectile>().AttackToDirection(attackDirection, AtkInfo.Range, projectileSpeed);
@@ -66,7 +66,7 @@ namespace PlayerSpace
         {
             if(PhotonNetwork.InRoom)
             {
-               photonView.RPC(nameof(MakeProjectileOnServer), RpcTarget.MasterClient, prefab_Projectile.name, this.transform.position + (Vector3.up * 0.5f) + (attackDirection * 0.5f), this.transform.rotation);
+               photonView.RPC(nameof(MakeProjectileOnServer), RpcTarget.MasterClient, prefab_Projectile.name, owner.Attack.attackDirection, this.transform.position + (Vector3.up * 0.5f) + (attackDirection * 0.5f), this.transform.rotation);
             }
             else
             {
