@@ -114,7 +114,7 @@ public class Ravagebell_Skill : Player_Skill
             yield return atkDelayWait;
           
             ShotUp_Server();
-            photonView.RPC("AnimationSpeed", RpcTarget.All, 1);
+            photonView.RPC("AnimationSpeed", RpcTarget.All, 1f);
 
             if (i == 0)
                 shotPosition = transform.position;

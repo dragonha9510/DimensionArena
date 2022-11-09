@@ -10,7 +10,7 @@ namespace PlayerSpace
         // Animator
         protected Animator animator;
 
-        [SerializeField] private bool isRotation = true;
+        [SerializeField] protected bool isRotation = true;
 
         [SerializeField] protected AutoAtk_Detection autoSkill;
 
@@ -21,7 +21,7 @@ namespace PlayerSpace
         [HideInInspector] public Vector3 direction;
         [HideInInspector] public Vector3 skillDirection;
 
-        private float rotationSpeed = 1080.0f;
+        protected float rotationSpeed = 1080.0f;
 
         protected Attack_Type type;
         public Attack_Type Type => type;
@@ -82,7 +82,7 @@ namespace PlayerSpace
 
         public abstract void ActSkill(Vector3 attackdirection, float magnitude);
         public abstract void AutoSkill();
-        IEnumerator LookAttackDirection(Vector3 attackDirection, float magnitude)
+        protected IEnumerator LookAttackDirection(Vector3 attackDirection, float magnitude)
         {
             SetSkillInfo();
             Vector3 forward = Vector3.Slerp(transform.forward,

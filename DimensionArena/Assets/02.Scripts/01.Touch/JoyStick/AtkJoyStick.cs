@@ -16,15 +16,24 @@ public class AtkJoyStick : BaseJoyStick
 
     public override void OnBeginDrag(PointerEventData eventData)
     {
+        isDragging = true;
         base.OnBeginDrag(eventData);
         player.Attack.AtkRangeMeshOnOff(true);
     }
 
     public override void OnDrag(PointerEventData eventData)
     {
-        player.Attack.AtkRangeMeshOnOff(!isCancel);
-
         base.OnDrag(eventData);
+
+        if(isCancel)
+        {
+            isDragging = false;
+            player.Attack.AtkRangeMeshOnOff(false);
+            return;
+        }
+
+        isDragging = true;
+        player.Attack.AtkRangeMeshOnOff(true);
     }
 
     private int iCnt = 0;
@@ -39,13 +48,13 @@ public class AtkJoyStick : BaseJoyStick
 
         if (isCancel)
         {
+            isDragging = false;
             isCancel = false;
             return;
         }
 
-        isDragging = true;
-
         PlayerAttackRPC();
+        isDragging = false;
         base.OnEndDrag(eventData);
     }
     public override void SetDirection()
@@ -58,7 +67,7 @@ public class AtkJoyStick : BaseJoyStick
 
     public override void OnPointerClick(PointerEventData eventData)
     {
-        if(isDragging)
+        if (isDragging && !isCancel)
         {
             isDragging = false;
             return;

@@ -42,7 +42,7 @@ public class Parabola_Projectile : AttackObject
     [PunRPC]
     public void SetAllClientArcInfo(Vector3 dir, float dist, float vel, float ypos)
     {
-        rotationAxis = new Vector3(Random.Range(0, 2), Random.Range(0, 2), Random.Range(0, 2));
+        rotationAxis = new Vector3(Random.Range(0.5f, 2f), Random.Range(0.5f, 2), Random.Range(0.5f, 2));
         oriPosition = transform.position;
         direction = dir.normalized;
         distance = dist;

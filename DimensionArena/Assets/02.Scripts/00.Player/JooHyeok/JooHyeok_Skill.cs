@@ -28,13 +28,31 @@ public class JooHyeok_Skill : Player_Skill
     }
 
     [PunRPC]
-    private void MasterCreateSkill(Vector3 direction, Quaternion rotation, float dist, float velocity, float ypos)
+    private IEnumerator MasterCreateSkill(Vector3 direction, Quaternion rotation, float dist, float velocity, float ypos)
     {
-        photonView.RPC(nameof(SkillTriger), RpcTarget.All);
-        GameObject tempSkill = PhotonNetwork.Instantiate("grenade", transform.position, rotation);
+        owner.CanDirectionChange = false;
+
+        GameObject tempSkill;
+        if (PhotonNetwork.InRoom)
+        {
+            photonView.RPC(nameof(SkillTriger), RpcTarget.All);
+            tempSkill = PhotonNetwork.Instantiate("grenade", transform.position, rotation);
+        }
+        else
+        {
+            SkillTriger();
+            tempSkill = Instantiate(skillPrefab, transform.position, rotation);
+        }
+
+        yield return new WaitForSeconds(0.25f);
+
         projectile = tempSkill.GetComponent<Parabola_Projectile>();
         projectile.SetArcInfo(direction, dist, velocity, ypos);
         projectile.ownerID = gameObject.name;
+
+        yield return new WaitForSeconds(0.25f);
+
+        owner.CanDirectionChange = true;
     }
 
     [PunRPC]
@@ -65,16 +83,47 @@ public class JooHyeok_Skill : Player_Skill
         }
         else
         {
-            animator.SetTrigger("skill");
-            GameObject tempSkill = Instantiate(skillPrefab, transform.position, parabolaRotation);
-            projectile = tempSkill.GetComponent<Parabola_Projectile>();
-            projectile.SetArcInfo(attackdirection, parabolaDistance, parabolaVelocity, parabolaMaxYPos);
-            projectile.ownerID = gameObject.name;
+            StartCoroutine(MasterCreateSkill( attackdirection,parabolaRotation,parabolaDistance,parabolaVelocity,parabolaMaxYPos));
+
+            //animator.SetTrigger("skill");
+            //GameObject tempSkill = Instantiate(skillPrefab, transform.position, parabolaRotation);
+            //projectile = tempSkill.GetComponent<Parabola_Projectile>();
+            //projectile.SetArcInfo(attackdirection, parabolaDistance, parabolaVelocity, parabolaMaxYPos);
+            //projectile.ownerID = gameObject.name;
         }
     }
 
     public override void AutoSkill()
     {
         // 자동 공격
+        skillDirection = autoSkill.targetPos - transform.position;
+        float magnitude = skillDirection.magnitude;
+
+        skillDirection.Normalize();
+
+        parabola.Calculate_Range(magnitude, skillDirection);
+
+        if (isRotation)
+            StartCoroutine(LookAutoAttackDirection(skillDirection, magnitude));
+        else
+            AutoSkill();
+    }
+
+    protected IEnumerator LookAutoAttackDirection(Vector3 attackDirection, float magnitude)
+    {
+        SetSkillInfo();
+        Vector3 forward = Vector3.Slerp(transform.forward,
+            attackDirection, rotationSpeed * Time.deltaTime / Vector3.Angle(transform.forward, direction));
+
+        while (Vector3.Angle(attackDirection, transform.forward) >= 5)
+        {
+            yield return null;
+            forward = Vector3.Slerp(transform.forward,
+            attackDirection, rotationSpeed * Time.deltaTime / Vector3.Angle(transform.forward, attackDirection));
+
+            transform.LookAt(transform.position + forward);
+        }
+
+        ActSkill(attackDirection, magnitude);
     }
 }

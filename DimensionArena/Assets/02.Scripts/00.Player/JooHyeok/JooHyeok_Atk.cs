@@ -171,6 +171,86 @@ namespace PlayerSpace
         public override void AutoAttack()
         {
             // 자동 공격 루틴 추가
+            if (atkInfo.CurCost < atkInfo.ShotCost)
+                WaitAttack();
+            else if (!isAttack)
+            {
+                ++passiveCnt;
+                if (PhotonNetwork.InRoom)
+                    photonView.RPC(nameof(LookAttackAutoDirection), RpcTarget.MasterClient, true);
+                else
+                    StartCoroutine(LookAttackAutoDirection(false));
+            }
+        }
+
+        [PunRPC]
+        IEnumerator LookAttackAutoDirection(bool isServer)
+        {
+            if (isRotation)
+            {
+                Vector3 autoDirection = (autoAtk.targetPos - transform.position);
+                autoDirection.Normalize();
+
+                Vector3 forward = Vector3.Slerp(transform.forward,
+                    autoDirection, rotationSpeed * Time.deltaTime / Vector3.Angle(transform.forward, direction));
+
+                while (Vector3.Angle(autoDirection, transform.forward) >= 5)
+                {
+                    yield return null;
+                    forward = Vector3.Slerp(transform.forward,
+                    autoDirection, rotationSpeed * Time.deltaTime / Vector3.Angle(transform.forward, autoDirection));
+
+                    transform.LookAt(transform.position + forward);
+                }
+            }
+
+            if (PhotonNetwork.InRoom)
+                photonView.RPC(nameof(CreateAutoProjectile), RpcTarget.MasterClient, true);
+            else
+                StartCoroutine(CreateAutoProjectile(false));
+        }
+
+        [PunRPC]
+        public IEnumerator CreateAutoProjectile(bool isServer)
+        {
+            owner.CanDirectionChange = false;
+            isAttack = true;
+
+            atkInfo.SubCost(atkInfo.ShotCost);
+
+            GameObject projectile;
+
+            int atkCnt = attackCnt;
+
+            if (passiveCnt == passiveAttackCnt)
+            {
+                atkCnt = passiveAttackCnt;
+                passiveCnt = 0;
+            }
+
+            Vector3 autoDirection = (autoAtk.targetPos - transform.position);
+            autoDirection.Normalize();
+
+            for (int i = 0; i < atkCnt; ++i)
+            {
+                for (int j = 0; j < projectileCount; ++j)
+                {
+                    // JSB
+                    if(isServer)
+                        projectile = PhotonNetwork.Instantiate(prefab_Projectile.name, this.transform.position + autoDirection + (Vector3.up * 0.5f), transform.rotation);
+                    else
+                        projectile = Instantiate(prefab_Projectile, this.transform.position + autoDirection + (Vector3.up * 0.5f), transform.rotation);
+
+                    projectile.GetComponent<Projectile>().AttackToDirection(autoDirection, AtkInfo.Range, projectileSpeed);
+                    projectile.GetComponent<Projectile>().ownerID = this.gameObject.name;
+                    //
+                    yield return new WaitForSeconds(burst_delay);
+                }
+                yield return new WaitForSeconds(attack_delay);
+            }
+
+            isAttack = false;
+            owner.CanDirectionChange = true;
         }
     }
 }
