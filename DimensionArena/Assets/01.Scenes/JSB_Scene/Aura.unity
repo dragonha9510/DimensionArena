@@ -552,6 +552,11 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8529344291857479385, guid: a14dcf423470d6f48b983a3345b4ec9a,
+        type: 3}
+      propertyPath: sceneViewId
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 8870261335253071263, guid: a14dcf423470d6f48b983a3345b4ec9a,
         type: 3}
       propertyPath: sceneViewId
@@ -1544,6 +1549,11 @@ PrefabInstance:
       propertyPath: sceneViewId
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 3227170782532345052, guid: 8c85d8ab5c8b4054fa41eaff81f46e42,
+        type: 3}
+      propertyPath: skillAnimationSpeed
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 7309405340590815873, guid: 8c85d8ab5c8b4054fa41eaff81f46e42,
         type: 3}
       propertyPath: m_Name
@@ -1623,6 +1633,41 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7684523567143468576, guid: 8c85d8ab5c8b4054fa41eaff81f46e42,
+        type: 3}
+      propertyPath: attack_delay
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7684523567143468576, guid: 8c85d8ab5c8b4054fa41eaff81f46e42,
+        type: 3}
+      propertyPath: atkInfo.reloadTime
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7684523567143468576, guid: 8c85d8ab5c8b4054fa41eaff81f46e42,
+        type: 3}
+      propertyPath: animation_speed.Array.data[0]
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7684523567143468576, guid: 8c85d8ab5c8b4054fa41eaff81f46e42,
+        type: 3}
+      propertyPath: animation_speed.Array.data[1]
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7684523567143468576, guid: 8c85d8ab5c8b4054fa41eaff81f46e42,
+        type: 3}
+      propertyPath: nextAnimation_delay.Array.data[0]
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7684523567143468576, guid: 8c85d8ab5c8b4054fa41eaff81f46e42,
+        type: 3}
+      propertyPath: nextAnimation_delay.Array.data[1]
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7684523567143468576, guid: 8c85d8ab5c8b4054fa41eaff81f46e42,
+        type: 3}
+      propertyPath: nextAnimation_delay.Array.data[2]
+      value: 0.7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8c85d8ab5c8b4054fa41eaff81f46e42, type: 3}

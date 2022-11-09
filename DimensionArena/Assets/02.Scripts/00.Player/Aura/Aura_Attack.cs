@@ -26,6 +26,7 @@ namespace PlayerSpace
         [SerializeField]
         private Animator auraAnimator;
 
+
         private int nowPlayAnimationIndex = 0;
 
         protected override void InitalizeAtkInfo()
@@ -44,6 +45,13 @@ namespace PlayerSpace
 
         public override void Attack()
         {
+            Debug.Log(attackDirection);
+            Debug.Log(this.transform.forward);
+            if(attackDirection != this.transform.forward)
+            {
+                Debug.Log("강제 회전");
+                this.transform.rotation = Quaternion.LookRotation(attackDirection);
+            }
             if (atkInfo.CurCost < atkInfo.ShotCost)
                 WaitAttack();
             else if (!isAttack)
@@ -60,6 +68,7 @@ namespace PlayerSpace
             GameObject proj  = PhotonNetwork.Instantiate(prefapName, pos, rot);
             proj.GetComponent<Projectile>().AttackToDirection(AtkInfo.Range, projectileSpeed);
             proj.GetComponent<Projectile>().ownerID = this.gameObject.name;
+            owner.CanDirectionChange = true;
         }
 
         private void MakeProjectile()
@@ -74,6 +83,8 @@ namespace PlayerSpace
                 projectile = Instantiate(prefab_Projectile, this.transform.position + (Vector3.up * 0.5f) + (attackDirection * 0.5f), this.transform.rotation);
                 projectile.GetComponent<Projectile>().AttackToDirection(AtkInfo.Range, projectileSpeed);
                 projectile.GetComponent<Projectile>().ownerID = this.gameObject.name;
+                owner.CanDirectionChange = true;
+
             }
         }
         
@@ -86,7 +97,6 @@ namespace PlayerSpace
             auraAnimator.SetBool("Attack1", false);
             auraAnimator.SetBool("Attack2", false);
             auraAnimator.SetBool("Attack3", false);
-            owner.CanDirectionChange = true;
             yield break;
         }
 
