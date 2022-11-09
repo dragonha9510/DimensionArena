@@ -177,8 +177,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 235af01428cfcb94e85e4fccb77967c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tickDamage: 0.33
-  damageTime: 3
+  tickDamage: 0.125
+  damageTime: 0.5
   startDamage: 0
   isNestingCollision: 0
   partnerObject: []

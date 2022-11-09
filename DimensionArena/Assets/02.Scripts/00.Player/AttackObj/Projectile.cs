@@ -80,11 +80,6 @@ public class Projectile : AttackObject
                 break;
             //Damaged된 Obstacle 공격체 방향으로 살짝 흔들리는 모션
             case "ParentObstacle":
-                {
-                    PhotonNetwork.Destroy(this.gameObject);
-                    onEffect = true;
-                }
-                break;
             case "Item_Box":
                 onEffect = true;
                 break;
@@ -94,6 +89,8 @@ public class Projectile : AttackObject
 
         if (!onEffect)
             return;
+
+        PhotonNetwork.Destroy(this.gameObject);
 
         if (PhotonNetwork.OfflineMode)
         {
