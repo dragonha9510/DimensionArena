@@ -16,23 +16,26 @@ namespace PlayerSpace
         [SerializeField]
         private FieldOfView FOV;
         [SerializeField]
-        private Animator animator;
+        private Animator auraAnimator;
         [SerializeField]
         private int rayCount = 3;
         [SerializeField]
         private float skillDamage = 10.0f;
+        [SerializeField]
+        private float skillAnimationSpeed = 2f;
 
         private List<GameObject> hitedObj = new List<GameObject>();
 
         protected override void Start()
         {
             base.Start();
-            
+            auraAnimator.SetFloat("SkillSpeed", skillAnimationSpeed);
+
         }
         public override void ActSkill(Vector3 attackdirection, float magnitude)
         {
             projectileRange = FOV.ViewRadius;
-            animator.SetBool("SkillUse", true);
+            auraAnimator.SetBool("SkillUse", true);
             SetMovePrevSkill();
         }
 
@@ -44,7 +47,7 @@ namespace PlayerSpace
         private void SetMoveAfterSkill()
         {
             Debug.Log("애니메이션 돌리기");
-            animator.SetBool("SkillUse", false);
+            auraAnimator.SetBool("SkillUse", false);
             owner.Info.SpeedUp(0.9f);
             owner.CanDirectionChange = true;
         }
@@ -91,7 +94,7 @@ namespace PlayerSpace
                         if(null != rayHit.transform.gameObject.GetComponent<isKnockBack>())
                         {
                             rayHit.transform.gameObject.GetComponent<isKnockBack>().CallMoveKnockBack(owner.transform.position, (rayHit.transform.gameObject.transform.position - owner.transform.position).normalized, projectileSpeed, FOV.ViewRadius);
-                            rayHit.transform.gameObject.GetComponent<PlayerInfo>().Damaged(skillDamage);
+                            PlayerInfoManager.Instance.CurHpDecrease(rayHit.transform.gameObject.name, skillDamage);
                         }
                     }
                     ray.direction = Quaternion.AngleAxis(correctionAngle, Vector3.up) * ray.direction;

@@ -459,12 +459,13 @@ MonoBehaviour:
     curHP: 1200
     curSkillPoint: 0
     maxSkillPoint: 100
-    speed: 3
     curShield: 0
     maxSheld: 0
     additionalDmg: 0
     isBattle: 0
     battleOffTime: 3
+    baseSpeed: 0
+    curSpeed: 0
   shieldPassivePercent: 0.2
   healPercent: 0.05
   shieldPercent: 0.3
@@ -592,8 +593,14 @@ MonoBehaviour:
   info:
     isOn: 0
     direction: {x: 0, y: 0, z: 0}
+    damage: 0
+    ultimatePoint: 0
+    ownerID: 
     speed: 0
     distance: 0
+    isDamage: 0
+    isPercentDamage: 0
+    isEnvironment: 0
 --- !u!54 &284761425
 Rigidbody:
   m_ObjectHideFlags: 0

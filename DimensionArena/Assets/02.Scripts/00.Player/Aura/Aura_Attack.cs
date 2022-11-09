@@ -15,7 +15,7 @@ namespace PlayerSpace
         [SerializeField] private int attackCount = 3;
         [SerializeField] private int projectileCount = 3;
         [SerializeField] private float projectileSpeed = 8.0f;
-        [SerializeField] private float attack_delay = 0.75f;
+        [SerializeField] private float attack_delay = 6f;
 
         [SerializeField] private float attack_range = 10f;
 
