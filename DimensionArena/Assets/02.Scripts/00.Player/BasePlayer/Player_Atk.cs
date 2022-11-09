@@ -38,6 +38,9 @@ namespace PlayerSpace
         [SerializeField] private GameObject atkRangeMesh;
         [HideInInspector] public Vector3 direction;
         [HideInInspector] public Vector3 attackDirection;
+        [HideInInspector] public Vector3 tmpDirection;
+
+        protected bool isAura = false;
 
         protected float curdistance;
         private Atk_Range rangeComponent;
@@ -118,11 +121,39 @@ namespace PlayerSpace
                 attackDirection = direction;
             curdistance = direction.magnitude;
             attackDirection.Normalize();
+            tmpDirection = direction;
             StartCoroutine(LookAttackDirection());  
         }
 
         IEnumerator LookAttackDirection()
         {
+            if (isRotation)
+            {
+                Vector3 forward = Vector3.Slerp(transform.forward,
+                    attackDirection, rotationSpeed * Time.deltaTime / Vector3.Angle(transform.forward, direction));
+
+                while (Vector3.Angle(attackDirection, transform.forward) >= 5)
+                {
+                    yield return null;
+                    forward = Vector3.Slerp(transform.forward,
+                    attackDirection, rotationSpeed * Time.deltaTime / Vector3.Angle(transform.forward, attackDirection));
+
+                    transform.LookAt(transform.position + forward);
+                }
+            }
+
+            Attack();
+        }
+
+        IEnumerator LookAttackDirection(bool isAura)
+        {
+            Debug.Log(attackDirection);
+            Debug.Log(this.transform.forward);
+            if(attackDirection != this.transform.forward)
+            {
+                Debug.Log("강제 회전");
+                this.transform.rotation = Quaternion.LookRotation(attackDirection);
+            }
             if (isRotation)
             {
                 Vector3 forward = Vector3.Slerp(transform.forward,

@@ -27,8 +27,14 @@ public class AtkJoyStick : BaseJoyStick
         base.OnDrag(eventData);
     }
 
+    private int iCnt = 0;
+
     public override void OnEndDrag(PointerEventData eventData)
     {
+        /*Debug.Log(++iCnt + "포워드");
+        Debug.Log(player.transform.forward);
+        Debug.Log(++iCnt + "디렉션");
+        Debug.Log(player.Attack.direction);*/
         player.Attack.AtkRangeMeshOnOff(false);
 
         if (isCancel)

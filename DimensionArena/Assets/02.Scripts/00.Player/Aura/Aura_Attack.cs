@@ -23,9 +23,11 @@ namespace PlayerSpace
         [SerializeField] private GameObject prefab_Projectile;
         [SerializeField] private AudioSource audioSource;
 
+
         [SerializeField]
         private Animator auraAnimator;
 
+        private Queue<Quaternion> projectileDirection = new Queue<Quaternion>();
 
         private int nowPlayAnimationIndex = 0;
 
@@ -41,17 +43,20 @@ namespace PlayerSpace
             {
                 auraAnimator.SetFloat(auraAttackName + i.ToString(), animation_speed[i]);
             }
+            isAura = true;
         }
+
 
         public override void Attack()
         {
-            Debug.Log(attackDirection);
-            Debug.Log(this.transform.forward);
-            if(attackDirection != this.transform.forward)
+            Debug.Log(tmpDirection);
+            if(base.tmpDirection != this.transform.forward)
             {
                 Debug.Log("강제 회전");
-                this.transform.rotation = Quaternion.LookRotation(attackDirection);
+                this.transform.rotation = Quaternion.LookRotation(tmpDirection);
             }
+            projectileDirection.Enqueue(this.transform.rotation);
+
             if (atkInfo.CurCost < atkInfo.ShotCost)
                 WaitAttack();
             else if (!isAttack)
@@ -73,17 +78,18 @@ namespace PlayerSpace
 
         private void MakeProjectile()
         {
+            Quaternion direction = projectileDirection.Dequeue();
+
             if (PhotonNetwork.InRoom && photonView.IsMine)
             {
-               photonView.RPC(nameof(MakeProjectileOnServer), RpcTarget.MasterClient, prefab_Projectile.name, owner.Attack.attackDirection, this.transform.position + (Vector3.up * 0.5f) + (attackDirection * 0.5f), this.transform.rotation);
+               photonView.RPC(nameof(MakeProjectileOnServer), RpcTarget.MasterClient, prefab_Projectile.name, owner.Attack.tmpDirection, this.transform.position + (Vector3.up * 0.5f) + (attackDirection * 0.5f), direction);
             }
             else
             {
                 GameObject projectile;
-                projectile = Instantiate(prefab_Projectile, this.transform.position + (Vector3.up * 0.5f) + (attackDirection * 0.5f), this.transform.rotation);
+                projectile = Instantiate(prefab_Projectile, this.transform.position + (Vector3.up * 0.5f) + (attackDirection * 0.5f), direction);
                 projectile.GetComponent<Projectile>().AttackToDirection(AtkInfo.Range, projectileSpeed);
                 projectile.GetComponent<Projectile>().ownerID = this.gameObject.name;
-                owner.CanDirectionChange = true;
 
             }
         }
@@ -91,12 +97,11 @@ namespace PlayerSpace
         IEnumerator AttackTime()
         {
             owner.CanDirectionChange = false;
-            Debug.Log("방향고정");
             yield return new WaitForSeconds(nextAnimation_delay[nowPlayAnimationIndex]);
-            Debug.Log("Bool초기화");
             auraAnimator.SetBool("Attack1", false);
             auraAnimator.SetBool("Attack2", false);
             auraAnimator.SetBool("Attack3", false);
+            owner.CanDirectionChange = true;
             yield break;
         }
 
