@@ -103,8 +103,8 @@ namespace PlayerSpace
                 {
                     photonView.RPC(nameof(SetAttackTrigger), RpcTarget.All);
                     projectile = PhotonNetwork.Instantiate("projectile", shooterPosition.position + (Vector3.up * 0.5f), shooterPosition.rotation);
-                    Projectile proj = projectile.GetComponent<Projectile>();
-                    photonView.RPC(nameof(SetProjectileAttackDirection), RpcTarget.All, proj, shooterAttackDir, owner.Attack.AtkInfo.Range, projectileSpeed);
+                    projectile.GetComponent<Projectile>().AttackToDirection(shooterAttackDir, AtkInfo.Range, projectileSpeed);
+                    projectile.GetComponent<Projectile>().ownerID = shooter;
                     yield return burstDelay;
                 }
                 yield return attackDelay;
@@ -115,12 +115,7 @@ namespace PlayerSpace
 
 
 
-        [PunRPC]
-        private void SetProjectileAttackDirection(Projectile obj, Vector3 direction, float range, float speed, string owner)
-        {
-            obj.AttackToDirection(direction, range, speed);
-            obj.ownerID = owner;
-        }
+  
 
         [PunRPC]
         private void SubMagazine(string name)
