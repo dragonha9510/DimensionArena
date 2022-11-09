@@ -22,7 +22,7 @@ namespace ManagerSpace
             {
                 if (null == instance)
                 {
-                    GameObject inGameUIManager = GameObject.Find("InGameUIManager");
+                    GameObject inGameUIManager = GameObject.FindObjectOfType<InGameUIManager>().gameObject;
 
                     if (!inGameUIManager)
                     {
