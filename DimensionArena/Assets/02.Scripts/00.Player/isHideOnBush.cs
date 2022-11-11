@@ -41,13 +41,13 @@ public class isHideOnBush : MonoBehaviourPun
     private void OnTriggerStay(Collider other)
     {
         exitCnt = 0;
-        if (other.CompareTag("HideBush"))
+        if (!photonView.IsMine && other.CompareTag("HideBush"))
             ++exitCnt;
     }
 
     private void Update()
     {
-        if (Additional == null)
+        if (Additional == null && !photonView.IsMine)
             return;
 
         if(exitCnt > 0)
