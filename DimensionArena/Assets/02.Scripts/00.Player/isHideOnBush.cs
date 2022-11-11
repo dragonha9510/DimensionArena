@@ -16,7 +16,8 @@ public class isHideOnBush : MonoBehaviourPun
 
     public void AppearForMoment(float time)
     {
-        StartCoroutine(appearRenderCoroutine(time));
+        if(photonView.IsMine)
+            StartCoroutine(appearRenderCoroutine(time));
     }
 
     [PunRPC]
