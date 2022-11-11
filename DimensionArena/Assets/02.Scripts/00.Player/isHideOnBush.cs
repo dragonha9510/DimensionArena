@@ -74,7 +74,7 @@ public class isHideOnBush : MonoBehaviourPun
             doubleCheck = false;
 
         }
-        else if(!doubleCheck && !Additional.activeInHierarchy && isAppearMoment)
+        else if(!doubleCheck && !Additional.activeInHierarchy)
         {
             for (int i = 0; i < AvartarRender.Length; ++i)
                 AvartarRender[i].enabled = true;
