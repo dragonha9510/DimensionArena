@@ -31,6 +31,8 @@ namespace PlayerSpace
 
         private int nowPlayAnimationIndex = 0;
 
+        bool isFinishShoot = true;
+
         protected override void InitalizeAtkInfo()
         {
         }
@@ -55,17 +57,19 @@ namespace PlayerSpace
                 Debug.Log("강제 회전");
                 this.transform.rotation = Quaternion.LookRotation(tmpDirection);
             }
-            Debug.Log("Enque!! " + tmpDirection);
-            projectileDirection.Enqueue(Quaternion.LookRotation(tmpDirection,Vector3.up));
-
+            
             if (atkInfo.CurCost < atkInfo.ShotCost)
                 WaitAttack();
-            else if (!isAttack)
+            else if (true == isFinishShoot)
             {
+                isFinishShoot = false;
                 // 아우라 공격
+                Debug.Log("Enque!! " + tmpDirection);
+                    projectileDirection.Enqueue(Quaternion.LookRotation(tmpDirection, Vector3.up));
                 atkInfo.SubCost(atkInfo.ShotCost);
                 AnimationTriggerSetting();
             }
+           
         }
 
         [PunRPC]
@@ -84,6 +88,7 @@ namespace PlayerSpace
             GameObject proj  = PhotonNetwork.Instantiate(prefapName, pos + (Vector3.up * 1f) , direction);
             proj.GetComponent<Projectile>().ownerID = this.gameObject.name;
             owner.CanDirectionChange = true;
+            isFinishShoot = true;
         }
 
         private void MakeProjectile()
