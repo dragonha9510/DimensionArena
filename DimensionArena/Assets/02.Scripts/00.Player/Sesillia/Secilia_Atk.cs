@@ -138,7 +138,19 @@ namespace PlayerSpace
 
         public override void AutoAttack()
         {
-            // 자동 공격 루틴 추가
+            if (PhotonNetwork.InRoom)
+            {
+                photonView.RPC(nameof(MasterCreateProjectile), RpcTarget.MasterClient
+                                                             , gameObject.name
+                                                             , autoAtk.targetPos - transform.position
+                                                             , photonView.Controller
+                                                    );
+            }
+            else
+                StartCoroutine(AttackCoroutineSingle(null
+                                                    , transform.rotation
+                                                    , autoAtk.targetPos - transform.position
+                                                    , gameObject.name));
         }
 
         protected override void InitalizeAtkInfo()
