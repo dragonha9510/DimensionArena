@@ -41,6 +41,8 @@ public class AutoAtk_Detection : MonoBehaviour
 
         if (detectedTransform.Count == 0)
             return;
+        else
+            detectedTransform.RemoveAll(s => s == null);
         
         detectedTransform.Sort(delegate (Transform A, Transform B)
         {

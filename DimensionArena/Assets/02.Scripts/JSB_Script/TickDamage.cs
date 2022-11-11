@@ -141,6 +141,8 @@ public class TickDamage : MonoBehaviourPun
         }
         else
         {
+            if (true == PhotonNetwork.InRoom)
+                return;
             if (other.CompareTag("Player"))
             {
                 if (true == isNestingCollision)
