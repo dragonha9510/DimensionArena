@@ -21,7 +21,6 @@ public class TickDamage : MonoBehaviourPun
 
     public Dictionary<string , bool> willDamageApply = new Dictionary<string, bool>();
     public Dictionary<string,bool> WillDamageApply { get { return willDamageApply; } }
-    private Dictionary<string, Transform> damageTransform = new Dictionary<string, Transform>();
 
     public string OwnerID;
     public float ultimatePoint;
@@ -40,21 +39,23 @@ public class TickDamage : MonoBehaviourPun
         else
             decreaseHP = PlayerInfoManager.Instance.CurHpDecrease(OwnerID, userID, damage);
 
-        //damageTransform.GetValueOrDefault(userID)
-        FloatingText.Instance.CreateFloatingTextForDamage(damageTransform[userID].position, decreaseHP);
+        FloatingText.Instance.CreateFloatingTextForDamage(PlayerInfoManager.Instance.getPlayerTransform(userID).position, decreaseHP);
         PlayerInfoManager.Instance.CurSkillPtIncrease(OwnerID, ultimatePoint);
       
     }
 
     IEnumerator InDamageZone(string userID, float time, float damage)
     {
-
         if (startDamage)
         {
             if (!PhotonNetwork.OfflineMode)
+            {
                 photonView.RPC(nameof(DamageApply), RpcTarget.All, userID, damage);
+            }
             else
+            {
                 DamageApply(userID, damage);
+            }
         }
 
         while (true)
@@ -63,7 +64,6 @@ public class TickDamage : MonoBehaviourPun
             if (false == willDamageApply[userID])
             {
                 willDamageApply.Remove(userID);
-                damageTransform.Remove(userID);
                 yield break;
             }
             yield return new WaitForSeconds(time);
@@ -127,14 +127,12 @@ public class TickDamage : MonoBehaviourPun
                 {
                     Debug.Log("데미지 중첩임 코루틴 시작할꺼야");
                     willDamageApply.Add(other.name,true);
-                    damageTransform.Add(other.name, other.transform);
                     StartCoroutine(InDamageZone(other.gameObject.name, damageTime, tickDamage));
                 }
                 else if (false == isNestingCollision && false == IsInOtherObject(other.gameObject.name) && false == willDamageApply.ContainsKey(other.gameObject.name))
                 {
                     Debug.Log("데미지 중첩아님 코루틴 시작할꺼야");
                     willDamageApply.Add(other.name, true);
-                    damageTransform.Add(other.name, other.transform);
 
                     StartCoroutine(InDamageZone(other.gameObject.name, damageTime, tickDamage));
                 }
@@ -149,14 +147,12 @@ public class TickDamage : MonoBehaviourPun
                 if (true == isNestingCollision)
                 {
                     willDamageApply.Add(other.name, true);
-                    damageTransform.Add(other.name, other.transform);
 
                     StartCoroutine(InDamageZone(other.gameObject.name, damageTime, tickDamage));
                 }
                 else if (false == isNestingCollision && false == IsInOtherObject(other.gameObject.name))
                 {
                     willDamageApply.Add(other.name, true);
-                    damageTransform.Add(other.name, other.transform);
 
                     StartCoroutine(InDamageZone(other.gameObject.name, damageTime, tickDamage));
                 }
