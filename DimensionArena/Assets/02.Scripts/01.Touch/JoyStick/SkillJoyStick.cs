@@ -53,7 +53,6 @@ public class SkillJoyStick : BaseJoyStick
             return;
         }
 
-        Debug.Log("수동 스킬");
 
         if (skillImg.fillAmount.Equals(1.0f))
         {

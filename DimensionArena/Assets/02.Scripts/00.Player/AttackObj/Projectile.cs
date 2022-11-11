@@ -36,22 +36,27 @@ public class Projectile : AttackObject
         }
     }
 
-    [PunRPC]
+
     public void AttackToDirectionAllClient(Vector3 dir,float range,float speed)
     {
         photonView.RPC(nameof(AttackToDirection), RpcTarget.All, dir, range, speed);
     }
+
+
     public void AttackToDirectionAllClient(float range,float speed)
     {
         photonView.RPC(nameof(AttackToDirection), RpcTarget.All, range, speed);
     }
-    [PunRPC]
 
+
+
+    [PunRPC]
     private void AttackToDirection(Vector3 dir, float range, float speed)
     {
         this.range = range;
         rigid.velocity = dir * speed;
     }
+
     [PunRPC]
     private void AttackToDirection(float range, float speed)
     {
