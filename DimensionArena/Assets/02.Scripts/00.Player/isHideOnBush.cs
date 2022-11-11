@@ -38,6 +38,37 @@ public class isHideOnBush : MonoBehaviourPun
         Additional.SetActive(false);
     }
 
+    private void OnTriggerStay(Collider other)
+    {
+        exitCnt = 0;
+        if (other.CompareTag("HideBush"))
+            ++exitCnt;
+    }
+
+    private void Update()
+    {
+        if(exitCnt > 0)
+        {
+            if (!Additional.activeInHierarchy)
+                return;
+
+            for (int i = 0; i < AvartarRender.Length; ++i)
+                AvartarRender[i].enabled = false;
+
+            Additional.SetActive(false);
+        }
+        else
+        {
+            if (Additional.activeInHierarchy)
+                return;
+
+            for (int i = 0; i < AvartarRender.Length; ++i)
+                AvartarRender[i].enabled = true;
+
+            Additional.SetActive(true);
+        }
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (!this.gameObject.CompareTag("Player_Body"))
@@ -45,12 +76,12 @@ public class isHideOnBush : MonoBehaviourPun
 
         if (!photonView.IsMine && other.CompareTag("HideBush"))
         {
-            ++exitCnt;
+            //++exitCnt;
 
-            for (int i = 0; i < AvartarRender.Length; ++i)
-                AvartarRender[i].enabled = false;
+            //for (int i = 0; i < AvartarRender.Length; ++i)
+            //    AvartarRender[i].enabled = false;
 
-            Additional.SetActive(false);
+            //Additional.SetActive(false);
         }
         else if (photonView.IsMine && other.CompareTag("Bush"))
         {
@@ -69,15 +100,15 @@ public class isHideOnBush : MonoBehaviourPun
 
         if (!photonView.IsMine && other.CompareTag("HideBush"))
         {
-            --exitCnt;
+            //--exitCnt;
 
-            if (exitCnt > 0)
-                return;
+            //if (exitCnt > 0)
+            //    return;
 
-            for (int i = 0; i < AvartarRender.Length; ++i)
-                AvartarRender[i].enabled = true;
+            //for (int i = 0; i < AvartarRender.Length; ++i)
+            //    AvartarRender[i].enabled = true;
 
-            Additional.SetActive(true);
+            //Additional.SetActive(true);
         }
         else if (photonView.IsMine && other.CompareTag("Bush"))
         {
