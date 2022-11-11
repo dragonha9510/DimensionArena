@@ -178,7 +178,7 @@ namespace PlayerSpace
             {
                 ++passiveCnt;
                 if (PhotonNetwork.InRoom)
-                    photonView.RPC(nameof(LookAttackAutoDirection), RpcTarget.MasterClient, true);
+                    photonView.RPC(nameof(LookAttackAutoDirection), RpcTarget.All, true);
                 else
                     StartCoroutine(LookAttackAutoDirection(false));
             }
@@ -206,18 +206,18 @@ namespace PlayerSpace
             }
 
             if (PhotonNetwork.InRoom)
-                photonView.RPC(nameof(CreateAutoProjectile), RpcTarget.MasterClient, true);
+                photonView.RPC(nameof(CreateAutoProjectile), RpcTarget.MasterClient, true, this.transform.position, autoAtk.targetPos);
             else
-                StartCoroutine(CreateAutoProjectile(false));
+                StartCoroutine(CreateAutoProjectile(false, this.transform.position, autoAtk.targetPos));
         }
 
         [PunRPC]
-        public IEnumerator CreateAutoProjectile(bool isServer)
+        public IEnumerator CreateAutoProjectile(bool isServer, Vector3 ownerPos, Vector3 targetPos)
         {
             owner.CanDirectionChange = false;
             isAttack = true;
 
-            atkInfo.SubCost(atkInfo.ShotCost);
+            photonView.RPC(nameof(SubMagazine), photonView.Controller, owner.name);
 
             GameObject projectile;
 
@@ -229,7 +229,7 @@ namespace PlayerSpace
                 passiveCnt = 0;
             }
 
-            Vector3 autoDirection = (autoAtk.targetPos - transform.position);
+            Vector3 autoDirection = (targetPos - ownerPos);
             autoDirection.Normalize();
 
             for (int i = 0; i < atkCnt; ++i)
@@ -240,7 +240,7 @@ namespace PlayerSpace
                     if (isServer)
                     {
                         photonView.RPC(nameof(SetAttackTrigger), RpcTarget.All);
-                        projectile = PhotonNetwork.Instantiate(prefab_Projectile.name, this.transform.position + autoDirection + (Vector3.up * 0.5f), transform.rotation);
+                        projectile = PhotonNetwork.Instantiate(prefab_Projectile.name, ownerPos + autoDirection + (Vector3.up * 0.5f), transform.rotation);
                     }
                     else
                     {
