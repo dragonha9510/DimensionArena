@@ -50,6 +50,8 @@ namespace PlayerSpace
         //나중에 고칠것
         public bool CanDirectionChange { get; set; }
 
+        private isHideOnBush bushRenderCheck;
+
 
 
         protected virtual void Awake()
@@ -99,6 +101,8 @@ namespace PlayerSpace
             //Add Event
             Info.EDisActivePlayer += DisActiveAnimation;
             Info.EBattleStateOn += BattleStateProcess;
+
+            bushRenderCheck = GetComponentInChildren<isHideOnBush>();
         }
 
         private Coroutine lastCoroutine = null;
@@ -115,6 +119,7 @@ namespace PlayerSpace
 
         private IEnumerator BattleStateProcessCoroutine()
         {
+            bushRenderCheck.AppearForMoment(info.BattleOffTime);
             yield return new WaitForSeconds(info.BattleOffTime);
             info.BattleOff();
         }
