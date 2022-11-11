@@ -38,7 +38,7 @@ namespace PlayerSpace
         }
 
 
-
+        [PunRPC]
         private void ActSkillforAllclient(Vector3 attackdirection, float magnitude)
         {
             if (!isCanFirstStep || !targetDetect.IsTargetDetect)
