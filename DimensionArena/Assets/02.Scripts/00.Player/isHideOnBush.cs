@@ -12,7 +12,10 @@ public class isHideOnBush : MonoBehaviourPun
     private int exitCnt;
     private int sizeCnt;
 
-    public bool isHide { get { return exitCnt > 0; } }
+    private bool isAppearMoment;
+    private bool doubleCheck;
+
+    public bool isHide { get { return isAppearMoment ? !isAppearMoment : exitCnt > 0; } }
 
     public void AppearForMoment(float time)
     {
@@ -28,10 +31,16 @@ public class isHideOnBush : MonoBehaviourPun
 
         Additional.SetActive(true);
 
+        isAppearMoment = true;
+
         yield return new WaitForSeconds(time);
 
+        isAppearMoment = false;
+
         if (exitCnt <= 0)
+        {
             yield break;
+        }
         else
         {
             for (int i = 0; i < AvartarRender.Length; ++i)
@@ -41,21 +50,36 @@ public class isHideOnBush : MonoBehaviourPun
         }
     }
 
+    private int StayCnt = 0;
+
     private void OnTriggerStay(Collider other)
     {
-        //exitCnt = 0;
-        //if (!photonView.IsMine && other.CompareTag("HideBush"))
-        //    ++exitCnt;
+        if (!photonView.IsMine && other.CompareTag("HideBush"))
+        {
+            ++StayCnt;
+            doubleCheck = true;
+        }
     }
 
     private void Update()
     {
-        //if (Additional == null )
-        //    return;
+        if (Additional == null )
+            return;
+        
+        if (photonView.IsMine)
+            return;
+        
+        if(doubleCheck)
+        {
+            doubleCheck = false;
+        }
+        else
+        {
+            for (int i = 0; i < AvartarRender.Length; ++i)
+                AvartarRender[i].enabled = true;
 
-        //if (photonView.IsMine)
-        //    return;
-
+            Additional.SetActive(true);
+        }
     }
 
     private void OnTriggerEnter(Collider other)
