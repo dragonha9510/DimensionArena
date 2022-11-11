@@ -37,8 +37,8 @@ public class Projectile : AttackObject
                 Destroy(this.gameObject);
             }
         }
-        
-        if(range < (this.transform.position - originPos).magnitude)
+       
+        if(PhotonNetwork.IsMasterClient && range < (this.transform.position - originPos).magnitude)
         {
             PhotonNetwork.Destroy(this.gameObject);
         }
@@ -123,14 +123,18 @@ public class Projectile : AttackObject
             {
                 var hitVFX = PhotonNetwork.Instantiate(hitPrefab.name, pos, rot);
                 var psHit = hitVFX.GetComponentInChildren<ParticleSystem>();
-                if (psHit != null)
-                    Destroy(hitVFX, psHit.main.duration);
-                else
-                {
-                    var psChild = hitVFX.transform.GetChild(0).GetComponent<ParticleSystem>();
-                    Destroy(hitVFX, psChild.main.duration);
-                }
+                
+                StartCoroutine(nameof(DestroyEffect),(hitVFX,psHit.main.duration));
             }
+        }
+    }
+    IEnumerable DestroyEffect(GameObject effectObj,float time)
+    {
+        while(true)
+        {
+            yield return new WaitForSeconds(time);
+            PhotonNetwork.Destroy(effectObj);
+            yield break;
         }
     }
 }

@@ -11,7 +11,7 @@ public class Projectile_Ravagebell : Projectile
     {
         GameObject poisonFieldTemp;
 
-        if (!PhotonNetwork.InRoom)
+        if (PhotonNetwork.InRoom)
         {
             switch (other.tag)
             {

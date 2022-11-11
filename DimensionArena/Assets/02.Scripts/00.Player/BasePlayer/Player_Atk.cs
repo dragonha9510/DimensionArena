@@ -54,6 +54,10 @@ namespace PlayerSpace
         public bool IsAttack { get { return isAttack; } }
 
         protected abstract void InitalizeAtkInfo();
+
+
+
+
         protected virtual void Start()
         {
             animator = GetComponentInChildren<Animator>();

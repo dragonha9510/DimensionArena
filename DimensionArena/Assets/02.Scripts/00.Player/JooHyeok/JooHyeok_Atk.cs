@@ -55,7 +55,7 @@ namespace PlayerSpace
             {
                 photonView.RPC(nameof(MasterCreateProjectile), RpcTarget.MasterClient
                                                              , gameObject.name
-                                                             , attackDirection
+                                                             , tmpDirection
                                                              , photonView.Controller
                                                     );
 
@@ -104,7 +104,7 @@ namespace PlayerSpace
                 for (int j = 0; j < projectileCount; ++j)
                 {
                     photonView.RPC(nameof(SetAttackTrigger), RpcTarget.All);
-                    projectile = PhotonNetwork.Instantiate("projectile", shooterPosition.position + (Vector3.up * 0.5f), Quaternion.LookRotation(tmpDirection,Vector3.up));
+                    projectile = PhotonNetwork.Instantiate("projectile", shooterPosition.position + (Vector3.up * 0.5f), Quaternion.LookRotation(shooterAttackDir, Vector3.up));
                     projectile.GetComponent<Projectile>().ownerID = shooter;
                     yield return burstDelay;
                 }
