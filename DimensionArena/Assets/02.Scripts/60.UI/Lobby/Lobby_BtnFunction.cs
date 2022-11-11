@@ -10,6 +10,8 @@ public class Lobby_BtnFunction : MonoBehaviour
     [SerializeField] private Image image;
     [SerializeField] private TMP_Text subName;
     [SerializeField] private TMP_Text tmpLobbyState;
+    [SerializeField] private Sprite defaultSprite;
+
     public void Start()
     {
         // JSB
@@ -18,7 +20,12 @@ public class Lobby_BtnFunction : MonoBehaviour
         LobbyManagerRenewal.Instance.Reconnect();
         //
         if (string.IsNullOrEmpty(SelectedCharacter.Instance.characterName))
+        {
+            SelectedCharacter.Instance.characterName = subName.text = "JiJooHyeock";
+            SelectedCharacter.Instance.characterSprite = image.sprite = defaultSprite;
+            image.rectTransform.sizeDelta = new Vector2(defaultSprite.rect.width * 0.5f, defaultSprite.rect.height * 0.5f);
             return;
+        }
 
         subName.text = SelectedCharacter.Instance.characterName;
         image.sprite = SelectedCharacter.Instance.characterSprite;
