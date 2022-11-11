@@ -34,6 +34,9 @@ public class AutoAtk_Detection : MonoBehaviour
 
     private void Update()
     {
+        if (!GameManager.Instance.IsSpawnEnd)
+            return;
+
         targetPos = transform.position + transform.forward * range;
 
         if (detectedTransform.Count == 0)
