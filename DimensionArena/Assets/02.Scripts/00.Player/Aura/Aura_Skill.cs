@@ -56,7 +56,7 @@ namespace PlayerSpace
         private void CreateSkillProjectile(string prefabName,Vector3 trans,Quaternion rot)
         {
             GameObject skill = PhotonNetwork.Instantiate(prefabName, trans, rot);
-            skill.GetComponent<Projectile>().AttackToDirection(projectileRange, projectileSpeed);
+            skill.GetComponent<Projectile>().AttackToDirectionAllClient(projectileRange, projectileSpeed);
         }
 
         private void MakeSkillProjectile()
@@ -111,7 +111,7 @@ namespace PlayerSpace
                 for (int i = 0; i < 3; ++i)
                 {
                     GameObject tempSkill1 = Instantiate(skillPrefab, transform.position + transform.forward * 0.2f, skillRot);
-                    tempSkill1.GetComponent<Projectile>().AttackToDirection(projectileRange, projectileSpeed);
+                    tempSkill1.GetComponent<Projectile>().AttackToDirectionAllClient(projectileRange, projectileSpeed);
                     skillRot.eulerAngles = new Vector3(skillRot.eulerAngles.x, skillRot.eulerAngles.y + (FOV.viewAngle / 2), skillRot.eulerAngles.z);
                 }
 

@@ -116,6 +116,10 @@ MonoBehaviour:
   - HpDecrease_KnockBack
   - SetProjectileAttackDirection
   - WinUIOn
+  - CreateAutoProjectile
+  - LookAttackAutoDirection
+  - AttackToDirectionAllClient
+  - AttackToDirection
   DisableAutoOpenWizard: 1
   ShowSettings: 0
   DevRegionSetOnce: 1
