@@ -8613,7 +8613,7 @@ MonoBehaviour:
   projectileRange: 10
   FOV: {fileID: 337200087289245342}
   auraAnimator: {fileID: 3227170782532345053}
-  rayCount: 3
+  rayCount: 5
   skillDamage: 600
   skillAnimationSpeed: 2
 --- !u!114 &7684523567143468576
@@ -8684,11 +8684,9 @@ MonoBehaviour:
     battleOffTime: 0
     baseSpeed: 3
     curSpeed: 3
-  auraSpeed: 2.5
-  speedMaxMagnification: 1.1
-  nestingCount: 5
-  netingTiming: 0
-  speedNesting: 0
+  speedNesting: 0.1
+  maxNestingCount: 5
+  nestingTimingDistance: 20
 --- !u!95 &3227170782532345053
 Animator:
   serializedVersion: 4

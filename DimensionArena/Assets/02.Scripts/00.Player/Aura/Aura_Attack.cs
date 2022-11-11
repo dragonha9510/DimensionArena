@@ -55,7 +55,8 @@ namespace PlayerSpace
                 Debug.Log("강제 회전");
                 this.transform.rotation = Quaternion.LookRotation(tmpDirection);
             }
-            projectileDirection.Enqueue(this.transform.rotation);
+            Debug.Log("Enque!! " + tmpDirection);
+            projectileDirection.Enqueue(Quaternion.LookRotation(tmpDirection,Vector3.up));
 
             if (atkInfo.CurCost < atkInfo.ShotCost)
                 WaitAttack();
@@ -68,23 +69,34 @@ namespace PlayerSpace
         }
 
         [PunRPC]
-        private void MakeProjectileOnServer(string prefapName,Vector3 attackDirection,Vector3 pos,Quaternion rot)
+        private void IsBattleOn()
         {
-            GameObject proj  = PhotonNetwork.Instantiate(prefapName, pos, rot);
+            Owner.Info.BattleOn();
+        }
+
+
+        [PunRPC]
+        private void MakeProjectileOnServer(string prefapName,Vector3 attackDirection,Vector3 pos)
+        {
+            photonView.RPC(nameof(IsBattleOn), RpcTarget.All);
+            Quaternion direction = projectileDirection.Dequeue();
+            Debug.Log("Deque!! " + direction);
+            GameObject proj  = PhotonNetwork.Instantiate(prefapName, pos + (Vector3.up * 1f) , direction);
             proj.GetComponent<Projectile>().ownerID = this.gameObject.name;
             owner.CanDirectionChange = true;
         }
 
         private void MakeProjectile()
         {
-            Quaternion direction = projectileDirection.Dequeue();
 
             if (PhotonNetwork.InRoom && photonView.IsMine)
             {
-               photonView.RPC(nameof(MakeProjectileOnServer), RpcTarget.MasterClient, prefab_Projectile.name, owner.Attack.tmpDirection, this.transform.position + (Vector3.up * 0.5f) + (attackDirection * 0.5f), direction);
+               photonView.RPC(nameof(MakeProjectileOnServer), RpcTarget.MasterClient, prefab_Projectile.name, owner.Attack.tmpDirection, this.transform.position);
             }
             else
             {
+
+                Quaternion direction = projectileDirection.Dequeue();
                 GameObject projectile;
                 projectile = Instantiate(prefab_Projectile, this.transform.position + (Vector3.up * 0.5f) + (attackDirection * 0.5f), direction);
                 projectile.GetComponent<Projectile>().ownerID = this.gameObject.name;
@@ -135,6 +147,8 @@ namespace PlayerSpace
         public override void AutoAttack()
         {
         }
+
+
     }
 
 }
