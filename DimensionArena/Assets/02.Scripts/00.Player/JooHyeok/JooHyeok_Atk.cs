@@ -241,12 +241,12 @@ namespace PlayerSpace
                     if (isServer)
                     {
                         photonView.RPC(nameof(SetAttackTrigger), RpcTarget.All);
-                        projectile = PhotonNetwork.Instantiate(prefab_Projectile.name, this.transform.position + autoDirection + (Vector3.up * 0.5f), transform.rotation);
+                        projectile = PhotonNetwork.Instantiate(prefab_Projectile.name, this.transform.position + (Vector3.up * 0.5f), Quaternion.LookRotation(autoDirection, Vector3.up));
                     }
                     else
                     {
                         SetAttackTrigger();
-                        projectile = Instantiate(prefab_Projectile, this.transform.position + autoDirection + (Vector3.up * 0.5f), transform.rotation);
+                        projectile = Instantiate(prefab_Projectile, this.transform.position + (Vector3.up * 0.5f), Quaternion.LookRotation(autoDirection, Vector3.up));
                     }
 
                     projectile.GetComponent<Projectile>().ownerID = this.gameObject.name;
