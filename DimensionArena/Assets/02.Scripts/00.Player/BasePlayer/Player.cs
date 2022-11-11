@@ -121,6 +121,9 @@ namespace PlayerSpace
 
         private void Update()
         {
+            if (direction.magnitude >= 1.0f)
+                direction.Normalize();
+
             if (direction.Equals(Vector3.zero))
                 directionLocation.gameObject.SetActive(false);
             else
@@ -130,8 +133,6 @@ namespace PlayerSpace
             }
 
 
-            if (direction.magnitude >= 1.0f)
-                direction.Normalize();
 
             animator.SetFloat("speed", direction.magnitude);
         }
