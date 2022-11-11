@@ -38880,8 +38880,8 @@ MonoBehaviour:
   hitPrefab: {fileID: 0}
   rigid: {fileID: 54270707880095282}
   originPos: {x: 0, y: 0, z: 0}
-  range: 10
-  speed: 5
+  range: 1.8
+  speed: 20
 --- !u!114 &-3505362623243112062
 MonoBehaviour:
   m_ObjectHideFlags: 0
