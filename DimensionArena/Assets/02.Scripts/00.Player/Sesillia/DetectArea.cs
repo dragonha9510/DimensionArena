@@ -6,6 +6,7 @@ using PlayerSpace;
 public class DetectArea : MonoBehaviour
 {
     [SerializeField] private SphereCollider sphareCollide;
+    
     List<GameObject> listTarget = new List<GameObject>();
     [SerializeField] Transform target;
     public Transform Target => target;
@@ -20,8 +21,12 @@ public class DetectArea : MonoBehaviour
     private void Start()
     {
         collisionlayer = (1 << LayerMask.NameToLayer("Obstacle") | 1 << LayerMask.NameToLayer("Player") | 1 << LayerMask.NameToLayer("GroundObject_Brick") | 1 << LayerMask.NameToLayer("Water"));
-        Player_Skill skill = GetComponentInParent<Player_Skill>();
-        sphareCollide.radius = skill.MaxRange;
+        Player_Skill skill = GetComponentInParent<Player_Skill>();       
+    }
+
+    public void SetRadius(float range)
+    {
+        sphareCollide.radius = range * 0.5f;
     }
 
     private void Update()

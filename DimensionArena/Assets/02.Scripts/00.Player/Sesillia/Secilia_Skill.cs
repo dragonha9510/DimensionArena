@@ -25,6 +25,8 @@ namespace PlayerSpace
 
             circle.transform.localScale = new Vector3(MaxRange * 0.5f, MaxRange * 0.5f, 1);
             targetDetect.GetComponent<SphereCollider>().radius = MaxRange * 0.5f;
+
+            targetDetect.SetRadius(MaxRange);
         }
 
         private void LateUpdate() => CheckFirstStep();
@@ -32,6 +34,8 @@ namespace PlayerSpace
         //Quaternion.LookRotation(direction)
         public override void ActSkill(Vector3 attackdirection, float magnitude)
         {
+            Debug.Log("isCanFirstStep : " + isCanFirstStep);
+            Debug.Log("isDetect : " + targetDetect.IsTargetDetect);
             if (!isCanFirstStep || !targetDetect.IsTargetDetect)
                 return;
 

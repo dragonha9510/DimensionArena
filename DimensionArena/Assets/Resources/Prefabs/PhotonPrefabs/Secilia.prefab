@@ -495,6 +495,7 @@ MonoBehaviour:
   atkRangeMesh: {fileID: 6974045214009192811}
   direction: {x: 0, y: 0, z: 0}
   attackDirection: {x: 0, y: 0, z: 0}
+  tmpDirection: {x: 0, y: 0, z: 0}
   projectileCount: 3
   projectileSpeed: 9
   attack_delay: 0.1
@@ -518,7 +519,7 @@ MonoBehaviour:
   skillRangeMesh: {fileID: 8773357901300345585}
   direction: {x: 0, y: 0, z: 0}
   skillDirection: {x: 0, y: 0, z: 0}
-  maxRange: 3
+  maxRange: 6
   targetDetect: {fileID: 7262903620926830243}
   skillParticle: {fileID: 5362913370467476738, guid: bab00db1d8ebe74458f03eba0411d33d,
     type: 3}
