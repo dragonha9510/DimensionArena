@@ -3300,15 +3300,31 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1395777405, guid: 87bdfcd8635529d4aacf0f1a032d29f0, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: Mins
+    - target: {fileID: 1325655256036376217, guid: 87bdfcd8635529d4aacf0f1a032d29f0,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1325655256036376217, guid: 87bdfcd8635529d4aacf0f1a032d29f0,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1325655256036376217, guid: 87bdfcd8635529d4aacf0f1a032d29f0,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -30.31
       objectReference: {fileID: 0}
     - target: {fileID: 2407538203148716511, guid: 87bdfcd8635529d4aacf0f1a032d29f0,
         type: 3}
       propertyPath: popUpObject
       value: 
       objectReference: {fileID: 821074329}
+    - target: {fileID: 4150723361249344763, guid: 87bdfcd8635529d4aacf0f1a032d29f0,
+        type: 3}
+      propertyPath: m_Color.a
+      value: 0.80784315
+      objectReference: {fileID: 0}
     - target: {fileID: 8637827179650521652, guid: 87bdfcd8635529d4aacf0f1a032d29f0,
         type: 3}
       propertyPath: popUpObject
@@ -3419,12 +3435,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8637827179870930577, guid: 87bdfcd8635529d4aacf0f1a032d29f0,
-        type: 3}
-      propertyPath: defaultSprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 303bad82bb835884a89db88348c1344f,
-        type: 3}
     - target: {fileID: 8637827179870930588, guid: 87bdfcd8635529d4aacf0f1a032d29f0,
         type: 3}
       propertyPath: m_Name

@@ -34,19 +34,24 @@ namespace PlayerSpace
         //Quaternion.LookRotation(direction)
         public override void ActSkill(Vector3 attackdirection, float magnitude)
         {
-            Debug.Log("isCanFirstStep : " + isCanFirstStep);
-            Debug.Log("isDetect : " + targetDetect.IsTargetDetect);
+            photonView.RPC(nameof(ActSkillforAllclient), RpcTarget.All, attackdirection, magnitude);
+        }
+
+
+        [PunRPC]
+        private void ActSkillforAllclient(Vector3 attackdirection, float magnitude)
+        {
             if (!isCanFirstStep || !targetDetect.IsTargetDetect)
                 return;
 
             Vector3 direction = firstStepPos - transform.position;
-            
+
             GameObject particle = Instantiate(skillParticle, transform.position, Quaternion.identity);
             particle.transform.LookAt(firstStepPos, Vector3.up);
             Destroy(particle, 0.6f);
 
             firstStepPos.y = 0;
-            
+
             //FirstStep
             transform.position = firstStepPos;
             Vector3 tempPos = targetDetect.Target.position;
@@ -54,6 +59,8 @@ namespace PlayerSpace
             transform.LookAt(tempPos, Vector3.up);
 
         }
+
+
        
         private void CheckFirstStep()
         {
