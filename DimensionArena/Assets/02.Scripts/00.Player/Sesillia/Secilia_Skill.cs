@@ -37,26 +37,22 @@ namespace PlayerSpace
             if (!isCanFirstStep || !targetDetect.IsTargetDetect)
                 return;
 
-            photonView.RPC(nameof(ActSkillforAllclient), RpcTarget.All, attackdirection, magnitude);
+            photonView.RPC(nameof(ActSkillforAllclient), RpcTarget.All, firstStepPos, this.transform.position);
         }
 
         [PunRPC]
-        private void ActSkillforAllclient(Vector3 attackdirection, float magnitude)
+        private void ActSkillforAllclient(Vector3 targetPos, Vector3 originPos)
         {
-            
-            Vector3 direction = firstStepPos - transform.position;
-
-            GameObject particle = Instantiate(skillParticle, transform.position, Quaternion.identity);
-            particle.transform.LookAt(firstStepPos, Vector3.up);
+           
+            GameObject particle = Instantiate(skillParticle, originPos, Quaternion.identity);
+            particle.transform.LookAt(targetPos, Vector3.up);
             Destroy(particle, 0.6f);
 
-            firstStepPos.y = 0;
+            targetPos.y = 0;
 
             //FirstStep
-            transform.position = firstStepPos;
-            Vector3 tempPos = targetDetect.Target.position;
-            tempPos.y = 0;
-            transform.LookAt(tempPos, Vector3.up);
+            transform.position = targetPos;
+            transform.LookAt(targetPos, Vector3.up);
 
         }
     
