@@ -50,36 +50,25 @@ public class isHideOnBush : MonoBehaviourPun
         }
     }
 
-    private int StayCnt = 0;
-
     private void OnTriggerStay(Collider other)
     {
         if (!photonView.IsMine && other.CompareTag("HideBush"))
-        {
-            ++StayCnt;
             doubleCheck = true;
-        }
     }
 
     private void Update()
     {
-        if (Additional == null )
+        if (Additional == null)
             return;
         
         if (photonView.IsMine)
             return;
         
         if(doubleCheck)
-        {
             doubleCheck = false;
-
-            for (int i = 0; i < AvartarRender.Length; ++i)
-                AvartarRender[i].enabled = doubleCheck;
-
-            Additional.SetActive(doubleCheck);
-        }
-        else
+        else if(!doubleCheck && !Additional.activeInHierarchy)
         {
+            exitCnt = 0;
             for (int i = 0; i < AvartarRender.Length; ++i)
                 AvartarRender[i].enabled = true;
 
