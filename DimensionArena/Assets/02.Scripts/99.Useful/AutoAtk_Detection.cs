@@ -50,7 +50,7 @@ public class AutoAtk_Detection : MonoBehaviour
             return 0;
         });
 
-        if (null == detectedTransform)
+        if (NullCheck.IsNullOrEmpty(detectedTransform) || NullCheck.Equals(detectedTransform[0], null))
             return;
 
         isHideOnBush tryCheck = detectedTransform[0].GetComponentInChildren<isHideOnBush>();
@@ -68,7 +68,7 @@ public class AutoAtk_Detection : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag != "Player")
+        if (other.tag != "Player" && other.tag != "Item_Box")
             return;
         
         detectedTransform.Add(other.transform);
@@ -76,7 +76,7 @@ public class AutoAtk_Detection : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.tag != "Player")
+        if (other.tag != "Player" && other.tag != "Item_Box")
             return;
 
         detectedTransform.Remove(other.transform);
