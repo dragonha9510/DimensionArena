@@ -126,6 +126,12 @@ public class TickDamage : MonoBehaviourPun
                 if(true == isNestingCollision)
                 {
                     Debug.Log("데미지 중첩임 코루틴 시작할꺼야");
+
+                    if (willDamageApply.ContainsKey(other.name))
+                    {
+                        willDamageApply[other.name] = true;
+                        return;
+                    }
                     willDamageApply.Add(other.name,true);
                     StartCoroutine(InDamageZone(other.gameObject.name, damageTime, tickDamage));
                 }
