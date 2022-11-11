@@ -47,6 +47,9 @@ public class isHideOnBush : MonoBehaviourPun
 
     private void Update()
     {
+        if (Additional == null)
+            return;
+
         if(exitCnt > 0)
         {
             if (!Additional.activeInHierarchy)
