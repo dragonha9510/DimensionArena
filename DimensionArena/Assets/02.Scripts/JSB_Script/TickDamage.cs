@@ -40,6 +40,7 @@ public class TickDamage : MonoBehaviourPun
         else
             decreaseHP = PlayerInfoManager.Instance.CurHpDecrease(OwnerID, userID, damage);
 
+        //damageTransform.GetValueOrDefault(userID)
         FloatingText.Instance.CreateFloatingTextForDamage(damageTransform[userID].position, decreaseHP);
         PlayerInfoManager.Instance.CurSkillPtIncrease(OwnerID, ultimatePoint);
       

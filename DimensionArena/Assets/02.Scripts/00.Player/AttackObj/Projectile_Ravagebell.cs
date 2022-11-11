@@ -17,7 +17,6 @@ public class Projectile_Ravagebell : Projectile
             {
                 //상대 Player에게 데미지를 준 경우, 
                 case "Player":
-                    break;
                 //Damaged된 Obstacle 공격체 방향으로 살짝 흔들리는 모션
                 case "ParentObstacle":
                 case "ParentGround":
@@ -52,31 +51,16 @@ public class Projectile_Ravagebell : Projectile
         {
             if (!PhotonNetwork.IsMasterClient)
                 return;
+
             Debug.Log("내 Projectile 의 오너는 " + ownerID + "입니다.");
             switch (other.tag)
             {
                 //상대 Player에게 데미지를 준 경우, 
                 case "Player":
-                    {
-                        if (ownerID != other.gameObject.name)
-                        {
-                            photonView.RPC("OnCollisionToPlayer",
-                            RpcTarget.All,
-                            ownerID,
-                            other.gameObject.name,
-                            other.transform.position);
-                            Debug.Log("내 Projectile 이 맞은 애는 " + other.gameObject.name + "입니다.");
-
-                            PhotonNetwork.Destroy(this.gameObject);
-                        }
-                        else
-                            return;
-                    }
-                    break;
-                //Damaged된 Obstacle 공격체 방향으로 살짝 흔들리는 모션
                 case "ParentObstacle":
                 case "ParentGround":
                     {
+                        Debug.Log(photonView.ViewID);
                         PhotonNetwork.Destroy(this.gameObject);
                     }
                     break;
