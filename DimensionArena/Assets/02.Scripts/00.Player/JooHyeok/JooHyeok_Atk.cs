@@ -177,17 +177,15 @@ namespace PlayerSpace
             else if (!isAttack)
             {
                 ++passiveCnt;
-                if (PhotonNetwork.InRoom)
-                    StartCoroutine(LookAttackAutoDirection(false));
+                StartCoroutine(LookAttackAutoDirection(true, (autoAtk.targetPos - transform.position)));
             }
         }
 
         [PunRPC]
-        IEnumerator LookAttackAutoDirection(bool isServer)
+        IEnumerator LookAttackAutoDirection(bool isServer, Vector3 autoDirection)
         {
             if (isRotation)
             {
-                Vector3 autoDirection = (autoAtk.targetPos - transform.position);
                 autoDirection.Normalize();
 
                 Vector3 forward = Vector3.Slerp(transform.forward,
@@ -206,14 +204,14 @@ namespace PlayerSpace
             if (PhotonNetwork.InRoom)
             {
                 SubMagazine(owner.name);
-                photonView.RPC(nameof(CreateAutoProjectile), RpcTarget.MasterClient, true);
+                photonView.RPC(nameof(CreateAutoProjectile), RpcTarget.MasterClient, true, autoDirection);
             }
             else
-                StartCoroutine(CreateAutoProjectile(false));
+                StartCoroutine(CreateAutoProjectile(false, autoDirection));
         }
 
         [PunRPC]
-        public IEnumerator CreateAutoProjectile(bool isServer)
+        public IEnumerator CreateAutoProjectile(bool isServer, Vector3 autoDirection)
         {
             owner.CanDirectionChange = false;
             isAttack = true;
@@ -230,7 +228,6 @@ namespace PlayerSpace
                 passiveCnt = 0;
             }
 
-            Vector3 autoDirection = (autoAtk.targetPos - transform.position);
             autoDirection.Normalize();
 
             for (int i = 0; i < atkCnt; ++i)

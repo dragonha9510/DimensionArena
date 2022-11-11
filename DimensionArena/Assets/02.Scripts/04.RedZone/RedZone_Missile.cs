@@ -78,7 +78,13 @@ public class RedZone_Missile : MonoBehaviour
         else if (other.CompareTag("Water_Plane"))
             Destroy(this.gameObject);
         else if (other.CompareTag("Bush") || other.CompareTag("Item_Box"))
+        {
+            BoxCollider temp = other as BoxCollider;
+
+            temp.center = Vector3.down * 10f;
+            temp.size = Vector3.zero;
             Destroy(other.gameObject);
+        }
 
         if (effectOn)
         {

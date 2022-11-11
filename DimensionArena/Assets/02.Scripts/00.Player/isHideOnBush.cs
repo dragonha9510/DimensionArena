@@ -12,11 +12,15 @@ public class isHideOnBush : MonoBehaviourPun
     private int exitCnt;
     private int sizeCnt;
 
-    public bool isHide { get { return exitCnt > 0; } }
+    private bool isAppearMoment;
+    private bool doubleCheck;
+
+    public bool isHide { get { return isAppearMoment ? !isAppearMoment : exitCnt > 0; } }
 
     public void AppearForMoment(float time)
     {
-        StartCoroutine(appearRenderCoroutine(time));
+        if(!photonView.IsMine)
+            StartCoroutine(appearRenderCoroutine(time));
     }
 
     [PunRPC]
@@ -27,15 +31,56 @@ public class isHideOnBush : MonoBehaviourPun
 
         Additional.SetActive(true);
 
+        isAppearMoment = true;
+
         yield return new WaitForSeconds(time);
 
+        isAppearMoment = false;
+
         if (exitCnt <= 0)
-            yield return null;
+        {
+            yield break;
+        }
+        else
+        {
+            for (int i = 0; i < AvartarRender.Length; ++i)
+                AvartarRender[i].enabled = false;
 
-        for (int i = 0; i < AvartarRender.Length; ++i)
-            AvartarRender[i].enabled = false;
+            Additional.SetActive(false);
+        }
+    }
 
-        Additional.SetActive(false);
+    private void OnTriggerStay(Collider other)
+    {
+        if (!photonView.IsMine && other.CompareTag("HideBush"))
+            doubleCheck = true;
+    }
+
+    private void Update()
+    {
+        if (Additional == null)
+            return;
+        
+        if (photonView.IsMine)
+            return;
+        
+        if(doubleCheck && Additional.activeInHierarchy && !isAppearMoment)
+        {
+            for (int i = 0; i < AvartarRender.Length; ++i)
+                AvartarRender[i].enabled = false;
+
+            Additional.SetActive(false);
+
+            doubleCheck = false;
+
+        }
+        else if(!doubleCheck && !Additional.activeInHierarchy)
+        {
+            for (int i = 0; i < AvartarRender.Length; ++i)
+                AvartarRender[i].enabled = true;
+
+            Additional.SetActive(true);
+        }
     }
 
     private void OnTriggerEnter(Collider other)

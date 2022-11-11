@@ -157,23 +157,26 @@ namespace PlayerSpace
             owner.CanDirectionChange = false;
             isAttack = true;
 
+            Vector3 shotPosition = autoAtk.targetPos;
+
             if (PhotonNetwork.InRoom)
             {
                 photonView.RPC(nameof(AutoCreateProjectile), RpcTarget.MasterClient
                                                              , gameObject.name
                                                              , photonView.Controller
-                                                    );
+                                                             , shotPosition);
             }
             else
             {
                 StartCoroutine(AutoAttackCoroutineSingle(null
                                           , transform.rotation
-                                          , gameObject.name));
+                                          , gameObject.name
+                                          , shotPosition));
             }
         }
 
         [PunRPC]
-        private IEnumerator AutoCreateProjectile(string shooter, Photon.Realtime.Player controller)
+        private IEnumerator AutoCreateProjectile(string shooter, Photon.Realtime.Player controller, Vector3 shotPosition)
         {
             GameObject projectile;
             Transform shooterPosition = PlayerInfoManager.Instance.getPlayerTransform(shooter);
@@ -182,8 +185,6 @@ namespace PlayerSpace
             ///
             animator.speed = 1;
             photonView.RPC("AtkTrigger", RpcTarget.All);
-
-            Vector3 shotPosition = autoAtk.targetPos;
 
             yield return new WaitForSeconds(atkDelay);
 
@@ -202,14 +203,13 @@ namespace PlayerSpace
             ///
         }
 
-        private IEnumerator AutoAttackCoroutineSingle(string shooter, Quaternion playerRotation, string ownerName)
+        private IEnumerator AutoAttackCoroutineSingle(string shooter, Quaternion playerRotation, string ownerName, Vector3 shotPosition)
         {
             atkInfo.SubCost(atkInfo.ShotCost);
 
             GameObject projectile;
             animator.speed = 1;
             AtkTrigger();
-            Vector3 shotPosition = autoAtk.targetPos;
 
             yield return new WaitForSeconds(atkDelay);
 
