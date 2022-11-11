@@ -71,7 +71,6 @@ namespace PlayerSpace
         private void MakeProjectileOnServer(string prefapName,Vector3 attackDirection,Vector3 pos,Quaternion rot)
         {
             GameObject proj  = PhotonNetwork.Instantiate(prefapName, pos, rot);
-            proj.GetComponent<Projectile>().AttackToDirectionAllClient(AtkInfo.Range, projectileSpeed);
             proj.GetComponent<Projectile>().ownerID = this.gameObject.name;
             owner.CanDirectionChange = true;
         }
@@ -88,7 +87,6 @@ namespace PlayerSpace
             {
                 GameObject projectile;
                 projectile = Instantiate(prefab_Projectile, this.transform.position + (Vector3.up * 0.5f) + (attackDirection * 0.5f), direction);
-                projectile.GetComponent<Projectile>().AttackToDirectionAllClient(AtkInfo.Range, projectileSpeed);
                 projectile.GetComponent<Projectile>().ownerID = this.gameObject.name;
 
             }

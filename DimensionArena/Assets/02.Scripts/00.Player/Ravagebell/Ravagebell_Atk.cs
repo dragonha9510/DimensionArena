@@ -80,8 +80,7 @@ namespace PlayerSpace
             yield return new WaitForSeconds(atkDelay);
 
             Destroy(PhotonNetwork.Instantiate(prefab_Muzzle.name, transform.position + (Vector3.up * 2f), shooterPosition.rotation), 1.0f);
-            projectile = PhotonNetwork.Instantiate(prefab_Projectile.name, transform.position + (Vector3.up * 2f), shooterPosition.rotation);
-            projectile.GetComponent<Projectile>().AttackToDirectionAllClient(Vector3.up, AtkInfo.Range, projectileSpeed);
+            projectile = PhotonNetwork.Instantiate(prefab_Projectile.name, transform.position + (Vector3.up * 2f), Quaternion.LookRotation(Vector3.up));
             projectile.GetComponent<Projectile>().ownerID = shooter;
 
             photonView.RPC("EndAttack", controller, shooter);
@@ -90,8 +89,7 @@ namespace PlayerSpace
 
             projectile = PhotonNetwork.Instantiate(prefab_Projectile.name,
                 shotPosition + (shooterAttackDir.normalized * curdistance * AtkInfo.Range) + (Vector3.up * AtkInfo.Range),
-                shooterPosition.rotation);
-            projectile.GetComponent<Projectile>().AttackToDirectionAllClient(Vector3.down, AtkInfo.Range, projectileSpeed);
+                 Quaternion.LookRotation(Vector3.down));
             projectile.GetComponent<Projectile>().ownerID = shooter;
             ///
         }
@@ -129,8 +127,7 @@ namespace PlayerSpace
             yield return new WaitForSeconds(atkDelay);
 
             Destroy(Instantiate(prefab_Muzzle, this.transform.position + (Vector3.up * 2f), playerRotation), 1.0f);
-            projectile = Instantiate(prefab_Projectile, this.transform.position + (Vector3.up * 2f), playerRotation);
-            projectile.GetComponent<Projectile>().AttackToDirectionAllClient(Vector3.up, AtkInfo.Range, projectileSpeed);
+            projectile = Instantiate(prefab_Projectile, this.transform.position + (Vector3.up * 2f), Quaternion.LookRotation(Vector3.up));
             projectile.GetComponent<Projectile>().ownerID = ownerName;
 
             isAttack = false;
@@ -140,8 +137,7 @@ namespace PlayerSpace
 
             projectile = Instantiate(prefab_Projectile,
                 shotPosition + (shooterAttackDir.normalized * curdistance * AtkInfo.Range) + (Vector3.up * AtkInfo.Range),
-                playerRotation);
-            projectile.GetComponent<Projectile>().AttackToDirectionAllClient(Vector3.down, AtkInfo.Range, projectileSpeed);
+                 Quaternion.LookRotation(Vector3.down));
             projectile.GetComponent<Projectile>().ownerID = ownerName;
 
         }
@@ -191,8 +187,7 @@ namespace PlayerSpace
             yield return new WaitForSeconds(atkDelay);
 
             Destroy(PhotonNetwork.Instantiate(prefab_Muzzle.name, transform.position + (Vector3.up * 2f), shooterPosition.rotation), 1.0f);
-            projectile = PhotonNetwork.Instantiate(prefab_Projectile.name, transform.position + (Vector3.up * 2f), shooterPosition.rotation);
-            projectile.GetComponent<Projectile>().AttackToDirectionAllClient(Vector3.up, AtkInfo.Range, projectileSpeed);
+            projectile = PhotonNetwork.Instantiate(prefab_Projectile.name, transform.position + (Vector3.up * 2f), Quaternion.LookRotation(Vector3.up));
             projectile.GetComponent<Projectile>().ownerID = shooter;
 
             photonView.RPC("EndAttack", controller, shooter);
@@ -201,8 +196,7 @@ namespace PlayerSpace
 
             projectile = PhotonNetwork.Instantiate(prefab_Projectile.name,
                 shotPosition + (Vector3.up * AtkInfo.Range),
-                shooterPosition.rotation);
-            projectile.GetComponent<Projectile>().AttackToDirectionAllClient(Vector3.down, AtkInfo.Range, projectileSpeed);
+                 Quaternion.LookRotation(Vector3.down));
             projectile.GetComponent<Projectile>().ownerID = shooter;
             ///
         }
@@ -219,8 +213,8 @@ namespace PlayerSpace
             yield return new WaitForSeconds(atkDelay);
 
             Destroy(Instantiate(prefab_Muzzle, this.transform.position + (Vector3.up * 2f), playerRotation), 1.0f);
-            projectile = Instantiate(prefab_Projectile, this.transform.position + (Vector3.up * 2f), playerRotation);
-            projectile.GetComponent<Projectile>().AttackToDirectionAllClient(Vector3.up, AtkInfo.Range, projectileSpeed);
+            projectile = Instantiate(prefab_Projectile, this.transform.position + (Vector3.up * 2f), Quaternion.LookRotation(Vector3.up));
+
             projectile.GetComponent<Projectile>().ownerID = ownerName;
 
             isAttack = false;
@@ -230,8 +224,7 @@ namespace PlayerSpace
 
             projectile = Instantiate(prefab_Projectile,
                 shotPosition + (Vector3.up * AtkInfo.Range),
-                playerRotation);
-            projectile.GetComponent<Projectile>().AttackToDirectionAllClient(Vector3.down, AtkInfo.Range, projectileSpeed);
+                 Quaternion.LookRotation(Vector3.down));
             projectile.GetComponent<Projectile>().ownerID = ownerName;
         }
     }

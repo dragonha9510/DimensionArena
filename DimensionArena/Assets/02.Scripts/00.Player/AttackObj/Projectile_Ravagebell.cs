@@ -11,7 +11,7 @@ public class Projectile_Ravagebell : Projectile
     {
         GameObject poisonFieldTemp;
 
-        if (PhotonNetwork.OfflineMode)
+        if (!PhotonNetwork.InRoom)
         {
             switch (other.tag)
             {
@@ -66,7 +66,7 @@ public class Projectile_Ravagebell : Projectile
         {
             if (!PhotonNetwork.IsMasterClient)
                 return;
-
+            Debug.Log("내 Projectile 의 오너는 " + ownerID + "입니다.");
             switch (other.tag)
             {
                 //상대 Player에게 데미지를 준 경우, 
@@ -79,6 +79,7 @@ public class Projectile_Ravagebell : Projectile
                             ownerID,
                             other.gameObject.name,
                             other.transform.position);
+                            Debug.Log("내 Projectile 이 맞은 애는 " + other.gameObject.name + "입니다.");
 
                             PhotonNetwork.Destroy(this.gameObject);
                         }

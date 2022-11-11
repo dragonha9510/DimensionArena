@@ -97,13 +97,14 @@ namespace PlayerSpace
             WaitForSeconds burstDelay = new WaitForSeconds(burst_delay);
             WaitForSeconds attackDelay = new WaitForSeconds(attack_delay);
 
+            
+
             for (int i = 0; i < atkCnt; ++i)
             {
                 for (int j = 0; j < projectileCount; ++j)
                 {
                     photonView.RPC(nameof(SetAttackTrigger), RpcTarget.All);
-                    projectile = PhotonNetwork.Instantiate("projectile", shooterPosition.position + (Vector3.up * 0.5f), shooterPosition.rotation);
-                    projectile.GetComponent<Projectile>().AttackToDirectionAllClient(AtkInfo.Range, projectileSpeed);
+                    projectile = PhotonNetwork.Instantiate("projectile", shooterPosition.position + (Vector3.up * 0.5f), Quaternion.LookRotation(tmpDirection,Vector3.up));
                     projectile.GetComponent<Projectile>().ownerID = shooter;
                     yield return burstDelay;
                 }
@@ -155,8 +156,7 @@ namespace PlayerSpace
                 for (int j = 0; j < projectileCount; ++j)
                 {
                     // JSB
-                    projectile = Instantiate(prefab_Projectile, this.transform.position + shooterAttackDir + (Vector3.up * 0.5f), playerRotation);
-                    projectile.GetComponent<Projectile>().AttackToDirectionAllClient(shooterAttackDir, AtkInfo.Range, projectileSpeed);
+                    projectile = Instantiate(prefab_Projectile, this.transform.position + shooterAttackDir + (Vector3.up * 0.5f), this.transform.rotation);
                     projectile.GetComponent<Projectile>().ownerID = ownerName;
                     SetAttackTrigger();
                     //
@@ -248,7 +248,6 @@ namespace PlayerSpace
                         projectile = Instantiate(prefab_Projectile, this.transform.position + autoDirection + (Vector3.up * 0.5f), transform.rotation);
                     }
 
-                    projectile.GetComponent<Projectile>().AttackToDirectionAllClient(autoDirection, AtkInfo.Range, projectileSpeed);
                     projectile.GetComponent<Projectile>().ownerID = this.gameObject.name;
                     //
                     yield return new WaitForSeconds(burst_delay);

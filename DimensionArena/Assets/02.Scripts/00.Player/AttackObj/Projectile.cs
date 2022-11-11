@@ -9,7 +9,12 @@ public class Projectile : AttackObject
     [SerializeField] Vector3 originPos;
 
     //basic Range 10
+    [SerializeField]
     float range = 10.0f;
+
+    [SerializeField]
+    private float speed;
+
 
     private void Awake()
     {
@@ -18,6 +23,9 @@ public class Projectile : AttackObject
 
         originPos = transform.position;
         //SoundManager.Instance.PlaySFXOneShot("JiJooNormalEffect");
+
+        rigid.velocity = this.transform.forward * speed;
+
     }
 
     private void LateUpdate()
@@ -36,35 +44,11 @@ public class Projectile : AttackObject
         }
     }
 
-
-    public void AttackToDirectionAllClient(Vector3 dir,float range,float speed)
-    {
-        photonView.RPC(nameof(AttackToDirection), RpcTarget.All, dir, range, speed);
-    }
-
-
-    public void AttackToDirectionAllClient(float range,float speed)
-    {
-        photonView.RPC(nameof(AttackToDirection), RpcTarget.All, range, speed);
-    }
-
-
-
-    [PunRPC]
-    private void AttackToDirection(Vector3 dir, float range, float speed)
+    public void AttackToDirection(Vector3 dir, float range, float speed)
     {
         this.range = range;
         rigid.velocity = dir * speed;
     }
-
-    [PunRPC]
-    private void AttackToDirection(float range, float speed)
-    {
-        this.range = range;
-        rigid.velocity = this.transform.forward * speed;
-    }
-
-
     protected virtual void OnTriggerEnter(Collider other)
     {
         if (!PhotonNetwork.IsMasterClient)

@@ -14682,8 +14682,6 @@ GameObject:
   - component: {fileID: 54151073696178080}
   - component: {fileID: -8376138627434772681}
   - component: {fileID: 6627431580754120424}
-  - component: {fileID: 7841963177906532258}
-  - component: {fileID: 8543374909435412747}
   - component: {fileID: -4045985787769384709}
   m_Layer: 0
   m_Name: Projectile_Ravagebell
@@ -19567,47 +19565,14 @@ MonoBehaviour:
   ObservedComponentsFoldoutOpen: 1
   Group: 0
   prefixField: -1
-  Synchronization: 3
+  Synchronization: 0
   OwnershipTransfer: 0
   observableSearch: 2
   ObservedComponents:
-  - {fileID: 7841963177906532258}
-  - {fileID: 8543374909435412747}
+  - {fileID: 0}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
---- !u!114 &7841963177906532258
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1997882812359486}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_SynchronizePosition: 1
-  m_SynchronizeRotation: 1
-  m_SynchronizeScale: 0
-  m_UseLocal: 1
---- !u!114 &8543374909435412747
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1997882812359486}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 64179f3720bbfe947b7724caa67b7c1d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_SynchronizeVelocity: 1
-  m_SynchronizeAngularVelocity: 0
-  m_TeleportEnabled: 0
-  m_TeleportIfDistanceGreaterThan: 3
 --- !u!114 &-4045985787769384709
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19626,4 +19591,6 @@ MonoBehaviour:
   hitPrefab: {fileID: 1678266536710752, guid: d5e0d89e3820f594cb0080cc3aef46c2, type: 3}
   rigid: {fileID: 54151073696178080}
   originPos: {x: 0, y: 0, z: 0}
+  range: 10
+  speed: 30
   PoisonTile: {fileID: 1749833007681888, guid: 4ca5528d26c6f0b4f900cc65a5f22131, type: 3}

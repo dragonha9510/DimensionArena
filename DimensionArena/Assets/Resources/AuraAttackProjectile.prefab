@@ -392,6 +392,8 @@ MonoBehaviour:
   hitPrefab: {fileID: 0}
   rigid: {fileID: 54147740285676064}
   originPos: {x: 0, y: 0, z: 0}
+  range: 10
+  speed: 5
 --- !u!1 &1272923511814132
 GameObject:
   m_ObjectHideFlags: 0

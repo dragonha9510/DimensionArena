@@ -105,6 +105,8 @@ MonoBehaviour:
     type: 3}
   rigid: {fileID: -4022601170890094833}
   originPos: {x: 0, y: 0, z: 0}
+  range: 10
+  speed: 5
 --- !u!114 &-5173306115150662032
 MonoBehaviour:
   m_ObjectHideFlags: 0
