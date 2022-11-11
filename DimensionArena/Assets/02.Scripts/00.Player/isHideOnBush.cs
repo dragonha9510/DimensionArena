@@ -64,11 +64,18 @@ public class isHideOnBush : MonoBehaviourPun
         if (photonView.IsMine)
             return;
         
-        if(doubleCheck)
+        if(doubleCheck && Additional.activeInHierarchy)
+        {
+            for (int i = 0; i < AvartarRender.Length; ++i)
+                AvartarRender[i].enabled = false;
+
+            Additional.SetActive(false);
+
             doubleCheck = false;
+
+        }
         else if(!doubleCheck && !Additional.activeInHierarchy)
         {
-            exitCnt = 0;
             for (int i = 0; i < AvartarRender.Length; ++i)
                 AvartarRender[i].enabled = true;
 
