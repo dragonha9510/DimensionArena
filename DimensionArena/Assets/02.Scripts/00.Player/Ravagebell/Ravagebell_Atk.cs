@@ -46,6 +46,7 @@ namespace PlayerSpace
                                                              , gameObject.name
                                                              , attackDirection
                                                              , photonView.Controller
+                                                             , curdistance
                                                     );
 
             }
@@ -60,7 +61,7 @@ namespace PlayerSpace
 
         [PunRPC]
         private IEnumerator MasterCreateProjectile(string shooter, Vector3 shooterAttackDir,
-                                                   Photon.Realtime.Player controller)
+                                                   Photon.Realtime.Player controller , float curDistance)
         {
             GameObject projectile;
             Transform shooterPosition = PlayerInfoManager.Instance.getPlayerTransform(shooter);
@@ -88,7 +89,7 @@ namespace PlayerSpace
             yield return new WaitForSeconds(dropDelay + atkDelay);
 
             projectile = PhotonNetwork.Instantiate(prefab_Projectile.name,
-                shotPosition + (shooterAttackDir.normalized * curdistance * AtkInfo.Range) + (Vector3.up * AtkInfo.Range),
+                shotPosition + (shooterAttackDir.normalized * curDistance * AtkInfo.Range) + (Vector3.up * AtkInfo.Range),
                  Quaternion.LookRotation(Vector3.down));
             projectile.GetComponent<Projectile>().ownerID = shooter;
             ///
@@ -214,7 +215,6 @@ namespace PlayerSpace
 
             Destroy(Instantiate(prefab_Muzzle, this.transform.position + (Vector3.up * 2f), playerRotation), 1.0f);
             projectile = Instantiate(prefab_Projectile, this.transform.position + (Vector3.up * 2f), Quaternion.LookRotation(Vector3.up));
-
             projectile.GetComponent<Projectile>().ownerID = ownerName;
 
             isAttack = false;

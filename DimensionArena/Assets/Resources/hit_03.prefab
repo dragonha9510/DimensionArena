@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2723635868635282615}
   - component: {fileID: 1434038879174271887}
   - component: {fileID: 333522483451497929}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Flash_small
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4894,7 +4894,7 @@ GameObject:
   - component: {fileID: 6421957799527873464}
   - component: {fileID: 5437712005683872118}
   - component: {fileID: 7715733840410368109}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Particle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9777,7 +9777,7 @@ GameObject:
   - component: {fileID: 6738401676357404288}
   - component: {fileID: 2573273071205655013}
   - component: {fileID: 3957728350600406700}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Blast
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14658,8 +14658,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1411505494810921183}
-  - component: {fileID: 8314932535146397025}
-  m_Layer: 0
+  - component: {fileID: 3310334803151364195}
+  m_Layer: 8
   m_Name: hit_03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14684,7 +14684,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8314932535146397025
+--- !u!114 &3310334803151364195
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
