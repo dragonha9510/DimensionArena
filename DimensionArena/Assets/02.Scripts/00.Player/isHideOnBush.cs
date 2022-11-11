@@ -47,7 +47,10 @@ public class isHideOnBush : MonoBehaviourPun
 
     private void Update()
     {
-        if (Additional == null && !photonView.IsMine)
+        if (Additional == null )
+            return;
+
+        if (photonView.IsMine)
             return;
 
         if(exitCnt > 0)
