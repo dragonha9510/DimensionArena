@@ -138,6 +138,7 @@ namespace PlayerSpace
 
         public override void AutoAttack()
         {
+            /*
             if (PhotonNetwork.InRoom)
             {
                 photonView.RPC(nameof(MasterCreateProjectile), RpcTarget.MasterClient
@@ -151,7 +152,8 @@ namespace PlayerSpace
                                                     , transform.rotation
                                                     , autoAtk.targetPos - transform.position
                                                     , gameObject.name));
-        }
+        */
+            }
 
         protected override void InitalizeAtkInfo()
         {
