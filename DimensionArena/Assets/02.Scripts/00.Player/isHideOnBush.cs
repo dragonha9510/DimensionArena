@@ -72,6 +72,11 @@ public class isHideOnBush : MonoBehaviourPun
         if(doubleCheck)
         {
             doubleCheck = false;
+
+            for (int i = 0; i < AvartarRender.Length; ++i)
+                AvartarRender[i].enabled = doubleCheck;
+
+            Additional.SetActive(doubleCheck);
         }
         else
         {
