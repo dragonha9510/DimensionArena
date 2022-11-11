@@ -94,7 +94,6 @@ public class Projectile : AttackObject
         if (!onEffect)
             return;
 
-        PhotonNetwork.Destroy(this.gameObject);  
 
         if (PhotonNetwork.OfflineMode)
         {
@@ -121,20 +120,29 @@ public class Projectile : AttackObject
 
             if (hitPrefab != null)
             {
-                var hitVFX = PhotonNetwork.Instantiate(hitPrefab.name, pos, rot);
-                var psHit = hitVFX.GetComponentInChildren<ParticleSystem>();
-                
-                StartCoroutine(nameof(DestroyEffect),(hitVFX,psHit.main.duration));
+                photonView.RPC(nameof(CreateEffectForAllClient), RpcTarget.All, pos, rot);
             }
         }
+
+        PhotonNetwork.Destroy(this.gameObject);  
     }
-    IEnumerable DestroyEffect(GameObject effectObj,float time)
+
+
+
+    [PunRPC]
+    private void CreateEffectForAllClient(Vector3 pos, Quaternion rot)
     {
-        while(true)
-        {
-            yield return new WaitForSeconds(time);
-            PhotonNetwork.Destroy(effectObj);
-            yield break;
-        }
+        var hitVFX = Instantiate(hitPrefab, pos, rot);
+        var psHit = hitVFX.GetComponentInChildren<ParticleSystem>();
+        Destroy(hitVFX, psHit.main.duration);
+    }
+
+
+
+    IEnumerator DestroyEffect(GameObject effectObj,float time)
+    {
+
+        yield return new WaitForSeconds(time);
+        PhotonNetwork.Destroy(effectObj);
     }
 }

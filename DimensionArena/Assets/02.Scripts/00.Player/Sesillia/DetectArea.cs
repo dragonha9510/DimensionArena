@@ -22,7 +22,7 @@ public class DetectArea : MonoBehaviour
     
     private void Start()
     {
-        isMine = GetComponent<Player>().photonView.IsMine;
+        isMine = GetComponentInParent<Player>().photonView.IsMine;
         collisionlayer = (1 << LayerMask.NameToLayer("Obstacle") | 1 << LayerMask.NameToLayer("Player") | 1 << LayerMask.NameToLayer("GroundObject_Brick") | 1 << LayerMask.NameToLayer("Water"));
         Player_Skill skill = GetComponentInParent<Player_Skill>();       
     }
