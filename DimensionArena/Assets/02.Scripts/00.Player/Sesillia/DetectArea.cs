@@ -17,9 +17,12 @@ public class DetectArea : MonoBehaviour
    
     private int collisionlayer;
     public  int CollisionLayer => collisionlayer;
+
+    private bool isMine;
     
     private void Start()
     {
+        isMine = GetComponent<Player>().photonView.IsMine;
         collisionlayer = (1 << LayerMask.NameToLayer("Obstacle") | 1 << LayerMask.NameToLayer("Player") | 1 << LayerMask.NameToLayer("GroundObject_Brick") | 1 << LayerMask.NameToLayer("Water"));
         Player_Skill skill = GetComponentInParent<Player_Skill>();       
     }
@@ -31,6 +34,10 @@ public class DetectArea : MonoBehaviour
 
     private void Update()
     {
+        //내꺼가 아니라면 업데이트 체크 X
+        if (!isMine)
+            return;
+
         if (listTarget.Count < 1)
         {
             isTargetDetect = false;
