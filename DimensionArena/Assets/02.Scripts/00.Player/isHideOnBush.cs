@@ -64,7 +64,7 @@ public class isHideOnBush : MonoBehaviourPun
         if (photonView.IsMine)
             return;
         
-        if(doubleCheck && Additional.activeInHierarchy)
+        if(doubleCheck && Additional.activeInHierarchy && !isAppearMoment)
         {
             for (int i = 0; i < AvartarRender.Length; ++i)
                 AvartarRender[i].enabled = false;
@@ -74,7 +74,7 @@ public class isHideOnBush : MonoBehaviourPun
             doubleCheck = false;
 
         }
-        else if(!doubleCheck && !Additional.activeInHierarchy)
+        else if(!doubleCheck && !Additional.activeInHierarchy && isAppearMoment)
         {
             for (int i = 0; i < AvartarRender.Length; ++i)
                 AvartarRender[i].enabled = true;
