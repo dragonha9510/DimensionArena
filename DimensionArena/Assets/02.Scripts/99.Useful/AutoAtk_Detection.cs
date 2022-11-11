@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using PlayerSpace;
-using System.Linq;
 
 [RequireComponent(typeof(SphereCollider))]
 public class AutoAtk_Detection : MonoBehaviour
@@ -51,10 +50,8 @@ public class AutoAtk_Detection : MonoBehaviour
             return 0;
         });
 
-        if (!detectedTransform.FirstOrDefault())
+        if (NullCheck.IsNullOrEmpty(detectedTransform) || detectedTransform[0] == null)
             return;
-
-        isHideOnBush tryCheck = detectedTransform[0].GetComponentInChildren<isHideOnBush>();
 
         foreach (var isHide in detectedIsHide)
         {
