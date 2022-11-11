@@ -60,7 +60,7 @@ public class AutoAtk_Detection : MonoBehaviour
 
         isHideOnBush tryCheck = null;
 
-        foreach (var isHide in detectedIsHide)
+        foreach (var isHide in detectedTransform)
         {
             tryCheck = isHide.GetComponentInChildren<isHideOnBush>();
 
