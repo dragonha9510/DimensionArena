@@ -79,7 +79,7 @@ namespace PlayerSpace
             {
                 offset = (i % 2 == 0) ? 0.3f : -0.3f;
                 projectile = PhotonNetwork.Instantiate("SA_Projectile", shooterPosition.position + (Vector3.right * offset) + (Vector3.up * 0.5f), shooterPosition.rotation);
-                projectile.GetComponent<Projectile>().AttackToDirection(shooterAttackDir, AtkInfo.Range, projectileSpeed);
+                projectile.GetComponent<Projectile>().AttackToDirectionAllClient(shooterAttackDir, AtkInfo.Range, projectileSpeed);
                 projectile.GetComponent<Projectile>().ownerID = shooter;
 
                 yield return attackDelay;
@@ -106,7 +106,7 @@ namespace PlayerSpace
                 pos = i % 2 == 0 ? position1 : position2;
                 right = i % 2 == 0 ? 0.15f : -0.15f;
                 projectile = Instantiate(prefab_Projectile, pos, playerRotation);
-                projectile.GetComponent<Projectile>().AttackToDirection(shooterAttackDir, AtkInfo.Range, projectileSpeed);
+                projectile.GetComponent<Projectile>().AttackToDirectionAllClient(shooterAttackDir, AtkInfo.Range, projectileSpeed);
                 projectile.GetComponent<Projectile>().ownerID = ownerName;
                 yield return attackDelay;
             }

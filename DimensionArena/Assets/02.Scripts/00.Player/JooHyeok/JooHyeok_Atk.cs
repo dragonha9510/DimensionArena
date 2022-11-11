@@ -103,7 +103,7 @@ namespace PlayerSpace
                 {
                     photonView.RPC(nameof(SetAttackTrigger), RpcTarget.All);
                     projectile = PhotonNetwork.Instantiate("projectile", shooterPosition.position + (Vector3.up * 0.5f), shooterPosition.rotation);
-                    projectile.GetComponent<Projectile>().AttackToDirection(AtkInfo.Range, projectileSpeed);
+                    projectile.GetComponent<Projectile>().AttackToDirectionAllClient(AtkInfo.Range, projectileSpeed);
                     projectile.GetComponent<Projectile>().ownerID = shooter;
                     yield return burstDelay;
                 }
@@ -156,7 +156,7 @@ namespace PlayerSpace
                 {
                     // JSB
                     projectile = Instantiate(prefab_Projectile, this.transform.position + shooterAttackDir + (Vector3.up * 0.5f), playerRotation);
-                    projectile.GetComponent<Projectile>().AttackToDirection(shooterAttackDir, AtkInfo.Range, projectileSpeed);
+                    projectile.GetComponent<Projectile>().AttackToDirectionAllClient(shooterAttackDir, AtkInfo.Range, projectileSpeed);
                     projectile.GetComponent<Projectile>().ownerID = ownerName;
                     //
                     yield return new WaitForSeconds(burst_delay);
@@ -241,7 +241,7 @@ namespace PlayerSpace
                     else
                         projectile = Instantiate(prefab_Projectile, this.transform.position + autoDirection + (Vector3.up * 0.5f), transform.rotation);
 
-                    projectile.GetComponent<Projectile>().AttackToDirection(autoDirection, AtkInfo.Range, projectileSpeed);
+                    projectile.GetComponent<Projectile>().AttackToDirectionAllClient(autoDirection, AtkInfo.Range, projectileSpeed);
                     projectile.GetComponent<Projectile>().ownerID = this.gameObject.name;
                     //
                     yield return new WaitForSeconds(burst_delay);

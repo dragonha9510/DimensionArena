@@ -72,7 +72,7 @@ public class Ravagebell_Skill : Player_Skill
         // 여기서 부터 코드 수정
         Destroy(Instantiate(muzzlePrefab, this.transform.position + (Vector3.up * 2f), skillPrefab.transform.rotation), 0.5f);
         projectile = Instantiate(skillPrefab, this.transform.position + (Vector3.up * 2f), skillPrefab.transform.rotation);
-        projectile.GetComponent<Projectile>().AttackToDirection(Vector3.up, MaxRange, projectileSpeed);
+        projectile.GetComponent<Projectile>().AttackToDirectionAllClient(Vector3.up, MaxRange, projectileSpeed);
         projectile.GetComponent<Projectile>().ownerID = gameObject.name;
     }
 
@@ -81,7 +81,7 @@ public class Ravagebell_Skill : Player_Skill
         projectile = Instantiate(skillPrefab,
             shotPosition + location + (Vector3.up * MaxRange) + direction,
             skillPrefab.transform.rotation);
-        projectile.GetComponent<Projectile>().AttackToDirection(Vector3.down, MaxRange, projectileSpeed);
+        projectile.GetComponent<Projectile>().AttackToDirectionAllClient(Vector3.down, MaxRange, projectileSpeed);
         projectile.GetComponent<Projectile>().ownerID = gameObject.name;
     }
 
@@ -138,7 +138,7 @@ public class Ravagebell_Skill : Player_Skill
         // 여기서 부터 코드 수정
         Destroy(PhotonNetwork.Instantiate(muzzlePrefab.name, this.transform.position + (Vector3.up * 2f), skillPrefab.transform.rotation), 0.5f);
         projectile = PhotonNetwork.Instantiate(skillPrefab.name, this.transform.position + (Vector3.up * 2f), skillPrefab.transform.rotation);
-        projectile.GetComponent<Projectile>().AttackToDirection(Vector3.up, MaxRange, projectileSpeed);
+        projectile.GetComponent<Projectile>().AttackToDirectionAllClient(Vector3.up, MaxRange, projectileSpeed);
         projectile.GetComponent<Projectile>().ownerID = gameObject.name;
     }
 
@@ -147,7 +147,7 @@ public class Ravagebell_Skill : Player_Skill
         projectile = PhotonNetwork.Instantiate(skillPrefab.name,
             shotPosition + location + (Vector3.up * MaxRange) + direction,
             skillPrefab.transform.rotation);
-        projectile.GetComponent<Projectile>().AttackToDirection(Vector3.down, MaxRange, projectileSpeed);
+        projectile.GetComponent<Projectile>().AttackToDirectionAllClient(Vector3.down, MaxRange, projectileSpeed);
         projectile.GetComponent<Projectile>().ownerID = gameObject.name;
     }
 

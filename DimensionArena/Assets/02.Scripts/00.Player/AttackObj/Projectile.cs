@@ -22,9 +22,6 @@ public class Projectile : AttackObject
 
     private void LateUpdate()
     {
-        if (!PhotonNetwork.IsMasterClient)
-            return;
-
         if(!PhotonNetwork.InRoom)
         {
             if (range < (this.transform.position - originPos).magnitude)
@@ -39,13 +36,24 @@ public class Projectile : AttackObject
         }
     }
 
-    public void AttackToDirection(Vector3 dir, float range, float speed)
+    [PunRPC]
+    public void AttackToDirectionAllClient(Vector3 dir,float range,float speed)
+    {
+        photonView.RPC(nameof(AttackToDirection), RpcTarget.All, dir, range, speed);
+    }
+    public void AttackToDirectionAllClient(float range,float speed)
+    {
+        photonView.RPC(nameof(AttackToDirection), RpcTarget.All, range, speed);
+    }
+    [PunRPC]
+
+    private void AttackToDirection(Vector3 dir, float range, float speed)
     {
         this.range = range;
         rigid.velocity = dir * speed;
     }
-
-    public void AttackToDirection(float range, float speed)
+    [PunRPC]
+    private void AttackToDirection(float range, float speed)
     {
         this.range = range;
         rigid.velocity = this.transform.forward * speed;
@@ -97,8 +105,7 @@ public class Projectile : AttackObject
         if (!onEffect)
             return;
 
-        if (!PhotonNetwork.IsMasterClient)
-            PhotonNetwork.Destroy(this.gameObject);  
+        PhotonNetwork.Destroy(this.gameObject);  
 
         if (PhotonNetwork.OfflineMode)
         {

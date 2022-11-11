@@ -8688,6 +8688,7 @@ MonoBehaviour:
   speedMaxMagnification: 1.1
   nestingCount: 5
   netingTiming: 0
+  speedNesting: 0
 --- !u!95 &3227170782532345053
 Animator:
   serializedVersion: 4
