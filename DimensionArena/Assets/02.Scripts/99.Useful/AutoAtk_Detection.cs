@@ -50,10 +50,8 @@ public class AutoAtk_Detection : MonoBehaviour
             return 0;
         });
 
-        if (NullCheck.IsNullOrEmpty(detectedTransform) || NullCheck.Equals(detectedTransform[0], null))
+        if (NullCheck.IsNullOrEmpty(detectedTransform) || detectedTransform[0] == null)
             return;
-
-        isHideOnBush tryCheck = detectedTransform[0].GetComponentInChildren<isHideOnBush>();
 
         foreach (var isHide in detectedIsHide)
         {
