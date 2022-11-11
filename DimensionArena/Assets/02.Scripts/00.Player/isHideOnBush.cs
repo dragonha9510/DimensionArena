@@ -12,6 +12,32 @@ public class isHideOnBush : MonoBehaviourPun
     private int exitCnt;
     private int sizeCnt;
 
+    public bool isHide { get { return exitCnt > 0; } }
+
+    public void AppearForMoment(float time)
+    {
+        StartCoroutine(appearRenderCoroutine(time));
+    }
+
+    [PunRPC]
+    private IEnumerator appearRenderCoroutine(float time)
+    {
+        for (int i = 0; i < AvartarRender.Length; ++i)
+            AvartarRender[i].enabled = true;
+
+        Additional.SetActive(true);
+
+        yield return new WaitForSeconds(time);
+
+        if (exitCnt <= 0)
+            yield return null;
+
+        for (int i = 0; i < AvartarRender.Length; ++i)
+            AvartarRender[i].enabled = false;
+
+        Additional.SetActive(false);
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (!this.gameObject.CompareTag("Player_Body"))

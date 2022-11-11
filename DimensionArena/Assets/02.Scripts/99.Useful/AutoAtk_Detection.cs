@@ -9,7 +9,10 @@ public class AutoAtk_Detection : MonoBehaviour
     [SerializeField] private bool isSkill = false;
     private Player_Atk info;
     private Player_Skill info_skill;
+
     public List<Transform> detectedTransform;
+    public List<isHideOnBush> detectedIsHide;
+
     public Vector3 targetPos;
     private float range;
     private SphereCollider detect_collider;
@@ -40,14 +43,28 @@ public class AutoAtk_Detection : MonoBehaviour
         {
             float Adistance = Vector3.Distance(transform.position, A.position);
             float Bdistance = Vector3.Distance(transform.position, B.position);
+
             if (Adistance < Bdistance) return -1;
             else if (Adistance > Bdistance) return 1;
 
             return 0;
         });
+
         if (null == detectedTransform)
             return;
-        targetPos = detectedTransform[0].position;
+
+        isHideOnBush tryCheck = detectedTransform[0].GetComponentInChildren<isHideOnBush>();
+
+        foreach (var isHide in detectedIsHide)
+        {
+            tryCheck = isHide.GetComponentInChildren<isHideOnBush>();
+
+            if(tryCheck == null || !tryCheck.isHide)
+            {
+                targetPos = detectedTransform[0].position;
+                break;
+            }
+        }
     }
     private void OnTriggerEnter(Collider other)
     {
