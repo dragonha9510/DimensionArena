@@ -7,6 +7,9 @@ using System.IO;
 public class CharacterSelList : MonoBehaviour
 {
     // Start is called before the first frame update
+
+    [SerializeField] private GameObject SelectedRect;
+    private List<GameObject> CharcterList = new List<GameObject>();
     void Start()
     {
         int idx = 0;
@@ -34,7 +37,9 @@ public class CharacterSelList : MonoBehaviour
             GameObject imageTemp = new GameObject(strTemp);
             imageTemp.transform.SetParent(temp.transform);
             Image image = imageTemp.AddComponent<Image>();
-            
+            CharcterList.Add(imageTemp);
+
+
             image.sprite = sprite;
             imageTemp.AddComponent<SetSelectedName>().mySprite = image.sprite;
 
@@ -46,12 +51,22 @@ public class CharacterSelList : MonoBehaviour
             imageTemp.transform.localPosition = Vector3.zero;
             image.rectTransform.anchoredPosition = Vector3.zero;
             ++idx;
+
+
         }
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        foreach(var character in CharcterList)
+        {
+            if (SelectedCharacter.Instance.characterName.Equals(character.name))
+            {
+                SelectedRect.transform.SetParent(character.transform.parent);
+                SelectedRect.GetComponent<RectTransform>().anchoredPosition = new Vector3(0, 0,0);
+                break;
+            }
+        }
     }
 }

@@ -128,6 +128,11 @@ namespace PlayerSpace
                 directionLocation.gameObject.SetActive(true);
                 directionLocation.position = transform.position + (direction * 1.25f);
             }
+
+
+            if (direction.magnitude >= 1.0f)
+                direction.Normalize();
+
             animator.SetFloat("speed", direction.magnitude);
         }
 

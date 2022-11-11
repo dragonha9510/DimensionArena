@@ -118,8 +118,8 @@ MonoBehaviour:
   - WinUIOn
   - CreateAutoProjectile
   - LookAttackAutoDirection
-  - AttackToDirectionAllClient
   - AttackToDirection
+  - AttackToDirectionAllClient
   DisableAutoOpenWizard: 1
   ShowSettings: 0
   DevRegionSetOnce: 1

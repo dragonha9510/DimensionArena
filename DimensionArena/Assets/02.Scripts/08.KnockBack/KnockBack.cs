@@ -67,16 +67,18 @@ public class KnockBack : MonoBehaviour
 
         if(info.isDamage || info.isPercentDamage)
         {
-            FloatingText.Instance.CreateFloatingTextForDamage(other.transform.position, info.damage);
-
-            if(!info.isEnvironment)
+            if (!info.isEnvironment)
                 PlayerInfoManager.Instance.
                                 CurSkillPtIncrease(info.ownerID, info.ultimatePoint);
 
+            //damage Ã³¸®
+            int damage;
             if (info.isPercentDamage)
-                PlayerInfoManager.Instance.CurHPDecreaseRatio(info.ownerID, other.name, info.damage);
+                damage = PlayerInfoManager.Instance.CurHPDecreaseRatio(info.ownerID, other.name, info.damage);
             else
-                PlayerInfoManager.Instance.CurHpDecrease(info.ownerID, other.name, info.damage);
+                damage = PlayerInfoManager.Instance.CurHpDecrease(info.ownerID, other.name, info.damage);
+
+            FloatingText.Instance.CreateFloatingTextForDamage(other.transform.position, damage);
         }
 
         temp.SetValue();

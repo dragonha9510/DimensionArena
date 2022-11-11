@@ -27,10 +27,10 @@ public class Player_Movement
             if(owner.CanDirectionChange)
                 transform.LookAt(transform.position + forward);
         }
+
         direction = (direction.x.Equals(1.0f) || direction.z.Equals(1.0f)) ? new Vector3(direction.x * 0.99f + 0.03f, 0, direction.z * 0.99f + 0.03f) : direction;
         direction.y = 0;
-        direction.Normalize();
-
+        
         rigid.velocity = direction * speed;
         //transform. = transform.position + direction * speed * Time.deltaTime;
     }

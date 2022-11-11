@@ -769,6 +769,7 @@ MonoBehaviour:
   atkRangeMesh: {fileID: 516184251707268580}
   direction: {x: 0, y: 0, z: 0}
   attackDirection: {x: 0, y: 0, z: 0}
+  tmpDirection: {x: 0, y: 0, z: 0}
   projectileCount: 3
   projectileSpeed: 8
   burst_delay: 0.1
