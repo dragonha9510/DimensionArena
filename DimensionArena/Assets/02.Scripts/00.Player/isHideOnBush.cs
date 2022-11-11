@@ -16,7 +16,7 @@ public class isHideOnBush : MonoBehaviourPun
 
     public void AppearForMoment(float time)
     {
-        if(photonView.IsMine)
+        if(!photonView.IsMine)
             StartCoroutine(appearRenderCoroutine(time));
     }
 
@@ -31,12 +31,14 @@ public class isHideOnBush : MonoBehaviourPun
         yield return new WaitForSeconds(time);
 
         if (exitCnt <= 0)
-            yield return null;
+            yield break;
+        else
+        {
+            for (int i = 0; i < AvartarRender.Length; ++i)
+                AvartarRender[i].enabled = false;
 
-        for (int i = 0; i < AvartarRender.Length; ++i)
-            AvartarRender[i].enabled = false;
-
-        Additional.SetActive(false);
+            Additional.SetActive(false);
+        }
     }
 
     private void OnTriggerStay(Collider other)
