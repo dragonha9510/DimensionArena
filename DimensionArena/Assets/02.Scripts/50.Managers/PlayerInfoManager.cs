@@ -148,18 +148,20 @@ namespace ManagerSpace
             //Damage
             if (DicPlayerInfo.TryGetValue(targetId, out target))
             {
+                //Damage Calculate
                 damage = damage > target.CurHP + target.CurShield ? target.CurHP : damage;
-                //Data Regist
+                damage = DamagedShield(target, damage);
+
+                target.Damaged(damage);
+                target.BattleOn();
+
+                //Data Save
                 InGamePlayerData data;
 
                 if (IngameDataManager.Instance.Data.TryGetValue(killerId, out data))
                     data.HitPoint(damage);
 
-                //Ingame 
-                damage = DamagedShield(target, damage);
-                target.Damaged(damage);
-                target.BattleOn();
-
+                //Dead Check
                 if (target.CurHP <= 0)
                     DeadCheckCallServer(killerId, targetId);
 
@@ -177,11 +179,12 @@ namespace ManagerSpace
             //Damage
             if (DicPlayerInfo.TryGetValue(targetId, out target))
             {
+                //Damage Calculate
                 damage = (int)(target.MaxHP * ratio);
                 damage = (int)(damage > target.CurHP + target.CurShield ? target.CurHP + target.CurShield : damage);
-                //Ingame 
                 damage = DamagedShield(target, damage);
-
+                target.Damaged(damage);
+                target.BattleOn();
 
                 //Data Regist
                 InGamePlayerData data;
@@ -189,9 +192,7 @@ namespace ManagerSpace
                 if (IngameDataManager.Instance.Data.TryGetValue(killerId, out data))
                     data.HitPoint(damage);
 
-                target.Damaged(damage);
-                target.BattleOn();
-
+                //Dead Check
                 if(target.CurHP <= 0)
                     DeadCheckCallServer(killerId, targetId);
 
