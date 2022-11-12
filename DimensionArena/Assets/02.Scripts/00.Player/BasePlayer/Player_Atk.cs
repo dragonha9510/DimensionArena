@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 
+//임시로 넣은 경고 무시문
+#pragma warning disable CS0414
 
 namespace PlayerSpace
 {

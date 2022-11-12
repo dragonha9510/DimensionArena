@@ -488,7 +488,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isRotation: 1
-  autoAtk: {fileID: 0}
+  autoAtk: {fileID: 4078127380009847104}
   atkInfo:
     range: 1.8
     maxMagazine: 3
@@ -498,7 +498,7 @@ MonoBehaviour:
   attackDirection: {x: 0, y: 0, z: 0}
   tmpDirection: {x: 0, y: 0, z: 0}
   projectileCount: 3
-  projectileSpeed: 9
+  projectileSpeed: 2
   attack_delay: 0.1
   prefab_Projectile: {fileID: 1745751436853880, guid: 9f0e4b41a274ad04d8fef21b9f4e6030,
     type: 3}
@@ -617,7 +617,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 112
+  m_Constraints: 116
   m_CollisionDetection: 0
 --- !u!136 &284761424
 CapsuleCollider:
@@ -2326,6 +2326,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 14b00aeb5922694488838123e409720a, type: 3}
+--- !u!114 &4078127380009847104 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4483466908246715429, guid: 14b00aeb5922694488838123e409720a,
+    type: 3}
+  m_PrefabInstance: {fileID: 477401732990346597}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a26212d95e588a46bc514f05726b015, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &4109718218826226408 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4587114866574966669, guid: 14b00aeb5922694488838123e409720a,

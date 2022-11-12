@@ -61,7 +61,7 @@ public class GameManager : MonoBehaviourPunCallbacks, IPunObservable
         Vector3 spawnPoint = new Vector3(0, 0, 0);
 
         //   추 후 이거 유동적으로 바꿔야함. 게임매니저 문제점 기록하기
-        
+
         //GameObject testObject = PhotonNetwork.Instantiate(PHOTONPATH.PHOTONPATH_PREFAPBFOLDER
         //    + playerPrefab.name, spawnPoint, Quaternion.identity
     }
@@ -74,7 +74,7 @@ public class GameManager : MonoBehaviourPunCallbacks, IPunObservable
         SoundManager.Instance.PlayRandomInGameSound();
         LobbyManagerRenewal.Instance.ReadyToPlay();
 
-        spawnPoint = FindObjectsOfType<SpawnPoint>();     
+        spawnPoint = FindObjectsOfType<SpawnPoint>();
         // 플레이어 대기 상태
         WatingCanvas.SetActive(true);
         StartCoroutine(nameof(WaitAllPlayers));
@@ -94,7 +94,7 @@ public class GameManager : MonoBehaviourPunCallbacks, IPunObservable
 
     IEnumerator WaitAllPlayers()
     {
-        if(string.IsNullOrEmpty(SelectedCharacter.Instance.characterName))
+        if (string.IsNullOrEmpty(SelectedCharacter.Instance.characterName))
             PhotonNetwork.Instantiate(PHOTONPATH.PHOTONPATH_PREFAPBFOLDER
               + playerPrefab.name, Vector3.zero, Quaternion.identity);
         else
@@ -103,10 +103,10 @@ public class GameManager : MonoBehaviourPunCallbacks, IPunObservable
 
         while (true)
         {
-            if (LobbyManagerRenewal.Instance.InGameReadyPlayer 
-                == PhotonNetwork.CurrentRoom.PlayerCount)   
+            if (LobbyManagerRenewal.Instance.InGameReadyPlayer
+                == PhotonNetwork.CurrentRoom.PlayerCount)
                 break;
-            
+
             yield return null;
         }
 
@@ -124,19 +124,18 @@ public class GameManager : MonoBehaviourPunCallbacks, IPunObservable
         ManagerMediator mediator = GetComponent<ManagerMediator>();
         mediator.enabled = true;
 
-            
+
     }
 
     IEnumerator SpawnPointRegisterPlayer()
     {
-        
         GameObject[] players = PlayerInfoManager.Instance.DicPlayer.Values.ToArray();
 
         int idx;
 
-        for(int i = 0; i < players.Length; ++i)
+        for (int i = 0; i < players.Length; ++i)
         {
-            while(true)
+            while (true)
             {
                 yield return null;
                 idx = Random.Range(0, spawnPoint.Length);
@@ -145,14 +144,15 @@ public class GameManager : MonoBehaviourPunCallbacks, IPunObservable
                     continue;
 
                 spawnPoint[idx].SetRegisterOn();
-                photonView.RPC(nameof(SetPlayerPositionForAllClient), RpcTarget.All, players[i].name, spawnPoint[idx].transform.position);
+                Vector3 point = spawnPoint[idx].transform.position;
+                point.y = 0;
+                photonView.RPC(nameof(SetPlayerPositionForAllClient), RpcTarget.All, players[i].name, point);
                 break;
             }
         }
 
         //대기 시간
         yield return new WaitForSeconds(0.2f);
-
         photonView.RPC(nameof(PlayerSpawnEnd), RpcTarget.All);
 
     }
@@ -179,7 +179,9 @@ public class GameManager : MonoBehaviourPunCallbacks, IPunObservable
         isGameEnd = true;
         ObjectPool.Instance.ResetPool();
     }
-   public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+
+
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
         throw new System.NotImplementedException();
     }
