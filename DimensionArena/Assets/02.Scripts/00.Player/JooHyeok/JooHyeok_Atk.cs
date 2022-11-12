@@ -22,6 +22,8 @@ namespace PlayerSpace
         private const int attackCnt = 2;
         private const int passiveAttackCnt = 3;
 
+        [SerializeField] private GameObject passiveEffect;
+
         protected override void InitalizeAtkInfo()
         {
             atkInfo = new PlayerAtkInfo(6.0f, 3, 2.25f);
@@ -39,6 +41,7 @@ namespace PlayerSpace
             else if (!isAttack)
             {
                 ++passiveCnt;
+
                 StartAttackCoroutine();
             }
             // Animation Temp
@@ -97,8 +100,7 @@ namespace PlayerSpace
             WaitForSeconds burstDelay = new WaitForSeconds(burst_delay);
             WaitForSeconds attackDelay = new WaitForSeconds(attack_delay);
 
-            
-
+           
             for (int i = 0; i < atkCnt; ++i)
             {
                 for (int j = 0; j < projectileCount; ++j)
@@ -110,6 +112,11 @@ namespace PlayerSpace
                 }
                 yield return attackDelay;
             }
+
+            if (passiveCnt == 2)
+                passiveEffect.SetActive(true);
+            else if (passiveCnt == 0)
+                passiveEffect.SetActive(false);
 
             photonView.RPC("EndAttack", controller, shooter);
         }

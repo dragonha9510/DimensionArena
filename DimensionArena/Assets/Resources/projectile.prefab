@@ -99,8 +99,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ownerID: 
-  ultimatePoint: 10
-  damage: 12
+  ultimatePoint: 9
+  damage: 70
   hitPrefab: {fileID: 8510100222392572620, guid: 537e2b51dc19b894fb78eb5d49b719da,
     type: 3}
   rigid: {fileID: -4022601170890094833}
