@@ -133,12 +133,12 @@ namespace ManagerSpace
             switch (mode)
             {
                 case GAMEMODE.Survival:
-                    for (int i = 0; i < PlayerInfoManager.Instance.PlayerInfoArr.Length; ++i)
+                    foreach(var info in PlayerInfoManager.Instance.DicPlayerInfo.Values)
                     {
-                        PlayerInfoManager.Instance.PlayerInfoArr[i].EDeadPlayer += InformDeadPlayer;
+                        info.EDeadPlayer += InformDeadPlayer;
 
-                        if (PlayerInfoManager.Instance.PlayerObjectArr[i].name == PhotonNetwork.NickName)
-                            PlayerInfoManager.Instance.PlayerInfoArr[i].EDisActivePlayer += ResutUIOn;
+                        if (info.ID.Equals(PhotonNetwork.NickName))
+                            info.EDisActivePlayer += ResutUIOn;
                     }
                     break;
                 case GAMEMODE.FreeForAll:
@@ -199,7 +199,7 @@ namespace ManagerSpace
             switch (mode)
             {
                 case GAMEMODE.Survival:
-                    dynamicContent = PlayerInfoManager.Instance.PlayerInfoArr.Length;
+                    dynamicContent = PlayerInfoManager.Instance.DicPlayer.Count;
                     dynamicText.text = dynamicContent.ToString();
                     break;
                 case GAMEMODE.FreeForAll:
@@ -314,11 +314,8 @@ namespace ManagerSpace
 
         public void ResutUIOn()
         {
-            if (PlayerInfoManager.Instance.SurvivalCount == 1)
-                winLoseText.text = "You Win!";
-            else
-                winLoseText.text = "You Die";
 
+            winLoseText.text = IngameDataManager.Instance.OwnerData.Rank.Equals(1) ? "You Win!" : "You Die";
             GameEndGroup.SetActive(true);
             CanvasGroup group = GameEndGroup.GetComponent<CanvasGroup>();
             StartCoroutine(CanvasAlphaOn(group));

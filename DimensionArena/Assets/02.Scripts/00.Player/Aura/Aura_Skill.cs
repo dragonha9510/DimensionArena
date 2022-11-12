@@ -36,6 +36,7 @@ namespace PlayerSpace
         {
             projectileRange = FOV.ViewRadius;
             auraAnimator.SetBool("SkillUse", true);
+            
             SetMovePrevSkill();
         }
 
@@ -66,7 +67,7 @@ namespace PlayerSpace
             {
                 Quaternion skillRot = FOV.transform.rotation;
                 skillRot.eulerAngles = new Vector3(skillRot.eulerAngles.x, skillRot.eulerAngles.y - (FOV.viewAngle / 2), skillRot.eulerAngles.z);
-                for (int i = 0; i < 3; ++i)
+                for (int i = 0; i < rayCount; ++i)
                 {
                     photonView.RPC(nameof(CreateSkillProjectile), RpcTarget.MasterClient, skillPrefab.name, transform.position + transform.forward * 0.2f, skillRot);
                     skillRot.eulerAngles = new Vector3(skillRot.eulerAngles.x, skillRot.eulerAngles.y + (FOV.viewAngle / 2), skillRot.eulerAngles.z);
@@ -107,7 +108,7 @@ namespace PlayerSpace
                 // Projectile »ý¼º
                 Quaternion skillRot = FOV.transform.rotation;
                 skillRot.eulerAngles = new Vector3(skillRot.eulerAngles.x, skillRot.eulerAngles.y - (FOV.viewAngle / 2), skillRot.eulerAngles.z);
-                for (int i = 0; i < 3; ++i)
+                for (int i = 0; i < rayCount; ++i)
                 {
                     GameObject tempSkill1 = Instantiate(skillPrefab, transform.position + transform.forward * 0.2f, skillRot);
                     skillRot.eulerAngles = new Vector3(skillRot.eulerAngles.x, skillRot.eulerAngles.y + (FOV.viewAngle / 2), skillRot.eulerAngles.z);
@@ -125,7 +126,7 @@ namespace PlayerSpace
 
                 for (int i = 0; i < rayCount; ++i)
                 {
-                    if (true == Physics.Raycast(ray, out rayHit,FOV.ViewRadius) && rayHit.transform.gameObject != owner && false == hitedObj.Contains(rayHit.transform.gameObject))
+                    if (true == Physics.Raycast(ray, out rayHit,FOV.ViewRadius,LayerMask.NameToLayer("Player")) && rayHit.transform.gameObject != owner && false == hitedObj.Contains(rayHit.transform.gameObject))
                     {
                         hitedObj.Add(rayHit.transform.gameObject);
                         Debug.Log("ºÎ‹HÈû");

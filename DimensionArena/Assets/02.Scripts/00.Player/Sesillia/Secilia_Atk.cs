@@ -72,13 +72,14 @@ namespace PlayerSpace
             WaitForSeconds attackDelay = new WaitForSeconds(attack_delay);
 
             photonView.RPC(nameof(SubMagazine), controller, shooter);
-            float offset;
+            //float offset;
 
             photonView.RPC(nameof(SetAttackTrigger), RpcTarget.All);
             for (int i = 0; i < 3; ++i)
             {
-                offset = (i % 2 == 0) ? 0.3f : -0.3f;
-                projectile = PhotonNetwork.Instantiate("SA_Projectile", shooterPosition.position + (Vector3.right * offset) + (Vector3.up * 0.5f), Quaternion.LookRotation(shooterAttackDir, Vector3.up));
+                // offset = (i % 2 == 0) ? 0.3f : -0.3f;
+                //projectile = PhotonNetwork.Instantiate("SA_Projectile", shooterPosition.position + (Vector3.right * offset) + (Vector3.up * 0.5f), Quaternion.LookRotation(shooterAttackDir, Vector3.up));
+                projectile = PhotonNetwork.Instantiate("SA_Projectile", shooterPosition.position + (Vector3.up * 0.5f), Quaternion.LookRotation(shooterAttackDir, Vector3.up));
                 projectile.GetComponent<Projectile>().ownerID = shooter;
 
                 yield return attackDelay;
@@ -138,6 +139,7 @@ namespace PlayerSpace
 
         public override void AutoAttack()
         {
+            /*
             if (PhotonNetwork.InRoom)
             {
                 photonView.RPC(nameof(MasterCreateProjectile), RpcTarget.MasterClient
@@ -151,7 +153,8 @@ namespace PlayerSpace
                                                     , transform.rotation
                                                     , autoAtk.targetPos - transform.position
                                                     , gameObject.name));
-        }
+        */
+            }
 
         protected override void InitalizeAtkInfo()
         {

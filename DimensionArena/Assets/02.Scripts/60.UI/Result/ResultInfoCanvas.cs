@@ -22,7 +22,16 @@ public class ResultInfoCanvas : MonoBehaviour
     {
         InGamePlayerData data = IngameDataManager.Instance.OwnerData;
 
-        rankText.text = data.Rank.ToString();
+        if(data.Rank == 1)
+            rankText.text = data.Rank.ToString() + "st!";
+        else if(data.Rank == 2)
+            rankText.text = data.Rank.ToString() + "nd!";
+        else if (data.Rank == 3)
+            rankText.text = data.Rank.ToString() + "rd!";
+        else
+            rankText.text = data.Rank.ToString() + "th!";
+
+
         killText.text = data.Kill.ToString();
         damageText.text = data.Damage.ToString();
         surviveText.text = data.LiveTime.ToString();

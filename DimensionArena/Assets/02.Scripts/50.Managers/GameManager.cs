@@ -4,9 +4,7 @@ using Photon.Pun;
 using UnityEngine;
 using ExitGames.Client.Photon;
 using ManagerSpace;
-using PlayerSpace;
-using UnityEngine.UI;
-using TMPro;
+using System.Linq;
 public enum GAMEMODE
 {
     Survival,
@@ -131,7 +129,8 @@ public class GameManager : MonoBehaviourPunCallbacks, IPunObservable
 
     IEnumerator SpawnPointRegisterPlayer()
     {
-        GameObject[] players = PlayerInfoManager.Instance.PlayerObjectArr;
+        
+        GameObject[] players = PlayerInfoManager.Instance.DicPlayer.Values.ToArray();
 
         int idx;
 

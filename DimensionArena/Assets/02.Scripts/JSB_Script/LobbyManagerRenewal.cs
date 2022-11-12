@@ -352,7 +352,10 @@ public class LobbyManagerRenewal : MonoBehaviourPunCallbacks
         ++this.inGameReadyPlayer;
 
     }
-
+    [PunRPC]
+    public void ExitGameAndMigration()
+    {
+    }
     public void MinusLeastStartPlayer()
     {
         --leastStartPlayer;
