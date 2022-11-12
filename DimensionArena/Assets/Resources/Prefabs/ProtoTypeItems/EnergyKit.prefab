@@ -107,14 +107,14 @@ MonoBehaviour:
   info:
     itemNumber: item300
     item_ID: EnergyKit
-    achieveRange: 100
+    achieveRange: 1
     statusDuration: 0
     attackNesting: 0
     attackIncrement: 0
     speedAmount: 0
     healthAmount: 0
     shieldAmount: 0
-    skillRecovery: 0
+    skillRecovery: 100
   boingPower: 4
   decreasePower: 0.4
   rotation: 100
@@ -5204,11 +5204,11 @@ Transform:
   m_LocalScale: {x: 0.15, y: 0.15, z: 0.15}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 4768594367326618774}
+  - {fileID: 2567769644265277281}
   m_Father: {fileID: 3849273736481854661}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &5351382444667201454
+--- !u!1 &8926773267032733118
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5216,9 +5216,9 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4768594367326618774}
-  - component: {fileID: 799255436606315342}
-  - component: {fileID: 1632186518800354443}
+  - component: {fileID: 2567769644265277281}
+  - component: {fileID: 7987959528199502654}
+  - component: {fileID: 6482201147276508745}
   m_Layer: 10
   m_Name: Thunder
   m_TagString: Untagged
@@ -5226,13 +5226,13 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4768594367326618774
+--- !u!4 &2567769644265277281
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5351382444667201454}
+  m_GameObject: {fileID: 8926773267032733118}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -5241,21 +5241,21 @@ Transform:
   m_Father: {fileID: 4652029201515519336}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &799255436606315342
+--- !u!33 &7987959528199502654
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5351382444667201454}
+  m_GameObject: {fileID: 8926773267032733118}
   m_Mesh: {fileID: 4300000, guid: d68560c914d59e24c9e15c1f9207a7eb, type: 3}
---- !u!23 &1632186518800354443
+--- !u!23 &6482201147276508745
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5351382444667201454}
+  m_GameObject: {fileID: 8926773267032733118}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1

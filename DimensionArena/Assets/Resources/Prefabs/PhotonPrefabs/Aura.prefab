@@ -8607,7 +8607,7 @@ MonoBehaviour:
   direction: {x: 0, y: 0, z: 0}
   skillDirection: {x: 0, y: 0, z: 0}
   maxRange: 5
-  skillPrefab: {fileID: 4364861999203606394, guid: bbaf002db5fac8646ba41880bcf4be6a,
+  skillPrefab: {fileID: 4603079245800519544, guid: 87532811ca9c05e49ba6066ad8d0f28e,
     type: 3}
   projectileSpeed: 15
   projectileRange: 10
