@@ -314,7 +314,8 @@ namespace ManagerSpace
 
         public void ResutUIOn()
         {
-            winLoseText.text = PlayerInfoManager.Instance.SurvivalCount.Equals(1) ? "You Win!" : "You Die";
+
+            winLoseText.text = IngameDataManager.Instance.OwnerData.Rank.Equals(1) ? "You Win!" : "You Die";
             GameEndGroup.SetActive(true);
             CanvasGroup group = GameEndGroup.GetComponent<CanvasGroup>();
             StartCoroutine(CanvasAlphaOn(group));

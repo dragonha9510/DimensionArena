@@ -81,10 +81,9 @@ namespace ManagerSpace
         public class StringGameobjectDictionary
             : SerializableDictionary<string, GameObject> { }
 
-
-
         [SerializeField] private StringPlayerInfoDictionary dicPlayerInfo;
         [SerializeField] private StringGameobjectDictionary dicPlayer;
+
         int length;
         public int SurvivalCount => length;
         private Queue<Buf> bufs = new Queue<Buf>();
@@ -277,7 +276,6 @@ namespace ManagerSpace
             return (int)damage;
         }
 
-
         public void GetShield(string target, float amount)
         {
             PlayerInfo temp;
@@ -285,6 +283,7 @@ namespace ManagerSpace
                 if(temp.IsAlive)
                     temp.GetShield(amount);
         }
+
         // 아이템을 위한 오버로딩
         public void GetShield(string target, float amount, float durationtime)
         {
@@ -393,25 +392,17 @@ namespace ManagerSpace
                 {
                     switch (inBuf.itemType)
                     {
-                        case ITEM.ITEM_MEDICKIT:
-                            break;
-                        case ITEM.ITEM_POWERKIT:
-                            break;
                         case ITEM.ITEM_SHIELDKIT:
                             if (dicPlayerInfo.TryGetValue(inBuf.playerName, out temp))
-                                temp.SpeedDown(inBuf.amount);
+                                temp.DamageShield(inBuf.amount);
                             break;
                         case ITEM.ITEM_SPEEDKIT:
                             if (dicPlayerInfo.TryGetValue(inBuf.playerName, out temp))
                                 temp.SpeedDown(inBuf.amount);
                             break;
-                        case ITEM.ITEM_ENERGYKIT:
-                            break;
                         case ITEM.ITEM_DEMENSIONKIT:
                             if (dicPlayerInfo.TryGetValue(inBuf.playerName, out temp))
                                 temp.SpeedDown(inBuf.amount);
-                            break;
-                        case ITEM.ITEM_END:
                             break;
                     }
                     
@@ -450,32 +441,30 @@ namespace ManagerSpace
                 temp.DmgDown(amount);
             }
         }
-
-
         public void DiePlayer()
         { 
             length--;
 
             if (length <= 1)
             {
-
-                foreach(var info in dicPlayerInfo)
+                foreach(var info in dicPlayerInfo.Values)
                 {
-                    if(info.Value.IsAlive)
+                    if(info.IsAlive)
                     {
                         GameObject player;
-                        if(dicPlayer.TryGetValue(info.Value.ID, out player))
+                        if(dicPlayer.TryGetValue(info.ID, out player))
                         {
                             if(player.GetComponent<PhotonView>().IsMine)
                             {
-                                IngameDataManager.Instance.Data.GetValueOrDefault(info.Value.ID).ResultData(false);
+                                IngameDataManager.Instance.Data.GetValueOrDefault(info.ID).ResultData(false);
                                 InGameUIManager.Instance.ResutUIOn();
                             }
                         }
-
                     }
                 }
             }
         }
+
+
     }
 }
