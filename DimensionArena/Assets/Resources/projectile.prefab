@@ -100,13 +100,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ownerID: 
   ultimatePoint: 10
-  damage: 12
+  damage: 70
   hitPrefab: {fileID: 8510100222392572620, guid: 537e2b51dc19b894fb78eb5d49b719da,
     type: 3}
   rigid: {fileID: -4022601170890094833}
   originPos: {x: 0, y: 0, z: 0}
   range: 6
-  speed: 5
+  speed: 8
 --- !u!114 &-5173306115150662032
 MonoBehaviour:
   m_ObjectHideFlags: 0

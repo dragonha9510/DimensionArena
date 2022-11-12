@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Linq;
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
@@ -29,12 +30,12 @@ namespace ManagerSpace
             kill++;
         }
 
-        public void ResultData(int rank, bool isDead)
+        public void ResultData(bool isDead)
         {
             if(isDead)
                 death++;
-            
-            this.rank = rank;
+
+            rank =  PlayerInfoManager.Instance.SurvivalCount;
             liveTime = IngameDataManager.Instance.CurTime;
             liveTime *= 100;
             liveTime = Mathf.Floor(liveTime) * 0.01f;
@@ -110,7 +111,7 @@ namespace ManagerSpace
         {
             data = new Dictionary<string, InGamePlayerData>();
 
-            GameObject[] players = PlayerInfoManager.Instance.PlayerObjectArr;
+            GameObject[] players = PlayerInfoManager.Instance.DicPlayer.Values.ToArray();
 
             for (int i = 0; i < players.Length; ++i)
             {

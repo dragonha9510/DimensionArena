@@ -1,9 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 using PlayerSpace;
-
 namespace ManagerSpace
 {
     public enum ENVIROMENT
@@ -56,10 +56,8 @@ namespace ManagerSpace
 
         public Transform getPlayerTransform(string name)
         {
-            if (playerObjectArr == null)
-                return null;
 
-            foreach (GameObject obj in playerObjectArr)
+            foreach (GameObject obj in dicPlayer.Values)
             {
                 if (obj.name.Equals(name))
                     return obj.transform;
@@ -75,65 +73,24 @@ namespace ManagerSpace
         /// >>>>>>>>>>>>>>>>>>>>>>>>>>
 
         #region Add Player to Memory Region With Property
+        [Serializable]
+        public class StringPlayerInfoDictionary
+            : SerializableDictionary<string, PlayerInfo> { }
 
-        [SerializeField] private GameObject[] playerObjectArr;
-        [SerializeField] private PlayerInfo[] playerInfoArr;
-        [SerializeField] private Dictionary<string, PlayerInfo> dicPlayerInfo;
-        [SerializeField] private Dictionary<string, GameObject> dicPlayer;
+        [Serializable]
+        public class StringGameobjectDictionary
+            : SerializableDictionary<string, GameObject> { }
+
+
+
+        [SerializeField] private StringPlayerInfoDictionary dicPlayerInfo;
+        [SerializeField] private StringGameobjectDictionary dicPlayer;
         int length;
         public int SurvivalCount => length;
         private Queue<Buf> bufs = new Queue<Buf>();
-
-
-        public GameObject[] PlayerObjectArr
-        {
-            get
-            {
-                if (NullCheck.IsNullOrEmpty(playerObjectArr))
-                {
-                    playerObjectArr = GameObject.FindGameObjectsWithTag("Player");
-
-                    if (NullCheck.IsNullOrEmpty(playerInfoArr))
-                    {
-                        GameObject[] players = playerObjectArr;
-                        playerInfoArr = new PlayerInfo[players.Length];
-                        dicPlayerInfo = new Dictionary<string, PlayerInfo>();
-                        dicPlayer = new Dictionary<string, GameObject>();
-
-                        for (int i = 0; i < players.Length; ++i)
-                        {
-                            //리스트 등록, 딕셔너리 등록
-                            playerInfoArr[i] = players[i].GetComponent<Player>().Info;
-                            DicPlayerInfo.Add(players[i].name, playerInfoArr[i]);
-                            DicPlayer.Add(players[i].name, players[i]);
-
-                        }
-                    }
-                }
-
-                return playerObjectArr;
-            }
-        }
-
-
-        public Dictionary<string, PlayerInfo> DicPlayerInfo => dicPlayerInfo;
-        public Dictionary<string, GameObject> DicPlayer => dicPlayer;
-
-
-
-        public PlayerInfo[] PlayerInfoArr
-        {
-            get
-            {
-                if (NullCheck.IsNullOrEmpty(playerObjectArr))
-                {
-                    GameObject[] players = PlayerObjectArr;
-                    //생성 위임
-                }
-
-                return playerInfoArr;
-            }
-        }
+       
+        public StringPlayerInfoDictionary DicPlayerInfo => dicPlayerInfo;
+        public StringGameobjectDictionary DicPlayer => dicPlayer;
 
         #endregion
 
@@ -155,22 +112,15 @@ namespace ManagerSpace
         public void RegisterforMasterClient()
         {
             GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
-            playerInfoArr = new PlayerInfo[players.Length];
-            playerObjectArr = new GameObject[players.Length];
-            dicPlayerInfo = new Dictionary<string, PlayerInfo>();
-            dicPlayer = new Dictionary<string, GameObject>();
-
-            length = PlayerObjectArr.Length;
+            dicPlayerInfo = new StringPlayerInfoDictionary();
+            dicPlayer = new StringGameobjectDictionary();
+            length = players.Length;
 
             for (int i = 0; i < players.Length; ++i)
             {
                 //리스트 등록, 딕셔너리 등록
-                playerObjectArr[i] = players[i];
-                playerInfoArr[i] = players[i].GetComponent<Player>().Info;
-                playerInfoArr[i].EDisActivePlayer += DiePlayer;
-
-                DicPlayerInfo.Add(players[i].name, playerInfoArr[i]);
-                DicPlayer.Add(players[i].name, players[i]);
+                dicPlayerInfo.Add(new SerializableDictionary<string, PlayerInfo>.Pair(players[i].name, players[i].GetComponent<Player>().Info));
+                DicPlayer.Add(new SerializableDictionary<string, GameObject>.Pair(players[i].name, players[i]));
             }
 
         }
@@ -185,7 +135,11 @@ namespace ManagerSpace
 
         public void CurHpIncrease(string target, float amount)
         {
-            dicPlayerInfo.GetValueOrDefault(target).Heal(amount);
+            PlayerInfo temp;
+            if(dicPlayerInfo.TryGetValue(target, out temp))
+            {
+                temp.Heal(amount);
+            }
         }
 
 
@@ -253,36 +207,38 @@ namespace ManagerSpace
         //JSB
         public void DeadCheckCallServer(string killerId, string targetId)
         {
-            photonView.RPC("HealthCheck", RpcTarget.All, killerId, targetId);
+            photonView.RPC(nameof(HealthCheck), RpcTarget.All, killerId, targetId);
         }
 
         [PunRPC]
         private void HealthCheck(string killerId, string targetId)
         {
-            GameObject target = null;
-            int rank = 0;
+            GameObject target;
+            if (!DicPlayer.TryGetValue(targetId, out target))
+                return;
 
-            Debug.Log(playerObjectArr.Length);
-
-            foreach(var temp in playerObjectArr)
-            {
-                if(temp.name.Equals(targetId))
-                    target = temp;
-
-                if (temp.activeInHierarchy)
-                    rank++;
-            }
-            
             PlayerInfo targetInfo;
-            PlayerInfo killerInfo;
+                if (!DicPlayerInfo.TryGetValue(targetId, out targetInfo))
+                    return;
 
-            DicPlayerInfo.TryGetValue(targetId, out targetInfo);
-            DicPlayerInfo.TryGetValue(killerId, out killerInfo);
+            PlayerInfo killerInfo;
+                DicPlayerInfo.TryGetValue(killerId, out killerInfo);
+
 
             if(target.activeInHierarchy && targetInfo.CurHP <= 0)
             {
+                //GameData Set
+                InGamePlayerData data;
+
+                if (IngameDataManager.Instance.Data.TryGetValue(targetId, out data))
+                    data.ResultData(true);
+
+
+                if (IngameDataManager.Instance.Data.TryGetValue(killerId, out data))
+                    data.KillPoint();
+
                 //환경에 의해 사망했을 경우
-                if(killerInfo == null)
+                if(null == killerInfo)
                 {
                     if (killerId.Equals("MagneticField"))
                     {
@@ -299,15 +255,6 @@ namespace ManagerSpace
                     targetInfo.PlayerDie(killerInfo.Type, killerId);                
                 }
 
-                //GameData Set
-                InGamePlayerData data;
-
-                if (IngameDataManager.Instance.Data.TryGetValue(targetId, out data))
-                    data.ResultData(rank, true);
-
-
-                if (IngameDataManager.Instance.Data.TryGetValue(killerId, out data))
-                    data.KillPoint();
             }
         }
       
@@ -333,12 +280,25 @@ namespace ManagerSpace
 
         public void GetShield(string target, float amount)
         {
-            dicPlayerInfo.GetValueOrDefault(target).GetShield(amount);
+            PlayerInfo temp;
+            if(dicPlayerInfo.TryGetValue(target, out temp))
+                if(temp.IsAlive)
+                    temp.GetShield(amount);
         }
         // 아이템을 위한 오버로딩
         public void GetShield(string target, float amount, float durationtime)
         {
-            dicPlayerInfo.GetValueOrDefault(target).GetShield(amount);
+            PlayerInfo temp;
+
+            if (dicPlayerInfo.TryGetValue(target, out temp))
+            {
+                Debug.Log(temp.IsAlive);
+                if (temp.IsAlive)
+                    temp.GetShield(amount);        
+            }
+            else
+                return;
+
             ItemEffectAdd(target,durationtime,amount, ITEM.ITEM_SHIELDKIT);
         }
 
@@ -421,13 +381,15 @@ namespace ManagerSpace
 
         private void FixedUpdate()
         {
+            PlayerInfo temp;
+
             if (0 == bufs.Count || !PhotonNetwork.IsMasterClient)
                 return;
+
             foreach(Buf inBuf in bufs)
-            {
-                Debug.Log("아이템 지속시간 감속중.. 아이템 유형 : " + inBuf.itemType);
+            {          
                 inBuf.durationTime -= Time.fixedDeltaTime;
-                if (inBuf.durationTime < 0)
+                if (inBuf.durationTime <= 0)
                 {
                     switch (inBuf.itemType)
                     {
@@ -436,15 +398,18 @@ namespace ManagerSpace
                         case ITEM.ITEM_POWERKIT:
                             break;
                         case ITEM.ITEM_SHIELDKIT:
-                            dicPlayerInfo.GetValueOrDefault(inBuf.playerName).DamageShield(inBuf.amount);
+                            if (dicPlayerInfo.TryGetValue(inBuf.playerName, out temp))
+                                temp.SpeedDown(inBuf.amount);
                             break;
                         case ITEM.ITEM_SPEEDKIT:
-                            dicPlayerInfo.GetValueOrDefault(inBuf.playerName).SpeedDown(inBuf.amount);
+                            if (dicPlayerInfo.TryGetValue(inBuf.playerName, out temp))
+                                temp.SpeedDown(inBuf.amount);
                             break;
                         case ITEM.ITEM_ENERGYKIT:
                             break;
                         case ITEM.ITEM_DEMENSIONKIT:
-                            dicPlayerInfo.GetValueOrDefault(inBuf.playerName).SpeedDown(inBuf.amount);
+                            if (dicPlayerInfo.TryGetValue(inBuf.playerName, out temp))
+                                temp.SpeedDown(inBuf.amount);
                             break;
                         case ITEM.ITEM_END:
                             break;
@@ -468,38 +433,49 @@ namespace ManagerSpace
 
         public void DmgUp(string target, float amount)
         {
-            DicPlayerInfo.GetValueOrDefault(target).DmgUp(amount);
+            PlayerInfo temp;
+            if (dicPlayerInfo.TryGetValue(target, out temp))
+            {
+                temp.DmgUp(amount);
+            }
+
         }
 
         public void DmgDown(string target, float amount)
         {
-            DicPlayerInfo.GetValueOrDefault(target).DmgDown(amount);
-        }
+            PlayerInfo temp;
 
-
-        private void DiePlayer()
-        {
-            length--;
-
-            if (length.Equals(1))
+            if (dicPlayerInfo.TryGetValue(target, out temp))
             {
-                for (int i = 0; i < playerInfoArr.Length; ++i)
-                {
-                    if (playerInfoArr[i].CurHP > 0)
-                    {
-                        IngameDataManager.Instance.Data.GetValueOrDefault(playerObjectArr[i].name).ResultData(1, false);
-
-                        if (playerObjectArr[i].GetComponent<PhotonView>().IsMine)
-                        {
-                            InGameUIManager.Instance.ResutUIOn();
-                        }
-                    }
-                }
-
+                temp.DmgDown(amount);
             }
         }
 
 
+        public void DiePlayer()
+        { 
+            length--;
 
+            if (length <= 1)
+            {
+
+                foreach(var info in dicPlayerInfo)
+                {
+                    if(info.Value.IsAlive)
+                    {
+                        GameObject player;
+                        if(dicPlayer.TryGetValue(info.Value.ID, out player))
+                        {
+                            if(player.GetComponent<PhotonView>().IsMine)
+                            {
+                                IngameDataManager.Instance.Data.GetValueOrDefault(info.Value.ID).ResultData(false);
+                                InGameUIManager.Instance.ResutUIOn();
+                            }
+                        }
+
+                    }
+                }
+            }
+        }
     }
 }

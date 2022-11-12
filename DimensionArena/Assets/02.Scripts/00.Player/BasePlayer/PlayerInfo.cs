@@ -48,10 +48,9 @@ public class PlayerInfo
         curHP = maxHP;
         maxSkillPoint = maxSkillpt;
         curSkillPoint = 0;
-
         this.baseSpeed = speed;
         this.curSpeed = speed;
-
+        isAlive = true;
         additionalDmg = 1.0f;
     }
 
@@ -77,7 +76,7 @@ public class PlayerInfo
     [Header("Player State")]
     [SerializeField] private string id;
     [SerializeField] private UNITTYPE type;
-    [SerializeField] private bool isAlive;
+    [SerializeField] private bool isAlive = true;
 
     [Header("Player Stat")]
     [SerializeField] private float maxHP;

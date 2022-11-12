@@ -8672,7 +8672,7 @@ MonoBehaviour:
   info:
     id: 
     type: 0
-    isAlive: 0
+    isAlive: 1
     maxHP: 930
     curHP: 930
     curSkillPoint: 0

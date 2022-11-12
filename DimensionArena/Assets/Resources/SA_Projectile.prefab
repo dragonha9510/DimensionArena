@@ -38861,7 +38861,7 @@ SphereCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.4
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 0, z: 0.43}
 --- !u!114 &5502276047735977787
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -38880,8 +38880,8 @@ MonoBehaviour:
   hitPrefab: {fileID: 0}
   rigid: {fileID: 54270707880095282}
   originPos: {x: 0, y: 0, z: 0}
-  range: 1.8
-  speed: 20
+  range: 2
+  speed: 9
 --- !u!114 &-3505362623243112062
 MonoBehaviour:
   m_ObjectHideFlags: 0
