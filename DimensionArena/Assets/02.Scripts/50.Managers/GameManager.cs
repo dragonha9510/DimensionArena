@@ -34,8 +34,6 @@ public class GameManager : MonoBehaviourPunCallbacks, IPunObservable
     private bool isSpawnEnd;
     public bool IsSpawnEnd => isSpawnEnd;
 
-
-
     private static GameManager instance;
     public static GameManager Instance
     {

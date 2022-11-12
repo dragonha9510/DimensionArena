@@ -402,25 +402,14 @@ namespace ManagerSpace
             ItemEffectAdd(target , durationtime , amount , ITEM.ITEM_SPEEDKIT);
         }
 
-        public void SpeedDecrease(string owner, string target, float amount)
-        {
-            for (int i = 0; i < PlayerObjectArr.Length; ++i)
-            {
-                if (PlayerObjectArr[i].name == target)
-                {
-                    //playerInfoArr[i].owner.RPC("SpeedDown", RpcTarget.All, amount);
-                }
-            }
-        }
         public void SpeedDecrease(string target, float amount)
         {
-            for (int i = 0; i < PlayerObjectArr.Length; ++i)
-            {
-                if (PlayerObjectArr[i].name == target)
-                {
-                    //playerInfoArr[i].owner.RPC("SpeedDown", RpcTarget.All, amount);
-                }
-            }
+            PlayerInfo info;
+
+            if (!DicPlayerInfo.TryGetValue(target, out info))
+                return;
+
+            info.SpeedDown(amount);
         }
 
         /// <<<<<<<<<<<<<<<<<<<<<<<<<<
