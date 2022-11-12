@@ -625,6 +625,10 @@ MonoBehaviour:
   direction: {x: 0, y: 0, z: 0}
   attackDirection: {x: 0, y: 0, z: 0}
   tmpDirection: {x: 0, y: 0, z: 0}
+  atkLockSecond: 0.75
+  Skilling: 0
+  AtkToAtkDelaying: 0
+  AtkDelaying: 0
   projectileSpeed: 30
   atkDelay: 0.2
   dropDelay: 1
@@ -1872,6 +1876,21 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8470181645017657382, guid: 7766c49707403134ca396ddacf35e50d,
         type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8470181645017657382, guid: 7766c49707403134ca396ddacf35e50d,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8470181645017657382, guid: 7766c49707403134ca396ddacf35e50d,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8470181645017657382, guid: 7766c49707403134ca396ddacf35e50d,
+        type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -1977,12 +1996,17 @@ PrefabInstance:
     - target: {fileID: 8470181645017657382, guid: 7766c49707403134ca396ddacf35e50d,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8470181645017657382, guid: 7766c49707403134ca396ddacf35e50d,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.1
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8470181645017657382, guid: 7766c49707403134ca396ddacf35e50d,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8470181645017657382, guid: 7766c49707403134ca396ddacf35e50d,
         type: 3}
