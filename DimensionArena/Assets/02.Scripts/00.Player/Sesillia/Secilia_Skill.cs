@@ -52,7 +52,7 @@ namespace PlayerSpace
 
             //FirstStep
             transform.position = targetPos;
-            transform.LookAt(targetPos, Vector3.up);
+            transform.LookAt(targetDetect.Target.position, Vector3.up);
 
         }
     
