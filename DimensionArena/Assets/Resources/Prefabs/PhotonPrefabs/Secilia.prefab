@@ -497,6 +497,10 @@ MonoBehaviour:
   direction: {x: 0, y: 0, z: 0}
   attackDirection: {x: 0, y: 0, z: 0}
   tmpDirection: {x: 0, y: 0, z: 0}
+  atkLockSecond: 0.75
+  Skilling: 0
+  AtkToAtkDelaying: 0
+  AtkDelaying: 0
   projectileCount: 3
   projectileSpeed: 2
   attack_delay: 0.1
