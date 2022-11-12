@@ -6479,6 +6479,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   image: {fileID: 133230505}
   subName: {fileID: 104204040}
+  tmpLobbyState: {fileID: 0}
+  defaultSprite: {fileID: 0}
 --- !u!1 &1155121632
 GameObject:
   m_ObjectHideFlags: 0
@@ -7981,6 +7983,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 548734969123342012, guid: 6116ef1203ac84c4b9d804ff62a7a788,
+        type: 3}
+      propertyPath: sceneViewId
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5214311598086199943, guid: 6116ef1203ac84c4b9d804ff62a7a788,
+        type: 3}
+      propertyPath: sceneViewId
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5527182556833254776, guid: 6116ef1203ac84c4b9d804ff62a7a788,
         type: 3}
       propertyPath: m_Name
