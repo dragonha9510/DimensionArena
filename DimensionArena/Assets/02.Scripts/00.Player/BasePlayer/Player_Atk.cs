@@ -55,8 +55,19 @@ namespace PlayerSpace
 
         protected abstract void InitalizeAtkInfo();
 
+        [SerializeField] private float atkLockSecond = 0.75f;
+        public bool Skilling;
+        public void AttackLock()
+        {
+            StartCoroutine(AtkLockSeconds());
+        }
 
-
+        IEnumerator AtkLockSeconds()
+        {
+            Skilling = true;
+            yield return new WaitForSeconds(atkLockSecond);
+            Skilling = false;
+        }
 
         protected virtual void Start()
         {

@@ -53,7 +53,9 @@ public class AtkJoyStick : BaseJoyStick
             return;
         }
 
-        PlayerAttackRPC();
+        if (!player.Attack.Skilling)
+            PlayerAttackRPC();
+
         isDragging = false;
         base.OnEndDrag(eventData);
     }
@@ -72,6 +74,9 @@ public class AtkJoyStick : BaseJoyStick
             isDragging = false;
             return;
         }
+
+        if (player.Attack.Skilling)
+            return;
 
         player.Attack.AutoAttack();
     }
