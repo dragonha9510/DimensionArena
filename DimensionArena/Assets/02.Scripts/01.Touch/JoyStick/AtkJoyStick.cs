@@ -36,8 +36,6 @@ public class AtkJoyStick : BaseJoyStick
         player.Attack.AtkRangeMeshOnOff(true);
     }
 
-    private int iCnt = 0;
-
     public override void OnEndDrag(PointerEventData eventData)
     {
         /*Debug.Log(++iCnt + "Æ÷¿öµå");
