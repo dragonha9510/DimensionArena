@@ -56,7 +56,9 @@ namespace PlayerSpace
         protected abstract void InitalizeAtkInfo();
 
         [SerializeField] private float atkLockSecond = 0.75f;
-        public bool Skilling;
+        [HideInInspector] public bool Skilling;
+        [SerializeField] private float AtkToAtkDelaying = 0f;
+        [HideInInspector] public bool AtkDelaying;
         public void AttackLock()
         {
             StartCoroutine(AtkLockSeconds());
@@ -67,6 +69,18 @@ namespace PlayerSpace
             Skilling = true;
             yield return new WaitForSeconds(atkLockSecond);
             Skilling = false;
+        }
+
+        public void AttackDelayLock()
+        {
+            StartCoroutine(AtkDelaySeconds());
+        }
+
+        IEnumerator AtkDelaySeconds()
+        {
+            AtkDelaying = true;
+            yield return new WaitForSeconds(AtkToAtkDelaying);
+            AtkDelaying = false;
         }
 
         protected virtual void Start()

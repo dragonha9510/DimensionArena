@@ -53,9 +53,11 @@ public class AtkJoyStick : BaseJoyStick
             return;
         }
 
-        if (!player.Attack.Skilling)
+        if (!player.Attack.Skilling && !player.Attack.AtkDelaying)
+        {
+            player.Attack.AttackDelayLock();
             PlayerAttackRPC();
-
+        }
         isDragging = false;
         base.OnEndDrag(eventData);
     }
@@ -75,9 +77,10 @@ public class AtkJoyStick : BaseJoyStick
             return;
         }
 
-        if (player.Attack.Skilling)
+        if (player.Attack.Skilling || player.Attack.AtkDelaying)
             return;
 
+        player.Attack.AttackDelayLock();
         player.Attack.AutoAttack();
     }
 
