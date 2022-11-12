@@ -80,6 +80,7 @@ namespace PlayerSpace
                 ActSkill(attackdirection, magnitude);
         }
 
+
         public abstract void ActSkill(Vector3 attackdirection, float magnitude);
         public abstract void AutoSkill();
         protected IEnumerator LookAttackDirection(Vector3 attackDirection, float magnitude)

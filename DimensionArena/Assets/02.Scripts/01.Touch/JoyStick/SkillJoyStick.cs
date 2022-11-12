@@ -56,6 +56,7 @@ public class SkillJoyStick : BaseJoyStick
 
         if (skillImg.fillAmount.Equals(1.0f))
         {
+            player.Attack.AttackLock();
             isDragging = false;
             //방향, 거리
             player.Skill.UseSkill(player.Skill.direction, player.Skill.MaxRange * (player.Skill.direction.magnitude));
@@ -118,6 +119,8 @@ public class SkillJoyStick : BaseJoyStick
 
         if (!skillImg.fillAmount.Equals(1.0f))
             return;
+
+        player.Attack.AttackLock();
 
         Debug.Log("자동 스킬");
         // 자동공격 루틴 추가

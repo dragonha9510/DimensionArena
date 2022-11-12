@@ -43,6 +43,7 @@ namespace PlayerSpace
         {
             owner.CanDirectionChange = false;
             isAttack = true;
+            atkInfo.SubCost(atkInfo.ShotCost);
 
             if (PhotonNetwork.InRoom)
             {
@@ -58,9 +59,7 @@ namespace PlayerSpace
                                                     , transform.rotation
                                                     , attackDirection
                                                     , gameObject.name));
-
         }
-
 
 
         [PunRPC]
@@ -71,9 +70,7 @@ namespace PlayerSpace
             Transform shooterPosition = PlayerInfoManager.Instance.getPlayerTransform(shooter);
             WaitForSeconds attackDelay = new WaitForSeconds(attack_delay);
 
-            photonView.RPC(nameof(SubMagazine), controller, shooter);
             //float offset;
-
             photonView.RPC(nameof(SetAttackTrigger), RpcTarget.All);
             for (int i = 0; i < 3; ++i)
             {
@@ -89,40 +86,21 @@ namespace PlayerSpace
 
         private IEnumerator AttackCoroutineSingle(string shooter, Quaternion playerRotation, Vector3 shooterAttackDir, string ownerName)
         {
-            atkInfo.SubCost(atkInfo.ShotCost);
-
             GameObject projectile;
             WaitForSeconds attackDelay = new WaitForSeconds(attack_delay);
-            float right = 0.15f;
-            Vector3 offset = shooterAttackDir * 0.1f + (Vector3.up * 0.5f);
-            Vector3 position1 = transform.position + offset + transform.right * 0.15f;
-            Vector3 position2 = transform.position + offset + transform.right * -0.15f;
-            Vector3 pos;
-
-
+    
             AtkTrigger();
             for (int i = 0; i < 3; ++i)
             {
-                pos = i % 2 == 0 ? position1 : position2;
-                right = i % 2 == 0 ? 0.15f : -0.15f;
-                projectile = Instantiate(prefab_Projectile, pos, playerRotation);
-                projectile.GetComponent<Projectile>().ownerID = ownerName;
+                projectile = PhotonNetwork.Instantiate("SA_Projectile", transform.position + (Vector3.up * 0.5f), Quaternion.LookRotation(shooterAttackDir, Vector3.up));
+                projectile.GetComponent<Projectile>().ownerID = shooter;
+
                 yield return attackDelay;
             }
 
             isAttack = false;
             owner.CanDirectionChange = true;
         }
-
-
-
-        [PunRPC]
-        private void SubMagazine(string name)
-        {
-            if (gameObject.name == name)
-                atkInfo.SubCost(atkInfo.ShotCost);
-        }
-
 
         [PunRPC]
         private void EndAttack(string name)
@@ -135,26 +113,90 @@ namespace PlayerSpace
         }
 
 
-        
+
+        /// ======================================
+        /// 
+        /// AutoAtk Region
+        /// 
+        /// ======================================
+
 
         public override void AutoAttack()
         {
-            /*
-            if (PhotonNetwork.InRoom)
+            // 자동 공격 루틴 추가
+            if (atkInfo.CurCost < atkInfo.ShotCost)
+                WaitAttack();
+            else if (!isAttack)
+                StartCoroutine(LookAttackAutoDirection(true, (autoAtk.targetPos - transform.position)));
+        }
+
+        [PunRPC]
+        IEnumerator LookAttackAutoDirection(bool isServer, Vector3 autoDirection)
+        {
+
+            atkInfo.SubCost(atkInfo.ShotCost);
+
+            if (isRotation)
             {
-                photonView.RPC(nameof(MasterCreateProjectile), RpcTarget.MasterClient
-                                                             , gameObject.name
-                                                             , autoAtk.targetPos - transform.position
-                                                             , photonView.Controller
-                                                    );
+                autoDirection.Normalize();
+
+                Vector3 forward = Vector3.Slerp(transform.forward,
+                    autoDirection, rotationSpeed * Time.deltaTime / Vector3.Angle(transform.forward, direction));
+
+                while (Vector3.Angle(autoDirection, transform.forward) >= 5)
+                {
+                    yield return null;
+                    forward = Vector3.Slerp(transform.forward,
+                    autoDirection, rotationSpeed * Time.deltaTime / Vector3.Angle(transform.forward, autoDirection));
+
+                    transform.LookAt(transform.position + forward);
+                }
+            }
+
+            if (PhotonNetwork.InRoom)
+            {          
+                photonView.RPC(nameof(CreateAutoProjectile), RpcTarget.MasterClient, true, autoDirection);
             }
             else
-                StartCoroutine(AttackCoroutineSingle(null
-                                                    , transform.rotation
-                                                    , autoAtk.targetPos - transform.position
-                                                    , gameObject.name));
-        */
+                StartCoroutine(CreateAutoProjectile(false, autoDirection));
+        }
+
+        [PunRPC]
+        public IEnumerator CreateAutoProjectile(bool isServer, Vector3 autoDirection)
+        {
+            owner.CanDirectionChange = false;
+            isAttack = true;
+            photonView.RPC(nameof(SetAttackTrigger), RpcTarget.All);
+
+            GameObject projectile;
+            autoDirection.Normalize();
+
+            // Server
+            if (isServer)
+            {
+                photonView.RPC(nameof(SetAttackTrigger), RpcTarget.All);
+                for (int i = 0; i < 3; ++i)
+                {
+                    projectile = PhotonNetwork.Instantiate("SA_Projectile", transform.position + (Vector3.up * 0.5f), Quaternion.LookRotation(autoDirection, Vector3.up));
+                    projectile.GetComponent<Projectile>().ownerID = this.gameObject.name;
+                    yield return new WaitForSeconds(attack_delay);
+                }
             }
+            else
+            {
+                SetAttackTrigger();
+                for (int i = 0; i < 3; ++i)
+                {
+                    projectile = Instantiate(prefab_Projectile, transform.position + (Vector3.up * 0.5f), Quaternion.LookRotation(autoDirection, Vector3.up));
+                    projectile.GetComponent<Projectile>().ownerID = this.gameObject.name;
+                    yield return new WaitForSeconds(attack_delay);
+                }
+            }
+          
+
+            isAttack = false;
+            owner.CanDirectionChange = true;
+        }
 
         protected override void InitalizeAtkInfo()
         {

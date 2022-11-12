@@ -36,8 +36,6 @@ public class AtkJoyStick : BaseJoyStick
         player.Attack.AtkRangeMeshOnOff(true);
     }
 
-    private int iCnt = 0;
-
     public override void OnEndDrag(PointerEventData eventData)
     {
         /*Debug.Log(++iCnt + "Æ÷¿öµå");
@@ -53,7 +51,11 @@ public class AtkJoyStick : BaseJoyStick
             return;
         }
 
-        PlayerAttackRPC();
+        if (!player.Attack.Skilling && !player.Attack.AtkDelaying)
+        {
+            player.Attack.AttackDelayLock();
+            PlayerAttackRPC();
+        }
         isDragging = false;
         base.OnEndDrag(eventData);
     }
@@ -73,6 +75,10 @@ public class AtkJoyStick : BaseJoyStick
             return;
         }
 
+        if (player.Attack.Skilling || player.Attack.AtkDelaying)
+            return;
+
+        player.Attack.AttackDelayLock();
         player.Attack.AutoAttack();
     }
 

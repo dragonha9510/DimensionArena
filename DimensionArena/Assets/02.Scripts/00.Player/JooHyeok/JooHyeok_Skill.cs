@@ -106,7 +106,7 @@ public class JooHyeok_Skill : Player_Skill
         if (isRotation)
             StartCoroutine(LookAutoAttackDirection(skillDirection, magnitude));
         else
-            AutoSkill();
+            ActSkill(skillDirection, magnitude);
     }
 
     protected IEnumerator LookAutoAttackDirection(Vector3 attackDirection, float magnitude)

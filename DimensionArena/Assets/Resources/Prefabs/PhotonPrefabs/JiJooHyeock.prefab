@@ -770,6 +770,10 @@ MonoBehaviour:
   direction: {x: 0, y: 0, z: 0}
   attackDirection: {x: 0, y: 0, z: 0}
   tmpDirection: {x: 0, y: 0, z: 0}
+  atkLockSecond: 0.75
+  Skilling: 0
+  AtkToAtkDelaying: 0
+  AtkDelaying: 0
   projectileCount: 3
   projectileSpeed: 8
   burst_delay: 0.1
@@ -812,7 +816,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 112
+  m_Constraints: 116
   m_CollisionDetection: 0
 --- !u!136 &2737819322045720806
 CapsuleCollider:
@@ -1945,6 +1949,21 @@ PrefabInstance:
       propertyPath: Additional
       value: 
       objectReference: {fileID: 6012048157382810618}
+    - target: {fileID: 3030477761243810811, guid: 4dba30b2e19b7214994774c8d4ea37d8,
+        type: 3}
+      propertyPath: AvartarRender.Array.size
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 3030477761243810811, guid: 4dba30b2e19b7214994774c8d4ea37d8,
+        type: 3}
+      propertyPath: AvartarRender.Array.data[2]
+      value: 
+      objectReference: {fileID: 4609760089539697886}
+    - target: {fileID: 3030477761243810811, guid: 4dba30b2e19b7214994774c8d4ea37d8,
+        type: 3}
+      propertyPath: AvartarRender.Array.data[6]
+      value: 
+      objectReference: {fileID: 211539211188975198}
     - target: {fileID: 7369448170708576204, guid: 4dba30b2e19b7214994774c8d4ea37d8,
         type: 3}
       propertyPath: m_RootOrder
@@ -2007,6 +2026,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4dba30b2e19b7214994774c8d4ea37d8, type: 3}
+--- !u!23 &211539211188975198 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 8578150037936193353, guid: 4dba30b2e19b7214994774c8d4ea37d8,
+    type: 3}
+  m_PrefabInstance: {fileID: 8494984925417343255}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1413759780029268989 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7384373760136940266, guid: 4dba30b2e19b7214994774c8d4ea37d8,
@@ -2016,6 +2041,12 @@ GameObject:
 --- !u!4 &1414611701423156955 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7369448170708576204, guid: 4dba30b2e19b7214994774c8d4ea37d8,
+    type: 3}
+  m_PrefabInstance: {fileID: 8494984925417343255}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &4609760089539697886 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 5340450746658051529, guid: 4dba30b2e19b7214994774c8d4ea37d8,
     type: 3}
   m_PrefabInstance: {fileID: 8494984925417343255}
   m_PrefabAsset: {fileID: 0}

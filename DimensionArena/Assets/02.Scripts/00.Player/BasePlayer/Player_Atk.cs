@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 
+//임시로 넣은 경고 무시문
+#pragma warning disable CS0414
 
 namespace PlayerSpace
 {
@@ -55,8 +57,33 @@ namespace PlayerSpace
 
         protected abstract void InitalizeAtkInfo();
 
+        [SerializeField] private float atkLockSecond = 0.75f;
+        [HideInInspector] public bool Skilling;
+        [SerializeField] private float AtkToAtkDelaying = 0f;
+        [HideInInspector] public bool AtkDelaying;
+        public void AttackLock()
+        {
+            StartCoroutine(AtkLockSeconds());
+        }
 
+        IEnumerator AtkLockSeconds()
+        {
+            Skilling = true;
+            yield return new WaitForSeconds(atkLockSecond);
+            Skilling = false;
+        }
 
+        public void AttackDelayLock()
+        {
+            StartCoroutine(AtkDelaySeconds());
+        }
+
+        IEnumerator AtkDelaySeconds()
+        {
+            AtkDelaying = true;
+            yield return new WaitForSeconds(AtkToAtkDelaying);
+            AtkDelaying = false;
+        }
 
         protected virtual void Start()
         {
