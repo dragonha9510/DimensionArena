@@ -43,9 +43,7 @@ namespace PlayerSpace
 
         /// =============================
 
-        private string nickName;
-        public string NickName => nickName;
-
+ 
 
         //나중에 고칠것
         public bool CanDirectionChange { get; set; }
@@ -59,14 +57,10 @@ namespace PlayerSpace
             if (PhotonNetwork.InRoom)
             {
                 if (photonView.Owner != null)
-                {
-                    nickName = photonView.Owner.NickName;
-                    gameObject.name = nickName;
-                }
+                    gameObject.name = photonView.Owner.NickName;
             }
             else
             {
-                nickName = "Player" + gameObject.name;
                 gameObject.name = "Player" + gameObject.name;
             }
 
@@ -99,9 +93,9 @@ namespace PlayerSpace
                 SetToOwnerPlayer();
 
             //Add Event
+            Info.EDisActivePlayer += PlayerInfoManager.Instance.DiePlayer;
             Info.EDisActivePlayer += DisActiveAnimation;
             Info.EBattleStateOn += BattleStateProcess;
-
             bushRenderCheck = GetComponentInChildren<isHideOnBush>();
         }
 
@@ -136,7 +130,6 @@ namespace PlayerSpace
                 directionLocation.gameObject.SetActive(true);
                 directionLocation.position = transform.position + (direction * 1.25f);
             }
-
 
 
             animator.SetFloat("speed", direction.magnitude);
