@@ -8638,6 +8638,10 @@ MonoBehaviour:
   direction: {x: 0, y: 0, z: 0}
   attackDirection: {x: 0, y: 0, z: 0}
   tmpDirection: {x: 0, y: 0, z: 0}
+  atkLockSecond: 0.75
+  Skilling: 0
+  AtkToAtkDelaying: 0
+  AtkDelaying: 0
   animation_speed:
   - 1
   - 1
@@ -10821,7 +10825,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   owner: {fileID: 7309405340590815903}
-  viewAngle: 60
+  viewAngle: 180
   viewRadius: 5
   meshResolution: 0.5
   viewMeshFilter: {fileID: 7309405340823085356}

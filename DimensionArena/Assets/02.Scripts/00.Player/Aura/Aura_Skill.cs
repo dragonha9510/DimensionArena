@@ -65,12 +65,14 @@ namespace PlayerSpace
                 return;
             if (PhotonNetwork.InRoom)
             {
-                Quaternion skillRot = FOV.transform.rotation;
+                float correctionAngle = FOV.viewAngle / (rayCount - 1);
+                Debug.Log(skillDirection);
+                Quaternion skillRot = Quaternion.LookRotation(skillDirection,Vector3.up);
                 skillRot.eulerAngles = new Vector3(skillRot.eulerAngles.x, skillRot.eulerAngles.y - (FOV.viewAngle / 2), skillRot.eulerAngles.z);
                 for (int i = 0; i < rayCount; ++i)
                 {
                     photonView.RPC(nameof(CreateSkillProjectile), RpcTarget.MasterClient, skillPrefab.name, transform.position + transform.forward * 0.2f, skillRot);
-                    skillRot.eulerAngles = new Vector3(skillRot.eulerAngles.x, skillRot.eulerAngles.y + (FOV.viewAngle / 2), skillRot.eulerAngles.z);
+                    skillRot.eulerAngles = new Vector3(skillRot.eulerAngles.x, skillRot.eulerAngles.y + correctionAngle, skillRot.eulerAngles.z);
                 }
 
                 if (!PhotonNetwork.IsMasterClient)
@@ -82,7 +84,6 @@ namespace PlayerSpace
                 ray.direction = FOV.transform.forward;
                 ray.direction = Quaternion.AngleAxis(-(FOV.viewAngle / 2), Vector3.up) * ray.direction;
 
-                float correctionAngle = FOV.viewAngle / (rayCount - 1);
 
 
                 for (int i = 0; i < rayCount; ++i)
