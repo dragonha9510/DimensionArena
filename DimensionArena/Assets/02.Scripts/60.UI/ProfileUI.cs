@@ -41,7 +41,7 @@ public class ProfileUI : MonoBehaviourPun
         else
         {
             // 저장되어있는 DB 정보값 불러와야함
-            FirebaseDB_Manager.Instance.ReWriteData(willChangeNameText.text);
+            FirebaseDB_Manager.Instance.ReWriteData_Name(willChangeNameText.text);
             PhotonNetwork.NickName = willChangeNameText.text;
             //LobbyManagerRenewal.Instance.ChangeNickNmae(willChangeNameText.text);
             nickNameText.text = willChangeNameText.text;

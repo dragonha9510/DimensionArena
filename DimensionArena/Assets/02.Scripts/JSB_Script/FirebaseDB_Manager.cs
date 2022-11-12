@@ -103,12 +103,22 @@ public class FirebaseDB_Manager : MonoBehaviour
         return false;
     }
 
-    public void ReWriteData(string name)
+    public void ReWriteData_Name(string name)
     {
         // 이것도 예외처리 해야하는데;
         PlayerData willchangeData = playerDatas[mySerializeNumber];
 
         willchangeData.playerName = name;
+        string json = JsonUtility.ToJson(willchangeData);
+        DB_reference.Child(mySerializeNumber.ToString()).SetRawJsonValueAsync(json);
+
+    }
+    public void ReWriteData_Character(string name)
+    {
+        // 이것도 예외처리 해야하는데;
+        PlayerData willchangeData = playerDatas[mySerializeNumber];
+
+        willchangeData.playCharacter = name;
         string json = JsonUtility.ToJson(willchangeData);
         DB_reference.Child(mySerializeNumber.ToString()).SetRawJsonValueAsync(json);
 
@@ -140,5 +150,8 @@ public class FirebaseDB_Manager : MonoBehaviour
         return dataAlreadyIn;
     }
 
-
+    public PlayerData GetMyData()
+    {
+        return playerDatas[mySerializeNumber];
+    }
 }

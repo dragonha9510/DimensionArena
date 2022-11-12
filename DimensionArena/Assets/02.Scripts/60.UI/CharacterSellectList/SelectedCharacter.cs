@@ -41,5 +41,6 @@ public class SelectedCharacter : MonoBehaviour
     {
         characterSprite = nextCharacterSprite;
         characterName = nextCharacterName;
+        FirebaseDB_Manager.Instance.ReWriteData_Character(characterName);
     }
 }
