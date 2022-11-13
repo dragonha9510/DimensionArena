@@ -106,35 +106,38 @@ namespace PlayerSpace
             }
             else
             {
-                // Projectile 积己
-                Quaternion skillRot = FOV.transform.rotation;
+                float correctionAngle = FOV.viewAngle / (rayCount - 1);
+                Debug.Log(skillDirection);
+                Quaternion skillRot = Quaternion.LookRotation(skillDirection, Vector3.up);
                 skillRot.eulerAngles = new Vector3(skillRot.eulerAngles.x, skillRot.eulerAngles.y - (FOV.viewAngle / 2), skillRot.eulerAngles.z);
                 for (int i = 0; i < rayCount; ++i)
                 {
-                    GameObject tempSkill1 = Instantiate(skillPrefab, transform.position + transform.forward * 0.2f, skillRot);
-                    skillRot.eulerAngles = new Vector3(skillRot.eulerAngles.x, skillRot.eulerAngles.y + (FOV.viewAngle / 2), skillRot.eulerAngles.z);
+                    Instantiate(skillPrefab , transform.position + transform.forward * 0.2f, skillRot);
+                    skillRot.eulerAngles = new Vector3(skillRot.eulerAngles.x, skillRot.eulerAngles.y + correctionAngle, skillRot.eulerAngles.z);
                 }
 
                 Ray ray = new Ray();
-                RaycastHit rayHit;
+                RaycastHit[] rayHits;
                 ray.origin = FOV.transform.position;
 
                 ray.direction = FOV.transform.forward;
                 ray.direction = Quaternion.AngleAxis(-(FOV.viewAngle / 2), Vector3.up) * ray.direction;
 
-                float correctionAngle = FOV.viewAngle / (rayCount - 1);
-
+                
 
                 for (int i = 0; i < rayCount; ++i)
                 {
-                    if (true == Physics.Raycast(ray, out rayHit,FOV.ViewRadius,LayerMask.NameToLayer("Player")) && rayHit.transform.gameObject != owner && false == hitedObj.Contains(rayHit.transform.gameObject))
+                    rayHits = Physics.RaycastAll(ray, FOV.ViewRadius, LayerMask.NameToLayer("Player"));
+
+                    foreach(RaycastHit rayhit in rayHits)
                     {
-                        hitedObj.Add(rayHit.transform.gameObject);
-                        Debug.Log("何婬塞");
-                        //rayHit.transform.gameObject.transform.position = owner.transform.position + ((rayHit.transform.gameObject.transform.position - owner.transform.position).normalized * FOV.ViewRadius);
-                        
-                        rayHit.transform.gameObject.GetComponent<isKnockBack>().CallMoveKnockBack(owner.transform.position,(rayHit.transform.gameObject.transform.position - owner.transform.position).normalized, projectileSpeed, FOV.ViewRadius);
-                        rayHit.transform.gameObject.GetComponent<PlayerInfo>().Damaged(skillDamage);
+                        GameObject hitted = rayhit.transform.gameObject;
+                        if (hitted.tag == "Player" && false == hitedObj.Contains(hitted) && hitted != owner)
+                        {
+                            Debug.Log("何婬塞");
+                            hitted.GetComponent<isKnockBack>().CallMoveKnockBack(owner.transform.position, (hitted.transform.position - owner.transform.position).normalized, projectileSpeed, FOV.ViewRadius);
+                            hitted.gameObject.GetComponent<PlayerInfo>().Damaged(skillDamage);
+                        }
                     }
                     ray.direction = Quaternion.AngleAxis(correctionAngle, Vector3.up) * ray.direction;
                 }
@@ -144,23 +147,34 @@ namespace PlayerSpace
 
         private void OnDrawGizmos()
         {
+            float correctionAngle = FOV.viewAngle / (rayCount - 1);
+
+
             Ray ray = new Ray();
+            RaycastHit[] rayHits;
             ray.origin = FOV.transform.position;
 
             ray.direction = FOV.transform.forward;
             ray.direction = Quaternion.AngleAxis(-(FOV.viewAngle / 2), Vector3.up) * ray.direction;
 
-            float correctionAngle = FOV.viewAngle / (rayCount - 1);
 
             for (int i = 0; i < rayCount; ++i)
             {
-                Gizmos.DrawRay(ray);
-                /*if (true == Physics.Raycast(ray, out rayHit))
+                rayHits = Physics.RaycastAll(ray, FOV.ViewRadius, LayerMask.NameToLayer("Player"));
+                Gizmos.DrawRay(this.transform.position , ray.direction);
+                foreach (RaycastHit rayhit in rayHits)
                 {
-                    Debug.Log("何婬塞");
-                }*/
+                    GameObject hitted = rayhit.transform.gameObject;
+                    if (hitted.tag == "Player" && hitedObj.Contains(hitted) && hitted != owner)
+                    {
+                        Debug.Log("何婬塞");
+                        hitted.GetComponent<isKnockBack>().CallMoveKnockBack(owner.transform.position, (hitted.transform.position - owner.transform.position).normalized, projectileSpeed, FOV.ViewRadius);
+                        hitted.gameObject.GetComponent<PlayerInfo>().Damaged(skillDamage);
+                    }
+                }
                 ray.direction = Quaternion.AngleAxis(correctionAngle, Vector3.up) * ray.direction;
             }
+            hitedObj.Clear();
         }
 
         public override void AutoSkill()

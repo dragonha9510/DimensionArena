@@ -82,6 +82,16 @@ PrefabInstance:
       propertyPath: m_TagString
       value: AttackCollider
       objectReference: {fileID: 0}
+    - target: {fileID: 3927711076200484471, guid: c13c1fc2c206dbf4abb1c9410e0f5e9a,
+        type: 3}
+      propertyPath: speed
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3927711076200484471, guid: c13c1fc2c206dbf4abb1c9410e0f5e9a,
+        type: 3}
+      propertyPath: createCycle
+      value: 0.3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c13c1fc2c206dbf4abb1c9410e0f5e9a, type: 3}
 --- !u!1 &4603079245800519544 stripped
