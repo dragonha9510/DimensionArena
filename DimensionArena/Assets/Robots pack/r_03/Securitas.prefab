@@ -864,7 +864,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3767962050661345798}
-  - component: {fileID: 1407253272755712805}
   - component: {fileID: 3767962050661345799}
   - component: {fileID: 3767962050661345792}
   - component: {fileID: 8921136904592954203}
@@ -873,6 +872,7 @@ GameObject:
   - component: {fileID: 8551898729003089516}
   - component: {fileID: 5405003167554508038}
   - component: {fileID: 7507751922462723723}
+  - component: {fileID: 7925714259691421038}
   m_Layer: 11
   m_Name: Securitas
   m_TagString: Player
@@ -887,7 +887,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3767962050661345819}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -900,26 +900,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1407253272755712805
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3767962050661345819}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e4e747f66fcf56f48a1e176638105624, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isRotation: 1
-  autoSkill: {fileID: 5512001789059755211}
-  skillRangeMesh: {fileID: 6433724982344537452}
-  direction: {x: 0, y: 0, z: 0}
-  skillDirection: {x: 0, y: 0, z: 0}
-  maxRange: 6
-  skillPrefab: {fileID: 7780763529671439132, guid: 8d9a11bac6389b246a93c1e4ccdb9a59,
-    type: 3}
 --- !u!54 &3767962050661345799
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1091,6 +1071,28 @@ MonoBehaviour:
     type: 3}
   audioSource: {fileID: 0}
   passiveTime: 5
+--- !u!114 &7925714259691421038
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3767962050661345819}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9e3f50fc5b58ae43af4d79b6207295b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isRotation: 1
+  autoSkill: {fileID: 5512001789059755211}
+  skillRangeMesh: {fileID: 6433724982344537452}
+  direction: {x: 0, y: 0, z: 0}
+  skillDirection: {x: 0, y: 0, z: 0}
+  maxRange: 6
+  skillPrefab: {fileID: 7780763529671439132, guid: 8d9a11bac6389b246a93c1e4ccdb9a59,
+    type: 3}
+  avartarJump: {fileID: 1275870747871768943}
+  bombDistance: 1
 --- !u!1 &3767962051630440547
 GameObject:
   m_ObjectHideFlags: 0
@@ -2384,7 +2386,7 @@ CapsuleCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1275870747871536463}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   m_Radius: 2
   m_Height: 1
