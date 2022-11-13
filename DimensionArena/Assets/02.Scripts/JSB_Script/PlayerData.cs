@@ -53,8 +53,7 @@ public class PlayerData
 
         Int32.TryParse(data.Child("totalPlayTime").Value.ToString(), out totalPlayTime);
 
-        // 임시 예외처리
-        //return;
+
         playCharacter = data.Child("playCharacter").Value.ToString();
 
     }

@@ -13,8 +13,7 @@ public enum UNITTYPE
     Joohyeok,
     Secilia,
     RedZone,
-    Magnetic,
-    Securitas
+    Magnetic
 }
 
 

@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using PlayerSpace;
-using Photon.Pun;
 
 [RequireComponent(typeof(SphereCollider))]
 public class AutoAtk_Detection : MonoBehaviour
@@ -35,7 +34,7 @@ public class AutoAtk_Detection : MonoBehaviour
 
     private void Update()
     {
-        if (!PhotonNetwork.OfflineMode && !GameManager.Instance.IsSpawnEnd)
+        if (!GameManager.Instance.IsSpawnEnd)
             return;
 
         targetPos = transform.position + transform.forward * range;

@@ -127,7 +127,7 @@ public class ItemBox : MonoBehaviourPun
     public void HpDecrease_KnockBack(float damage, string owner)
     {
         if (!PhotonNetwork.OfflineMode)
-            photonView.RPC(nameof(HpDecrease), RpcTarget.All, (int)damage, owner);
+            photonView.RPC(nameof(HpDecrease), RpcTarget.All, damage, owner);
         else
             HpDecrease((int)damage, owner);
     }

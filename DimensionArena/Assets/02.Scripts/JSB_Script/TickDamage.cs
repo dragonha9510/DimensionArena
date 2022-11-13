@@ -30,7 +30,7 @@ public class TickDamage : MonoBehaviourPun
     [PunRPC]
     public void DamageApply(string userID,float damage)
     {
-        if (userID.Equals(OwnerID) || !PlayerInfoManager.Instance.DicPlayer[userID].activeInHierarchy)
+        if (userID.Equals(OwnerID) || PlayerInfoManager.Instance.DicPlayer[userID].activeInHierarchy)
             return;
 
         int decreaseHP;

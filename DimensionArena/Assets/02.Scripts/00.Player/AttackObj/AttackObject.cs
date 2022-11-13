@@ -31,13 +31,8 @@ public class AttackObject : MonoBehaviourPun
         PlayerInfoManager.Instance.
                        CurHpDecrease(ownerId, targetId, damage);
 
-        if (PhotonNetwork.IsMasterClient)
-        {
-            if (PhotonNetwork.OfflineMode)
-                Destroy(this.gameObject);
-            else
-                PhotonNetwork.Destroy(this.gameObject); 
-        }
+        if(PhotonNetwork.IsMasterClient)
+            PhotonNetwork.Destroy(this.gameObject);
     }
 
     //JSB
