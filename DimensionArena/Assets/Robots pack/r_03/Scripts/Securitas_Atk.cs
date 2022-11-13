@@ -20,7 +20,7 @@ namespace PlayerSpace
 
         protected override void InitalizeAtkInfo()
         {
-            atkInfo = new PlayerAtkInfo(6.0f, 3, 2.25f);
+            atkInfo = new PlayerAtkInfo(10f, 3, 2.25f);
         }
 
         protected override void Start()
@@ -55,7 +55,7 @@ namespace PlayerSpace
             owner.CanDirectionChange = false;
             isAttack = true;
 
-            if (PhotonNetwork.InRoom)
+            if (!PhotonNetwork.OfflineMode && PhotonNetwork.InRoom)
                 photonView.RPC(nameof(MasterCreateProjectile), RpcTarget.MasterClient, gameObject.name, tmpDirection, photonView.Controller);
             else
                 StartCoroutine(SingleCreateProjectile(gameObject.name, tmpDirection));
@@ -171,7 +171,7 @@ namespace PlayerSpace
                 }
             }
 
-            if (PhotonNetwork.InRoom)
+            if (!PhotonNetwork.OfflineMode && PhotonNetwork.InRoom)
             {
                 SubMagazine(owner.name);
                 photonView.RPC(nameof(MasterCreateProjectile), RpcTarget.MasterClient, gameObject.name
@@ -179,9 +179,10 @@ namespace PlayerSpace
                                                              , photonView.Controller);
             }
             else
-                StartCoroutine(MasterCreateProjectile(gameObject.name
-                                                             , autoDirection
-                                                             , photonView.Controller));
+            {
+                SubMagazine(owner.name);
+                StartCoroutine(SingleCreateProjectile(gameObject.name, autoDirection));
+            }
         }
     }
 }
