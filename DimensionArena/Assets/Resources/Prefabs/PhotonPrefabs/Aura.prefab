@@ -1725,7 +1725,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1872054530859733309}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.161, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1741,7 +1741,7 @@ ParticleSystem:
   m_GameObject: {fileID: 1872054530859733309}
   serializedVersion: 8
   lengthInSec: 1
-  simulationSpeed: 1
+  simulationSpeed: 0.5
   stopAction: 0
   cullingMode: 3
   ringBufferMode: 0
@@ -1779,7 +1779,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 3
+      scalar: 1
       minScalar: 2
       maxCurve:
         serializedVersion: 2
@@ -1876,7 +1876,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 0.3
+      scalar: 0.2
       minScalar: 0.1
       maxCurve:
         serializedVersion: 2
@@ -2008,7 +2008,7 @@ ParticleSystem:
     donutRadius: 0.2
     m_Position: {x: 0, y: 0, z: 0}
     m_Rotation: {x: -90, y: 0, z: 0}
-    m_Scale: {x: 1, y: 1, z: 3}
+    m_Scale: {x: 1.5, y: 1, z: 0.1}
     placementMode: 0
     m_MeshMaterialIndex: 0
     m_MeshNormalOffset: 0
@@ -2051,7 +2051,7 @@ ParticleSystem:
     sphericalDirectionAmount: 0
     randomPositionAmount: 0
     radius:
-      value: 0.32
+      value: 0.48
       mode: 0
       spread: 0
       speed:
@@ -2098,7 +2098,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0
+      scalar: 1
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -2425,8 +2425,8 @@ ParticleSystem:
     frameOverTime:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 0
-      minScalar: 0.9999
+      scalar: 0.5
+      minScalar: 0
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -6515,7 +6515,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5124366413166427860}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.61, z: -0.078}
+  m_LocalPosition: {x: 0, y: 0, z: -0.078}
   m_LocalScale: {x: 0.7692308, y: 0.7692308, z: 0.7692308}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -8544,7 +8544,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7309405340590815873}
-  m_LocalRotation: {x: -0, y: 0.014888095, z: -0, w: 0.9998892}
+  m_LocalRotation: {x: 0, y: 0.014887134, z: 0, w: 0.9998892}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -8607,7 +8607,7 @@ MonoBehaviour:
   direction: {x: 0, y: 0, z: 0}
   skillDirection: {x: 0, y: 0, z: 0}
   maxRange: 5
-  skillPrefab: {fileID: 4603079245800519544, guid: 87532811ca9c05e49ba6066ad8d0f28e,
+  skillPrefab: {fileID: 8213405944050082617, guid: 39da5145a70ef174c8f86867def03380,
     type: 3}
   projectileSpeed: 15
   projectileRange: 10
@@ -8615,7 +8615,7 @@ MonoBehaviour:
   auraAnimator: {fileID: 3227170782532345053}
   rayCount: 5
   skillDamage: 600
-  skillAnimationSpeed: 2
+  skillAnimationSpeed: 1
 --- !u!114 &7684523567143468576
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8628,12 +8628,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8725ed7c355f4b847a11c064f67d4138, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isRotation: 1
+  isRotation: 0
   autoAtk: {fileID: 580438182709437566}
   atkInfo:
     range: 10
     maxMagazine: 3
-    reloadTime: 2
+    reloadTime: 1
   atkRangeMesh: {fileID: 1882573213908131554}
   direction: {x: 0, y: 0, z: 0}
   attackDirection: {x: 0, y: 0, z: 0}
@@ -8643,17 +8643,17 @@ MonoBehaviour:
   AtkToAtkDelaying: 0
   AtkDelaying: 0
   animation_speed:
-  - 1
-  - 1
+  - 1.2
+  - 1.2
   - 1
   nextAnimation_delay:
   - 0.7
-  - 0.7
+  - 0.6
   - 0.7
   attackCount: 3
   projectileCount: 3
   projectileSpeed: 10
-  attack_delay: 0.35
+  attack_delay: 0.5
   attack_range: 10
   prefab_Projectile: {fileID: 1146459598616756, guid: 72c732ea14df9e64c893462cfd5d8e7e,
     type: 3}
@@ -8691,6 +8691,7 @@ MonoBehaviour:
   speedNesting: 0.1
   maxNestingCount: 5
   nestingTimingDistance: 20
+  passiveParticle: {fileID: 0}
 --- !u!95 &3227170782532345053
 Animator:
   serializedVersion: 4
@@ -10825,7 +10826,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   owner: {fileID: 7309405340590815903}
-  viewAngle: 180
+  viewAngle: 90
   viewRadius: 5
   meshResolution: 0.5
   viewMeshFilter: {fileID: 7309405340823085356}

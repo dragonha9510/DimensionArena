@@ -24,6 +24,9 @@ namespace PlayerSpace
         [SerializeField]
         private float skillAnimationSpeed = 2f;
 
+        [SerializeField]
+        private float skillSpeedCorrection = 0.7f;
+
         private List<GameObject> hitedObj = new List<GameObject>();
 
         protected override void Start()
@@ -42,14 +45,14 @@ namespace PlayerSpace
 
         private void SetMovePrevSkill()
         {
-            owner.Info.SpeedDown(0.9f);
+            owner.Info.SpeedDown(skillSpeedCorrection);
             owner.CanDirectionChange = false;
         }
         private void SetMoveAfterSkill()
         {
             Debug.Log("애니메이션 돌리기");
             auraAnimator.SetBool("SkillUse", false);
-            owner.Info.SpeedUp(0.9f);
+            owner.Info.SpeedUp(skillSpeedCorrection);
             owner.CanDirectionChange = true;
         }
 

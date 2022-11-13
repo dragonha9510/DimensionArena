@@ -24,7 +24,7 @@ public class AuraSkillProjectile : Projectile
             timer += Time.deltaTime;
             if(timer >= createCycle)
             {
-                Instantiate(explosionEffect, this.transform);
+                Instantiate(explosionEffect,this.transform.position,Quaternion.identity);
                 timer = 0f;
             }
             yield return null;

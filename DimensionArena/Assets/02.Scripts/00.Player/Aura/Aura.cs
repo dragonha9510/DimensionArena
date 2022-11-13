@@ -17,6 +17,10 @@ namespace PlayerSpace
         private int nestingCount = 0;
         [SerializeField]
         private float nestingTimingDistance = 20.0f;
+        [SerializeField]
+        private ParticleSystem passiveParticle;
+
+        
 
         private float moveDistance = 0f;
         private Vector3 prevPos = new Vector3();
