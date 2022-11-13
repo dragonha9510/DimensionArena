@@ -97,6 +97,14 @@ public class Atk_Parabola : Atk_Range
         return arcArray;
     }
 
+    public Vector3 GetArcPosition(float t)
+    {
+        float x = t * distance;
+        float y = x * ((4 * maxYpos) / (maxYpos * distance)) * ((x / distance) - 1) * -maxYpos;
+
+        return new Vector3(x, y, 1);
+    }
+
     void CalculateAngleWithMaxDistance()
     {
         float middle = distance * 0.5f;

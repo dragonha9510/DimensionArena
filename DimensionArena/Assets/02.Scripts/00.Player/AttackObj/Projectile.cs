@@ -30,17 +30,19 @@ public class Projectile : AttackObject
 
     private void LateUpdate()
     {
-        if(!PhotonNetwork.InRoom)
+        if (!PhotonNetwork.InRoom)
         {
             if (range < (this.transform.position - originPos).magnitude)
             {
                 Destroy(this.gameObject);
             }
         }
-       
-        if(PhotonNetwork.IsMasterClient && range < (this.transform.position - originPos).magnitude)
-        {
-            PhotonNetwork.Destroy(this.gameObject);
+        else
+        { 
+            if (PhotonNetwork.IsMasterClient && range < (this.transform.position - originPos).magnitude)
+            {
+                PhotonNetwork.Destroy(this.gameObject);
+            }
         }
     }
 
@@ -51,7 +53,7 @@ public class Projectile : AttackObject
     }
     protected virtual void OnTriggerEnter(Collider other)
     {
-        if (!PhotonNetwork.IsMasterClient)
+        if (!PhotonNetwork.OfflineMode && !PhotonNetwork.IsMasterClient)
             return;
 
         bool onEffect = false;
@@ -112,6 +114,7 @@ public class Projectile : AttackObject
                     Destroy(hitVFX, psChild.main.duration);
                 }
             }
+            Destroy(this.gameObject);
         }
         else
         {
@@ -122,9 +125,9 @@ public class Projectile : AttackObject
             {
                 photonView.RPC(nameof(CreateEffectForAllClient), RpcTarget.All, pos, rot);
             }
+            PhotonNetwork.Destroy(this.gameObject);  
         }
 
-        PhotonNetwork.Destroy(this.gameObject);  
     }
 
 
@@ -141,7 +144,6 @@ public class Projectile : AttackObject
 
     IEnumerator DestroyEffect(GameObject effectObj,float time)
     {
-
         yield return new WaitForSeconds(time);
         PhotonNetwork.Destroy(effectObj);
     }
