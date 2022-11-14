@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
+
+#pragma warning disable CS0108
 namespace TravisGameAssets
 {
 	

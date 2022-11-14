@@ -2,6 +2,7 @@
 using System.Collections;
 using UnityEngine.UI;
 
+#pragma warning disable IDE0052
 public class projectileActorExplosion1 : MonoBehaviour {
 
     public Transform spawnLocator;
@@ -38,6 +39,7 @@ public class projectileActorExplosion1 : MonoBehaviour {
 	// Use this for initialization
 	void Start ()
     {
+        Debug.Log(projectileSimFire);
         UiText.text = bombList[bombType].name.ToString();
         if (swarmMissileLauncher)
         {

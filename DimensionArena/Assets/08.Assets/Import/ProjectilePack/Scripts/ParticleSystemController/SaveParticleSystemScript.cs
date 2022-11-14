@@ -5,6 +5,9 @@ using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Reflection;
 
+#pragma warning disable CS0618
+
+
 namespace GAP_ParticleSystemController
 {
 
