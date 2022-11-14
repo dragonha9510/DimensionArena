@@ -1,8 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public class KnockBackObject : MonoBehaviour
+using Photon.Pun;
+public class KnockBackObject : MonoBehaviourPun
 {
     [SerializeField] private KnockBackInfo info;
     [SerializeField] private GameObject knockBack;
@@ -10,14 +10,27 @@ public class KnockBackObject : MonoBehaviour
     private GameObject knockBack_create;
     private KnockBack knockBack_info;
     // Start is called before the first frame update
+
     void Start()
     {
-        knockBack_create = Instantiate(knockBack, transform.position, knockBack.transform.rotation);
-        knockBack_info = knockBack_create.GetComponent<KnockBack>();
-        knockBack_info.info = info;
-        knockBack_create.GetComponent<SphereCollider>().radius = triggerRadius;
+        if(!PhotonNetwork.InRoom)
+        {
+            knockBack_create = Instantiate(knockBack, transform.position, knockBack.transform.rotation);
+            knockBack_info = knockBack_create.GetComponent<KnockBack>();
+            knockBack_info.info = info;
+            knockBack_create.GetComponent<SphereCollider>().radius = triggerRadius;
 
-        knockBack_create.SetActive(false);
+            knockBack_create.SetActive(false);
+        }
+        else if(PhotonNetwork.InRoom && PhotonNetwork.IsMasterClient)
+        {
+            knockBack_create = PhotonNetwork.Instantiate(knockBack.name , transform.position, knockBack.transform.rotation);
+            knockBack_info = knockBack_create.GetComponent<KnockBack>();
+            knockBack_info.info = info;
+            knockBack_create.GetComponent<SphereCollider>().radius = triggerRadius;
+
+            knockBack_create.SetActive(false);
+        }
     }
 
     public void KnockBackStart()
