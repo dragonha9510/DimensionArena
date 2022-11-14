@@ -38,6 +38,7 @@ public class projectileActorExplosion1 : MonoBehaviour {
 	// Use this for initialization
 	void Start ()
     {
+        Debug.Log(projectileSimFire);
         UiText.text = bombList[bombType].name.ToString();
         if (swarmMissileLauncher)
         {
