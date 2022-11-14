@@ -2,6 +2,7 @@
 using System.Collections;
 using UnityEngine.UI;
 
+#pragma warning disable IDE0052
 public class projectileActorExplosion1 : MonoBehaviour {
 
     public Transform spawnLocator;
