@@ -64,7 +64,7 @@ public class Projectile : AttackObject
 
                         if (!PhotonNetwork.OfflineMode)
                         {
-                            photonView.RPC("OnCollisionToPlayer",
+                            photonView.RPC(nameof(OnCollisionToPlayer),
                             RpcTarget.All,
                             ownerID,
                             other.gameObject.name,
