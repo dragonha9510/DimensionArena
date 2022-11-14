@@ -84,7 +84,7 @@ public class Securitas_Skill : Player_Skill
         float t = 0;
 
         myCollider.enabled = false;
-
+        direction.Normalize();
         while (true)
         {
             Vector3 tempPos = parabola.GetArcPosition(t);
@@ -100,7 +100,7 @@ public class Securitas_Skill : Player_Skill
 
             if (t >= 1)
             {
-                transform.position += new Vector3(direction.x, 0, direction.z) * dist * (t - 1);
+                transform.position += new Vector3(direction.x, 0, direction.z) * dist * (1 - t);
                 t = 1;
                 tempPos = parabola.GetArcPosition(t);
                 avartarJump.position = new Vector3(avartarJump.position.x, tempPos.y, avartarJump.position.z);
