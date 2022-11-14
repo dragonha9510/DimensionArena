@@ -38,6 +38,7 @@ public class Securitas_Skill : Player_Skill
     {
         owner.CanDirectionChange = false;
 
+        /*/ 4 방향
         GameObject[] tempSkill = new GameObject[4];
         if (PhotonNetwork.InRoom)
         {
@@ -61,7 +62,25 @@ public class Securitas_Skill : Player_Skill
             bombDirection = Quaternion.Euler(0, 90, 0) * bombDirection;
             projectile.ownerID = gameObject.name;
         }
+        //*/
 
+        //*/ 제자리
+        GameObject tempSkill;
+        if (PhotonNetwork.InRoom)
+        {
+            photonView.RPC(nameof(SkillTriger), RpcTarget.All);
+            tempSkill = PhotonNetwork.Instantiate(skillPrefab.name, transform.position, rotation);
+        }
+        else
+        {
+            SkillTriger();
+            tempSkill = Instantiate(skillPrefab, transform.position, rotation);
+        }
+
+        projectile = tempSkill.GetComponent<Parabola_Projectile>();
+        projectile.SetArcInfo(Vector3.back, 0.01f, 0f, 1f);
+        projectile.ownerID = gameObject.name;
+        //*/
         float t = 0;
 
         myCollider.enabled = false;
