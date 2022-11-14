@@ -1026,8 +1026,8 @@ MonoBehaviour:
   direction: {x: 0, y: 0, z: 0}
   info:
     id: 
-    type: 6
-    isAlive: 0
+    type: 0
+    isAlive: 1
     maxHP: 850
     curHP: 850
     curSkillPoint: 100
@@ -1054,14 +1054,14 @@ MonoBehaviour:
   isRotation: 1
   autoAtk: {fileID: 5927940157774818579}
   atkInfo:
-    range: 6
+    range: 10
     maxMagazine: 3
-    reloadTime: 2.25
+    reloadTime: 2.4
   atkRangeMesh: {fileID: 1629484448112680706}
   direction: {x: 0, y: 0, z: 0}
   attackDirection: {x: 0, y: 0, z: 0}
   tmpDirection: {x: 0, y: 0, z: 0}
-  atkLockSecond: 0.5
+  atkLockSecond: 0.75
   Skilling: 0
   AtkToAtkDelaying: 0.5
   AtkDelaying: 0
@@ -2059,17 +2059,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 6433724982344537452}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a9fa64285f6cdf54c95415d0d443f40d, type: 3}
+  m_Script: {fileID: 11500000, guid: 1b3072d2c766341428c4faf0af06d543, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   owner: {fileID: 3767962050661345798}
   endPoint: {fileID: 6433724983039301664}
   meshWidth: 0.1
-  resolution: 20
+  resolution: 10
   maxYpos: 3
-  distance: 0.1
+  distance: 3
   velocity: 0
-  angle: 45
+  angle: 0
   radianAngle: 0
 --- !u!1 &6433724983039301667
 GameObject:
@@ -2436,7 +2436,7 @@ MonoBehaviour:
   m_SynchronizeLayers:
   - SynchronizeType: 2
     LayerIndex: 0
-  - SynchronizeType: 0
+  - SynchronizeType: 2
     LayerIndex: 1
 --- !u!4 &1275870747871768943 stripped
 Transform:
