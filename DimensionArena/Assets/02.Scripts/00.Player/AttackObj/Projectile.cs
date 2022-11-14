@@ -123,7 +123,7 @@ public class Projectile : AttackObject
             }
         }
 
-        PhotonNetwork.Destroy(this.gameObject);  
+       
     }
 
 
@@ -134,6 +134,9 @@ public class Projectile : AttackObject
         var hitVFX = Instantiate(hitPrefab, pos, rot);
         var psHit = hitVFX.GetComponentInChildren<ParticleSystem>();
         Destroy(hitVFX, psHit.main.duration);
+
+        if(PhotonNetwork.IsMasterClient)
+             PhotonNetwork.Destroy(this.gameObject);  
     }
 
 
