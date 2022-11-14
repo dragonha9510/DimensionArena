@@ -1,8 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Photon.Pun;
-public class KnockBackObject : MonoBehaviourPun
+
+public class KnockBackObject : MonoBehaviour
 {
     [SerializeField] private KnockBackInfo info;
     [SerializeField] private GameObject knockBack;
@@ -12,7 +12,7 @@ public class KnockBackObject : MonoBehaviourPun
     // Start is called before the first frame update
     void Start()
     {
-        knockBack_create = PhotonNetwork.Instantiate(knockBack.name, transform.position, knockBack.transform.rotation);
+        knockBack_create = Instantiate(knockBack, transform.position, knockBack.transform.rotation);
         knockBack_info = knockBack_create.GetComponent<KnockBack>();
         knockBack_info.info = info;
         knockBack_create.GetComponent<SphereCollider>().radius = triggerRadius;

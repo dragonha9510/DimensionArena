@@ -27,7 +27,7 @@ public class KnockBack : MonoBehaviourPun
 
     private void OnTriggerEnter(Collider other)
     {
-        if (!photonView.IsMine)
+        if (!PhotonNetwork.IsMasterClient)
             return;
 
         if (this.gameObject.name.Equals(other.gameObject.name))
@@ -37,14 +37,14 @@ public class KnockBack : MonoBehaviourPun
         {
             if (info.ownerID == "RedZone")
             {
-                PhotonNetwork.Destroy(this.gameObject);
+                Destroy(this.gameObject);
                 return;
             }
             ItemBox itembox = other.GetComponent<ItemBox>();
 
             itembox.HpDecrease_KnockBack(info.damage, info.ownerID);
 
-            PhotonNetwork.Destroy(this.gameObject);
+            Destroy(this.gameObject);
             return;
         }
 
@@ -52,13 +52,13 @@ public class KnockBack : MonoBehaviourPun
 
         if (temp == null)
         {
-            PhotonNetwork.Destroy(this.gameObject);
+            Destroy(this.gameObject);
             return; 
         }
 
         if (temp.info.isOn && temp.enabled)
         {
-            PhotonNetwork.Destroy(this.gameObject);
+            Destroy(this.gameObject);
             return;
         }
 
@@ -78,7 +78,7 @@ public class KnockBack : MonoBehaviourPun
 
         temp.SetValue();
 
-        PhotonNetwork.Destroy(this.gameObject);
+        Destroy(this.gameObject);
     }
 
 
