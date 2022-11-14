@@ -17758,8 +17758,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c53d09a65ef68e04d825f6c35c8d7531, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerObjectArr: []
-  playerInfoArr: []
+  dicPlayerInfo:
+    array: []
+  dicPlayer:
+    array: []
 --- !u!4 &2017061624
 Transform:
   m_ObjectHideFlags: 0
@@ -18491,7 +18493,7 @@ PrefabInstance:
     - target: {fileID: 8669601969195298653, guid: ba5c292d70fd27d43a65a2561bb4b717,
         type: 3}
       propertyPath: magneticFieldStartTime
-      value: 200
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 8669601969195298653, guid: ba5c292d70fd27d43a65a2561bb4b717,
         type: 3}
