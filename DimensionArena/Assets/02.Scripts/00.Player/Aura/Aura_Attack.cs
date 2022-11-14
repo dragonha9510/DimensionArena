@@ -51,6 +51,9 @@ namespace PlayerSpace
 
         public override void Attack()
         {
+            if (!photonView.IsMine)
+                return;
+
             Debug.Log(tmpDirection);
             if(base.tmpDirection != this.transform.forward)
             {
