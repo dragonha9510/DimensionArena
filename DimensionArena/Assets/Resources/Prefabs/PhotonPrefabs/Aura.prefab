@@ -8616,7 +8616,7 @@ MonoBehaviour:
   auraAnimator: {fileID: 3227170782532345053}
   rayCount: 5
   skillDamage: 600
-  skillAnimationSpeed: 1
+  skillAnimationSpeed: 2.5
   skillSpeedCorrection: 0.7
 --- !u!114 &7684523567143468576
 MonoBehaviour:

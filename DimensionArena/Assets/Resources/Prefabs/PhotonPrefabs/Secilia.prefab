@@ -502,7 +502,6 @@ MonoBehaviour:
   AtkToAtkDelaying: 0
   AtkDelaying: 0
   projectileCount: 3
-  projectileSpeed: 2
   attack_delay: 0.1
   prefab_Projectile: {fileID: 1745751436853880, guid: 9f0e4b41a274ad04d8fef21b9f4e6030,
     type: 3}

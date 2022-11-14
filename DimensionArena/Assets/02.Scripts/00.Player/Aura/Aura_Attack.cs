@@ -101,7 +101,7 @@ namespace PlayerSpace
                 Quaternion direction = projectileDirection.Dequeue();
                 photonView.RPC(nameof(MakeProjectileOnServer), RpcTarget.MasterClient, prefab_Projectile.name, owner.Attack.tmpDirection, this.transform.position, direction);
             }
-            else
+            else if(!PhotonNetwork.InRoom)
             {
 
                 Quaternion direction = projectileDirection.Dequeue();

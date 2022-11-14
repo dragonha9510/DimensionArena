@@ -62,6 +62,12 @@ namespace PlayerSpace
             GameObject skill = PhotonNetwork.Instantiate(prefabName, trans, rot);
         }
         [PunRPC]
+        private void KnockBack(GameObject obj)
+        {
+            obj.GetComponent<isKnockBack>().CallMoveKnockBack(owner.transform.position, (obj.transform.position - owner.transform.position).normalized, projectileSpeed, FOV.ViewRadius);
+            PlayerInfoManager.Instance.CurHpDecrease(obj.name, obj.name, skillDamage);
+        }
+        [PunRPC]
         private void SkillAttack(float angle)
         {
             Ray ray = new Ray();
@@ -82,10 +88,7 @@ namespace PlayerSpace
                     GameObject hitted = rayhit.transform.gameObject;
                     if (hitted.tag == "Player" && false == hitedObj.Contains(hitted) && hitted != owner)
                     {
-                        Debug.Log("ºÎ‹HÈû");
-                        hitted.GetComponent<isKnockBack>().CallMoveKnockBack(owner.transform.position, (hitted.transform.position - owner.transform.position).normalized, projectileSpeed, FOV.ViewRadius);
-                        PlayerInfoManager.Instance.CurHpDecrease(hitted.name, hitted.name, skillDamage);
-                        hitted.gameObject.GetComponent<PlayerInfo>().Damaged(skillDamage);
+                        photonView.RPC(nameof(KnockBack), RpcTarget.AllViaServer, hitted);
                     }
                 }
                 ray.direction = Quaternion.AngleAxis(angle, Vector3.up) * ray.direction;
@@ -138,7 +141,7 @@ namespace PlayerSpace
                 }
                 hitedObj.Clear();*/
             }
-            else
+            else if(!PhotonNetwork.InRoom)
             {
                 float correctionAngle = FOV.viewAngle / (rayCount - 1);
                 Debug.Log(skillDirection);
