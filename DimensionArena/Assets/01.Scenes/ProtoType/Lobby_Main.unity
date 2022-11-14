@@ -897,6 +897,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b6cd694622ba83543967ecd0bbce39f3, type: 3}
+--- !u!108 &1390267888753218454 stripped
+Light:
+  m_CorrespondingSourceObject: {fileID: 2892571229178050186, guid: b6cd694622ba83543967ecd0bbce39f3,
+    type: 3}
+  m_PrefabInstance: {fileID: 1390267888753218453}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5527182555630530736
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1045,6 +1051,11 @@ PrefabInstance:
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4269494465720281537, guid: 6116ef1203ac84c4b9d804ff62a7a788,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4269494465720281593, guid: 6116ef1203ac84c4b9d804ff62a7a788,
         type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -1207,6 +1218,7 @@ MonoBehaviour:
   - {fileID: 1643207120}
   - {fileID: 5527182555630530740}
   isMainLobby: 1
+  light: {fileID: 1390267888753218454}
 --- !u!1001 &5529166021421527344
 PrefabInstance:
   m_ObjectHideFlags: 0
