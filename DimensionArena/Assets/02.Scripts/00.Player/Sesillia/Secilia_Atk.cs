@@ -10,7 +10,6 @@ namespace PlayerSpace
     {
         [Header("SesilliaAttackInfo")]
         [SerializeField] private int projectileCount = 3;
-        [SerializeField] private float projectileSpeed = 8.0f;
         [SerializeField] private float attack_delay = 0.05f;
 
         [Header("Prefab")]
@@ -72,13 +71,10 @@ namespace PlayerSpace
 
             //float offset;
             photonView.RPC(nameof(SetAttackTrigger), RpcTarget.All);
-            for (int i = 0; i < 3; ++i)
+            for (int i = 0; i < projectileCount; ++i)
             {
-                // offset = (i % 2 == 0) ? 0.3f : -0.3f;
-                //projectile = PhotonNetwork.Instantiate("SA_Projectile", shooterPosition.position + (Vector3.right * offset) + (Vector3.up * 0.5f), Quaternion.LookRotation(shooterAttackDir, Vector3.up));
                 projectile = PhotonNetwork.Instantiate("SA_Projectile", shooterPosition.position + (Vector3.up * 0.5f), Quaternion.LookRotation(shooterAttackDir, Vector3.up));
                 projectile.GetComponent<Projectile>().ownerID = shooter;
-
                 yield return attackDelay;
             }
             photonView.RPC("EndAttack", controller, shooter);
@@ -90,7 +86,7 @@ namespace PlayerSpace
             WaitForSeconds attackDelay = new WaitForSeconds(attack_delay);
     
             AtkTrigger();
-            for (int i = 0; i < 3; ++i)
+            for (int i = 0; i < projectileCount; ++i)
             {
                 projectile = PhotonNetwork.Instantiate("SA_Projectile", transform.position + (Vector3.up * 0.5f), Quaternion.LookRotation(shooterAttackDir, Vector3.up));
                 projectile.GetComponent<Projectile>().ownerID = shooter;
@@ -176,7 +172,7 @@ namespace PlayerSpace
             if (isServer)
             {
                 photonView.RPC(nameof(SetAttackTrigger), RpcTarget.All);
-                for (int i = 0; i < 3; ++i)
+                for (int i = 0; i < projectileCount; ++i)
                 {
                     projectile = PhotonNetwork.Instantiate("SA_Projectile", transform.position + (Vector3.up * 0.5f), Quaternion.LookRotation(autoDirection, Vector3.up));
                     projectile.GetComponent<Projectile>().ownerID = this.gameObject.name;
@@ -186,7 +182,7 @@ namespace PlayerSpace
             else
             {
                 SetAttackTrigger();
-                for (int i = 0; i < 3; ++i)
+                for (int i = 0; i < projectileCount; ++i)
                 {
                     projectile = Instantiate(prefab_Projectile, transform.position + (Vector3.up * 0.5f), Quaternion.LookRotation(autoDirection, Vector3.up));
                     projectile.GetComponent<Projectile>().ownerID = this.gameObject.name;

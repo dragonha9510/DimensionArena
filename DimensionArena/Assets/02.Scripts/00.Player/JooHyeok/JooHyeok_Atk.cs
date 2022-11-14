@@ -10,7 +10,6 @@ namespace PlayerSpace
     {
         [Header("JooHyeokAttackInfo")]
         [SerializeField] private int projectileCount = 3;
-        [SerializeField] private float projectileSpeed = 8.0f;
         [SerializeField] private float burst_delay = 0.1f;
         [SerializeField] private float attack_delay = 0.25f;
 
