@@ -7,6 +7,7 @@ public class SelectedCharacter : MonoBehaviour
     public static SelectedCharacter Instance;
     public string characterName;
     public string nextCharacterName;
+    [SerializeField] private Light light;
 
     public Canvas characterSelect;
     public Canvas characterInfo;
