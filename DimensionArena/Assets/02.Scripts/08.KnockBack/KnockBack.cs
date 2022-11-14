@@ -2,9 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using ManagerSpace;
+using Photon.Pun;
 
 [RequireComponent(typeof(SphereCollider))]
-public class KnockBack : MonoBehaviour
+public class KnockBack : MonoBehaviourPun
 {
     [HideInInspector] public KnockBackInfo info;
 
@@ -26,6 +27,9 @@ public class KnockBack : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        if (!PhotonNetwork.IsMasterClient)
+            return;
+
         if (this.gameObject.name.Equals(other.gameObject.name))
             return;
 
@@ -69,23 +73,31 @@ public class KnockBack : MonoBehaviour
         temp.info.distance = info.distance;
 
         if(info.isDamage || info.isPercentDamage)
-        {
-            if (!info.isEnvironment)
-                PlayerInfoManager.Instance.
-                                CurSkillPtIncrease(info.ownerID, info.ultimatePoint);
+            photonView.RPC(nameof(DamageForAllClient), RpcTarget.AllViaServer, other.name, other.transform.position);
 
-            //damage Ã³¸®
-            int damage;
-            if (info.isPercentDamage)
-                damage = PlayerInfoManager.Instance.CurHPDecreaseRatio(info.ownerID, other.name, info.damage);
-            else
-                damage = PlayerInfoManager.Instance.CurHpDecrease(info.ownerID, other.name, info.damage);
-
-            FloatingText.Instance.CreateFloatingTextForDamage(other.transform.position, damage);
-        }
 
         temp.SetValue();
 
         Destroy(this.gameObject);
     }
+
+
+    [PunRPC]
+    private void DamageForAllClient(string target, Vector3 position)
+    {
+        if (!info.isEnvironment)
+            PlayerInfoManager.Instance.
+                            CurSkillPtIncrease(info.ownerID, info.ultimatePoint);
+
+        int damage;
+
+        if (info.isPercentDamage)
+            damage = PlayerInfoManager.Instance.CurHPDecreaseRatio(info.ownerID, target, info.damage);
+        else
+            damage = PlayerInfoManager.Instance.CurHpDecrease(info.ownerID, target, info.damage);
+
+        FloatingText.Instance.CreateFloatingTextForDamage(position, damage);
+    }
+
+
 }
