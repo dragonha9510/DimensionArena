@@ -59,6 +59,25 @@ public class RedZone : MonoBehaviourPun
 
         missileCnt = Random.Range(MinMaxmissileCntValue.x, MinMaxmissileCntValue.y);
     }
+
+    public void RedZoneSettingInMagneticField(MagneticField field)
+    {
+        this.gameObject.SetActive(true);
+        magneticField = field;
+
+        if (!PhotonNetwork.OfflineMode && !PhotonNetwork.IsMasterClient)
+            return;
+        delayPositioning.DelayStart(startDelay);
+        innerBorder.localScale = new Vector3(0, 2, 0);
+
+        if (PhotonNetwork.OfflineMode)
+            Redzone.gameObject.SetActive(false);
+        else
+            photonView.RPC("RedzoneActiveSetting", RpcTarget.All, false);
+
+        missileCnt = Random.Range(MinMaxmissileCntValue.x, MinMaxmissileCntValue.y);
+    }
+
     [PunRPC]
     private void RedzoneActiveSetting(bool state)
     {
