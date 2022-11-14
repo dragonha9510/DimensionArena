@@ -171,6 +171,7 @@ namespace PlayerSpace
             GameObject projectile;
             autoDirection.Normalize();
 
+
             // Server
             if (isServer)
             {

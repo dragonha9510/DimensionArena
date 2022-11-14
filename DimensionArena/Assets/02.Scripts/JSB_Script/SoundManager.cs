@@ -100,6 +100,16 @@ public class SoundManager : MonoBehaviourPun
         sfxPlayer.Play();
     }
 
+
+    public void PlaySFXOneShotAudioSource(string audioClipName, AudioSource source)
+    {
+        if (null == AudioClips[audioClipName])
+            return;
+        else
+            source.clip = AudioClips[audioClipName];
+        source.Play();
+    }
+
     public void SettingSFXVolume(float value)
     {
         sfxPlayer.volume = value;

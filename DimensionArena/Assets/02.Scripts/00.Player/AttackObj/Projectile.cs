@@ -18,14 +18,12 @@ public class Projectile : AttackObject
 
     private void Awake()
     {
-        //JSB Sound
-        //SoundManager.Instance.PlaySFXOneShotInRange(2.0f, this.transform, "juhyeok_shot");
-
         originPos = transform.position;
-        //SoundManager.Instance.PlaySFXOneShot("JiJooNormalEffect");
-
         rigid.velocity = this.transform.forward * speed;
 
+        if (audioClipName == null)
+            return;
+        SoundManager.Instance.PlaySFXOneShotAudioSource(audioClipName, this.audioSource);
     }
 
     private void LateUpdate()
