@@ -1540,16 +1540,6 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8477558359722000656, guid: 8c85d8ab5c8b4054fa41eaff81f46e42,
-        type: 3}
-      propertyPath: ShapeModule.m_Scale.y
-      value: 1.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 8477558359722000656, guid: 8c85d8ab5c8b4054fa41eaff81f46e42,
-        type: 3}
-      propertyPath: InitialModule.maxNumParticles
-      value: 20
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8c85d8ab5c8b4054fa41eaff81f46e42, type: 3}
 --- !u!1001 &8213405944180613751

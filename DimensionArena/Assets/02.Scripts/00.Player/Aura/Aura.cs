@@ -18,12 +18,9 @@ namespace PlayerSpace
         [SerializeField]
         private float nestingTimingDistance = 20.0f;
         [SerializeField]
-        private int maxParticle = 20;
-        [SerializeField]
-        private int particleMagnification = 3;
         private ParticleSystem passiveParticle;
 
-        ParticleSystem.MainModule main;
+        
 
         private float moveDistance = 0f;
         private Vector3 prevPos = new Vector3();
@@ -34,18 +31,9 @@ namespace PlayerSpace
         protected override void Start()
         {
             base.Start();
-            passiveParticle = GetComponentInChildren<ParticleSystem>();
             StartCoroutine(PassiveStartSetting());
-
-            main = passiveParticle.main;
-            main.maxParticles = maxParticle;
         }
         
-        private void ParticleAdd()
-        {
-            main.maxParticles = maxParticle * particleMagnification;
-        }
-
         IEnumerator PassiveStartSetting()
         {
             while(true)
@@ -69,7 +57,6 @@ namespace PlayerSpace
                     PlayerInfoManager.Instance.SpeedDecrease(this.name, speedNesting * nestingCount);
                     nestingCount = 0;
                     moveDistance = 0;
-                    main.maxParticles = maxParticle;
                 }
                 else if (false == info.IsBattle && prevPos != this.transform.position && nestingCount < maxNestingCount)
                 {
@@ -80,7 +67,6 @@ namespace PlayerSpace
                         PlayerInfoManager.Instance.SpeedIncrease(this.name, speedNesting);
                         moveDistance = 0f;
                         ++nestingCount;
-                        ParticleAdd();
                     }
 
                 }
