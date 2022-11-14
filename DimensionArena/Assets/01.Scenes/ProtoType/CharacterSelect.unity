@@ -2489,7 +2489,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1034369324, guid: 6116ef1203ac84c4b9d804ff62a7a788, type: 3}
       propertyPath: avartar.Array.size
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 1034369324, guid: 6116ef1203ac84c4b9d804ff62a7a788, type: 3}
       propertyPath: avartar.Array.data[0]
@@ -2509,6 +2509,10 @@ PrefabInstance:
       objectReference: {fileID: 1034369319}
     - target: {fileID: 1034369324, guid: 6116ef1203ac84c4b9d804ff62a7a788, type: 3}
       propertyPath: avartar.Array.data[4]
+      value: 
+      objectReference: {fileID: 1219947530}
+    - target: {fileID: 1034369324, guid: 6116ef1203ac84c4b9d804ff62a7a788, type: 3}
+      propertyPath: avartar.Array.data[5]
       value: 
       objectReference: {fileID: 1034369321}
     - target: {fileID: 136791417077452060, guid: 6116ef1203ac84c4b9d804ff62a7a788,
@@ -2650,6 +2654,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8082362150642666308, guid: 6116ef1203ac84c4b9d804ff62a7a788,
+        type: 3}
+      propertyPath: m_Name
+      value: Securitas
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6116ef1203ac84c4b9d804ff62a7a788, type: 3}
@@ -3292,6 +3301,12 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1190950399}
   m_CullTransparentMesh: 1
+--- !u!1 &1219947530 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8082362150642666308, guid: 6116ef1203ac84c4b9d804ff62a7a788,
+    type: 3}
+  m_PrefabInstance: {fileID: 1034369317}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1228252780
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -26,7 +26,10 @@ public class KnockBack : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.CompareTag("Item_Box"))
+        if (this.gameObject.name.Equals(other.gameObject.name))
+            return;
+
+        if (other.CompareTag("Item_Box"))
         {
             if (info.ownerID == "RedZone")
             {

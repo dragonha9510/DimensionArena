@@ -78,7 +78,6 @@ public class Projectile : AttackObject
                         }
 
                         onEffect = true;
-                        return;
                     }
                 }
                 break;
@@ -94,6 +93,8 @@ public class Projectile : AttackObject
         if (!onEffect)
             return;
 
+        if (hitPrefab == null)
+            return;
 
         if (PhotonNetwork.OfflineMode)
         {
