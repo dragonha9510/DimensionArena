@@ -61,7 +61,37 @@ namespace PlayerSpace
         {
             GameObject skill = PhotonNetwork.Instantiate(prefabName, trans, rot);
         }
+        [PunRPC]
+        private void SkillAttack(float angle)
+        {
+            Ray ray = new Ray();
+            RaycastHit[] rayHits;
+            ray.origin = FOV.transform.position;
 
+            ray.direction = FOV.transform.forward;
+            ray.direction = Quaternion.AngleAxis(-(FOV.viewAngle / 2), Vector3.up) * ray.direction;
+
+
+
+            for (int i = 0; i < rayCount; ++i)
+            {
+                rayHits = Physics.RaycastAll(ray, FOV.ViewRadius, LayerMask.NameToLayer("Player"));
+
+                foreach (RaycastHit rayhit in rayHits)
+                {
+                    GameObject hitted = rayhit.transform.gameObject;
+                    if (hitted.tag == "Player" && false == hitedObj.Contains(hitted) && hitted != owner)
+                    {
+                        Debug.Log("ºÎ‹HÈû");
+                        hitted.GetComponent<isKnockBack>().CallMoveKnockBack(owner.transform.position, (hitted.transform.position - owner.transform.position).normalized, projectileSpeed, FOV.ViewRadius);
+                        PlayerInfoManager.Instance.CurHpDecrease(hitted.name, hitted.name, skillDamage);
+                        hitted.gameObject.GetComponent<PlayerInfo>().Damaged(skillDamage);
+                    }
+                }
+                ray.direction = Quaternion.AngleAxis(angle, Vector3.up) * ray.direction;
+            }
+            hitedObj.Clear();
+        }
         private void MakeSkillProjectile()
         {
             if (!photonView.IsMine)
@@ -77,8 +107,8 @@ namespace PlayerSpace
                     photonView.RPC(nameof(CreateSkillProjectile), RpcTarget.MasterClient, skillPrefab.name, transform.position + transform.forward * 0.2f, skillRot);
                     skillRot.eulerAngles = new Vector3(skillRot.eulerAngles.x, skillRot.eulerAngles.y + correctionAngle, skillRot.eulerAngles.z);
                 }
-
-                if (!PhotonNetwork.IsMasterClient)
+                photonView.RPC(nameof(SkillAttack), RpcTarget.MasterClient, correctionAngle);
+                /*if (!PhotonNetwork.IsMasterClient)
                     return;
                 Ray ray = new Ray();
                 RaycastHit[] rayHits;
@@ -106,7 +136,7 @@ namespace PlayerSpace
                     }
                     ray.direction = Quaternion.AngleAxis(correctionAngle, Vector3.up) * ray.direction;
                 }
-                hitedObj.Clear();
+                hitedObj.Clear();*/
             }
             else
             {
