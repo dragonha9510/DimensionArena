@@ -80,10 +80,9 @@ namespace PlayerSpace
 
 
         [PunRPC]
-        private void MakeProjectileOnServer(string prefapName,Vector3 attackDirection,Vector3 pos)
+        private void MakeProjectileOnServer(string prefapName,Vector3 attackDirection,Vector3 pos,Quaternion direction)
         {
             photonView.RPC(nameof(IsBattleOn), RpcTarget.All);
-            Quaternion direction = projectileDirection.Dequeue();
             Debug.Log("Deque!! " + direction);
             GameObject proj  = PhotonNetwork.Instantiate(prefapName, pos + (Vector3.up * 1f) , direction);
             proj.GetComponent<Projectile>().ownerID = this.gameObject.name;
@@ -96,7 +95,8 @@ namespace PlayerSpace
 
             if (PhotonNetwork.InRoom && photonView.IsMine)
             {
-               photonView.RPC(nameof(MakeProjectileOnServer), RpcTarget.MasterClient, prefab_Projectile.name, owner.Attack.tmpDirection, this.transform.position);
+                Quaternion direction = projectileDirection.Dequeue();
+                photonView.RPC(nameof(MakeProjectileOnServer), RpcTarget.MasterClient, prefab_Projectile.name, owner.Attack.tmpDirection, this.transform.position, direction);
             }
             else
             {
