@@ -207,7 +207,7 @@ namespace ManagerSpace
         //JSB
         public void DeadCheckCallServer(string killerId, string targetId)
         {
-            photonView.RPC(nameof(HealthCheck), RpcTarget.AllViaServer, killerId, targetId);
+            photonView.RPC(nameof(HealthCheck), RpcTarget.All, killerId, targetId);
         }
 
         [PunRPC]
