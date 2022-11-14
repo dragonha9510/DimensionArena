@@ -81,7 +81,7 @@ namespace PlayerSpace
                 if (!PhotonNetwork.IsMasterClient)
                     return;
                 Ray ray = new Ray();
-                RaycastHit rayHit;
+                RaycastHit[] rayHits;
                 ray.origin = FOV.transform.position;
 
                 ray.direction = FOV.transform.forward;
@@ -91,16 +91,17 @@ namespace PlayerSpace
 
                 for (int i = 0; i < rayCount; ++i)
                 {
-                    if (true == Physics.Raycast(ray, out rayHit, FOV.ViewRadius) && rayHit.transform.gameObject != owner && false == hitedObj.Contains(rayHit.transform.gameObject))
+                    rayHits = Physics.RaycastAll(ray, FOV.ViewRadius, LayerMask.NameToLayer("Player"));
+
+                    foreach (RaycastHit rayhit in rayHits)
                     {
-                        hitedObj.Add(rayHit.transform.gameObject);
-                        Debug.Log("부딫힘");
-                        //rayHit.transform.gameObject.transform.position = owner.transform.position + ((rayHit.transform.gameObject.transform.position - owner.transform.position).normalized * FOV.ViewRadius);
-                        // 맞는 애가 넉백이 없을 시에 ( 플레이어가 아닐 때 ) 는 넉백 작동 안함.
-                        if(null != rayHit.transform.gameObject.GetComponent<isKnockBack>())
+                        GameObject hitted = rayhit.transform.gameObject;
+                        if (hitted.tag == "Player" && false == hitedObj.Contains(hitted) && hitted != owner)
                         {
-                            rayHit.transform.gameObject.GetComponent<isKnockBack>().CallMoveKnockBack(owner.transform.position, (rayHit.transform.gameObject.transform.position - owner.transform.position).normalized, projectileSpeed, FOV.ViewRadius);
-                            PlayerInfoManager.Instance.CurHpDecrease(gameObject.name, rayHit.transform.gameObject.name, skillDamage);
+                            Debug.Log("부딫힘");
+                            hitted.GetComponent<isKnockBack>().CallMoveKnockBack(owner.transform.position, (hitted.transform.position - owner.transform.position).normalized, projectileSpeed, FOV.ViewRadius);
+                            PlayerInfoManager.Instance.CurHpDecrease(hitted.name, hitted.name, skillDamage);
+                            hitted.gameObject.GetComponent<PlayerInfo>().Damaged(skillDamage);
                         }
                     }
                     ray.direction = Quaternion.AngleAxis(correctionAngle, Vector3.up) * ray.direction;

@@ -130,6 +130,7 @@ public class FirebaseDB_Manager : MonoBehaviour
         PlayerData newData = new PlayerData(newName);
         string json = JsonUtility.ToJson(newData);
         DB_reference.Child(mySerializeNumber).SetRawJsonValueAsync(json);
+        playerDatas.Add(mySerializeNumber, newData);
     }
     // 만약 기존에 데이터가 있다면 true 를 반환
     public bool RegisterDataBase()
