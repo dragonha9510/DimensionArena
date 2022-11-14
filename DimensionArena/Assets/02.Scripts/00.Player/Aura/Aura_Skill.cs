@@ -62,10 +62,10 @@ namespace PlayerSpace
             GameObject skill = PhotonNetwork.Instantiate(prefabName, trans, rot);
         }
         [PunRPC]
-        private void KnockBack(string playerName,Vector3 pos,Vector3 dir,float speed,float distance)
+        private void KnockBack(GameObject obj)
         {
-            PlayerInfoManager.Instance.DicPlayer[playerName].GetComponent<isKnockBack>().CallMoveKnockBack(pos, dir, speed, distance);
-            PlayerInfoManager.Instance.CurHpDecrease(this.gameObject.name , playerName, skillDamage);
+            obj.GetComponent<isKnockBack>().CallMoveKnockBack(owner.transform.position, (obj.transform.position - owner.transform.position).normalized, projectileSpeed, FOV.ViewRadius);
+            PlayerInfoManager.Instance.CurHpDecrease(obj.name, obj.name, skillDamage);
         }
         [PunRPC]
         private void SkillAttack(float angle)
@@ -88,8 +88,7 @@ namespace PlayerSpace
                     GameObject hitted = rayhit.transform.gameObject;
                     if (hitted.tag == "Player" && false == hitedObj.Contains(hitted) && hitted != owner)
                     {
-                        photonView.RPC(nameof(KnockBack), RpcTarget.AllViaServer, hitted.name , owner.transform.position, (hitted.transform.position - owner.transform.position).normalized,projectileSpeed,FOV.ViewRadius);
-                        hitedObj.Add(hitted);
+                        photonView.RPC(nameof(KnockBack), RpcTarget.AllViaServer, hitted);
                     }
                 }
                 ray.direction = Quaternion.AngleAxis(angle, Vector3.up) * ray.direction;
@@ -98,7 +97,9 @@ namespace PlayerSpace
         }
         private void MakeSkillProjectile()
         {
-            if (PhotonNetwork.InRoom && photonView.IsMine)
+            if (!photonView.IsMine)
+                return;
+            if (PhotonNetwork.InRoom)
             {
                 float correctionAngle = FOV.viewAngle / (rayCount - 1);
                 Debug.Log(skillDirection);
@@ -179,6 +180,38 @@ namespace PlayerSpace
                 }
                 hitedObj.Clear();
             }
+        }
+
+        private void OnDrawGizmos()
+        {
+            float correctionAngle = FOV.viewAngle / (rayCount - 1);
+
+
+            Ray ray = new Ray();
+            RaycastHit[] rayHits;
+            ray.origin = FOV.transform.position;
+
+            ray.direction = FOV.transform.forward;
+            ray.direction = Quaternion.AngleAxis(-(FOV.viewAngle / 2), Vector3.up) * ray.direction;
+
+
+            for (int i = 0; i < rayCount; ++i)
+            {
+                rayHits = Physics.RaycastAll(ray, FOV.ViewRadius, LayerMask.NameToLayer("Player"));
+                Gizmos.DrawRay(this.transform.position , ray.direction);
+                foreach (RaycastHit rayhit in rayHits)
+                {
+                    GameObject hitted = rayhit.transform.gameObject;
+                    if (hitted.tag == "Player" && hitedObj.Contains(hitted) && hitted != owner)
+                    {
+                        Debug.Log("ºÎ‹HÈû");
+                        hitted.GetComponent<isKnockBack>().CallMoveKnockBack(owner.transform.position, (hitted.transform.position - owner.transform.position).normalized, projectileSpeed, FOV.ViewRadius);
+                        hitted.gameObject.GetComponent<PlayerInfo>().Damaged(skillDamage);
+                    }
+                }
+                ray.direction = Quaternion.AngleAxis(correctionAngle, Vector3.up) * ray.direction;
+            }
+            hitedObj.Clear();
         }
 
         public override void AutoSkill()

@@ -295,9 +295,6 @@ namespace ManagerSpace
                 case UNITTYPE.RedZone:
                     image.sprite = CharacterThumbnail[(int)UNITTYPE.RedZone];
                     break;
-                case UNITTYPE.Securitas:
-                    image.sprite = CharacterThumbnail[(int)UNITTYPE.Securitas];
-                    break;
             }
         }
 
