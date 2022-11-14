@@ -17,7 +17,7 @@ public class FirebaseDB_Manager : MonoBehaviour
 
 
     [SerializeField] Dictionary<string, PlayerData> playerDatas = new Dictionary<string, PlayerData>();
-    
+
     private string mySerializeNumber = "";
 
     private string playerNickName = "";
@@ -25,6 +25,8 @@ public class FirebaseDB_Manager : MonoBehaviour
     public string PlayerNickName { get { return playerNickName; } set { playerNickName = value; } }
 
     private bool isRefreshing = false;
+
+    private bool isSuccesLoadData = true;
 
     private bool isInGame = false;
     public bool IsInGame { set { isInGame = value; } }
@@ -61,13 +63,18 @@ public class FirebaseDB_Manager : MonoBehaviour
                     string key = data.Key;
                     if (playerDatas.ContainsKey(key))
                     {
+                        isSuccesLoadData = false;
                         // 값이 있음 == 값을 갱신해야함
                         playerDatas[key] = new PlayerData(data);
+                        isSuccesLoadData = true;
+
                     }
                     else
                     {
+                        isSuccesLoadData = false;
                         PlayerData newData = new PlayerData(data);
                         playerDatas.Add(key, newData);
+                        isSuccesLoadData = true;
                     }
                 }
                 ++refreshCount;
@@ -76,16 +83,20 @@ public class FirebaseDB_Manager : MonoBehaviour
             else if (task.IsCanceled)
             {
                 // 로드 취소
+                isRefreshing = false;
             }
             else if (task.IsFaulted)
             {
                 // 로드 실패
+                isRefreshing = false;
             }
             isRefreshing = false;
         });
     }
     private void Update()
     {
+        if (isSuccesLoadData == false)
+            isRefreshing = false;
         // 우선은 임시적으로 막아놓는다.
         if (isRefreshing || isInGame)
             return;
@@ -135,12 +146,12 @@ public class FirebaseDB_Manager : MonoBehaviour
     // 만약 기존에 데이터가 있다면 true 를 반환
     public bool RegisterDataBase()
     {
-        
+
         bool dataAlreadyIn = false;
-        foreach(string Key in playerDatas.Keys)
+        foreach (string Key in playerDatas.Keys)
         {
             // 0 is not used
-            if(Key == SystemInfo.deviceUniqueIdentifier)
+            if (Key == SystemInfo.deviceUniqueIdentifier)
             {
                 dataAlreadyIn = true;
                 playerNickName = playerDatas[Key].playerName;
