@@ -94,7 +94,7 @@ public class Projectile : AttackObject
         if (hitPrefab == null)
             return;
 
-        if (PhotonNetwork.OfflineMode)
+        if (PhotonNetwork.OfflineMode && !PhotonNetwork.InRoom)
         {
             Quaternion rot = Quaternion.AngleAxis(transform.rotation.eulerAngles.y, Vector3.up);
             Vector3 pos = other.GetComponent<Collider>().ClosestPointOnBounds(transform.position);
@@ -137,11 +137,4 @@ public class Projectile : AttackObject
     }
 
 
-
-    IEnumerator DestroyEffect(GameObject effectObj,float time)
-    {
-
-        yield return new WaitForSeconds(time);
-        PhotonNetwork.Destroy(effectObj);
-    }
 }
