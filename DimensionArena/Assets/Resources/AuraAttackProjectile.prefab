@@ -387,6 +387,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ownerID: 
+  audioSource: {fileID: 0}
+  audioClipName: 
   ultimatePoint: 35
   damage: 200
   hitPrefab: {fileID: 1041648605151304, guid: ae644bfd2f42e7a43b746a40033d0192, type: 3}

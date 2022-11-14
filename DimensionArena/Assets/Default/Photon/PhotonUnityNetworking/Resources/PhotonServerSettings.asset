@@ -126,6 +126,7 @@ MonoBehaviour:
   - CreateEffectForAllClient
   - IsBattleOn
   - ExitGameAndMigration
+  - SkillAttack
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1
