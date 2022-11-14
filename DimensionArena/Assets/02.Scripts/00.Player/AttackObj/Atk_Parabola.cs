@@ -6,15 +6,15 @@ using UnityEngine;
 public class Atk_Parabola : Atk_Range
 {
     private Mesh mesh;
-    [SerializeField] private Transform endPoint;
+    [SerializeField]  private Transform endPoint;
 
-    [SerializeField] private float meshWidth;
+    [SerializeField]  private float meshWidth;
 
-    [SerializeField] private int resolution = 10;
-    [SerializeField] public float maxYpos = 3;
-    [HideInInspector] public float distance = 3;
-    [HideInInspector] public float velocity;
-    [HideInInspector] public float angle;
+    [SerializeField]  private int   resolution = 10;
+    [SerializeField]  public  float maxYpos    = 3;
+    [HideInInspector] public  float distance   = 3;
+    [HideInInspector] public  float velocity;
+    [HideInInspector] public  float angle;
 
 
     private float gravity; // force of gravity on the y axis
@@ -41,7 +41,7 @@ public class Atk_Parabola : Atk_Range
 
     void MakeArcMesh(Vector3[] arcVerts)
     {
-        if (mesh != null)
+        if(mesh != null)
             mesh.Clear();
         else
         {
@@ -97,6 +97,14 @@ public class Atk_Parabola : Atk_Range
         return arcArray;
     }
 
+    public Vector3 GetArcPosition(float t)
+    {
+        float x = t * distance;
+        float y = x * ((4 * maxYpos) / (maxYpos * distance)) * ((x / distance) - 1) * -maxYpos;
+
+        return new Vector3(x, y, 1);
+    }
+
     void CalculateAngleWithMaxDistance()
     {
         float middle = distance * 0.5f;
@@ -116,7 +124,7 @@ public class Atk_Parabola : Atk_Range
     Vector3 CalculateArcPoint(float t, float dist)
     {
         //float y = x * Mathf.Tan(radianAngle) - ((gravity * x * x) / (2 * velocity * velocity * Mathf.Cos(radianAngle) * Mathf.Cos(radianAngle)));
-
+        
         float x = t * dist;
         float y = x * ((4 * maxYpos) / (maxYpos * dist)) * ((x / dist) - 1) * -maxYpos;
 
@@ -128,9 +136,9 @@ public class Atk_Parabola : Atk_Range
         if (Mathf.Approximately(direction.magnitude, 0))
         {
             distance = 0.1f;
-            return;
+            return; 
         }
-
+        
         distance = maxdistance * direction.magnitude;
         MakeArcMesh(CalculateArcArray());
 
