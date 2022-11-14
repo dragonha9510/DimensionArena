@@ -33928,8 +33928,9 @@ GameObject:
   - component: {fileID: 198000011976894484}
   - component: {fileID: 199000010420214726}
   - component: {fileID: 114388240527896472}
+  - component: {fileID: -6968550945694542422}
   m_Layer: 0
-  m_Name: explosionMobile_stylized_small_originalFire
+  m_Name: vfx_Hit_Fireball05_Blue
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -38766,6 +38767,28 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   deathtimer: 5
+--- !u!114 &-6968550945694542422
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1000012903210382}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents: []
+  sceneViewId: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1 &1000014073915832
 GameObject:
   m_ObjectHideFlags: 0

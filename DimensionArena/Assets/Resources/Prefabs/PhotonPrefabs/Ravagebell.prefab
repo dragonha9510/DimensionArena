@@ -659,7 +659,6 @@ MonoBehaviour:
     type: 3}
   muzzlePrefab: {fileID: 1072413172352700, guid: 44d140f73b47c77439c4a4ed660e45df,
     type: 3}
-  projectileSpeed: 30
   shotCnt: 3
   dropDelay: 0.66
   attackInterval: 0.1
