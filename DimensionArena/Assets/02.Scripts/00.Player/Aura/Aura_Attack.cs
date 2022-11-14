@@ -90,7 +90,6 @@ namespace PlayerSpace
             GameObject proj  = PhotonNetwork.Instantiate(prefapName, pos + (Vector3.up * 1f) , direction);
             proj.GetComponent<Projectile>().ownerID = this.gameObject.name;
             owner.CanDirectionChange = true;
-            isFinishShoot = true;
         }
 
         private void MakeProjectile()
@@ -100,6 +99,7 @@ namespace PlayerSpace
             {
                 Quaternion direction = projectileDirection.Dequeue();
                 photonView.RPC(nameof(MakeProjectileOnServer), RpcTarget.MasterClient, prefab_Projectile.name, owner.Attack.tmpDirection, this.transform.position, direction);
+                isFinishShoot = true;
             }
             else if(!PhotonNetwork.InRoom)
             {
