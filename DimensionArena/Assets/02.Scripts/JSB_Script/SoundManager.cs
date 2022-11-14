@@ -103,7 +103,7 @@ public class SoundManager : MonoBehaviourPun
 
     public void PlaySFXOneShotAudioSource(string audioClipName, AudioSource source)
     {
-        if (null == AudioClips[audioClipName])
+        if (AudioClips.ContainsKey(audioClipName) && null == AudioClips[audioClipName])
             return;
         else
             source.clip = AudioClips[audioClipName];
