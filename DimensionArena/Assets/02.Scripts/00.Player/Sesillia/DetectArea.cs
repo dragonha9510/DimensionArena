@@ -6,7 +6,7 @@ using PlayerSpace;
 public class DetectArea : MonoBehaviour
 {
     [SerializeField] private SphereCollider sphareCollide;
-    
+    [SerializeField] private Transform skillUiRadius;
     List<GameObject> listTarget = new List<GameObject>();
     [SerializeField] Transform target;
     public Transform Target => target;
@@ -29,6 +29,7 @@ public class DetectArea : MonoBehaviour
 
     public void SetRadius(float range)
     {
+        skillUiRadius.localScale = Vector3.one * range;
         sphareCollide.radius = range * 0.5f;
     }
 
