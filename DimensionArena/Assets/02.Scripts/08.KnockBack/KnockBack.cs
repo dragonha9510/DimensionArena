@@ -72,31 +72,31 @@ public class KnockBack : MonoBehaviourPun
         temp.info.speed = info.speed;
         temp.info.distance = info.distance;
 
-        if(info.isDamage || info.isPercentDamage)
-            photonView.RPC(nameof(DamageForAllClient), RpcTarget.AllViaServer, other.name, other.transform.position);
-
-
-        temp.SetValue();
-
-        PhotonNetwork.Destroy(this.gameObject);
-    }
-
-
-    [PunRPC]
-    private void DamageForAllClient(string target, Vector3 position)
-    {
         if (!info.isEnvironment)
             PlayerInfoManager.Instance.
                             CurSkillPtIncrease(info.ownerID, info.ultimatePoint);
 
-        int damage;
+        if (info.isDamage || info.isPercentDamage)
+            photonView.RPC(nameof(DamageForAllClient), RpcTarget.AllViaServer, info.ownerID,other.name, other.transform.position,info.damage);
 
+
+        temp.SetValue();
+
+    }
+
+
+    [PunRPC]
+    private void DamageForAllClient(string ownerID,string target, Vector3 position,float damage)
+    {
         if (info.isPercentDamage)
-            damage = PlayerInfoManager.Instance.CurHPDecreaseRatio(info.ownerID, target, info.damage);
+            damage = PlayerInfoManager.Instance.CurHPDecreaseRatio(ownerID, target, damage);
         else
-            damage = PlayerInfoManager.Instance.CurHpDecrease(info.ownerID, target, info.damage);
+            damage = PlayerInfoManager.Instance.CurHpDecrease(ownerID, target, damage);
 
         FloatingText.Instance.CreateFloatingTextForDamage(position, damage);
+        
+        if(photonView.IsMine)
+            PhotonNetwork.Destroy(this.gameObject);
     }
 
 
