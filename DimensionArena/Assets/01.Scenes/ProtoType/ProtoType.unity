@@ -17572,12 +17572,12 @@ PrefabInstance:
     - target: {fileID: 1342166286767500842, guid: f2bd411598e07ef4f851dc5d4af6827b,
         type: 3}
       propertyPath: shotDelay
-      value: 0.25
+      value: 0.33
       objectReference: {fileID: 0}
     - target: {fileID: 1342166286767500842, guid: f2bd411598e07ef4f851dc5d4af6827b,
         type: 3}
       propertyPath: startDelay
-      value: 0
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 1342166286767500842, guid: f2bd411598e07ef4f851dc5d4af6827b,
         type: 3}
@@ -17592,7 +17592,7 @@ PrefabInstance:
     - target: {fileID: 1342166286767500842, guid: f2bd411598e07ef4f851dc5d4af6827b,
         type: 3}
       propertyPath: positionDelay
-      value: 12
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 1342166286767500842, guid: f2bd411598e07ef4f851dc5d4af6827b,
         type: 3}
@@ -17602,12 +17602,12 @@ PrefabInstance:
     - target: {fileID: 1342166286767500842, guid: f2bd411598e07ef4f851dc5d4af6827b,
         type: 3}
       propertyPath: MinMaxmissileCntValue.x
-      value: 45
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 1342166286767500842, guid: f2bd411598e07ef4f851dc5d4af6827b,
         type: 3}
       propertyPath: MinMaxmissileCntValue.y
-      value: 60
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 2628270988558472989, guid: f2bd411598e07ef4f851dc5d4af6827b,
         type: 3}
@@ -17682,7 +17682,7 @@ PrefabInstance:
     - target: {fileID: 2628270988558472990, guid: f2bd411598e07ef4f851dc5d4af6827b,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6183517314484576770, guid: f2bd411598e07ef4f851dc5d4af6827b,
         type: 3}
@@ -17706,6 +17706,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f2bd411598e07ef4f851dc5d4af6827b, type: 3}
+--- !u!114 &1842239775 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1342166286767500842, guid: f2bd411598e07ef4f851dc5d4af6827b,
+    type: 3}
+  m_PrefabInstance: {fileID: 1842239774}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 079198ab9bb45744ca11bdb666074cc9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2017061621
 GameObject:
   m_ObjectHideFlags: 0
@@ -18470,6 +18482,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8669601969195298653, guid: ba5c292d70fd27d43a65a2561bb4b717,
+        type: 3}
+      propertyPath: redZoneSet
+      value: 
+      objectReference: {fileID: 1842239775}
     - target: {fileID: 8669601969195298653, guid: ba5c292d70fd27d43a65a2561bb4b717,
         type: 3}
       propertyPath: decreaseTime

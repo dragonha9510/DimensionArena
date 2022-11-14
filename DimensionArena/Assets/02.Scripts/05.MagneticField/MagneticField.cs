@@ -65,6 +65,8 @@ public class MagneticField : MonoBehaviourPun
     private float bottomFrameCorrection;
 
 
+    [SerializeField] private RedZone redZoneSet;
+
 
 
     private List<GameObject> magneticfieldObj = new List<GameObject>();
@@ -369,6 +371,7 @@ public class MagneticField : MonoBehaviourPun
             {
                 SettingMagneticField();
                 isReadyField = true;
+                redZoneSet.RedZoneSettingInMagneticField(this);
             }
             return;
         }
