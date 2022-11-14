@@ -2024,6 +2024,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player_JH_Default
       objectReference: {fileID: 0}
+    - target: {fileID: 8529344291857479385, guid: 4dba30b2e19b7214994774c8d4ea37d8,
+        type: 3}
+      propertyPath: sceneViewId
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4dba30b2e19b7214994774c8d4ea37d8, type: 3}
 --- !u!23 &211539211188975198 stripped
@@ -2182,7 +2187,7 @@ PrefabInstance:
     - target: {fileID: 3538972817888371208, guid: 3443466d754ebc640a83911704947677,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3538972817888371209, guid: 3443466d754ebc640a83911704947677,
         type: 3}
@@ -2269,6 +2274,11 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8521714281304840553, guid: 3443466d754ebc640a83911704947677,
+        type: 3}
+      propertyPath: owner
+      value: 
+      objectReference: {fileID: 2737819322045720800}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3443466d754ebc640a83911704947677, type: 3}
 --- !u!1 &5259609974754891658 stripped
