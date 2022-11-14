@@ -226,7 +226,7 @@ namespace ManagerSpace
         /// Eveent method Region
         /// >>>>>>>>>>>>>>>>>>>>>>>>>>
 
-        Coroutine curInformCoroutine = null;
+
         private void InformDeadPlayer(UNITTYPE killerType, string killerId, UNITTYPE victimType, string victimId)
         {
             //Insert To DeadEvList
@@ -237,15 +237,13 @@ namespace ManagerSpace
             if (isInfromEnd
                 && ListDeadEv.Count > 0)
             {
-                if(curInformCoroutine != null)
-                    StopCoroutine(InformDeadCoroutine());
-
-                curInformCoroutine = StartCoroutine(InformDeadCoroutine());
+                StopCoroutine(InformDeadCoroutine(killerType, killerId, victimType, victimId));
+                StartCoroutine(InformDeadCoroutine(killerType, killerId, victimType, victimId));
             }
         }
 
 
-        IEnumerator InformDeadCoroutine()
+        IEnumerator InformDeadCoroutine(UNITTYPE killerType, string killerId, UNITTYPE victimType, string victimId)
         {
             isInfromEnd = false;
 
@@ -256,12 +254,12 @@ namespace ManagerSpace
                 dynamicContent -= 1;
                 dynamicText.text = ((int)dynamicContent).ToString();
                 //SetThumbnail
-                SelectThumbnail(killerImage, ListDeadEv[0].KillerType);
-                SelectThumbnail(victimImage, ListDeadEv[0].VictimType);
+                SelectThumbnail(killerImage, killerType);
+                SelectThumbnail(victimImage, victimType);
 
                 //SetNickName
-                killerNickName.text = ListDeadEv[0].KillerName;
-                victimNickName.text = ListDeadEv[0].VictimName;
+                killerNickName.text = killerId;
+                victimNickName.text = victimId;
 
                 informCanvas.gameObject.SetActive(true);
                 informCanvas.DOFade(1.0f, fadeTime);

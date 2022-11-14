@@ -43,7 +43,8 @@ namespace PlayerSpace
         [PunRPC]
         private void ActSkillforAllclient(Vector3 targetPos, Vector3 originPos)
         {
-           
+            //µÉÁö ¸ô°Ú´Ù
+            //SoundManager.Instance.PlaySFXOneShotInRange(2.0f, this.transform, "secilia_skill");
             GameObject particle = Instantiate(skillParticle, originPos, Quaternion.identity);
             particle.transform.LookAt(targetPos, Vector3.up);
             Destroy(particle, 0.6f);
@@ -55,7 +56,7 @@ namespace PlayerSpace
             transform.LookAt(targetPos, Vector3.up);
 
         }
-    
+
         private void CheckFirstStep()
         {
             //Find

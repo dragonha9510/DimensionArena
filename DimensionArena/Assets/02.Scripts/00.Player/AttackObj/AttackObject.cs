@@ -10,8 +10,8 @@ public class AttackObject : MonoBehaviourPun
     //AttackObject¿« ¡÷¿Œ
     public string ownerID;
     
-    protected AudioSource audioSource;
-    //
+    [SerializeField] protected AudioSource audioSource;
+    [SerializeField] protected string audioClipName;
     [SerializeField] protected int ultimatePoint;
     [SerializeField] private int damage;
     public int Damage { get { return damage; } }

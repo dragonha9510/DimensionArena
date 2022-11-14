@@ -350,9 +350,12 @@ MonoBehaviour:
   - 01.UI
   - 02.GameScene
   - 00.JuhyeokSound
+  - 03.SeciliaSound
   bgmPlayer: {fileID: 1136330000}
   sfxPlayer: {fileID: 1136329999}
   inGameSoundCount: 6
+  AudioClips:
+    array: []
 --- !u!4 &1136330002
 Transform:
   m_ObjectHideFlags: 0
