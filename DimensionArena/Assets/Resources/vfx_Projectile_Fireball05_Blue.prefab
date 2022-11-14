@@ -48708,7 +48708,7 @@ MonoBehaviour:
   audioClipName: 
   ultimatePoint: 30
   damage: 300
-  hitPrefab: {fileID: 1000012903210382, guid: 1e180e7e2eb06b74abdbb802c55779f5, type: 3}
+  hitPrefab: {fileID: 1091389975830204, guid: 8b956942ea86f994983d86ba06b9ce39, type: 3}
   rigid: {fileID: 54690089591678400}
   originPos: {x: 0, y: 0, z: 0}
   range: 15
