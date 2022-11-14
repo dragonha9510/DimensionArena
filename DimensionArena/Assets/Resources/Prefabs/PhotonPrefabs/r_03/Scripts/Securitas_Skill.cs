@@ -13,6 +13,7 @@ public class Securitas_Skill : Player_Skill
     [SerializeField] private float bombDistance;
     private Atk_Parabola parabola;
     private Parabola_Projectile projectile;
+    private CapsuleCollider myCollider;
 
     /// 
     private Quaternion parabolaRotation;
@@ -28,6 +29,8 @@ public class Securitas_Skill : Player_Skill
 
         if (parabola == null)
             Destroy(this);
+
+        myCollider = GetComponent<CapsuleCollider>();
     }
 
     [PunRPC]
@@ -61,7 +64,9 @@ public class Securitas_Skill : Player_Skill
 
         float t = 0;
 
-        while(true)
+        myCollider.enabled = false;
+
+        while (true)
         {
             Vector3 tempPos = parabola.GetArcPosition(t);
 
@@ -70,6 +75,9 @@ public class Securitas_Skill : Player_Skill
             t += Time.deltaTime;
 
             yield return null;
+
+            if (t >= 0.5f && tempPos.y < 1)
+                myCollider.enabled = true;
 
             if (t >= 1)
             {

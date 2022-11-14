@@ -488,6 +488,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 65069a7b0bb646243a41b1e19bb43611, type: 3}
+--- !u!1 &1643207120 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8082362150642666308, guid: 6116ef1203ac84c4b9d804ff62a7a788,
+    type: 3}
+  m_PrefabInstance: {fileID: 5527182555630530736}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1879586067
 GameObject:
   m_ObjectHideFlags: 0
@@ -908,10 +914,25 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 400359632415546056, guid: 6116ef1203ac84c4b9d804ff62a7a788,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400359632415546056, guid: 6116ef1203ac84c4b9d804ff62a7a788,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 548734969123342012, guid: 6116ef1203ac84c4b9d804ff62a7a788,
         type: 3}
       propertyPath: sceneViewId
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 712862982924092443, guid: 6116ef1203ac84c4b9d804ff62a7a788,
+        type: 3}
+      propertyPath: sceneViewId
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 767681344478274101, guid: 6116ef1203ac84c4b9d804ff62a7a788,
         type: 3}
@@ -1007,6 +1028,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1767405275319984185, guid: 6116ef1203ac84c4b9d804ff62a7a788,
+        type: 3}
+      propertyPath: sceneViewId
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2655017699686326523, guid: 6116ef1203ac84c4b9d804ff62a7a788,
         type: 3}
@@ -1118,6 +1144,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8082362150642666308, guid: 6116ef1203ac84c4b9d804ff62a7a788,
+        type: 3}
+      propertyPath: m_Name
+      value: Securitas
+      objectReference: {fileID: 0}
+    - target: {fileID: 8082362150642666308, guid: 6116ef1203ac84c4b9d804ff62a7a788,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 1034369324, guid: 6116ef1203ac84c4b9d804ff62a7a788, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 6116ef1203ac84c4b9d804ff62a7a788, type: 3}
@@ -1168,6 +1204,7 @@ MonoBehaviour:
   - {fileID: 1047651666}
   - {fileID: 5527182555630530739}
   - {fileID: 5527182555630530737}
+  - {fileID: 1643207120}
   - {fileID: 5527182555630530740}
   isMainLobby: 1
 --- !u!1001 &5529166021421527344
