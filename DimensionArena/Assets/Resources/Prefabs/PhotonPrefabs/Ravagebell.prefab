@@ -625,6 +625,10 @@ MonoBehaviour:
   direction: {x: 0, y: 0, z: 0}
   attackDirection: {x: 0, y: 0, z: 0}
   tmpDirection: {x: 0, y: 0, z: 0}
+  atkLockSecond: 0.75
+  Skilling: 0
+  AtkToAtkDelaying: 0
+  AtkDelaying: 0
   projectileSpeed: 30
   atkDelay: 0.2
   dropDelay: 1
@@ -1947,6 +1951,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   owner: {fileID: 1473817681018425520}
+  yPosInterval: 0.01
 --- !u!1001 &3569873968741162960
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2055,6 +2060,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   owner: {fileID: 1473817681018425520}
+  yPosInterval: 0.01
 --- !u!4 &4901776912704385014 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8470181645017657382, guid: 7766c49707403134ca396ddacf35e50d,

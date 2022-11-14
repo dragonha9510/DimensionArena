@@ -9,7 +9,7 @@ public class Ravagebell_Skill : Player_Skill
 {
     [SerializeField] private GameObject skillPrefab;
     [SerializeField] private GameObject muzzlePrefab;
-    [SerializeField] private float projectileSpeed = 8f;
+    //[SerializeField] private float projectileSpeed = 8f;
 
     [SerializeField] private float shotCnt = 3;
     [SerializeField] private float dropDelay = 1f;
