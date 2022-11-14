@@ -79,7 +79,7 @@ public class Ravagebell_Skill : Player_Skill
     {
         projectile = Instantiate(skillPrefab,
             shotPosition + location + (Vector3.up * MaxRange) + direction,
-            skillPrefab.transform.rotation);
+            Quaternion.LookRotation(Vector3.down));
         projectile.GetComponent<Projectile>().ownerID = gameObject.name;
     }
 
