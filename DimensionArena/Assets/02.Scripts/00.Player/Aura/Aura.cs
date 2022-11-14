@@ -8,7 +8,7 @@ namespace PlayerSpace
 {
     public class Aura : Player
     {
-       
+
         [Header("AuraPessive")]
         [SerializeField]
         private float speedNesting = 0.1f;
@@ -19,8 +19,16 @@ namespace PlayerSpace
         private float nestingTimingDistance = 20.0f;
         [SerializeField]
         private ParticleSystem passiveParticle;
+        [SerializeField]
+        private int maxParticle = 20;
+        [SerializeField]
+        private int particleMagnification = 3;
+        [SerializeField]
+        private float particleSpeedMagnification = 0.5f;
 
-        
+        private ParticleSystem.MainModule main;
+
+        private float originSpeed = 0f;
 
         private float moveDistance = 0f;
         private Vector3 prevPos = new Vector3();
@@ -30,15 +38,27 @@ namespace PlayerSpace
         }
         protected override void Start()
         {
+            passiveParticle = GetComponentInChildren<ParticleSystem>();
             base.Start();
             StartCoroutine(PassiveStartSetting());
+
+            main = passiveParticle.main;
+            main.maxParticles = maxParticle;
+            originSpeed = main.simulationSpeed;
         }
-        
+
+
+        private void ParticleAdd()
+        {
+            main.maxParticles = maxParticle * particleMagnification;
+            main.simulationSpeed = originSpeed * particleSpeedMagnification;
+        }
+
         IEnumerator PassiveStartSetting()
         {
-            while(true)
+            while (true)
             {
-                if(GameManager.Instance.IsSpawnEnd)
+                if (GameManager.Instance.IsSpawnEnd)
                 {
                     StartCoroutine(nameof(SettingOriginalPos));
                     yield break;
@@ -46,7 +66,7 @@ namespace PlayerSpace
                 yield return null;
             }
         }
-        
+
         IEnumerator SettingOriginalPos()
         {
             prevPos = this.transform.position;
@@ -57,6 +77,8 @@ namespace PlayerSpace
                     PlayerInfoManager.Instance.SpeedDecrease(this.name, speedNesting * nestingCount);
                     nestingCount = 0;
                     moveDistance = 0;
+                    main.simulationSpeed = originSpeed;
+                    main.maxParticles = maxParticle;
                 }
                 else if (false == info.IsBattle && prevPos != this.transform.position && nestingCount < maxNestingCount)
                 {
@@ -66,6 +88,7 @@ namespace PlayerSpace
                     {
                         PlayerInfoManager.Instance.SpeedIncrease(this.name, speedNesting);
                         moveDistance = 0f;
+                        ParticleAdd();
                         ++nestingCount;
                     }
 
