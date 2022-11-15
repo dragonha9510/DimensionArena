@@ -207,7 +207,13 @@ namespace ManagerSpace
         //JSB
         public void DeadCheckCallServer(string killerId, string targetId)
         {
-            photonView.RPC(nameof(HealthCheck), RpcTarget.All, killerId, targetId);
+            if(PhotonNetwork.InRoom)
+                photonView.RPC(nameof(HealthCheck), RpcTarget.All, killerId, targetId);
+            else
+            {
+                if (dicPlayerInfo[targetId].CurHP <= 0)
+                    dicPlayer[targetId].GetComponent<Player>().DisActiveAnimation();
+            }
         }
 
         [PunRPC]

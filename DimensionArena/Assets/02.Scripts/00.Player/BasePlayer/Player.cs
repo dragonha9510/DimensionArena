@@ -144,6 +144,8 @@ namespace PlayerSpace
         {
             TouchCanvas touchCanvas = GameObject.Find("TouchCanvas").
                 GetComponent<TouchCanvas>();
+
+   
             touchCanvas.player = this;
             info.EDisActivePlayer += touchCanvas.DisActiveTouch;
 
@@ -170,7 +172,7 @@ namespace PlayerSpace
                 GetComponent<Prototype_TargetCamera>().target = this.transform;
         }
 
-        private void DisActiveAnimation()
+        public void DisActiveAnimation()
         {
             EffectManager.Instance.CreateParticleEffectOnGameobject(this.transform, "Dead");
             gameObject.SetActive(false);

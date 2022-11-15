@@ -20,6 +20,7 @@ public class ItemBox : MonoBehaviourPun
     private List<dropTable> dropTables = new List<dropTable>();
     [SerializeField]
     private float health;
+    public float Health => health;
     [SerializeField]
     private TextMeshProUGUI itemHealth;
     [SerializeField]
