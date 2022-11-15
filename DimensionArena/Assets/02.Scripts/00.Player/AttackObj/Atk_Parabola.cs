@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -51,6 +52,7 @@ public class Atk_Parabola : Atk_Range
         }
 
         Vector3[] vertices = new Vector3[(resolution + 1) * 2];
+        Vector2[] uvs = new Vector2[(resolution + 1) * 2];
         int[] triangles = new int[resolution * 12];
 
         for (int i = 0; i <= resolution; ++i)
@@ -58,6 +60,15 @@ public class Atk_Parabola : Atk_Range
             // set vertices
             vertices[i * 2] = new Vector3(meshWidth * 0.5f, arcVerts[i].y, arcVerts[i].x);
             vertices[(i * 2) + 1] = new Vector3(meshWidth * -0.5f, arcVerts[i].y, arcVerts[i].x);
+
+            uvs[i * 2] = new Vector2(0, 1 - ((float)i / (float)resolution));
+            uvs[(i * 2) + 1] = new Vector2(1, 1 - ((float)i / (float)resolution));
+
+            //uvs[i * 2] = new Vector2(0, Convert.ToSingle(i != 0));
+            //uvs[(i * 2) + 1] = new Vector2(1, Convert.ToSingle(i != 0));
+
+            //uvs[i * 2] = new Vector2(0, (resolution - i) * 0.5f);
+            //uvs[(i * 2) + 1] = new Vector2(1, (resolution - i) * 0.5f);
 
             // set triangles
             if (i != resolution)
@@ -81,6 +92,7 @@ public class Atk_Parabola : Atk_Range
 
         mesh.vertices = vertices;
         mesh.triangles = triangles;
+        mesh.uv = uvs;
     }
     Vector3[] CalculateArcArray()
     {
