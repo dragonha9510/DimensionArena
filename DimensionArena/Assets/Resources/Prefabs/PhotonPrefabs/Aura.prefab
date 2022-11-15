@@ -1710,6 +1710,7 @@ GameObject:
   - component: {fileID: 1968669381586874158}
   - component: {fileID: 8477558359722000656}
   - component: {fileID: 8193832206870722036}
+  - component: {fileID: 3604976295756406590}
   m_Layer: 0
   m_Name: Leaves
   m_TagString: 
@@ -1741,7 +1742,7 @@ ParticleSystem:
   m_GameObject: {fileID: 1872054530859733309}
   serializedVersion: 8
   lengthInSec: 1
-  simulationSpeed: 0.5
+  simulationSpeed: 1.5
   stopAction: 0
   cullingMode: 3
   ringBufferMode: 0
@@ -1779,8 +1780,8 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 1
-      minScalar: 2
+      scalar: 20
+      minScalar: 0.0001
       maxCurve:
         serializedVersion: 2
         m_Curve: []
@@ -1876,8 +1877,8 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 0.2
-      minScalar: 0.1
+      scalar: 1
+      minScalar: 1
       maxCurve:
         serializedVersion: 2
         m_Curve: []
@@ -1976,7 +1977,7 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     randomizeRotationDirection: 0
-    maxNumParticles: 1000
+    maxNumParticles: 4
     customEmitterVelocity: {x: 0, y: 0, z: 0}
     size3D: 0
     rotation3D: 0
@@ -2007,8 +2008,8 @@ ParticleSystem:
     radiusThickness: 0.24
     donutRadius: 0.2
     m_Position: {x: 0, y: 0, z: 0}
-    m_Rotation: {x: -90, y: 0, z: 0}
-    m_Scale: {x: 1.5, y: 1, z: 0.1}
+    m_Rotation: {x: 90, y: 0, z: 0}
+    m_Scale: {x: 1.5, y: 1.5, z: 0.1}
     placementMode: 0
     m_MeshMaterialIndex: 0
     m_MeshNormalOffset: 0
@@ -4115,6 +4116,19 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!114 &3604976295756406590
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1872054530859733309}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2bba249f0d709044da17593dabe731f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nonstaticObject: {fileID: 5124366413166427860}
 --- !u!1 &1964191516740497220
 GameObject:
   m_ObjectHideFlags: 0
@@ -6515,8 +6529,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5124366413166427860}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0.078}
-  m_LocalScale: {x: 0.7692308, y: 0.7692308, z: 0.7692308}
+  m_LocalPosition: {x: -0.03846154, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1968669381586874158}
@@ -8531,6 +8545,7 @@ GameObject:
   - component: {fileID: 3227170782532345049}
   - component: {fileID: 3227170782532345047}
   - component: {fileID: 7611175511204617876}
+  - component: {fileID: 5537390239095185387}
   m_Layer: 11
   m_Name: Aura
   m_TagString: Player
@@ -8690,13 +8705,13 @@ MonoBehaviour:
     battleOffTime: 0
     baseSpeed: 3
     curSpeed: 3
-  speedNesting: 0.1
+  speedNesting: 0.02
   maxNestingCount: 5
-  nestingTimingDistance: 20
+  nestingTimingDistance: 10
   passiveParticle: {fileID: 0}
-  maxParticle: 20
-  particleMagnification: 3
-  particleSpeedMagnification: 0.5
+  originParticleRotateSpeed: 1
+  particleSpeedMagnification: 0.2
+  praticleCount: 0000000004000000080000000c00000014000000
 --- !u!95 &3227170782532345053
 Animator:
   serializedVersion: 4
@@ -8844,6 +8859,19 @@ MonoBehaviour:
     LayerIndex: 0
   - SynchronizeType: 2
     LayerIndex: 1
+--- !u!114 &5537390239095185387
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7309405340590815873}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2bba249f0d709044da17593dabe731f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nonstaticObject: {fileID: 0}
 --- !u!1 &7309405340878061143
 GameObject:
   m_ObjectHideFlags: 0

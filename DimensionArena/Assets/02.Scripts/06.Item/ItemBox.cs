@@ -32,9 +32,13 @@ public class ItemBox : MonoBehaviourPun
 
     private void Start()
     {
-        itemHealth.text = health.ToString();
-        itemSlider.maxValue = health;
-        itemSlider.value = health;
+        if(itemHealth != null)
+            itemHealth.text = health.ToString();
+        if(itemSlider != null)
+        {
+            itemSlider.maxValue = health;
+            itemSlider.value = health;
+        }
     }
 
     private void OnEnable()
@@ -110,8 +114,10 @@ public class ItemBox : MonoBehaviourPun
     private void HpDecrease(int damage, string owner)
     {
         health -= damage;
-        itemSlider.value = health;
-        itemHealth.text = health.ToString();
+        if(itemSlider != null)
+            itemSlider.value = health;
+        if(itemHealth != null)
+            itemHealth.text = health.ToString();
         if (false == GetComponentInChildren<Shaking>().IsShaking)
             GetComponentInChildren<Shaking>().StartShaking();
         if (health <= 0)
@@ -131,34 +137,4 @@ public class ItemBox : MonoBehaviourPun
         else
             HpDecrease((int)damage, owner);
     }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if(PhotonNetwork.InRoom)
-        {
-            if (!PhotonNetwork.IsMasterClient)
-                return;
-
-            if (other.gameObject.tag == "AttackCollider")
-            {
-                photonView.RPC(nameof(HpDecrease), RpcTarget.All, other.GetComponent<AttackObject>().Damage, other.GetComponent<AttackObject>().ownerID);
-            }
-        }
-        else
-        {
-            if (other.gameObject.tag == "AttackCollider")
-            {
-                health -= other.gameObject.GetComponent<Projectile>().Damage;
-                itemSlider.value = health;
-                if (health <= 0)
-                {      
-                    Destroy(this.gameObject);
-                }
-            }
-        }
-        
-    }
-
-  
-
 }
