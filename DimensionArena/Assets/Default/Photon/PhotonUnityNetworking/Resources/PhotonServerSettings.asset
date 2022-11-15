@@ -133,6 +133,12 @@ MonoBehaviour:
   - CurHPDecreaseRatioAllClient
   - CurSkillPtIncreaseAllClient
   - CurHpDecreaseAllClient
+  - CreateKnockBackObjectServer
+  - KnockBackObjSetActive
+  - CurHPDecreaseRatio
+  - MoveKnockBack
+  - SetKncoBack
+  - AllClientKncokBack
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1

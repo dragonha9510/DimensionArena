@@ -103,7 +103,7 @@ MonoBehaviour:
   audioSource: {fileID: 0}
   audioClipName: 
   ultimatePoint: 10
-  damage: 660
+  damage: 1
   hitPrefab: {fileID: 0}
   destroyEffect: {fileID: 1000012903210382, guid: b75a538851e583f42937cda85e429068,
     type: 3}
@@ -129,13 +129,13 @@ MonoBehaviour:
     ultimatePoint: 0
     ownerID: 
     speed: 10
-    distance: 0.3
+    distance: 0.7
     isDamage: 1
     isPercentDamage: 0
     isEnvironment: 0
   knockBack: {fileID: 6338996334954765853, guid: 1ebde4fa2d241254ca1d8ea40b1ff5ca,
     type: 3}
-  triggerRadius: 1.75
+  triggerRadius: 0.5
 --- !u!114 &6285392066674466738
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -166,7 +166,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7780763529671439132}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
   m_Name: 

@@ -141,7 +141,14 @@ namespace ManagerSpace
             }
         }
 
+        // Only CallMaster
+        public int CurHpDecreaseAllClient(string killerId,string targetId,float damage)
+        {
+            photonView.RPC(nameof(CurHpDecrease), RpcTarget.Others, killerId, targetId, damage);
+            return CurHpDecrease(killerId, targetId, damage);
+        }
 
+        [PunRPC]
         public int CurHpDecrease(string killerId, string targetId, float damage)
         {
             PlayerInfo target;
@@ -172,6 +179,14 @@ namespace ManagerSpace
         }
 
 
+        // Only CallMaster
+        public int CurHPDecreaseRatioAllClient(string killerId,string targetId, float ratio)
+        {
+            photonView.RPC(nameof(CurHPDecreaseRatio), RpcTarget.Others, killerId, targetId, ratio);
+            return CurHPDecreaseRatio(killerId, targetId, ratio);
+        }
+
+        [PunRPC]
         public int CurHPDecreaseRatio(string killerId, string targetId, float ratio)
         {
             PlayerInfo target;
@@ -309,6 +324,12 @@ namespace ManagerSpace
         /// ===========================
         /// CurSkillPt Region
         /// >>>>>>>>>>>>>>>>>>>>>>>>>>
+
+        // Only Call MasterClient
+        public void CurSkillPtInCreaseAllClient(string targetId,float amount)
+        {
+            photonView.RPC(nameof(CurSkillPtDecrease), RpcTarget.All, targetId, amount);
+        }
 
         [PunRPC]
         public void CurSkillPtIncrease(string targetId, float amount)
