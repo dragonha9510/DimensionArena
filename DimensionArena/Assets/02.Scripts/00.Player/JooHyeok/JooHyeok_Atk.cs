@@ -162,7 +162,7 @@ namespace PlayerSpace
                 for (int j = 0; j < projectileCount; ++j)
                 {
                     // JSB
-                    projectile = Instantiate(prefab_Projectile, this.transform.position + shooterAttackDir + (Vector3.up * 0.5f), this.transform.rotation);
+                    projectile = Instantiate(prefab_Projectile, this.transform.position + (Vector3.up * 0.5f), this.transform.rotation);
                     projectile.GetComponent<Projectile>().ownerID = ownerName;
                     SetAttackTrigger();
                     //
