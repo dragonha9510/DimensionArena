@@ -4,13 +4,10 @@ using UnityEngine;
 
 public abstract class BaseEvent : MonoBehaviour
 {
-    [SerializeField] protected int eventIdx;
-    public int EventIdx => eventIdx;
-    [SerializeField] private string temp;
+    [SerializeField] protected bool isEventOn = false;
+    public bool IsEventOn => isEventOn;
 
-    public virtual string EventSuccesed()
-    {
-        return temp;
-    }
+    public abstract void EventSuccesed();
+
     public abstract bool CheckEventState();
 }

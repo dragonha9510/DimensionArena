@@ -6,6 +6,12 @@ using TMPro;
 
 public class TutorialEvent : MonoBehaviour
 {
+
+    private static TutorialEvent instance;
+    public static TutorialEvent Instance => instance;
+
+
+
     public struct EventType
     {
         public int idx;
@@ -24,6 +30,11 @@ public class TutorialEvent : MonoBehaviour
 
     void Awake()
     {
+        if(instance == null)
+            instance = this;
+        else
+            Destroy(this.gameObject);
+        
         dialogue = CSVReader.Read("Log/Tutorial");
     }
 
@@ -36,9 +47,7 @@ public class TutorialEvent : MonoBehaviour
         if (!listEvent[0].CheckEventState())
             return;
 
-        curText.text = listEvent[0].EventSuccesed();
         listEvent.RemoveAt(0);
-
     }
 
 
