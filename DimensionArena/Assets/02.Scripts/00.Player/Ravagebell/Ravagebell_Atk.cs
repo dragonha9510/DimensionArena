@@ -9,7 +9,7 @@ namespace PlayerSpace
     public class Ravagebell_Atk : Player_Atk
     {
         [Header("RavagebellAttackInfo")]
-        [SerializeField] private float projectileSpeed = 8.0f;
+        //[SerializeField] private float projectileSpeed = 8.0f;
         [SerializeField] private float atkDelay;
         [SerializeField] private float dropDelay = 1;
 
