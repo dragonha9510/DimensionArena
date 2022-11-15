@@ -7,7 +7,7 @@ public class ChangeAvartar_Info : MonoBehaviour
     // Start is called before the first frame update
     [SerializeField] private GameObject[] avartar;
     [SerializeField] private bool isMainLobby = false;
-    [SerializeField] private Light light;
+    [SerializeField] private Light lightAlignment;
     void Start()
     {
 
@@ -35,14 +35,14 @@ public class ChangeAvartar_Info : MonoBehaviour
         if (!isChange)
             avartar[avartar.Length - 1].SetActive(true);
 
-        if (light == null)
+        if (lightAlignment == null)
             return;
 
   
         if (tempName.Equals("Secilia"))
-            light.intensity = 0.6f;
+            lightAlignment.intensity = 0.6f;
         else
-            light.intensity = 1.1f;
+            lightAlignment.intensity = 1.1f;
      
 
     }
