@@ -1,0 +1,14 @@
+#,변수명,string,#텍스트 출력 상황
+1,tutorialstring_1,내 이름은 지주혁! \n디멘션 아레나의 참가자야!\n이제 경기장으로 가볼까!,튜토리얼 시작
+1,tutorialstring_2,왼손 엄지손가락으로 \n파란색 조이스틱을 조작하면 \n이동할 수 있어!,tutorialstring_1 출력 후 5초 경과
+1,tutorialstring_3,아이템 박스가 나타났어! \n빨간색 조이스틱을\n원하는 방향으로\n드래그해봐!,중앙 길목 통과 후 아이템 박스 조우 (중앙 하단 길목 끝 진입)
+1,tutorialstring_4,좋아!\n아이템박스를 공격해 파괴해보자!,공격 1회 실행
+1,tutorialstring_5,빨간색 조이스틱을 탭하면\n가장 가까운 대상을\n자동으로 조준해\n공격할 수 있어!,tutorialstring_4 출력 후 5초 경과
+1,tutorialstring_6,잘 했어! \n노란색 바는 남은 탄환이야.\n최대한 빨리 재장전할테니 기다리라고!,"아이템 박스 1개 이상 파괴, 아이템 생성"
+1,tutorialstring_7,아이템 박스를 파괴하면\n아이템을 가질 수 있어!,tutorialstring_7 출력 후 5초 경과
+1,tutorialstring_8,좋았어! \n다시 경기장으로 가자!,아이템 획득
+1,tutorialstring_9,이크! 저건 \n디멘션 아레나의 경비로봇\n시큐리타스잖아!,표적 NPC 조우 (중앙 상단 길목 입구 진입)
+1,tutorialstring_10,경기장에 입장하려면\n저 녀석들을 모두\n없애야 해!,tutorialstring_7 출력 후 5초 경과
+1,tutorialstring_11,적에게 공격을 맞히면\n스킬 게이지를\n충전할 수 있어!,표적 NPC 공격 적중 및 스킬 게이지 수급
+1,tutorialstring_12,노란색 조이스틱으로\n스킬을 사용해\n시큐리타스를 모두\n박살내 버리자!,스킬 게이지 활성화
+1,tutorialstring_13,훌륭해! \n어서 경기장으로 가자!,표적 NPC 전원 사망 (튜토리얼 종료)
