@@ -154,6 +154,8 @@ namespace PlayerSpace
 
         public override void AutoAttack()
         {
+            tmpDirection = (autoAtk.targetPos - this.transform.position).normalized;
+            Attack();
         }
 
 

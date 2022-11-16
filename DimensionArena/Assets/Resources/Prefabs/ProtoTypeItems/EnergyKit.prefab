@@ -226,7 +226,6 @@ GameObject:
   - component: {fileID: 5302088807627396627}
   - component: {fileID: 5423607778728767485}
   - component: {fileID: 5422792523244640723}
-  - component: {fileID: 687720079128946415}
   m_Layer: 0
   m_Name: PowerboxMetalLightning
   m_TagString: Untagged
@@ -5136,22 +5135,6 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
---- !u!54 &687720079128946415
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5296480947443521017}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!1 &5297072109739927489
 GameObject:
   m_ObjectHideFlags: 0
