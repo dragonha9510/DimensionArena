@@ -7,6 +7,8 @@ public class EnergyKit : Item
 {
     protected override void InteractItem(string targetID)
     {
+        if (!PhotonNetwork.IsMasterClient)
+            return;
         photonView.RPC(nameof(InteractItemForAllcient), RpcTarget.AllViaServer, targetID);
     }
 
@@ -14,5 +16,8 @@ public class EnergyKit : Item
     public void InteractItemForAllcient(string targetID)
     {
         PlayerInfoManager.Instance.CurSkillPtIncrease(targetID, info.skillRecovery);
+
+        if(PhotonNetwork.IsMasterClient)
+            PhotonNetwork.Destroy(this.gameObject); 
     }
 }

@@ -111,7 +111,7 @@ public abstract class Item : MonoBehaviourPun
                 InteractItem(collision.gameObject.name);
 
             EffectManager.Instance.CreateParticleEffectOnGameobject(collision.gameObject.transform, "ItemDrop");
-            PhotonNetwork.Destroy(this.gameObject);
+            
 
             // 아이템 이벤트 처리
 

@@ -14,6 +14,9 @@ public class ShieldKit : Item
     public void InteractItemForAllcient(string targetID)
     {
         PlayerInfoManager.Instance.GetShield(targetID, info.shieldAmount,info.statusDuration);
+
+        if (PhotonNetwork.IsMasterClient)
+            PhotonNetwork.Destroy(this.gameObject);
     }
 
 }

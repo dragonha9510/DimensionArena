@@ -15,5 +15,8 @@ public class PowerKit : Item
     public void InteractItemForAllcient(string targetID)
     {
         PlayerInfoManager.Instance.DmgUp(targetID, info.attackIncrement);
+
+        if (PhotonNetwork.IsMasterClient)
+            PhotonNetwork.Destroy(this.gameObject);
     }
 }

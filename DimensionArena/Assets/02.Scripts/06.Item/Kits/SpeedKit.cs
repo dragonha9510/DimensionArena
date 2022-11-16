@@ -15,5 +15,9 @@ public class SpeedKit : Item
     public void InteractItemForAllcient(string targetID)
     {
         PlayerInfoManager.Instance.SpeedIncrease(targetID, info.speedAmount,info.statusDuration);
+
+        if (PhotonNetwork.IsMasterClient)
+            PhotonNetwork.Destroy(this.gameObject);
+
     }
 }

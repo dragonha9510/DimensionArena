@@ -17,6 +17,9 @@ public class DemensionKit : Item
         PlayerInfoManager.Instance.DmgUp(targetID, info.attackIncrement);
         PlayerInfoManager.Instance.SpeedIncrease(targetID, info.speedAmount,info.statusDuration);
         PlayerInfoManager.Instance.CurHpIncrease(targetID, info.healthAmount);
+
+        if (PhotonNetwork.IsMasterClient)
+            PhotonNetwork.Destroy(this.gameObject);
     }
 
 }

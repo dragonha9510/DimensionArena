@@ -15,6 +15,9 @@ public class MedicKit : Item
     public void InteractItemForAllcient(string targetID)
     {
         PlayerInfoManager.Instance.CurHpIncrease(targetID, info.healthAmount);
+
+        if (PhotonNetwork.IsMasterClient)
+            PhotonNetwork.Destroy(this.gameObject);
     }
 
 }
