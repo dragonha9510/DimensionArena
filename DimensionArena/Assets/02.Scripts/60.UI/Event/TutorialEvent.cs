@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System.Linq;
+using DG.Tweening;
+
 public class TutorialEvent : MonoBehaviour
 {
 
@@ -15,8 +17,12 @@ public class TutorialEvent : MonoBehaviour
     [SerializeField] TextMeshProUGUI curText;
     [SerializeField] CanvasGroup touchBlockGroup;
     [SerializeField] List<BaseEvent> listEvent = new List<BaseEvent>();
+    [SerializeField] Image joohyeokDialogue;
     int cnt = 0;
-    float delayTime = 1.0f;
+
+    [SerializeField] DialogueAnimation dlgAnimation;
+
+
     void Awake()
     {
         if(instance == null)
@@ -33,22 +39,29 @@ public class TutorialEvent : MonoBehaviour
     }
 
     float curtime;
-    private void Update()
+
+    private void Start()
     {
         curText.text = dialogue[cnt]["string"].ToString();
+        StartCoroutine(dlgAnimation.Animation());
+    }
 
+    private void Update()
+    {
         if (listEvent.Count < 1)
             return;
 
         if (!listEvent[0].CheckEventState())
             return;
-
-        cnt++;
         listEvent[0].EventSuccesed();
         listEvent.RemoveAt(0);
 
         if(listEvent.Any())
             listEvent[0].gameObject.SetActive(true);
+
+        StartCoroutine(dlgAnimation.Animation());
+        cnt++;
+        curText.text = dialogue[cnt]["string"].ToString();
     }
 
 
@@ -57,9 +70,5 @@ public class TutorialEvent : MonoBehaviour
         Debug.Log(isOn);
         touchBlockGroup.blocksRaycasts = isOn;
         touchBlockGroup.alpha = touchBlockGroup.blocksRaycasts ? 0.6f : 0.0f;
-    }
-
-
-
-   
+    } 
 }
