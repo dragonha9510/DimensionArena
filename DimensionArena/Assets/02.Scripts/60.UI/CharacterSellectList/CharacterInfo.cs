@@ -167,7 +167,9 @@ public class CharacterInfo : MonoBehaviour
         if (tempSprite == null)
             return;
 
-        for(int i = 0; i < SkillImage.Length; ++i)
+        CharacterSelect_TxtChange();
+
+        for (int i = 0; i < SkillImage.Length; ++i)
         {
             SkillImage[i].sprite = tempSprite[i];
         }

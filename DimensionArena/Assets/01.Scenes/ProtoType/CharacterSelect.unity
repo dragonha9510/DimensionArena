@@ -2098,7 +2098,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 6031f79590f2b404cb2369774ff6c635, type: 3}
   - {fileID: 21300000, guid: a12efaa3837101546ac7d34189826d53, type: 3}
   - {fileID: 21300000, guid: ee49a8b5da03acb44a0f3dec2156f946, type: 3}
-  skillNameTxt: {fileID: 0}
+  skillNameTxt: {fileID: 494810166}
   infoText: {fileID: 2091564874}
 --- !u!1 &614907817
 GameObject:
