@@ -104,15 +104,7 @@ public class Projectile : AttackObject
 
             if (hitPrefab != null)
             {
-                var hitVFX = Instantiate(hitPrefab, pos, rot);
-                var psHit = hitVFX.GetComponentInChildren<ParticleSystem>();
-                if (psHit != null)
-                    Destroy(hitVFX, psHit.main.duration);
-                else
-                {
-                    var psChild = hitVFX.transform.GetChild(0).GetComponent<ParticleSystem>();
-                    Destroy(hitVFX, psChild.main.duration);
-                }
+                CreateEffectForAllClient(pos, rot);
             }
         }
         else
@@ -120,13 +112,11 @@ public class Projectile : AttackObject
             Quaternion rot = Quaternion.AngleAxis(transform.rotation.eulerAngles.y, Vector3.up); 
             Vector3 pos = other.GetComponent<Collider>().ClosestPointOnBounds(transform.position);
 
-            if (hitPrefab != null)
+            if (hitPrefab != null && PhotonNetwork.InRoom)
             {
                 photonView.RPC(nameof(CreateEffectForAllClient), RpcTarget.All, pos, rot);
             }
         }
-
-       
     }
 
 
@@ -136,10 +126,13 @@ public class Projectile : AttackObject
     {
         var hitVFX = Instantiate(hitPrefab, pos, rot);
         var psHit = hitVFX.GetComponentInChildren<ParticleSystem>();
-        Destroy(hitVFX, psHit.main.duration);
+        if(psHit != null)
+            Destroy(hitVFX, psHit.main.duration);
 
-        if(PhotonNetwork.IsMasterClient)
-             PhotonNetwork.Destroy(this.gameObject);  
+        if (PhotonNetwork.IsMasterClient && PhotonNetwork.InRoom)
+            PhotonNetwork.Destroy(this.gameObject);
+        else
+            Destroy(this.gameObject);
     }
 
 

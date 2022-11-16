@@ -106,9 +106,14 @@ public class ItemBox : MonoBehaviourPun
 
     private void MakeRandItem(string owner)
     {
-        GameObject item = PhotonNetwork.Instantiate(PHOTONPATH.PHOTONPATH_ITEMPREFABFOLDER + itemPrefabName, this.transform.position, Quaternion.identity);
-        item.GetComponent<Item>().enabled = true;
-        item.GetComponent<Item>().ownerName = owner;
+        if (PhotonNetwork.InRoom)
+        {
+            GameObject item = PhotonNetwork.Instantiate(PHOTONPATH.PHOTONPATH_ITEMPREFABFOLDER + itemPrefabName, this.transform.position, Quaternion.identity);
+            item.GetComponent<Item>().enabled = true;
+            item.GetComponent<Item>().ownerName = owner;
+        }
+        else if (!PhotonNetwork.InRoom)
+            return;
     }
 
     [PunRPC]

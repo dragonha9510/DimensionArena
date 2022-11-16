@@ -114,7 +114,7 @@ public class RegisterUI : MonoBehaviour
     public void GoToGameStartScene()
     {
         SoundManager.Instance.PlaySFXOneShot("ClickEffect");
-        SceneManager.LoadScene("GameStartScene");
         FirebaseDB_Manager.Instance.RegisterNewPlayer(nickNameInputField.text);
+        SceneManager.LoadScene("Tutorial");
     }
 }

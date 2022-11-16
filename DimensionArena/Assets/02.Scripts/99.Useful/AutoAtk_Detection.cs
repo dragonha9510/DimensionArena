@@ -71,6 +71,7 @@ public class AutoAtk_Detection : MonoBehaviour
                 break;
             }
         }
+        targetPos.y = 0;
     }
     private void OnTriggerEnter(Collider other)
     {
