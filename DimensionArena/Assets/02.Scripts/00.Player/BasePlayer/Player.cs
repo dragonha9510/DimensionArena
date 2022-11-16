@@ -176,7 +176,7 @@ namespace PlayerSpace
             Transform target = GameObject.Find("Target Camera").
                 GetComponent<Prototype_TargetCamera>().target;
 
-            if (!target)
+            if (target.name.Equals("Dummy"))
             {
                 GameObject.Find("Target Camera").
                 GetComponent<Prototype_TargetCamera>().target = this.transform;
