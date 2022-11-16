@@ -118,8 +118,11 @@ public class ItemBox : MonoBehaviourPun
             itemSlider.value = health;
         if(itemHealth != null)
             itemHealth.text = health.ToString();
-        if (false == GetComponentInChildren<Shaking>().IsShaking)
-            GetComponentInChildren<Shaking>().StartShaking();
+        if(null != GetComponentInChildren<Shaking>())
+        {
+            if (false == GetComponentInChildren<Shaking>().IsShaking)
+                GetComponentInChildren<Shaking>().StartShaking();
+        }
         if (health <= 0)
         {
             if (!PhotonNetwork.IsMasterClient)
