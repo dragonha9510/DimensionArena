@@ -53,7 +53,7 @@ public class LobbyManagerRenewal : MonoBehaviourPunCallbacks
     private string nowInRoomName = "";
 
 
-    // °ÔÀÓ ³¡³ª¸é ÃÊ±âÈ­ ½ÃÄÑÁà¾ßÇÔ
+    // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê±ï¿½È­ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     private int inGameReadyPlayer = 0;
     public int InGameReadyPlayer { get { return inGameReadyPlayer; } }
     private int nowGameStartCount = 0;
@@ -89,21 +89,21 @@ public class LobbyManagerRenewal : MonoBehaviourPunCallbacks
             rooms.Add(new Dictionary<string, CustomRoomInfo>());
         }
 
-        loadText.text = "¼­¹ö Á¢¼Ó ½ÃµµÁß...";
-        // ¼­¹ö¿¡ Á¢¼Ó ½Ãµµ
+        loadText.text = "ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ãµï¿½ï¿½ï¿½...";
+        // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ãµï¿½
         PhotonNetwork.ConnectUsingSettings();
 
     }
     public override void OnConnectedToMaster()
     {
-        loadText.text = "¼­¹ö ·Îºñ Á¢¼ÓÁß...";
+        loadText.text = "ï¿½ï¿½ï¿½ï¿½ ï¿½Îºï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½...";
         PhotonNetwork.JoinLobby();
     }
     public override void OnJoinedLobby()
     {
-        Debug.Log("·Îºñ Á¢¼Ó ¼º°ø");
+        Debug.Log("ï¿½Îºï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 
-        loadText.text = "¼­¹ö Á¢¼Ó ¼º°ø";
+        loadText.text = "ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½";
         
         /*if(isReconnect)
         {
@@ -117,7 +117,7 @@ public class LobbyManagerRenewal : MonoBehaviourPunCallbacks
 
     /*private string MakeRandNickname()
     {
-        loadText.text = "·£´ý ÀÌ¸§ »ý¼ºÁß...";
+        loadText.text = "ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½...";
         return FirebaseDB_Manager.Instance.RegisterDataBase(loadText);
     } */
 
@@ -127,8 +127,8 @@ public class LobbyManagerRenewal : MonoBehaviourPunCallbacks
         playersName.Add(name);
     }
 
-    // ÇØ´ç ÇÔ¼ö´Â ·Îºñ¿¡ µ¹¾Æ°¬À» ½Ã ÀÚµ¿ÀûÀ¸·Î È£ÃâµÇ´Â ÇÔ¼öÀÌ¸ç , ·Îºñ ³»ºÎ¿¡¼­´Â °»½ÅÀ» ÇÒ ¼ö ¾ø´Ù.
-    // -> ±×·³ ÀÌ°Å ·Îºñ¿¡ µÑ ´Ù ÀÖÀ» ¶§ ¹æÀ» ¸¸µé¸é È£ÃâÀÌ µÇ´Â°Ç°¡..;;
+    // ï¿½Ø´ï¿½ ï¿½Ô¼ï¿½ï¿½ï¿½ ï¿½Îºï¿½ ï¿½ï¿½ï¿½Æ°ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Úµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ È£ï¿½ï¿½Ç´ï¿½ ï¿½Ô¼ï¿½ï¿½Ì¸ï¿½ , ï¿½Îºï¿½ ï¿½ï¿½ï¿½Î¿ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½.
+    // -> ï¿½×·ï¿½ ï¿½Ì°ï¿½ ï¿½Îºï¿½ ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ È£ï¿½ï¿½ï¿½ï¿½ ï¿½Ç´Â°Ç°ï¿½..;;
     
     public override void OnRoomListUpdate(List<RoomInfo> roomList)
     {
@@ -137,9 +137,9 @@ public class LobbyManagerRenewal : MonoBehaviourPunCallbacks
         //rooms[(int)playMode] = roomList;
     }
 
-    // ·ëÀº 2±ÛÀÚ·Î ¹Û¿¡ °ü¸®¸¦ ¸øÇÑ´Ù Áï ·ë ¾ÕÀÇ ÀÌ¸§ÀÌ Àý´ë °ãÃÄ¼­´Â ¾ÈµÈ´Ù
-    // ¿©±â¼­´Â È®½Ç¼ºÀÌ ¾ø´Â OnRoomListUpdate ÀÇ ¸ñ·Ï¿¡¼­ ¹Ýµå½Ã Ãß°¡µÈ ÀÌ¸§¸¸ Ãß°¡¸¦ ÇÏÀÚ.
-    // ¾Æ´Ï´Ù , ÇÃ·¹ÀÌ¾î Ä«¿îÆ®µµ È®½ÇÇÏ°Ô ¹ÞÀÚ.
+    // ï¿½ï¿½ï¿½ï¿½ 2ï¿½ï¿½ï¿½Ú·ï¿½ ï¿½Û¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ñ´ï¿½ ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½ ï¿½ÈµÈ´ï¿½
+    // ï¿½ï¿½ï¿½â¼­ï¿½ï¿½ È®ï¿½Ç¼ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ OnRoomListUpdate ï¿½ï¿½ ï¿½ï¿½Ï¿ï¿½ï¿½ï¿½ ï¿½Ýµï¿½ï¿½ ï¿½ß°ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½ï¿½ï¿½ ï¿½ß°ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½.
+    // ï¿½Æ´Ï´ï¿½ , ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ Ä«ï¿½ï¿½Æ®ï¿½ï¿½ È®ï¿½ï¿½ï¿½Ï°ï¿½ ï¿½ï¿½ï¿½ï¿½.
     [PunRPC]
     private void SetUpRoomList(List<RoomInfo> roomList)
     {
@@ -177,7 +177,7 @@ public class LobbyManagerRenewal : MonoBehaviourPunCallbacks
         }
     }
 
-    // ³²Àº ·ëÀÌ ÀÖ´ÂÁö È®ÀÎÇÏ´Â ÇÔ¼öÀÌ´Ù.
+    // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ï¿½ï¿½ È®ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½Ô¼ï¿½ï¿½Ì´ï¿½.
     private string CheckingRoom(MODE gameMode)
     {
         if (0 == rooms.Count)
@@ -211,11 +211,11 @@ public class LobbyManagerRenewal : MonoBehaviourPunCallbacks
         }
 
 
-        // ÃÖ¼ÒÇÑÀÇ ¹æÀÌ ½ÃÀÛµÇ´Â Á¶°ÇÀÌ 4¸í ÀÓÀ¸·Î
+        // ï¿½Ö¼ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ÛµÇ´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 4ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         if(15 < playerCount && 4 < roomCount)
             return null;
 
-        // »õ·Î¿î ¹æÀÇ ÀÎµ¦½º¸¦ ±¸ÇÏ±â À§ÇØ ¸Ç ³¡ ÀÌ¸§À» ¹Þ´Â´Ù.
+        // ï¿½ï¿½ï¿½Î¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Îµï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ï±ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ ï¿½Ì¸ï¿½ï¿½ï¿½ ï¿½Þ´Â´ï¿½.
         int newRoomIndex = 0;
         foreach (string key in rooms[(int)playMode].Keys)
         {
@@ -266,7 +266,7 @@ public class LobbyManagerRenewal : MonoBehaviourPunCallbacks
 
         if (roomName == "empty")
         {
-            // ÀÓ½Ã·Î ¹æ »ý¼ºÀº ÀÏÁ¤ÇÑ ÀÌ¸§À¸·Î ¸¸µé¾î ³ùÀ½
+            // ï¿½Ó½Ã·ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
             CustomRoomInfo newRoomInfo = GetNewRoomName();
             Debug.Log(newRoomInfo.RoomName);
             rooms[(int)gameMode].Add(newRoomInfo.RoomName,newRoomInfo);
@@ -274,7 +274,7 @@ public class LobbyManagerRenewal : MonoBehaviourPunCallbacks
             bool roomMake = PhotonNetwork.CreateRoom(newRoomName, new RoomOptions { MaxPlayers = 8 }, null);
             if(!roomMake)
             {
-                // ¹æ »ý¼º ½ÇÆÐ
+                // ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 
             }
             else
@@ -293,12 +293,12 @@ public class LobbyManagerRenewal : MonoBehaviourPunCallbacks
 
     public override void OnJoinRoomFailed(short returnCode, string message)
     {
-        Debug.Log("Á¢¼Ó½ÇÆÐ");
+        Debug.Log("ï¿½ï¿½ï¿½Ó½ï¿½ï¿½ï¿½");
     }
     public override void OnJoinedRoom()
     {
 
-        //  ¾Æ ¹æÀÌ ¸¸µé¾îÁ³´Âµ¥ ¶Ç µé¾î°¡´Â ¿À·ùÀÎ°Ç°¡...
+        //  ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Âµï¿½ ï¿½ï¿½ ï¿½ï¿½î°¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Î°Ç°ï¿½...
         //  JoinRandomRoom failed. Client is on GameServer (must be Master Server for matchmaking) and ready
 
 
@@ -310,10 +310,11 @@ public class LobbyManagerRenewal : MonoBehaviourPunCallbacks
         if (leastStartPlayer <= PhotonNetwork.CurrentRoom.PlayerCount)
         {
             photonView.RPC(nameof(StartWaitForPlayerMaster),RpcTarget.MasterClient);
-            // °ÔÀÓÀÌ ½ÃÀÛÇßÀ¸¸é ¹æÀ» ´Ý´Â´Ù. -> ¹æÀ» ´Ý°í ¾ÀÀ» ·ÎµåÇØ¾ßÁö ´óÃ»¾Æ
+            // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ý´Â´ï¿½. -> ï¿½ï¿½ï¿½ï¿½ ï¿½Ý°ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Îµï¿½ï¿½Ø¾ï¿½ï¿½ï¿½ ï¿½ï¿½Ã»ï¿½ï¿½
             //PhotonNetwork.CurrentRoom.IsOpen = false;
         }
     }
+
 
     Coroutine temp = null;
     [PunRPC]
@@ -321,6 +322,7 @@ public class LobbyManagerRenewal : MonoBehaviourPunCallbacks
     {
         if(temp == null)
             temp = StartCoroutine(WaitOtherPlayer());
+
     }
     [PunRPC]
     private void GetTimeToMaster_PlayerWaitTime(float time)
@@ -331,20 +333,20 @@ public class LobbyManagerRenewal : MonoBehaviourPunCallbacks
     {
         waitTimeRemain = waitOtherPlayerTime;
         isWillStartGame = true;
-        while (true)
+        while (0 < waitTimeRemain)
         {
             waitTimeRemain -= Time.deltaTime;
-            Debug.Log(waitTimeRemain);
+            if (waitTimeRemain <= 0)
+                waitTimeRemain = 0f;
             photonView.RPC(nameof(GetTimeToMaster_PlayerWaitTime), RpcTarget.Others, waitTimeRemain);
-            yield return new WaitForSeconds(waitOtherPlayerTime);
 
-            nowGameStartCount = PhotonNetwork.CurrentRoom.PlayerCount;
-            PhotonNetwork.CurrentRoom.IsOpen = false;
-            photonView.RPC("PlayStart", RpcTarget.All);
-            // °ÔÀÓÀÌ ½ÃÀÛÇßÀ¸¸é ¹æÀ» ´Ý´Â´Ù. -> ¹æÀ» ´Ý°í ¾ÀÀ» ·ÎµåÇØ¾ßÁö ´óÃ»¾Æ
-            //PhotonNetwork.CurrentRoom.IsOpen = false;
-            yield break;
+            yield return null;
         }
+        nowGameStartCount = PhotonNetwork.CurrentRoom.PlayerCount;
+        PhotonNetwork.CurrentRoom.IsOpen = false;
+        photonView.RPC("PlayStart", RpcTarget.All);
+        // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ý´Â´ï¿½. -> ï¿½ï¿½ï¿½ï¿½ ï¿½Ý°ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Îµï¿½ï¿½Ø¾ï¿½ï¿½ï¿½ ï¿½ï¿½Ã»ï¿½ï¿½
+        //PhotonNetwork.CurrentRoom.IsOpen = false;
     }
 
 

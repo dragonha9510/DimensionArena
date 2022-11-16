@@ -140,6 +140,7 @@ MonoBehaviour:
   - SetKncoBack
   - AllClientKncokBack
   - StartWaitForPlayerMaster
+  - GetTimeToMaster_PlayerWaitTime
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1
