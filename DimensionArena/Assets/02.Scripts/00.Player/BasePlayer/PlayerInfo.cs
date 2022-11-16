@@ -155,7 +155,7 @@ public class PlayerInfo
     {
         curHP -= damage;
         curHP = Mathf.Max(curHP, 0);
-        EcurHPChanged(curHP);  
+        EcurHPChanged(curHP);
     }
 
     public void Heal(float amount)
@@ -207,6 +207,12 @@ public class PlayerInfo
     {
         isAlive = false;
         EDeadPlayer(killer_type, killer_id, type, id);
+        EDisActivePlayer();
+    }
+
+    public void PlayerDie()
+    {
+        isAlive = false;
         EDisActivePlayer();
     }
 

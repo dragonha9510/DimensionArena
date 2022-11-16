@@ -28,6 +28,7 @@ namespace PlayerSpace
         /// Component Type Region
         /// =============================
         [SerializeField] protected PlayerInfo info;
+        
         public PlayerInfo Info { get { return info; } }
 
         protected Player_Atk attack;
@@ -45,9 +46,10 @@ namespace PlayerSpace
 
  
 
-        //나중에 고칠것
+        
         public bool CanDirectionChange { get; set; }
 
+        
         private isHideOnBush bushRenderCheck;
 
 
@@ -144,33 +146,45 @@ namespace PlayerSpace
         {
             TouchCanvas touchCanvas = GameObject.Find("TouchCanvas").
                 GetComponent<TouchCanvas>();
-            touchCanvas.player = this;
+
+            if(touchCanvas.player == null)
+                touchCanvas.player = this;
             info.EDisActivePlayer += touchCanvas.DisActiveTouch;
 
 
             MoveJoyStick joyStick = GameObject.Find("MoveJoyStick").
                     GetComponent<MoveJoyStick>();
-            joyStick.player = this;
+
+            if(!joyStick.player)
+                joyStick.player = this;
 
             SkillJoyStick skilljoyStick = GameObject.Find("SkillJoyStick").
                 GetComponent<SkillJoyStick>();
             
+
+            if(!skilljoyStick.player)
+                skilljoyStick.player = this;
             info.EskillAmountChanged += skilljoyStick.SkillSetFillAmount;
-            skilljoyStick.player = this;
+
 
             AtkJoyStick atkjoyStick = GameObject.Find("AtkJoyStick").
                 GetComponent<AtkJoyStick>();
-            atkjoyStick.player = this;
 
-            SkillJoyStick skillJoyStick = GameObject.Find("SkillJoyStick").
-                GetComponent<SkillJoyStick>();
-            skilljoyStick.player = this;
+            if(!atkjoyStick.player)
+                atkjoyStick.player = this;
 
-            GameObject.Find("Target Camera").
+            Transform target = GameObject.Find("Target Camera").
+                GetComponent<Prototype_TargetCamera>().target;
+
+            if (!target)
+            {
+                GameObject.Find("Target Camera").
                 GetComponent<Prototype_TargetCamera>().target = this.transform;
+            }
+            
         }
 
-        private void DisActiveAnimation()
+        public void DisActiveAnimation()
         {
             EffectManager.Instance.CreateParticleEffectOnGameobject(this.transform, "Dead");
             gameObject.SetActive(false);

@@ -32,4 +32,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/01.Scenes/ProtoType/SelectMap.unity
     guid: 35c2afa06e22da14ba1c64a3e9c57e2f
+  - enabled: 1
+    path: Assets/01.Scenes/ProtoType/ProtoType/Tutorial.unity
+    guid: e3350a2ef45c49a42963682e9a2ecef3
   m_configObjects: {}
