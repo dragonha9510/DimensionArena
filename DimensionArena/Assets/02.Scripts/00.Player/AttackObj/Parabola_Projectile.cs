@@ -75,31 +75,63 @@ public class Parabola_Projectile : AttackObject
 
     private void Update()
     {
-        if (!isReady)
-            return;
-
-        myLocation += realSpeed * Time.deltaTime;
-        transform.Rotate(rotationAxis * rotationSpeed * Time.deltaTime);
-
-        if(myLocation > 1)
+        if(!PhotonNetwork.InRoom)
         {
-            Destroy(this.gameObject);
-            // Effect 持失
+            if (!isReady)
+                return;
 
-            GetComponent<KnockBackObject>().KnockBackStartDamage(ownerID, Damage, ultimatePoint);
+            myLocation += realSpeed * Time.deltaTime;
+            transform.Rotate(rotationAxis * rotationSpeed * Time.deltaTime);
 
-            if (destroyEffect != null)
-            { 
-                GameObject fxSize = Instantiate(destroyEffect, transform.position, destroyEffect.transform.rotation);
-                fxSize.transform.localScale *= tempRatio;
+            if (myLocation > 1)
+            {
+                Destroy(this.gameObject);
+                // Effect 持失
+
+                GetComponent<KnockBackObject>().KnockBackStartDamage(ownerID, Damage, ultimatePoint);
+
+                if (destroyEffect != null)
+                {
+                    GameObject fxSize = Instantiate(destroyEffect, transform.position, destroyEffect.transform.rotation);
+                    fxSize.transform.localScale *= tempRatio;
+                }
             }
+
+            Vector3 tempPosition = oriPosition + (direction * distance * myLocation);
+            tempPosition.y = CalculatePosition(myLocation);
+            transform.position = tempPosition;
         }
+        if(PhotonNetwork.InRoom && PhotonNetwork.IsMasterClient)
+        {
+            if (!isReady)
+                return;
 
-        Vector3 tempPosition = oriPosition + (direction * distance * myLocation);
-        tempPosition.y = CalculatePosition(myLocation);
-        transform.position = tempPosition;
+            myLocation += realSpeed * Time.deltaTime;
+            transform.Rotate(rotationAxis * rotationSpeed * Time.deltaTime);
+
+            if (myLocation > 1)
+            {
+                GetComponent<KnockBackObject>().KnockBackStartDamage(ownerID, Damage, ultimatePoint);
+
+                // Effect 持失
+                if (destroyEffect != null)
+                {
+                    photonView.RPC(nameof(CreateDestroyEffect), RpcTarget.All , transform.position, destroyEffect.transform.rotation,tempRatio);
+                    PhotonNetwork.Destroy(this.gameObject);
+                }
+            }
+
+            Vector3 tempPosition = oriPosition + (direction * distance * myLocation);
+            tempPosition.y = CalculatePosition(myLocation);
+            transform.position = tempPosition;
+        }
     }
-
+    [PunRPC]
+    private void CreateDestroyEffect(Vector3 pos,Quaternion rot,float ratio)
+    {
+        GameObject fxSize = Instantiate(destroyEffect, pos, rot);
+        fxSize.transform.localScale *= ratio;
+    }
     float CalculatePosition(float t)
     {
         float x = t * distance;

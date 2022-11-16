@@ -65,15 +65,20 @@ public class FieldOfView : Atk_Range
         }
         int vertexCount = viewPoints.Count + 1;
         Vector3[] vertices = new Vector3[vertexCount];
+        Vector2[] uvs = new Vector2[vertexCount];
+
         int[] triangles = new int[(vertexCount - 2) * 3];
 
+        uvs[0] = new Vector2(0.5f, 0f);
         vertices[0] = Vector3.zero;
 
-        for(int i = 0; i < vertexCount - 1; ++i)
+
+        for (int i = 0; i < vertexCount - 1; ++i)
         {
             vertices[i + 1] = owner.transform.InverseTransformPoint(viewPoints[i]);
+            uvs[i + 1] = new Vector2((float)i / (float)(vertexCount - 2), 1f);
 
-            if(i < vertexCount -2)
+            if (i < vertexCount -2)
             {
                 triangles[i * 3] = 0;
                 triangles[i * 3 + 1] = i + 1;
@@ -84,6 +89,7 @@ public class FieldOfView : Atk_Range
 
         viewMesh.vertices = vertices;
         viewMesh.triangles = triangles;
+        viewMesh.uv = uvs;
 
         viewMesh.RecalculateNormals();
     }
@@ -108,12 +114,15 @@ public class FieldOfView : Atk_Range
         }
         int vertexCount = viewPoints.Count + 1;
         Vector3[] vertices = new Vector3[vertexCount];
+        Vector2[] uvs = new Vector2[vertexCount];
         int[] triangles = new int[(vertexCount - 2) * 3];
 
         vertices[0] = Vector3.zero;
+        uvs[0] = new Vector2(0.5f, 0f);
 
         for (int i = 0; i < vertexCount - 1; ++i)
         {
+            uvs[i + 1] = new Vector2((float)i / (float)(vertexCount - 2), 1f);
             vertices[i + 1] = owner.transform.InverseTransformPoint(viewPoints[i]);
 
             if (i < vertexCount - 2)
@@ -127,6 +136,7 @@ public class FieldOfView : Atk_Range
 
         viewMesh.vertices = vertices;
         viewMesh.triangles = triangles;
+        viewMesh.uv = uvs;
 
         viewMesh.RecalculateNormals();
     }

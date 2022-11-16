@@ -128,7 +128,7 @@ namespace PlayerSpace
             else
             {
                 directionLocation.gameObject.SetActive(true);
-                directionLocation.position = transform.position + (direction * 1.25f);
+                directionLocation.position = transform.position + (direction * 1.25f) + new Vector3(0, 0.1f, 0);
             }
 
 

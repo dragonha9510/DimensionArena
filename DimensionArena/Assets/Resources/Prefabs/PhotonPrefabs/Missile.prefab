@@ -168,7 +168,7 @@ MonoBehaviour:
   destroyEffect: {fileID: 1000012903210382, guid: b75a538851e583f42937cda85e429068,
     type: 3}
   missileScale: {x: 2, y: 2}
-  Damage: 0.33
+  Damage: 0.01
 --- !u!114 &190571489047571183
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -210,7 +210,7 @@ MonoBehaviour:
     ultimatePoint: 0
     ownerID: 
     speed: 16
-    distance: 1
+    distance: 2
     isDamage: 1
     isPercentDamage: 1
     isEnvironment: 1

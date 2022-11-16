@@ -90,11 +90,8 @@ public class RedZone : MonoBehaviourPun
     // Update is called once per frame
     void Update()
     {
-        if(!PhotonNetwork.OfflineMode)
-        { 
-            if (!PhotonNetwork.IsMasterClient)
+        if(!PhotonNetwork.InRoom || !PhotonNetwork.IsMasterClient)
                 return;
-        }
 
         curDestroyTime += Time.deltaTime;
 

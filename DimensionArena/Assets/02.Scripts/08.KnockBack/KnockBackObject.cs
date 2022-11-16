@@ -1,8 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public class KnockBackObject : MonoBehaviour
+using Photon.Pun;
+public class KnockBackObject : MonoBehaviourPun
 {
     [SerializeField] private KnockBackInfo info;
     [SerializeField] private GameObject knockBack;
@@ -10,29 +10,61 @@ public class KnockBackObject : MonoBehaviour
     private GameObject knockBack_create;
     private KnockBack knockBack_info;
     // Start is called before the first frame update
+
     void Start()
     {
-        knockBack_create = Instantiate(knockBack, transform.position, knockBack.transform.rotation);
-        knockBack_info = knockBack_create.GetComponent<KnockBack>();
-        knockBack_info.info = info;
-        knockBack_create.GetComponent<SphereCollider>().radius = triggerRadius;
+        if (!PhotonNetwork.InRoom)
+        {
+            knockBack_create = Instantiate(knockBack, transform.position, knockBack.transform.rotation);
+            knockBack_info = knockBack_create.GetComponent<KnockBack>();
+            knockBack_info.info = info;
+            knockBack_create.GetComponent<SphereCollider>().radius = triggerRadius;
 
-        knockBack_create.SetActive(false);
+            knockBack_create.SetActive(false);
+        }
+        else if(PhotonNetwork.InRoom)
+        {
+            knockBack_create = Instantiate(knockBack, transform.position, knockBack.transform.rotation);
+            knockBack_info = knockBack_create.GetComponent<KnockBack>();
+            knockBack_info.info = info;
+            knockBack_create.GetComponent<SphereCollider>().radius = triggerRadius;
+            knockBack_create.SetActive(false);
+        }
     }
 
     public void KnockBackStart()
     {
-        knockBack_create.transform.position = transform.position;
-        knockBack_create.SetActive(true);
+        if(!PhotonNetwork.InRoom)
+        {
+            knockBack_create.transform.position = transform.position;
+            knockBack_create.SetActive(true);
+        }
+        else if(PhotonNetwork.InRoom && PhotonNetwork.IsMasterClient)
+        {
+            knockBack_create.transform.position = transform.position;
+            knockBack_create.SetActive(true);
+        }
     }
     public void KnockBackStartDamage(string ownerID, float damage, float ultimatePoint = 0)
     {
-        knockBack_create.transform.position = transform.position;
-        knockBack_create.SetActive(true);
+        if(!PhotonNetwork.InRoom)
+        {
+            knockBack_create.transform.position = transform.position;
+            knockBack_create.SetActive(true);
 
-        knockBack_info.info.ownerID = ownerID;
-        knockBack_info.info.damage = damage;
-        knockBack_info.info.ultimatePoint = ultimatePoint;
+            knockBack_info.info.ownerID = ownerID;
+            knockBack_info.info.damage = damage;
+            knockBack_info.info.ultimatePoint = ultimatePoint;
+        }
+        if(PhotonNetwork.InRoom && PhotonNetwork.IsMasterClient)
+        {
+            knockBack_create.transform.position = transform.position;
+            knockBack_create.SetActive(true);
+
+            knockBack_info.info.ownerID = ownerID;
+            knockBack_info.info.damage = damage;
+            knockBack_info.info.ultimatePoint = ultimatePoint;
+        }
     }
 
 

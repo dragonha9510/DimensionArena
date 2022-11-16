@@ -17586,7 +17586,7 @@ PrefabInstance:
     - target: {fileID: 1342166286767500842, guid: f2bd411598e07ef4f851dc5d4af6827b,
         type: 3}
       propertyPath: startDelay
-      value: 20
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1342166286767500842, guid: f2bd411598e07ef4f851dc5d4af6827b,
         type: 3}
@@ -17601,7 +17601,7 @@ PrefabInstance:
     - target: {fileID: 1342166286767500842, guid: f2bd411598e07ef4f851dc5d4af6827b,
         type: 3}
       propertyPath: positionDelay
-      value: 20
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1342166286767500842, guid: f2bd411598e07ef4f851dc5d4af6827b,
         type: 3}
