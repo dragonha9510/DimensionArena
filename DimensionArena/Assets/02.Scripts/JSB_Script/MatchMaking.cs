@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 using UnityEngine.UI;
+using TMPro;
 using UnityEngine.SceneManagement;
 public class MatchMaking : MonoBehaviourPun
 {
@@ -14,6 +15,14 @@ public class MatchMaking : MonoBehaviourPun
     private Button matchingOutBtn;
     [SerializeField]
     private Button matchingOutCantBtn;
+
+    [SerializeField]
+    private GameObject plusPlayerWait;
+    [SerializeField]
+    private GameObject plusPlayerWaitText;
+    [SerializeField]
+    private TextMeshProUGUI plusPlayerWaitTimeText;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -31,6 +40,14 @@ public class MatchMaking : MonoBehaviourPun
     {
         if(PhotonNetwork.InRoom && LobbyManagerRenewal.Instance.IsWillStartGame)
         {
+            do
+            {
+                plusPlayerWait.SetActive(true);
+                plusPlayerWaitText.SetActive(true);
+            } while (plusPlayerWait.activeInHierarchy == false
+            && plusPlayerWaitText.activeInHierarchy == false);
+            plusPlayerWaitTimeText.text = LobbyManagerRenewal.Instance.WaitTimeRemain.ToString();
+
             matchingOutBtn.gameObject.SetActive(false);
             matchingOutCantBtn.gameObject.SetActive(true);
         }

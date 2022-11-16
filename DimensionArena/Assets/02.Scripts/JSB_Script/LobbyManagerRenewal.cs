@@ -59,6 +59,12 @@ public class LobbyManagerRenewal : MonoBehaviourPunCallbacks
     private int nowGameStartCount = 0;
     public int NowGameStartCount { get { return nowGameStartCount; } }
 
+    [SerializeField]
+    private float waitOtherPlayerTime = 5.0f;
+
+    private float waitTimeRemain = 0f;
+    public float WaitTimeRemain { get { return waitTimeRemain; } }
+
     //Test 
     [SerializeField] Dictionary<string, PlayerData> playerDatas = new Dictionary<string, PlayerData>();
 
@@ -303,14 +309,41 @@ public class LobbyManagerRenewal : MonoBehaviourPunCallbacks
 
         if (leastStartPlayer <= PhotonNetwork.CurrentRoom.PlayerCount)
         {
-            nowGameStartCount = PhotonNetwork.CurrentRoom.PlayerCount;
-            isWillStartGame = true;
-            PhotonNetwork.CurrentRoom.IsOpen = false;
-            photonView.RPC("PlayStart",RpcTarget.All);
+            photonView.RPC(nameof(StartWaitForPlayerMaster),RpcTarget.MasterClient);
             // 게임이 시작했으면 방을 닫는다. -> 방을 닫고 씬을 로드해야지 댕청아
             //PhotonNetwork.CurrentRoom.IsOpen = false;
         }
     }
+
+    [PunRPC]
+    private void StartWaitForPlayerMaster()
+    {
+        StartCoroutine(WaitOtherPlayer());
+    }
+    [PunRPC]
+    private void GetTimeToMaster_PlayerWaitTime(float time)
+    {
+        waitTimeRemain = time;
+    }
+    IEnumerator WaitOtherPlayer()
+    {
+        waitTimeRemain = waitOtherPlayerTime;
+        isWillStartGame = true;
+        while (true)
+        {
+            waitTimeRemain -= Time.deltaTime;
+            Debug.Log(waitTimeRemain);
+            photonView.RPC(nameof(GetTimeToMaster_PlayerWaitTime), RpcTarget.Others, waitTimeRemain);
+            yield return new WaitForSeconds(waitOtherPlayerTime);
+
+            nowGameStartCount = PhotonNetwork.CurrentRoom.PlayerCount;
+            PhotonNetwork.CurrentRoom.IsOpen = false;
+            photonView.RPC("PlayStart", RpcTarget.All);
+            // 게임이 시작했으면 방을 닫는다. -> 방을 닫고 씬을 로드해야지 댕청아
+            //PhotonNetwork.CurrentRoom.IsOpen = false;
+        }
+    }
+
 
     [PunRPC]
     private void RegisterCustomRoomInfo(CustomRoomInfo info,MODE gameMode)
