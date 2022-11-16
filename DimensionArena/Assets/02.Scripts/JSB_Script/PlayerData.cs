@@ -14,6 +14,8 @@ public class PlayerData
     public int totalPlayTime = 0;
     public string playCharacter = "";
 
+    public int[] totalDamage = new int[(int)MODE.MODE_TRAINING] { 0, 0, 0, 0 };
+
     public PlayerData(string Name)
     {
         playerName = Name;
@@ -55,6 +57,13 @@ public class PlayerData
 
 
         playCharacter = data.Child("playCharacter").Value.ToString();
+
+        i = 0;
+        DataSnapshot totalDmg = data.Child("totalDamage");
+        foreach (DataSnapshot dmg in totalDmg.Children)
+        {
+            Int32.TryParse(dmg.Value.ToString(), out totalDamage[i++]);
+        }
 
     }
 }

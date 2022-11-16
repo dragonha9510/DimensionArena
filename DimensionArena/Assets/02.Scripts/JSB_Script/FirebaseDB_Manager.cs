@@ -6,7 +6,7 @@ using Firebase.Database;
 using Firebase.Extensions;
 using TMPro;
 using System;
-
+using ManagerSpace;
 using Random = UnityEngine.Random;
 
 public class FirebaseDB_Manager : MonoBehaviour
@@ -134,6 +134,29 @@ public class FirebaseDB_Manager : MonoBehaviour
         DB_reference.Child(mySerializeNumber.ToString()).SetRawJsonValueAsync(json);
 
     }
+
+    private void ReWriteData_Player()
+    {
+        string json = JsonUtility.ToJson(playerDatas[mySerializeNumber]);
+        DB_reference.Child(mySerializeNumber.ToString()).SetRawJsonValueAsync(json);
+    }
+
+    public void SavePlayerResultData(InGamePlayerData data)
+    {
+        playerDatas[mySerializeNumber].killCount += data.Kill;
+        playerDatas[mySerializeNumber].liveTime[0] += (int)data.LiveTime;
+        playerDatas[mySerializeNumber].deathCount += data.Death;
+        if (data.Rank != 1)
+        {
+            playerDatas[mySerializeNumber].loseCount[0]--;
+        }
+        else
+            playerDatas[mySerializeNumber].winCount[0]++;
+        playerDatas[mySerializeNumber].totalDamage[0] += (int)data.Damage;
+        
+        ReWriteData_Player();
+    }
+
     public void RegisterNewPlayer(string newName)
     {
         playerNickName = newName;

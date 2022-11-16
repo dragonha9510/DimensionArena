@@ -23,6 +23,7 @@ public class ResultCanvas : MonoBehaviour
 
     private void SetUI()
     {
+        FirebaseDB_Manager.Instance.SavePlayerResultData(IngameDataManager.Instance.OwnerData);
         if(data.Rank != 1)
             rankImage.sprite = rankResource[0];
         else
