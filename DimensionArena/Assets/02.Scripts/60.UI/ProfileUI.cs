@@ -16,9 +16,19 @@ public class ProfileUI : MonoBehaviourPun
     [SerializeField]
     private GameObject failedInformation;
 
+    [SerializeField]
+    private TextMeshProUGUI survivalKillCount;
+    [SerializeField]
+    private TextMeshProUGUI survivalDamage;
+
+
     private void OnEnable()
     {
         nickNameText.text = PhotonNetwork.NickName;
+        PlayerData data = FirebaseDB_Manager.Instance.GetMyData();
+        survivalKillCount.text = data.killCount.ToString();
+        survivalDamage.text = data.totalDamage[0].ToString();
+
     }
     public void Profile_UI_Off()
     {
