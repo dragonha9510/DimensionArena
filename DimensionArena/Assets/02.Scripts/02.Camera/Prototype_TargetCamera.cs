@@ -13,27 +13,17 @@ public class Prototype_TargetCamera : MonoBehaviour
 
     private void Awake()
     {
-        if (PhotonNetwork.OfflineMode)
-            isStartEnd = true;
-
         interval = transform.position;
 
-        if (target == null)
-        {
-            GameObject temp = Instantiate(new GameObject(), transform);
-            temp.transform.position = Vector3.zero;
-            target = temp.transform;
-            temp.name = "Dummy";
-        }
-
-        StartCoroutine(FollowTargetCoroutine());
+        if (!PhotonNetwork.InRoom)
+            FollowTargetAtGameStart();
     }
-
-    private void FixedUpdate()
-    {
+    private void LateUpdate()
+    {      
         if (!isStartEnd)
             return;
 
+        Debug.Log("들어옴");
         //transform.LookAt(target);
         Vector3 location = target.position + interval;
         location.y = transform.position.y;
@@ -45,19 +35,31 @@ public class Prototype_TargetCamera : MonoBehaviour
         transform.position = transform.position + (direction * speed * Time.deltaTime);
     }
 
-
-
     public void FollowTargetAtGameStart()
     {
-        StartCoroutine(FollowTargetCoroutine());
+        StartCoroutine(nameof(FollowTargetCoroutine));
     }
+
 
     private IEnumerator FollowTargetCoroutine()
     {
+        while (true)
+        {
+            if (target != null) break;
+            else yield return null;
+        }
+        Debug.Log("안녕");
         Vector3 location = target.position + interval;
         location.y = transform.position.y;
         transform.DOMove(location, arrivalTime);
-        yield return new WaitForSeconds(arrivalTime);
+
+        //나중에 확인 waitforseconds 실패
+        Invoke(nameof(OnStart), arrivalTime);
+    }
+
+    private void OnStart()
+    {
         isStartEnd = true;
+        Debug.Log("시작");
     }
 }
