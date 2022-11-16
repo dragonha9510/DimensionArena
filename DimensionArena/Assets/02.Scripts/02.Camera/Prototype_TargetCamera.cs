@@ -43,6 +43,7 @@ public class Prototype_TargetCamera : MonoBehaviour
 
     private IEnumerator FollowTargetCoroutine()
     {
+        Debug.Log("코루틴 시작");
         while (true)
         {
             if (target != null) break;

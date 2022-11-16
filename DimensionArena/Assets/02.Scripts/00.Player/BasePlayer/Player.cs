@@ -176,8 +176,12 @@ namespace PlayerSpace
             Transform target = GameObject.Find("Target Camera").
                 GetComponent<Prototype_TargetCamera>().target;
 
-            if (!target)
-                target = this.transform;           
+            if (target == null)
+            {
+                Debug.Log("≈∏∞Ÿ ¡ˆ¡§¿Ã æ»µ ");
+                GameObject.Find("Target Camera").
+               GetComponent<Prototype_TargetCamera>().target = this.transform;           
+            }
         }
 
         public void DisActiveAnimation()

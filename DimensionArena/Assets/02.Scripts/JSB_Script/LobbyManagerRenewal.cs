@@ -315,10 +315,12 @@ public class LobbyManagerRenewal : MonoBehaviourPunCallbacks
         }
     }
 
+    Coroutine temp = null;
     [PunRPC]
     private void StartWaitForPlayerMaster()
     {
-        StartCoroutine(WaitOtherPlayer());
+        if(temp == null)
+            temp = StartCoroutine(WaitOtherPlayer());
     }
     [PunRPC]
     private void GetTimeToMaster_PlayerWaitTime(float time)
@@ -341,6 +343,7 @@ public class LobbyManagerRenewal : MonoBehaviourPunCallbacks
             photonView.RPC("PlayStart", RpcTarget.All);
             // 게임이 시작했으면 방을 닫는다. -> 방을 닫고 씬을 로드해야지 댕청아
             //PhotonNetwork.CurrentRoom.IsOpen = false;
+            yield break;
         }
     }
 
