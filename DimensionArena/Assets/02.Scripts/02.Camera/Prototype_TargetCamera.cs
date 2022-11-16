@@ -11,7 +11,7 @@ public class Prototype_TargetCamera : MonoBehaviour
     private Vector3 interval;
     private bool isStartEnd;
 
-    private void Start()
+    private void Awake()
     {
         if (PhotonNetwork.OfflineMode)
             isStartEnd = true;
@@ -23,6 +23,7 @@ public class Prototype_TargetCamera : MonoBehaviour
             GameObject temp = Instantiate(new GameObject(), transform);
             temp.transform.position = Vector3.zero;
             target = temp.transform;
+            temp.name = "Dummy";
         }
 
         StartCoroutine(FollowTargetCoroutine());
