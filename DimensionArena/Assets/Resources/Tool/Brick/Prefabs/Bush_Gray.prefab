@@ -49,8 +49,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   destroyEffect: {fileID: 0}
-  opaque: {fileID: 2100000, guid: ebdadd384544a564d81511e4c4a87fe9, type: 2}
-  transparent: {fileID: 2100000, guid: 6d8e9db0fe9311e4a92fc07a15f3f769, type: 2}
+  opaque: {fileID: 2100000, guid: fcbc161d2cf83564c827dc3aca6b2284, type: 2}
+  transparent: {fileID: 2100000, guid: 4beaaf54e58960248a2802ea49225655, type: 2}
   bushAlpha: 0.1
   gradationSpeed: 2
 --- !u!33 &5599761337809204831
