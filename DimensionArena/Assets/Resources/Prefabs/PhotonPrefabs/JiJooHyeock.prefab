@@ -2160,6 +2160,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   owner: {fileID: 2737819322045720800}
+  baseRect: {fileID: 3932958445309314952}
+  scaleRect: {fileID: 2559692651139334765}
+--- !u!4 &2559692651139334765 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6628180461585476643, guid: eff1a239d1465d04aaa4b6223e314478,
+    type: 3}
+  m_PrefabInstance: {fileID: 8681213730650467918}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &3932958445309314952 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5687326401911515590, guid: eff1a239d1465d04aaa4b6223e314478,
+    type: 3}
+  m_PrefabInstance: {fileID: 8681213730650467918}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8311340060677869853 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 805601567251611475, guid: eff1a239d1465d04aaa4b6223e314478,
@@ -2186,7 +2200,7 @@ PrefabInstance:
     - target: {fileID: 3538972817888371208, guid: 3443466d754ebc640a83911704947677,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3538972817888371209, guid: 3443466d754ebc640a83911704947677,
         type: 3}

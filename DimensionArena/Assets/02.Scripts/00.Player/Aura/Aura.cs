@@ -20,15 +20,22 @@ namespace PlayerSpace
         [SerializeField]
         private ParticleSystem passiveParticle;
         [SerializeField]
-        private int maxParticle = 20;
-        [SerializeField]
-        private int particleMagnification = 3;
+        private float originParticleRotateSpeed = 1;
         [SerializeField]
         private float particleSpeedMagnification = 0.5f;
 
         private ParticleSystem.MainModule main;
 
-        private float originSpeed = 0f;
+
+        [SerializeField]
+        private List<int> praticleCount = new List<int>();
+
+        // 속도:
+        // a 시작 속도 직렬화
+        // b 0.2 직렬화
+        // a += b
+        // 입자수 :
+        // [직렬화]
 
         private float moveDistance = 0f;
         private Vector3 prevPos = new Vector3();
@@ -43,15 +50,16 @@ namespace PlayerSpace
             StartCoroutine(PassiveStartSetting());
 
             main = passiveParticle.main;
-            main.maxParticles = maxParticle;
-            originSpeed = main.simulationSpeed;
+            main.maxParticles = praticleCount[nestingCount];
+
+            main.simulationSpeed = originParticleRotateSpeed;
         }
 
 
         private void ParticleAdd()
         {
-            main.maxParticles = maxParticle * particleMagnification;
-            main.simulationSpeed = originSpeed * particleSpeedMagnification;
+            main.maxParticles = praticleCount[nestingCount];
+            main.simulationSpeed += particleSpeedMagnification;
         }
 
         IEnumerator PassiveStartSetting()
@@ -66,7 +74,6 @@ namespace PlayerSpace
                 yield return null;
             }
         }
-
         IEnumerator SettingOriginalPos()
         {
             prevPos = this.transform.position;
@@ -77,10 +84,11 @@ namespace PlayerSpace
                     PlayerInfoManager.Instance.SpeedDecrease(this.name, speedNesting * nestingCount);
                     nestingCount = 0;
                     moveDistance = 0;
-                    main.simulationSpeed = originSpeed;
-                    main.maxParticles = maxParticle;
+                    main.simulationSpeed = 0;
+                    main.simulationSpeed = originParticleRotateSpeed;
+                    main.maxParticles = praticleCount[nestingCount];
                 }
-                else if (false == info.IsBattle && prevPos != this.transform.position && nestingCount < maxNestingCount)
+                else if (false == info.IsBattle && prevPos != this.transform.position && nestingCount < maxNestingCount - 1)
                 {
                     moveDistance += Vector3.Distance(prevPos, transform.position);
                     prevPos = this.transform.position;
@@ -88,8 +96,8 @@ namespace PlayerSpace
                     {
                         PlayerInfoManager.Instance.SpeedIncrease(this.name, speedNesting);
                         moveDistance = 0f;
-                        ParticleAdd();
                         ++nestingCount;
+                        ParticleAdd();
                     }
 
                 }

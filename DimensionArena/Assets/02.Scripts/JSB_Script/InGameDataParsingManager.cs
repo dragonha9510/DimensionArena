@@ -6,11 +6,23 @@ using UnityEngine;
 public class InGameDataParsingManager : MonoBehaviour
 {
 
+    [SerializeField]
+    private string[] parsingWall = new string[3];
+
+
     private void Awake()
     {
+
+        parsingWall[0] = "Wall1";
+        parsingWall[1] = "Wall2";
+        parsingWall[2] = "Wall3";
+
+        
         ParsingToCsvFile_ItemBox("Log/Item_DB_Test");
         ParsingToCsbFile_Items("Log/Items");
     }
+
+    
 
     private void ParsingToCsbFile_Items(string path)
     {
@@ -86,6 +98,39 @@ public class InGameDataParsingManager : MonoBehaviour
         }
         return false;
     }
+
+    private void ParsingToCsvFile_WallBoxes(string path)
+    {
+        string wallResourcePath = "Assets/Resources/Prefabs/ProtoTypeItems/";
+        List<GameObject> wallObjs = new List<GameObject>();
+        List<Dictionary<string, object>> data_Map;
+        Object tmpObject;
+        GameObject tmpGameObject;
+        foreach (string name in parsingWall)
+        {
+            tmpObject = UnityEditor.AssetDatabase.LoadAssetAtPath<UnityEngine.Object>(wallResourcePath + name);
+            tmpGameObject = Instantiate(tmpObject) as GameObject;
+            data_Map = CSVReader.Read(path + name);
+
+            for (int i = 0, counting = 0; i < data_Map.Count; ++i)
+            {
+                if (data_Map[i]["item_num"].ToString()[0] == '#')
+                    continue;
+                //Object Create
+                SettingItemDropTable(tmpGameObject, counting, data_Map[i]["item_id"].ToString(),
+                             data_Map[i]["drop_possible"].ToString(),
+                             data_Map[i]["drop_percentage"].ToString());
+                ++counting;
+            }
+
+        }
+
+        foreach(GameObject obj in wallObjs)
+        {
+            Destroy(obj);
+        }
+    }
+
 
     private void ParsingToCsvFile_ItemBox(string path)
     {

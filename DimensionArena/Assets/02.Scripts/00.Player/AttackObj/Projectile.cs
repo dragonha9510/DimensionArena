@@ -81,8 +81,11 @@ public class Projectile : AttackObject
                 break;
             //Damaged된 Obstacle 공격체 방향으로 살짝 흔들리는 모션
             case "ParentObstacle":
+                onEffect = true;
+                break;
             case "Item_Box":
                 onEffect = true;
+                other.gameObject.GetComponent<ItemBox>().HpDecrease_KnockBack(this.Damage, ownerID);
                 break;
             default:
                 break;
