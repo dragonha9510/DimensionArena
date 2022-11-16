@@ -710,6 +710,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: map_tutorial
       objectReference: {fileID: 0}
+    - target: {fileID: 3295299990240865438, guid: dc42c9aa34442eb4aa8c5177d78a6b71,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6244312056917280231, guid: dc42c9aa34442eb4aa8c5177d78a6b71,
         type: 3}
       propertyPath: m_RootOrder
@@ -3149,7 +3154,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ba4db35c7081d044b5f92a7b3994df5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 1241794297}
+  target: {fileID: 0}
   arrivalTime: 0
 --- !u!81 &1648041350
 AudioListener:
