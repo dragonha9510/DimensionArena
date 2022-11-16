@@ -11,13 +11,14 @@ public class Lobby_BtnFunction : MonoBehaviour
     [SerializeField] private TMP_Text subName;
     [SerializeField] private TMP_Text tmpLobbyState;
     [SerializeField] private Sprite defaultSprite;
-
+    [SerializeField] private TextMeshProUGUI nameText;
     public void Start()
     {
         // JSB
         SoundManager.Instance.PlayBGM("LobbyMusic");
         SoundManager.Instance.IsInLobby = true;
         LobbyManagerRenewal.Instance.Reconnect();
+        nameText.text = FirebaseDB_Manager.Instance.PlayerNickName;
         //
         if (string.IsNullOrEmpty(SelectedCharacter.Instance.characterName))
         {
