@@ -7,7 +7,7 @@ public class ShieldKit : Item
 {
     protected override void InteractItem(string targetID)
     {
-        photonView.RPC(nameof(InteractItemForAllcient),Photon.Pun.RpcTarget.All, targetID);
+        photonView.RPC(nameof(InteractItemForAllcient),RpcTarget.AllViaServer, targetID);
     }
 
     [PunRPC]

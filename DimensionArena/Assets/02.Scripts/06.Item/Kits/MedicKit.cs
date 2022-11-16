@@ -7,7 +7,7 @@ public class MedicKit : Item
 {
     protected override void InteractItem(string targetID)
     {
-        photonView.RPC(nameof(InteractItemForAllcient), RpcTarget.All, targetID);
+        photonView.RPC(nameof(InteractItemForAllcient), RpcTarget.AllViaServer, targetID);
     }
 
 
