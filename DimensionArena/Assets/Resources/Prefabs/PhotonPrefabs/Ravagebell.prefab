@@ -629,7 +629,6 @@ MonoBehaviour:
   Skilling: 0
   AtkToAtkDelaying: 0
   AtkDelaying: 0
-  projectileSpeed: 30
   atkDelay: 0.2
   dropDelay: 1
   prefab_Muzzle: {fileID: 1072413172352700, guid: 44d140f73b47c77439c4a4ed660e45df,
