@@ -73,9 +73,17 @@ namespace PlayerSpace
                 {
                     if (healTime >= healTickTime)
                     {
+                        if (!healpassiveEffect.isPlaying)
+                            healpassiveEffect.Play();
+
                         PlayerInfoManager.Instance.CurHpIncrease(gameObject.name, info.MaxHP * healPercent);
                         healTime = 0;
                     }
+                }
+                else
+                {
+                    if (healpassiveEffect.isPlaying)
+                        healpassiveEffect.Stop();
                 }
 
                 //체력이 일정 이하일때 보호막 생성
@@ -85,7 +93,6 @@ namespace PlayerSpace
                     {
                         shieldpassiveEffect.Play();
                         PlayerInfoManager.Instance.GetShield(gameObject.name, info.MaxHP * shieldPercent);
-                        //and Create Particle
                         shieldtime = 0.0f;
                         yield return new WaitForSeconds(effectPlayTime);
                         shieldpassiveEffect.Stop();
