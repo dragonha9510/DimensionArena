@@ -48704,8 +48704,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ownerID: 
-  audioSource: {fileID: 0}
-  audioClipName: 
+  audioClipName: snd_char_securitas_attack_overclock
+  hitAudioClipName: snd_char_securitas_hit_overclock
   ultimatePoint: 30
   damage: 300
   hitPrefab: {fileID: 1091389975830204, guid: 8b956942ea86f994983d86ba06b9ce39, type: 3}

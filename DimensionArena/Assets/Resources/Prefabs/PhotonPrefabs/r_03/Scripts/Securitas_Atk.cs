@@ -12,9 +12,6 @@ namespace PlayerSpace
         [Header("Prefab")]
         [SerializeField] private GameObject prefab_Projectile;
         [SerializeField] private GameObject prefab_EnforceProjectile;
-        [SerializeField] private AudioSource audioSource;
-
-        // Update is called once per frame
 
         [Header("Securitas Passive")]
         [SerializeField] private float passiveTime;
