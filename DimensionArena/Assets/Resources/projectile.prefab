@@ -81,8 +81,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ownerID: 
-  audioSource: {fileID: -3511778034210078266}
   audioClipName: juhyeok_shot
+  hitAudioClipName: juhyeok_hit
   ultimatePoint: 10
   damage: 70
   hitPrefab: {fileID: 8510100222392572620, guid: 537e2b51dc19b894fb78eb5d49b719da,

@@ -87,7 +87,6 @@ namespace PlayerSpace
         private void MakeProjectileOnServer(string prefapName,Vector3 attackDirection,Vector3 pos,Quaternion direction)
         {
             photonView.RPC(nameof(IsBattleOn), RpcTarget.All);
-            Debug.Log("Deque!! " + direction);
             GameObject proj  = PhotonNetwork.Instantiate(prefapName, pos + (Vector3.up * 1f) , direction);
             proj.GetComponent<Projectile>().ownerID = this.gameObject.name;
             owner.CanDirectionChange = true;
