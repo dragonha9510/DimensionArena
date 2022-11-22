@@ -8,12 +8,16 @@ public class SpeedKit : Item
 {
     protected override void InteractItem(string targetID)
     {
-        photonView.RPC(nameof(InteractItemForAllcient), RpcTarget.All, targetID);
+        photonView.RPC(nameof(InteractItemForAllcient), RpcTarget.AllViaServer, targetID);
     }
 
     [PunRPC]
     public void InteractItemForAllcient(string targetID)
     {
         PlayerInfoManager.Instance.SpeedIncrease(targetID, info.speedAmount,info.statusDuration);
+
+        if (PhotonNetwork.IsMasterClient)
+            PhotonNetwork.Destroy(this.gameObject);
+
     }
 }

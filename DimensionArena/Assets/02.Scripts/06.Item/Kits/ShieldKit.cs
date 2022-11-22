@@ -7,13 +7,16 @@ public class ShieldKit : Item
 {
     protected override void InteractItem(string targetID)
     {
-        photonView.RPC(nameof(InteractItemForAllcient),Photon.Pun.RpcTarget.All, targetID);
+        photonView.RPC(nameof(InteractItemForAllcient),RpcTarget.AllViaServer, targetID);
     }
 
     [PunRPC]
     public void InteractItemForAllcient(string targetID)
     {
         PlayerInfoManager.Instance.GetShield(targetID, info.shieldAmount,info.statusDuration);
+
+        if (PhotonNetwork.IsMasterClient)
+            PhotonNetwork.Destroy(this.gameObject);
     }
 
 }

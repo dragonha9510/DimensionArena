@@ -7,7 +7,7 @@ public class MedicKit : Item
 {
     protected override void InteractItem(string targetID)
     {
-        photonView.RPC(nameof(InteractItemForAllcient), RpcTarget.All, targetID);
+        photonView.RPC(nameof(InteractItemForAllcient), RpcTarget.AllViaServer, targetID);
     }
 
 
@@ -15,6 +15,9 @@ public class MedicKit : Item
     public void InteractItemForAllcient(string targetID)
     {
         PlayerInfoManager.Instance.CurHpIncrease(targetID, info.healthAmount);
+
+        if (PhotonNetwork.IsMasterClient)
+            PhotonNetwork.Destroy(this.gameObject);
     }
 
 }

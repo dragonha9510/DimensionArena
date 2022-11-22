@@ -8,7 +8,7 @@ public class DemensionKit : Item
 {
     protected override void InteractItem(string targetID)
     {
-        photonView.RPC(nameof(InteractItemForAllcient), RpcTarget.All, targetID);
+        photonView.RPC(nameof(InteractItemForAllcient), RpcTarget.AllViaServer, targetID);
     }
 
     [PunRPC]
@@ -17,6 +17,9 @@ public class DemensionKit : Item
         PlayerInfoManager.Instance.DmgUp(targetID, info.attackIncrement);
         PlayerInfoManager.Instance.SpeedIncrease(targetID, info.speedAmount,info.statusDuration);
         PlayerInfoManager.Instance.CurHpIncrease(targetID, info.healthAmount);
+
+        if (PhotonNetwork.IsMasterClient)
+            PhotonNetwork.Destroy(this.gameObject);
     }
 
 }

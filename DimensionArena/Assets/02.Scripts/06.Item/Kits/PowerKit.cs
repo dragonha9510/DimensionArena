@@ -8,12 +8,15 @@ public class PowerKit : Item
 {
     protected override void InteractItem(string targetID)
     {
-        photonView.RPC(nameof(InteractItemForAllcient), RpcTarget.All, targetID);
+        photonView.RPC(nameof(InteractItemForAllcient), RpcTarget.AllViaServer, targetID);
     }
 
     [PunRPC]
     public void InteractItemForAllcient(string targetID)
     {
         PlayerInfoManager.Instance.DmgUp(targetID, info.attackIncrement);
+
+        if (PhotonNetwork.IsMasterClient)
+            PhotonNetwork.Destroy(this.gameObject);
     }
 }
