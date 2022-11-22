@@ -10,6 +10,10 @@ public class AuraSkillProjectile : Projectile
     private float createCycle = 0.3f;
     private float timer = 0f;
 
+    protected override void Awake()
+    {
+        base.Awake();
+    }
 
     private void Start()
     {
@@ -24,6 +28,7 @@ public class AuraSkillProjectile : Projectile
             timer += Time.deltaTime;
             if(timer >= createCycle)
             {
+                SoundManager.Instance.PlaySFXOneShot(hitAudioClipName);
                 Instantiate(explosionEffect,this.transform.position,Quaternion.identity);
                 timer = 0f;
             }

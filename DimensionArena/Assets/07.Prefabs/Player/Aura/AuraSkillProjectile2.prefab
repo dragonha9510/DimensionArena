@@ -46,6 +46,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ownerID: 
+  audioClipName: snd_char_aura_skill_1
+  hitAudioClipName: snd_char_aura_skill_hit_all
   ultimatePoint: 0
   damage: 0
   hitPrefab: {fileID: 0}

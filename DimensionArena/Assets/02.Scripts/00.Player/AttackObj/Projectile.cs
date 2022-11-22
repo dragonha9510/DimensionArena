@@ -23,7 +23,7 @@ public class Projectile : AttackObject
         if (audioClipName == null)
            return;
 
-        SoundManager.Instance.PlaySFXOneShotInRange(range, this.transform, audioClipName);
+        SoundManager.Instance.PlaySFXOneShot(audioClipName);
     }
 
 
@@ -132,6 +132,11 @@ public class Projectile : AttackObject
     [PunRPC]
     private void CreateEffectForAllClient(Vector3 pos, Quaternion rot)
     {
+
+        if (hitAudioClipName != null)
+            SoundManager.Instance.PlaySFXOneShot(hitAudioClipName);
+
+
         var hitVFX = Instantiate(hitPrefab, pos, rot);
         var psHit = hitVFX.GetComponentInChildren<ParticleSystem>();
 
@@ -142,7 +147,6 @@ public class Projectile : AttackObject
             PhotonNetwork.Destroy(this.gameObject);
         else
             Destroy(this.gameObject);
-
     }
 
 
