@@ -39,6 +39,7 @@ namespace PlayerSpace
             {
                 curpassiveTime = 0;
                 passiveReady = true;
+                SoundManager.Instance.PlaySFXOneShot("snd_char_securitas_overclock");
             }
         }
 
@@ -144,7 +145,6 @@ namespace PlayerSpace
 
         public override void AutoAttack()
         {
-            // �ڵ� ���� ��ƾ �߰�
             if (atkInfo.CurCost < atkInfo.ShotCost)
                 WaitAttack();
             else if (!isAttack)
