@@ -10,21 +10,22 @@ public class Projectile : AttackObject
 
     //basic Range 10
     [SerializeField]
-    float range = 10.0f;
+    float range;
 
     [SerializeField]
     private float speed;
 
-
-    private void Awake()
+    protected virtual void Awake()
     {
         originPos = transform.position;
         rigid.velocity = this.transform.forward * speed;
 
-        //if (audioClipName == null)
-        //    return;
-        //SoundManager.Instance.PlaySFXOneShotAudioSource(audioClipName, this.audioSource);
+        if (audioClipName == null)
+           return;
+
+        SoundManager.Instance.PlaySFXOneShotInRange(range, this.transform, audioClipName);
     }
+
 
     private void LateUpdate()
     {
@@ -47,6 +48,8 @@ public class Projectile : AttackObject
         this.range = range;
         rigid.velocity = dir * speed;
     }
+
+
     protected virtual void OnTriggerEnter(Collider other)
     {
         if (!PhotonNetwork.IsMasterClient)
@@ -131,6 +134,7 @@ public class Projectile : AttackObject
     {
         var hitVFX = Instantiate(hitPrefab, pos, rot);
         var psHit = hitVFX.GetComponentInChildren<ParticleSystem>();
+
         if(psHit != null)
             Destroy(hitVFX, psHit.main.duration);
 
@@ -138,7 +142,20 @@ public class Projectile : AttackObject
             PhotonNetwork.Destroy(this.gameObject);
         else
             Destroy(this.gameObject);
+
     }
 
+
+
+    [PunRPC]
+    protected void SetDisAbleObjectForServer()
+    {
+        gameObject.SetActive(false);
+    }
+
+    protected void DestroyObjectForServer()
+    {
+        PhotonNetwork.Destroy(this.gameObject);
+    }
 
 }

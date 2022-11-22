@@ -100,8 +100,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ownerID: 
-  audioSource: {fileID: 0}
-  audioClipName: 
+  audioClipName: juhyeok_skilleffect
   ultimatePoint: 10
   damage: 1
   hitPrefab: {fileID: 0}

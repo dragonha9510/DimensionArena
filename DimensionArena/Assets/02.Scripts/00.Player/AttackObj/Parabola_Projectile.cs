@@ -129,6 +129,7 @@ public class Parabola_Projectile : AttackObject
     [PunRPC]
     private void CreateDestroyEffect(Vector3 pos,Quaternion rot,float ratio)
     {
+        SoundManager.Instance.PlaySFXOneShotInRange(12.0f, transform, audioClipName);
         GameObject fxSize = Instantiate(destroyEffect, pos, rot);
         fxSize.transform.localScale *= ratio;
     }

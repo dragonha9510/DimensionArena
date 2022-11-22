@@ -74,8 +74,7 @@ namespace PlayerSpace
 
             ///
             animator.speed = 1;
-            photonView.RPC("AtkTrigger", RpcTarget.All);
-
+            photonView.RPC(nameof(AtkTrigger), RpcTarget.All);           
             Vector3 shotPosition = transform.position;
 
             yield return new WaitForSeconds(atkDelay);
@@ -123,6 +122,7 @@ namespace PlayerSpace
             GameObject projectile;
             animator.speed = 1;
             AtkTrigger();
+
             Vector3 shotPosition = transform.position;
 
             yield return new WaitForSeconds(atkDelay);
@@ -184,7 +184,7 @@ namespace PlayerSpace
 
             ///
             animator.speed = 1;
-            photonView.RPC("AtkTrigger", RpcTarget.All);
+            photonView.RPC(nameof(AtkTrigger), RpcTarget.All);
 
             yield return new WaitForSeconds(atkDelay);
 
@@ -192,7 +192,7 @@ namespace PlayerSpace
             projectile = PhotonNetwork.Instantiate(prefab_Projectile.name, transform.position + (Vector3.up * 2f), Quaternion.LookRotation(Vector3.up));
             projectile.GetComponent<Projectile>().ownerID = shooter;
 
-            photonView.RPC("EndAttack", controller, shooter);
+            photonView.RPC(nameof(EndAttack), controller, shooter);
 
             yield return new WaitForSeconds(dropDelay + atkDelay);
 

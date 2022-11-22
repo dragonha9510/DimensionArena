@@ -351,11 +351,11 @@ MonoBehaviour:
   - 02.GameScene
   - 00.JuhyeokSound
   - 03.SeciliaSound
+  - 04.AuraSound
+  - 05.Ravagebell
   bgmPlayer: {fileID: 1136330000}
   sfxPlayer: {fileID: 1136329999}
   inGameSoundCount: 6
-  AudioClips:
-    array: []
 --- !u!4 &1136330002
 Transform:
   m_ObjectHideFlags: 0

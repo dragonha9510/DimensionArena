@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: PhotonServerSettings
   m_EditorClassIdentifier: 
   AppSettings:
-    AppIdRealtime: b1760005-4534-43e5-b576-5e566f6da810
+    AppIdRealtime: 66c5486b-39da-46a2-9f2d-41c67a3b46ba
     AppIdFusion: 
     AppIdChat: 
     AppIdVoice: 
@@ -144,7 +144,9 @@ MonoBehaviour:
   - SettingWaitStateUI
   - CreateDropEffect
   - SpeedDecrease
-  - CreateDestroyEfffect
+  - SetDisAbleObjectForServer
+  - PlaySFXOneShotForAllClient
+  - SplashSound
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1

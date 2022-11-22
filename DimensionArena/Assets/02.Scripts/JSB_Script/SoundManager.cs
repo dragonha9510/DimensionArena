@@ -76,51 +76,38 @@ public class SoundManager : MonoBehaviourPun
         //bgmPlayer.loop = true;
     }
 
-    public void PlaySFXOneShotInRangeUseAudioSource(float soundRange,Transform actorTrans,string audioClipName, AudioSource source)
+    public void PlaySFXOneShotInRange(float soundRange,Transform actorTrans, string audioClipName)
     {
         if (!AudioClips.ContainsKey(audioClipName) || null == AudioClips[audioClipName])
             return;
-        // 사운드 설정
-        source.volume = sfxPlayer.volume;
-        //
+
         Transform playerTrans = PlayerInfoManager.Instance.getPlayerTransform(PhotonNetwork.NickName);
 
         if (playerTrans == null)
             return;
 
         float distance = Mathf.Pow(Mathf.Abs(playerTrans.position.x - actorTrans.position.x), 2) + Mathf.Pow(Mathf.Abs(playerTrans.position.z - actorTrans.position.z), 2);
+
         if(soundRange >= distance)
-        {
-            source.clip = AudioClips[audioClipName];
-            source.Play();
-        }
+            sfxPlayer.PlayOneShot(AudioClips[audioClipName]);
     }
 
-    [PunRPC]
     public void PlaySFXOneShot(string audioClipName)
     {
         if (null == AudioClips[audioClipName])
             return;
         else
             sfxPlayer.clip = AudioClips[audioClipName];
-        sfxPlayer.Play();
+
+        sfxPlayer.PlayOneShot(sfxPlayer.clip);
     }
 
-
-    public void PlaySFXOneShotAudioSource(string audioClipName, AudioSource source)
-    {
-        if (!AudioClips.ContainsKey(audioClipName) || null == AudioClips[audioClipName])
-            return;
-        else
-            source.clip = AudioClips[audioClipName];
-        source.Play();
-    }
 
     public void SettingSFXVolume(float value)
     {
         sfxPlayer.volume = value;
-        Debug.Log(sfxPlayer.volume);
     }
+
     public void SettingMusicVolume(float value)
     {
         bgmPlayer.volume = value;

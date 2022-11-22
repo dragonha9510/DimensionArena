@@ -19585,7 +19585,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ownerID: 
-  audioSource: {fileID: 0}
   audioClipName: 
   ultimatePoint: 20
   damage: 0

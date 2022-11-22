@@ -8674,8 +8674,11 @@ MonoBehaviour:
   attack_range: 10
   prefab_Projectile: {fileID: 1146459598616756, guid: 72c732ea14df9e64c893462cfd5d8e7e,
     type: 3}
-  audioSource: {fileID: 0}
   auraAnimator: {fileID: 3227170782532345053}
+  attackClip:
+  - snd_char_aura_atk_1
+  - snd_char_aura_atk_2
+  - snd_char_aura_atk_3
 --- !u!114 &7684523567143468578
 MonoBehaviour:
   m_ObjectHideFlags: 0
