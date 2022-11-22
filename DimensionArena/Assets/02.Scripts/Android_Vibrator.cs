@@ -3,12 +3,19 @@ using System.Collections;
 
 public class Android_Vibrator : MonoBehaviour
 {
-
+#if UNITY_ANDROID && !UNITY_EDITOR
     public static AndroidJavaClass unityPlayer;
     public static AndroidJavaObject vibrator;
     public static AndroidJavaObject currentActivity;
     public static AndroidJavaClass vibrationEffectClass;
     public static int defaultAmplitude;
+#else
+    public static AndroidJavaClass unityPlayer = new AndroidJavaClass("com.unity3d.player.UnityPlayer");
+    public static AndroidJavaObject currentActivity = unityPlayer.GetStatic<AndroidJavaObject>("currentActivity");
+    public static AndroidJavaObject vibrator = currentActivity.Call<AndroidJavaObject>("getSystemService", "vibrator");
+    public static AndroidJavaClass vibrationEffectClass;
+    public static int defaultAmplitude;
+#endif
 
     /*
      * "CreateOneShot": One time vibration
