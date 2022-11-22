@@ -21,9 +21,9 @@ public class Projectile : AttackObject
         originPos = transform.position;
         rigid.velocity = this.transform.forward * speed;
 
-        //if (audioClipName == null)
-        //    return;
-        //SoundManager.Instance.PlaySFXOneShotAudioSource(audioClipName, this.audioSource);
+        if (audioClipName == null)
+           return;
+        SoundManager.Instance.PlaySFXOneShotAudioSource(audioClipName, this.audioSource);
     }
 
     private void LateUpdate()

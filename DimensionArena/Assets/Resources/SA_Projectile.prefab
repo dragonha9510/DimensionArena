@@ -38877,7 +38877,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ownerID: 
   audioSource: {fileID: 4683916110346477531}
-  audioClipName: 
+  audioClipName: secilia_attack
   ultimatePoint: 9
   damage: 100
   hitPrefab: {fileID: 0}
