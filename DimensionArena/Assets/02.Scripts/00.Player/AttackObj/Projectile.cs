@@ -72,7 +72,7 @@ public class Projectile : AttackObject
 
                             if(other.gameObject.GetComponent<PhotonView>().IsMine)
                             {
-                                Android_Vibrator.Vibrate();
+                                Android_Vibrator.CreateOneShot();
                             }
                         }
                         else
