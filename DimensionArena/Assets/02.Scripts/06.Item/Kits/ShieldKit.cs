@@ -16,7 +16,10 @@ public class ShieldKit : Item
         PlayerInfoManager.Instance.GetShield(targetID, info.shieldAmount,info.statusDuration);
 
         if (PhotonNetwork.IsMasterClient)
+        {
+            CreateDropEffect();
             PhotonNetwork.Destroy(this.gameObject);
+        }
     }
 
 }

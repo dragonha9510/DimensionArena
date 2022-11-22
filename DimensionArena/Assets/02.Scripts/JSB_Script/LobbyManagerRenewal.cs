@@ -340,7 +340,6 @@ public class LobbyManagerRenewal : MonoBehaviourPunCallbacks
             if (waitTimeRemain <= 0)
                 waitTimeRemain = 0f;
             photonView.RPC(nameof(GetTimeToMaster_PlayerWaitTime), RpcTarget.Others, waitTimeRemain);
-            Debug.Log(waitTimeRemain);
             yield return null;
         }
         nowGameStartCount = PhotonNetwork.CurrentRoom.PlayerCount;

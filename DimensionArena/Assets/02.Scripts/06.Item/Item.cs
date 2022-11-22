@@ -46,6 +46,10 @@ public abstract class Item : MonoBehaviourPun
     private int ColliderCount = 0;
     private int StopCount = 3;
 
+
+    private Vector3 eatTrans;
+    private Quaternion eatRot;
+
     private Transform trans;
     public Transform Trans { get { return this.transform; } }
     // Start is called before the first frame update
@@ -106,16 +110,19 @@ public abstract class Item : MonoBehaviourPun
                 if (!ownerName.Equals(collision.gameObject.name))
                     return;
             }
-
+            // 이펙트 생성을 위한 설정
+            eatTrans = this.trans.position;
+            eatRot = this.trans.rotation;
+            // 
             if (PhotonNetwork.IsMasterClient)
                 InteractItem(collision.gameObject.name);
-
-            EffectManager.Instance.CreateParticleEffectOnGameobject(collision.gameObject.transform, "ItemDrop");
-            
-
-            // 아이템 이벤트 처리
-
         }
+    }
+
+    [PunRPC]
+    protected void CreateDropEffect()
+    {
+        EffectManager.Instance.CreateParticleEffectOnGameobject(eatTrans, eatRot, "ItemDrop");
     }
 
 
