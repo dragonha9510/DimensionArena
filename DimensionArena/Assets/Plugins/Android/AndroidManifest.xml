@@ -10,7 +10,7 @@
       android:largeScreens="true"
       android:xlargeScreens="true"
       android:anyDensity="true"/>
-
+  <uses-permission android:name = "android.permission.VIBRATE"/>
   <application
       android:theme="@style/UnityThemeSelector"
       android:icon="@mipmap/app_icon"
@@ -24,5 +24,4 @@
       <meta-data android:name="unityplayer.UnityActivity" android:value="true" />
     </activity>
   </application>
-  <uses-permission android:name="android.permission.VIBRATE" />
 </manifest>
