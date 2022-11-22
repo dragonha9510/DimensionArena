@@ -931,7 +931,6 @@ MonoBehaviour:
     type: 3}
   prefab_EnforceProjectile: {fileID: 1989904040482234, guid: beeb7b1d8ee9f6b46aae688741fc757e,
     type: 3}
-  audioSource: {fileID: 0}
   passiveTime: 5
 --- !u!114 &7925714259691421038
 MonoBehaviour:

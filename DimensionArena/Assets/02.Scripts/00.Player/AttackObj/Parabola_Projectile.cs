@@ -126,13 +126,15 @@ public class Parabola_Projectile : AttackObject
             transform.position = tempPosition;
         }
     }
+
     [PunRPC]
     private void CreateDestroyEffect(Vector3 pos,Quaternion rot,float ratio)
     {
-        SoundManager.Instance.PlaySFXOneShotInRange(12.0f, transform, audioClipName);
+        SoundManager.Instance.PlaySFXOneShotInRange(18.0f, transform, audioClipName);
         GameObject fxSize = Instantiate(destroyEffect, pos, rot);
         fxSize.transform.localScale *= ratio;
     }
+
     float CalculatePosition(float t)
     {
         float x = t * distance;
