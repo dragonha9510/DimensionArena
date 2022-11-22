@@ -20,8 +20,54 @@ public class CharacterInfo : MonoBehaviour
     [SerializeField] private TMP_Text skillNameTxt;
     [SerializeField] private TMP_Text infoText;
 
+    [SerializeField] private GameObject textInfo_Box;
+    [SerializeField] private GameObject imgInfo_Box;
+
+    [SerializeField] private Slider atkSlider;
+    [SerializeField] private Slider hpSlider;
+    [SerializeField] private Slider spdSlider;
+
+    public void CharacterImageInfo_Change()
+    {
+        textInfo_Box.SetActive(false);
+        imgInfo_Box.SetActive(true);
+
+        switch (txt.text)
+        {
+            case "Aura":
+                atkSlider.value = 0.8f;
+                hpSlider.value = 0.6f;
+                spdSlider.value = 0.4f;
+                break;
+            case "JiJooHyeock":
+                atkSlider.value = 0.6f;
+                hpSlider.value = 0.6f;
+                spdSlider.value = 0.6f;
+                break;
+            case "Securitas":
+                atkSlider.value = 0.8f;
+                hpSlider.value = 0.6f;
+                spdSlider.value = 0.2f;
+                break;
+            case "Ravagebell":
+                atkSlider.value = 1f;
+                hpSlider.value = 0.2f;
+                spdSlider.value = 0.2f;
+                break;
+            case "Secilia":
+                atkSlider.value = 0.4f;
+                hpSlider.value = 0.8f;
+                spdSlider.value = 0.8f;
+                break;
+            default:
+                break;
+        }
+    }
+
     public void CharacterSelect_TxtChange()
     {
+        textInfo_Box.SetActive(true);
+        imgInfo_Box.SetActive(false);
         switch (txt.text)
         {
             case "Aura":
@@ -53,6 +99,8 @@ public class CharacterInfo : MonoBehaviour
 
     public void PassiveSelect_TxtChange()
     {
+        textInfo_Box.SetActive(true);
+        imgInfo_Box.SetActive(false);
         switch (txt.text)
         {
             case "Aura":
@@ -82,6 +130,8 @@ public class CharacterInfo : MonoBehaviour
 
     public void AtkSelect_TxtChange()
     {
+        textInfo_Box.SetActive(true);
+        imgInfo_Box.SetActive(false);
         switch (txt.text)
         {
             case "Aura":
@@ -111,6 +161,8 @@ public class CharacterInfo : MonoBehaviour
 
     public void SkillSelect_TxtChange()
     {
+        textInfo_Box.SetActive(true);
+        imgInfo_Box.SetActive(false);
         switch (txt.text)
         {
             case "Aura":
@@ -166,8 +218,6 @@ public class CharacterInfo : MonoBehaviour
 
         if (tempSprite == null)
             return;
-
-        CharacterSelect_TxtChange();
 
         for (int i = 0; i < SkillImage.Length; ++i)
         {

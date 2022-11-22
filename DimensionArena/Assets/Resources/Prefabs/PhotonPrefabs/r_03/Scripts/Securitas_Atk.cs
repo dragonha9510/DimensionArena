@@ -9,8 +9,6 @@ namespace PlayerSpace
     // Start is called before the first frame update
     public class Securitas_Atk : Player_Atk
     {
-
-
         [Header("Prefab")]
         [SerializeField] private GameObject prefab_Projectile;
         [SerializeField] private GameObject prefab_EnforceProjectile;
@@ -72,8 +70,8 @@ namespace PlayerSpace
             Transform shooterPosition = PlayerInfoManager.Instance.getPlayerTransform(shooter);
 
             SubMagazine(shooter);
+            animator.speed = 3f;
             SetAttackTrigger();
-
 
             if (passiveReady)
             {
@@ -83,10 +81,10 @@ namespace PlayerSpace
             else
                 projectile = Instantiate(prefab_Projectile, shooterPosition.position + (Vector3.up * 0.5f), Quaternion.LookRotation(shooterAttackDir, Vector3.up));
 
-
-
             projectile.GetComponent<Projectile>().ownerID = shooter;
 
+            yield return new WaitForSeconds(0.2f);
+            animator.speed = 1f;
             EndAttack(shooter);
 
             yield break;
