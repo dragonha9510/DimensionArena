@@ -21,11 +21,13 @@ namespace PlayerSpace
 
         [Header("Prefab")]
         [SerializeField] private GameObject prefab_Projectile;
-        [SerializeField] private AudioSource audioSource;
-
 
         [SerializeField]
         private Animator auraAnimator;
+
+
+        [SerializeField]
+        private string[] attackClip;
 
         private Queue<Quaternion> projectileDirection = new Queue<Quaternion>();
 
@@ -57,7 +59,6 @@ namespace PlayerSpace
             Debug.Log(tmpDirection);
             if(base.tmpDirection != this.transform.forward)
             {
-                Debug.Log("강제 회전");
                 this.transform.rotation = Quaternion.LookRotation(tmpDirection);
             }
             
@@ -67,8 +68,7 @@ namespace PlayerSpace
             {
                 isFinishShoot = false;
                 // 아우라 공격
-                Debug.Log("Enque!! " + tmpDirection);
-                    projectileDirection.Enqueue(Quaternion.LookRotation(tmpDirection, Vector3.up));
+                projectileDirection.Enqueue(Quaternion.LookRotation(tmpDirection, Vector3.up));
                 atkInfo.SubCost(atkInfo.ShotCost);
                 AnimationTriggerSetting();
             }
@@ -78,6 +78,7 @@ namespace PlayerSpace
         [PunRPC]
         private void IsBattleOn()
         {
+            SoundManager.Instance.PlaySFXOneShot(attackClip[Random.Range(0, attackClip.Length)]);
             Owner.Info.BattleOn();
         }
 

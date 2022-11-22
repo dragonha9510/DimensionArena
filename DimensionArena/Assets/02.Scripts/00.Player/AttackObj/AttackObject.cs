@@ -9,8 +9,7 @@ public class AttackObject : MonoBehaviourPun
 {
     //AttackObject¿« ¡÷¿Œ
     public string ownerID;
-    
-    [SerializeField] protected AudioSource audioSource;
+
     [SerializeField] protected string audioClipName;
     [SerializeField] protected int ultimatePoint;
     [SerializeField] private int damage;
@@ -32,13 +31,4 @@ public class AttackObject : MonoBehaviourPun
                        CurHpDecrease(ownerId, targetId, damage);
 
     }
-
-    //JSB
-    [PunRPC]
-    protected void EffectSoundPlay(string clipName)
-    {
-        audioSource.clip = SoundManager.Instance.GetClip("clipName");
-        audioSource.Play();
-    }
-  
 }

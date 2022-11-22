@@ -23,7 +23,6 @@ public class Prototype_TargetCamera : MonoBehaviour
         if (!isStartEnd)
             return;
 
-        Debug.Log("들어옴");
         //transform.LookAt(target);
         Vector3 location = target.position + interval;
         location.y = transform.position.y;
@@ -43,13 +42,11 @@ public class Prototype_TargetCamera : MonoBehaviour
 
     private IEnumerator FollowTargetCoroutine()
     {
-        Debug.Log("코루틴 시작");
         while (true)
         {
             if (target != null) break;
             else yield return null;
         }
-        Debug.Log("안녕");
         Vector3 location = target.position + interval;
         location.y = transform.position.y;
         transform.DOMove(location, arrivalTime);
@@ -61,6 +58,5 @@ public class Prototype_TargetCamera : MonoBehaviour
     private void OnStart()
     {
         isStartEnd = true;
-        Debug.Log("시작");
     }
 }

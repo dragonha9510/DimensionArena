@@ -19621,9 +19621,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ownerID: 
+  audioSource: {fileID: 0}
+  audioClipName: ravagebell_atk
   ultimatePoint: 10
   damage: 12
   hitPrefab: {fileID: 1678266536710752, guid: 9c51730be207d63449832e02f30fb86c, type: 3}
   rigid: {fileID: 54151073696178080}
   originPos: {x: 0, y: 0, z: 0}
+  range: 0
+  speed: 0
   PoisonTile: {fileID: 1749833007681888, guid: 4ca5528d26c6f0b4f900cc65a5f22131, type: 3}

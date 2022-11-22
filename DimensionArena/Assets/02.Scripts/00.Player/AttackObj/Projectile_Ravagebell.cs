@@ -6,13 +6,28 @@ using Photon.Pun;
 public class Projectile_Ravagebell : Projectile
 {
     [SerializeField] private GameObject PoisonTile;
+    private bool isSound;
+
+
+    protected override void Awake()
+    {
+        base.Awake();
+    }
 
     protected override void OnTriggerEnter(Collider other)
     {
         GameObject poisonFieldTemp;
 
+        if (!isSound)
+        {
+            Debug.Log("스플래시");
+            SoundManager.Instance.PlaySFXOneShot("ravagebell_splash");
+            isSound = true;
+        }
+
         if (!PhotonNetwork.InRoom)
         {
+            SoundManager.Instance.PlaySFXOneShotInRange(30.0f, this.transform, "ravagebell_splash");
             switch (other.tag)
             {
                 //상대 Player에게 데미지를 준 경우, 
@@ -48,11 +63,10 @@ public class Projectile_Ravagebell : Projectile
             poisonFieldTemp = Instantiate(PoisonTile, fieldPosition, PoisonTile.transform.rotation);
         }
         else
-        {
+        {           
             if (!PhotonNetwork.IsMasterClient)
                 return;
 
-            Debug.Log("내 Projectile 의 오너는 " + ownerID + "입니다.");
             switch (other.tag)
             {
                 //상대 Player에게 데미지를 준 경우, 
@@ -89,8 +103,7 @@ public class Projectile_Ravagebell : Projectile
             Vector3 fieldPosition = transform.position;
             fieldPosition.y = 0.038f;
 
-            Debug.Log("생성");
-            poisonFieldTemp = PhotonNetwork.Instantiate(PoisonTile.name, fieldPosition, PoisonTile.transform.rotation);
+            poisonFieldTemp = PhotonNetwork.Instantiate(PoisonTile.name, fieldPosition, PoisonTile.transform.rotation);           
         }
 
         if(poisonFieldTemp != null)
@@ -100,4 +113,6 @@ public class Projectile_Ravagebell : Projectile
             temp.ultimatePoint = ultimatePoint;
         }
     }
+
+
 }
