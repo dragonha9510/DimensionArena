@@ -36,26 +36,25 @@ public class MatchMaking : MonoBehaviourPun
             SceneManager.LoadScene("Lobby_Main");
     }
 
-    private void Update()
+    public void MatchBtnSetFalse()
     {
-        if(PhotonNetwork.InRoom && LobbyManagerRenewal.Instance.IsWillStartGame)
-        {
-            do
-            {
-                plusPlayerWait.SetActive(true);
-                plusPlayerWaitText.SetActive(true);
-            } while (plusPlayerWait.activeInHierarchy == false
-            && plusPlayerWaitText.activeInHierarchy == false);
-            plusPlayerWaitTimeText.text = LobbyManagerRenewal.Instance.WaitTimeRemain.ToString();
+        matchingOutBtn.gameObject.SetActive(false);
+        matchingOutCantBtn.gameObject.SetActive(true);
+    }
 
-            matchingOutBtn.gameObject.SetActive(false);
-            matchingOutCantBtn.gameObject.SetActive(true);
-        }
+    public void SetWaitingState()
+    {
+        plusPlayerWait.SetActive(true);
+        plusPlayerWaitText.SetActive(true);
     }
 
     private void FixedUpdate()
     {
         rotateImage.transform.Rotate(Vector3.forward * rotateSpeed);
+        if(true == plusPlayerWait.activeInHierarchy)
+            plusPlayerWaitTimeText.text = LobbyManagerRenewal.Instance.WaitTimeRemain.ToString();
+
+
     }
 
 }

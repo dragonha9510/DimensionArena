@@ -331,6 +331,7 @@ public class LobbyManagerRenewal : MonoBehaviourPunCallbacks
     }
     IEnumerator WaitOtherPlayer()
     {
+        photonView.RPC(nameof(SettingWaitStateUI), RpcTarget.AllViaServer);
         waitTimeRemain = waitOtherPlayerTime;
         isWillStartGame = true;
         while (0 < waitTimeRemain)
@@ -339,7 +340,7 @@ public class LobbyManagerRenewal : MonoBehaviourPunCallbacks
             if (waitTimeRemain <= 0)
                 waitTimeRemain = 0f;
             photonView.RPC(nameof(GetTimeToMaster_PlayerWaitTime), RpcTarget.Others, waitTimeRemain);
-
+            Debug.Log(waitTimeRemain);
             yield return null;
         }
         nowGameStartCount = PhotonNetwork.CurrentRoom.PlayerCount;
@@ -349,6 +350,13 @@ public class LobbyManagerRenewal : MonoBehaviourPunCallbacks
         //PhotonNetwork.CurrentRoom.IsOpen = false;
     }
 
+    [PunRPC]
+    private void SettingWaitStateUI()
+    {
+        GameObject ui = GameObject.Find("UI");
+        ui.GetComponent<MatchMaking>().MatchBtnSetFalse();
+        ui.GetComponent<MatchMaking>().SetWaitingState();
+    }
 
     [PunRPC]
     private void RegisterCustomRoomInfo(CustomRoomInfo info,MODE gameMode)
