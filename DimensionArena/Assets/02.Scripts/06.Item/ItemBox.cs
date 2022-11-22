@@ -134,11 +134,16 @@ public class ItemBox : MonoBehaviourPun
             if (!PhotonNetwork.IsMasterClient)
                 return;
             MakeRandItem(owner);
-            EffectManager.Instance.CreateParticleEffectOnGameobject(this.transform, "ItemBox");
+            photonView.RPC(nameof(CreateDestroyEfffect), RpcTarget.All, this.transform.position, this.transform.rotation, "ItemBox");
             PhotonNetwork.Destroy(this.gameObject);
         }
     }
 
+    [PunRPC]
+    private void CreateDestroyEfffect(Vector3 pos,Quaternion rot,string eventType)
+    {
+        EffectManager.Instance.CreateParticleEffectOnGameobject(pos, rot, "ItemBox");
+    }
     [PunRPC]
     public void HpDecrease_KnockBack(float damage, string owner)
     {
