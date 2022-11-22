@@ -72,6 +72,11 @@ public class Projectile : AttackObject
                             ownerID,
                             other.gameObject.name,
                             other.transform.position);
+
+                            if(other.gameObject.GetComponent<PhotonView>().IsMine)
+                            {
+                                Android_Vibrator.Vibrate();
+                            }
                         }
                         else
                         {
