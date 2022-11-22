@@ -89,21 +89,21 @@ public class LobbyManagerRenewal : MonoBehaviourPunCallbacks
             rooms.Add(new Dictionary<string, CustomRoomInfo>());
         }
 
-        loadText.text = "���� ���� �õ���...";
+        loadText.text = "서버 탐색충...";
         // ������ ���� �õ�
         PhotonNetwork.ConnectUsingSettings();
 
     }
     public override void OnConnectedToMaster()
     {
-        loadText.text = "���� �κ� ������...";
+        loadText.text = "서버 연결중...";
         PhotonNetwork.JoinLobby();
     }
     public override void OnJoinedLobby()
     {
         Debug.Log("�κ� ���� ����");
 
-        loadText.text = "���� ���� ����";
+        loadText.text = "서버 연결 완료...";
         
         /*if(isReconnect)
         {
