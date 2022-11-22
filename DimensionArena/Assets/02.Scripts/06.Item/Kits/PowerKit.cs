@@ -17,6 +17,9 @@ public class PowerKit : Item
         PlayerInfoManager.Instance.DmgUp(targetID, info.attackIncrement);
 
         if (PhotonNetwork.IsMasterClient)
+        {
+            CreateDropEffect();
             PhotonNetwork.Destroy(this.gameObject);
+        }
     }
 }

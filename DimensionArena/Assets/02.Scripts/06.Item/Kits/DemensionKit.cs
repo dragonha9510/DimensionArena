@@ -19,7 +19,10 @@ public class DemensionKit : Item
         PlayerInfoManager.Instance.CurHpIncrease(targetID, info.healthAmount);
 
         if (PhotonNetwork.IsMasterClient)
+        {
+            CreateDropEffect();
             PhotonNetwork.Destroy(this.gameObject);
+        }
     }
 
 }

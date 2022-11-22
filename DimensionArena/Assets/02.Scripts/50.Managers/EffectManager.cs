@@ -53,6 +53,19 @@ namespace ManagerSpace
 
             Destroy(particle, 3.0f);
         }
+
+        public void CreateParticleEffectOnGameobject(Vector3 pos,Quaternion rot, string eventType)
+        {
+            GameObject particle = null;
+            switch (eventType)
+            {
+                case "ItemDrop":
+                    if (effectDictionary.ContainsKey("ItemDrop"))
+                        particle = Instantiate(effectDictionary["ItemDrop"], pos + (Vector3.up * 0.5f), rot);
+                    break;
+            }
+            Destroy(particle, 3.0f);
+        }
     }
 
 }

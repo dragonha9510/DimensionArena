@@ -297,7 +297,23 @@ namespace ManagerSpace
 
             return (int)damage;
         }
-
+        // string 을 통한 호출을 위한 오버로딩
+        [PunRPC]
+        private int DamagedShield(string target, float damage)
+        {
+            PlayerInfo temp;
+            if (dicPlayerInfo.TryGetValue(target, out temp))
+            {
+                if (temp.CurShield > 0)
+                {
+                        temp.DamageShield(damage);
+                    damage -= temp.CurShield;
+                    damage = Mathf.Max(damage, 0);
+                }
+            }
+            //Shield가 존재한다면 Shield를 깍고 남은 데미지 주기
+            return (int)damage;
+        }
         public void GetShield(string target, float amount)
         {
             PlayerInfo temp;
@@ -388,7 +404,7 @@ namespace ManagerSpace
             info.SpeedUp(amount);
             ItemEffectAdd(target , durationtime , amount , ITEM.ITEM_SPEEDKIT);
         }
-
+        [PunRPC]
         public void SpeedDecrease(string target, float amount)
         {
             PlayerInfo info;
@@ -422,15 +438,15 @@ namespace ManagerSpace
                     {
                         case ITEM.ITEM_SHIELDKIT:
                             if (dicPlayerInfo.TryGetValue(inBuf.playerName, out temp))
-                                temp.DamageShield(inBuf.amount);
+                                photonView.RPC(nameof(DamagedShield), RpcTarget.All, inBuf.playerName, inBuf.amount);
                             break;
                         case ITEM.ITEM_SPEEDKIT:
                             if (dicPlayerInfo.TryGetValue(inBuf.playerName, out temp))
-                                temp.SpeedDown(inBuf.amount);
+                                photonView.RPC(nameof(SpeedDecrease), RpcTarget.All, inBuf.playerName, inBuf.amount);
                             break;
                         case ITEM.ITEM_DEMENSIONKIT:
                             if (dicPlayerInfo.TryGetValue(inBuf.playerName, out temp))
-                                temp.SpeedDown(inBuf.amount);
+                                photonView.RPC(nameof(SpeedIncrease), RpcTarget.All, inBuf.playerName, inBuf.amount);
                             break;
                     }
                     
@@ -444,7 +460,6 @@ namespace ManagerSpace
                     Debug.Log("아이템 지속시간 종료 효과 제거");
                     break;
                 }
-               
             }
         }
 

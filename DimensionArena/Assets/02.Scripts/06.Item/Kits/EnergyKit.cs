@@ -16,8 +16,10 @@ public class EnergyKit : Item
     public void InteractItemForAllcient(string targetID)
     {
         PlayerInfoManager.Instance.CurSkillPtIncrease(targetID, info.skillRecovery);
-
-        if(PhotonNetwork.IsMasterClient)
+        if (PhotonNetwork.IsMasterClient)
+        {
+            CreateDropEffect();
             PhotonNetwork.Destroy(this.gameObject); 
+        }
     }
 }
