@@ -44,17 +44,19 @@ namespace ManagerSpace
       
 
 
-        float damage;
+        public float damage;
         public float Damage => damage;
 
-        float liveTime;
+        public float liveTime;
         public float LiveTime => liveTime;
-        int kill;
+
+        public int kill;
         public int Kill => kill;
-        int death;
+
+        public int death;
         public int Death => death;
 
-        int rank;
+        public int rank;
         public int Rank => rank;
     }
 
