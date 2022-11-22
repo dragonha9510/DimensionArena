@@ -4,7 +4,7 @@ using UnityEngine;
 using Photon.Pun;
 using UnityEngine.UI;
 using TMPro;
-
+using ManagerSpace;
 public class ItemBox : MonoBehaviourPun
 {
     [System.Serializable]
@@ -134,6 +134,7 @@ public class ItemBox : MonoBehaviourPun
             if (!PhotonNetwork.IsMasterClient)
                 return;
             MakeRandItem(owner);
+            EffectManager.Instance.CreateParticleEffectOnGameobject(this.transform, "ItemBox");
             PhotonNetwork.Destroy(this.gameObject);
         }
     }

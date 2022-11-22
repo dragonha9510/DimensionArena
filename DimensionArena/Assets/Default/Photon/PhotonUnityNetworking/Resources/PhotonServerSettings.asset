@@ -143,6 +143,7 @@ MonoBehaviour:
   - GetTimeToMaster_PlayerWaitTime
   - SettingWaitStateUI
   - CreateDropEffect
+  - SpeedDecrease
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1

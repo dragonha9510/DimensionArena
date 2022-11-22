@@ -76,8 +76,13 @@ public class SoundManager : MonoBehaviourPun
         //bgmPlayer.loop = true;
     }
 
-    public void PlaySFXOneShotInRange(float soundRange,Transform actorTrans,string effectName)
+    public void PlaySFXOneShotInRangeUseAudioSource(float soundRange,Transform actorTrans,string audioClipName, AudioSource source)
     {
+        if (!AudioClips.ContainsKey(audioClipName) || null == AudioClips[audioClipName])
+            return;
+        // 사운드 설정
+        source.volume = sfxPlayer.volume;
+        //
         Transform playerTrans = PlayerInfoManager.Instance.getPlayerTransform(PhotonNetwork.NickName);
 
         if (playerTrans == null)
@@ -86,7 +91,8 @@ public class SoundManager : MonoBehaviourPun
         float distance = Mathf.Pow(Mathf.Abs(playerTrans.position.x - actorTrans.position.x), 2) + Mathf.Pow(Mathf.Abs(playerTrans.position.z - actorTrans.position.z), 2);
         if(soundRange >= distance)
         {
-            PlaySFXOneShot(effectName);
+            source.clip = AudioClips[audioClipName];
+            source.Play();
         }
     }
 

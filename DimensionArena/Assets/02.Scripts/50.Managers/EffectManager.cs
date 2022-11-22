@@ -47,8 +47,12 @@ namespace ManagerSpace
                 case "ItemDrop":
                     if(effectDictionary.ContainsKey("ItemDrop"))
                         particle = Instantiate(effectDictionary["ItemDrop"], trans.position + (Vector3.up * 0.5f), trans.rotation);
-                    break;               
-
+                    break;
+                case "ItemBox":
+                    if (effectDictionary.ContainsKey("ItemBox"))
+                        particle = Instantiate(effectDictionary["ItemBox"], trans.position + (Vector3.up * 0.5f), trans.rotation);
+                    break;
+                    //
             }
 
             Destroy(particle, 3.0f);
