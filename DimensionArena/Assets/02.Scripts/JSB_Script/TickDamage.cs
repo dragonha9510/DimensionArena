@@ -26,7 +26,7 @@ public class TickDamage : MonoBehaviourPun
     public Dictionary<GameObject, bool> WillDamageApplyBox { get { return willDamageApplyBox; } }
 
 
-    public string OwnerID;
+    public string OwnerID = "";
     public float ultimatePoint;
 
     [SerializeField] private bool isPercent;
@@ -75,9 +75,13 @@ public class TickDamage : MonoBehaviourPun
 
             if (false == willDamageApplyBox[obj])
                 continue;
-
+            // exception handling
+            if(obj == null)
+            {
+                willDamageApplyBox.Remove(obj);
+                break;
+            }
             DamageApplyItemBox(obj, damage);
-
         }
     }
     IEnumerator InDamageZone(string userID, float time, float damage)
@@ -120,16 +124,16 @@ public class TickDamage : MonoBehaviourPun
         {
             if (other.gameObject.tag == "Player")
             {
-                if(true == isNestingCollision)
+                if (true == isNestingCollision)
                 {
                     willDamageApply[other.name] = false;
                 }
-                else if(false == isNestingCollision && false == IsInOtherObject(other.name))
+                else if (false == isNestingCollision && false == IsInOtherObject(other.name))
                 {
                     willDamageApply[other.name] = false;
                 }
             }
-            else if (other.gameObject.tag == "Item_Box")
+            else if (other.gameObject.tag == "Item_Box" && other.gameObject.layer == LayerMask.NameToLayer("ItemBox"))
             {
                 if (true == isNestingCollision)
                 {
@@ -145,7 +149,7 @@ public class TickDamage : MonoBehaviourPun
         {
             if(other.gameObject.tag == "Player")
                 willDamageApply[other.name] = false;
-            else if (other.gameObject.tag == "Item_Box")
+            else if (other.gameObject.tag == "Item_Box" && other.gameObject.layer == LayerMask.NameToLayer("ItemBox"))
                 willDamageApplyBox[other.gameObject] = false;
         }
     }
@@ -200,7 +204,31 @@ public class TickDamage : MonoBehaviourPun
                     StartCoroutine(InDamageZone(other.gameObject.name, damageTime, tickDamage));
                 }
             }
-            if(other.CompareTag("Item_Box"))
+            // 자기장일때의 경우
+            else if(this.gameObject.CompareTag("MagneticField"))
+            {
+                if(other.CompareTag("Item_Box") && other.gameObject.layer == LayerMask.NameToLayer("ItemBox"))
+                {
+                    if (true == isNestingCollision)
+                    {
+                        if (willDamageApplyBox.ContainsKey(other.gameObject))
+                        {
+                            willDamageApplyBox[other.gameObject] = true;
+                            return;
+                        }
+                        willDamageApplyBox.Add(other.gameObject, true);
+                        StartCoroutine(InDamageZone(other.gameObject, damageTime, tickDamage));
+                    }
+                    else if (false == isNestingCollision && false == IsInOtherObject(other.gameObject) && false == willDamageApplyBox.ContainsKey(other.gameObject))
+                    {
+                        Debug.Log("데미지 중첩아님 코루틴 시작할꺼야");
+                        willDamageApplyBox.Add(other.gameObject, true);
+                        StartCoroutine(InDamageZone(other.gameObject, damageTime, tickDamage));
+                    }
+                }
+            }
+            // 오너있을때 자기장 아닐때의 경우
+            else if (OwnerID != "" && other.CompareTag("Item_Box"))
             {
                 if (true == isNestingCollision)
                 {
