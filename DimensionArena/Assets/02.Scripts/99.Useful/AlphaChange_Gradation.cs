@@ -32,10 +32,10 @@ public class AlphaChange_Gradation : MonoBehaviour
             _renderer2 = GetComponent<ParticleSystemRenderer>();
 
             if (_renderer2 != null)
-                material = _renderer2.material;
+                material = _renderer2.sharedMaterial;
         }
         else
-            material = _renderer.material;
+            material = _renderer.sharedMaterial;
 
         alpha = alphaFromTo.x;
         material.color = new Color(material.color.r, material.color.g, material.color.b, alpha);

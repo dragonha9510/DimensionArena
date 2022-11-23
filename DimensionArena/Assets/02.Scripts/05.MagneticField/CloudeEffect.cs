@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class CloudeEffect : MonoBehaviour
 {
@@ -9,9 +10,9 @@ public class CloudeEffect : MonoBehaviour
     [SerializeField]
     private float minScale = 0.1f;
     [SerializeField]
-    private float maxScale = 1.0f;
+    private float maxScale = 0.6f;
     [SerializeField]
-    private float correctionValue = 0.01f;
+    private float correctionValue = 1.0f;
     [SerializeField]
     private float alliveTime = 5.0f;
 
@@ -19,7 +20,7 @@ public class CloudeEffect : MonoBehaviour
 
     public bool UnDead = false;
 
-    WaitForSeconds waitforSeconds = new WaitForSeconds(0.01f);
+    WaitForSeconds waitforSeconds = new WaitForSeconds(1.0f);
     private bool upScale = false;
     private bool startUpdate = false;
 
@@ -54,11 +55,13 @@ public class CloudeEffect : MonoBehaviour
         while (true)
         {
             if (upScale)
-                SizeUp();
+                transform.DOScale(Vector3.one * 0.75f, 1.0f);
             else
-                SizeDown();
+                transform.DOScale(Vector3.one * 0.1f, 1.0f);
 
             yield return waitforSeconds;
+
+            upScale = !upScale;
         }
     }
     private void FixedUpdate()
