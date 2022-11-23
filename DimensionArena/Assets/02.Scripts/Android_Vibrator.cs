@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
+/*
 public class Android_Vibrator : MonoBehaviour
 {
 #if UNITY_ANDROID && !UNITY_EDITOR
@@ -26,9 +27,7 @@ public class Android_Vibrator : MonoBehaviour
      * Amplitude: int: Strenght of vibration. Between 1-255. (Or default value: -1)
      * Timings: long: If submitting a array of amplitudes, then timings are the duration of each of these amplitudes in millis.
      * Repeat: int: index of where to repeat, -1 for no repeat
-     */
-
-
+     
     void OnEnable()
     {
 #if UNITY_ANDROID && !UNITY_EDITOR
@@ -200,3 +199,4 @@ public class Android_Vibrator : MonoBehaviour
 #endif
     }
 }
+*/
