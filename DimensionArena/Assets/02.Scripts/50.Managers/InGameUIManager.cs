@@ -337,7 +337,6 @@ namespace ManagerSpace
 
         public void WatchTarget()
         {
-            Debug.Log("너를 죽인애 쳐다보기");
         }
 
 

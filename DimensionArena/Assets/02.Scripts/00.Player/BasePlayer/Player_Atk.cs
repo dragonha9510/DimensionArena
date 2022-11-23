@@ -158,14 +158,6 @@ namespace PlayerSpace
 
         IEnumerator LookAttackDirection()
         {
-            /*Debug.Log(attackDirection);
-            Debug.Log(this.transform.forward);
-            if(isAura && attackDirection != this.transform.forward)
-            {
-                Debug.Log("강제 회전");
-                this.transform.rotation = Quaternion.LookRotation(tmpDirection);
-            }*/
-
             if (isRotation)
             {
                 Vector3 forward = Vector3.Slerp(transform.forward,
@@ -186,11 +178,8 @@ namespace PlayerSpace
 
         IEnumerator LookAttackDirection(bool isAura)
         {
-            Debug.Log(attackDirection);
-            Debug.Log(this.transform.forward);
             if(attackDirection != this.transform.forward)
             {
-                Debug.Log("강제 회전");
                 this.transform.rotation = Quaternion.LookRotation(attackDirection);
             }
             if (isRotation)

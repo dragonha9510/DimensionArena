@@ -20,7 +20,6 @@ public class Projectile_Ravagebell : Projectile
 
         if (!isSound)
         {
-            Debug.Log("스플래시");
             SoundManager.Instance.PlaySFXOneShot("ravagebell_splash");
             isSound = true;
         }
@@ -59,7 +58,6 @@ public class Projectile_Ravagebell : Projectile
             Vector3 fieldPosition = transform.position;
             fieldPosition.y = 0.038f;
 
-            Debug.Log("생성");
             poisonFieldTemp = Instantiate(PoisonTile, fieldPosition, PoisonTile.transform.rotation);
         }
         else
@@ -74,7 +72,6 @@ public class Projectile_Ravagebell : Projectile
                 case "ParentObstacle":
                 case "ParentGround":
                     {
-                        Debug.Log(photonView.ViewID);
                         PhotonNetwork.Destroy(this.gameObject);
                     }
                     break;

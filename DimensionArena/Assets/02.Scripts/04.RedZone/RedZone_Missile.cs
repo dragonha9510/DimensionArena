@@ -14,6 +14,7 @@ public class RedZone_Missile : MonoBehaviour
     [SerializeField] private GameObject destroyEffect;
     [SerializeField] private Vector2 missileScale;
     [SerializeField] private float Damage;
+    [SerializeField] private string[] soundClip;
 
     protected virtual void Start()
     {
@@ -43,28 +44,14 @@ public class RedZone_Missile : MonoBehaviour
             Destroy(this.gameObject);
             if (destroyEffect)
                 Instantiate(destroyEffect, new Vector3(transform.position.x, 0, transform.position.z), destroyEffect.transform.rotation);
+
+            SoundManager.Instance.PlaySFXOneShotInRange(56.0f, this.transform, soundClip[Random.Range(0, soundClip.Length)]);
             //Destroy(boundary);
             //Destroy(outterBoundary);
         }
     }
 
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.tag == "Player" || collision.gameObject.tag == "ParentGround"
-            || collision.gameObject.tag == "Parent_Obstacle")
-        {
-            Destroy(this.gameObject);
-
-            if (destroyEffect)
-                Instantiate(destroyEffect, transform.position/*new Vector3(transform.position.x, 0, transform.position.z)*/, destroyEffect.transform.rotation);
-
-            //Destroy(boundary);
-            //Destroy(outterBoundary);
-        }
-        else if (collision.gameObject.tag == "Water_Plane")
-            Destroy(this.gameObject);
-    }
-
+ 
     protected virtual void OnTriggerEnter(Collider other)
     {
         effectOn = false;
@@ -77,7 +64,8 @@ public class RedZone_Missile : MonoBehaviour
         }
         else if (other.CompareTag("Water_Plane"))
             Destroy(this.gameObject);
-        else if (other.CompareTag("Bush") || other.CompareTag("Item_Box"))
+        // 망할 파괴로 인한 예외처리 JSB
+        else if (other.CompareTag("Bush") || (other.CompareTag("Item_Box") && other.gameObject.layer == LayerMask.NameToLayer("ItemBox")))
         {
             BoxCollider temp = other as BoxCollider;
 
@@ -88,6 +76,8 @@ public class RedZone_Missile : MonoBehaviour
 
         if (effectOn)
         {
+            SoundManager.Instance.PlaySFXOneShotInRange(56.0f, this.transform, soundClip[Random.Range(0, soundClip.Length)]);
+
             GetComponent<KnockBackObject>().KnockBackStartDamage("RedZone", Damage);
 
             if (destroyEffect)

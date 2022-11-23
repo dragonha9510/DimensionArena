@@ -168,7 +168,11 @@ MonoBehaviour:
   destroyEffect: {fileID: 1000012903210382, guid: b75a538851e583f42937cda85e429068,
     type: 3}
   missileScale: {x: 2, y: 2}
-  Damage: 0.01
+  Damage: 0.33
+  soundClip:
+  - red_1
+  - red_2
+  - red_3
   itemBox: {fileID: 2374010915662054223, guid: 6672388c5b322894ebdcd437f41791c3, type: 3}
 --- !u!114 &6387615248525257143
 MonoBehaviour:

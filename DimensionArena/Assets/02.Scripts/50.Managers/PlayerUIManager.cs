@@ -85,7 +85,6 @@ namespace ManagerSpace
 
         void ShieldAmountChange(float amount)
         {
-            Debug.Log("½¯µåÀÌº¥Æ®µé¾î¿È");
             shieldImg.fillAmount = amount / target.Info.MaxShield;
             shieldText.text = amount.ToString();
 

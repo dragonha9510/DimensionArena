@@ -94,7 +94,7 @@ public class SoundManager : MonoBehaviourPun
 
     public void PlaySFXOneShot(string audioClipName)
     {
-        if (null == AudioClips[audioClipName])
+        if (!AudioClips.ContainsKey(audioClipName) || null == AudioClips[audioClipName])
             return;
         else
             sfxPlayer.clip = AudioClips[audioClipName];

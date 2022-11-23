@@ -131,20 +131,22 @@ public class Securitas_Skill : Player_Skill
     {
         owner.CanDirectionChange = false;
 
-        //Parabola rotation, distance velocity radianAngle이 동기화되지 않는다. 이를 전달해주고 싶은데 파라미터를 여러 개 써야할까?
         if (!PhotonNetwork.OfflineMode)
         {
-            photonView.RPC(nameof(MasterCreateSkill), RpcTarget.MasterClient,
+            photonView.RPC(nameof(skillServer), RpcTarget.MasterClient,
                                                       attackdirection,
-                                                      parabolaRotation,
-                                                      parabolaDistance,
-                                                      parabolaVelocity,
-                                                      parabolaMaxYPos);
+                                                      magnitude);
         }
         else
         {
-            StartCoroutine(MasterCreateSkill(attackdirection, parabolaRotation, parabolaDistance, parabolaVelocity, parabolaMaxYPos));
+            skillServer(attackdirection, magnitude);
         }
+    }
+
+    [PunRPC]
+    private void skillServer(Vector3 attackdirection, float magnitude)
+    {
+        StartCoroutine(MasterCreateSkill(attackdirection, parabolaRotation, parabolaDistance, parabolaVelocity, parabolaMaxYPos));
     }
 
     public override void AutoSkill()

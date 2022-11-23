@@ -101,6 +101,12 @@ namespace PlayerSpace
             bushRenderCheck = GetComponentInChildren<isHideOnBush>();
         }
 
+
+
+
+
+        // >> :
+        // Battle State Region by Gritty
         private Coroutine lastCoroutine = null;
         private void BattleStateProcess()
         {
@@ -119,6 +125,9 @@ namespace PlayerSpace
             yield return new WaitForSeconds(info.BattleOffTime);
             info.BattleOff();
         }
+        
+        // << : 
+
 
         private void Update()
         {
@@ -178,7 +187,6 @@ namespace PlayerSpace
 
             if (target == null)
             {
-                Debug.Log("Å¸°Ù ÁöÁ¤ÀÌ ¾ÈµÊ");
                 GameObject.Find("Target Camera").
                GetComponent<Prototype_TargetCamera>().target = this.transform;           
             }

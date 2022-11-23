@@ -89,21 +89,18 @@ public class LobbyManagerRenewal : MonoBehaviourPunCallbacks
             rooms.Add(new Dictionary<string, CustomRoomInfo>());
         }
 
-        loadText.text = "���� ���� �õ���...";
-        // ������ ���� �õ�
+        loadText.text = "서버 탐색중...";
         PhotonNetwork.ConnectUsingSettings();
 
     }
     public override void OnConnectedToMaster()
     {
-        loadText.text = "���� �κ� ������...";
+        loadText.text = "서버 연결중...";
         PhotonNetwork.JoinLobby();
     }
     public override void OnJoinedLobby()
     {
-        Debug.Log("�κ� ���� ����");
-
-        loadText.text = "���� ���� ����";
+        loadText.text = "서버 연결 완료...";
         
         /*if(isReconnect)
         {
@@ -182,16 +179,11 @@ public class LobbyManagerRenewal : MonoBehaviourPunCallbacks
     {
         if (0 == rooms.Count)
             return "empty";
-        foreach (Dictionary<string, CustomRoomInfo> room in rooms)
+        foreach (var keys in rooms[(int)gameMode].Keys)
         {
-            foreach(string key in room.Keys)
-            {
-                if (room[key].IsOpen)
-                {
-                    return key;
-                }
-            }
-        } 
+            if (rooms[(int)gameMode][keys].IsOpen)
+                return keys;
+        }
         return "empty";
     }
 
@@ -255,27 +247,23 @@ public class LobbyManagerRenewal : MonoBehaviourPunCallbacks
         }
     }
 
-    public void JoinOrCreateRoom(MODE gameMode)
+    public void JoinOrCreateRoom()
     {
         inGameReadyPlayer = 0;
         FirebaseDB_Manager.Instance.IsInGame = true;    
 
-        playMode = gameMode;
-        string roomName = CheckingRoom(gameMode);
+        string roomName = CheckingRoom(playMode);
         nowInRoomName = roomName;
 
         if (roomName == "empty")
         {
             // �ӽ÷� �� ������ ������ �̸����� ����� ����
             CustomRoomInfo newRoomInfo = GetNewRoomName();
-            Debug.Log(newRoomInfo.RoomName);
-            rooms[(int)gameMode].Add(newRoomInfo.RoomName,newRoomInfo);
+            rooms[(int)playMode].Add(newRoomInfo.RoomName,newRoomInfo);
             string newRoomName = newRoomInfo.RoomName;
             bool roomMake = PhotonNetwork.CreateRoom(newRoomName, new RoomOptions { MaxPlayers = 8 }, null);
             if(!roomMake)
             {
-                // �� ���� ����
-
             }
             else
             { }
@@ -293,12 +281,11 @@ public class LobbyManagerRenewal : MonoBehaviourPunCallbacks
 
     public override void OnJoinRoomFailed(short returnCode, string message)
     {
-        Debug.Log("���ӽ���");
+        Debug.Log("연결 실패..");
     }
     public override void OnJoinedRoom()
     {
 
-        //  �� ���� ��������µ� �� ���� �����ΰǰ�...
         //  JoinRandomRoom failed. Client is on GameServer (must be Master Server for matchmaking) and ready
 
 
@@ -309,8 +296,9 @@ public class LobbyManagerRenewal : MonoBehaviourPunCallbacks
 
         if (leastStartPlayer <= PhotonNetwork.CurrentRoom.PlayerCount)
         {
+            photonView.RPC(nameof(SettingWaitStateUI), RpcTarget.AllViaServer);
+
             photonView.RPC(nameof(StartWaitForPlayerMaster),RpcTarget.MasterClient);
-            // ������ ���������� ���� �ݴ´�. -> ���� �ݰ� ���� �ε��ؾ��� ��û��
             //PhotonNetwork.CurrentRoom.IsOpen = false;
         }
     }
@@ -331,7 +319,6 @@ public class LobbyManagerRenewal : MonoBehaviourPunCallbacks
     }
     IEnumerator WaitOtherPlayer()
     {
-        photonView.RPC(nameof(SettingWaitStateUI), RpcTarget.AllViaServer);
         waitTimeRemain = waitOtherPlayerTime;
         isWillStartGame = true;
         while (0 < waitTimeRemain)
@@ -345,7 +332,6 @@ public class LobbyManagerRenewal : MonoBehaviourPunCallbacks
         nowGameStartCount = PhotonNetwork.CurrentRoom.PlayerCount;
         PhotonNetwork.CurrentRoom.IsOpen = false;
         photonView.RPC("PlayStart", RpcTarget.All);
-        // ������ ���������� ���� �ݴ´�. -> ���� �ݰ� ���� �ε��ؾ��� ��û��
         //PhotonNetwork.CurrentRoom.IsOpen = false;
     }
 
@@ -380,9 +366,12 @@ public class LobbyManagerRenewal : MonoBehaviourPunCallbacks
         switch(playMode)
         {
             case MODE.MODE_SURVIVAL:
-                PhotonNetwork.LoadLevel("Prototype");
+                PhotonNetwork.LoadLevel("Map1");
                 break;
-            
+            case MODE.MODE_FREEFALLALL:
+                PhotonNetwork.LoadLevel("Map2");
+                break;  
+
         }
     }
     

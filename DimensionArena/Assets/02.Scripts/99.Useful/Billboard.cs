@@ -8,7 +8,7 @@ public class Billboard : MonoBehaviour
 
     private void Start()
     {
-        mainCam = GameObject.Find("Target Camera").transform;
+        mainCam = GameObject.FindWithTag("MainCamera").transform;
     }
 
     private void LateUpdate()

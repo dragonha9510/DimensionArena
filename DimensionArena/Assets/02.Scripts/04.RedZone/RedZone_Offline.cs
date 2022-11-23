@@ -53,7 +53,6 @@ public class RedZone_Offline : MonoBehaviour
     }
     private void RedzoneActiveSetting(bool state)
     {
-        Debug.Log("세팅 호출 상태값 : " + state);
         GameObject obj = this.transform.Find("RedZone").gameObject;
         obj.SetActive(state);
         //this.transform.Find("RedZone").gameObject.SetActive(state);
@@ -146,7 +145,6 @@ public class RedZone_Offline : MonoBehaviour
 
     void RedZonePositioningOnServer(Vector3 pos)
     {
-        Debug.Log("RedZonePositioningOnServer");
         this.transform.position = pos;
         //this.transform.position = new Vector3(0, 0, 0);
     }

@@ -53,7 +53,6 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         {
             if (p.NickName == name)
             {
-                Debug.Log("NickName OverLap!!");
                 PhotonNetwork.Disconnect();
                 return true;
             }
@@ -67,21 +66,17 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     }
     public override void OnConnectedToMaster()
     {
-        Debug.Log("OnConnectedToMaster");
-
         PhotonNetwork.JoinOrCreateRoom(defaultRoomName + roomCount.ToString(), new RoomOptions { MaxPlayers = (byte)startPlayerCount }, null);
     }
 
     public override void OnJoinRoomFailed(short returnCode, string message)
     {
-        Debug.Log("접속 실패");
         ++roomCount;
         PhotonNetwork.JoinOrCreateRoom(defaultRoomName + roomCount.ToString(), new RoomOptions { MaxPlayers = (byte)startPlayerCount }, null);
 
     }
     public override void OnJoinedRoom()
     {
-        Debug.Log("OnJoinedRoom");
 
         if (NameOverLapCheck(nameText.text))
             return;
@@ -116,7 +111,8 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     {
         PhotonNetwork.NickName = nameText.text;
         
-        PhotonNetwork.LoadLevel("ProtoType");
+        //로비 매니저에서 고쳐야됨.
+        PhotonNetwork.LoadLevel("Map1");
     }
 
     public void LoadLobbyScene()

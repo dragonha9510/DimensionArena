@@ -50,7 +50,6 @@ namespace PlayerSpace
         }
         private void SetMoveAfterSkill()
         {
-            Debug.Log("애니메이션 돌리기");
             auraAnimator.SetBool("SkillUse", false);
             owner.Info.SpeedUp(skillSpeedCorrection);
             owner.CanDirectionChange = true;
@@ -101,7 +100,6 @@ namespace PlayerSpace
             if (PhotonNetwork.InRoom && photonView.IsMine)
             {
                 float correctionAngle = FOV.viewAngle / (rayCount - 1);
-                Debug.Log(skillDirection);
                 Quaternion skillRot = Quaternion.LookRotation(skillDirection,Vector3.up);
                 skillRot.eulerAngles = new Vector3(skillRot.eulerAngles.x, skillRot.eulerAngles.y - (FOV.viewAngle / 2), skillRot.eulerAngles.z);
                 for (int i = 0; i < rayCount; ++i)
@@ -110,40 +108,10 @@ namespace PlayerSpace
                     skillRot.eulerAngles = new Vector3(skillRot.eulerAngles.x, skillRot.eulerAngles.y + correctionAngle, skillRot.eulerAngles.z);
                 }
                 photonView.RPC(nameof(SkillAttack), RpcTarget.MasterClient, correctionAngle);
-                /*if (!PhotonNetwork.IsMasterClient)
-                    return;
-                Ray ray = new Ray();
-                RaycastHit[] rayHits;
-                ray.origin = FOV.transform.position;
-
-                ray.direction = FOV.transform.forward;
-                ray.direction = Quaternion.AngleAxis(-(FOV.viewAngle / 2), Vector3.up) * ray.direction;
-
-
-
-                for (int i = 0; i < rayCount; ++i)
-                {
-                    rayHits = Physics.RaycastAll(ray, FOV.ViewRadius, LayerMask.NameToLayer("Player"));
-
-                    foreach (RaycastHit rayhit in rayHits)
-                    {
-                        GameObject hitted = rayhit.transform.gameObject;
-                        if (hitted.tag == "Player" && false == hitedObj.Contains(hitted) && hitted != owner)
-                        {
-                            Debug.Log("부딫힘");
-                            hitted.GetComponent<isKnockBack>().CallMoveKnockBack(owner.transform.position, (hitted.transform.position - owner.transform.position).normalized, projectileSpeed, FOV.ViewRadius);
-                            PlayerInfoManager.Instance.CurHpDecrease(hitted.name, hitted.name, skillDamage);
-                            hitted.gameObject.GetComponent<PlayerInfo>().Damaged(skillDamage);
-                        }
-                    }
-                    ray.direction = Quaternion.AngleAxis(correctionAngle, Vector3.up) * ray.direction;
-                }
-                hitedObj.Clear();*/
             }
             else if(!PhotonNetwork.InRoom)
             {
                 float correctionAngle = FOV.viewAngle / (rayCount - 1);
-                Debug.Log(skillDirection);
                 Quaternion skillRot = Quaternion.LookRotation(skillDirection, Vector3.up);
                 skillRot.eulerAngles = new Vector3(skillRot.eulerAngles.x, skillRot.eulerAngles.y - (FOV.viewAngle / 2), skillRot.eulerAngles.z);
                 for (int i = 0; i < rayCount; ++i)
@@ -170,7 +138,6 @@ namespace PlayerSpace
                         GameObject hitted = rayhit.transform.gameObject;
                         if (hitted.tag == "Player" && false == hitedObj.Contains(hitted) && hitted != owner)
                         {
-                            Debug.Log("부딫힘");
                             hitted.GetComponent<isKnockBack>().CallMoveKnockBack(owner.transform.position, (hitted.transform.position - owner.transform.position).normalized, projectileSpeed, FOV.ViewRadius);
                             hitted.gameObject.GetComponent<PlayerInfo>().Damaged(skillDamage);
                         }
