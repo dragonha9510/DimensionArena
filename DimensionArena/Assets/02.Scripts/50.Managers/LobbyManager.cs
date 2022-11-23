@@ -116,7 +116,8 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     {
         PhotonNetwork.NickName = nameText.text;
         
-        PhotonNetwork.LoadLevel("ProtoType");
+        //로비 매니저에서 고쳐야됨.
+        PhotonNetwork.LoadLevel("Map1");
     }
 
     public void LoadLobbyScene()
