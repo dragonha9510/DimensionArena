@@ -23,7 +23,7 @@ public class BushObject : GroundObject
         myCollider = transform.GetChild(0).GetComponent<BoxCollider>();
 
         oriPos = myCollider.transform.position;
-        //oriColor = _renderer.material.color;
+        //oriColor = _renderer.sharedMaterial.color;
         oriColor = _renderer.material.GetColor("_BaseColor");
     }
 
@@ -69,9 +69,9 @@ public class BushObject : GroundObject
 
             myCollider.transform.position = oriPos + new Vector3(0, 20, 0);
 
-            //_renderer.material.color = oriColor * new Color(1, 1, 1, bushAlpha);
-            //_renderer.material = transparent;
-            //_renderer.material.SetColor("_BaseColor", oriColor * new Color(1, 1, 1, bushAlpha));
+            //_renderer.sharedMaterial.color = oriColor * new Color(1, 1, 1, bushAlpha);
+            //_renderer.sharedMaterial = transparent;
+            //_renderer.sharedMaterial.SetColor("_BaseColor", oriColor * new Color(1, 1, 1, bushAlpha));
         }
     }
 
@@ -89,8 +89,8 @@ public class BushObject : GroundObject
 
             myCollider.transform.position = oriPos;
 
-            //_renderer.material.SetColor("_BaseColor", oriColor);
-            //_renderer.material = opaque;
+            //_renderer.sharedMaterial.SetColor("_BaseColor", oriColor);
+            //_renderer.sharedMaterial = opaque;
         }
     }
 }
