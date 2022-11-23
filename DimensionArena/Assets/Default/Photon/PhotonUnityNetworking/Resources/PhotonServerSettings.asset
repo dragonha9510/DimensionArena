@@ -148,6 +148,7 @@ MonoBehaviour:
   - PlaySFXOneShotForAllClient
   - SplashSound
   - CreateDestroyEfffect
+  - skillServer
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1
