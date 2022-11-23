@@ -51,9 +51,14 @@ public class TickDamage : MonoBehaviourPun
     public void DamageApplyItemBox(GameObject itemBox, float damage)
     {
         if (isPercent)
-            itemBox.GetComponent<ItemBox>().GetTickDamage(true,damage);
+        {
+            itemBox.GetComponent<ItemBox>().GetTickDamage(true,damage,this.OwnerID);
+
+        }
         else
-            itemBox.GetComponent<ItemBox>().GetTickDamage(false, damage);
+        {
+            itemBox.GetComponent<ItemBox>().GetTickDamage(false, damage, this.OwnerID);
+        }
     }
 
     IEnumerator InDamageZone(GameObject obj, float time, float damage)

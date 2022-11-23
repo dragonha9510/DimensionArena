@@ -1840,7 +1840,7 @@ MonoBehaviour:
   playerName: {fileID: 3329056754830809945}
   hpBarSlider: {fileID: 1022083343106138256}
   hpText: {fileID: 6626591888015338110}
-  shield: {fileID: 0}
+  shield: {fileID: 7506541611953185907}
   shieldImg: {fileID: 8698796841050619451}
   shieldText: {fileID: 588731795410907810}
   arrow: {fileID: 6747648557437966008}

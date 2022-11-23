@@ -255,13 +255,12 @@ public class LobbyManagerRenewal : MonoBehaviourPunCallbacks
         }
     }
 
-    public void JoinOrCreateRoom(MODE gameMode)
+    public void JoinOrCreateRoom()
     {
         inGameReadyPlayer = 0;
         FirebaseDB_Manager.Instance.IsInGame = true;    
 
-        playMode = gameMode;
-        string roomName = CheckingRoom(gameMode);
+        string roomName = CheckingRoom(playMode);
         nowInRoomName = roomName;
 
         if (roomName == "empty")
@@ -269,7 +268,7 @@ public class LobbyManagerRenewal : MonoBehaviourPunCallbacks
             // �ӽ÷� �� ������ ������ �̸����� ����� ����
             CustomRoomInfo newRoomInfo = GetNewRoomName();
             Debug.Log(newRoomInfo.RoomName);
-            rooms[(int)gameMode].Add(newRoomInfo.RoomName,newRoomInfo);
+            rooms[(int)playMode].Add(newRoomInfo.RoomName,newRoomInfo);
             string newRoomName = newRoomInfo.RoomName;
             bool roomMake = PhotonNetwork.CreateRoom(newRoomName, new RoomOptions { MaxPlayers = 8 }, null);
             if(!roomMake)
@@ -376,9 +375,12 @@ public class LobbyManagerRenewal : MonoBehaviourPunCallbacks
         switch(playMode)
         {
             case MODE.MODE_SURVIVAL:
-                PhotonNetwork.LoadLevel("Prototype");
+                PhotonNetwork.LoadLevel("Map1");
                 break;
-            
+            case MODE.MODE_FREEFALLALL:
+                PhotonNetwork.LoadLevel("Map2");
+                break;  
+
         }
     }
     

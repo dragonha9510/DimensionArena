@@ -26,7 +26,7 @@ public class MatchMaking : MonoBehaviourPun
     // Start is called before the first frame update
     void Start()
     {
-        LobbyManagerRenewal.Instance.JoinOrCreateRoom(MODE.MODE_SURVIVAL);
+        LobbyManagerRenewal.Instance.JoinOrCreateRoom();
     }
 
     public void GetOutMatchingBtn()
