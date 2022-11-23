@@ -48707,7 +48707,7 @@ MonoBehaviour:
   audioClipName: snd_char_securitas_attack_overclock
   hitAudioClipName: snd_char_securitas_hit_overclock
   ultimatePoint: 30
-  damage: 300
+  damage: 540
   hitPrefab: {fileID: 1091389975830204, guid: 8b956942ea86f994983d86ba06b9ce39, type: 3}
   rigid: {fileID: 54690089591678400}
   originPos: {x: 0, y: 0, z: 0}
