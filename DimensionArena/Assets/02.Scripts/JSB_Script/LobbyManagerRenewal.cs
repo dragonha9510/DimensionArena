@@ -182,16 +182,11 @@ public class LobbyManagerRenewal : MonoBehaviourPunCallbacks
     {
         if (0 == rooms.Count)
             return "empty";
-        foreach (Dictionary<string, CustomRoomInfo> room in rooms)
+        foreach (var keys in rooms[(int)gameMode].Keys)
         {
-            foreach(string key in room.Keys)
-            {
-                if (room[key].IsOpen)
-                {
-                    return key;
-                }
-            }
-        } 
+            if (rooms[(int)gameMode][keys].IsOpen)
+                return keys;
+        }
         return "empty";
     }
 
