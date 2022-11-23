@@ -60,6 +60,7 @@ public class AutoAtk_Detection : MonoBehaviour
             return;
 
         isHideOnBush tryCheck = null;
+        bool AllTargetInBush = true;
 
         foreach (var isHide in detectedTransform)
         {
@@ -67,15 +68,21 @@ public class AutoAtk_Detection : MonoBehaviour
 
             if(tryCheck == null || !tryCheck.isHide)
             {
+                AllTargetInBush = false;
+                 
                 targetPos = detectedTransform[0].position;
                 break;
             }
         }
+
+        if(AllTargetInBush)
+            targetPos = transform.position + transform.forward * range;
+
         targetPos.y = 0;
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag != "Player" && other.tag != "Item_Box")
+        if (other.tag != "Player" )
             return;
         
         detectedTransform.Add(other.transform);
@@ -83,7 +90,7 @@ public class AutoAtk_Detection : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.tag != "Player" && other.tag != "Item_Box")
+        if (other.tag != "Player")
             return;
 
         detectedTransform.Remove(other.transform);
