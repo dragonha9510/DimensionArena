@@ -76,7 +76,7 @@ public class DetectArea : MonoBehaviour
         if (!other.CompareTag("Player"))
             return;
 
-        if (other.GetComponentInChildren<isHideOnBush>().isHide
+        if (other.GetComponentInChildren<isHideOnBush>().isHide)
             return;
 
         listTarget.Add(other.gameObject);
