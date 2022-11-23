@@ -274,8 +274,6 @@ public class LobbyManagerRenewal : MonoBehaviourPunCallbacks
             bool roomMake = PhotonNetwork.CreateRoom(newRoomName, new RoomOptions { MaxPlayers = 8 }, null);
             if(!roomMake)
             {
-                // �� ���� ����
-
             }
             else
             { }
@@ -298,7 +296,6 @@ public class LobbyManagerRenewal : MonoBehaviourPunCallbacks
     public override void OnJoinedRoom()
     {
 
-        //  �� ���� ��������µ� �� ���� �����ΰǰ�...
         //  JoinRandomRoom failed. Client is on GameServer (must be Master Server for matchmaking) and ready
 
 
@@ -309,8 +306,9 @@ public class LobbyManagerRenewal : MonoBehaviourPunCallbacks
 
         if (leastStartPlayer <= PhotonNetwork.CurrentRoom.PlayerCount)
         {
+            photonView.RPC(nameof(SettingWaitStateUI), RpcTarget.AllViaServer);
+
             photonView.RPC(nameof(StartWaitForPlayerMaster),RpcTarget.MasterClient);
-            // ������ ���������� ���� �ݴ´�. -> ���� �ݰ� ���� �ε��ؾ��� ��û��
             //PhotonNetwork.CurrentRoom.IsOpen = false;
         }
     }
@@ -331,7 +329,6 @@ public class LobbyManagerRenewal : MonoBehaviourPunCallbacks
     }
     IEnumerator WaitOtherPlayer()
     {
-        photonView.RPC(nameof(SettingWaitStateUI), RpcTarget.AllViaServer);
         waitTimeRemain = waitOtherPlayerTime;
         isWillStartGame = true;
         while (0 < waitTimeRemain)
@@ -345,7 +342,6 @@ public class LobbyManagerRenewal : MonoBehaviourPunCallbacks
         nowGameStartCount = PhotonNetwork.CurrentRoom.PlayerCount;
         PhotonNetwork.CurrentRoom.IsOpen = false;
         photonView.RPC("PlayStart", RpcTarget.All);
-        // ������ ���������� ���� �ݴ´�. -> ���� �ݰ� ���� �ε��ؾ��� ��û��
         //PhotonNetwork.CurrentRoom.IsOpen = false;
     }
 

@@ -20,6 +20,9 @@ public class ItemBox : MonoBehaviourPun
     private List<dropTable> dropTables = new List<dropTable>();
     [SerializeField]
     private float health;
+
+    private float maxHealth;
+
     public float Health => health;
     [SerializeField]
     private TextMeshProUGUI itemHealth;
@@ -33,7 +36,8 @@ public class ItemBox : MonoBehaviourPun
 
     private void Start()
     {
-        if(itemHealth != null)
+        maxHealth = health;
+        if (itemHealth != null)
             itemHealth.text = health.ToString();
         if(itemSlider != null)
         {
@@ -75,7 +79,16 @@ public class ItemBox : MonoBehaviourPun
             }
         }
     }
-
+  
+    public void GetTickDamage(bool isPercent,float dmg)
+    {
+        int damage;
+        if (isPercent)
+            damage = (int)(maxHealth * dmg);
+        else
+            damage = (int)dmg;
+        photonView.RPC(nameof(HpDecrease), RpcTarget.All, damage, "");
+    }
     public void ResetPrefab()
     {
         dropTables.Clear();
@@ -115,7 +128,6 @@ public class ItemBox : MonoBehaviourPun
         else if (!PhotonNetwork.InRoom)
             return;
     }
-
     [PunRPC]
     private void HpDecrease(int damage, string owner)
     {

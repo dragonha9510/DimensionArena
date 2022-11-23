@@ -77,7 +77,8 @@ public class RedZone_Missile : MonoBehaviour
         }
         else if (other.CompareTag("Water_Plane"))
             Destroy(this.gameObject);
-        else if (other.CompareTag("Bush") || other.CompareTag("Item_Box"))
+        // 망할 파괴로 인한 예외처리 JSB
+        else if (other.CompareTag("Bush") || (other.CompareTag("Item_Box") && other.gameObject.layer == LayerMask.NameToLayer("ItemBox")))
         {
             BoxCollider temp = other as BoxCollider;
 
