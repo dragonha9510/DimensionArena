@@ -26,10 +26,8 @@ public class Shaking : MonoBehaviour
     {
         if (direction == Vector3.left)
         {
-            Debug.Log("왼쪽으로 움직임");
             if (arriveX >= this.transform.localPosition.x)
             {
-                Debug.Log("왼쪽으로 다 움직임");
                 return true;
             }
             if (this.transform.localPosition.x < originalPos.x)
@@ -37,10 +35,8 @@ public class Shaking : MonoBehaviour
         }
         else if (direction == Vector3.right)
         {
-            Debug.Log("오른쪽으로 움직임");
             if (arriveX <= this.transform.localPosition.x)
             {
-                Debug.Log("오른쪽으로 다 움직임");
                 return true;
             }
             if (this.transform.localPosition.x > originalPos.x)
@@ -52,7 +48,6 @@ public class Shaking : MonoBehaviour
     }
     private bool MoveOriginPos(Vector3 arrivePos, bool moveLeft)
     {
-        Debug.Log("돌아가는중");
         if (moveLeft && arrivePos.x >= this.transform.localPosition.x)
         {
             this.transform.localPosition = arrivePos;
@@ -68,7 +63,6 @@ public class Shaking : MonoBehaviour
     }
     public void StartShaking()
     {
-        Debug.Log("흔들림시작");
         //transform.DOShakePosition()
         StartCoroutine(nameof(ObjectShaking));
     }
@@ -80,7 +74,6 @@ public class Shaking : MonoBehaviour
         minPos = this.transform.localPosition.x - maxRange;
         maxPos = this.transform.localPosition.x + maxRange;
         originalPos = this.transform.localPosition;
-        Debug.Log(originalPos);
 
         while (true)
         {
@@ -107,7 +100,6 @@ public class Shaking : MonoBehaviour
             {
                 if (MoveOriginPos(originalPos, moveLeft))
                 {
-                    Debug.Log("움직임 다 끝남");
                     isShaking = false;
                     yield break;
                 }

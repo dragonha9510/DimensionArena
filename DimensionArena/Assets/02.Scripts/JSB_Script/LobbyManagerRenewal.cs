@@ -89,8 +89,7 @@ public class LobbyManagerRenewal : MonoBehaviourPunCallbacks
             rooms.Add(new Dictionary<string, CustomRoomInfo>());
         }
 
-        loadText.text = "서버 탐색충...";
-        // ������ ���� �õ�
+        loadText.text = "서버 탐색중...";
         PhotonNetwork.ConnectUsingSettings();
 
     }
@@ -101,8 +100,6 @@ public class LobbyManagerRenewal : MonoBehaviourPunCallbacks
     }
     public override void OnJoinedLobby()
     {
-        Debug.Log("�κ� ���� ����");
-
         loadText.text = "서버 연결 완료...";
         
         /*if(isReconnect)
@@ -262,7 +259,6 @@ public class LobbyManagerRenewal : MonoBehaviourPunCallbacks
         {
             // �ӽ÷� �� ������ ������ �̸����� ����� ����
             CustomRoomInfo newRoomInfo = GetNewRoomName();
-            Debug.Log(newRoomInfo.RoomName);
             rooms[(int)playMode].Add(newRoomInfo.RoomName,newRoomInfo);
             string newRoomName = newRoomInfo.RoomName;
             bool roomMake = PhotonNetwork.CreateRoom(newRoomName, new RoomOptions { MaxPlayers = 8 }, null);
@@ -285,7 +281,7 @@ public class LobbyManagerRenewal : MonoBehaviourPunCallbacks
 
     public override void OnJoinRoomFailed(short returnCode, string message)
     {
-        Debug.Log("���ӽ���");
+        Debug.Log("연결 실패..");
     }
     public override void OnJoinedRoom()
     {

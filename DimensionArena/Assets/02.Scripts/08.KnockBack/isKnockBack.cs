@@ -70,7 +70,6 @@ public class isKnockBack : MonoBehaviourPun
 
     public void AllClientKncokBackCall(string ID, Vector3 pos, Vector3 dir, float speed, float distance)
     {
-        Debug.Log("콜백 부름");
         photonView.RPC(nameof(AllClientKncokBack), RpcTarget.All,ID, pos, dir, speed,distance);
     }
 
@@ -93,7 +92,6 @@ public class isKnockBack : MonoBehaviourPun
                 yield break;
             else
             {
-                Debug.Log("움직이는중");
                 this.transform.position = this.transform.position + direction * speed * Time.fixedDeltaTime;
                 yield return null;
             }

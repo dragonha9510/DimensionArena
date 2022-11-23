@@ -56,7 +56,6 @@ namespace PlayerSpace
             if (!photonView.IsMine)
                 return;
 
-            Debug.Log(tmpDirection);
             if(base.tmpDirection != this.transform.forward)
             {
                 this.transform.rotation = Quaternion.LookRotation(tmpDirection);

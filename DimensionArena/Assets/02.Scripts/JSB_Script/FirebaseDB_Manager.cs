@@ -58,8 +58,6 @@ public class FirebaseDB_Manager : MonoBehaviour
                 DataSnapshot snapshot = task.Result;
                 foreach (DataSnapshot data in snapshot.Children)
                 {
-                    Debug.Log("데이터 갱신중");
-
                     string key = data.Key;
                     if (playerDatas.ContainsKey(key))
                     {
@@ -78,7 +76,6 @@ public class FirebaseDB_Manager : MonoBehaviour
                     }
                 }
                 ++refreshCount;
-                Debug.Log("갱신 끝");
             }
             else if (task.IsCanceled)
             {

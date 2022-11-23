@@ -67,7 +67,6 @@ public class TutorialEvent : MonoBehaviour
 
     public void TouchBlockOnOff(bool isOn)
     {
-        Debug.Log(isOn);
         touchBlockGroup.blocksRaycasts = isOn;
         touchBlockGroup.alpha = touchBlockGroup.blocksRaycasts ? 0.6f : 0.0f;
     } 
