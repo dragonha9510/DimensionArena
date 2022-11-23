@@ -80,14 +80,14 @@ public class ItemBox : MonoBehaviourPun
         }
     }
   
-    public void GetTickDamage(bool isPercent,float dmg)
+    public void GetTickDamage(bool isPercent,float dmg , string ownerID = "")
     {
         int damage;
         if (isPercent)
             damage = (int)(maxHealth * dmg);
         else
             damage = (int)dmg;
-        photonView.RPC(nameof(HpDecrease), RpcTarget.All, damage, "");
+        photonView.RPC(nameof(HpDecrease), RpcTarget.All, damage, ownerID);
     }
     public void ResetPrefab()
     {
