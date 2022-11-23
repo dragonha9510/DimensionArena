@@ -44,25 +44,14 @@ public class RedZone_Missile : MonoBehaviour
             Destroy(this.gameObject);
             if (destroyEffect)
                 Instantiate(destroyEffect, new Vector3(transform.position.x, 0, transform.position.z), destroyEffect.transform.rotation);
+
+            SoundManager.Instance.PlaySFXOneShotInRange(56.0f, this.transform, soundClip[Random.Range(0, soundClip.Length)]);
             //Destroy(boundary);
             //Destroy(outterBoundary);
         }
     }
 
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.tag == "Player" || collision.gameObject.tag == "ParentGround"
-            || collision.gameObject.tag == "Parent_Obstacle")
-        {
-            Destroy(this.gameObject);
-
-            if (destroyEffect)
-                Instantiate(destroyEffect, transform.position/*new Vector3(transform.position.x, 0, transform.position.z)*/, destroyEffect.transform.rotation);
-        }
-        else if (collision.gameObject.tag == "Water_Plane")
-            Destroy(this.gameObject);
-    }
-
+ 
     protected virtual void OnTriggerEnter(Collider other)
     {
         effectOn = false;
@@ -87,6 +76,8 @@ public class RedZone_Missile : MonoBehaviour
 
         if (effectOn)
         {
+            SoundManager.Instance.PlaySFXOneShotInRange(56.0f, this.transform, soundClip[Random.Range(0, soundClip.Length)]);
+
             GetComponent<KnockBackObject>().KnockBackStartDamage("RedZone", Damage);
 
             if (destroyEffect)
