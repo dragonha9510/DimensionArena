@@ -122,7 +122,6 @@ public class SkillJoyStick : BaseJoyStick
 
         player.Attack.AttackLock();
 
-        Debug.Log("자동 스킬");
         // 자동공격 루틴 추가
         player.Skill.AutoSkill();
     }

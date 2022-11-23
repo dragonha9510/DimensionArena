@@ -200,7 +200,6 @@ public class RedZone : MonoBehaviourPun
     [PunRPC]
     void RedZonePositioningOnServer(Vector3 pos)
     {
-        Debug.Log("RedZonePositioningOnServer");
         this.transform.position = pos;
         //this.transform.position = new Vector3(0, 0, 0);
     }

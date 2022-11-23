@@ -191,8 +191,6 @@ public class TickDamage : MonoBehaviourPun
             {
                 if(true == isNestingCollision)
                 {
-                    Debug.Log("µ¥¹ÌÁö ÁßÃ¸ÀÓ ÄÚ·çÆ¾ ½ÃÀÛÇÒ²¨¾ß");
-
                     if (willDamageApply.ContainsKey(other.name))
                     {
                         willDamageApply[other.name] = true;
@@ -203,9 +201,7 @@ public class TickDamage : MonoBehaviourPun
                 }
                 else if (false == isNestingCollision && false == IsInOtherObject(other.gameObject.name) && false == willDamageApply.ContainsKey(other.gameObject.name))
                 {
-                    Debug.Log("µ¥¹ÌÁö ÁßÃ¸¾Æ´Ô ÄÚ·çÆ¾ ½ÃÀÛÇÒ²¨¾ß");
                     willDamageApply.Add(other.name, true);
-
                     StartCoroutine(InDamageZone(other.gameObject.name, damageTime, tickDamage));
                 }
             }
@@ -226,7 +222,6 @@ public class TickDamage : MonoBehaviourPun
                     }
                     else if (false == isNestingCollision && false == IsInOtherObject(other.gameObject) && false == willDamageApplyBox.ContainsKey(other.gameObject))
                     {
-                        Debug.Log("µ¥¹ÌÁö ÁßÃ¸¾Æ´Ô ÄÚ·çÆ¾ ½ÃÀÛÇÒ²¨¾ß");
                         willDamageApplyBox.Add(other.gameObject, true);
                         StartCoroutine(InDamageZone(other.gameObject, damageTime, tickDamage));
                     }
@@ -247,7 +242,6 @@ public class TickDamage : MonoBehaviourPun
                 }
                 else if (false == isNestingCollision && false == IsInOtherObject(other.gameObject) && false == willDamageApplyBox.ContainsKey(other.gameObject))
                 {
-                    Debug.Log("µ¥¹ÌÁö ÁßÃ¸¾Æ´Ô ÄÚ·çÆ¾ ½ÃÀÛÇÒ²¨¾ß");
                     willDamageApplyBox.Add(other.gameObject, true);
                     StartCoroutine(InDamageZone(other.gameObject, damageTime, tickDamage));
                 }

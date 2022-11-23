@@ -88,7 +88,6 @@ public abstract class Item : MonoBehaviourPun
 
         if (collision.gameObject.tag == "ParentGround")
         {
-            Debug.Log("아이템 콜리전 엔터");
             if (ColliderCount <= StopCount)
             {
                 boingPower *= decreasePower;

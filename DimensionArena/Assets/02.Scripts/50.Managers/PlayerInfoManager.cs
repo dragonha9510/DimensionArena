@@ -329,7 +329,6 @@ namespace ManagerSpace
 
             if (dicPlayerInfo.TryGetValue(target, out temp))
             {
-                Debug.Log(temp.IsAlive);
                 if (temp.IsAlive)
                     temp.GetShield(amount);        
             }
@@ -457,7 +456,6 @@ namespace ManagerSpace
                 if (inBuf.durationTime < 0)
                 {
                     bufs.Dequeue();
-                    Debug.Log("아이템 지속시간 종료 효과 제거");
                     break;
                 }
             }

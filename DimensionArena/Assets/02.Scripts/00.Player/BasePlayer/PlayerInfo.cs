@@ -193,8 +193,6 @@ public class PlayerInfo
 
     public void SpeedUp(float ratio)
     {
-        Debug.Log("스피드 업");
-        Debug.Log("퍼센트 : " + ratio);
         curSpeed += baseSpeed * ratio;
     }
 

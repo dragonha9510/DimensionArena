@@ -26,8 +26,6 @@ public class InGameDataParsingManager : MonoBehaviour
 
     private void ParsingToCsbFile_Items(string path)
     {
-        Debug.Log("아이템 정보 세팅중");
-
         string itemResourcePath = "Assets/Resources/Prefabs/ProtoTypeItems/";
         List<GameObject> itemObjs = new List<GameObject>();
         List<Dictionary<string, object>> data_Map = CSVReader.Read(path);
@@ -59,8 +57,6 @@ public class InGameDataParsingManager : MonoBehaviour
         }
 
         itemObjs.Clear();
-        Debug.Log("아이템 정보 세팅 끝");
-
     }
 
     private void SettingItemData(GameObject item

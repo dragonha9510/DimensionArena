@@ -20,7 +20,7 @@ public class CloudeEffect : MonoBehaviour
 
     public bool UnDead = false;
 
-    WaitForSeconds waitforSeconds = new WaitForSeconds(1.0f);
+    WaitForSeconds waitforSeconds = new WaitForSeconds(1.5f);
     private bool upScale = false;
     private bool startUpdate = false;
 
@@ -47,35 +47,31 @@ public class CloudeEffect : MonoBehaviour
     }
 
 
-    
-
-
     IEnumerator ScaleUpdate()
     {
         while (true)
         {
             if (upScale)
-                transform.DOScale(Vector3.one * 0.75f, 1.0f);
+                transform.DOScale(Vector3.one * 0.8f, 1.5f);
             else
-                transform.DOScale(Vector3.one * 0.1f, 1.0f);
+                transform.DOScale(Vector3.one * 0.1f, 1.5f);
 
             yield return waitforSeconds;
 
             upScale = !upScale;
         }
     }
+
+
     private void FixedUpdate()
     {
         if (GameManager.Instance.IsGameEnd)
         {
-            Debug.Log(GameManager.Instance.IsGameEnd);
             Destroy(this.gameObject);
             return;
         }
         liveTime -= Time.deltaTime;
         
-        //this.transform.position = new Vector3(this.transform.position.x + Random.Range(-0.01f,0.01f), this.transform.position.y, this.transform.position.z + Random.Range(-0.01f, 0.01f));
-
         if (0 > liveTime && false == UnDead)
         {
             startUpdate = false;
