@@ -354,6 +354,7 @@ MonoBehaviour:
   - 04.AuraSound
   - 05.Ravagebell
   - 06.Securitas
+  - 07.Redzone
   bgmPlayer: {fileID: 1136330000}
   sfxPlayer: {fileID: 1136329999}
   inGameSoundCount: 6

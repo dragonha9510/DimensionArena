@@ -14,6 +14,7 @@ public class RedZone_Missile : MonoBehaviour
     [SerializeField] private GameObject destroyEffect;
     [SerializeField] private Vector2 missileScale;
     [SerializeField] private float Damage;
+    [SerializeField] private string[] soundClip;
 
     protected virtual void Start()
     {
@@ -57,9 +58,6 @@ public class RedZone_Missile : MonoBehaviour
 
             if (destroyEffect)
                 Instantiate(destroyEffect, transform.position/*new Vector3(transform.position.x, 0, transform.position.z)*/, destroyEffect.transform.rotation);
-
-            //Destroy(boundary);
-            //Destroy(outterBoundary);
         }
         else if (collision.gameObject.tag == "Water_Plane")
             Destroy(this.gameObject);
