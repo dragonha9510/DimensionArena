@@ -386,6 +386,10 @@ public class LobbyManagerRenewal : MonoBehaviourPunCallbacks
         ++this.inGameReadyPlayer;
 
     }
+    public void ClearCoroutine()
+    {
+        temp = null;
+    }
     [PunRPC]
     public void ExitGameAndMigration()
     {

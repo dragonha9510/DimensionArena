@@ -65,7 +65,6 @@ namespace PlayerSpace
                 WaitAttack();
             else if (true == isFinishShoot)
             {
-                isFinishShoot = false;
                 // 아우라 공격
                 projectileDirection.Enqueue(Quaternion.LookRotation(tmpDirection, Vector3.up));
                 atkInfo.SubCost(atkInfo.ShotCost);
@@ -113,8 +112,12 @@ namespace PlayerSpace
         
         IEnumerator AttackTime()
         {
+            isFinishShoot = false;
             owner.CanDirectionChange = false;
             yield return new WaitForSeconds(nextAnimation_delay[nowPlayAnimationIndex]);
+            projectileDirection.Clear();
+            isFinishShoot = true;
+
             auraAnimator.SetBool("Attack1", false);
             auraAnimator.SetBool("Attack2", false);
             auraAnimator.SetBool("Attack3", false);
