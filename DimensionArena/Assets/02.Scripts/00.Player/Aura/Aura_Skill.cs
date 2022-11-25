@@ -74,7 +74,10 @@ namespace PlayerSpace
         {
             Ray ray = new Ray();
             RaycastHit[] rayHits;
+            RaycastHit[] rayHits_itemBox;
             ray.origin = FOV.transform.position;
+           
+
 
             ray.direction = FOV.transform.forward;
             ray.direction = Quaternion.AngleAxis(-(FOV.viewAngle / 2), Vector3.up) * ray.direction;
@@ -83,17 +86,21 @@ namespace PlayerSpace
 
             for (int i = 0; i < rayCount; ++i)
             {
-                rayHits = Physics.RaycastAll(ray, FOV.ViewRadius, LayerMask.NameToLayer("Player"));
-
+                rayHits = Physics.RaycastAll(ray, FOV.ViewRadius, 1 << LayerMask.NameToLayer("Player"));
+                rayHits_itemBox = Physics.RaycastAll(ray, FOV.ViewRadius, 1 << LayerMask.NameToLayer("GroundObject_Brick"));
                 foreach (RaycastHit rayhit in rayHits)
                 {
                     GameObject hitted = rayhit.transform.gameObject;
                     if (hitted.tag == "Player" && false == hitedObj.Contains(hitted) && hitted != owner)
                     {
-                        photonView.RPC(nameof(KnockBack), RpcTarget.AllViaServer, hitted.name , owner.transform.position, (hitted.transform.position - owner.transform.position).normalized,projectileSpeed,FOV.ViewRadius);
+                        photonView.RPC(nameof(KnockBack), RpcTarget.AllViaServer, hitted.name, owner.transform.position, (hitted.transform.position - owner.transform.position).normalized, projectileSpeed, FOV.ViewRadius);
                         hitedObj.Add(hitted);
                     }
-                    else if (hitted.tag == "Item_Box" && false == hitedObj.Contains(hitted))
+                }
+                foreach (RaycastHit rayhit in rayHits_itemBox)
+                {
+                    GameObject hitted = rayhit.transform.gameObject;
+                    if (hitted.tag == "Item_Box" && false == hitedObj.Contains(hitted))
                     {
                         hitted.GetComponent<ItemBox>().GetDamage(skillDamage * PlayerInfoManager.Instance.DicPlayerInfo[this.gameObject.name].AdditionalDmg, this.gameObject.name);
                         hitedObj.Add(hitted);

@@ -92,7 +92,7 @@ public class ItemBox : MonoBehaviourPun
 
     public void GetDamage(float dmg, string ownerID = "")
     {
-        photonView.RPC(nameof(HpDecrease), RpcTarget.All, dmg, ownerID);
+        photonView.RPC(nameof(HpDecrease), RpcTarget.All, (int)dmg, ownerID);
 
     }
     public void ResetPrefab()
