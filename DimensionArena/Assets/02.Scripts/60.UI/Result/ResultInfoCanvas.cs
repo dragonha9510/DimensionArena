@@ -147,8 +147,10 @@ public class ResultInfoCanvas : MonoBehaviour
         }
     }
 
+
     public void ChanageToMainScene()
     {
+        LobbyManagerRenewal.Instance.ClearCoroutine();
         PhotonNetwork.LeaveRoom();
         IngameDataManager.Instance.DestroyManager();
         Destroy(IngameDataManager.Instance.gameObject);
