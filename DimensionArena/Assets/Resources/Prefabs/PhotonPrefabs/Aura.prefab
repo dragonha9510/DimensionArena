@@ -8630,7 +8630,7 @@ MonoBehaviour:
   FOV: {fileID: 337200087289245342}
   auraAnimator: {fileID: 3227170782532345053}
   rayCount: 5
-  skillDamage: 1
+  skillDamage: 600
   skillAnimationSpeed: 2.5
   skillSpeedCorrection: 0.7
 --- !u!114 &7684523567143468576
@@ -8703,7 +8703,7 @@ MonoBehaviour:
     maxSkillPoint: 100
     curShield: 0
     maxSheld: 0
-    additionalDmg: 0
+    additionalDmg: 1
     isBattle: 0
     battleOffTime: 0
     baseSpeed: 3
