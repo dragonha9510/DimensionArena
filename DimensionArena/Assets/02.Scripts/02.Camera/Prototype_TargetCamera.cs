@@ -64,15 +64,15 @@ public class Prototype_TargetCamera : MonoBehaviour
         PlayerInfoManager infoMgr = PlayerInfoManager.Instance;
 
         //다른 플레이어 사망 처리는 하지않는다.
-        if(infoMgr.DicPlayer.ContainsKey(ownerName))
-            if (infoMgr.DicPlayer[ownerName].transform != target)
+        if(infoMgr.DicPlayer.ContainsKey(targetName))
+            if (infoMgr.DicPlayer[targetName].transform != target)
                 return;
 
         if (infoMgr.SurvivalCount >= 1)
         {
             //죽인 사람이 있다면
-            if (infoMgr.DicPlayer.ContainsKey(targetName))
-                target = infoMgr.getPlayerTransform(targetName);
+            if (infoMgr.DicPlayer.ContainsKey(ownerName))
+                target = infoMgr.getPlayerTransform(ownerName);
             else
             {
                 foreach(var player in infoMgr.DicPlayer.Values)
