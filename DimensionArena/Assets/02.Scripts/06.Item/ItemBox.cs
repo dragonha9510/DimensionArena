@@ -89,6 +89,12 @@ public class ItemBox : MonoBehaviourPun
             damage = (int)dmg;
         photonView.RPC(nameof(HpDecrease), RpcTarget.All, damage, ownerID);
     }
+
+    public void GetDamage(float dmg, string ownerID = "")
+    {
+        photonView.RPC(nameof(HpDecrease), RpcTarget.All, dmg, ownerID);
+
+    }
     public void ResetPrefab()
     {
         dropTables.Clear();

@@ -29,6 +29,8 @@ namespace PlayerSpace
 
         private List<GameObject> hitedObj = new List<GameObject>();
 
+        private PlayerInfo info;
+
         protected override void Start()
         {
             base.Start();
@@ -64,7 +66,8 @@ namespace PlayerSpace
         private void KnockBack(string playerName,Vector3 pos,Vector3 dir,float speed,float distance)
         {
             PlayerInfoManager.Instance.DicPlayer[playerName].GetComponent<isKnockBack>().CallMoveKnockBack(pos, dir, speed, distance);
-            PlayerInfoManager.Instance.CurHpDecrease(this.gameObject.name , playerName, skillDamage);
+            
+            PlayerInfoManager.Instance.CurHpDecrease(this.gameObject.name , playerName, skillDamage * PlayerInfoManager.Instance.DicPlayerInfo[this.gameObject.name].AdditionalDmg);
         }
         [PunRPC]
         private void SkillAttack(float angle)
@@ -88,6 +91,11 @@ namespace PlayerSpace
                     if (hitted.tag == "Player" && false == hitedObj.Contains(hitted) && hitted != owner)
                     {
                         photonView.RPC(nameof(KnockBack), RpcTarget.AllViaServer, hitted.name , owner.transform.position, (hitted.transform.position - owner.transform.position).normalized,projectileSpeed,FOV.ViewRadius);
+                        hitedObj.Add(hitted);
+                    }
+                    else if (hitted.tag == "Item_Box" && false == hitedObj.Contains(hitted))
+                    {
+                        hitted.GetComponent<ItemBox>().GetDamage(skillDamage * PlayerInfoManager.Instance.DicPlayerInfo[this.gameObject.name].AdditionalDmg, this.gameObject.name);
                         hitedObj.Add(hitted);
                     }
                 }

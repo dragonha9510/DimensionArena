@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
-
+using ManagerSpace;
 public class Parabola_Projectile : AttackObject
 {
     // Destroy Effect

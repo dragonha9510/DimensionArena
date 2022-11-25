@@ -55,7 +55,7 @@ MonoBehaviour:
   rigid: {fileID: 8213405944050082598}
   originPos: {x: 0, y: 0, z: 0}
   range: 5
-  speed: 10
+  speed: 15
   explosionEffect: {fileID: 1000012903210382, guid: 5b910e8742858364d8f892b1452dabe3,
     type: 3}
   createCycle: 0.1
