@@ -2,10 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-#if UNITY_EDITOR
 public class InGameDataParsingManager : MonoBehaviour
 {
-
+#if UNITY_EDITOR
     [SerializeField]
     private string[] parsingWall = new string[3];
 
@@ -186,6 +185,6 @@ public class InGameDataParsingManager : MonoBehaviour
         
 
     }
+#endif
 
 }
-#endif

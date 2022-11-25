@@ -263,17 +263,17 @@ namespace ManagerSpace
                 {
                     if (killerId.Equals("MagneticField"))
                     {
-                        targetInfo.PlayerDie(UNITTYPE.Magnetic, "자기장");
+                        targetInfo.PlayerDie("MagneticField");
                     }
                     else if (killerId.Equals("RedZone"))
                     {
-                        targetInfo.PlayerDie(UNITTYPE.RedZone, "레드존");
+                        targetInfo.PlayerDie("RedZone");
                     }
                 }
                 //플레이어에 의해 사망했을 경우
                 else
                 {
-                    targetInfo.PlayerDie(killerInfo.Type, killerId);                
+                    targetInfo.PlayerDie(killerId);                
                 }
 
             }

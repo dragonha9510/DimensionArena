@@ -22,8 +22,6 @@ public enum UNITTYPE
 [Serializable]
 public class PlayerInfo
 {
-
-
     public PlayerInfo(string ID)
     {
         id = ID;
@@ -65,8 +63,7 @@ public class PlayerInfo
     public event Action<float> EcurShieldChanged = (param) => { };
     public event Action EDisActivePlayer = () => { };
     public event Action EBattleStateOn = () => { };
-    public event Action<UNITTYPE, string,
-                        UNITTYPE, string> EDeadPlayer = (param, param2, param3, param4) => { };
+    public event Action<string, string> EDeadPlayer = (param, param2) => { };
 
 
     /// =============================
@@ -201,10 +198,11 @@ public class PlayerInfo
         curSpeed -= baseSpeed * ratio;
     }
 
-    public void PlayerDie(UNITTYPE killer_type, string killer_id)
+    public void PlayerDie(string killer_id)
     {
+        
         isAlive = false;
-        EDeadPlayer(killer_type, killer_id, type, id);
+        EDeadPlayer(killer_id, id);
         EDisActivePlayer();
     }
 

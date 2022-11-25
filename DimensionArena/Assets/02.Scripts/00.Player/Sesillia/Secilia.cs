@@ -50,11 +50,13 @@ namespace PlayerSpace
         {
             base.Start();
 
-            if (PhotonNetwork.InRoom)
-                StartCoroutine(StartPassiveFromOnline());
-            else
-                StartCoroutine(StartPassiveFromOff());
-
+            if(photonView.IsMine)
+            { 
+                if (PhotonNetwork.InRoom)
+                    StartCoroutine(StartPassiveFromOnline());
+                else
+                    StartCoroutine(StartPassiveFromOff());
+            }
         }
 
 

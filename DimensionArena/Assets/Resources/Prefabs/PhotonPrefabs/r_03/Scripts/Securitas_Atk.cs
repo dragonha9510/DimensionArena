@@ -62,6 +62,8 @@ namespace PlayerSpace
         {
             owner.CanDirectionChange = false;
             isAttack = true;
+            atkInfo.SubCost(atkInfo.ShotCost);
+
 
             if (!PhotonNetwork.OfflineMode && PhotonNetwork.InRoom)
                 photonView.RPC(nameof(MasterCreateProjectile), RpcTarget.MasterClient, gameObject.name, tmpDirection, photonView.Controller);
@@ -74,7 +76,6 @@ namespace PlayerSpace
             GameObject projectile;
             Transform shooterPosition = PlayerInfoManager.Instance.getPlayerTransform(shooter);
 
-            SubMagazine(shooter);
             animator.speed = 3f;
             SetAttackTrigger();
 
@@ -108,7 +109,6 @@ namespace PlayerSpace
             GameObject projectile;
             Transform shooterPosition = PlayerInfoManager.Instance.getPlayerTransform(shooter);
 
-            photonView.RPC(nameof(SubMagazine), controller, shooter);
             photonView.RPC(nameof(SetAttackTrigger), RpcTarget.All);
 
             string prefabname;
@@ -133,12 +133,6 @@ namespace PlayerSpace
             yield break;
         }
 
-        [PunRPC]
-        private void SubMagazine(string name)
-        {
-            if (gameObject.name == name)
-                atkInfo.SubCost(atkInfo.ShotCost);
-        }
 
         [PunRPC]
         private void EndAttack(string name)
@@ -178,18 +172,16 @@ namespace PlayerSpace
                 }
             }
 
+
+            atkInfo.SubCost(atkInfo.ShotCost);
+
+
             if (!PhotonNetwork.OfflineMode && PhotonNetwork.InRoom)
-            {
-                SubMagazine(owner.name);
                 photonView.RPC(nameof(MasterCreateProjectile), RpcTarget.MasterClient, gameObject.name
                                                              , autoDirection
                                                              , photonView.Controller);
-            }
             else
-            {
-                SubMagazine(owner.name);
                 StartCoroutine(SingleCreateProjectile(gameObject.name, autoDirection));
-            }
         }
     }
 }

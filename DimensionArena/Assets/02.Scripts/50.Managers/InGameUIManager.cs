@@ -40,14 +40,25 @@ namespace ManagerSpace
 
         private struct DeadEvent
         {
-            public DeadEvent(UNITTYPE killerType, string killerName,
-                UNITTYPE victimType, string victimName)
+            public DeadEvent(string killerName, string victimName)
             {
                 this.killerName = killerName;
                 this.victimName = victimName;
-                this.killerType = killerType;
-                this.victimType = victimType;
+
+                PlayerInfo info;
+                if (PlayerInfoManager.Instance.DicPlayerInfo.TryGetValue(killerName, out info))
+                    killerType = info.Type;
+                else
+                {
+                    killerType = killerName.Equals("RedZone") ? UNITTYPE.RedZone : UNITTYPE.Magnetic;
+                    this.killerName = killerName.Equals("RedZone") ? "레드존" : "자기장";
+                }
+
+                PlayerInfoManager.Instance.DicPlayerInfo.TryGetValue(victimName, out info);
+                victimType = info.Type;
+                
             }
+
 
             private string killerName;
             private string victimName;
@@ -227,23 +238,26 @@ namespace ManagerSpace
         /// >>>>>>>>>>>>>>>>>>>>>>>>>>
 
 
-        private void InformDeadPlayer(UNITTYPE killerType, string killerId, UNITTYPE victimType, string victimId)
+        Coroutine informCoroutine = null;
+        private void InformDeadPlayer(string killerId, string victimId)
         {
             //Insert To DeadEvList
-            ListDeadEv.Add(new DeadEvent(killerType, killerId, victimType, victimId));
+            ListDeadEv.Add(new DeadEvent(killerId, victimId));
 
 
             //만약, 실행하는 코루틴이 이번의 dead event도 처리했다면 새 코루틴 시작이 들어가지않는다.
             if (isInfromEnd
                 && ListDeadEv.Count > 0)
             {
-                StopCoroutine(InformDeadCoroutine(killerType, killerId, victimType, victimId));
-                StartCoroutine(InformDeadCoroutine(killerType, killerId, victimType, victimId));
+                if(informCoroutine != null)
+                    StopCoroutine(InformDeadCoroutine());
+
+                informCoroutine = StartCoroutine(InformDeadCoroutine());
             }
         }
 
 
-        IEnumerator InformDeadCoroutine(UNITTYPE killerType, string killerId, UNITTYPE victimType, string victimId)
+        IEnumerator InformDeadCoroutine()
         {
             isInfromEnd = false;
 
@@ -254,12 +268,12 @@ namespace ManagerSpace
                 dynamicContent -= 1;
                 dynamicText.text = ((int)dynamicContent).ToString();
                 //SetThumbnail
-                SelectThumbnail(killerImage, killerType);
-                SelectThumbnail(victimImage, victimType);
+                SelectThumbnail(killerImage, ListDeadEv[0].KillerType);
+                SelectThumbnail(victimImage, ListDeadEv[0].VictimType);
 
                 //SetNickName
-                killerNickName.text = killerId;
-                victimNickName.text = victimId;
+                killerNickName.text = ListDeadEv[0].KillerName;
+                victimNickName.text = ListDeadEv[0].VictimName;
 
                 informCanvas.gameObject.SetActive(true);
                 informCanvas.DOFade(1.0f, fadeTime);
@@ -333,12 +347,6 @@ namespace ManagerSpace
             CanvasGroup group = GameEndGroup.GetComponent<CanvasGroup>();
             StartCoroutine(CanvasAlphaOn(group));
         }
-
-
-        public void WatchTarget()
-        {
-        }
-
 
         public void LoadResultScene()
         {

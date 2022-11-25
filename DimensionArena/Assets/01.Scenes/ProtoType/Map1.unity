@@ -17265,6 +17265,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
+  tempTarget: {fileID: 0}
   arrivalTime: 0
 --- !u!114 &1097827802
 MonoBehaviour:
@@ -23435,6 +23436,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: f85680a340c17144295616a0910a729a,
         type: 3}
+    - target: {fileID: 1374012493, guid: 4afd7a521ffd6cb4d987a16651087756, type: 3}
+      propertyPath: m_Alpha
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1546303737, guid: 4afd7a521ffd6cb4d987a16651087756, type: 3}
       propertyPath: touchCanvas
       value: 
@@ -23452,6 +23457,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2193972282174315001, guid: 4afd7a521ffd6cb4d987a16651087756,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1767598470}
+    - target: {fileID: 2193972282174315001, guid: 4afd7a521ffd6cb4d987a16651087756,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 2193972282907261763, guid: 4afd7a521ffd6cb4d987a16651087756,
         type: 3}
@@ -23577,6 +23592,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Color.a
       value: 0.39215687
+      objectReference: {fileID: 0}
+    - target: {fileID: 2193972283535653498, guid: 4afd7a521ffd6cb4d987a16651087756,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4afd7a521ffd6cb4d987a16651087756, type: 3}
@@ -52454,6 +52474,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
+  tempTarget: {fileID: 0}
   arrivalTime: 3
 --- !u!114 &1767598475
 MonoBehaviour:

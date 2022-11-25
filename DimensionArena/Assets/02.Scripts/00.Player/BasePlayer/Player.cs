@@ -98,7 +98,9 @@ namespace PlayerSpace
             Info.EDisActivePlayer += PlayerInfoManager.Instance.DiePlayer;
             Info.EDisActivePlayer += DisActiveAnimation;
             Info.EBattleStateOn += BattleStateProcess;
+            Info.EDeadPlayer += GameObject.FindWithTag("MainCamera").GetComponent<Prototype_TargetCamera>().ChanageTarget;
             bushRenderCheck = GetComponentInChildren<isHideOnBush>();
+            
         }
 
 
@@ -182,13 +184,13 @@ namespace PlayerSpace
             if(!atkjoyStick.player)
                 atkjoyStick.player = this;
 
-            Transform target = GameObject.Find("Target Camera").
+            Transform target = GameObject.FindGameObjectWithTag("MainCamera").
                 GetComponent<Prototype_TargetCamera>().target;
 
             if (target == null)
             {
                 GameObject.Find("Target Camera").
-               GetComponent<Prototype_TargetCamera>().target = this.transform;           
+                GetComponent<Prototype_TargetCamera>().target = this.transform;           
             }
         }
 

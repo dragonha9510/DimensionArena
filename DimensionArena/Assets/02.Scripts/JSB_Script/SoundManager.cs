@@ -70,10 +70,6 @@ public class SoundManager : MonoBehaviourPun
                 }
             }
         }
-        //AudioClip clip = AudioClips["LobbyMusic"];
-        //bgmPlayer.clip = AudioClips["LobbyMusic"];
-        //bgmPlayer.Play();
-        //bgmPlayer.loop = true;
     }
 
     public void PlaySFXOneShotInRange(float soundRange,Transform actorTrans, string audioClipName)

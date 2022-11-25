@@ -52,31 +52,22 @@ namespace PlayerSpace
         {
             owner.CanDirectionChange = false;
             isAttack = true;
+            atkInfo.SubCost(atkInfo.ShotCost);
+
 
             if (PhotonNetwork.InRoom)
-            {
+                     
                 photonView.RPC(nameof(MasterCreateProjectile), RpcTarget.MasterClient
                                                              , gameObject.name
                                                              , tmpDirection
                                                              , photonView.Controller
                                                     );
-
-            }
             else
                 StartCoroutine(AttackCoroutineSingle(null
                                                     , transform.rotation               
                                                     , attackDirection
                                                     , gameObject.name));
-
         }
-
-
-        [PunRPC]
-        public void SetAttackTrigger()
-        {
-            AtkTrigger();
-        }
-
 
 
         [PunRPC]
@@ -85,7 +76,6 @@ namespace PlayerSpace
         {
             GameObject projectile;
             Transform shooterPosition = PlayerInfoManager.Instance.getPlayerTransform(shooter);
-            photonView.RPC(nameof(SubMagazine), controller, shooter);
 
             int atkCnt = 2;
 
@@ -122,15 +112,6 @@ namespace PlayerSpace
 
 
         [PunRPC]
-        private void SubMagazine(string name)
-        {
-            if (gameObject.name == name)
-                atkInfo.SubCost(atkInfo.ShotCost);
-        }
-
-
-
-        [PunRPC]
         private void EndAttack(string name)
         {
             if(gameObject.name == name)
@@ -144,9 +125,6 @@ namespace PlayerSpace
         private IEnumerator AttackCoroutineSingle(string shooter, Quaternion playerRotation, Vector3 shooterAttackDir, string ownerName)
         {
             isAttack = true;
-
-            atkInfo.SubCost(atkInfo.ShotCost);
-
             GameObject projectile;
 
             int atkCnt = attackCnt;
@@ -207,11 +185,12 @@ namespace PlayerSpace
                 }
             }
 
+
+            atkInfo.SubCost(atkInfo.ShotCost);
+
+
             if (PhotonNetwork.InRoom)
-            {
-                SubMagazine(owner.name);
                 photonView.RPC(nameof(CreateAutoProjectile), RpcTarget.MasterClient, true, autoDirection);
-            }
             else
                 StartCoroutine(CreateAutoProjectile(false, autoDirection));
         }
@@ -262,5 +241,14 @@ namespace PlayerSpace
             isAttack = false;
             owner.CanDirectionChange = true;
         }
+
+
+
+        [PunRPC]
+        public void SetAttackTrigger()
+        {
+            AtkTrigger();
+        }
     }
+
 }
