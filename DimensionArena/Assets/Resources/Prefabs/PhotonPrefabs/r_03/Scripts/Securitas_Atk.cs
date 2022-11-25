@@ -36,6 +36,9 @@ namespace PlayerSpace
 
             curpassiveTime += Time.deltaTime;
 
+            if (!passiveObject)
+                return;
+            
             if (curpassiveTime >= passiveTime)
             {
                 curpassiveTime = 0;
