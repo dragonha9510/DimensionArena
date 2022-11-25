@@ -16,7 +16,6 @@ public class CSVReader
         TextAsset data = Resources.Load(file) as TextAsset;
 
         var lines = Regex.Split(data.text, LINE_SPLIT_RE);
-
         if (lines.Length <= 1) return list;
 
         var header = Regex.Split(lines[0], SPLIT_RE);
@@ -28,10 +27,11 @@ public class CSVReader
 
             var entry = new Dictionary<string, object>();
             for (var j = 0; j < header.Length && j < values.Length; j++)
-            {
-                
+            {               
                 string value = values[j];
+                value = value.TrimStart(TRIM_CHARS).TrimEnd(TRIM_CHARS).Replace("\\n", "\n");
                 value = value.TrimStart(TRIM_CHARS).TrimEnd(TRIM_CHARS).Replace("\\", "");
+
                 object finalvalue = value;
                 int n;
                 float f;

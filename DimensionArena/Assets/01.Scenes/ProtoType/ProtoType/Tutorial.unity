@@ -1415,8 +1415,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uB0B4 \uC774\uB984\uC740 \uC9C0\uC8FC\uD601! \\n\uB514\uBA58\uC158 \uC544\uB808\uB098\uC758
-    \uCC38\uAC00\uC790\uC57C!\\n\uC774\uC81C \uACBD\uAE30\uC7A5\uC73C\uB85C \uAC00\uBCFC\uAE4C!"
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a3c5eb17a74112148b9a90ad097462fa, type: 2}
   m_sharedMaterial: {fileID: 4142998466586302553, guid: a3c5eb17a74112148b9a90ad097462fa,
@@ -3103,7 +3102,7 @@ GameObject:
   - component: {fileID: 1648041348}
   m_Layer: 0
   m_Name: Target Camera
-  m_TagString: Untagged
+  m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -69469,8 +69468,8 @@ MonoBehaviour:
     type: 3}
   prefab_EnforceProjectile: {fileID: 1989904040482234, guid: beeb7b1d8ee9f6b46aae688741fc757e,
     type: 3}
-  audioSource: {fileID: 0}
   passiveTime: 5
+  passiveObject: {fileID: 0}
 --- !u!114 &7507751923406022855
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -69501,8 +69500,8 @@ MonoBehaviour:
     type: 3}
   prefab_EnforceProjectile: {fileID: 1989904040482234, guid: beeb7b1d8ee9f6b46aae688741fc757e,
     type: 3}
-  audioSource: {fileID: 0}
   passiveTime: 5
+  passiveObject: {fileID: 0}
 --- !u!114 &7507751924076216656
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -69533,8 +69532,8 @@ MonoBehaviour:
     type: 3}
   prefab_EnforceProjectile: {fileID: 1989904040482234, guid: beeb7b1d8ee9f6b46aae688741fc757e,
     type: 3}
-  audioSource: {fileID: 0}
   passiveTime: 5
+  passiveObject: {fileID: 0}
 --- !u!114 &7527821821942938721
 MonoBehaviour:
   m_ObjectHideFlags: 0
