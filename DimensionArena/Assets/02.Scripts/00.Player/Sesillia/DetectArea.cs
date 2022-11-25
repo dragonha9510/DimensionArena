@@ -49,7 +49,9 @@ public class DetectArea : MonoBehaviour
         foreach(var target in listTarget)
         {
             if (!target.gameObject.activeInHierarchy)
-                listTarget.Remove(target);
+                    listTarget.Remove(target);
+
+            break;
         }
 
         listTarget.Sort(delegate (GameObject A, GameObject B)
