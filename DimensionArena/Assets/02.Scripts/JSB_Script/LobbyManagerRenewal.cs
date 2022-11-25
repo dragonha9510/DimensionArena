@@ -281,7 +281,6 @@ public class LobbyManagerRenewal : MonoBehaviourPunCallbacks
 
     public override void OnJoinRoomFailed(short returnCode, string message)
     {
-        Debug.Log("연결 실패..");
     }
     public override void OnJoinedRoom()
     {

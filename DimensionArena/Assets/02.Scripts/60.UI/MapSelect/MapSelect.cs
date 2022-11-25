@@ -85,7 +85,6 @@ public class MapSelect : MonoBehaviour
                 selctedMode = MODE.MODE_FREEFALLALL;
                 break;
             default:
-                Debug.LogError("잘못된 값이 들어가있습니다. Map Select CSV File을 확인해주세요.");
                 break;
         }
 

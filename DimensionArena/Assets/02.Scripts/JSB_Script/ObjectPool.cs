@@ -79,7 +79,6 @@ public class ObjectPool : MonoBehaviourPun
                 break;
             foreach (GameObject obj in cliobjectPool[(CLIENTOBJ)i])
             {
-                Debug.Log("풀에 있는 것 삭제");
                 Destroy(obj.gameObject);
             }
         }

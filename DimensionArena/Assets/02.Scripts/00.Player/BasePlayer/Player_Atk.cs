@@ -237,7 +237,6 @@ namespace PlayerSpace
             }
             else
             {
-                Debug.LogError("잘못된 타입의 공격을 할당하였습니다.");
                 return Attack_Type.Attack_Type_End;
             }
         }
