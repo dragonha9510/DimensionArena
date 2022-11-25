@@ -116,6 +116,7 @@ namespace PlayerSpace
             owner.CanDirectionChange = false;
             yield return new WaitForSeconds(nextAnimation_delay[nowPlayAnimationIndex]);
             projectileDirection.Clear();
+            isFinishShoot = true;
 
             auraAnimator.SetBool("Attack1", false);
             auraAnimator.SetBool("Attack2", false);
