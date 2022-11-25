@@ -46,6 +46,12 @@ public class DetectArea : MonoBehaviour
             return;
         }
 
+        foreach(var target in listTarget)
+        {
+            if (!target.gameObject.activeInHierarchy)
+                listTarget.Remove(target);
+        }
+
         listTarget.Sort(delegate (GameObject A, GameObject B)
         {
             float Adistance = Vector3.Distance(transform.position, A.transform.position);

@@ -72,13 +72,13 @@ public class Prototype_TargetCamera : MonoBehaviour
         {
             //죽인 사람이 있다면
             if (infoMgr.DicPlayer.ContainsKey(targetName))
-                tempTarget = infoMgr.getPlayerTransform(targetName);
+                target = infoMgr.getPlayerTransform(targetName);
             else
             {
                 foreach(var player in infoMgr.DicPlayer.Values)
                 {
                     if (player.activeInHierarchy)
-                        tempTarget = infoMgr.getPlayerTransform(player.name);
+                        target = infoMgr.getPlayerTransform(player.name);
                 }
             }
         }
