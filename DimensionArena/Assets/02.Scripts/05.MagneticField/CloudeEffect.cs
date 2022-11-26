@@ -5,8 +5,6 @@ using DG.Tweening;
 
 public class CloudeEffect : MonoBehaviour
 {
-    
-
     [SerializeField]
     private float minScale = 0.1f;
     [SerializeField]
@@ -20,7 +18,7 @@ public class CloudeEffect : MonoBehaviour
 
     public bool UnDead = false;
 
-    WaitForSeconds waitforSeconds = new WaitForSeconds(1.5f);
+    WaitForSeconds waitforSeconds = new WaitForSeconds(1.05f);
     private bool upScale = false;
     private bool startUpdate = false;
 
@@ -33,31 +31,17 @@ public class CloudeEffect : MonoBehaviour
         StartCoroutine(ScaleUpdate());
     }
 
-    private void SizeUp()
-    {
-        this.transform.localScale = new Vector3(this.transform.localScale.x + correctionValue, this.transform.localScale.y + correctionValue, 1);
-        if (this.transform.localScale.x > maxScale)
-            upScale = false;
-    }
-    private void SizeDown()
-    {
-        this.transform.localScale = new Vector3(this.transform.localScale.x - correctionValue, this.transform.localScale.y - correctionValue, 1);
-        if (this.transform.localScale.x < minScale)
-            upScale = true;
-    }
-
-
     IEnumerator ScaleUpdate()
     {
         while (true)
         {
             if (upScale)
-                transform.DOScale(Vector3.one * 0.8f, 1.5f);
+                transform.DOScale(Vector3.one, 1f);
+            
             else
-                transform.DOScale(Vector3.one * 0.1f, 1.5f);
+                transform.DOScale(Vector3.one * 0.4f, 1f);
 
             yield return waitforSeconds;
-
             upScale = !upScale;
         }
     }
@@ -78,4 +62,23 @@ public class CloudeEffect : MonoBehaviour
             ObjectPool.Instance.ReturnObjectToPool(CLIENTOBJ.CLIENTOBJ_CLOUDEFFECT, this.gameObject);
         }
     }
+
+
+
+    private void SizeUp()
+    {
+        this.transform.localScale = new Vector3(this.transform.localScale.x + correctionValue, this.transform.localScale.y + correctionValue, 1);
+        if (this.transform.localScale.x > maxScale)
+            upScale = false;
+    }
+    private void SizeDown()
+    {
+        this.transform.localScale = new Vector3(this.transform.localScale.x - correctionValue, this.transform.localScale.y - correctionValue, 1);
+        if (this.transform.localScale.x < minScale)
+            upScale = true;
+    }
+
+
+
+
 }
