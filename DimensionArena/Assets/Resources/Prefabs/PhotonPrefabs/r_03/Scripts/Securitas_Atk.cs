@@ -17,7 +17,7 @@ namespace PlayerSpace
         [SerializeField] private float passiveTime;
         private float curpassiveTime;
         private bool passiveReady;
-        [SerializeField] private ParticleSystemRenderer passiveObject;
+        [SerializeField] private GameObject passiveObject;
 
         protected override void InitalizeAtkInfo()
         {
@@ -54,7 +54,7 @@ namespace PlayerSpace
         [PunRPC]
         private void PassiveActive(bool onoff)
         {
-            passiveObject.enabled = (onoff);
+            passiveObject.SetActive(onoff);
         }
 
         public override void Attack()
