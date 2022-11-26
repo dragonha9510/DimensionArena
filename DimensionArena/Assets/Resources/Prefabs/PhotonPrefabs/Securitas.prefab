@@ -814,6 +814,7 @@ MonoBehaviour:
   - {fileID: 2506419280093639807}
   - {fileID: 8955696549017549451}
   - {fileID: 27}
+  - {fileID: 6135960903316231711}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
@@ -1975,6 +1976,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: securitas_Avartar
       objectReference: {fileID: 0}
+    - target: {fileID: 149932, guid: 32e6132d14519e84780322f6f1059982, type: 3}
+      propertyPath: m_TagString
+      value: Player_Body
+      objectReference: {fileID: 0}
     - target: {fileID: 449932, guid: 32e6132d14519e84780322f6f1059982, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -2019,6 +2024,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 956330917716760518, guid: 32e6132d14519e84780322f6f1059982,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1275870747871653094, guid: 32e6132d14519e84780322f6f1059982,
         type: 3}
       propertyPath: detection
@@ -2029,6 +2039,31 @@ PrefabInstance:
       propertyPath: Additional
       value: 
       objectReference: {fileID: 4817682121826375964}
+    - target: {fileID: 1275870747871653094, guid: 32e6132d14519e84780322f6f1059982,
+        type: 3}
+      propertyPath: AvartarRender.Array.size
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1275870747871653094, guid: 32e6132d14519e84780322f6f1059982,
+        type: 3}
+      propertyPath: AvartarRender.Array.data[3]
+      value: 
+      objectReference: {fileID: 2085549568719465134}
+    - target: {fileID: 1275870747871653094, guid: 32e6132d14519e84780322f6f1059982,
+        type: 3}
+      propertyPath: AvartarRender.Array.data[4]
+      value: 
+      objectReference: {fileID: 2085549568058293220}
+    - target: {fileID: 1275870747871653094, guid: 32e6132d14519e84780322f6f1059982,
+        type: 3}
+      propertyPath: AvartarRender.Array.data[5]
+      value: 
+      objectReference: {fileID: 2085549568728206464}
+    - target: {fileID: 1275870747871653094, guid: 32e6132d14519e84780322f6f1059982,
+        type: 3}
+      propertyPath: AvartarRender.Array.data[6]
+      value: 
+      objectReference: {fileID: 3493921013936931902}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 32e6132d14519e84780322f6f1059982, type: 3}
 --- !u!114 &27 stripped
@@ -2049,12 +2084,48 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1275870747871653091}
   m_PrefabAsset: {fileID: 0}
+--- !u!199 &2085549568058293220 stripped
+ParticleSystemRenderer:
+  m_CorrespondingSourceObject: {fileID: 956330918277469959, guid: 32e6132d14519e84780322f6f1059982,
+    type: 3}
+  m_PrefabInstance: {fileID: 1275870747871653091}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2085549568569162533 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 956330917716760518, guid: 32e6132d14519e84780322f6f1059982,
     type: 3}
   m_PrefabInstance: {fileID: 1275870747871653091}
   m_PrefabAsset: {fileID: 0}
+--- !u!199 &2085549568719465134 stripped
+ParticleSystemRenderer:
+  m_CorrespondingSourceObject: {fileID: 956330917323703885, guid: 32e6132d14519e84780322f6f1059982,
+    type: 3}
+  m_PrefabInstance: {fileID: 1275870747871653091}
+  m_PrefabAsset: {fileID: 0}
+--- !u!199 &2085549568728206464 stripped
+ParticleSystemRenderer:
+  m_CorrespondingSourceObject: {fileID: 956330917338554467, guid: 32e6132d14519e84780322f6f1059982,
+    type: 3}
+  m_PrefabInstance: {fileID: 1275870747871653091}
+  m_PrefabAsset: {fileID: 0}
+--- !u!199 &3493921013936931902 stripped
+ParticleSystemRenderer:
+  m_CorrespondingSourceObject: {fileID: 2434242920523000029, guid: 32e6132d14519e84780322f6f1059982,
+    type: 3}
+  m_PrefabInstance: {fileID: 1275870747871653091}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &6135960903316231711 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4941436436133640956, guid: 32e6132d14519e84780322f6f1059982,
+    type: 3}
+  m_PrefabInstance: {fileID: 1275870747871653091}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2008159835324395977
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2175,6 +2246,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Atk_Range_Parabola
       objectReference: {fileID: 0}
+    - target: {fileID: 3538972817888371208, guid: 3443466d754ebc640a83911704947677,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3538972817888371212, guid: 3443466d754ebc640a83911704947677,
         type: 3}
       propertyPath: m_RootOrder
@@ -2229,6 +2305,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3538972817888371215, guid: 3443466d754ebc640a83911704947677,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 8521714281304840553, guid: 3443466d754ebc640a83911704947677,
         type: 3}

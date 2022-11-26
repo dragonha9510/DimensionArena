@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using TMPro;
-
+using DG.Tweening;
 using System.Text.RegularExpressions;
 
 public class RegisterUI : MonoBehaviour
@@ -27,6 +27,8 @@ public class RegisterUI : MonoBehaviour
 
     private void Start()
     {
+
+        DOTween.SetTweensCapacity(4000          , 0);
         StartCoroutine("DataUpdateCheck");
     }
 

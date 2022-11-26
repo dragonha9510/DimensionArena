@@ -110,7 +110,7 @@ MonoBehaviour:
     isDamage: 1
     isPercentDamage: 0
     isEnvironment: 0
-  knockBack: {fileID: 6338996334954765853, guid: 4e2ccaa5a98eefb469e9fcea7ceeb6ce,
+  knockBack: {fileID: 6338996334954765853, guid: 1ebde4fa2d241254ca1d8ea40b1ff5ca,
     type: 3}
   triggerRadius: 2
 --- !u!114 &3395115734459435628

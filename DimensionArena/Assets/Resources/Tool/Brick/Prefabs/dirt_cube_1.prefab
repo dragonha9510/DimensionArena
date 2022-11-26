@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4054296229388180}
   - component: {fileID: 33971238947669658}
   - component: {fileID: 23483328378156216}
-  m_Layer: 6
+  m_Layer: 13
   m_Name: block_dirt1_1_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -93,7 +93,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4054206997212820}
   - component: {fileID: -3220796081099230090}
-  m_Layer: 6
+  m_Layer: 13
   m_Name: dirt_cube_1
   m_TagString: ParentObstacle
   m_Icon: {fileID: 0}

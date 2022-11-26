@@ -65,11 +65,12 @@ public class Securitas_Skill : Player_Skill
         //*/
 
         //*/ Á¦ÀÚ¸®
-        GameObject tempSkill;
+        GameObject tempSkill = null;
         if (PhotonNetwork.InRoom)
         {
             photonView.RPC(nameof(SkillTriger), RpcTarget.All);
-            tempSkill = PhotonNetwork.Instantiate(skillPrefab.name, transform.position, rotation);
+            if(photonView.IsMine)
+                tempSkill = PhotonNetwork.Instantiate(skillPrefab.name, transform.position, rotation);
         }
         else
         {
@@ -77,9 +78,12 @@ public class Securitas_Skill : Player_Skill
             tempSkill = Instantiate(skillPrefab, transform.position, rotation);
         }
 
-        projectile = tempSkill.GetComponent<Parabola_Projectile>();
-        projectile.SetArcInfo(Vector3.back, 0.01f, 0f, 1f);
-        projectile.ownerID = gameObject.name;
+        if (tempSkill != null)
+        {
+            projectile = tempSkill.GetComponent<Parabola_Projectile>();
+            projectile.SetArcInfo(Vector3.back, 0.01f, 0f, 1f);
+            projectile.ownerID = gameObject.name;
+        }
         //*/
         float t = 0;
 
@@ -133,7 +137,7 @@ public class Securitas_Skill : Player_Skill
 
         if (!PhotonNetwork.OfflineMode)
         {
-            photonView.RPC(nameof(skillServer), RpcTarget.MasterClient,
+            photonView.RPC(nameof(skillServer), RpcTarget.All,
                                                       attackdirection,
                                                       magnitude);
         }
