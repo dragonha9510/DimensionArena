@@ -110,6 +110,8 @@ MonoBehaviour:
   time: 1.15
   tempRatio: 1.5
   rotationSpeed: 180
+  delayDestroy: 0
+  delayTime: 1
 --- !u!114 &8003007787291434875
 MonoBehaviour:
   m_ObjectHideFlags: 0
