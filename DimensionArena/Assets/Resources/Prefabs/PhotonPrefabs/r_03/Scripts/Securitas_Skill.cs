@@ -156,7 +156,7 @@ public class Securitas_Skill : Player_Skill
     public override void AutoSkill()
     {
         // 자동 공격
-        skillDirection = transform.position + Vector3.forward * 0.001f;
+        skillDirection = (Vector3.forward * 0.1f);
         skillDirection.y = 0;
         float magnitude = skillDirection.magnitude;
 
