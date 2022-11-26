@@ -85,6 +85,7 @@ namespace PlayerSpace
                     PlayerInfoManager.Instance.SpeedDecrease(this.name, speedNesting * nestingCount);
                     nestingCount = 0;
                     moveDistance = 0;
+                    
                     main.simulationSpeed = 0;
                     main.simulationSpeed = originParticleRotateSpeed;
                     main.maxParticles = praticleCount[nestingCount];
