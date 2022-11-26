@@ -932,6 +932,7 @@ MonoBehaviour:
   prefab_EnforceProjectile: {fileID: 1989904040482234, guid: beeb7b1d8ee9f6b46aae688741fc757e,
     type: 3}
   passiveTime: 5
+  passiveObject: {fileID: 2085549568569162533}
 --- !u!114 &7925714259691421038
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2382,6 +2383,12 @@ PrefabInstance:
 --- !u!4 &2085549568569162532 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 132153423885631365, guid: 5115f1c350801ea469bfe834625bf5d9,
+    type: 3}
+  m_PrefabInstance: {fileID: 2100045900956386465}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &2085549568569162533 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 132153423885631364, guid: 5115f1c350801ea469bfe834625bf5d9,
     type: 3}
   m_PrefabInstance: {fileID: 2100045900956386465}
   m_PrefabAsset: {fileID: 0}
