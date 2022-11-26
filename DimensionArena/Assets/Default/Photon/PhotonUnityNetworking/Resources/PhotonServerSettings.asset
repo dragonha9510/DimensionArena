@@ -149,6 +149,7 @@ MonoBehaviour:
   - SplashSound
   - CreateDestroyEfffect
   - skillServer
+  - PassiveActive
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1
