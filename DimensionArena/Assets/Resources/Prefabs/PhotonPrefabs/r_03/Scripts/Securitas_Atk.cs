@@ -43,11 +43,18 @@ namespace PlayerSpace
             {
                 curpassiveTime = 0;
                 passiveReady = true;
+                photonView.RPC(nameof(PassiveActive), RpcTarget.All, true);
                 passiveObject.SetActive(true);
                 SoundManager.Instance.PlaySFXOneShot("snd_char_securitas_overclock");
             }
             else
-                passiveObject.SetActive(false);
+                photonView.RPC(nameof(PassiveActive), RpcTarget.All, false);
+        }
+
+        [PunRPC]
+        private void PassiveActive(bool onoff)
+        {
+            passiveObject.SetActive(onoff);
         }
 
         public override void Attack()
