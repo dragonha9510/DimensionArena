@@ -29,6 +29,11 @@ public class CharacterInfo : MonoBehaviour
 
     [SerializeField] private Image[] SelectedImg;
 
+    private void Update()
+    {
+        CharacterImageInfo_Change();
+    }
+
     public void CharacterImageInfo_Change()
     {
         textInfo_Box.SetActive(false);
