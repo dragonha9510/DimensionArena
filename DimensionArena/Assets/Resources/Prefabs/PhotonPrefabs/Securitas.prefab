@@ -951,8 +951,7 @@ MonoBehaviour:
   direction: {x: 0, y: 0, z: 0}
   skillDirection: {x: 0, y: 0, z: 0}
   maxRange: 6
-  skillPrefab: {fileID: 7780763529671439132, guid: 8d9a11bac6389b246a93c1e4ccdb9a59,
-    type: 3}
+  skillPrefab: {fileID: 100000, guid: bac81dc177f290a498f6effa99d5cfdd, type: 3}
   avartarJump: {fileID: 1275870747871768943}
   bombDistance: 1
 --- !u!1 &3767962051630440547

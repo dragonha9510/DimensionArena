@@ -29,6 +29,11 @@ public class Parabola_Projectile : AttackObject
     [SerializeField] private float rotationSpeed = 180f;
     private Vector3 rotationAxis;
 
+
+    [SerializeField] private bool delayDestroy = false;
+    [SerializeField] private float delayTime = 1;
+    private bool isDestroy;
+
     public void SetArcInfo(Vector3 dir, float dist, float vel, float ypos)
     {
         if(!PhotonNetwork.OfflineMode)
@@ -73,8 +78,40 @@ public class Parabola_Projectile : AttackObject
     {
     }
 
+    private IEnumerator DelayDestroy()
+    {
+        isDestroy = true;
+        yield return new WaitForSeconds(delayTime);
+        Destroy(this.gameObject);
+        GetComponent<KnockBackObject>().KnockBackStartDamage(ownerID, Damage, ultimatePoint);
+
+        if (destroyEffect != null)
+        {
+            GameObject fxSize = Instantiate(destroyEffect, transform.position, destroyEffect.transform.rotation);
+            fxSize.transform.localScale *= tempRatio;
+        }
+    }
+
+    private IEnumerator DelayDestroy_Server()
+    {
+        isDestroy = true;
+        yield return new WaitForSeconds(delayTime);
+        GetComponent<KnockBackObject>().KnockBackStartDamage(ownerID, Damage, ultimatePoint);
+
+        // Effect 持失
+        if (destroyEffect != null)
+        {
+            photonView.RPC(nameof(CreateDestroyEffect), RpcTarget.All, transform.position, destroyEffect.transform.rotation, tempRatio);
+            PhotonNetwork.Destroy(this.gameObject);
+        }
+
+    }
+
     private void Update()
     {
+        if (isDestroy)
+            return;
+
         if(!PhotonNetwork.InRoom)
         {
             if (!isReady)
@@ -85,16 +122,21 @@ public class Parabola_Projectile : AttackObject
 
             if (myLocation > 1)
             {
-                Destroy(this.gameObject);
-                // Effect 持失
-
-                GetComponent<KnockBackObject>().KnockBackStartDamage(ownerID, Damage, ultimatePoint);
-
-                if (destroyEffect != null)
+                if (!delayDestroy)
                 {
-                    GameObject fxSize = Instantiate(destroyEffect, transform.position, destroyEffect.transform.rotation);
-                    fxSize.transform.localScale *= tempRatio;
+                    Destroy(this.gameObject);
+
+                    // Effect 持失
+                    GetComponent<KnockBackObject>().KnockBackStartDamage(ownerID, Damage, ultimatePoint);
+
+                    if (destroyEffect != null)
+                    {
+                        GameObject fxSize = Instantiate(destroyEffect, transform.position, destroyEffect.transform.rotation);
+                        fxSize.transform.localScale *= tempRatio;
+                    }
                 }
+                else
+                    StartCoroutine(DelayDestroy());
             }
 
             Vector3 tempPosition = oriPosition + (direction * distance * myLocation);
@@ -111,14 +153,19 @@ public class Parabola_Projectile : AttackObject
 
             if (myLocation > 1)
             {
-                GetComponent<KnockBackObject>().KnockBackStartDamage(ownerID, Damage, ultimatePoint);
-
-                // Effect 持失
-                if (destroyEffect != null)
+                if (!delayDestroy)
                 {
-                    photonView.RPC(nameof(CreateDestroyEffect), RpcTarget.All , transform.position, destroyEffect.transform.rotation,tempRatio);
-                    PhotonNetwork.Destroy(this.gameObject);
+                    GetComponent<KnockBackObject>().KnockBackStartDamage(ownerID, Damage, ultimatePoint);
+
+                    // Effect 持失
+                    if (destroyEffect != null)
+                    {
+                        photonView.RPC(nameof(CreateDestroyEffect), RpcTarget.All, transform.position, destroyEffect.transform.rotation, tempRatio);
+                        PhotonNetwork.Destroy(this.gameObject);
+                    }
                 }
+                else
+                    StartCoroutine(DelayDestroy_Server());
             }
 
             Vector3 tempPosition = oriPosition + (direction * distance * myLocation);
