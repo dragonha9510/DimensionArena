@@ -81,6 +81,7 @@ namespace PlayerSpace
             {
                 if (true == info.IsBattle)
                 {
+                    Debug.Log("패시브 초기화");
                     PlayerInfoManager.Instance.SpeedDecrease(this.name, speedNesting * nestingCount);
                     nestingCount = 0;
                     moveDistance = 0;
