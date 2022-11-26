@@ -43,8 +43,10 @@ public class CharacterSelList : MonoBehaviour
             image.sprite = sprite;
             imageTemp.AddComponent<SetSelectedName>().mySprite = image.sprite;
 
-            if(strTemp == "JiJooHyeock")
+            if (strTemp == "JiJooHyeock")
                 image.rectTransform.localScale = new Vector3(0.5f, 0.5f, 1);
+            else
+                image.rectTransform.localScale = new Vector3(1, 1, 1);
 
             image.rectTransform.pivot = new Vector2(0.5f, 1);
             image.rectTransform.anchorMin = new Vector2(0.5f, 1);
