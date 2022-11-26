@@ -781,20 +781,20 @@ MonoBehaviour:
     percent: 0.25
     dropPossible: 1
   - itemType: 2
+    minPercentRange: 0.5
+    maxPrecentRange: 0.7
+    percent: 0.2
+    dropPossible: 1
+  - itemType: 3
     minPercentRange: 0.7
     maxPrecentRange: 0.9
     percent: 0.2
     dropPossible: 1
-  - itemType: 3
+  - itemType: 4
     minPercentRange: 0.9
     maxPrecentRange: 1
     percent: 0.1
     dropPossible: 1
-  - itemType: 4
-    minPercentRange: 0
-    maxPrecentRange: 0
-    percent: 0
-    dropPossible: 0
   - itemType: 5
     minPercentRange: 0
     maxPrecentRange: 0
@@ -2021,20 +2021,20 @@ MonoBehaviour:
     percent: 0.25
     dropPossible: 1
   - itemType: 2
+    minPercentRange: 0.5
+    maxPrecentRange: 0.7
+    percent: 0.2
+    dropPossible: 1
+  - itemType: 3
     minPercentRange: 0.7
     maxPrecentRange: 0.9
     percent: 0.2
     dropPossible: 1
-  - itemType: 3
+  - itemType: 4
     minPercentRange: 0.9
     maxPrecentRange: 1
     percent: 0.1
     dropPossible: 1
-  - itemType: 4
-    minPercentRange: 0
-    maxPrecentRange: 0
-    percent: 0
-    dropPossible: 0
   - itemType: 5
     minPercentRange: 0
     maxPrecentRange: 0
@@ -2157,20 +2157,20 @@ MonoBehaviour:
     percent: 0.25
     dropPossible: 1
   - itemType: 2
+    minPercentRange: 0.5
+    maxPrecentRange: 0.7
+    percent: 0.2
+    dropPossible: 1
+  - itemType: 3
     minPercentRange: 0.7
     maxPrecentRange: 0.9
     percent: 0.2
     dropPossible: 1
-  - itemType: 3
+  - itemType: 4
     minPercentRange: 0.9
     maxPrecentRange: 1
     percent: 0.1
     dropPossible: 1
-  - itemType: 4
-    minPercentRange: 0
-    maxPrecentRange: 0
-    percent: 0
-    dropPossible: 0
   - itemType: 5
     minPercentRange: 0
     maxPrecentRange: 0
@@ -2936,20 +2936,20 @@ MonoBehaviour:
     percent: 0.25
     dropPossible: 1
   - itemType: 2
+    minPercentRange: 0.5
+    maxPrecentRange: 0.7
+    percent: 0.2
+    dropPossible: 1
+  - itemType: 3
     minPercentRange: 0.7
     maxPrecentRange: 0.9
     percent: 0.2
     dropPossible: 1
-  - itemType: 3
+  - itemType: 4
     minPercentRange: 0.9
     maxPrecentRange: 1
     percent: 0.1
     dropPossible: 1
-  - itemType: 4
-    minPercentRange: 0
-    maxPrecentRange: 0
-    percent: 0
-    dropPossible: 0
   - itemType: 5
     minPercentRange: 0
     maxPrecentRange: 0
@@ -3663,20 +3663,20 @@ MonoBehaviour:
     percent: 0.25
     dropPossible: 1
   - itemType: 2
+    minPercentRange: 0.5
+    maxPrecentRange: 0.7
+    percent: 0.2
+    dropPossible: 1
+  - itemType: 3
     minPercentRange: 0.7
     maxPrecentRange: 0.9
     percent: 0.2
     dropPossible: 1
-  - itemType: 3
+  - itemType: 4
     minPercentRange: 0.9
     maxPrecentRange: 1
     percent: 0.1
     dropPossible: 1
-  - itemType: 4
-    minPercentRange: 0
-    maxPrecentRange: 0
-    percent: 0
-    dropPossible: 0
   - itemType: 5
     minPercentRange: 0
     maxPrecentRange: 0
@@ -3731,20 +3731,20 @@ MonoBehaviour:
     percent: 0.25
     dropPossible: 1
   - itemType: 2
+    minPercentRange: 0.5
+    maxPrecentRange: 0.7
+    percent: 0.2
+    dropPossible: 1
+  - itemType: 3
     minPercentRange: 0.7
     maxPrecentRange: 0.9
     percent: 0.2
     dropPossible: 1
-  - itemType: 3
+  - itemType: 4
     minPercentRange: 0.9
     maxPrecentRange: 1
     percent: 0.1
     dropPossible: 1
-  - itemType: 4
-    minPercentRange: 0
-    maxPrecentRange: 0
-    percent: 0
-    dropPossible: 0
   - itemType: 5
     minPercentRange: 0
     maxPrecentRange: 0
@@ -3935,20 +3935,20 @@ MonoBehaviour:
     percent: 0.25
     dropPossible: 1
   - itemType: 2
+    minPercentRange: 0.5
+    maxPrecentRange: 0.7
+    percent: 0.2
+    dropPossible: 1
+  - itemType: 3
     minPercentRange: 0.7
     maxPrecentRange: 0.9
     percent: 0.2
     dropPossible: 1
-  - itemType: 3
+  - itemType: 4
     minPercentRange: 0.9
     maxPrecentRange: 1
     percent: 0.1
     dropPossible: 1
-  - itemType: 4
-    minPercentRange: 0
-    maxPrecentRange: 0
-    percent: 0
-    dropPossible: 0
   - itemType: 5
     minPercentRange: 0
     maxPrecentRange: 0
@@ -4003,20 +4003,20 @@ MonoBehaviour:
     percent: 0.25
     dropPossible: 1
   - itemType: 2
+    minPercentRange: 0.5
+    maxPrecentRange: 0.7
+    percent: 0.2
+    dropPossible: 1
+  - itemType: 3
     minPercentRange: 0.7
     maxPrecentRange: 0.9
     percent: 0.2
     dropPossible: 1
-  - itemType: 3
+  - itemType: 4
     minPercentRange: 0.9
     maxPrecentRange: 1
     percent: 0.1
     dropPossible: 1
-  - itemType: 4
-    minPercentRange: 0
-    maxPrecentRange: 0
-    percent: 0
-    dropPossible: 0
   - itemType: 5
     minPercentRange: 0
     maxPrecentRange: 0
@@ -4275,20 +4275,20 @@ MonoBehaviour:
     percent: 0.25
     dropPossible: 1
   - itemType: 2
+    minPercentRange: 0.5
+    maxPrecentRange: 0.7
+    percent: 0.2
+    dropPossible: 1
+  - itemType: 3
     minPercentRange: 0.7
     maxPrecentRange: 0.9
     percent: 0.2
     dropPossible: 1
-  - itemType: 3
+  - itemType: 4
     minPercentRange: 0.9
     maxPrecentRange: 1
     percent: 0.1
     dropPossible: 1
-  - itemType: 4
-    minPercentRange: 0
-    maxPrecentRange: 0
-    percent: 0
-    dropPossible: 0
   - itemType: 5
     minPercentRange: 0
     maxPrecentRange: 0
@@ -5499,20 +5499,20 @@ MonoBehaviour:
     percent: 0.25
     dropPossible: 1
   - itemType: 2
+    minPercentRange: 0.5
+    maxPrecentRange: 0.7
+    percent: 0.2
+    dropPossible: 1
+  - itemType: 3
     minPercentRange: 0.7
     maxPrecentRange: 0.9
     percent: 0.2
     dropPossible: 1
-  - itemType: 3
+  - itemType: 4
     minPercentRange: 0.9
     maxPrecentRange: 1
     percent: 0.1
     dropPossible: 1
-  - itemType: 4
-    minPercentRange: 0
-    maxPrecentRange: 0
-    percent: 0
-    dropPossible: 0
   - itemType: 5
     minPercentRange: 0
     maxPrecentRange: 0
@@ -5567,20 +5567,20 @@ MonoBehaviour:
     percent: 0.25
     dropPossible: 1
   - itemType: 2
+    minPercentRange: 0.5
+    maxPrecentRange: 0.7
+    percent: 0.2
+    dropPossible: 1
+  - itemType: 3
     minPercentRange: 0.7
     maxPrecentRange: 0.9
     percent: 0.2
     dropPossible: 1
-  - itemType: 3
+  - itemType: 4
     minPercentRange: 0.9
     maxPrecentRange: 1
     percent: 0.1
     dropPossible: 1
-  - itemType: 4
-    minPercentRange: 0
-    maxPrecentRange: 0
-    percent: 0
-    dropPossible: 0
   - itemType: 5
     minPercentRange: 0
     maxPrecentRange: 0
@@ -6247,20 +6247,20 @@ MonoBehaviour:
     percent: 0.25
     dropPossible: 1
   - itemType: 2
+    minPercentRange: 0.5
+    maxPrecentRange: 0.7
+    percent: 0.2
+    dropPossible: 1
+  - itemType: 3
     minPercentRange: 0.7
     maxPrecentRange: 0.9
     percent: 0.2
     dropPossible: 1
-  - itemType: 3
+  - itemType: 4
     minPercentRange: 0.9
     maxPrecentRange: 1
     percent: 0.1
     dropPossible: 1
-  - itemType: 4
-    minPercentRange: 0
-    maxPrecentRange: 0
-    percent: 0
-    dropPossible: 0
   - itemType: 5
     minPercentRange: 0
     maxPrecentRange: 0
@@ -7267,20 +7267,20 @@ MonoBehaviour:
     percent: 0.25
     dropPossible: 1
   - itemType: 2
+    minPercentRange: 0.5
+    maxPrecentRange: 0.7
+    percent: 0.2
+    dropPossible: 1
+  - itemType: 3
     minPercentRange: 0.7
     maxPrecentRange: 0.9
     percent: 0.2
     dropPossible: 1
-  - itemType: 3
+  - itemType: 4
     minPercentRange: 0.9
     maxPrecentRange: 1
     percent: 0.1
     dropPossible: 1
-  - itemType: 4
-    minPercentRange: 0
-    maxPrecentRange: 0
-    percent: 0
-    dropPossible: 0
   - itemType: 5
     minPercentRange: 0
     maxPrecentRange: 0
@@ -7607,20 +7607,20 @@ MonoBehaviour:
     percent: 0.25
     dropPossible: 1
   - itemType: 2
+    minPercentRange: 0.5
+    maxPrecentRange: 0.7
+    percent: 0.2
+    dropPossible: 1
+  - itemType: 3
     minPercentRange: 0.7
     maxPrecentRange: 0.9
     percent: 0.2
     dropPossible: 1
-  - itemType: 3
+  - itemType: 4
     minPercentRange: 0.9
     maxPrecentRange: 1
     percent: 0.1
     dropPossible: 1
-  - itemType: 4
-    minPercentRange: 0
-    maxPrecentRange: 0
-    percent: 0
-    dropPossible: 0
   - itemType: 5
     minPercentRange: 0
     maxPrecentRange: 0
@@ -8151,20 +8151,20 @@ MonoBehaviour:
     percent: 0.25
     dropPossible: 1
   - itemType: 2
+    minPercentRange: 0.5
+    maxPrecentRange: 0.7
+    percent: 0.2
+    dropPossible: 1
+  - itemType: 3
     minPercentRange: 0.7
     maxPrecentRange: 0.9
     percent: 0.2
     dropPossible: 1
-  - itemType: 3
+  - itemType: 4
     minPercentRange: 0.9
     maxPrecentRange: 1
     percent: 0.1
     dropPossible: 1
-  - itemType: 4
-    minPercentRange: 0
-    maxPrecentRange: 0
-    percent: 0
-    dropPossible: 0
   - itemType: 5
     minPercentRange: 0
     maxPrecentRange: 0
@@ -8355,20 +8355,20 @@ MonoBehaviour:
     percent: 0.25
     dropPossible: 1
   - itemType: 2
+    minPercentRange: 0.5
+    maxPrecentRange: 0.7
+    percent: 0.2
+    dropPossible: 1
+  - itemType: 3
     minPercentRange: 0.7
     maxPrecentRange: 0.9
     percent: 0.2
     dropPossible: 1
-  - itemType: 3
+  - itemType: 4
     minPercentRange: 0.9
     maxPrecentRange: 1
     percent: 0.1
     dropPossible: 1
-  - itemType: 4
-    minPercentRange: 0
-    maxPrecentRange: 0
-    percent: 0
-    dropPossible: 0
   - itemType: 5
     minPercentRange: 0
     maxPrecentRange: 0
@@ -8763,20 +8763,20 @@ MonoBehaviour:
     percent: 0.25
     dropPossible: 1
   - itemType: 2
+    minPercentRange: 0.5
+    maxPrecentRange: 0.7
+    percent: 0.2
+    dropPossible: 1
+  - itemType: 3
     minPercentRange: 0.7
     maxPrecentRange: 0.9
     percent: 0.2
     dropPossible: 1
-  - itemType: 3
+  - itemType: 4
     minPercentRange: 0.9
     maxPrecentRange: 1
     percent: 0.1
     dropPossible: 1
-  - itemType: 4
-    minPercentRange: 0
-    maxPrecentRange: 0
-    percent: 0
-    dropPossible: 0
   - itemType: 5
     minPercentRange: 0
     maxPrecentRange: 0
@@ -8899,20 +8899,20 @@ MonoBehaviour:
     percent: 0.25
     dropPossible: 1
   - itemType: 2
+    minPercentRange: 0.5
+    maxPrecentRange: 0.7
+    percent: 0.2
+    dropPossible: 1
+  - itemType: 3
     minPercentRange: 0.7
     maxPrecentRange: 0.9
     percent: 0.2
     dropPossible: 1
-  - itemType: 3
+  - itemType: 4
     minPercentRange: 0.9
     maxPrecentRange: 1
     percent: 0.1
     dropPossible: 1
-  - itemType: 4
-    minPercentRange: 0
-    maxPrecentRange: 0
-    percent: 0
-    dropPossible: 0
   - itemType: 5
     minPercentRange: 0
     maxPrecentRange: 0
@@ -9103,20 +9103,20 @@ MonoBehaviour:
     percent: 0.25
     dropPossible: 1
   - itemType: 2
+    minPercentRange: 0.5
+    maxPrecentRange: 0.7
+    percent: 0.2
+    dropPossible: 1
+  - itemType: 3
     minPercentRange: 0.7
     maxPrecentRange: 0.9
     percent: 0.2
     dropPossible: 1
-  - itemType: 3
+  - itemType: 4
     minPercentRange: 0.9
     maxPrecentRange: 1
     percent: 0.1
     dropPossible: 1
-  - itemType: 4
-    minPercentRange: 0
-    maxPrecentRange: 0
-    percent: 0
-    dropPossible: 0
   - itemType: 5
     minPercentRange: 0
     maxPrecentRange: 0
@@ -9718,20 +9718,20 @@ MonoBehaviour:
     percent: 0.25
     dropPossible: 1
   - itemType: 2
+    minPercentRange: 0.5
+    maxPrecentRange: 0.7
+    percent: 0.2
+    dropPossible: 1
+  - itemType: 3
     minPercentRange: 0.7
     maxPrecentRange: 0.9
     percent: 0.2
     dropPossible: 1
-  - itemType: 3
+  - itemType: 4
     minPercentRange: 0.9
     maxPrecentRange: 1
     percent: 0.1
     dropPossible: 1
-  - itemType: 4
-    minPercentRange: 0
-    maxPrecentRange: 0
-    percent: 0
-    dropPossible: 0
   - itemType: 5
     minPercentRange: 0
     maxPrecentRange: 0
@@ -9991,20 +9991,20 @@ MonoBehaviour:
     percent: 0.25
     dropPossible: 1
   - itemType: 2
+    minPercentRange: 0.5
+    maxPrecentRange: 0.7
+    percent: 0.2
+    dropPossible: 1
+  - itemType: 3
     minPercentRange: 0.7
     maxPrecentRange: 0.9
     percent: 0.2
     dropPossible: 1
-  - itemType: 3
+  - itemType: 4
     minPercentRange: 0.9
     maxPrecentRange: 1
     percent: 0.1
     dropPossible: 1
-  - itemType: 4
-    minPercentRange: 0
-    maxPrecentRange: 0
-    percent: 0
-    dropPossible: 0
   - itemType: 5
     minPercentRange: 0
     maxPrecentRange: 0
@@ -11011,20 +11011,20 @@ MonoBehaviour:
     percent: 0.25
     dropPossible: 1
   - itemType: 2
+    minPercentRange: 0.5
+    maxPrecentRange: 0.7
+    percent: 0.2
+    dropPossible: 1
+  - itemType: 3
     minPercentRange: 0.7
     maxPrecentRange: 0.9
     percent: 0.2
     dropPossible: 1
-  - itemType: 3
+  - itemType: 4
     minPercentRange: 0.9
     maxPrecentRange: 1
     percent: 0.1
     dropPossible: 1
-  - itemType: 4
-    minPercentRange: 0
-    maxPrecentRange: 0
-    percent: 0
-    dropPossible: 0
   - itemType: 5
     minPercentRange: 0
     maxPrecentRange: 0
@@ -11191,20 +11191,20 @@ MonoBehaviour:
     percent: 0.25
     dropPossible: 1
   - itemType: 2
+    minPercentRange: 0.5
+    maxPrecentRange: 0.7
+    percent: 0.2
+    dropPossible: 1
+  - itemType: 3
     minPercentRange: 0.7
     maxPrecentRange: 0.9
     percent: 0.2
     dropPossible: 1
-  - itemType: 3
+  - itemType: 4
     minPercentRange: 0.9
     maxPrecentRange: 1
     percent: 0.1
     dropPossible: 1
-  - itemType: 4
-    minPercentRange: 0
-    maxPrecentRange: 0
-    percent: 0
-    dropPossible: 0
   - itemType: 5
     minPercentRange: 0
     maxPrecentRange: 0
@@ -11259,20 +11259,20 @@ MonoBehaviour:
     percent: 0.25
     dropPossible: 1
   - itemType: 2
+    minPercentRange: 0.5
+    maxPrecentRange: 0.7
+    percent: 0.2
+    dropPossible: 1
+  - itemType: 3
     minPercentRange: 0.7
     maxPrecentRange: 0.9
     percent: 0.2
     dropPossible: 1
-  - itemType: 3
+  - itemType: 4
     minPercentRange: 0.9
     maxPrecentRange: 1
     percent: 0.1
     dropPossible: 1
-  - itemType: 4
-    minPercentRange: 0
-    maxPrecentRange: 0
-    percent: 0
-    dropPossible: 0
   - itemType: 5
     minPercentRange: 0
     maxPrecentRange: 0
@@ -13503,20 +13503,20 @@ MonoBehaviour:
     percent: 0.25
     dropPossible: 1
   - itemType: 2
+    minPercentRange: 0.5
+    maxPrecentRange: 0.7
+    percent: 0.2
+    dropPossible: 1
+  - itemType: 3
     minPercentRange: 0.7
     maxPrecentRange: 0.9
     percent: 0.2
     dropPossible: 1
-  - itemType: 3
+  - itemType: 4
     minPercentRange: 0.9
     maxPrecentRange: 1
     percent: 0.1
     dropPossible: 1
-  - itemType: 4
-    minPercentRange: 0
-    maxPrecentRange: 0
-    percent: 0
-    dropPossible: 0
   - itemType: 5
     minPercentRange: 0
     maxPrecentRange: 0
@@ -13775,20 +13775,20 @@ MonoBehaviour:
     percent: 0.25
     dropPossible: 1
   - itemType: 2
+    minPercentRange: 0.5
+    maxPrecentRange: 0.7
+    percent: 0.2
+    dropPossible: 1
+  - itemType: 3
     minPercentRange: 0.7
     maxPrecentRange: 0.9
     percent: 0.2
     dropPossible: 1
-  - itemType: 3
+  - itemType: 4
     minPercentRange: 0.9
     maxPrecentRange: 1
     percent: 0.1
     dropPossible: 1
-  - itemType: 4
-    minPercentRange: 0
-    maxPrecentRange: 0
-    percent: 0
-    dropPossible: 0
   - itemType: 5
     minPercentRange: 0
     maxPrecentRange: 0
@@ -14014,20 +14014,20 @@ MonoBehaviour:
     percent: 0.25
     dropPossible: 1
   - itemType: 2
+    minPercentRange: 0.5
+    maxPrecentRange: 0.7
+    percent: 0.2
+    dropPossible: 1
+  - itemType: 3
     minPercentRange: 0.7
     maxPrecentRange: 0.9
     percent: 0.2
     dropPossible: 1
-  - itemType: 3
+  - itemType: 4
     minPercentRange: 0.9
     maxPrecentRange: 1
     percent: 0.1
     dropPossible: 1
-  - itemType: 4
-    minPercentRange: 0
-    maxPrecentRange: 0
-    percent: 0
-    dropPossible: 0
   - itemType: 5
     minPercentRange: 0
     maxPrecentRange: 0
@@ -14150,20 +14150,20 @@ MonoBehaviour:
     percent: 0.25
     dropPossible: 1
   - itemType: 2
+    minPercentRange: 0.5
+    maxPrecentRange: 0.7
+    percent: 0.2
+    dropPossible: 1
+  - itemType: 3
     minPercentRange: 0.7
     maxPrecentRange: 0.9
     percent: 0.2
     dropPossible: 1
-  - itemType: 3
+  - itemType: 4
     minPercentRange: 0.9
     maxPrecentRange: 1
     percent: 0.1
     dropPossible: 1
-  - itemType: 4
-    minPercentRange: 0
-    maxPrecentRange: 0
-    percent: 0
-    dropPossible: 0
   - itemType: 5
     minPercentRange: 0
     maxPrecentRange: 0
@@ -14422,20 +14422,20 @@ MonoBehaviour:
     percent: 0.25
     dropPossible: 1
   - itemType: 2
+    minPercentRange: 0.5
+    maxPrecentRange: 0.7
+    percent: 0.2
+    dropPossible: 1
+  - itemType: 3
     minPercentRange: 0.7
     maxPrecentRange: 0.9
     percent: 0.2
     dropPossible: 1
-  - itemType: 3
+  - itemType: 4
     minPercentRange: 0.9
     maxPrecentRange: 1
     percent: 0.1
     dropPossible: 1
-  - itemType: 4
-    minPercentRange: 0
-    maxPrecentRange: 0
-    percent: 0
-    dropPossible: 0
   - itemType: 5
     minPercentRange: 0
     maxPrecentRange: 0
@@ -14626,20 +14626,20 @@ MonoBehaviour:
     percent: 0.25
     dropPossible: 1
   - itemType: 2
+    minPercentRange: 0.5
+    maxPrecentRange: 0.7
+    percent: 0.2
+    dropPossible: 1
+  - itemType: 3
     minPercentRange: 0.7
     maxPrecentRange: 0.9
     percent: 0.2
     dropPossible: 1
-  - itemType: 3
+  - itemType: 4
     minPercentRange: 0.9
     maxPrecentRange: 1
     percent: 0.1
     dropPossible: 1
-  - itemType: 4
-    minPercentRange: 0
-    maxPrecentRange: 0
-    percent: 0
-    dropPossible: 0
   - itemType: 5
     minPercentRange: 0
     maxPrecentRange: 0
@@ -15696,20 +15696,20 @@ MonoBehaviour:
     percent: 0.25
     dropPossible: 1
   - itemType: 2
+    minPercentRange: 0.5
+    maxPrecentRange: 0.7
+    percent: 0.2
+    dropPossible: 1
+  - itemType: 3
     minPercentRange: 0.7
     maxPrecentRange: 0.9
     percent: 0.2
     dropPossible: 1
-  - itemType: 3
+  - itemType: 4
     minPercentRange: 0.9
     maxPrecentRange: 1
     percent: 0.1
     dropPossible: 1
-  - itemType: 4
-    minPercentRange: 0
-    maxPrecentRange: 0
-    percent: 0
-    dropPossible: 0
   - itemType: 5
     minPercentRange: 0
     maxPrecentRange: 0
@@ -16716,20 +16716,20 @@ MonoBehaviour:
     percent: 0.25
     dropPossible: 1
   - itemType: 2
+    minPercentRange: 0.5
+    maxPrecentRange: 0.7
+    percent: 0.2
+    dropPossible: 1
+  - itemType: 3
     minPercentRange: 0.7
     maxPrecentRange: 0.9
     percent: 0.2
     dropPossible: 1
-  - itemType: 3
+  - itemType: 4
     minPercentRange: 0.9
     maxPrecentRange: 1
     percent: 0.1
     dropPossible: 1
-  - itemType: 4
-    minPercentRange: 0
-    maxPrecentRange: 0
-    percent: 0
-    dropPossible: 0
   - itemType: 5
     minPercentRange: 0
     maxPrecentRange: 0
@@ -16988,20 +16988,20 @@ MonoBehaviour:
     percent: 0.25
     dropPossible: 1
   - itemType: 2
+    minPercentRange: 0.5
+    maxPrecentRange: 0.7
+    percent: 0.2
+    dropPossible: 1
+  - itemType: 3
     minPercentRange: 0.7
     maxPrecentRange: 0.9
     percent: 0.2
     dropPossible: 1
-  - itemType: 3
+  - itemType: 4
     minPercentRange: 0.9
     maxPrecentRange: 1
     percent: 0.1
     dropPossible: 1
-  - itemType: 4
-    minPercentRange: 0
-    maxPrecentRange: 0
-    percent: 0
-    dropPossible: 0
   - itemType: 5
     minPercentRange: 0
     maxPrecentRange: 0
@@ -17124,20 +17124,20 @@ MonoBehaviour:
     percent: 0.25
     dropPossible: 1
   - itemType: 2
+    minPercentRange: 0.5
+    maxPrecentRange: 0.7
+    percent: 0.2
+    dropPossible: 1
+  - itemType: 3
     minPercentRange: 0.7
     maxPrecentRange: 0.9
     percent: 0.2
     dropPossible: 1
-  - itemType: 3
+  - itemType: 4
     minPercentRange: 0.9
     maxPrecentRange: 1
     percent: 0.1
     dropPossible: 1
-  - itemType: 4
-    minPercentRange: 0
-    maxPrecentRange: 0
-    percent: 0
-    dropPossible: 0
   - itemType: 5
     minPercentRange: 0
     maxPrecentRange: 0
@@ -17804,20 +17804,20 @@ MonoBehaviour:
     percent: 0.25
     dropPossible: 1
   - itemType: 2
+    minPercentRange: 0.5
+    maxPrecentRange: 0.7
+    percent: 0.2
+    dropPossible: 1
+  - itemType: 3
     minPercentRange: 0.7
     maxPrecentRange: 0.9
     percent: 0.2
     dropPossible: 1
-  - itemType: 3
+  - itemType: 4
     minPercentRange: 0.9
     maxPrecentRange: 1
     percent: 0.1
     dropPossible: 1
-  - itemType: 4
-    minPercentRange: 0
-    maxPrecentRange: 0
-    percent: 0
-    dropPossible: 0
   - itemType: 5
     minPercentRange: 0
     maxPrecentRange: 0
@@ -18719,20 +18719,20 @@ MonoBehaviour:
     percent: 0.25
     dropPossible: 1
   - itemType: 2
+    minPercentRange: 0.5
+    maxPrecentRange: 0.7
+    percent: 0.2
+    dropPossible: 1
+  - itemType: 3
     minPercentRange: 0.7
     maxPrecentRange: 0.9
     percent: 0.2
     dropPossible: 1
-  - itemType: 3
+  - itemType: 4
     minPercentRange: 0.9
     maxPrecentRange: 1
     percent: 0.1
     dropPossible: 1
-  - itemType: 4
-    minPercentRange: 0
-    maxPrecentRange: 0
-    percent: 0
-    dropPossible: 0
   - itemType: 5
     minPercentRange: 0
     maxPrecentRange: 0
@@ -19113,20 +19113,20 @@ MonoBehaviour:
     percent: 0.25
     dropPossible: 1
   - itemType: 2
+    minPercentRange: 0.5
+    maxPrecentRange: 0.7
+    percent: 0.2
+    dropPossible: 1
+  - itemType: 3
     minPercentRange: 0.7
     maxPrecentRange: 0.9
     percent: 0.2
     dropPossible: 1
-  - itemType: 3
+  - itemType: 4
     minPercentRange: 0.9
     maxPrecentRange: 1
     percent: 0.1
     dropPossible: 1
-  - itemType: 4
-    minPercentRange: 0
-    maxPrecentRange: 0
-    percent: 0
-    dropPossible: 0
   - itemType: 5
     minPercentRange: 0
     maxPrecentRange: 0
@@ -19589,20 +19589,20 @@ MonoBehaviour:
     percent: 0.25
     dropPossible: 1
   - itemType: 2
+    minPercentRange: 0.5
+    maxPrecentRange: 0.7
+    percent: 0.2
+    dropPossible: 1
+  - itemType: 3
     minPercentRange: 0.7
     maxPrecentRange: 0.9
     percent: 0.2
     dropPossible: 1
-  - itemType: 3
+  - itemType: 4
     minPercentRange: 0.9
     maxPrecentRange: 1
     percent: 0.1
     dropPossible: 1
-  - itemType: 4
-    minPercentRange: 0
-    maxPrecentRange: 0
-    percent: 0
-    dropPossible: 0
   - itemType: 5
     minPercentRange: 0
     maxPrecentRange: 0
@@ -20133,20 +20133,20 @@ MonoBehaviour:
     percent: 0.25
     dropPossible: 1
   - itemType: 2
+    minPercentRange: 0.5
+    maxPrecentRange: 0.7
+    percent: 0.2
+    dropPossible: 1
+  - itemType: 3
     minPercentRange: 0.7
     maxPrecentRange: 0.9
     percent: 0.2
     dropPossible: 1
-  - itemType: 3
+  - itemType: 4
     minPercentRange: 0.9
     maxPrecentRange: 1
     percent: 0.1
     dropPossible: 1
-  - itemType: 4
-    minPercentRange: 0
-    maxPrecentRange: 0
-    percent: 0
-    dropPossible: 0
   - itemType: 5
     minPercentRange: 0
     maxPrecentRange: 0
@@ -20863,20 +20863,20 @@ MonoBehaviour:
     percent: 0.25
     dropPossible: 1
   - itemType: 2
+    minPercentRange: 0.5
+    maxPrecentRange: 0.7
+    percent: 0.2
+    dropPossible: 1
+  - itemType: 3
     minPercentRange: 0.7
     maxPrecentRange: 0.9
     percent: 0.2
     dropPossible: 1
-  - itemType: 3
+  - itemType: 4
     minPercentRange: 0.9
     maxPrecentRange: 1
     percent: 0.1
     dropPossible: 1
-  - itemType: 4
-    minPercentRange: 0
-    maxPrecentRange: 0
-    percent: 0
-    dropPossible: 0
   - itemType: 5
     minPercentRange: 0
     maxPrecentRange: 0
@@ -21135,20 +21135,20 @@ MonoBehaviour:
     percent: 0.25
     dropPossible: 1
   - itemType: 2
+    minPercentRange: 0.5
+    maxPrecentRange: 0.7
+    percent: 0.2
+    dropPossible: 1
+  - itemType: 3
     minPercentRange: 0.7
     maxPrecentRange: 0.9
     percent: 0.2
     dropPossible: 1
-  - itemType: 3
+  - itemType: 4
     minPercentRange: 0.9
     maxPrecentRange: 1
     percent: 0.1
     dropPossible: 1
-  - itemType: 4
-    minPercentRange: 0
-    maxPrecentRange: 0
-    percent: 0
-    dropPossible: 0
   - itemType: 5
     minPercentRange: 0
     maxPrecentRange: 0
@@ -22282,20 +22282,20 @@ MonoBehaviour:
     percent: 0.25
     dropPossible: 1
   - itemType: 2
+    minPercentRange: 0.5
+    maxPrecentRange: 0.7
+    percent: 0.2
+    dropPossible: 1
+  - itemType: 3
     minPercentRange: 0.7
     maxPrecentRange: 0.9
     percent: 0.2
     dropPossible: 1
-  - itemType: 3
+  - itemType: 4
     minPercentRange: 0.9
     maxPrecentRange: 1
     percent: 0.1
     dropPossible: 1
-  - itemType: 4
-    minPercentRange: 0
-    maxPrecentRange: 0
-    percent: 0
-    dropPossible: 0
   - itemType: 5
     minPercentRange: 0
     maxPrecentRange: 0
@@ -22962,20 +22962,20 @@ MonoBehaviour:
     percent: 0.25
     dropPossible: 1
   - itemType: 2
+    minPercentRange: 0.5
+    maxPrecentRange: 0.7
+    percent: 0.2
+    dropPossible: 1
+  - itemType: 3
     minPercentRange: 0.7
     maxPrecentRange: 0.9
     percent: 0.2
     dropPossible: 1
-  - itemType: 3
+  - itemType: 4
     minPercentRange: 0.9
     maxPrecentRange: 1
     percent: 0.1
     dropPossible: 1
-  - itemType: 4
-    minPercentRange: 0
-    maxPrecentRange: 0
-    percent: 0
-    dropPossible: 0
   - itemType: 5
     minPercentRange: 0
     maxPrecentRange: 0
@@ -23030,20 +23030,20 @@ MonoBehaviour:
     percent: 0.25
     dropPossible: 1
   - itemType: 2
+    minPercentRange: 0.5
+    maxPrecentRange: 0.7
+    percent: 0.2
+    dropPossible: 1
+  - itemType: 3
     minPercentRange: 0.7
     maxPrecentRange: 0.9
     percent: 0.2
     dropPossible: 1
-  - itemType: 3
+  - itemType: 4
     minPercentRange: 0.9
     maxPrecentRange: 1
     percent: 0.1
     dropPossible: 1
-  - itemType: 4
-    minPercentRange: 0
-    maxPrecentRange: 0
-    percent: 0
-    dropPossible: 0
   - itemType: 5
     minPercentRange: 0
     maxPrecentRange: 0
@@ -23370,20 +23370,20 @@ MonoBehaviour:
     percent: 0.25
     dropPossible: 1
   - itemType: 2
+    minPercentRange: 0.5
+    maxPrecentRange: 0.7
+    percent: 0.2
+    dropPossible: 1
+  - itemType: 3
     minPercentRange: 0.7
     maxPrecentRange: 0.9
     percent: 0.2
     dropPossible: 1
-  - itemType: 3
+  - itemType: 4
     minPercentRange: 0.9
     maxPrecentRange: 1
     percent: 0.1
     dropPossible: 1
-  - itemType: 4
-    minPercentRange: 0
-    maxPrecentRange: 0
-    percent: 0
-    dropPossible: 0
   - itemType: 5
     minPercentRange: 0
     maxPrecentRange: 0
@@ -24703,20 +24703,20 @@ MonoBehaviour:
     percent: 0.25
     dropPossible: 1
   - itemType: 2
+    minPercentRange: 0.5
+    maxPrecentRange: 0.7
+    percent: 0.2
+    dropPossible: 1
+  - itemType: 3
     minPercentRange: 0.7
     maxPrecentRange: 0.9
     percent: 0.2
     dropPossible: 1
-  - itemType: 3
+  - itemType: 4
     minPercentRange: 0.9
     maxPrecentRange: 1
     percent: 0.1
     dropPossible: 1
-  - itemType: 4
-    minPercentRange: 0
-    maxPrecentRange: 0
-    percent: 0
-    dropPossible: 0
   - itemType: 5
     minPercentRange: 0
     maxPrecentRange: 0
@@ -24839,20 +24839,20 @@ MonoBehaviour:
     percent: 0.25
     dropPossible: 1
   - itemType: 2
+    minPercentRange: 0.5
+    maxPrecentRange: 0.7
+    percent: 0.2
+    dropPossible: 1
+  - itemType: 3
     minPercentRange: 0.7
     maxPrecentRange: 0.9
     percent: 0.2
     dropPossible: 1
-  - itemType: 3
+  - itemType: 4
     minPercentRange: 0.9
     maxPrecentRange: 1
     percent: 0.1
     dropPossible: 1
-  - itemType: 4
-    minPercentRange: 0
-    maxPrecentRange: 0
-    percent: 0
-    dropPossible: 0
   - itemType: 5
     minPercentRange: 0
     maxPrecentRange: 0
@@ -24907,20 +24907,20 @@ MonoBehaviour:
     percent: 0.25
     dropPossible: 1
   - itemType: 2
+    minPercentRange: 0.5
+    maxPrecentRange: 0.7
+    percent: 0.2
+    dropPossible: 1
+  - itemType: 3
     minPercentRange: 0.7
     maxPrecentRange: 0.9
     percent: 0.2
     dropPossible: 1
-  - itemType: 3
+  - itemType: 4
     minPercentRange: 0.9
     maxPrecentRange: 1
     percent: 0.1
     dropPossible: 1
-  - itemType: 4
-    minPercentRange: 0
-    maxPrecentRange: 0
-    percent: 0
-    dropPossible: 0
   - itemType: 5
     minPercentRange: 0
     maxPrecentRange: 0
@@ -25315,20 +25315,20 @@ MonoBehaviour:
     percent: 0.25
     dropPossible: 1
   - itemType: 2
+    minPercentRange: 0.5
+    maxPrecentRange: 0.7
+    percent: 0.2
+    dropPossible: 1
+  - itemType: 3
     minPercentRange: 0.7
     maxPrecentRange: 0.9
     percent: 0.2
     dropPossible: 1
-  - itemType: 3
+  - itemType: 4
     minPercentRange: 0.9
     maxPrecentRange: 1
     percent: 0.1
     dropPossible: 1
-  - itemType: 4
-    minPercentRange: 0
-    maxPrecentRange: 0
-    percent: 0
-    dropPossible: 0
   - itemType: 5
     minPercentRange: 0
     maxPrecentRange: 0
@@ -26539,20 +26539,20 @@ MonoBehaviour:
     percent: 0.25
     dropPossible: 1
   - itemType: 2
+    minPercentRange: 0.5
+    maxPrecentRange: 0.7
+    percent: 0.2
+    dropPossible: 1
+  - itemType: 3
     minPercentRange: 0.7
     maxPrecentRange: 0.9
     percent: 0.2
     dropPossible: 1
-  - itemType: 3
+  - itemType: 4
     minPercentRange: 0.9
     maxPrecentRange: 1
     percent: 0.1
     dropPossible: 1
-  - itemType: 4
-    minPercentRange: 0
-    maxPrecentRange: 0
-    percent: 0
-    dropPossible: 0
   - itemType: 5
     minPercentRange: 0
     maxPrecentRange: 0
@@ -28697,20 +28697,20 @@ MonoBehaviour:
     percent: 0.25
     dropPossible: 1
   - itemType: 2
+    minPercentRange: 0.5
+    maxPrecentRange: 0.7
+    percent: 0.2
+    dropPossible: 1
+  - itemType: 3
     minPercentRange: 0.7
     maxPrecentRange: 0.9
     percent: 0.2
     dropPossible: 1
-  - itemType: 3
+  - itemType: 4
     minPercentRange: 0.9
     maxPrecentRange: 1
     percent: 0.1
     dropPossible: 1
-  - itemType: 4
-    minPercentRange: 0
-    maxPrecentRange: 0
-    percent: 0
-    dropPossible: 0
   - itemType: 5
     minPercentRange: 0
     maxPrecentRange: 0
@@ -29241,20 +29241,20 @@ MonoBehaviour:
     percent: 0.25
     dropPossible: 1
   - itemType: 2
+    minPercentRange: 0.5
+    maxPrecentRange: 0.7
+    percent: 0.2
+    dropPossible: 1
+  - itemType: 3
     minPercentRange: 0.7
     maxPrecentRange: 0.9
     percent: 0.2
     dropPossible: 1
-  - itemType: 3
+  - itemType: 4
     minPercentRange: 0.9
     maxPrecentRange: 1
     percent: 0.1
     dropPossible: 1
-  - itemType: 4
-    minPercentRange: 0
-    maxPrecentRange: 0
-    percent: 0
-    dropPossible: 0
   - itemType: 5
     minPercentRange: 0
     maxPrecentRange: 0
@@ -29853,20 +29853,20 @@ MonoBehaviour:
     percent: 0.25
     dropPossible: 1
   - itemType: 2
+    minPercentRange: 0.5
+    maxPrecentRange: 0.7
+    percent: 0.2
+    dropPossible: 1
+  - itemType: 3
     minPercentRange: 0.7
     maxPrecentRange: 0.9
     percent: 0.2
     dropPossible: 1
-  - itemType: 3
+  - itemType: 4
     minPercentRange: 0.9
     maxPrecentRange: 1
     percent: 0.1
     dropPossible: 1
-  - itemType: 4
-    minPercentRange: 0
-    maxPrecentRange: 0
-    percent: 0
-    dropPossible: 0
   - itemType: 5
     minPercentRange: 0
     maxPrecentRange: 0
@@ -29921,20 +29921,20 @@ MonoBehaviour:
     percent: 0.25
     dropPossible: 1
   - itemType: 2
+    minPercentRange: 0.5
+    maxPrecentRange: 0.7
+    percent: 0.2
+    dropPossible: 1
+  - itemType: 3
     minPercentRange: 0.7
     maxPrecentRange: 0.9
     percent: 0.2
     dropPossible: 1
-  - itemType: 3
+  - itemType: 4
     minPercentRange: 0.9
     maxPrecentRange: 1
     percent: 0.1
     dropPossible: 1
-  - itemType: 4
-    minPercentRange: 0
-    maxPrecentRange: 0
-    percent: 0
-    dropPossible: 0
   - itemType: 5
     minPercentRange: 0
     maxPrecentRange: 0
@@ -30737,20 +30737,20 @@ MonoBehaviour:
     percent: 0.25
     dropPossible: 1
   - itemType: 2
+    minPercentRange: 0.5
+    maxPrecentRange: 0.7
+    percent: 0.2
+    dropPossible: 1
+  - itemType: 3
     minPercentRange: 0.7
     maxPrecentRange: 0.9
     percent: 0.2
     dropPossible: 1
-  - itemType: 3
+  - itemType: 4
     minPercentRange: 0.9
     maxPrecentRange: 1
     percent: 0.1
     dropPossible: 1
-  - itemType: 4
-    minPercentRange: 0
-    maxPrecentRange: 0
-    percent: 0
-    dropPossible: 0
   - itemType: 5
     minPercentRange: 0
     maxPrecentRange: 0
@@ -30805,20 +30805,20 @@ MonoBehaviour:
     percent: 0.25
     dropPossible: 1
   - itemType: 2
+    minPercentRange: 0.5
+    maxPrecentRange: 0.7
+    percent: 0.2
+    dropPossible: 1
+  - itemType: 3
     minPercentRange: 0.7
     maxPrecentRange: 0.9
     percent: 0.2
     dropPossible: 1
-  - itemType: 3
+  - itemType: 4
     minPercentRange: 0.9
     maxPrecentRange: 1
     percent: 0.1
     dropPossible: 1
-  - itemType: 4
-    minPercentRange: 0
-    maxPrecentRange: 0
-    percent: 0
-    dropPossible: 0
   - itemType: 5
     minPercentRange: 0
     maxPrecentRange: 0
@@ -30873,20 +30873,20 @@ MonoBehaviour:
     percent: 0.25
     dropPossible: 1
   - itemType: 2
+    minPercentRange: 0.5
+    maxPrecentRange: 0.7
+    percent: 0.2
+    dropPossible: 1
+  - itemType: 3
     minPercentRange: 0.7
     maxPrecentRange: 0.9
     percent: 0.2
     dropPossible: 1
-  - itemType: 3
+  - itemType: 4
     minPercentRange: 0.9
     maxPrecentRange: 1
     percent: 0.1
     dropPossible: 1
-  - itemType: 4
-    minPercentRange: 0
-    maxPrecentRange: 0
-    percent: 0
-    dropPossible: 0
   - itemType: 5
     minPercentRange: 0
     maxPrecentRange: 0
@@ -31689,20 +31689,20 @@ MonoBehaviour:
     percent: 0.25
     dropPossible: 1
   - itemType: 2
+    minPercentRange: 0.5
+    maxPrecentRange: 0.7
+    percent: 0.2
+    dropPossible: 1
+  - itemType: 3
     minPercentRange: 0.7
     maxPrecentRange: 0.9
     percent: 0.2
     dropPossible: 1
-  - itemType: 3
+  - itemType: 4
     minPercentRange: 0.9
     maxPrecentRange: 1
     percent: 0.1
     dropPossible: 1
-  - itemType: 4
-    minPercentRange: 0
-    maxPrecentRange: 0
-    percent: 0
-    dropPossible: 0
   - itemType: 5
     minPercentRange: 0
     maxPrecentRange: 0
@@ -32573,20 +32573,20 @@ MonoBehaviour:
     percent: 0.25
     dropPossible: 1
   - itemType: 2
+    minPercentRange: 0.5
+    maxPrecentRange: 0.7
+    percent: 0.2
+    dropPossible: 1
+  - itemType: 3
     minPercentRange: 0.7
     maxPrecentRange: 0.9
     percent: 0.2
     dropPossible: 1
-  - itemType: 3
+  - itemType: 4
     minPercentRange: 0.9
     maxPrecentRange: 1
     percent: 0.1
     dropPossible: 1
-  - itemType: 4
-    minPercentRange: 0
-    maxPrecentRange: 0
-    percent: 0
-    dropPossible: 0
   - itemType: 5
     minPercentRange: 0
     maxPrecentRange: 0
@@ -32913,20 +32913,20 @@ MonoBehaviour:
     percent: 0.25
     dropPossible: 1
   - itemType: 2
+    minPercentRange: 0.5
+    maxPrecentRange: 0.7
+    percent: 0.2
+    dropPossible: 1
+  - itemType: 3
     minPercentRange: 0.7
     maxPrecentRange: 0.9
     percent: 0.2
     dropPossible: 1
-  - itemType: 3
+  - itemType: 4
     minPercentRange: 0.9
     maxPrecentRange: 1
     percent: 0.1
     dropPossible: 1
-  - itemType: 4
-    minPercentRange: 0
-    maxPrecentRange: 0
-    percent: 0
-    dropPossible: 0
   - itemType: 5
     minPercentRange: 0
     maxPrecentRange: 0
@@ -33661,20 +33661,20 @@ MonoBehaviour:
     percent: 0.25
     dropPossible: 1
   - itemType: 2
+    minPercentRange: 0.5
+    maxPrecentRange: 0.7
+    percent: 0.2
+    dropPossible: 1
+  - itemType: 3
     minPercentRange: 0.7
     maxPrecentRange: 0.9
     percent: 0.2
     dropPossible: 1
-  - itemType: 3
+  - itemType: 4
     minPercentRange: 0.9
     maxPrecentRange: 1
     percent: 0.1
     dropPossible: 1
-  - itemType: 4
-    minPercentRange: 0
-    maxPrecentRange: 0
-    percent: 0
-    dropPossible: 0
   - itemType: 5
     minPercentRange: 0
     maxPrecentRange: 0
@@ -34273,20 +34273,20 @@ MonoBehaviour:
     percent: 0.25
     dropPossible: 1
   - itemType: 2
+    minPercentRange: 0.5
+    maxPrecentRange: 0.7
+    percent: 0.2
+    dropPossible: 1
+  - itemType: 3
     minPercentRange: 0.7
     maxPrecentRange: 0.9
     percent: 0.2
     dropPossible: 1
-  - itemType: 3
+  - itemType: 4
     minPercentRange: 0.9
     maxPrecentRange: 1
     percent: 0.1
     dropPossible: 1
-  - itemType: 4
-    minPercentRange: 0
-    maxPrecentRange: 0
-    percent: 0
-    dropPossible: 0
   - itemType: 5
     minPercentRange: 0
     maxPrecentRange: 0
@@ -34409,20 +34409,20 @@ MonoBehaviour:
     percent: 0.25
     dropPossible: 1
   - itemType: 2
+    minPercentRange: 0.5
+    maxPrecentRange: 0.7
+    percent: 0.2
+    dropPossible: 1
+  - itemType: 3
     minPercentRange: 0.7
     maxPrecentRange: 0.9
     percent: 0.2
     dropPossible: 1
-  - itemType: 3
+  - itemType: 4
     minPercentRange: 0.9
     maxPrecentRange: 1
     percent: 0.1
     dropPossible: 1
-  - itemType: 4
-    minPercentRange: 0
-    maxPrecentRange: 0
-    percent: 0
-    dropPossible: 0
   - itemType: 5
     minPercentRange: 0
     maxPrecentRange: 0
@@ -34613,20 +34613,20 @@ MonoBehaviour:
     percent: 0.25
     dropPossible: 1
   - itemType: 2
+    minPercentRange: 0.5
+    maxPrecentRange: 0.7
+    percent: 0.2
+    dropPossible: 1
+  - itemType: 3
     minPercentRange: 0.7
     maxPrecentRange: 0.9
     percent: 0.2
     dropPossible: 1
-  - itemType: 3
+  - itemType: 4
     minPercentRange: 0.9
     maxPrecentRange: 1
     percent: 0.1
     dropPossible: 1
-  - itemType: 4
-    minPercentRange: 0
-    maxPrecentRange: 0
-    percent: 0
-    dropPossible: 0
   - itemType: 5
     minPercentRange: 0
     maxPrecentRange: 0
@@ -56491,20 +56491,20 @@ MonoBehaviour:
     percent: 0.25
     dropPossible: 1
   - itemType: 2
+    minPercentRange: 0.5
+    maxPrecentRange: 0.7
+    percent: 0.2
+    dropPossible: 1
+  - itemType: 3
     minPercentRange: 0.7
     maxPrecentRange: 0.9
     percent: 0.2
     dropPossible: 1
-  - itemType: 3
+  - itemType: 4
     minPercentRange: 0.9
     maxPrecentRange: 1
     percent: 0.1
     dropPossible: 1
-  - itemType: 4
-    minPercentRange: 0
-    maxPrecentRange: 0
-    percent: 0
-    dropPossible: 0
   - itemType: 5
     minPercentRange: 0
     maxPrecentRange: 0
@@ -56831,20 +56831,20 @@ MonoBehaviour:
     percent: 0.25
     dropPossible: 1
   - itemType: 2
+    minPercentRange: 0.5
+    maxPrecentRange: 0.7
+    percent: 0.2
+    dropPossible: 1
+  - itemType: 3
     minPercentRange: 0.7
     maxPrecentRange: 0.9
     percent: 0.2
     dropPossible: 1
-  - itemType: 3
+  - itemType: 4
     minPercentRange: 0.9
     maxPrecentRange: 1
     percent: 0.1
     dropPossible: 1
-  - itemType: 4
-    minPercentRange: 0
-    maxPrecentRange: 0
-    percent: 0
-    dropPossible: 0
   - itemType: 5
     minPercentRange: 0
     maxPrecentRange: 0
@@ -57375,20 +57375,20 @@ MonoBehaviour:
     percent: 0.25
     dropPossible: 1
   - itemType: 2
+    minPercentRange: 0.5
+    maxPrecentRange: 0.7
+    percent: 0.2
+    dropPossible: 1
+  - itemType: 3
     minPercentRange: 0.7
     maxPrecentRange: 0.9
     percent: 0.2
     dropPossible: 1
-  - itemType: 3
+  - itemType: 4
     minPercentRange: 0.9
     maxPrecentRange: 1
     percent: 0.1
     dropPossible: 1
-  - itemType: 4
-    minPercentRange: 0
-    maxPrecentRange: 0
-    percent: 0
-    dropPossible: 0
   - itemType: 5
     minPercentRange: 0
     maxPrecentRange: 0
@@ -58774,20 +58774,20 @@ MonoBehaviour:
     percent: 0.25
     dropPossible: 1
   - itemType: 2
+    minPercentRange: 0.5
+    maxPrecentRange: 0.7
+    percent: 0.2
+    dropPossible: 1
+  - itemType: 3
     minPercentRange: 0.7
     maxPrecentRange: 0.9
     percent: 0.2
     dropPossible: 1
-  - itemType: 3
+  - itemType: 4
     minPercentRange: 0.9
     maxPrecentRange: 1
     percent: 0.1
     dropPossible: 1
-  - itemType: 4
-    minPercentRange: 0
-    maxPrecentRange: 0
-    percent: 0
-    dropPossible: 0
   - itemType: 5
     minPercentRange: 0
     maxPrecentRange: 0
@@ -59590,20 +59590,20 @@ MonoBehaviour:
     percent: 0.25
     dropPossible: 1
   - itemType: 2
+    minPercentRange: 0.5
+    maxPrecentRange: 0.7
+    percent: 0.2
+    dropPossible: 1
+  - itemType: 3
     minPercentRange: 0.7
     maxPrecentRange: 0.9
     percent: 0.2
     dropPossible: 1
-  - itemType: 3
+  - itemType: 4
     minPercentRange: 0.9
     maxPrecentRange: 1
     percent: 0.1
     dropPossible: 1
-  - itemType: 4
-    minPercentRange: 0
-    maxPrecentRange: 0
-    percent: 0
-    dropPossible: 0
   - itemType: 5
     minPercentRange: 0
     maxPrecentRange: 0
@@ -59862,20 +59862,20 @@ MonoBehaviour:
     percent: 0.25
     dropPossible: 1
   - itemType: 2
+    minPercentRange: 0.5
+    maxPrecentRange: 0.7
+    percent: 0.2
+    dropPossible: 1
+  - itemType: 3
     minPercentRange: 0.7
     maxPrecentRange: 0.9
     percent: 0.2
     dropPossible: 1
-  - itemType: 3
+  - itemType: 4
     minPercentRange: 0.9
     maxPrecentRange: 1
     percent: 0.1
     dropPossible: 1
-  - itemType: 4
-    minPercentRange: 0
-    maxPrecentRange: 0
-    percent: 0
-    dropPossible: 0
   - itemType: 5
     minPercentRange: 0
     maxPrecentRange: 0
@@ -60134,20 +60134,20 @@ MonoBehaviour:
     percent: 0.25
     dropPossible: 1
   - itemType: 2
+    minPercentRange: 0.5
+    maxPrecentRange: 0.7
+    percent: 0.2
+    dropPossible: 1
+  - itemType: 3
     minPercentRange: 0.7
     maxPrecentRange: 0.9
     percent: 0.2
     dropPossible: 1
-  - itemType: 3
+  - itemType: 4
     minPercentRange: 0.9
     maxPrecentRange: 1
     percent: 0.1
     dropPossible: 1
-  - itemType: 4
-    minPercentRange: 0
-    maxPrecentRange: 0
-    percent: 0
-    dropPossible: 0
   - itemType: 5
     minPercentRange: 0
     maxPrecentRange: 0
@@ -61525,20 +61525,20 @@ MonoBehaviour:
     percent: 0.25
     dropPossible: 1
   - itemType: 2
+    minPercentRange: 0.5
+    maxPrecentRange: 0.7
+    percent: 0.2
+    dropPossible: 1
+  - itemType: 3
     minPercentRange: 0.7
     maxPrecentRange: 0.9
     percent: 0.2
     dropPossible: 1
-  - itemType: 3
+  - itemType: 4
     minPercentRange: 0.9
     maxPrecentRange: 1
     percent: 0.1
     dropPossible: 1
-  - itemType: 4
-    minPercentRange: 0
-    maxPrecentRange: 0
-    percent: 0
-    dropPossible: 0
   - itemType: 5
     minPercentRange: 0
     maxPrecentRange: 0
@@ -62899,20 +62899,20 @@ MonoBehaviour:
     percent: 0.25
     dropPossible: 1
   - itemType: 2
+    minPercentRange: 0.5
+    maxPrecentRange: 0.7
+    percent: 0.2
+    dropPossible: 1
+  - itemType: 3
     minPercentRange: 0.7
     maxPrecentRange: 0.9
     percent: 0.2
     dropPossible: 1
-  - itemType: 3
+  - itemType: 4
     minPercentRange: 0.9
     maxPrecentRange: 1
     percent: 0.1
     dropPossible: 1
-  - itemType: 4
-    minPercentRange: 0
-    maxPrecentRange: 0
-    percent: 0
-    dropPossible: 0
   - itemType: 5
     minPercentRange: 0
     maxPrecentRange: 0
@@ -63307,20 +63307,20 @@ MonoBehaviour:
     percent: 0.25
     dropPossible: 1
   - itemType: 2
+    minPercentRange: 0.5
+    maxPrecentRange: 0.7
+    percent: 0.2
+    dropPossible: 1
+  - itemType: 3
     minPercentRange: 0.7
     maxPrecentRange: 0.9
     percent: 0.2
     dropPossible: 1
-  - itemType: 3
+  - itemType: 4
     minPercentRange: 0.9
     maxPrecentRange: 1
     percent: 0.1
     dropPossible: 1
-  - itemType: 4
-    minPercentRange: 0
-    maxPrecentRange: 0
-    percent: 0
-    dropPossible: 0
   - itemType: 5
     minPercentRange: 0
     maxPrecentRange: 0
@@ -64327,20 +64327,20 @@ MonoBehaviour:
     percent: 0.25
     dropPossible: 1
   - itemType: 2
+    minPercentRange: 0.5
+    maxPrecentRange: 0.7
+    percent: 0.2
+    dropPossible: 1
+  - itemType: 3
     minPercentRange: 0.7
     maxPrecentRange: 0.9
     percent: 0.2
     dropPossible: 1
-  - itemType: 3
+  - itemType: 4
     minPercentRange: 0.9
     maxPrecentRange: 1
     percent: 0.1
     dropPossible: 1
-  - itemType: 4
-    minPercentRange: 0
-    maxPrecentRange: 0
-    percent: 0
-    dropPossible: 0
   - itemType: 5
     minPercentRange: 0
     maxPrecentRange: 0
@@ -64871,20 +64871,20 @@ MonoBehaviour:
     percent: 0.25
     dropPossible: 1
   - itemType: 2
+    minPercentRange: 0.5
+    maxPrecentRange: 0.7
+    percent: 0.2
+    dropPossible: 1
+  - itemType: 3
     minPercentRange: 0.7
     maxPrecentRange: 0.9
     percent: 0.2
     dropPossible: 1
-  - itemType: 3
+  - itemType: 4
     minPercentRange: 0.9
     maxPrecentRange: 1
     percent: 0.1
     dropPossible: 1
-  - itemType: 4
-    minPercentRange: 0
-    maxPrecentRange: 0
-    percent: 0
-    dropPossible: 0
   - itemType: 5
     minPercentRange: 0
     maxPrecentRange: 0
@@ -65619,20 +65619,20 @@ MonoBehaviour:
     percent: 0.25
     dropPossible: 1
   - itemType: 2
+    minPercentRange: 0.5
+    maxPrecentRange: 0.7
+    percent: 0.2
+    dropPossible: 1
+  - itemType: 3
     minPercentRange: 0.7
     maxPrecentRange: 0.9
     percent: 0.2
     dropPossible: 1
-  - itemType: 3
+  - itemType: 4
     minPercentRange: 0.9
     maxPrecentRange: 1
     percent: 0.1
     dropPossible: 1
-  - itemType: 4
-    minPercentRange: 0
-    maxPrecentRange: 0
-    percent: 0
-    dropPossible: 0
   - itemType: 5
     minPercentRange: 0
     maxPrecentRange: 0
@@ -67317,20 +67317,20 @@ MonoBehaviour:
     percent: 0.25
     dropPossible: 1
   - itemType: 2
+    minPercentRange: 0.5
+    maxPrecentRange: 0.7
+    percent: 0.2
+    dropPossible: 1
+  - itemType: 3
     minPercentRange: 0.7
     maxPrecentRange: 0.9
     percent: 0.2
     dropPossible: 1
-  - itemType: 3
+  - itemType: 4
     minPercentRange: 0.9
     maxPrecentRange: 1
     percent: 0.1
     dropPossible: 1
-  - itemType: 4
-    minPercentRange: 0
-    maxPrecentRange: 0
-    percent: 0
-    dropPossible: 0
   - itemType: 5
     minPercentRange: 0
     maxPrecentRange: 0
@@ -67521,20 +67521,20 @@ MonoBehaviour:
     percent: 0.25
     dropPossible: 1
   - itemType: 2
+    minPercentRange: 0.5
+    maxPrecentRange: 0.7
+    percent: 0.2
+    dropPossible: 1
+  - itemType: 3
     minPercentRange: 0.7
     maxPrecentRange: 0.9
     percent: 0.2
     dropPossible: 1
-  - itemType: 3
+  - itemType: 4
     minPercentRange: 0.9
     maxPrecentRange: 1
     percent: 0.1
     dropPossible: 1
-  - itemType: 4
-    minPercentRange: 0
-    maxPrecentRange: 0
-    percent: 0
-    dropPossible: 0
   - itemType: 5
     minPercentRange: 0
     maxPrecentRange: 0
@@ -68018,20 +68018,20 @@ MonoBehaviour:
     percent: 0.25
     dropPossible: 1
   - itemType: 2
+    minPercentRange: 0.5
+    maxPrecentRange: 0.7
+    percent: 0.2
+    dropPossible: 1
+  - itemType: 3
     minPercentRange: 0.7
     maxPrecentRange: 0.9
     percent: 0.2
     dropPossible: 1
-  - itemType: 3
+  - itemType: 4
     minPercentRange: 0.9
     maxPrecentRange: 1
     percent: 0.1
     dropPossible: 1
-  - itemType: 4
-    minPercentRange: 0
-    maxPrecentRange: 0
-    percent: 0
-    dropPossible: 0
   - itemType: 5
     minPercentRange: 0
     maxPrecentRange: 0
@@ -70224,20 +70224,20 @@ MonoBehaviour:
     percent: 0.25
     dropPossible: 1
   - itemType: 2
+    minPercentRange: 0.5
+    maxPrecentRange: 0.7
+    percent: 0.2
+    dropPossible: 1
+  - itemType: 3
     minPercentRange: 0.7
     maxPrecentRange: 0.9
     percent: 0.2
     dropPossible: 1
-  - itemType: 3
+  - itemType: 4
     minPercentRange: 0.9
     maxPrecentRange: 1
     percent: 0.1
     dropPossible: 1
-  - itemType: 4
-    minPercentRange: 0
-    maxPrecentRange: 0
-    percent: 0
-    dropPossible: 0
   - itemType: 5
     minPercentRange: 0
     maxPrecentRange: 0
@@ -70904,20 +70904,20 @@ MonoBehaviour:
     percent: 0.25
     dropPossible: 1
   - itemType: 2
+    minPercentRange: 0.5
+    maxPrecentRange: 0.7
+    percent: 0.2
+    dropPossible: 1
+  - itemType: 3
     minPercentRange: 0.7
     maxPrecentRange: 0.9
     percent: 0.2
     dropPossible: 1
-  - itemType: 3
+  - itemType: 4
     minPercentRange: 0.9
     maxPrecentRange: 1
     percent: 0.1
     dropPossible: 1
-  - itemType: 4
-    minPercentRange: 0
-    maxPrecentRange: 0
-    percent: 0
-    dropPossible: 0
   - itemType: 5
     minPercentRange: 0
     maxPrecentRange: 0
