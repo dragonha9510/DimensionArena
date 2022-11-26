@@ -28,7 +28,7 @@ public class RegisterUI : MonoBehaviour
     private void Start()
     {
 
-        DOTween.SetTweensCapacity(4000, 0);
+        DOTween.SetTweensCapacity(4000          , 0);
         StartCoroutine("DataUpdateCheck");
     }
 
