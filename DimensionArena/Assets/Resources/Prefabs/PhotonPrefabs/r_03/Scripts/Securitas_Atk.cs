@@ -17,7 +17,7 @@ namespace PlayerSpace
         [SerializeField] private float passiveTime;
         private float curpassiveTime;
         private bool passiveReady;
-        [SerializeField] private GameObject passiveObject;
+        [SerializeField] private ParticleSystemRenderer passiveObject;
 
         protected override void InitalizeAtkInfo()
         {
@@ -44,7 +44,7 @@ namespace PlayerSpace
                 curpassiveTime = 0;
                 passiveReady = true;
                 photonView.RPC(nameof(PassiveActive), RpcTarget.All, true);
-                passiveObject.SetActive(true);
+                //passiveObject.enabled = (true);
                 SoundManager.Instance.PlaySFXOneShot("snd_char_securitas_overclock");
             }
             else
@@ -54,7 +54,7 @@ namespace PlayerSpace
         [PunRPC]
         private void PassiveActive(bool onoff)
         {
-            passiveObject.SetActive(onoff);
+            passiveObject.enabled = (onoff);
         }
 
         public override void Attack()
