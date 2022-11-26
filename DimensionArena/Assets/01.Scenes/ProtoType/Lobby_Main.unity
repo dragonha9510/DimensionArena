@@ -1820,6 +1820,21 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1290586324783921067, guid: 6116ef1203ac84c4b9d804ff62a7a788,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 1290586324783921067, guid: 6116ef1203ac84c4b9d804ff62a7a788,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.004
+      objectReference: {fileID: 0}
+    - target: {fileID: 1290586324783921067, guid: 6116ef1203ac84c4b9d804ff62a7a788,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.467
+      objectReference: {fileID: 0}
     - target: {fileID: 1695223649998051241, guid: 6116ef1203ac84c4b9d804ff62a7a788,
         type: 3}
       propertyPath: m_LocalPosition.y
@@ -2033,7 +2048,6 @@ MonoBehaviour:
   - {fileID: 1643207120}
   - {fileID: 5527182555630530740}
   isMainLobby: 1
-  lightAlignment: {fileID: 0}
 --- !u!1001 &5529166021421527344
 PrefabInstance:
   m_ObjectHideFlags: 0
