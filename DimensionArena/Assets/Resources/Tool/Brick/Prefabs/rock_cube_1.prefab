@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4254112220184660}
   - component: {fileID: 33129747186860658}
   - component: {fileID: 23082040333256176}
-  m_Layer: 6
+  m_Layer: 13
   m_Name: block_rock1_1_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -93,7 +93,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4043493253376252}
   - component: {fileID: 8647409250740353386}
-  m_Layer: 6
+  m_Layer: 13
   m_Name: rock_cube_1
   m_TagString: ParentObstacle
   m_Icon: {fileID: 0}

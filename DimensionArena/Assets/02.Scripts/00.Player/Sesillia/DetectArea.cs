@@ -23,8 +23,9 @@ public class DetectArea : MonoBehaviour
     private void Start()
     {
         isMine = GetComponentInParent<Player>().photonView.IsMine;
-        collisionlayer = (1 << LayerMask.NameToLayer("Obstacle") | 1 << LayerMask.NameToLayer("Player") | 1 << LayerMask.NameToLayer("GroundObject_Brick") | 1 << LayerMask.NameToLayer("Water"));
-        Player_Skill skill = GetComponentInParent<Player_Skill>();       
+        collisionlayer = (1 << LayerMask.NameToLayer("Obstacle") 
+                        | 1 << LayerMask.NameToLayer("Player") 
+                        | 1 << LayerMask.NameToLayer("Item_Box"));
     }
 
     public void SetRadius(float range)
@@ -46,13 +47,8 @@ public class DetectArea : MonoBehaviour
             return;
         }
 
-        foreach(var target in listTarget)
-        {
-            if (!target.gameObject.activeInHierarchy)
-                    listTarget.Remove(target);
-
-            break;
-        }
+        if (!listTarget[0].gameObject.activeInHierarchy)
+            listTarget.RemoveAt(0);
 
         listTarget.Sort(delegate (GameObject A, GameObject B)
         {
