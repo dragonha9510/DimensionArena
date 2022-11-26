@@ -24,7 +24,8 @@ public class RegisterUI : MonoBehaviour
     private GameObject welcomeObj;
     [SerializeField]
     private TextMeshProUGUI welcomeText;
-
+    [SerializeField]
+    private GameObject credit;
     private void Start()
     {
 
@@ -52,7 +53,14 @@ public class RegisterUI : MonoBehaviour
         }
         
     }
-
+    public void CreditOn()
+    {
+        credit.SetActive(true);
+    }
+    public void CreditOff()
+    {
+        credit.SetActive(false);
+    }
     public void NickNameCheck()
     {
         SoundManager.Instance.PlaySFXOneShot("ClickEffect");   

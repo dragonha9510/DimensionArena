@@ -18,12 +18,35 @@ public class OptionManager : MonoBehaviour
     private Button joyStickFixOff;
     [SerializeField]
     private Button CreditBtn;
-
+    [SerializeField]
+    private GameObject credit;
+    [SerializeField]
+    private GameObject gameEndPopUp;
     // Test Will TrashCode
     private void OnEnable()
     {
         joyStickFixOff.gameObject.SetActive(true);
         joyStickFixOn.gameObject.SetActive(false);
+    }
+    public void GameEnd()
+    {
+        Application.Quit();
+    }
+    public void GameEndCheckPopUpOn()
+    {
+        gameEndPopUp.SetActive(true);
+    }
+    public void GameEndCheckPopUpOff()
+    {
+        gameEndPopUp.SetActive(false);
+    }
+    public void CreditOn()
+    {
+        credit.SetActive(true);
+    }
+    public void CreditOff()
+    {
+        credit.SetActive(false);
     }
 
     public void JoyStickFixOn()
