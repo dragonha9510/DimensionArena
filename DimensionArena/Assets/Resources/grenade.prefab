@@ -102,7 +102,7 @@ MonoBehaviour:
   ownerID: 
   audioClipName: snd_char_securitas_bomb
   hitAudioClipName: 
-  ultimatePoint: 10
+  ultimatePoint: 15
   damage: 680
   hitPrefab: {fileID: 0}
   destroyEffect: {fileID: 1000012903210382, guid: b75a538851e583f42937cda85e429068,

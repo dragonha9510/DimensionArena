@@ -34,7 +34,7 @@ public class FloatingText : MonoBehaviour
     [Header("±‚»π/Floating Time")]
     [SerializeField] private float floatTime;
     [SerializeField] private float floatRange;
-
+ 
 
     private void Awake()
     {

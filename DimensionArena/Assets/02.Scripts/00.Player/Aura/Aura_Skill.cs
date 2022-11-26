@@ -31,6 +31,14 @@ namespace PlayerSpace
 
         private PlayerInfo info;
 
+        [SerializeField]
+        private LayerMask layer_player;
+        [SerializeField]
+        private LayerMask layer_block;
+
+        [SerializeField]
+        private LayerMask layer_item;
+
         protected override void Start()
         {
             base.Start();
@@ -75,6 +83,8 @@ namespace PlayerSpace
             Ray ray = new Ray();
             RaycastHit[] rayHits;
             RaycastHit[] rayHits_itemBox;
+            RaycastHit[] rayHits_BrickItemBox;
+
             ray.origin = FOV.transform.position;
            
 
@@ -86,8 +96,8 @@ namespace PlayerSpace
 
             for (int i = 0; i < rayCount; ++i)
             {
-                rayHits = Physics.RaycastAll(ray, FOV.ViewRadius, 1 << LayerMask.NameToLayer("Player"));
-                rayHits_itemBox = Physics.RaycastAll(ray, FOV.ViewRadius, 1 << LayerMask.NameToLayer("GroundObject_Brick"));
+                rayHits = Physics.RaycastAll(ray, FOV.ViewRadius);
+
                 foreach (RaycastHit rayhit in rayHits)
                 {
                     GameObject hitted = rayhit.transform.gameObject;
@@ -96,11 +106,12 @@ namespace PlayerSpace
                         photonView.RPC(nameof(KnockBack), RpcTarget.AllViaServer, hitted.name, owner.transform.position, (hitted.transform.position - owner.transform.position).normalized, projectileSpeed, FOV.ViewRadius);
                         hitedObj.Add(hitted);
                     }
-                }
-                foreach (RaycastHit rayhit in rayHits_itemBox)
-                {
-                    GameObject hitted = rayhit.transform.gameObject;
-                    if (hitted.tag == "Item_Box" && false == hitedObj.Contains(hitted))
+                    else if (hitted.tag == "Item_Box" && false == hitedObj.Contains(hitted))
+                    {
+                        hitted.GetComponent<ItemBox>().GetDamage(skillDamage * PlayerInfoManager.Instance.DicPlayerInfo[this.gameObject.name].AdditionalDmg, this.gameObject.name);
+                        hitedObj.Add(hitted);
+                    }
+                    else if (hitted.tag == "Item_Box" && false == hitedObj.Contains(hitted))
                     {
                         hitted.GetComponent<ItemBox>().GetDamage(skillDamage * PlayerInfoManager.Instance.DicPlayerInfo[this.gameObject.name].AdditionalDmg, this.gameObject.name);
                         hitedObj.Add(hitted);

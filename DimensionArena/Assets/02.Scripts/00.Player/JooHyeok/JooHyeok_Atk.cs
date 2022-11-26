@@ -15,8 +15,7 @@ namespace PlayerSpace
 
         [Header("Prefab")]
         [SerializeField] private GameObject prefab_Projectile;
-        [SerializeField] private AudioSource audioSource;
-
+        
         private int passiveCnt = 0;
         private const int attackCnt = 2;
         private const int passiveAttackCnt = 3;

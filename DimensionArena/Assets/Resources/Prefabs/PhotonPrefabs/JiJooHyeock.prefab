@@ -779,7 +779,6 @@ MonoBehaviour:
   attack_delay: 0.2
   prefab_Projectile: {fileID: 913381453853950687, guid: 975ed344785d6bc4094232b7111305be,
     type: 3}
-  audioSource: {fileID: 0}
   passiveEffect: {fileID: 1413759780029268989}
 --- !u!114 &158572435463090627
 MonoBehaviour:
@@ -2194,19 +2193,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3538972817888371208, guid: 3443466d754ebc640a83911704947677,
         type: 3}
-      propertyPath: m_Layer
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 3538972817888371208, guid: 3443466d754ebc640a83911704947677,
-        type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3538972817888371209, guid: 3443466d754ebc640a83911704947677,
-        type: 3}
-      propertyPath: owner
-      value: 
-      objectReference: {fileID: 2737819322045720800}
     - target: {fileID: 3538972817888371212, guid: 3443466d754ebc640a83911704947677,
         type: 3}
       propertyPath: m_RootOrder
@@ -2270,22 +2259,12 @@ PrefabInstance:
     - target: {fileID: 3538972818967441220, guid: 3443466d754ebc640a83911704947677,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.0875
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3538972818967441220, guid: 3443466d754ebc640a83911704947677,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.0875
-      objectReference: {fileID: 0}
-    - target: {fileID: 3538972818967441223, guid: 3443466d754ebc640a83911704947677,
-        type: 3}
-      propertyPath: m_Layer
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 3847098654603729111, guid: 3443466d754ebc640a83911704947677,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8521714281304840553, guid: 3443466d754ebc640a83911704947677,
         type: 3}
