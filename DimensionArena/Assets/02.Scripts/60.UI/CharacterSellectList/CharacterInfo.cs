@@ -7,6 +7,7 @@ using TMPro;
 public class CharacterInfo : MonoBehaviour
 {
     [SerializeField] private TMP_Text txt;
+    [SerializeField] private TMP_Text KoreanName;
     [SerializeField] private Transform player;
 
     [SerializeField] private Image[] SkillImage;
@@ -204,21 +205,27 @@ public class CharacterInfo : MonoBehaviour
         switch (txt.text)
         {
             case "Aura":
+                KoreanName.text = "아우라";
                 tempSprite = AuraSkill;
                 break;
             case "JiJooHyeock":
+                KoreanName.text = "지주혁";
                 tempSprite = JiJooHyeockSkill;
                 break;
             case "Securitas":
+                KoreanName.text = "시큐리타스";
                 tempSprite = SecuritasSkill;
                 break;
             case "Ravagebell":
+                KoreanName.text = "레비지벨";
                 tempSprite = RavagebellSkill;
                 break;
             case "Secilia":
+                KoreanName.text = "세실리아";
                 tempSprite = SeciliaSkill;
                 break;
             default:
+                KoreanName.text = "고장";
                 tempSprite = null;
                 break;
         }
