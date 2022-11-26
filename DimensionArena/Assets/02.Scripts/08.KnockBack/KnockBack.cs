@@ -28,7 +28,7 @@ public class KnockBack : MonoBehaviourPun
     {
         if (!PhotonNetwork.InRoom)
         {
-            if (this.gameObject.name.Equals(other.gameObject.name))
+            if (info.ownerID.Equals(other.gameObject.name))
                 return;
 
             if (other.CompareTag("Item_Box"))
@@ -92,7 +92,7 @@ public class KnockBack : MonoBehaviourPun
         }
         else if (PhotonNetwork.InRoom && PhotonNetwork.IsMasterClient)
         {
-            if (this.gameObject.name.Equals(other.gameObject.name))
+            if (info.ownerID.Equals(other.gameObject.name))
                 return;
 
             if (other.CompareTag("Item_Box"))
