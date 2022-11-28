@@ -1175,7 +1175,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9f0b903a629f0e4e87b2f2595fb68fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotateSpeed: 2
+  rotateSpeed: 1
   rotateImage: {fileID: 1929234526}
   matchingOutBtn: {fileID: 143755583}
   matchingOutCantBtn: {fileID: 1757252291}
