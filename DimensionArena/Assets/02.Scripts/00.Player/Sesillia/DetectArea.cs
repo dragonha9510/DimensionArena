@@ -26,7 +26,8 @@ public class DetectArea : MonoBehaviour
         collisionlayer = (1 << LayerMask.NameToLayer("Obstacle") 
                         | 1 << LayerMask.NameToLayer("Player") 
                         | 1 << LayerMask.NameToLayer("GroundObject_Brick")
-                        | 1 << LayerMask.NameToLayer("ItemBox"));
+                        | 1 << LayerMask.NameToLayer("ItemBox")
+                        | 1 << LayerMask.NameToLayer("Water"));
     }
 
     public void SetRadius(float range)
