@@ -137,7 +137,7 @@ MonoBehaviour:
     isEnvironment: 0
   knockBack: {fileID: 6338996334954765853, guid: 1ebde4fa2d241254ca1d8ea40b1ff5ca,
     type: 3}
-  triggerRadius: 0.5
+  triggerRadius: 1.5
 --- !u!114 &6285392066674466738
 MonoBehaviour:
   m_ObjectHideFlags: 0
