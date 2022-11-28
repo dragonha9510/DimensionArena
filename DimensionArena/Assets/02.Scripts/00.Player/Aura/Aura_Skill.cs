@@ -49,8 +49,8 @@ namespace PlayerSpace
         {
             projectileRange = FOV.ViewRadius;
             auraAnimator.SetBool("SkillUse", true);
-            
             SetMovePrevSkill();
+            Owner.Info.BattleOn();
         }
 
         private void SetMovePrevSkill()
@@ -82,8 +82,6 @@ namespace PlayerSpace
         {
             Ray ray = new Ray();
             RaycastHit[] rayHits;
-            RaycastHit[] rayHits_itemBox;
-            RaycastHit[] rayHits_BrickItemBox;
 
             ray.origin = FOV.transform.position;
            
