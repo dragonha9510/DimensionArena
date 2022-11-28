@@ -124,7 +124,7 @@ public class Parabola_Projectile : AttackObject
 
                     // Effect »ý¼º
                     GetComponent<KnockBackObject>().KnockBackStartDamage(ownerID, Damage, ultimatePoint);
-                    SoundManager.Instance.PlaySFXOneShotInRange(25, this.transform, audioClipName);
+                    SoundManager.Instance.PlaySFXOneShotInRange(60, this.transform, audioClipName);
 
                     if (destroyEffect != null)
                     {
@@ -173,7 +173,7 @@ public class Parabola_Projectile : AttackObject
     [PunRPC]
     private void CreateDestroyEffect(Vector3 pos,Quaternion rot,float ratio)
     {
-        SoundManager.Instance.PlaySFXOneShotInRange(25, this.transform, audioClipName);
+        SoundManager.Instance.PlaySFXOneShotInRange(60, this.transform, audioClipName);
         GameObject fxSize = Instantiate(destroyEffect, pos, rot);
         fxSize.transform.localScale *= ratio;
     }

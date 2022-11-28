@@ -47,8 +47,8 @@ public abstract class Item : MonoBehaviourPun
     private int StopCount = 3;
 
 
-    private Vector3 eatTrans;
-    private Quaternion eatRot;
+    protected Vector3 eatTrans;
+    protected Quaternion eatRot;
 
     private Transform trans;
     public Transform Trans { get { return this.transform; } }
@@ -118,12 +118,7 @@ public abstract class Item : MonoBehaviourPun
                 InteractItem(collision.gameObject.name);
         }
     }
-
-    [PunRPC]
-    protected void CreateDropEffect()
-    {
-        EffectManager.Instance.CreateParticleEffectOnGameobject(eatTrans, eatRot, "ItemDrop");
-    }
+    
 
 
     public void SettingItem(ItemInfo itemInfo)
