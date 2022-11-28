@@ -1000,8 +1000,8 @@ MonoBehaviour:
   prefabBtn: {fileID: 5150596530467547092, guid: a5c513d0ae915844f82fdab31e7bc67b,
     type: 3}
   sprites:
-  - {fileID: 21300000, guid: 2bd1b8a6b055e314d8ab971862541603, type: 3}
-  - {fileID: 21300000, guid: 026b6bb8a6250654c8b50818506d31c6, type: 3}
+  - {fileID: 21300000, guid: e16a86ecfbebcee4eb1230c5dc191e19, type: 3}
+  - {fileID: 21300000, guid: 4561a5252cf4c4c45a896642e23532dc, type: 3}
 --- !u!1 &1324809834
 GameObject:
   m_ObjectHideFlags: 0
@@ -1218,7 +1218,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Play!
+  m_text: "\uD50C\uB808\uC774"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a3c5eb17a74112148b9a90ad097462fa, type: 2}
   m_sharedMaterial: {fileID: 4142998466586302553, guid: a3c5eb17a74112148b9a90ad097462fa,
@@ -1354,8 +1354,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 8b9e23428fb1bb846bf05f8fccc5f8e0, type: 3}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: cf1ab00c077210e498dee4319cf2bcd1, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
