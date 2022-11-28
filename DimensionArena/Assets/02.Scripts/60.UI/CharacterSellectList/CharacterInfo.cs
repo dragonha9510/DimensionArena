@@ -30,7 +30,7 @@ public class CharacterInfo : MonoBehaviour
 
     [SerializeField] private Image[] SelectedImg;
 
-    private void Update()
+    private void Start()
     {
         CharacterImageInfo_Change();
     }
