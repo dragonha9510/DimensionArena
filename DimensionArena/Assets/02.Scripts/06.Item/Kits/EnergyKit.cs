@@ -11,6 +11,7 @@ public class EnergyKit : Item
             return;
         photonView.RPC(nameof(InteractItemForAllcient), RpcTarget.All, targetID);
         photonView.RPC(nameof(CreateDropEffect), RpcTarget.All, eatTrans,eatRot);
+        PhotonNetwork.Destroy(this.gameObject);
 
     }
     [PunRPC]
