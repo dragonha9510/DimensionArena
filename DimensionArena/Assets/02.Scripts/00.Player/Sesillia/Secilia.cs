@@ -18,12 +18,11 @@ namespace PlayerSpace
         [Header("Sesillia Passive Delay Time")]
         [SerializeField] private float healTickTime;
         [SerializeField] private float shieldPassiveCount;
-        bool isBattle;
 
         [SerializeField] ParticleSystem shieldpassiveEffect;
         [SerializeField] ParticleSystem healpassiveEffect;
         [SerializeField] float effectPlayTime;
-        ParticleSystem.MainModule mainParticle;
+
         protected override void Awake()
         {
             base.Awake();
@@ -59,6 +58,27 @@ namespace PlayerSpace
             }
         }
 
+        private void HpIncreaseForAllClient()
+        {
+            if (!healpassiveEffect.isPlaying)
+                healpassiveEffect.Play();
+
+            PlayerInfoManager.Instance.CurHpIncrease(gameObject.name, info.MaxHP * healPercent);         
+        }
+
+        private void OffHP()
+        {
+            if (healpassiveEffect.isPlaying)
+                healpassiveEffect.Stop();
+        }
+
+        private void GetShield()
+        {
+            shieldpassiveEffect.Play();
+            PlayerInfoManager.Instance.GetShield(gameObject.name, info.MaxHP * shieldPercent);
+        }
+
+        private void OffShield() => shieldpassiveEffect.Stop();
 
         IEnumerator StartPassiveFromOnline()
         {
@@ -75,17 +95,13 @@ namespace PlayerSpace
                 {
                     if (healTime >= healTickTime)
                     {
-                        if (!healpassiveEffect.isPlaying)
-                            healpassiveEffect.Play();
-
-                        PlayerInfoManager.Instance.CurHpIncrease(gameObject.name, info.MaxHP * healPercent);
+                        photonView.RPC(nameof(HpIncreaseForAllClient), RpcTarget.AllViaServer);
                         healTime = 0;
                     }
                 }
                 else
                 {
-                    if (healpassiveEffect.isPlaying)
-                        healpassiveEffect.Stop();
+                    photonView.RPC(nameof(OffHP), RpcTarget.AllViaServer);
                 }
 
                 //체력이 일정 이하일때 보호막 생성
@@ -93,11 +109,10 @@ namespace PlayerSpace
                 {
                     if (shieldtime >= shieldPassiveCount)
                     {
-                        shieldpassiveEffect.Play();
-                        PlayerInfoManager.Instance.GetShield(gameObject.name, info.MaxHP * shieldPercent);
+                        photonView.RPC(nameof(GetShield), RpcTarget.AllViaServer);
                         shieldtime = 0.0f;
                         yield return new WaitForSeconds(effectPlayTime);
-                        shieldpassiveEffect.Stop();
+                        photonView.RPC(nameof(OffShield), RpcTarget.AllViaServer);
                     }
                 }
 
