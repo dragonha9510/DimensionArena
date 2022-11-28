@@ -99,13 +99,13 @@ namespace PlayerSpace
                 {
                     if (healTime >= healTickTime)
                     {
-                        photonView.RPC(nameof(HpIncreaseForAllClient), RpcTarget.AllViaServer, gameObject.name);
+                        photonView.RPC(nameof(HpIncreaseForAllClient), RpcTarget.All, gameObject.name);
                         healTime = 0;
                     }
                 }
                 else
                 {
-                    photonView.RPC(nameof(OffHP), RpcTarget.AllViaServer);
+                    photonView.RPC(nameof(OffHP), RpcTarget.All);
                 }
 
                 //체력이 일정 이하일때 보호막 생성
@@ -113,10 +113,10 @@ namespace PlayerSpace
                 {
                     if (shieldtime >= shieldPassiveCount)
                     {
-                        photonView.RPC(nameof(GetShield), RpcTarget.AllViaServer, gameObject.name);
+                        photonView.RPC(nameof(GetShield), RpcTarget.All, gameObject.name);
                         shieldtime = 0.0f;
                         yield return new WaitForSeconds(effectPlayTime);
-                        photonView.RPC(nameof(OffShield), RpcTarget.AllViaServer);
+                        photonView.RPC(nameof(OffShield), RpcTarget.All);
                     }
                 }
 
