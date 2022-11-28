@@ -82,7 +82,10 @@ namespace PlayerSpace
         }
 
         [PunRPC]
-        private void OffShield() => shieldpassiveEffect.Stop();
+        private void OffShield()
+        {
+           shieldpassiveEffect.Stop();
+        }
 
         IEnumerator StartPassiveFromOnline()
         {

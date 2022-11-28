@@ -150,6 +150,9 @@ MonoBehaviour:
   - CreateDestroyEfffect
   - skillServer
   - PassiveActive
+  - HpIncreaseForAllClient
+  - OffHP
+  - OffShield
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1
