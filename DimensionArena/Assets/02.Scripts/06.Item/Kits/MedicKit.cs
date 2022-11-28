@@ -7,20 +7,23 @@ public class MedicKit : Item
 {
     protected override void InteractItem(string targetID)
     {
-        photonView.RPC(nameof(InteractItemForAllcient), RpcTarget.AllViaServer, targetID);
+        if (!PhotonNetwork.IsMasterClient)
+            return;
+        photonView.RPC(nameof(InteractItemForAllcient), RpcTarget.All, targetID);
+        photonView.RPC(nameof(CreateDropEffect), RpcTarget.All, eatTrans, eatRot);
+        PhotonNetwork.Destroy(this.gameObject);
     }
-
+    [PunRPC]
+    private void CreateDropEffect(Vector3 trans, Quaternion quaternion)
+    {
+        EffectManager.Instance.CreateParticleEffectOnGameobject(trans, quaternion, "ItemDrop");
+    }
 
     [PunRPC]
     public void InteractItemForAllcient(string targetID)
     {
         PlayerInfoManager.Instance.CurHpIncrease(targetID, info.healthAmount);
 
-        if (PhotonNetwork.IsMasterClient)
-        {
-            CreateDropEffect();
-            PhotonNetwork.Destroy(this.gameObject);
-        }
     }
 
 }

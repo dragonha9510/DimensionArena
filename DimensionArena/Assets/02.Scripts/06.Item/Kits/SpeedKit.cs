@@ -8,7 +8,12 @@ public class SpeedKit : Item
 {
     protected override void InteractItem(string targetID)
     {
-        photonView.RPC(nameof(InteractItemForAllcient), RpcTarget.AllViaServer, targetID);
+        if (!PhotonNetwork.IsMasterClient)
+            return;
+        photonView.RPC(nameof(InteractItemForAllcient), RpcTarget.All, targetID);
+        photonView.RPC(nameof(CreateDropEffect), RpcTarget.All, eatTrans, eatRot);
+        PhotonNetwork.Destroy(this.gameObject);
+
     }
 
     [PunRPC]
@@ -16,11 +21,10 @@ public class SpeedKit : Item
     {
         PlayerInfoManager.Instance.SpeedIncrease(targetID, info.speedAmount,info.statusDuration);
 
-        if (PhotonNetwork.IsMasterClient)
-        {
-            CreateDropEffect();
-            PhotonNetwork.Destroy(this.gameObject);
-        }
-
+    }
+    [PunRPC]
+    private void CreateDropEffect(Vector3 trans, Quaternion quaternion)
+    {
+        EffectManager.Instance.CreateParticleEffectOnGameobject(trans, quaternion, "ItemDrop");
     }
 }
