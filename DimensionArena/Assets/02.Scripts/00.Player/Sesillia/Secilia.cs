@@ -58,26 +58,30 @@ namespace PlayerSpace
             }
         }
 
-        private void HpIncreaseForAllClient()
+        [PunRPC]
+        private void HpIncreaseForAllClient(string name)
         {
             if (!healpassiveEffect.isPlaying)
                 healpassiveEffect.Play();
 
-            PlayerInfoManager.Instance.CurHpIncrease(gameObject.name, info.MaxHP * healPercent);         
+            PlayerInfoManager.Instance.CurHpIncrease(name, info.MaxHP * healPercent);         
         }
 
+        [PunRPC]
         private void OffHP()
         {
             if (healpassiveEffect.isPlaying)
                 healpassiveEffect.Stop();
         }
 
-        private void GetShield()
+        [PunRPC]
+        private void GetShield(string name)
         {
             shieldpassiveEffect.Play();
-            PlayerInfoManager.Instance.GetShield(gameObject.name, info.MaxHP * shieldPercent);
+            PlayerInfoManager.Instance.GetShield(name, info.MaxHP * shieldPercent);
         }
 
+        [PunRPC]
         private void OffShield() => shieldpassiveEffect.Stop();
 
         IEnumerator StartPassiveFromOnline()
@@ -95,7 +99,7 @@ namespace PlayerSpace
                 {
                     if (healTime >= healTickTime)
                     {
-                        photonView.RPC(nameof(HpIncreaseForAllClient), RpcTarget.AllViaServer);
+                        photonView.RPC(nameof(HpIncreaseForAllClient), RpcTarget.AllViaServer, gameObject.name);
                         healTime = 0;
                     }
                 }
@@ -109,7 +113,7 @@ namespace PlayerSpace
                 {
                     if (shieldtime >= shieldPassiveCount)
                     {
-                        photonView.RPC(nameof(GetShield), RpcTarget.AllViaServer);
+                        photonView.RPC(nameof(GetShield), RpcTarget.AllViaServer, gameObject.name);
                         shieldtime = 0.0f;
                         yield return new WaitForSeconds(effectPlayTime);
                         photonView.RPC(nameof(OffShield), RpcTarget.AllViaServer);
