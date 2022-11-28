@@ -9,7 +9,6 @@ using PlayerSpace;
 public class Prototype_TargetCamera : MonoBehaviour
 {
     public Transform target;
-    [SerializeField] private Transform tempTarget;
     [SerializeField] private float arrivalTime;
     private Vector3 interval;
     private bool isStartEnd;

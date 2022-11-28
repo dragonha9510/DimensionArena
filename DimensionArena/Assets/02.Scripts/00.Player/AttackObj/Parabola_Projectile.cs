@@ -74,10 +74,6 @@ public class Parabola_Projectile : AttackObject
         realSpeed = 1 / time;
     }
 
-    private void Start()
-    {
-    }
-
     private IEnumerator DelayDestroy()
     {
         isDestroy = true;
@@ -128,11 +124,11 @@ public class Parabola_Projectile : AttackObject
 
                     // Effect »ý¼º
                     GetComponent<KnockBackObject>().KnockBackStartDamage(ownerID, Damage, ultimatePoint);
+                    SoundManager.Instance.PlaySFXOneShotInRange(25, this.transform, audioClipName);
 
                     if (destroyEffect != null)
                     {
-                        GameObject fxSize = Instantiate(destroyEffect, transform.position, destroyEffect.transform.rotation);
-                        fxSize.transform.localScale *= tempRatio;
+                        CreateDestroyEffect(transform.position, destroyEffect.transform.rotation, tempRatio);
                     }
                 }
                 else
@@ -143,7 +139,7 @@ public class Parabola_Projectile : AttackObject
             tempPosition.y = CalculatePosition(myLocation);
             transform.position = tempPosition;
         }
-        if(PhotonNetwork.InRoom && PhotonNetwork.IsMasterClient)
+        if (PhotonNetwork.InRoom && PhotonNetwork.IsMasterClient)
         {
             if (!isReady)
                 return;
@@ -177,7 +173,7 @@ public class Parabola_Projectile : AttackObject
     [PunRPC]
     private void CreateDestroyEffect(Vector3 pos,Quaternion rot,float ratio)
     {
-        SoundManager.Instance.PlaySFXOneShotInRange(18.0f, transform, audioClipName);
+        SoundManager.Instance.PlaySFXOneShotInRange(25, this.transform, audioClipName);
         GameObject fxSize = Instantiate(destroyEffect, pos, rot);
         fxSize.transform.localScale *= ratio;
     }
