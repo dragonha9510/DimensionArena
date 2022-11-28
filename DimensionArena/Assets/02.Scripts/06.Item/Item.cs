@@ -109,6 +109,7 @@ public abstract class Item : MonoBehaviourPun
                 if (!ownerName.Equals(collision.gameObject.name))
                     return;
             }
+            SoundManager.Instance.PlaySFXOneShotInRange(30.0f, this.transform, "ItemEat");
             // 이펙트 생성을 위한 설정
             eatTrans = this.trans.position;
             eatRot = this.trans.rotation;
