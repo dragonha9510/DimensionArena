@@ -27,6 +27,7 @@ TagManager:
   - Water_Plane
   - Item_Box
   - KnockBack
+  - Player_Ditection
   layers:
   - Default
   - TransparentFX
@@ -63,4 +64,7 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Wait
+    uniqueID: 1195885049
     locked: 0
