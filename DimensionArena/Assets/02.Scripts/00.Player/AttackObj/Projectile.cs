@@ -23,7 +23,7 @@ public class Projectile : AttackObject
         if (audioClipName == null)
            return;
 
-        SoundManager.Instance.PlaySFXOneShot(audioClipName);
+        SoundManager.Instance.PlaySFXOneShotInRange(60f, this.transform, audioClipName);
     }
 
 

@@ -8130,7 +8130,7 @@ MonoBehaviour:
     maxSheld: 0
     additionalDmg: 1
     isBattle: 0
-    battleOffTime: 0
+    battleOffTime: 3
     baseSpeed: 3
     curSpeed: 3
   speedNesting: 0.02

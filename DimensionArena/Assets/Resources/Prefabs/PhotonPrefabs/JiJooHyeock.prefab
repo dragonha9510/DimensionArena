@@ -360,7 +360,7 @@ MonoBehaviour:
     maxSheld: 0
     additionalDmg: 0
     isBattle: 0
-    battleOffTime: 0
+    battleOffTime: 3
     baseSpeed: 2.25
     curSpeed: 2.25
 --- !u!114 &1876143292272218706

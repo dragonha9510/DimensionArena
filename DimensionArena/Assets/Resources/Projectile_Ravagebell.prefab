@@ -19585,7 +19585,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ownerID: 
-  audioClipName: 
+  audioClipName: ravagebell_splash
   hitAudioClipName: 
   ultimatePoint: 20
   damage: 0

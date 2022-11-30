@@ -235,7 +235,7 @@ MonoBehaviour:
     isAlive: 1
     maxHP: 850
     curHP: 850
-    curSkillPoint: 100
+    curSkillPoint: 0
     maxSkillPoint: 100
     curShield: 0
     maxSheld: 0
