@@ -77,7 +77,10 @@ namespace PlayerSpace
             if (isRotation)
                 StartCoroutine(LookAttackDirection(attackdirection, magnitude));
             else
+            {
+                owner.Info.BattleOn();
                 ActSkill(attackdirection, magnitude);
+            }
         }
 
 

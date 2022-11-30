@@ -20,11 +20,9 @@ public class CloudeEffect : MonoBehaviour
 
     WaitForSeconds waitforSeconds = new WaitForSeconds(1.05f);
     private bool upScale = false;
-    private bool startUpdate = false;
 
     public void StartEffect()
     {
-        startUpdate = true;
         liveTime = alliveTime;
         float randScale = Random.Range(minScale, maxScale);
         this.transform.localScale = new Vector3(randScale, randScale, 1);
@@ -58,7 +56,6 @@ public class CloudeEffect : MonoBehaviour
         
         if (0 > liveTime && false == UnDead)
         {
-            startUpdate = false;
             ObjectPool.Instance.ReturnObjectToPool(CLIENTOBJ.CLIENTOBJ_CLOUDEFFECT, this.gameObject);
         }
     }

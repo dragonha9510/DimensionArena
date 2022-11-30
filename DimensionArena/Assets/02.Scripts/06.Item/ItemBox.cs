@@ -151,6 +151,7 @@ public class ItemBox : MonoBehaviourPun
         {
             if (!PhotonNetwork.IsMasterClient)
                 return;
+            SoundManager.Instance.PlaySFXOneShotInRange(60f, this.transform, "ItemBoxBreak");
             MakeRandItem(owner);
             photonView.RPC(nameof(CreateDestroyEfffect), RpcTarget.All, this.transform.position, this.transform.rotation, "ItemBox");
             PhotonNetwork.Destroy(this.gameObject);

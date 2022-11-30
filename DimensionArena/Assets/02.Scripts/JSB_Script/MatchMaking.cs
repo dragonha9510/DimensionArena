@@ -52,7 +52,10 @@ public class MatchMaking : MonoBehaviourPun
     {
         rotateImage.transform.Rotate(Vector3.forward * rotateSpeed);
         if(true == plusPlayerWait.activeInHierarchy)
-            plusPlayerWaitTimeText.text = LobbyManagerRenewal.Instance.WaitTimeRemain.ToString();
+        {
+
+            plusPlayerWaitTimeText.text = (Mathf.Floor(LobbyManagerRenewal.Instance.WaitTimeRemain * 100f) * 0.01f).ToString();
+        }
 
 
     }

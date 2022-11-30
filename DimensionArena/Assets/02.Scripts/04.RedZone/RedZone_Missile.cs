@@ -45,7 +45,7 @@ public class RedZone_Missile : MonoBehaviour
             if (destroyEffect)
                 Instantiate(destroyEffect, new Vector3(transform.position.x, 0, transform.position.z), destroyEffect.transform.rotation);
 
-            SoundManager.Instance.PlaySFXOneShotInRange(56.0f, this.transform, soundClip[Random.Range(0, soundClip.Length)]);
+            SoundManager.Instance.PlaySFXOneShotInRange(70.0f, this.transform, soundClip[Random.Range(0, soundClip.Length)]);
             //Destroy(boundary);
             //Destroy(outterBoundary);
         }

@@ -76,9 +76,11 @@ public class SoundManager : MonoBehaviourPun
     {
         if (!AudioClips.ContainsKey(audioClipName) || null == AudioClips[audioClipName])
             return;
-
-        Transform playerTrans = PlayerInfoManager.Instance.getPlayerTransform(PhotonNetwork.NickName);
-
+        Transform playerTrans;
+        if (PhotonNetwork.InRoom)
+            playerTrans = PlayerInfoManager.Instance.getPlayerTransform(PhotonNetwork.NickName);
+        else
+            playerTrans = PlayerInfoManager.Instance.getPlayerTransform("PlayerJiJooHyeock");
         if (playerTrans == null)
             return;
 

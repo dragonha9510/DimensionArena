@@ -25,7 +25,9 @@ public class DetectArea : MonoBehaviour
         isMine = GetComponentInParent<Player>().photonView.IsMine;
         collisionlayer = (1 << LayerMask.NameToLayer("Obstacle") 
                         | 1 << LayerMask.NameToLayer("Player") 
-                        | 1 << LayerMask.NameToLayer("Item_Box"));
+                        | 1 << LayerMask.NameToLayer("GroundObject_Brick")
+                        | 1 << LayerMask.NameToLayer("ItemBox")
+                        | 1 << LayerMask.NameToLayer("Water"));
     }
 
     public void SetRadius(float range)
