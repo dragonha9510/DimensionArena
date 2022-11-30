@@ -16,33 +16,62 @@ public class RectBox : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        // 현재 세로 모드 9:16, 반대로 하고 싶으면 16:9를 입력.
-        float scale_height = ((float)Screen.width / Screen.height) / ((float)16 / 9); // (가로 / 세로)
-        float scale_width = 1f / scale_height;
-
-        if (scale_height < 1)
+        if(Screen.width > Screen.height)
         {
-            float ratio = (scale_width - 1.0f) * 0.5f; 
-            rectbox.rectTransform.sizeDelta = new Vector2(Screen.width, ratio * Screen.height);
-            rectbox2.rectTransform.sizeDelta = new Vector2(Screen.width, ratio * Screen.height);
+            float scale_height = ((float)Screen.width / Screen.height) / ((float)16 / 9); // (가로 / 세로)
+            float scale_width = 1f / scale_height;
 
-            rectbox.rectTransform.anchoredPosition = new Vector2(0,(1080) * 0.5f + rectbox.rectTransform.sizeDelta.y * 0.5f );
-            rectbox2.rectTransform.anchoredPosition = new Vector2(0,-1 * ((1080) * 0.5f + rectbox.rectTransform.sizeDelta.y * 0.5f));
+            if (scale_height > 1.0f)
+            {
+                float paddingSize = (Screen.width - 1920) * 0.5f;
+                float paddingPos = 1920 * 0.5f;
+                rectbox.rectTransform.sizeDelta = new Vector2(paddingSize, Screen.height);
+                rectbox.rectTransform.anchoredPosition = new Vector2(paddingPos + paddingSize * 0.5f, 0);
+                rectbox2.rectTransform.sizeDelta = new Vector2(paddingSize, Screen.height);
+                rectbox2.rectTransform.anchoredPosition = new Vector2(-1 * (paddingPos + paddingSize * 0.5f), 0);
+
+            }
+            else
+            {
+                float paddingSize = (Screen.height - 1080) * 0.5f;
+                float paddingPos = 1080 * 0.5f;
+                rectbox.rectTransform.sizeDelta = new Vector2(Screen.width, paddingSize);
+                rectbox.rectTransform.anchoredPosition = new Vector2(0, paddingPos + paddingSize * 0.5f);
+                rectbox2.rectTransform.sizeDelta = new Vector2(Screen.width, paddingSize);
+                rectbox2.rectTransform.anchoredPosition = new Vector2(0, -1 * (paddingPos + paddingSize * 0.5f));
+
+            }
         }
         else
         {
-            float ratio = (scale_height - 1.0f) * 0.5f;
-            rectbox.rectTransform.sizeDelta = new Vector2(ratio * Screen.width, Screen.height);
-            rectbox2.rectTransform.sizeDelta = new Vector2(ratio * Screen.width, Screen.height);
+            /*
+            float scale_height = ((float)Screen.width / Screen.height) / ((float)16 / 9); // (가로 / 세로)
+            float scale_width = 1f / scale_height;
 
-            rectbox.rectTransform.anchoredPosition = new Vector2((Screen.width * scale_width) * 0.5f + rectbox.rectTransform.sizeDelta.x * 0.5f,  0);
-            rectbox2.rectTransform.anchoredPosition = new Vector2(-1 * ((Screen.width * scale_width) * 0.5f + rectbox.rectTransform.sizeDelta.x * 0.5f), 0);
+            if (scale_height > 1.0f)
+            {
+                float paddingSize = (Screen.width - 1920) * 0.5f;
+                float paddingPos = 1920 * 0.5f;
+                rectbox.rectTransform.sizeDelta = new Vector2(paddingSize, Screen.height);
+                rectbox.rectTransform.anchoredPosition = new Vector2(paddingPos + paddingSize * 0.5f, 0);
+                rectbox2.rectTransform.sizeDelta = new Vector2(paddingSize, Screen.height);
+                rectbox2.rectTransform.anchoredPosition = new Vector2(-1 * (paddingPos + paddingSize * 0.5f), 0);
+
+            }
+            else
+            {
+                float paddingSize = (Screen.height - 1080) * 0.5f;
+                float paddingPos = 1080 * 0.5f;
+                rectbox.rectTransform.sizeDelta = new Vector2(Screen.width, paddingSize);
+                rectbox.rectTransform.anchoredPosition = new Vector2(0, paddingPos + paddingSize * 0.5f);
+                rectbox2.rectTransform.sizeDelta = new Vector2(Screen.width, paddingSize);
+                rectbox2.rectTransform.anchoredPosition = new Vector2(0, -1 * (paddingPos + paddingSize * 0.5f));
+
+            }
+            */
         }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+            
+              
+      
     }
 }
