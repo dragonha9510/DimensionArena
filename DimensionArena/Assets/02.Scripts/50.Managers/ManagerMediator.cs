@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 using Photon.Pun;
 
 
@@ -11,6 +12,7 @@ namespace ManagerSpace
         EFFECT,
         GAME,
         PLAYER_INFO,
+        TOUCH_CANVAS,
         INGAME_DATA,
         INGAME_UI,
         MANAGER_TYPE_END
@@ -29,6 +31,12 @@ namespace ManagerSpace
             foreach (var type in managerDic)
             {
                 type.Value.SetActive(true);
+
+                if(type.Key.Equals(MANAGER_TYPE.TOUCH_CANVAS))
+                {
+                    type.Value.GetComponent<CanvasGroup>().DOFade(1.0f, 0.5f);
+                    type.Value.GetComponent<CanvasGroup>().blocksRaycasts = true;
+                }
             }
 
             isAllManagerActive = true;
