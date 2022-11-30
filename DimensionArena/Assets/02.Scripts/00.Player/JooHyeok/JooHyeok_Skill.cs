@@ -95,6 +95,7 @@ public class JooHyeok_Skill : Player_Skill
 
     public override void AutoSkill()
     {
+        Owner.Info.LoseSkillPoint(owner.Info.MaxSkillPoint);
         // 자동 공격
         skillDirection = autoSkill.targetPos - transform.position;
         float magnitude = skillDirection.magnitude;

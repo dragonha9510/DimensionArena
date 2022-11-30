@@ -127,13 +127,10 @@ public class PlayerInfo
     [PunRPC]
     public void LoseSkillPoint(float point)
     {
-        if (curSkillPoint != maxSkillPoint)
-        {
             curSkillPoint -= point;
             curSkillPoint = Mathf.Max(curSkillPoint, 0);
             if (EskillAmountChanged != null)
                 EskillAmountChanged(curSkillPoint / maxSkillPoint);
-        }
     }
 
     [PunRPC]

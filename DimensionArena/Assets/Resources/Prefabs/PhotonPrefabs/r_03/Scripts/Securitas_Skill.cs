@@ -155,6 +155,7 @@ public class Securitas_Skill : Player_Skill
 
     public override void AutoSkill()
     {
+        Owner.Info.LoseSkillPoint(owner.Info.MaxSkillPoint);
         // 자동 공격
         skillDirection = (Vector3.forward * 0.1f);
         skillDirection.y = 0;

@@ -73,7 +73,7 @@ namespace PlayerSpace
         public void UseSkill(Vector3 attackdirection, float magnitude)
         {
             skillDirection = attackdirection;
-
+            Owner.Info.LoseSkillPoint(owner.Info.MaxSkillPoint);
             if (isRotation)
                 StartCoroutine(LookAttackDirection(attackdirection, magnitude));
             else

@@ -1061,6 +1061,11 @@ PrefabInstance:
       propertyPath: leastStartPlayer
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8366231393808487049, guid: 7ca80dc8f0025074ea4aeb6a48b093d6,
+        type: 3}
+      propertyPath: waitOtherPlayerTime
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 8366231393808487050, guid: 7ca80dc8f0025074ea4aeb6a48b093d6,
         type: 3}
       propertyPath: m_RootOrder

@@ -22,25 +22,18 @@ public class RectBox : MonoBehaviour
 
         if (scale_height < 1)
         {
-            Debug.Log("세로가 더 작음");
-            Debug.Log(scale_width);
-            Debug.Log(scale_height);
-
             float ratio = (scale_width - 1.0f) * 0.5f; 
-            rectbox.rectTransform.sizeDelta = new Vector2(Screen.width + 0.1f, ratio * Screen.height + 0.1f);
-            rectbox2.rectTransform.sizeDelta = new Vector2(Screen.width + 0.1f, ratio * Screen.height + 0.1f);
+            rectbox.rectTransform.sizeDelta = new Vector2(Screen.width, ratio * Screen.height);
+            rectbox2.rectTransform.sizeDelta = new Vector2(Screen.width, ratio * Screen.height);
 
             rectbox.rectTransform.anchoredPosition = new Vector2(0,(1080) * 0.5f + rectbox.rectTransform.sizeDelta.y * 0.5f );
             rectbox2.rectTransform.anchoredPosition = new Vector2(0,-1 * ((1080) * 0.5f + rectbox.rectTransform.sizeDelta.y * 0.5f));
         }
         else
         {
-            Debug.Log("가로가 더 큼");
-            Debug.Log(scale_width);
-            Debug.Log(scale_height);
             float ratio = (scale_height - 1.0f) * 0.5f;
-            rectbox.rectTransform.sizeDelta = new Vector2(ratio * Screen.width + 0.1f, Screen.height + 0.1f);
-            rectbox2.rectTransform.sizeDelta = new Vector2(ratio * Screen.width + 0.1f, Screen.height + 0.1f);
+            rectbox.rectTransform.sizeDelta = new Vector2(ratio * Screen.width, Screen.height);
+            rectbox2.rectTransform.sizeDelta = new Vector2(ratio * Screen.width, Screen.height);
 
             rectbox.rectTransform.anchoredPosition = new Vector2((Screen.width * scale_width) * 0.5f + rectbox.rectTransform.sizeDelta.x * 0.5f,  0);
             rectbox2.rectTransform.anchoredPosition = new Vector2(-1 * ((Screen.width * scale_width) * 0.5f + rectbox.rectTransform.sizeDelta.x * 0.5f), 0);
